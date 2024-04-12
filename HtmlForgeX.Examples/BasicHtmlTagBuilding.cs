@@ -13,6 +13,21 @@ namespace HtmlForgeX.Examples {
             HelpersSpectre.PrintHtmlTag(tag);
         }
 
+        public static void Demo5() {
+            HelpersSpectre.PrintTitle("Basic Demo 1");
+
+            HtmlTag tag = new HtmlTag("span", "Hello, World!", new Dictionary<string, object> {
+                { "class", "myClass" },
+                { "style", new Dictionary<string, string> {
+                    { "font-size", "25px" },
+                    { "margin", "5px" }
+                } }
+            });
+
+            HelpersSpectre.PrintHtmlTag(tag);
+        }
+
+
         public static void Demo2() {
             HelpersSpectre.PrintTitle("Basic Demo 2");
 
