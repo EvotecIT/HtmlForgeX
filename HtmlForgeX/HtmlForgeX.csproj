@@ -1,9 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <Description></Description>
+        <AssemblyName>HtmlForgeX</AssemblyName>
+        <AssemblyTitle>HtmlForgeX</AssemblyTitle>
+
+        <VersionPrefix>0.14.0</VersionPrefix>
+        <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`Windows`))' ">netstandard2.0;netstandard2.1;net472;net48;net6.0;net7.0;net8.0</TargetFrameworks>
+        <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`OSX`))'  Or '$([MSBuild]::IsOsPlatform(`Linux`))' ">net6.0;net7.0;net8.0</TargetFrameworks>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+        <Company>Evotec</Company>
+        <Authors>Przemyslaw Klys</Authors>
+        <LangVersion>Latest</LangVersion>
+
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
 </Project>
