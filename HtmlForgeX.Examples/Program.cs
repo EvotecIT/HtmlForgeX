@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using HtmlForgeX.Examples;
+
+//BasicHtmlTagBuilding.Demo1();
+//BasicHtmlTagBuilding.Demo2();
+//BasicHtmlTagBuilding.Demo3();
+//BasicHtmlTagBuilding.Demo4();
+BasicHtmlBuilding.Demo1();
