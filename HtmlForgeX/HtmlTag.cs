@@ -10,6 +10,10 @@ public class HtmlTag {
     public bool SelfClosing { get; set; }
     public bool NoClosing { get; set; }
 
+    public HtmlTag(string tag) {
+        Tag = tag;
+    }
+
     public HtmlTag(string tag, string value = "", bool selfClosing = false, bool noClosing = false) {
         Tag = tag;
         Value = value;
@@ -17,9 +21,25 @@ public class HtmlTag {
         NoClosing = noClosing;
     }
 
-    public HtmlTag(string tag, string value, Dictionary<string, object> attributes, bool selfClosing = false, bool noClosing = false)
-        : this(tag, value, selfClosing, noClosing) {
-        Attributes = attributes;
+    public HtmlTag(string tag, string value = "", Dictionary<string, object> attributes = null, bool selfClosing = false, bool noClosing = false) {
+        Tag = tag;
+        Value = value;
+        SelfClosing = selfClosing;
+        NoClosing = noClosing;
+
+        if (attributes != null) {
+            foreach (var attribute in attributes) {
+                if (attribute.Value is Dictionary<string, string> nestedAttributes) {
+                    StringBuilder nestedValue = new StringBuilder();
+                    foreach (var nestedAttribute in nestedAttributes) {
+                        nestedValue.Append($"{nestedAttribute.Key}: {nestedAttribute.Value}; ");
+                    }
+                    Attributes[attribute.Key] = nestedValue.ToString().TrimEnd(' ', ';');
+                } else {
+                    Attributes[attribute.Key] = attribute.Value.ToString();
+                }
+            }
+        }
     }
 
     public HtmlTag Class(string className) {
