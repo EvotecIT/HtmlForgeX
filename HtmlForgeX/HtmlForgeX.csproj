@@ -17,4 +17,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Interfaces\" />
+      <Folder Include="Scripts\" />
+      <Folder Include="Resources\Scripts\" />
+      <Folder Include="Resources\Styles\" />
+      <Folder Include="Utilities\" />
+    </ItemGroup>
+
 </Project>
