@@ -1,51 +1,46 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<Description></Description>
-		<AssemblyName>HtmlForgeX</AssemblyName>
-		<AssemblyTitle>HtmlForgeX</AssemblyTitle>
+    <PropertyGroup>
+        <Description></Description>
+        <AssemblyName>HtmlForgeX</AssemblyName>
+        <AssemblyTitle>HtmlForgeX</AssemblyTitle>
 
-		<VersionPrefix>0.1.0</VersionPrefix>
-		<TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`Windows`))' ">
-			netstandard2.0;netstandard2.1;net472;net48;net6.0;net7.0;net8.0</TargetFrameworks>
-		<TargetFrameworks
-			Condition=" '$([MSBuild]::IsOsPlatform(`OSX`))'  Or '$([MSBuild]::IsOsPlatform(`Linux`))' ">
-			net6.0;net7.0;net8.0</TargetFrameworks>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-		<Company>Evotec</Company>
-		<Authors>Przemyslaw Klys</Authors>
-		<LangVersion>Latest</LangVersion>
+        <VersionPrefix>0.1.0</VersionPrefix>
+        <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`Windows`))' ">
+            netstandard2.0;netstandard2.1;net472;net48;net6.0;net7.0;net8.0
+        </TargetFrameworks>
+        <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`OSX`))'  Or '$([MSBuild]::IsOsPlatform(`Linux`))' ">
+            net6.0;net7.0;net8.0
+        </TargetFrameworks>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+        <Company>Evotec</Company>
+        <Authors>Przemyslaw Klys</Authors>
+        <LangVersion>Latest</LangVersion>
 
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<Folder Include="Interfaces\" />
-		<Folder Include="Scripts\" />
-		<Folder Include="Resources\Scripts\" />
-		<Folder Include="Resources\Styles\" />
-	</ItemGroup>
+    <ItemGroup>
+        <Folder Include="Interfaces\" />
+        <Folder Include="Scripts\" />
+        <Folder Include="Resources\Scripts\" />
+        <Folder Include="Resources\Styles\" />
+    </ItemGroup>
 
-	<ItemGroup>
-		<EditorConfigFiles Include=".editorconfig" />
-	</ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0' OR '$(TargetFramework)'=='netstandard2.1'">
+        <PackageReference Include="System.Text.Json" Version="8.0.2" />
+    </ItemGroup>
 
-	<ItemGroup
-		Condition="'$(TargetFramework)'=='netstandard2.0' OR '$(TargetFramework)'=='netstandard2.1'">
-		<PackageReference Include="System.Text.Json" Version="8.0.2" />
-	</ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)'=='net472' OR '$(TargetFramework)'=='net48'">
+        <PackageReference Include="System.Text.Json" Version="8.0.2" />
+    </ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net472' OR '$(TargetFramework)'=='net48'">
-		<PackageReference Include="System.Text.Json" Version="8.0.2" />
-	</ItemGroup>
+    <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netcoreapp3.0' OR '$(TargetFramework)' == 'netcoreapp3.1' OR '$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">
+        <DefineConstants>NETCOREAPP2_1_OR_GREATER</DefineConstants>
+    </PropertyGroup>
 
-	<PropertyGroup
-		Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netcoreapp3.0' OR '$(TargetFramework)' == 'netcoreapp3.1' OR '$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">
-		<DefineConstants>NETCOREAPP2_1_OR_GREATER</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">
-		<DefineConstants>NET5_0_OR_GREATER</DefineConstants>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">
+        <DefineConstants>NET5_0_OR_GREATER</DefineConstants>
+    </PropertyGroup>
 </Project>
