@@ -11,7 +11,7 @@ public class HtmlHead {
     /// Gets or sets the title of the HTML document.
     /// This is displayed in the title bar of the web browser.
     /// </summary>
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     /// <summary>
     /// Gets or sets the charset.
@@ -19,7 +19,7 @@ public class HtmlHead {
     /// <value>
     /// The charset.
     /// </value>
-    public string Charset { get; set; }
+    public string? Charset { get; set; }
 
     /// <summary>
     /// Gets or sets the HTTP equiv.
@@ -27,7 +27,7 @@ public class HtmlHead {
     /// <value>
     /// The HTTP equiv.
     /// </value>
-    public string HttpEquiv { get; set; }
+    public string? HttpEquiv { get; set; }
 
     /// <summary>
     /// Gets or sets the content.
@@ -35,7 +35,7 @@ public class HtmlHead {
     /// <value>
     /// The content.
     /// </value>
-    public string Content { get; set; }
+    public string? Content { get; set; }
 
     /// <summary>
     /// Gets or sets the viewport.
@@ -43,7 +43,7 @@ public class HtmlHead {
     /// <value>
     /// The viewport.
     /// </value>
-    public string Viewport { get; set; }
+    public string? Viewport { get; set; }
 
     /// <summary>
     /// Gets or sets the author.
@@ -51,7 +51,7 @@ public class HtmlHead {
     /// <value>
     /// The author.
     /// </value>
-    public string Author { get; set; }
+    public string? Author { get; set; }
 
     /// <summary>
     /// Gets or sets the revised.
@@ -60,6 +60,10 @@ public class HtmlHead {
     /// The revised.
     /// </value>
     public DateTime? Revised { get; set; }
+
+    public string? Description { get; set; }
+
+    public string? Keywords { get; set; }
 
     /// <summary>
     /// Gets or sets the meta tags.
@@ -70,6 +74,8 @@ public class HtmlHead {
     public List<HtmlTag> MetaTags { get; set; } = new List<HtmlTag>();
     public List<object> Styles { get; set; } = new List<object>();
     public List<string> Scripts { get; set; } = new List<string>();
+    public List<string> CssLinks { get; set; } = new List<string>();
+    public List<string> JsLinks { get; set; } = new List<string>();
 
     /// <summary>
     /// Adds a title to the HTML document.
@@ -105,6 +111,12 @@ public class HtmlHead {
                 break;
             case "author":
                 Author = content;
+                break;
+            case "description":
+                Description = content;
+                break;
+            case "keywords":
+                Keywords = content;
                 break;
             default:
                 MetaTags.Add(new HtmlTag("meta", "", attributes: new Dictionary<string, object> { { "name", name }, { "content", content } }, selfClosing: true));
@@ -155,6 +167,11 @@ public class HtmlHead {
     /// </summary>
     /// <returns>A string that represents the head section of an HTML document.</returns>
     public override string ToString() {
+        foreach (var libraryEnum in GlobalStorage.Libraries) {
+            var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
+            ProcessLibrary(library);
+        }
+
         StringBuilder head = new StringBuilder();
         head.AppendLine("<head>");
 
@@ -170,20 +187,22 @@ public class HtmlHead {
             head.AppendLine($"\t<meta http-equiv=\"{HttpEquiv}\" content=\"{Content}\">");
         }
 
-        if (!string.IsNullOrEmpty(Viewport)) {
-            head.AppendLine($"\t<meta name=\"viewport\" content=\"{Viewport}\">");
-        }
-
-        if (!string.IsNullOrEmpty(Author)) {
-            head.AppendLine($"\t<meta name=\"author\" content=\"{Author}\">");
-        }
-
-        if (Revised != null) {
-            head.AppendLine($"\t<meta name=\"revised\" content=\"{Revised}\">");
-        }
+        head.Append(MetaTagString("viewport", Viewport));
+        head.Append(MetaTagString("author", Author));
+        head.Append(MetaTagString("description", Description));
+        head.Append(MetaTagString("keywords", Keywords));
+        head.Append(MetaTagString("revised", Revised?.ToString()));
 
         foreach (var metaTag in MetaTags) {
             head.AppendLine($"\t{metaTag.ToString()}");
+        }
+
+        foreach (var link in CssLinks) {
+            head.AppendLine($"\t{link}");
+        }
+
+        foreach (var link in JsLinks) {
+            head.AppendLine($"\t{link}");
         }
 
         if (Styles.Count > 0) {
@@ -230,4 +249,49 @@ public class HtmlHead {
         ");
         return this;
     }
+
+    public void AddCssLink(string link) {
+        CssLinks.Add($"<link rel=\"stylesheet\" href=\"{link}\">");
+    }
+
+    public void AddJsLink(string link) {
+        JsLinks.Add($"<script src=\"{link}\"></script>");
+    }
+
+    public void AddCssInline(string css) {
+        Styles.Add($"<style>{css}</style>");
+    }
+
+    public void AddJsInline(string js) {
+        Scripts.Add($"<script>{js}</script>");
+    }
+
+    private string MetaTagString(string name, string? content) {
+        return string.IsNullOrEmpty(content) ? string.Empty : $"\t<meta name=\"{name}\" content=\"{content}\">\n";
+    }
+
+    private void ProcessLibrary(Library library) {
+        if (GlobalStorage.LibraryMode == LibraryMode.Online) {
+            if (library.Header.CssLink != null) {
+                foreach (var link in library.Header.CssLink) {
+                    AddCssLink(link);
+                }
+            }
+
+            foreach (var link in library.Header.JsLink) {
+                AddJsLink(link);
+            }
+        } else if (GlobalStorage.LibraryMode == LibraryMode.Offline) {
+            foreach (var css in library.Header.Css) {
+                var cssContent = System.IO.File.ReadAllText(css);
+                AddCssInline(cssContent);
+            }
+
+            foreach (var js in library.Header.JS) {
+                var jsContent = System.IO.File.ReadAllText(js);
+                AddJsInline(jsContent);
+            }
+        }
+    }
+
 }
