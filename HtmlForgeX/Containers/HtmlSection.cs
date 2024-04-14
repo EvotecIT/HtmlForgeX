@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX;
-public class HtmlSection {
+public class HtmlSection : HtmlElementContainer {
 }
 
