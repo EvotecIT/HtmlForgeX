@@ -1,33 +1,59 @@
 namespace HtmlForgeX.Examples.Tables;
+
 internal class BasicHtmlTable01 {
 
     public static void Demo1(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Basic Demo Document with Tables 1");
 
-        HtmlDocument document = new HtmlDocument();
-        document.Head.Title = "Basic Demo Document with Tables";
-        document.Head.Author = "Przemysław Kłys";
-        document.Head.Revised = DateTime.Now;
-        document.Head.Description = "This is a basic demo document with tables in bootstrap";
-        document.Head.Keywords = "keywords, html, c#, .net, library";
-        document.Head.Charset = "utf-8";
+        // Create a new document with the title and author
+        HtmlDocument document = new HtmlDocument {
+            Head = {
+                Title = "Basic Demo Document with Tables",
+                Author = "Przemysław Kłys",
+                Revised = DateTime.Now,
+                Description = "This is a basic demo document with tables in bootstrap",
+                Keywords = "keywords, html, c#, .net, library",
+                Charset = "utf-8"
+            }
+        };
 
+        // Create a list of simple objects
+        var data = new List<dynamic> {
+            new { Name = "John", Age = 30, Occupation = "Engineer" },
+            new { Name = "Jane", Age = 28, Occupation = "Doctor" },
+            new { Name = "Bob", Age = 35, Occupation = "Architect" }
+        };
 
-        HtmlTable table = new HtmlTable();
-        table.AddHeaders("Header 1", "Header 2", "Header 3")
-            .AddRows(
-                new List<string> { "Row 1 Cell 1", "Row 1 Cell 2", "Row 1 Cell 3" },
-                new List<string> { "Row 2 Cell 1", "Row 2 Cell 2", "Row 2 Cell 3" }
-            );
+        // Add the table to the document
+        document.Body.AddTable(data, TableType.Tabler);
 
-        document.Body.Add(table);
+        // Add the table to the document again using DataTables
+        document.Body.AddTable(data, TableType.DataTables);
 
-        // get processes from the system
-        var processes = System.Diagnostics.Process.GetProcesses().ToList().GetRange(1, 5);
+        // Get drive information
+        var drives = System.IO.DriveInfo.GetDrives().Select(d => new {
+            Name = d.Name,
+            Type = d.DriveType,
+            Format = d.IsReady ? d.DriveFormat : "N/A",
+            TotalSize = d.IsReady ? d.TotalSize / (1024 * 1024 * 1024) + " GB" : "N/A",
+            AvailableSpace = d.IsReady ? d.AvailableFreeSpace / (1024 * 1024 * 1024) + " GB" : "N/A"
+        }).ToList();
 
-        document.UseLibrary(Libraries.Bootstrap);
+        // Add the drive information to the document
+        var table3 = document.Body.AddTable(drives, TableType.Tabler);
 
-        document.Body.AddTable(processes, Libraries.Bootstrap);
+        // Add the drive information to the document again using DataTables
+        var table4 = (HtmlTableDataTables)document.Body.AddTable(drives, TableType.DataTables);
+        table4.EnablePaging = true;
+        table4.EnableSearching = false;
+        table4.EnableSorting = true;
+        table4.EnableScrollX = true;
+
+        var table5 = (HtmlTableBootstrap)document.Body.AddTable(drives, TableType.BootstrapTable);
+        table5.EnableBorders = true;
+        table5.EnableStriped = true;
+        table5.EnableHover = true;
+        table5.EnableResponsive = true;
 
         document.Save("BasicDemoDocumentWithTables1.html", openInBrowser);
     }

@@ -32,7 +32,7 @@ namespace HtmlForgeX.Examples.ByHand {
 
             HtmlDocument document = new HtmlDocument();
 
-            document.UseLibrary(new Bootstrap() { Mode = LibraryMode.Online });
+            document.AddLibrary(new Bootstrap());
 
             document.Head.Title = "Basic Demo Document 1";
             document.Head.Author = "Przemysław Kłys";
