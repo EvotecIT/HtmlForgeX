@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class HtmlBody : HtmlElement {
+public class HtmlBody : HtmlElementContainer {
     public new HtmlBody Add(HtmlElement element) {
         Children.Add(element);
         return this;
