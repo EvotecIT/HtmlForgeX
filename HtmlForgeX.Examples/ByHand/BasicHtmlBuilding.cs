@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HtmlForgeX.Examples {
+using HtmlForgeX.Resources;
+
+namespace HtmlForgeX.Examples.ByHand {
     internal class BasicHtmlBuilding {
         public static void Demo1(bool openInBrowser = false) {
             HelpersSpectre.PrintTitle("Basic Demo Document 1");
@@ -29,6 +31,9 @@ namespace HtmlForgeX.Examples {
             HelpersSpectre.PrintTitle("Basic Demo Document 1");
 
             HtmlDocument document = new HtmlDocument();
+
+            document.UseLibrary(new Bootstrap() { Mode = LibraryMode.Online });
+
             document.Head.Title = "Basic Demo Document 1";
             document.Head.Author = "Przemysław Kłys";
             document.Head.Revised = DateTime.Now;
@@ -57,11 +62,6 @@ namespace HtmlForgeX.Examples {
                     .Append(new HtmlTag("p", "This is a basic demo document."))
             );
 
-            //var text = new HtmlText();
-            //text.Text = "This is a text node.";
-            //text.Color = "red";
-            //document.Body.Add(text);
-
             var span1 = new HtmlSpan()
                 .AddContent("This is the content")
                 .WithColor(RGBColor.RedDevil)
@@ -87,18 +87,14 @@ namespace HtmlForgeX.Examples {
             document.Body.Add(span2);
             document.Body.Add(span3);
 
-
             document.Body.Add(new HtmlSpan().AddContent("Should be Tractor Red").WithColor(RGBColor.TractorRed));
 
             var span10 = new HtmlSpan()
-                .AddContent("Should be RED")
-                .WithColor(RGBColor.Red).AddContent("Should be BLUE")
-                .WithColor(RGBColor.Blue);
-            span10.AddContent("Should be GREEN")
-            .WithColor(RGBColor.Green);
+                .AddContent("Should be RED").WithColor(RGBColor.Red)
+                .AddContent("Should be BLUE").WithColor(RGBColor.Blue)
+                .AddContent("Should be GREEN").WithColor(RGBColor.Green);
 
             document.Body.Add(span10);
-
 
             HtmlTable table = new HtmlTable();
             table.AddHeaders("Header 1", "Header 2", "Header 3")
