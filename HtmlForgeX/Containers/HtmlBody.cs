@@ -19,6 +19,14 @@ public class HtmlBody : HtmlElementContainer {
         buildAction(this);
         return this;
     }
+
+    public HtmlTablerPage Page(Action<HtmlTablerPage> config) {
+        var page = new HtmlTablerPage();
+        config(page);
+        this.Add(page);
+        return page;
+    }
+
     public override string ToString() {
         StringBuilder bodyBuilder = new StringBuilder();
         bodyBuilder.AppendLine("<body>");

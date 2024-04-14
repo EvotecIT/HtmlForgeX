@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HtmlForgeX.Examples.Containers;
+﻿namespace HtmlForgeX.Examples.Containers;
 
 internal class BasicHtmlContainer01 {
     public static void Demo01(bool openInBrowser = false) {
@@ -45,33 +39,71 @@ internal class BasicHtmlContainer01 {
         // Add the table to the document
         document.Body.AddTable(data, TableType.Tabler);
 
-        var page = new HtmlPage()
-            .Add(new HtmlRow()
-                .Add(new HtmlColumn().WithClass("col-6")
-                    .Add(new HtmlCard().AddContent("Card 1").WithStyle("background-color: red;"))
-                    .Add(new HtmlCard().AddContent("Card 2").WithStyle("background-color: blue;"))
+        var page = new HtmlTablerPage()
+            .Add(new HtmlTablerRow()
+                .Add(new HtmlTablerColumn().WithClass("col-6")
+                    .Add(new HtmlTablerCard().AddContent("Card 1").WithStyle("background-color: red;"))
+                    .Add(new HtmlTablerCard().AddContent("Card 2").WithStyle("background-color: blue;"))
                 )
-                .Add(new HtmlColumn().WithClass("col-6")
-                    .Add(new HtmlCard().AddContent("Card 3").WithStyle("background-color: green;"))
-                    .Add(new HtmlCard().AddTable(data1, TableType.DataTables))
+                .Add(new HtmlTablerColumn().WithClass("col-6")
+                    .Add(new HtmlTablerCard().AddContent("Card 3").WithStyle("background-color: green;"))
+                    .Add(new HtmlTablerCard().AddTable(data1, TableType.DataTables))
                 )
             );
 
 
-        document.Body.Add(page.ToString());
+        document.Body.Add(page);
 
-        var page1 = new HtmlPage()
-            .Add(new HtmlCard().AddContent("Card 1").WithStyle("background-color: red;"))
-            .Add(new HtmlCard().AddContent("Card 2").WithStyle("background-color: blue;"))
-            .Add(new HtmlCard())
-            .Add(new HtmlCard().AddTable(data2, TableType.DataTables))
-            .Add(new HtmlCard().AddContent("Card 5"));
+        var page1 = new HtmlTablerPage()
+            .Add(new HtmlTablerCard().AddContent("Card 1").WithStyle("background-color: red;"))
+            .Add(new HtmlTablerCard().AddContent("Card 2").WithStyle("background-color: blue;"))
+            .Add(new HtmlTablerCard())
+            .Add(new HtmlTablerCard().AddTable(data2, TableType.DataTables))
+            .Add(new HtmlTablerCard().AddContent("Card 5"));
 
-        document.Body.Add(page1.ToString());
-
-
+        document.Body.Add(page1);
 
 
+        var page2 = new HtmlTablerPage().Add(page => {
+            page.Add(new HtmlTablerCard().AddContent(card => {
+                card.Content = "Card 1";
+                card.Style = "background-color: red;";
+            }));
+            page.Add(new HtmlTablerCard().AddContent(card => {
+                card.Content = "Card 2";
+                card.Style = "background-color: blue;";
+            }));
+        });
+
+        document.Body.Add(page2);
+
+
+        document.Body.Page(page => {
+            page.Add(new HtmlTablerCard().AddContent(card => {
+                card.Content = "Card 10";
+                card.Style = "background-color: red;";
+            }));
+            page.Add(new HtmlTablerCard().AddContent(card => {
+                card.Content = "Card 20";
+                card.Style = "background-color: blue;";
+            }));
+        });
+
+
+        document.Body.Page(page => {
+            page.Column(column => {
+                column.Card(card => {
+                    card.Add(new HtmlSpan().AddContent("This is table with DataTables").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed)
+                    );
+                    card.AddTable(data1, TableType.DataTables);
+                });
+                column.Card(card => {
+                    card.Add(new HtmlSpan().AddContent("This is table with ").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed)
+                                        .AddContent("Tabler").WithColor(RGBColor.RedPurple));
+                    card.AddTable(data2, TableType.Tabler);
+                });
+            });
+        });
 
         document.Save("BasicDemoDocumentContainer01.html", openInBrowser);
     }

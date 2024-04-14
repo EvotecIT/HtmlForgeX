@@ -46,4 +46,9 @@ public class HtmlElementContainer : HtmlElement {
         }
         return html.ToString();
     }
+
+    public HtmlElementContainer Add(Action<HtmlElementContainer> config) {
+        config(this);
+        return this;
+    }
 }
