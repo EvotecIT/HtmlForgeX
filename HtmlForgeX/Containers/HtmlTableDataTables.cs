@@ -18,9 +18,9 @@ public class HtmlTableDataTables : HtmlTable {
         set => config["searching"] = value;
     }
 
-    public bool EnableSorting {
-        get => config.ContainsKey("sorting") && (bool)config["sorting"];
-        set => config["sorting"] = value;
+    public bool EnableOrdering {
+        get => config.ContainsKey("ordering") && (bool)config["ordering"];
+        set => config["ordering"] = value;
     }
 
     public bool EnableScrollX {
