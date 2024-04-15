@@ -1,3 +1,5 @@
+using System;
+
 namespace HtmlForgeX;
 
 public class HtmlSpan : HtmlElement {
@@ -19,16 +21,27 @@ public class HtmlSpan : HtmlElement {
 
     public List<HtmlSpan> HtmlSpans { get; } = new List<HtmlSpan>();
     private HtmlSpan Parent { get; set; }
-
     public HtmlSpan(HtmlSpan? parent = null) {
         this.Parent = parent ?? this;  // If no parent is provided, assume this is the root.
     }
 
-    public HtmlSpan AddContent(string content) {
+    public HtmlSpan AppendContent(string content) {
         var newSpan = new HtmlSpan(this) {
             Content = content
         };
         this.Parent.HtmlSpans.Add(newSpan);  // Add to children of this span
+        return newSpan;  // Return new span for modification
+    }
+
+    public HtmlSpan AddContent(string content) {
+        var newSpan = new HtmlSpan { Content = content };
+        this.Add(newSpan);  // Add to children of this HtmlElement
+        return newSpan;  // Return new span for modification
+    }
+
+    public HtmlSpan Add(string content) {
+        var newSpan = new HtmlSpan { Content = content };
+        this.Add(newSpan);  // Add to children of this HtmlElement
         return newSpan;  // Return new span for modification
     }
 
@@ -104,26 +117,6 @@ public class HtmlSpan : HtmlElement {
     }
 
     public string GenerateStyle() {
-        //var style = new Dictionary<string, string>
-        //{
-        //    { "color", Color?.ToHex() },
-        //    { "background-color", BackGroundColor?.ToHex() },
-        //    { "font-size", FontSize },
-        //    { "line-height", LineHeight },
-        //    { "font-weight", FontWeight?.ToCssString() },
-        //    { "font-style", FontStyle?.ToString() },
-        //    { "font-variant", FontVariant?.ToCssString() },
-        //    { "font-family", FontFamily },
-        //    { "text-align", Alignment?.ToString() },
-        //    { "text-decoration", TextDecoration?.ToCssString() },
-        //    { "text-transform", TextTransform?.ToString() },
-        //    { "direction", Direction?.ToString() },
-        //    { "display", Display?.ToCssString() },
-        //    { "opacity", Opacity?.ToString() }
-        //};
-
-        //var styleString = string.Join("; ", style.Where(kvp => !string.IsNullOrEmpty(kvp.Value)).Select(kvp => $"{kvp.Key}: {kvp.Value}"));
-        //return styleString;
         var style = new List<string>();
 
         if (Color != null) style.Add($"color: {Color.ToHex()}");
@@ -149,11 +142,14 @@ public class HtmlSpan : HtmlElement {
         var styleString = GenerateStyle();
         styleString = !string.IsNullOrEmpty(styleString) ? $" style=\"{styleString}\"" : "";
 
-        if (this == this.Parent) {
-            return $"<span{styleString}>{Content}</span>";
-        } else {
-            var childrenHtml = string.Join("", this.Parent.HtmlSpans.Select(child => $"<span style=\"{child.GenerateStyle()}\">{child.Content}</span>"));
-            return $"{childrenHtml}";
-        }
+        var childrenHtml = string.Join("", Children.Select(child => child.ToString()));
+
+        var childrenParentHtml = string.Join("", this.Parent.HtmlSpans.Select(child => {
+            var childStyle = child.GenerateStyle();
+            childStyle = !string.IsNullOrEmpty(childStyle) ? $" style=\"{childStyle}\"" : "";
+            return $"<span{childStyle}>{child.Content}</span>";
+        }));
+
+        return $"<span{styleString}>{Content}{childrenHtml}</span>{childrenParentHtml}";
     }
 }
