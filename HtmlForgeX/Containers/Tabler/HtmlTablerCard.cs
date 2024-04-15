@@ -1,6 +1,3 @@
-using System.Drawing;
-using System.Security.Claims;
-
 namespace HtmlForgeX;
 
 public class HtmlTablerCard : HtmlElement {
