@@ -38,4 +38,12 @@ public abstract class HtmlElement {
         this.Add(lineBreak);
         return lineBreak;
     }
+
+    public DataGrid DataGrid(Action<DataGrid> config) {
+        var card = new DataGrid();
+        config(card);
+        this.Add(card);
+        return card;
+    }
+
 }
