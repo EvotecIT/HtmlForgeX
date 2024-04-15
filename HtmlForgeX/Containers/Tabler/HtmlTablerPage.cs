@@ -5,7 +5,22 @@ using System.Text;
 namespace HtmlForgeX;
 
 public class HtmlTablerPage : HtmlElement {
-    public List<HtmlTablerRow> Rows { get; set; } = new List<HtmlTablerRow>();
+    // public List<HtmlTablerRow> Rows { get; set; } = new List<HtmlTablerRow>();
+
+
+    public HtmlTablerRow Rows(Action<HtmlTablerRow> config) {
+        var row = new HtmlTablerRow();
+        config(row);
+        this.Add(row);
+        return row;
+    }
+
+
+    //public HtmlTablerColumn Column() {
+    //    var column = new HtmlTablerColumn();
+    //    this.Add(column);
+    //    return column;
+    //}
 
     public HtmlTablerPage() {
         GlobalStorage.Libraries.Add(Libraries.Bootstrap);
