@@ -9,10 +9,10 @@ using HtmlForgeX.Resources;
 namespace HtmlForgeX.Examples.ByHand {
     internal class BasicHtmlBuilding {
         public static void Demo1(bool openInBrowser = false) {
-            HelpersSpectre.PrintTitle("Basic Demo Document 1");
+            HelpersSpectre.PrintTitle("Basic Html Building 1");
 
             HtmlDocument document = new HtmlDocument();
-            document.Head.Title = "Basic Demo Document 1";
+            document.Head.Title = "Basic Html Building 1";
             document.Head.Author = "Przemysław Kłys";
             document.Head.Revised = DateTime.Now;
 
@@ -23,18 +23,78 @@ namespace HtmlForgeX.Examples.ByHand {
             // document.Head.AddHttpEquivMeta("Content-Type", "text/html; charset=utf-8");
             document.Head.AddViewportMeta("width=device-width, initial-scale=1.0");
 
+            // Add span 3 times in a single line, one after another
+            document.Body.Span("Hello, world!")
+                .WithColor(RGBColor.Red).WithFontSize("20px").WithAlignment(FontAlignment.Justify)
+                .AppendContent(" Welcome to HTML by HtmlForgeX")
+                .WithColor(RGBColor.HarvestGold).WithBackgroundColor(RGBColor.AirForceBlue)
+                .AppendContent(" Hurray!");
+
+            document.Body.LineBreak();
+
+            //// Add span x 3 one after another in a single line
+            //var span1 = new HtmlSpan()
+            //    .AddContent("This is the content")
+            //    .WithColor(RGBColor.RedDevil)
+            //    .WithBackgroundColor(RGBColor.Yellow)
+            //    .WithFontSize("12px")
+            //    .WithLineHeight("1.5")
+            //    .WithFontWeight(FontWeight.Bold)
+            //    .WithFontStyle(FontStyle.Italic)
+            //    .WithFontVariant(FontVariant.SmallCaps)
+            //    .WithFontFamily("Arial")
+            //    .WithAlignment(FontAlignment.Center)
+            //    .WithTextDecoration(TextDecoration.Underline)
+            //    .WithTextTransform(TextTransform.Uppercase)
+            //    .WithDirection(Direction.Rtl)
+            //    .WithDisplay(Display.Block)
+            //    .WithOpacity(0.8);
+
+            //var span2 = span1.AddContent(" more content").WithColor(RGBColor.GreenWaterloo);
+
+            //var span3 = span2.AddContent(" even more content").WithColor(RGBColor.Armygreen);
+
+            //document.Body.Add(span1);
+            //document.Body.Add(span2);
+            //document.Body.Add(span3);
+
+            //document.Body.AddLineBreak();
+
+            var span4 = new HtmlSpan()
+                .AppendContent("Should be RED").WithColor(RGBColor.Red)
+                .AppendContent("Should be BLUE").WithColor(RGBColor.Blue)
+                .AppendContent("Should be GREEN").WithColor(RGBColor.Green);
+
+            document.Body.Add(span4);
+
+            //document.Body.AddLineBreak();
+
+            //// Add span x 3 one after another in a single line
+            //document.Body.AddSpan("Hello, world!")
+            //    .WithColor(RGBColor.Red)
+            //    .WithFontSize("20px")
+            //    .WithAlignment(FontAlignment.Justify);
+
+            //document.Body.AddSpan(" Welcome to HTML by HtmlForgeX")
+            //        .WithColor(RGBColor.HarvestGold)
+            //        .WithBackgroundColor(RGBColor.AirForceBlue);
+
+            //document.Body.AddSpan(" Hurray!");
+
+            //document.Body.AddLineBreak();
+
             document.Save("BasicDemoDocument1.html", openInBrowser);
         }
 
 
         public static void Demo2(bool openInBrowser = false) {
-            HelpersSpectre.PrintTitle("Basic Demo Document 1");
+            HelpersSpectre.PrintTitle("Basic Html Building 2");
 
             HtmlDocument document = new HtmlDocument();
 
             document.AddLibrary(new Bootstrap());
 
-            document.Head.Title = "Basic Demo Document 1";
+            document.Head.Title = "Basic Html Building 2";
             document.Head.Author = "Przemysław Kłys";
             document.Head.Revised = DateTime.Now;
 
@@ -90,13 +150,13 @@ namespace HtmlForgeX.Examples.ByHand {
             document.Body.Add(new HtmlSpan().AddContent("Should be Tractor Red").WithColor(RGBColor.TractorRed));
 
             var span10 = new HtmlSpan()
-                .AddContent("Should be RED").WithColor(RGBColor.Red)
-                .AddContent("Should be BLUE").WithColor(RGBColor.Blue)
-                .AddContent("Should be GREEN").WithColor(RGBColor.Green);
+                .AppendContent("Should be RED").WithColor(RGBColor.Red)
+                .AppendContent("Should be BLUE").WithColor(RGBColor.Blue)
+                .AppendContent("Should be GREEN").WithColor(RGBColor.Green);
 
             document.Body.Add(span10);
 
-            HtmlTable table = new HtmlTable();
+            var table = new HtmlTableDataTables();
             table.AddHeaders("Header 1", "Header 2", "Header 3")
                 .AddRows(
                     new List<string> { "Row 1 Cell 1", "Row 1 Cell 2", "Row 1 Cell 3" },
@@ -108,7 +168,7 @@ namespace HtmlForgeX.Examples.ByHand {
             // get processes from the system
             var processes = System.Diagnostics.Process.GetProcesses().ToList().GetRange(1, 5);
 
-            HtmlTable table1 = new HtmlTable(processes);
+            var table1 = new HtmlTableBootstrap(processes, TableType.DataTables);
             document.Body.Add(table1);
 
 

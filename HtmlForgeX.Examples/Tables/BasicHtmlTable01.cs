@@ -8,7 +8,7 @@ internal class BasicHtmlTable01 {
         // Create a new document with the title and author
         HtmlDocument document = new HtmlDocument {
             Head = {
-                Title = "Basic Demo Document with Tables",
+                Title = "Basic Demo Document with Tables 1",
                 Author = "Przemysław Kłys",
                 Revised = DateTime.Now,
                 Description = "This is a basic demo document with tables in bootstrap",
@@ -25,10 +25,10 @@ internal class BasicHtmlTable01 {
         };
 
         // Add the table to the document
-        document.Body.AddTable(data, TableType.Tabler);
+        document.Body.Table(data, TableType.Tabler);
 
         // Add the table to the document again using DataTables
-        document.Body.AddTable(data, TableType.DataTables);
+        document.Body.Table(data, TableType.DataTables);
 
         // Get drive information
         var drives = System.IO.DriveInfo.GetDrives().Select(d => new {
@@ -40,16 +40,16 @@ internal class BasicHtmlTable01 {
         }).ToList();
 
         // Add the drive information to the document
-        var table3 = document.Body.AddTable(drives, TableType.Tabler);
+        var table3 = document.Body.Table(drives, TableType.Tabler);
 
         // Add the drive information to the document again using DataTables
-        var table4 = (HtmlTableDataTables)document.Body.AddTable(drives, TableType.DataTables);
+        var table4 = (HtmlTableDataTables)document.Body.Table(drives, TableType.DataTables);
         table4.EnablePaging = true;
         table4.EnableSearching = false;
-        table4.EnableSorting = true;
+        table4.EnableOrdering = true;
         table4.EnableScrollX = true;
 
-        var table5 = (HtmlTableBootstrap)document.Body.AddTable(drives, TableType.BootstrapTable);
+        var table5 = (HtmlTableBootstrap)document.Body.Table(drives, TableType.BootstrapTable);
         table5.EnableBorders = true;
         table5.EnableStriped = true;
         table5.EnableHover = true;

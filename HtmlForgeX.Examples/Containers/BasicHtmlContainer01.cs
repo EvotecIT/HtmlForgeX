@@ -1,4 +1,4 @@
-﻿namespace HtmlForgeX.Examples.Containers;
+namespace HtmlForgeX.Examples.Containers;
 
 internal class BasicHtmlContainer01 {
     public static void Demo01(bool openInBrowser = false) {
@@ -24,7 +24,7 @@ internal class BasicHtmlContainer01 {
         };
 
         HtmlDocument document = new HtmlDocument();
-        document.Head.Title = "Basic Demo Document 1";
+        document.Head.Title = "Basic Demo Document Container 1";
         document.Head.Author = "Przemysław Kłys";
         document.Head.Revised = DateTime.Now;
 
@@ -37,17 +37,17 @@ internal class BasicHtmlContainer01 {
 
 
         // Add the table to the document
-        document.Body.AddTable(data, TableType.Tabler);
+        document.Body.Table(data, TableType.Tabler);
 
         var page = new HtmlTablerPage()
             .Add(new HtmlTablerRow()
                 .Add(new HtmlTablerColumn().WithClass("col-6")
-                    .Add(new HtmlTablerCard().AddContent("Card 1").WithStyle("background-color: red;"))
-                    .Add(new HtmlTablerCard().AddContent("Card 2").WithStyle("background-color: blue;"))
+                    .Add(new HtmlTablerCard().SetContent("Card 1").WithStyle("background-color: red;"))
+                    .Add(new HtmlTablerCard().SetContent("Card 2").WithStyle("background-color: blue;"))
                 )
                 .Add(new HtmlTablerColumn().WithClass("col-6")
-                    .Add(new HtmlTablerCard().AddContent("Card 3").WithStyle("background-color: green;"))
-                    .Add(new HtmlTablerCard().AddTable(data1, TableType.DataTables))
+                    .Add(new HtmlTablerCard().SetContent("Card 3").WithStyle("background-color: green;"))
+                    .Add(new HtmlTablerCard().Table(data1, TableType.DataTables))
                 )
             );
 
@@ -55,21 +55,21 @@ internal class BasicHtmlContainer01 {
         document.Body.Add(page);
 
         var page1 = new HtmlTablerPage()
-            .Add(new HtmlTablerCard().AddContent("Card 1").WithStyle("background-color: red;"))
-            .Add(new HtmlTablerCard().AddContent("Card 2").WithStyle("background-color: blue;"))
+            .Add(new HtmlTablerCard().SetContent("Card 1").WithStyle("background-color: red;"))
+            .Add(new HtmlTablerCard().SetContent("Card 2").WithStyle("background-color: blue;"))
             .Add(new HtmlTablerCard())
-            .Add(new HtmlTablerCard().AddTable(data2, TableType.DataTables))
-            .Add(new HtmlTablerCard().AddContent("Card 5"));
+            .Add(new HtmlTablerCard().Table(data2, TableType.DataTables))
+            .Add(new HtmlTablerCard().SetContent("Card 5"));
 
         document.Body.Add(page1);
 
 
         var page2 = new HtmlTablerPage().Add(page => {
-            page.Add(new HtmlTablerCard().AddContent(card => {
+            page.Add(new HtmlTablerCard().Add(card => {
                 card.Content = "Card 1";
                 card.Style = "background-color: red;";
             }));
-            page.Add(new HtmlTablerCard().AddContent(card => {
+            page.Add(new HtmlTablerCard().Add(card => {
                 card.Content = "Card 2";
                 card.Style = "background-color: blue;";
             }));
@@ -79,11 +79,11 @@ internal class BasicHtmlContainer01 {
 
 
         document.Body.Page(page => {
-            page.Add(new HtmlTablerCard().AddContent(card => {
+            page.Add(new HtmlTablerCard().Add(card => {
                 card.Content = "Card 10";
                 card.Style = "background-color: red;";
             }));
-            page.Add(new HtmlTablerCard().AddContent(card => {
+            page.Add(new HtmlTablerCard().Add(card => {
                 card.Content = "Card 20";
                 card.Style = "background-color: blue;";
             }));
@@ -93,14 +93,24 @@ internal class BasicHtmlContainer01 {
         document.Body.Page(page => {
             page.Column(column => {
                 column.Card(card => {
-                    card.Add(new HtmlSpan().AddContent("This is table with DataTables").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed)
-                    );
-                    card.AddTable(data1, TableType.DataTables);
+                    card.Add(new HtmlSpan().AddContent("This is table with DataTables").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed));
+                    card.Table(data1, TableType.DataTables);
                 });
                 column.Card(card => {
+                    // one way to build span
+                    card.Span("This is a table with ").Span("Tabler").WithColor(RGBColor.RedPurple);
+                    card.Span(" Great?!");
+                    card.LineBreak();
+                    card.Span("This is a table with ").WithAlignment(FontAlignment.Center)
+                        .WithColor(RGBColor.TractorRed)
+                        .AppendContent("Tabler").WithBackgroundColor(RGBColor.RedPurple)
+                        .AppendContent(" Great?!");
+                    card.LineBreak();
+
                     card.Add(new HtmlSpan().AddContent("This is table with ").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed)
-                                        .AddContent("Tabler").WithColor(RGBColor.RedPurple));
-                    card.AddTable(data2, TableType.Tabler);
+                        .AppendContent("Tabler").WithColor(RGBColor.RedPurple));
+                    card.Table(data2, TableType.Tabler);
+                    card.Span("").WithBackgroundColor(RGBColor.BrickRed).Table(data2, TableType.DataTables);
                 });
             });
         });
