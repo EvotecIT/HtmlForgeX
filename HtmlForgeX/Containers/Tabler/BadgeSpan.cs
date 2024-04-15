@@ -4,28 +4,6 @@ namespace HtmlForgeX;
 // <span class="badge bg-blue">Blue</span>
 // <span class="badge bg-cyan-lt">Cyan</span>
 
-public enum BadgeColor {
-    Blue,
-    Azure,
-    Indigo,
-    Purple,
-    Pink,
-    Red,
-    Orange,
-    Yellow,
-    Lime,
-    Green,
-    Teal,
-    Cyan,
-    White
-}
-
-public enum BadgeStyle {
-    Normal,
-    Outline,
-    Pill
-}
-
 public class BadgeSpan : HtmlElement {
     public string Text { get; set; }
     public BadgeColor Color { get; set; }
