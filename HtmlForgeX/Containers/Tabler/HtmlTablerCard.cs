@@ -1,10 +1,10 @@
 namespace HtmlForgeX;
 
-public class HtmlTablerCard : HtmlElementContainer {
+public class HtmlTablerCard : HtmlElement {
     public string? Content { get; set; }
     public string? Style { get; set; }
 
-    public HtmlTablerCard AddContent(string content) {
+    public HtmlTablerCard SetContent(string content) {
         Content = content;
         return this;
     }
@@ -22,7 +22,7 @@ public class HtmlTablerCard : HtmlElementContainer {
         return result;
     }
 
-    public HtmlTablerCard AddContent(Action<HtmlTablerCard> config) {
+    public HtmlTablerCard Add(Action<HtmlTablerCard> config) {
         config(this);
         return this;
     }

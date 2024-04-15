@@ -2,7 +2,7 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class HtmlDocument : HtmlElementContainer {
+public class HtmlDocument : HtmlElement {
     public HtmlHead Head = new HtmlHead();
     public HtmlBody Body = new HtmlBody();
 

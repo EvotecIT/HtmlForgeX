@@ -14,6 +14,10 @@ public class HtmlTableBootstrap : HtmlTable {
     public bool EnableMedium { get; set; }
     public bool EnableLarge { get; set; }
 
+    public HtmlTableBootstrap() : base() {
+        // Additional initialization code specific to Bootstrap...
+    }
+
     public HtmlTableBootstrap(IEnumerable<object> objects, TableType library) : base(objects, library) {
         // Additional initialization code specific to Bootstrap...
     }

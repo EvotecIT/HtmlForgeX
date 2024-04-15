@@ -28,6 +28,10 @@ public class HtmlTableDataTables : HtmlTable {
         set => config["scrollX"] = value;
     }
 
+    public HtmlTableDataTables() {
+        id = GlobalStorage.GenerateRandomId("table");
+    }
+
     public HtmlTableDataTables(IEnumerable<object> objects, TableType library) : base(objects, library) {
         id = GlobalStorage.GenerateRandomId("table");
     }

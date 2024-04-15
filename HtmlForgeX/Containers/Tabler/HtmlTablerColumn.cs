@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class HtmlTablerColumn : HtmlElementContainer {
+public class HtmlTablerColumn : HtmlElement {
     public List<HtmlTablerCard> Cards { get; set; } = new List<HtmlTablerCard>();
     public string? Class { get; set; }
 

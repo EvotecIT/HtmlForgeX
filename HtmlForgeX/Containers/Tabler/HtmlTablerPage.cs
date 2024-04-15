@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class HtmlTablerPage : HtmlElementContainer {
+public class HtmlTablerPage : HtmlElement {
     public List<HtmlTablerRow> Rows { get; set; } = new List<HtmlTablerRow>();
 
     public HtmlTablerPage() {

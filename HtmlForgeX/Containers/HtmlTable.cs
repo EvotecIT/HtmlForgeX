@@ -12,10 +12,12 @@ public class HtmlTable : HtmlElement {
 
     public HtmlTable(TableType? library = null) {
         Library = library;
+        AddLibrariesBasedOnTableType();
     }
 
     public HtmlTable(IEnumerable<object> objects, TableType? library = null) {
         Library = library;
+        AddLibrariesBasedOnTableType();
 
         this.AddObjects(objects);
     }
@@ -101,6 +103,46 @@ public class HtmlTable : HtmlElement {
         }
 
         return html.ToString();
+    }
+
+    public static HtmlTable Create(IEnumerable<object> objects, TableType tableType) {
+        HtmlTable table;
+        switch (tableType) {
+            case TableType.BootstrapTable:
+                table = new HtmlTableBootstrap(objects, tableType);
+                break;
+            case TableType.DataTables:
+                table = new HtmlTableDataTables(objects, tableType);
+                break;
+            case TableType.Tabler:
+                table = new HtmlTableTabler(objects, tableType);
+                break;
+            default:
+                throw new Exception("Table type not supported");
+        }
+        return table;
+    }
+
+
+    private void AddLibrariesBasedOnTableType() {
+        if (Library.HasValue) {
+            switch (Library.Value) {
+                case TableType.BootstrapTable:
+                    GlobalStorage.Libraries.Add(Libraries.Bootstrap);
+                    break;
+                case TableType.DataTables:
+                    GlobalStorage.Libraries.Add(Libraries.Bootstrap);
+                    GlobalStorage.Libraries.Add(Libraries.JQuery);
+                    GlobalStorage.Libraries.Add(Libraries.DataTables);
+                    break;
+                case TableType.Tabler:
+                    GlobalStorage.Libraries.Add(Libraries.Bootstrap);
+                    GlobalStorage.Libraries.Add(Libraries.Tabler);
+                    break;
+                default:
+                    throw new Exception("Library not supported");
+            }
+        }
     }
 
     //private string BuildTable(string tableClass) {
