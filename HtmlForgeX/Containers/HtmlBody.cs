@@ -5,6 +5,8 @@ using System.Text;
 namespace HtmlForgeX;
 
 public class HtmlBody : HtmlElement {
+    public ThemeMode ThemeMode { get; set; }
+
     public new HtmlBody Add(HtmlElement element) {
         Children.Add(element);
         return this;
@@ -35,8 +37,13 @@ public class HtmlBody : HtmlElement {
 
     public override string ToString() {
         StringBuilder bodyBuilder = new StringBuilder();
-        bodyBuilder.AppendLine("<body>");
-
+        if (ThemeMode == ThemeMode.Dark) {
+            bodyBuilder.AppendLine("<body data-bs-theme=\"dark\">");
+        } else if (ThemeMode == ThemeMode.Light) {
+            bodyBuilder.AppendLine("<body data-bs-theme=\"light\">");
+        } else {
+            bodyBuilder.AppendLine("<body>");
+        }
         // Add the HTML of the child elements
         foreach (var child in Children) {
             bodyBuilder.AppendLine(child.ToString());
