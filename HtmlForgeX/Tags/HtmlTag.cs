@@ -47,8 +47,24 @@ public class HtmlTag : HtmlElement {
         }
     }
 
-    public HtmlTag Class(string className) {
-        Attributes["class"] = className;
+    //public HtmlTag Class(string className) {
+    //    Attributes["class"] += className;
+    //    return this;
+    //}
+
+    public HtmlTag Class(string? className) {
+        // user used Class null so we don't do anything
+        if (className == null) {
+            return this;
+        }
+        // class doesn't exist so we create it
+        if (!Attributes.ContainsKey("class")) {
+            Attributes["class"] = string.Empty;
+        } else if (!string.IsNullOrEmpty(Attributes["class"].ToString())) {
+            // class exists and has a value so we add a space before adding the new class
+            Attributes["class"] += " ";
+        }
+        Attributes["class"] += className;
         return this;
     }
 
