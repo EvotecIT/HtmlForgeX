@@ -6,6 +6,7 @@ public class BadgeStatus : HtmlElement {
     public BadgeColor Color { get; set; }
 
     public BadgeStatus(string status, BadgeColor color) {
+        GlobalStorage.Libraries.Add(Libraries.Tabler);
         Status = status;
         Color = color;
     }

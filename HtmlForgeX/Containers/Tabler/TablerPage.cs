@@ -1,11 +1,11 @@
 namespace HtmlForgeX;
 
-public class HtmlTablerPage : HtmlElement {
+public class TablerPage : HtmlElement {
     // public List<HtmlTablerRow> Rows { get; set; } = new List<HtmlTablerRow>();
 
 
-    public HtmlTablerRow Rows(Action<HtmlTablerRow> config) {
-        var row = new HtmlTablerRow();
+    public TablerRow Rows(Action<TablerRow> config) {
+        var row = new TablerRow();
         config(row);
         this.Add(row);
         return row;
@@ -18,7 +18,7 @@ public class HtmlTablerPage : HtmlElement {
     //    return column;
     //}
 
-    public HtmlTablerPage() {
+    public TablerPage() {
         GlobalStorage.Libraries.Add(Libraries.Bootstrap);
         GlobalStorage.Libraries.Add(Libraries.Tabler);
     }
@@ -31,13 +31,13 @@ public class HtmlTablerPage : HtmlElement {
         return result;
     }
 
-    public HtmlTablerPage Add(Action<HtmlTablerPage> config) {
+    public TablerPage Add(Action<TablerPage> config) {
         config(this);
         return this;
     }
 
-    public HtmlTablerColumn Column(Action<HtmlTablerColumn> config) {
-        var column = new HtmlTablerColumn();
+    public TablerColumn Column(Action<TablerColumn> config) {
+        var column = new TablerColumn();
         config(column);
         this.Add(column);
         return column;

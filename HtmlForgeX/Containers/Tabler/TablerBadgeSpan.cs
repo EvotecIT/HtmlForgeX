@@ -12,6 +12,7 @@ public class BadgeSpan : HtmlElement {
     public BadgeStyle Style { get; set; }
 
     public BadgeSpan(string text, BadgeColor color, BadgeStyle style = BadgeStyle.Normal, bool isLight = false, BadgeColor? textColor = null) {
+
         Text = text;
         Color = color;
         IsLight = isLight;

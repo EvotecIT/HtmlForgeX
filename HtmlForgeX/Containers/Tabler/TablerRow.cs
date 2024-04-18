@@ -1,6 +1,6 @@
 namespace HtmlForgeX;
 
-public class HtmlTablerRow : HtmlElement {
+public class TablerRow : HtmlElement {
     //public List<HtmlTablerColumn> Columns { get; set; } = new List<HtmlTablerColumn>();
 
     public override string ToString() {
@@ -11,15 +11,15 @@ public class HtmlTablerRow : HtmlElement {
         return result;
     }
 
-    public HtmlTablerColumn Column(Action<HtmlTablerColumn> config) {
-        var column = new HtmlTablerColumn();
+    public TablerColumn Column(Action<TablerColumn> config) {
+        var column = new TablerColumn();
         config(column);
         this.Add(column);
         return column;
     }
 
-    public HtmlTablerColumn Column(int number, Action<HtmlTablerColumn> config) {
-        var column = new HtmlTablerColumn(number);
+    public TablerColumn Column(int number, Action<TablerColumn> config) {
+        var column = new TablerColumn(number);
         config(column);
         this.Add(column);
         return column;
