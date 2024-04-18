@@ -39,8 +39,8 @@ public abstract class HtmlElement {
         return lineBreak;
     }
 
-    public DataGrid DataGrid(Action<DataGrid> config) {
-        var dataGrid = new DataGrid();
+    public TablerDataGrid DataGrid(Action<TablerDataGrid> config) {
+        var dataGrid = new TablerDataGrid();
         config(dataGrid);
         this.Add(dataGrid);
         return dataGrid;
