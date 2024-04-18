@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX.Resources;
-public class ApexCharts : Library {
-    public ApexCharts() {
+public class ApexChartsLibrary : Library {
+    public ApexChartsLibrary() {
         Header = new LibraryLinks {
             CssLink = [],
             JsLink = ["https://cdn.jsdelivr.net/npm/apexcharts@3.48.0/dist/apexcharts.min.js"]
