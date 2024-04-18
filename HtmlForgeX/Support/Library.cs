@@ -20,6 +20,7 @@ public class Library {
 public class LibraryLinks {
     public List<string> CssLink { get; set; }
     public Dictionary<string, Dictionary<string, string>> CssInLine { get; set; }
+    public List<Style> CssStyle { get; set; } = new List<Style>();
     public List<string> Css { get; set; }
     public List<string> JSLinkOriginal { get; set; }
     public List<string> JsLink { get; set; }
@@ -37,6 +38,10 @@ public class LibrariesConverter {
                 return new Tabler();
             case Libraries.JQuery:
                 return new Jquery();
+            case Libraries.FancyTree:
+                return new FancyTreeLibrary();
+            case Libraries.ApexCharts:
+                return new ApexCharts();
             default:
                 throw new ArgumentException($"Unsupported library: {libraries}");
         }
@@ -62,5 +67,7 @@ public enum Libraries {
     Bootstrap,
     DataTables,
     Tabler,
-    JQuery
+    JQuery,
+    FancyTree,
+    ApexCharts
 }
