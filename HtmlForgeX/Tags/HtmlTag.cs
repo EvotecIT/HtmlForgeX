@@ -112,4 +112,14 @@ public class HtmlTag : HtmlElement {
 
         return html.ToString();
     }
+
+    public HtmlTag SetAttribute(string name, string value) {
+        Attributes[name] = value;
+        return this;
+    }
+
+    public HtmlTag SetValue(string value) {
+        Value = value;
+        return this;
+    }
 }
