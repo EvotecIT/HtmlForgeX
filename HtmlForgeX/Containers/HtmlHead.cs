@@ -266,6 +266,10 @@ public class HtmlHead {
         Scripts.Add($"<script>{js}</script>");
     }
 
+    public void AddCssStyle(Style style) {
+        Styles.Add(style);
+    }
+
     private string MetaTagString(string name, string? content) {
         return string.IsNullOrEmpty(content) ? string.Empty : $"\t<meta name=\"{name}\" content=\"{content}\">\n";
     }
@@ -277,7 +281,6 @@ public class HtmlHead {
                     AddCssLink(link);
                 }
             }
-
             foreach (var link in library.Header.JsLink) {
                 AddJsLink(link);
             }
@@ -292,6 +295,11 @@ public class HtmlHead {
                 AddJsInline(jsContent);
             }
         }
-    }
 
+        if (library.Header.CssStyle != null) {
+            foreach (var style in library.Header.CssStyle) {
+                AddCssStyle(style);
+            }
+        }
+    }
 }

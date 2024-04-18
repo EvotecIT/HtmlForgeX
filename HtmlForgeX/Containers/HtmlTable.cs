@@ -26,14 +26,23 @@ public class HtmlTable : HtmlElement {
         TableHeaders.Add(header);
         return this;
     }
-
-    public HtmlTable AddRow(List<string> row) {
-        TableRows.Add(row);
+    public HtmlTable AddHeaders(params string[] headers) {
+        TableHeaders.AddRange(headers);
         return this;
     }
 
-    public HtmlTable AddHeaders(params string[] headers) {
-        TableHeaders.AddRange(headers);
+    public HtmlTable AddFooter(string footer) {
+        TableFooters.Add(footer);
+        return this;
+    }
+
+    public HtmlTable AddFooters(params string[] footers) {
+        TableFooters.AddRange(footers);
+        return this;
+    }
+
+    public HtmlTable AddRow(List<string> row) {
+        TableRows.Add(row);
         return this;
     }
 
@@ -42,7 +51,7 @@ public class HtmlTable : HtmlElement {
         return this;
     }
 
-    public HtmlTable AddObjects(IEnumerable<object> objects) {
+    public HtmlTable AddObjects(IEnumerable<object> objects, bool addFooter = false) {
         if (objects == null || !objects.Any()) return this;
 
         // Get the type of the objects
@@ -69,6 +78,13 @@ public class HtmlTable : HtmlElement {
                 }
             }
             AddRow(row);
+        }
+
+        if (addFooter) {
+            // Add the footers
+            foreach (var property in properties) {
+                AddFooter(property.Name);
+            }
         }
 
         return this;
@@ -100,6 +116,15 @@ public class HtmlTable : HtmlElement {
                 html.Append("</tr>");
             }
             html.Append("</tbody>");
+        }
+
+        // Add table footers
+        if (TableFooters.Count > 0) {
+            html.Append("<tfoot><tr>");
+            foreach (var footer in TableFooters) {
+                html.Append($"<td>{footer}</td>");
+            }
+            html.Append("</tr></tfoot>");
         }
 
         return html.ToString();

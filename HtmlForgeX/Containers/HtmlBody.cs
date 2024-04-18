@@ -22,14 +22,14 @@ public class HtmlBody : HtmlElement {
         return this;
     }
 
-    public HtmlTablerPage Page() {
-        var page = new HtmlTablerPage();
+    public TablerPage Page() {
+        var page = new TablerPage();
         this.Add(page);
         return page;
     }
 
-    public HtmlTablerPage Page(Action<HtmlTablerPage> config) {
-        var page = new HtmlTablerPage();
+    public TablerPage Page(Action<TablerPage> config) {
+        var page = new TablerPage();
         config(page);
         this.Add(page);
         return page;

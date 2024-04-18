@@ -40,10 +40,17 @@ public abstract class HtmlElement {
     }
 
     public DataGrid DataGrid(Action<DataGrid> config) {
-        var card = new DataGrid();
-        config(card);
-        this.Add(card);
-        return card;
+        var dataGrid = new DataGrid();
+        config(dataGrid);
+        this.Add(dataGrid);
+        return dataGrid;
+    }
+
+    public FancyTree FancyTree(Action<FancyTree> config) {
+        var fancyTree = new FancyTree();
+        config(fancyTree);
+        this.Add(fancyTree);
+        return fancyTree;
     }
 
 }
