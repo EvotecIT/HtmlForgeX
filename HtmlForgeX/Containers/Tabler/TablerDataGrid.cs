@@ -2,28 +2,28 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class DataGrid : HtmlElement {
-    public List<DataGridItem> Items { get; set; } = new List<DataGridItem>();
+public class TablerDataGrid : HtmlElement {
+    public List<TablerDataGridItem> Items { get; set; } = new List<TablerDataGridItem>();
 
-    public DataGrid AddItem(DataGridItem item) {
+    public TablerDataGrid AddItem(TablerDataGridItem item) {
         Items.Add(item);
         return this;
     }
 
-    public DataGridItem AddItem(string title, string content) {
-        var item = new DataGridItem().Title(title).Content(content);
+    public TablerDataGridItem AddItem(string title, string content) {
+        var item = new TablerDataGridItem().Title(title).Content(content);
         Items.Add(item);
         return item;
     }
 
-    public DataGridItem AddItem(string title, HtmlElement content) {
-        var item = new DataGridItem().Title(title).Content(content);
+    public TablerDataGridItem AddItem(string title, HtmlElement content) {
+        var item = new TablerDataGridItem().Title(title).Content(content);
         Items.Add(item);
         return item;
     }
 
-    public DataGridItem Title(string title) {
-        var item = new DataGridItem().Title(title);
+    public TablerDataGridItem Title(string title) {
+        var item = new TablerDataGridItem().Title(title);
         Items.Add(item);
         return item;
     }

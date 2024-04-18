@@ -4,15 +4,14 @@ namespace HtmlForgeX;
 // <span class="badge bg-blue">Blue</span>
 // <span class="badge bg-cyan-lt">Cyan</span>
 
-public class BadgeSpan : HtmlElement {
+public class TablerBadgeSpan : HtmlElement {
     public string Text { get; set; }
     public BadgeColor Color { get; set; }
     public BadgeColor? TextColor { get; set; }
     public bool IsLight { get; set; }
     public BadgeStyle Style { get; set; }
 
-    public BadgeSpan(string text, BadgeColor color, BadgeStyle style = BadgeStyle.Normal, bool isLight = false, BadgeColor? textColor = null) {
-
+    public TablerBadgeSpan(string text, BadgeColor color, BadgeStyle style = BadgeStyle.Normal, bool isLight = false, BadgeColor? textColor = null) {
         Text = text;
         Color = color;
         IsLight = isLight;

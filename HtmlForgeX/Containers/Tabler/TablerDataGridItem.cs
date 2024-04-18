@@ -4,20 +4,20 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class DataGridItem : HtmlElement {
+public class TablerDataGridItem : HtmlElement {
     public HtmlElement TitleElement { get; set; }
     public HtmlElement ContentElement { get; set; }
 
-    public DataGridItem Title(string title) {
+    public TablerDataGridItem Title(string title) {
         TitleElement = new HtmlTag("div").Class("datagrid-title").Append(title);
         return this;
     }
 
-    public DataGridItem Content(string content) {
+    public TablerDataGridItem Content(string content) {
         ContentElement = new HtmlTag("div").Class("datagrid-content").Append(content);
         return this;
     }
-    public DataGridItem Content(HtmlElement content) {
+    public TablerDataGridItem Content(HtmlElement content) {
         ContentElement = new HtmlTag("div").Class("datagrid-content").Append(content.ToString());
         return this;
     }

@@ -1,20 +1,20 @@
 namespace HtmlForgeX;
 
-public class HtmlTablerColumn : HtmlElement {
-    public List<HtmlTablerCard> Cards { get; set; } = new List<HtmlTablerCard>();
+public class TablerColumn : HtmlElement {
+    public List<TablerCard> Cards { get; set; } = new List<TablerCard>();
     public string? Class { get; set; }
 
     public int Count { get; set; }
 
-    public HtmlTablerColumn() {
+    public TablerColumn() {
         Class = "col";
     }
 
-    public HtmlTablerColumn(int count) {
+    public TablerColumn(int count) {
         Class = $"col-{count}";
     }
 
-    public HtmlTablerColumn WithClass(string className) {
+    public TablerColumn WithClass(string className) {
         Class = className;
         return this;
     }
@@ -27,20 +27,20 @@ public class HtmlTablerColumn : HtmlElement {
         return result;
     }
 
-    public HtmlTablerColumn Add(Action<HtmlTablerColumn> config) {
+    public TablerColumn Add(Action<TablerColumn> config) {
         config(this);
         return this;
     }
 
-    public HtmlTablerCard Card(Action<HtmlTablerCard> config) {
-        var card = new HtmlTablerCard();
+    public TablerCard Card(Action<TablerCard> config) {
+        var card = new TablerCard();
         config(card);
         this.Add(card);
         return card;
     }
 
-    public HtmlTablerCard Card(int count, Action<HtmlTablerCard> config) {
-        var card = new HtmlTablerCard(count);
+    public TablerCard Card(int count, Action<TablerCard> config) {
+        var card = new TablerCard(count);
         config(card);
         this.Add(card);
         return card;

@@ -1,12 +1,11 @@
 
 namespace HtmlForgeX;
 
-public class BadgeStatus : HtmlElement {
+public class TablerBadgeStatus : HtmlElement {
     public string Status { get; set; }
     public BadgeColor Color { get; set; }
 
-    public BadgeStatus(string status, BadgeColor color) {
-        GlobalStorage.Libraries.Add(Libraries.Tabler);
+    public TablerBadgeStatus(string status, BadgeColor color) {
         Status = status;
         Color = color;
     }
