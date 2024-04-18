@@ -39,37 +39,37 @@ internal class BasicHtmlContainer01 {
         // Add the table to the document
         document.Body.Table(data, TableType.Tabler);
 
-        var page = new HtmlTablerPage()
-            .Add(new HtmlTablerRow()
-                .Add(new HtmlTablerColumn().WithClass("col-6")
-                    .Add(new HtmlTablerCard().SetContent("Card 1").WithStyle("background-color: red;"))
-                    .Add(new HtmlTablerCard().SetContent("Card 2").WithStyle("background-color: blue;"))
+        var page = new TablerPage()
+            .Add(new TablerRow()
+                .Add(new TablerColumn().WithClass("col-6")
+                    .Add(new TablerCard().SetContent("Card 1").WithStyle("background-color: red;"))
+                    .Add(new TablerCard().SetContent("Card 2").WithStyle("background-color: blue;"))
                 )
-                .Add(new HtmlTablerColumn().WithClass("col-6")
-                    .Add(new HtmlTablerCard().SetContent("Card 3").WithStyle("background-color: green;"))
-                    .Add(new HtmlTablerCard().Table(data1, TableType.DataTables))
+                .Add(new TablerColumn().WithClass("col-6")
+                    .Add(new TablerCard().SetContent("Card 3").WithStyle("background-color: green;"))
+                    .Add(new TablerCard().Table(data1, TableType.DataTables))
                 )
             );
 
 
         document.Body.Add(page);
 
-        var page1 = new HtmlTablerPage()
-            .Add(new HtmlTablerCard().SetContent("Card 1").WithStyle("background-color: red;"))
-            .Add(new HtmlTablerCard().SetContent("Card 2").WithStyle("background-color: blue;"))
-            .Add(new HtmlTablerCard())
-            .Add(new HtmlTablerCard().Table(data2, TableType.DataTables))
-            .Add(new HtmlTablerCard().SetContent("Card 5"));
+        var page1 = new TablerPage()
+            .Add(new TablerCard().SetContent("Card 1").WithStyle("background-color: red;"))
+            .Add(new TablerCard().SetContent("Card 2").WithStyle("background-color: blue;"))
+            .Add(new TablerCard())
+            .Add(new TablerCard().Table(data2, TableType.DataTables))
+            .Add(new TablerCard().SetContent("Card 5"));
 
         document.Body.Add(page1);
 
 
-        var page2 = new HtmlTablerPage().Add(page => {
-            page.Add(new HtmlTablerCard().Add(card => {
+        var page2 = new TablerPage().Add(page => {
+            page.Add(new TablerCard().Add(card => {
                 card.Content = "Card 1";
                 card.Style = "background-color: red;";
             }));
-            page.Add(new HtmlTablerCard().Add(card => {
+            page.Add(new TablerCard().Add(card => {
                 card.Content = "Card 2";
                 card.Style = "background-color: blue;";
             }));
@@ -79,11 +79,11 @@ internal class BasicHtmlContainer01 {
 
 
         document.Body.Page(page => {
-            page.Add(new HtmlTablerCard().Add(card => {
+            page.Add(new TablerCard().Add(card => {
                 card.Content = "Card 10";
                 card.Style = "background-color: red;";
             }));
-            page.Add(new HtmlTablerCard().Add(card => {
+            page.Add(new TablerCard().Add(card => {
                 card.Content = "Card 20";
                 card.Style = "background-color: blue;";
             }));

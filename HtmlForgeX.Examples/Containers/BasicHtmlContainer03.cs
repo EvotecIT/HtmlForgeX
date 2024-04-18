@@ -34,7 +34,7 @@ internal class BasicHtmlContainer03 {
             }
         };
 
-        document.Body.ThemeMode = ThemeMode.Dark;
+        document.Body.ThemeMode = ThemeMode.Light;
         document.Body.Page(page => {
             page.Rows(row => {
                 row.Column(4, column => {
@@ -71,6 +71,43 @@ internal class BasicHtmlContainer03 {
                             dataGrid.Title("Outline").Content(new BadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Outline, false, BadgeColor.Cyan));
                             dataGrid.Title("Text Color").Content(new BadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true, BadgeColor.Green));
                             dataGrid.Title("Normal").Content(new BadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true));
+
+                        });
+                    });
+                });
+                row.Column(4, column => {
+                    column.Card(4, card => {
+                        card.FancyTree(fancyTree => {
+                            fancyTree.Title("Enable TSDebugMode").Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png");
+                            fancyTree.Title("Check OS UBR").Icon("https://cdn-icons-png.flaticon.com/512/1294/1294758.png");
+                            fancyTree.Title("OS is not supported - Needs to be Updated");
+                            fancyTree.Title("OS Supported")
+                                .AddNode(new FancyTreeNode("Pre-Check", "https://cdn-icons-png.flaticon.com/512/1294/1294758.png", true))
+                                .AddNode(node => {
+                                    node.Title("Checking if DB is up and running");
+                                    node.AddNode(nextNode => {
+                                        nextNode.Title("DB is up and running");
+                                        nextNode.AddNode("Testing DB Connection");
+                                        nextNode.AddNode("DB Connection Successful");
+                                    });
+                                });
+
+                            fancyTree.Title("Test");
+                            fancyTree.Title("OS Not Supported").AddNode(node => {
+                                node.Title("Shutdown PC");
+                                node.AddNode("Node nested under Shutdown 2-1");
+                                node.AddNode("Node nested under Shutdown 2-2");
+                            });
+                            fancyTree.Title("Other").Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png").AddNode(node => {
+                                node.Title("PC Start Up").Icon("https://cdn-icons-png.flaticon.com/512/1294/1294758.png").AddNode(nestedNode => {
+                                    nestedNode.Title("Cleanup");
+                                });
+                            });
+                            // Creates nesting of node, within node, within node, within node
+                            fancyTree.Title("Test")
+                                .AddNode("PC Start Up")
+                                .AddNode("Cleanup")
+                                .AddNode("PC Shut Down", "https://cdn-icons-png.flaticon.com/512/10309/10309341.png");
 
                         });
                     });
