@@ -7,7 +7,7 @@ public class FancyTree : HtmlElement {
     public FancyTree() {
         // add library to the global storage, for HTML processing
         GlobalStorage.Libraries.Add(Libraries.FancyTree);
-        Id = GlobalStorage.GenerateRandomId("table");
+        Id = GlobalStorage.GenerateRandomId("fancyTree");
     }
 
     public override string ToString() {
