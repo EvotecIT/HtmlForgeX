@@ -43,7 +43,7 @@ internal class BasicHtmlContainer02 {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
-                        var table1 = (HtmlTableDataTables)card.Table(data, TableType.DataTables);
+                        var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
                         table1.EnableOrdering = false;
                         table1.EnableSearching = false;
                     });
@@ -78,7 +78,7 @@ internal class BasicHtmlContainer02 {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
-                        var table1 = (HtmlTableDataTables)card.Table(data, TableType.DataTables);
+                        var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
                         table1.EnableOrdering = false;
                         table1.EnableSearching = false;
                     });
@@ -99,7 +99,7 @@ internal class BasicHtmlContainer02 {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
-                        var table1 = (HtmlTableDataTables)card.Table(data, TableType.DataTables);
+                        var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
                         table1.EnableOrdering = false;
                         table1.EnableSearching = false;
                     });

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,21 +29,22 @@ internal class BasicHtmlContainer03 {
             new { Name = "Jane", Age = 28, Occupation = "Doctor" },
         };
 
-        HtmlDocument document = new HtmlDocument {
+        var document = new HtmlDocument {
             Head = {
                 Title = "Basic Demo Document Container 3", Author = "Przemysław Kłys", Revised = DateTime.Now
             }
         };
 
-        document.Body.ThemeMode = ThemeMode.Light;
+        document.Body.ThemeMode = ThemeMode.Dark;
         document.Body.Page(page => {
+            page.Layout = TablerLayout.Fluid;
             page.Rows(row => {
                 row.Column(4, column => {
                     column.Card(card => {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
-                        var table1 = (HtmlTableDataTables)card.Table(data, TableType.DataTables);
+                        var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
                         table1.EnableOrdering = false;
                         table1.EnableSearching = false;
                     });
@@ -53,12 +55,12 @@ internal class BasicHtmlContainer03 {
                             dataGrid.AddItem("Registrar", "Third Party");
                             dataGrid.AddItem("Port number", "3306");
                             dataGrid.AddItem("Creator", "Przemyslaw Klys");
-                            dataGrid.AddItem("Edge network", new BadgeStatus("Active", BadgeColor.Green));
+                            dataGrid.AddItem("Edge network", new TablerBadgeStatus("Active", BadgeColor.Green));
                             dataGrid.AddItem("Created", "2021-09-01");
                             dataGrid.Title("Domain Information").Content("This is the domain information");
                             dataGrid.AddItem("Expiration date", DateTime.Now.AddDays(5).ToString());
                             dataGrid.AddItem("Age", "5 days");
-                            dataGrid.Title("Expiring").Content(new BadgeSpan("Soon", BadgeColor.Azure, textColor: BadgeColor.White));
+                            dataGrid.Title("Expiring").Content(new TablerBadgeSpan("Soon", BadgeColor.Azure, textColor: BadgeColor.White));
 
                         });
                     });
@@ -66,11 +68,11 @@ internal class BasicHtmlContainer03 {
                 row.Column(4, column => {
                     column.Card(4, card => {
                         card.DataGrid(dataGrid => {
-                            dataGrid.Title("Registrar").Content(new BadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true));
-                            dataGrid.Title("Pill").Content(new BadgeSpan("1", BadgeColor.Azure, BadgeStyle.Pill, false, BadgeColor.White));
-                            dataGrid.Title("Outline").Content(new BadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Outline, false, BadgeColor.Cyan));
-                            dataGrid.Title("Text Color").Content(new BadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true, BadgeColor.Green));
-                            dataGrid.Title("Normal").Content(new BadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true));
+                            dataGrid.Title("Registrar").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true));
+                            dataGrid.Title("Pill").Content(new TablerBadgeSpan("1", BadgeColor.Azure, BadgeStyle.Pill, false, BadgeColor.White));
+                            dataGrid.Title("Outline").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Outline, false, BadgeColor.Cyan));
+                            dataGrid.Title("Text Color").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true, BadgeColor.Green));
+                            dataGrid.Title("Normal").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true));
 
                         });
                     });
@@ -112,15 +114,59 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
+
+                row.Column(4, column => {
+                    column.Card(4, card => {
+                        card.ApexChart(chart => {
+                            chart.Title.Text("Pie Chart").Color(RGBColor.FruitSalad);
+                            chart.AddPie("Pie 1", 30).AddPie("Pie 2", 40).AddPie("Pie 3", 50);
+                        });
+                    });
+                });
+                row.Column(6, column => {
+                    column.Card(card => {
+                        card.ApexChart(chart => {
+                            chart.Title.Text("Bar chart");
+                            chart.AddBar("Bar 1", 30).AddBar("Bar 2", 40).AddBar("Barat 3", 50);
+                        });
+                    });
+                });
+                row.Column(6, column => {
+                    column.Card(card => {
+                        card.ApexChart(chart => {
+                            chart.Title.Text("Donut Chart").Color(RGBColor.FruitSalad);
+                            chart.AddDonut("Donut 1", 30).AddDonut("Donut 2", 40).AddDonut("Donut 3", 50);
+                        });
+                    });
+                });
+                row.Column(8, column => {
+                    column.Card(card => {
+                        card.DiagramNetwork(diagam => {
+                            diagam.AddNode(new { id = 1, label = "Node 1" });
+                            diagam.AddNode(new { id = 2, label = "Node 2" });
+                            diagam.AddNode(new { id = 3, label = "Node 3" });
+                            diagam.AddEdge(new { from = 1, to = 2 });
+                            diagam.AddEdge(new { from = 2, to = 3 });
+                            diagam.SetOption("nodes", new { shape = "box" });
+                            diagam.SetOption("edges", new { arrows = "to" });
+                        });
+                    });
+                });
+                row.Column(4, column => {
+                    column.Card(card => {
+                        card.QRCode("https://evotec.xyz");
+                    });
+                });
                 // this will add a new row and push it all wide
                 row.Column(12, column => {
                     column.Card(card => {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
-                        var table1 = (HtmlTableDataTables)card.Table(data, TableType.DataTables);
-                        table1.EnableOrdering = false;
-                        table1.EnableSearching = false;
+                        var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
+                        table1.EnableOrdering = true;
+                        table1.EnableSearching = true;
+                        table1.EnableScrollX = true;
                     });
                 });
             });

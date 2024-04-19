@@ -156,7 +156,7 @@ namespace HtmlForgeX.Examples.ByHand {
 
             document.Body.Add(span10);
 
-            var table = new HtmlTableDataTables();
+            var table = new DataTablesTable();
             table.AddHeaders("Header 1", "Header 2", "Header 3")
                 .AddRows(
                     new List<string> { "Row 1 Cell 1", "Row 1 Cell 2", "Row 1 Cell 3" },
@@ -168,7 +168,7 @@ namespace HtmlForgeX.Examples.ByHand {
             // get processes from the system
             var processes = System.Diagnostics.Process.GetProcesses().ToList().GetRange(1, 5);
 
-            var table1 = new HtmlTableBootstrap(processes, TableType.DataTables);
+            var table1 = new BootstrapTable(processes, TableType.DataTables);
             document.Body.Add(table1);
 
 

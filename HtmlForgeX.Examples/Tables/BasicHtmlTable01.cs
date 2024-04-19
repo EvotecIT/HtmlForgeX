@@ -43,13 +43,13 @@ internal class BasicHtmlTable01 {
         var table3 = document.Body.Table(drives, TableType.Tabler);
 
         // Add the drive information to the document again using DataTables
-        var table4 = (HtmlTableDataTables)document.Body.Table(drives, TableType.DataTables);
+        var table4 = (DataTablesTable)document.Body.Table(drives, TableType.DataTables);
         table4.EnablePaging = true;
         table4.EnableSearching = false;
         table4.EnableOrdering = true;
         table4.EnableScrollX = true;
 
-        var table5 = (HtmlTableBootstrap)document.Body.Table(drives, TableType.BootstrapTable);
+        var table5 = (BootstrapTable)document.Body.Table(drives, TableType.BootstrapTable);
         table5.EnableBorders = true;
         table5.EnableStriped = true;
         table5.EnableHover = true;
