@@ -41,7 +41,11 @@ public class LibrariesConverter {
             case Libraries.FancyTree:
                 return new FancyTreeLibrary();
             case Libraries.ApexCharts:
-                return new ApexCharts();
+                return new ApexChartsLibrary();
+            case Libraries.VisNetwork:
+                return new VisNetworkLibrary();
+            case Libraries.EasyQRCode:
+                return new EasyQRCode();
             default:
                 throw new ArgumentException($"Unsupported library: {libraries}");
         }
@@ -69,5 +73,7 @@ public enum Libraries {
     Tabler,
     JQuery,
     FancyTree,
-    ApexCharts
+    ApexCharts,
+    VisNetwork,
+    EasyQRCode
 }
