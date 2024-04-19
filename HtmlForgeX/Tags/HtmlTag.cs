@@ -68,6 +68,11 @@ public class HtmlTag : HtmlElement {
         return this;
     }
 
+    public HtmlTag Id(string id) {
+        Attributes["id"] = id;
+        return this;
+    }
+
     public HtmlTag Type(string type) {
         Attributes["type"] = type;
         return this;
