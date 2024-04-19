@@ -24,11 +24,21 @@ public class TablerPage : HtmlElement {
     }
 
     public override string ToString() {
-        Console.WriteLine("Generating HtmlPage...");
-        var childrenHtml = string.Join("", Children.Select(child => child.ToString()));
-        var result = $"<div class=\"page-wrapper\"><div class=\"page-body\"><div class=\"container-xl\">{childrenHtml}</div></div></div>";
-        Console.WriteLine("Generated HtmlPage: " + result);
-        return result;
+        //Console.WriteLine("Generating HtmlPage...");
+        var layoutClass = Layout != TablerLayout.Default ? $" layout-{Layout.ToString().ToLower()}" : "";
+        var pageWrapper = new HtmlTag("div").Class($"page-wrapper{layoutClass}");
+
+        var pageBody = new HtmlTag("div").Class("page-body");
+        pageWrapper.Append(pageBody);
+
+        var container = new HtmlTag("div").Class("container-xl");
+        foreach (var child in Children) {
+            container.Append(child.ToString());
+        }
+        pageBody.Append(container);
+
+        //Console.WriteLine("Generated HtmlPage: " + pageWrapper);
+        return pageWrapper.ToString();
     }
 
     public TablerPage Add(Action<TablerPage> config) {
@@ -42,4 +52,6 @@ public class TablerPage : HtmlElement {
         this.Add(column);
         return column;
     }
+
+    public TablerLayout Layout { get; set; }
 }

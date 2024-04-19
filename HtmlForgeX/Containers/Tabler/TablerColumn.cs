@@ -20,10 +20,10 @@ public class TablerColumn : HtmlElement {
     }
 
     public override string ToString() {
-        Console.WriteLine("Generating HtmlColumn...");
+        //Console.WriteLine("Generating HtmlColumn...");
         var childrenHtml = string.Join("", Children.Select(child => child.ToString()));
         var result = $"<div class=\"{Class}\">{childrenHtml}</div>";
-        Console.WriteLine("Generated HtmlColumn: " + result);
+        //Console.WriteLine("Generated HtmlColumn: " + result);
         return result;
     }
 
