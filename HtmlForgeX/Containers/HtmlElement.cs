@@ -53,4 +53,23 @@ public abstract class HtmlElement {
         return fancyTree;
     }
 
+    public ApexCharts ApexChart(Action<ApexCharts> config) {
+        var apexChart = new ApexCharts();
+        config(apexChart);
+        this.Add(apexChart);
+        return apexChart;
+    }
+
+    public VisNetwork DiagramNetwork(Action<VisNetwork> config) {
+        var visNetwork = new VisNetwork();
+        config(visNetwork);
+        this.Add(visNetwork);
+        return visNetwork;
+    }
+
+    public EasyQRCodeElement QRCode(string text) {
+        var qrCode = new EasyQRCodeElement(text);
+        this.Add(qrCode);
+        return qrCode;
+    }
 }

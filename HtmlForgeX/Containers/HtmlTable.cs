@@ -134,13 +134,13 @@ public class HtmlTable : HtmlElement {
         HtmlTable table;
         switch (tableType) {
             case TableType.BootstrapTable:
-                table = new HtmlTableBootstrap(objects, tableType);
+                table = new BootstrapTable(objects, tableType);
                 break;
             case TableType.DataTables:
-                table = new HtmlTableDataTables(objects, tableType);
+                table = new DataTablesTable(objects, tableType);
                 break;
             case TableType.Tabler:
-                table = new HtmlTableTabler(objects, tableType);
+                table = new TablerTable(objects, tableType);
                 break;
             default:
                 throw new Exception("Table type not supported");
