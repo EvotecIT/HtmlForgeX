@@ -1,6 +1,6 @@
 namespace HtmlForgeX;
 
-public class EasyQRCodeElement : HtmlElement {
+public class EasyQRCodeElement : Element {
     public string Id { get; set; }
     public string Text { get; set; }
 

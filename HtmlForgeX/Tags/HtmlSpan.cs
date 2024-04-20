@@ -3,7 +3,7 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class HtmlSpan : HtmlElement {
+public class HtmlSpan : Element {
     public string? Content { get; set; }
     public RGBColor? Color { get; set; }
     public RGBColor? BackGroundColor { get; set; }

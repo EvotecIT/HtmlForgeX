@@ -3,7 +3,7 @@ namespace HtmlForgeX;
 // var badgeLink = new BadgeLink("Blue", "#", BadgeColor.Blue);
 // string htmlLink = badgeLink.ToString();  // "<a href=\"#\" class=\"badge bg-blue\">Blue</a>"
 
-public class TablerBadgeLink : HtmlElement {
+public class TablerBadgeLink : Element {
     public string Text { get; set; }
     public string Href { get; set; }
     public BadgeColor Color { get; set; }

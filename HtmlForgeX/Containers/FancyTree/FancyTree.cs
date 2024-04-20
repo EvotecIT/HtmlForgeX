@@ -1,6 +1,6 @@
 namespace HtmlForgeX;
 
-public class FancyTree : HtmlElement {
+public class FancyTree : Element {
     public string Id { get; set; }
     public List<FancyTreeNode> Items { get; set; } = new List<FancyTreeNode>();
 

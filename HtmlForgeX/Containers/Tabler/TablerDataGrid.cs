@@ -2,7 +2,7 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class TablerDataGrid : HtmlElement {
+public class TablerDataGrid : Element {
     public List<TablerDataGridItem> Items { get; set; } = new List<TablerDataGridItem>();
 
     public TablerDataGrid AddItem(TablerDataGridItem item) {
@@ -16,7 +16,7 @@ public class TablerDataGrid : HtmlElement {
         return item;
     }
 
-    public TablerDataGridItem AddItem(string title, HtmlElement content) {
+    public TablerDataGridItem AddItem(string title, Element content) {
         var item = new TablerDataGridItem().Title(title).Content(content);
         Items.Add(item);
         return item;

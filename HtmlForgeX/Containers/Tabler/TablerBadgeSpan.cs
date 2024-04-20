@@ -4,7 +4,7 @@ namespace HtmlForgeX;
 // <span class="badge bg-blue">Blue</span>
 // <span class="badge bg-cyan-lt">Cyan</span>
 
-public class TablerBadgeSpan : HtmlElement {
+public class TablerBadgeSpan : Element {
     public string Text { get; set; }
     public BadgeColor Color { get; set; }
     public BadgeColor? TextColor { get; set; }

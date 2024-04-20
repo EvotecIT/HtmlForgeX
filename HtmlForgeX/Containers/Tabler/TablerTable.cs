@@ -2,7 +2,7 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class TablerTable : HtmlTable {
+public class TablerTable : Table {
     public string Id;
     public TablerTable(IEnumerable<object> objects, TableType library) : base(objects, library) {
 

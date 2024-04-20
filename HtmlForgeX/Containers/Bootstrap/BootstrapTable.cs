@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class BootstrapTable : HtmlTable {
+public class BootstrapTable : Table {
     public string Id;
     public List<BootStrapTableStyle> StyleList { get; set; } = new List<BootStrapTableStyle>();
 

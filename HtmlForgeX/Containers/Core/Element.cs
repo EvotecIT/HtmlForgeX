@@ -1,9 +1,9 @@
 namespace HtmlForgeX;
 
-public abstract class HtmlElement {
-    public List<HtmlElement> Children { get; } = new List<HtmlElement>();
+public abstract class Element {
+    public List<Element> Children { get; } = new List<Element>();
 
-    public HtmlElement Add(HtmlElement child) {
+    public Element Add(Element child) {
         Children.Add(child);
         return this;
     }
@@ -27,8 +27,8 @@ public abstract class HtmlElement {
     /// <param name="objects">The objects.</param>
     /// <param name="tableType">Type of the table.</param>
     /// <returns></returns>
-    public HtmlTable Table(IEnumerable<object> objects, TableType tableType) {
-        var table = HtmlTable.Create(objects, tableType);
+    public Table Table(IEnumerable<object> objects, TableType tableType) {
+        var table = HtmlForgeX.Table.Create(objects, tableType);
         this.Add(table);
         return table;
     }

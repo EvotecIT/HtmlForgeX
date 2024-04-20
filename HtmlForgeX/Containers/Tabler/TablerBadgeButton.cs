@@ -4,7 +4,7 @@ namespace HtmlForgeX;
 // string htmlButton = badgeButton.ToString();  // "<button type=\"button\" class=\"btn\">Notifications <span class=\"badge bg-red ms-2\">4</span></button>"
 
 
-public class TablerBadgeButton : HtmlElement {
+public class TablerBadgeButton : Element {
     public string Text { get; set; }
     public string BadgeText { get; set; }
     public BadgeColor BadgeColor { get; set; }

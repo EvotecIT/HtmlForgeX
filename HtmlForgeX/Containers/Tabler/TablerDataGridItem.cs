@@ -4,9 +4,9 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class TablerDataGridItem : HtmlElement {
-    public HtmlElement TitleElement { get; set; }
-    public HtmlElement ContentElement { get; set; }
+public class TablerDataGridItem : Element {
+    public Element TitleElement { get; set; }
+    public Element ContentElement { get; set; }
 
     public TablerDataGridItem Title(string title) {
         TitleElement = new HtmlTag("div").Class("datagrid-title").Append(title);
@@ -17,7 +17,7 @@ public class TablerDataGridItem : HtmlElement {
         ContentElement = new HtmlTag("div").Class("datagrid-content").Append(content);
         return this;
     }
-    public TablerDataGridItem Content(HtmlElement content) {
+    public TablerDataGridItem Content(Element content) {
         ContentElement = new HtmlTag("div").Class("datagrid-content").Append(content.ToString());
         return this;
     }

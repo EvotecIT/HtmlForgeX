@@ -1,6 +1,6 @@
 namespace HtmlForgeX;
 
-public class TablerPage : HtmlElement {
+public class TablerPage : Element {
     // public List<HtmlTablerRow> Rows { get; set; } = new List<HtmlTablerRow>();
 
 

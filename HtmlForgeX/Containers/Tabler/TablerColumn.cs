@@ -1,6 +1,6 @@
 namespace HtmlForgeX;
 
-public class TablerColumn : HtmlElement {
+public class TablerColumn : Element {
     public List<TablerCard> Cards { get; set; } = new List<TablerCard>();
     public string? Class { get; set; }
 

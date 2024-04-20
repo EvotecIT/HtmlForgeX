@@ -1,6 +1,6 @@
 using HtmlForgeX;
 
-public class HtmlDiv : HtmlElement {
+public class HtmlDiv : Element {
     public string? Content { get; set; }
     public List<string> Classes { get; set; } = new List<string>();
     public List<HtmlDiv> Children { get; set; } = new List<HtmlDiv>();

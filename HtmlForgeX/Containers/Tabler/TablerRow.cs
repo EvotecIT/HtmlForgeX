@@ -1,6 +1,6 @@
 namespace HtmlForgeX;
 
-public class TablerRow : HtmlElement {
+public class TablerRow : Element {
     //public List<HtmlTablerColumn> Columns { get; set; } = new List<HtmlTablerColumn>();
 
     public override string ToString() {

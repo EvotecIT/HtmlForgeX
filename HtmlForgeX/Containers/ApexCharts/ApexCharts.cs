@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 
-public class ApexCharts : HtmlElement {
+public class ApexCharts : Element {
     public string Id { get; set; }
     public string Type { get; set; }
     public List<double> Series { get; set; } = new List<double>();

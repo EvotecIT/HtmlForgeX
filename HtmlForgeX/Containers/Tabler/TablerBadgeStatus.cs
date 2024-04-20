@@ -1,7 +1,7 @@
 
 namespace HtmlForgeX;
 
-public class TablerBadgeStatus : HtmlElement {
+public class TablerBadgeStatus : Element {
     public string Status { get; set; }
     public BadgeColor Color { get; set; }
 

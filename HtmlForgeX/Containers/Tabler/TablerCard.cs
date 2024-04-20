@@ -1,6 +1,6 @@
 namespace HtmlForgeX;
 
-public class TablerCard : HtmlElement {
+public class TablerCard : Element {
     public string? Content { get; set; }
     public string? Style { get; set; }
 
