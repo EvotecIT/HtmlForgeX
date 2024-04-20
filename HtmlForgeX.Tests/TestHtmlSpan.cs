@@ -18,11 +18,11 @@ public class TestHtmlSpan {
 
     [TestMethod]
     public void HtmlSpanChainingWithDocument() {
-        var value = new HtmlDocument();
+        var value = new Document();
         value.Body.Span("This is table with DataTables").WithAlignment(FontAlignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
 
-        var value1 = new HtmlDocument().Body.Span("This is table with DataTables").WithAlignment(FontAlignment.Center)
+        var value1 = new Document().Body.Span("This is table with DataTables").WithAlignment(FontAlignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
 
         var expected = @"
