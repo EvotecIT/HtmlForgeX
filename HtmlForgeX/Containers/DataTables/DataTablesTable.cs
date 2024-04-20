@@ -1,9 +1,12 @@
-using System.Text;
+using System.Linq;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace HtmlForgeX;
 
 public class DataTablesTable : HtmlTable {
-    private readonly string id;
+    public string Id;
+    public List<BootStrapTableStyle> StyleList { get; set; } = new List<BootStrapTableStyle>();
     private readonly Dictionary<string, object> config = new Dictionary<string, object>();
 
     public bool EnablePaging {
@@ -27,34 +30,35 @@ public class DataTablesTable : HtmlTable {
     }
 
     public DataTablesTable() {
-        id = GlobalStorage.GenerateRandomId("table");
+        Id = GlobalStorage.GenerateRandomId("table");
     }
 
     public DataTablesTable(IEnumerable<object> objects, TableType library) : base(objects, library) {
-        id = GlobalStorage.GenerateRandomId("table");
+        Id = GlobalStorage.GenerateRandomId("table");
     }
 
-    // Override the BuildTable method to use these features
+    public DataTablesTable Style(BootStrapTableStyle style) {
+        StyleList.Add(style);
+        return this;
+    }
+
     public override string BuildTable() {
-        StringBuilder html = new StringBuilder();
-        html.AppendLine($"<table id=\"{id}\">");
-        // Use the base class's BuildTable method, but add the Tabler modes
         string tableInside = base.BuildTable();
-        // Add the Tabler modes to the table string
-        html.AppendLine(tableInside);
-        html.AppendLine("</table>");
-        html.AppendLine(AddDataTableConfiguration());
-        return html.ToString();
-    }
+        string classNames = StyleList.BuildTableStyles();
+        var tableTag = new HtmlTag("table")
+            .Id(Id)
+            .Class(classNames)
+            .SetValue(tableInside)
+            .SetAttribute("width", "100%");
 
-    private string AddDataTableConfiguration() {
-        var configJson = System.Text.Json.JsonSerializer.Serialize(config);
-        return $@"
-            <script>
-                $(document).ready(function() {{
-                    $('#{id}').DataTable({configJson});
-                }});
-            </script>
-        ";
+        //var configuration = System.Text.Json.JsonSerializer.Serialize(config);
+        var configuration = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+
+        var scriptTag = new HtmlTag("script").SetValue($@"
+        $(document).ready(function() {{
+                $('#{Id}').DataTable({configuration});
+            }});
+        ");
+        return tableTag + scriptTag.ToString();
     }
 }
