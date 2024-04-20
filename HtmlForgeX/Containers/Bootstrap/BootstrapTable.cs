@@ -5,44 +5,29 @@ using System.Text;
 namespace HtmlForgeX;
 
 public class BootstrapTable : HtmlTable {
-    public bool EnableResponsive { get; set; }
-    public bool EnableStriped { get; set; }
-    public bool EnableDarkMode { get; set; }
-    public bool EnableBorders { get; set; }
-    public bool EnableHover { get; set; }
-    public bool EnableSmall { get; set; }
-    public bool EnableMedium { get; set; }
-    public bool EnableLarge { get; set; }
+    public string Id;
+    public List<BootStrapTableStyle> StyleList { get; set; } = new List<BootStrapTableStyle>();
 
     public BootstrapTable() : base() {
-        // Additional initialization code specific to Bootstrap...
+        Id = GlobalStorage.GenerateRandomId("table");
     }
 
     public BootstrapTable(IEnumerable<object> objects, TableType library) : base(objects, library) {
-        // Additional initialization code specific to Bootstrap...
-    }
-
-    private string BuildClassString() {
-        var classes = new List<string> { "table" };
-        if (EnableResponsive) classes.Add("table-responsive");
-        if (EnableStriped) classes.Add("table-striped");
-        if (EnableDarkMode) classes.Add("table-dark");
-        if (EnableBorders) classes.Add("table-bordered");
-        if (EnableHover) classes.Add("table-hover");
-        if (EnableSmall) classes.Add("table-sm");
-        if (EnableMedium) classes.Add("table-md");
-        if (EnableLarge) classes.Add("table-lg");
-        return string.Join(" ", classes);
+        Id = GlobalStorage.GenerateRandomId("table");
     }
 
     public override string BuildTable() {
-        StringBuilder html = new StringBuilder();
-        html.AppendLine($"<table class=\"{BuildClassString()}\">");
+        string tableInside = base.BuildTable();
+        string classNames = StyleList.BuildTableStyles();
+        var tableTag = new HtmlTag("table")
+            .Id(Id)
+            .Class(classNames)
+            .SetValue(tableInside);
+        return tableTag.ToString();
+    }
 
-        // Use the base class's BuildTable method, but add the Bootstrap classes
-        html.AppendLine(base.BuildTable());
-
-        html.AppendLine("</table>");
-        return html.ToString();
+    public BootstrapTable Style(BootStrapTableStyle style) {
+        StyleList.Add(style);
+        return this;
     }
 }
