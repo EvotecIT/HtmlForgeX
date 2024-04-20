@@ -47,10 +47,13 @@ public class HtmlTag : HtmlElement {
         }
     }
 
-    //public HtmlTag Class(string className) {
-    //    Attributes["class"] += className;
-    //    return this;
-    //}
+    public HtmlTag Style(string style) {
+        if (!Attributes.ContainsKey("style")) {
+            Attributes["style"] = string.Empty;
+        }
+        Attributes["style"] += style;
+        return this;
+    }
 
     public HtmlTag Class(string? className) {
         // user used Class null so we don't do anything
