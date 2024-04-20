@@ -8,8 +8,11 @@ public class VisNetwork : HtmlElement {
     public List<object> Edges { get; set; } = new List<object>();
     public Dictionary<string, object> Options { get; set; } = new Dictionary<string, object>();
 
+    public bool EnableLoadingBar { get; set; }
+
     public VisNetwork() {
         GlobalStorage.Libraries.Add(Libraries.VisNetwork);
+        GlobalStorage.Libraries.Add(Libraries.VisNetworkLoadingBar);
         Id = GlobalStorage.GenerateRandomId("Diagram");
     }
 
@@ -29,14 +32,20 @@ public class VisNetwork : HtmlElement {
     }
 
     public override string ToString() {
-        var divTag = new HtmlTag("div").Class("diagramWrapper")
-            .Append(new HtmlTag("div").Class("diagram").Class("position:relative")
-                .Append(new HtmlTag("div").Class("diagram diagramObject").Class("position:absolute").Id(Id)))
-            .Append(new HtmlTag("div").Id($"{Id}-diagramLoadingBar").Class("diagramLoadingBar")
-                .Append(new HtmlTag("div").Class("diagramOuterBorder")
-                    .Append(new HtmlTag("div").Id($"{Id}-diagramText").Class("diagramText").SetValue("0%"))
-                    .Append(new HtmlTag("div").Class("diagramBorder")
-                        .Append(new HtmlTag("div").Id($"{Id}-diagramBar").Class("diagramBar")))));
+        HtmlTag divTag;
+        if (EnableLoadingBar) {
+            divTag = new HtmlTag("div").Class("diagramWrapper")
+                .Append(new HtmlTag("div").Class("diagram").Style("position:relative")
+                    .Append(new HtmlTag("div").Class("diagram diagramObject").Style("position:absolute").Id(Id)))
+                .Append(new HtmlTag("div").Id($"{Id}-diagramLoadingBar").Class("diagramLoadingBar")
+                    .Append(new HtmlTag("div").Class("diagramOuterBorder")
+                        .Append(new HtmlTag("div").Id($"{Id}-diagramText").Class("diagramText").SetValue("0%"))
+                        .Append(new HtmlTag("div").Class("diagramBorder")
+                            .Append(new HtmlTag("div").Id($"{Id}-diagramBar").Class("diagramBar")))));
+        } else {
+            divTag = new HtmlTag("div").Class("diagram").Style("position:relative")
+                        .Append(new HtmlTag("div").Class("diagram diagramObject").Style("position:absolute").Id(Id));
+        }
 
         var nodesJson = JsonSerializer.Serialize(Nodes);
         var edgesJson = JsonSerializer.Serialize(Edges);
@@ -51,7 +60,7 @@ public class VisNetwork : HtmlElement {
                 edges: edges
             }};
             var options = {optionsJson};
-            var network = loadDiagramWithFonts(container, data, options, '{Id}', true, false);
+            var network = loadDiagramWithFonts(container, data, options, '{Id}', {EnableLoadingBar.ToString().ToLower()}, false);
             diagramTracker['{Id}'] = network;
         ");
 
