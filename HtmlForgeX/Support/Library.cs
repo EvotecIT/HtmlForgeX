@@ -2,29 +2,67 @@ using HtmlForgeX.Resources;
 
 namespace HtmlForgeX;
 
+public enum Libraries {
+    None,
+    Bootstrap,
+    DataTables,
+    Tabler,
+    JQuery,
+    FancyTree,
+    ApexCharts,
+    VisNetwork,
+    VisNetworkLoadingBar,
+    EasyQRCode
+}
+
 public class Library {
-    public string Comment { get; set; }
-    public LibraryLinks Header { get; set; }
-    public LibraryLinks HeaderAlways { get; set; }
-    public LibraryLinks Footer { get; set; }
-    public LibraryLinks FooterAlways { get; set; }
-    public LibraryLinks Body { get; set; }
-    public string LicenseLink { get; set; }
-    public string License { get; set; }
-    public string SourceCodes { get; set; }
-    public string Website { get; set; }
-    public bool Default { get; set; }
-    public bool Email { get; set; }
+    public string Comment { get; set; } = "";
+    public LibraryLinks Header { get; set; } = new LibraryLinks();
+    public LibraryLinks Footer { get; set; } = new LibraryLinks();
+    public LibraryLinks Body { get; set; } = new LibraryLinks();
+    public string LicenseLink { get; set; } = "";
+    public string License { get; set; } = "";
+    public string SourceCodes { get; set; } = "";
+    public string Website { get; set; } = "";
+    public bool Default { get; set; } = false;
+    public bool Email { get; set; } = false;
 }
 
 public class LibraryLinks {
-    public List<string> CssLink { get; set; }
-    public Dictionary<string, Dictionary<string, string>> CssInLine { get; set; }
+    /// <summary>
+    /// Link to styles hosted on CDN
+    /// </summary>
+    /// <value>
+    /// The CSS link.
+    /// </value>
+    public List<string> CssLink { get; set; } = new List<string>();
+    /// <summary>
+    /// Gets or sets the CSS in line using dictionary with key as the selector and value as the style.
+    /// </summary>
+    /// <value>
+    /// The CSS in line.
+    /// </value>
+    public Dictionary<string, Dictionary<string, string>> CssInLine { get; set; } = new Dictionary<string, Dictionary<string, string>>();
+    /// <summary>
+    /// Gets or sets the CSS style using Style object.
+    /// </summary>
+    /// <value>
+    /// The CSS style.
+    /// </value>
     public List<Style> CssStyle { get; set; } = new List<Style>();
-    public List<string> Css { get; set; }
-    public List<string> JSLinkOriginal { get; set; }
-    public List<string> JsLink { get; set; }
-    public List<string> JS { get; set; }
+    /// <summary>
+    /// File name of the CSS file that is embedded in the project.
+    /// </summary>
+    /// <value>
+    /// The CSS.
+    /// </value>
+    public List<string> Css { get; set; } = new List<string>();
+    //public List<string> JsLinkOriginal { get; set; } = new List<string>();
+    public List<string> JsLink { get; set; } = new List<string>();
+    public List<string> Js { get; set; } = new List<string>();
+    public List<string> JsInLine = new List<string>();
+    public List<string> JsScript = new List<string>();
+
 }
 
 public class LibrariesConverter {
@@ -44,6 +82,8 @@ public class LibrariesConverter {
                 return new ApexChartsLibrary();
             case Libraries.VisNetwork:
                 return new VisNetworkLibrary();
+            case Libraries.VisNetworkLoadingBar:
+                return new VisNetworkLoadingBarLibrary();
             case Libraries.EasyQRCode:
                 return new EasyQRCode();
             default:
@@ -51,29 +91,4 @@ public class LibrariesConverter {
         }
         return null;
     }
-}
-
-public enum LibraryMode {
-    Online,
-    Offline,
-    OfflineWithFiles
-}
-
-public enum TableType {
-    None,
-    BootstrapTable,
-    DataTables,
-    Tabler
-}
-
-public enum Libraries {
-    None,
-    Bootstrap,
-    DataTables,
-    Tabler,
-    JQuery,
-    FancyTree,
-    ApexCharts,
-    VisNetwork,
-    EasyQRCode
 }
