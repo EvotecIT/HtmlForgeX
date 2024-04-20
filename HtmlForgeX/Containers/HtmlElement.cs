@@ -33,8 +33,8 @@ public abstract class HtmlElement {
         return table;
     }
 
-    public HtmlLineBreak LineBreak() {
-        var lineBreak = new HtmlLineBreak();
+    public LineBreak LineBreak() {
+        var lineBreak = new LineBreak();
         this.Add(lineBreak);
         return lineBreak;
     }
