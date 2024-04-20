@@ -11,22 +11,48 @@ public class HtmlDocument : HtmlElement {
         set => GlobalStorage.LibraryMode = value;
     }
 
+    public ThemeMode ThemeMode {
+        get => GlobalStorage.ThemeMode;
+        set => GlobalStorage.ThemeMode = value;
+    }
+
+    public string Path {
+        get => GlobalStorage.Path;
+        set => GlobalStorage.Path = value;
+    }
+
+    public string StylePath {
+        get => GlobalStorage.StylePath;
+        set => GlobalStorage.StylePath = value;
+    }
+
+    public string ScriptPath {
+        get => GlobalStorage.ScriptPath;
+        set => GlobalStorage.ScriptPath = value;
+    }
+
     public HtmlDocument(LibraryMode? librariesMode = null) {
         if (librariesMode != null) {
             GlobalStorage.LibraryMode = librariesMode.Value;
         }
     }
 
-    public void Save(string path, bool openInBrowser = false) {
+    public void Save(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
+        GlobalStorage.Path = path;
+        if (!string.IsNullOrEmpty(scriptPath)) {
+            GlobalStorage.ScriptPath = scriptPath;
+        }
+
+        if (!string.IsNullOrEmpty(stylePath)) {
+            GlobalStorage.StylePath = stylePath;
+        }
+
         var countErrors = GlobalStorage.Errors.Count;
         if (countErrors > 0) {
             Console.WriteLine($"There were {countErrors} found during generation of HTML.");
-            //foreach (var error in GlobalStorage.Errors) {
-            //    Console.WriteLine(error);
-            //}
         }
 
-        System.IO.File.WriteAllText(path, this.ToString());
+        File.WriteAllText(path, this.ToString());
         Helpers.Open(path, openInBrowser);
     }
 
@@ -61,7 +87,7 @@ public class HtmlDocument : HtmlElement {
                 this.Head.AddCssInline(cssContent);
             }
 
-            foreach (var js in library.Header.JS) {
+            foreach (var js in library.Header.Js) {
                 var jsContent = System.IO.File.ReadAllText(js);
                 this.Head.AddJsInline(jsContent);
             }

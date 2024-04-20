@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX;
 
 public class HtmlBody : HtmlElement {
-    public ThemeMode ThemeMode { get; set; }
-
     public new HtmlBody Add(HtmlElement element) {
         Children.Add(element);
         return this;
@@ -37,9 +33,12 @@ public class HtmlBody : HtmlElement {
 
     public override string ToString() {
         StringBuilder bodyBuilder = new StringBuilder();
-        if (ThemeMode == ThemeMode.Dark) {
+        if (GlobalStorage.ThemeMode == ThemeMode.Dark) {
             bodyBuilder.AppendLine("<body data-bs-theme=\"dark\">");
-        } else if (ThemeMode == ThemeMode.Light) {
+        } else if (GlobalStorage.ThemeMode == ThemeMode.Light) {
+            bodyBuilder.AppendLine("<body data-bs-theme=\"light\">");
+        } else if (GlobalStorage.ThemeMode == ThemeMode.System) {
+            // This is the default value, but we need to write some javascript to set the theme
             bodyBuilder.AppendLine("<body data-bs-theme=\"light\">");
         } else {
             bodyBuilder.AppendLine("<body>");

@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text;
 
 namespace HtmlForgeX;
@@ -219,15 +220,19 @@ public class HtmlHead {
         }
 
         if (Scripts.Count > 0) {
-            head.AppendLine("<script type=\"text/javascript\">");
             foreach (var script in Scripts) {
-                head.AppendLine(script);
+                string scriptStr = script;
+                if (scriptStr.Trim().StartsWith("<script") && scriptStr.Trim().EndsWith("</script>")) {
+                    head.AppendLine(scriptStr);
+                } else {
+                    head.AppendLine("<script type=\"text/javascript\">");
+                    head.AppendLine(scriptStr);
+                    head.AppendLine("</script>");
+                }
             }
-            head.AppendLine("</script>");
         }
 
         head.AppendLine("</head>");
-
         return head.ToString();
     }
 
@@ -276,30 +281,56 @@ public class HtmlHead {
 
     private void ProcessLibrary(Library library) {
         if (GlobalStorage.LibraryMode == LibraryMode.Online) {
-            if (library.Header.CssLink != null) {
-                foreach (var link in library.Header.CssLink) {
-                    AddCssLink(link);
-                }
+            foreach (var link in library.Header.CssLink) {
+                AddCssLink(link);
             }
+
             foreach (var link in library.Header.JsLink) {
                 AddJsLink(link);
             }
         } else if (GlobalStorage.LibraryMode == LibraryMode.Offline) {
             foreach (var css in library.Header.Css) {
-                var cssContent = System.IO.File.ReadAllText(css);
+                var cssContent = ReadEmbeddedResource("HtmlForgeX.Resources.Styles." + css);
                 AddCssInline(cssContent);
             }
 
-            foreach (var js in library.Header.JS) {
-                var jsContent = System.IO.File.ReadAllText(js);
+            foreach (var js in library.Header.Js) {
+                var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
                 AddJsInline(jsContent);
+            }
+
+        } else if (GlobalStorage.LibraryMode == LibraryMode.OfflineWithFiles) {
+            foreach (var css in library.Header.Css) {
+                AddCssLink(css);
+            }
+            foreach (var js in library.Header.Js) {
+                var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
+                // we need to save the js file to disk
+                var jsFileName = Path.Combine(GlobalStorage.Path, Path.GetFileName(js));
+                File.WriteAllText(jsFileName, jsContent);
             }
         }
 
-        if (library.Header.CssStyle != null) {
-            foreach (var style in library.Header.CssStyle) {
-                AddCssStyle(style);
-            }
+        // add css styles regardless of the mode
+        foreach (var style in library.Header.CssStyle) {
+            AddCssStyle(style);
         }
+        // add js inline script regardless of the mode
+        foreach (var style in library.Header.JsScript) {
+            AddJsInline(style);
+        }
+    }
+
+    private string ReadEmbeddedResource(string resourceName) {
+        var assembly = Assembly.GetExecutingAssembly();
+        //foreach (var displayResource in assembly.GetManifestResourceNames()) {
+        //    Console.WriteLine(displayResource);
+        //}
+        using var stream = assembly.GetManifestResourceStream(resourceName);
+        if (stream == null) {
+            throw new ArgumentException($"Resource not found: {resourceName}");
+        }
+        using var reader = new StreamReader(stream);
+        return reader.ReadToEnd();
     }
 }
