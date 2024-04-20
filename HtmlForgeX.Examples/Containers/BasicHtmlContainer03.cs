@@ -32,10 +32,10 @@ internal class BasicHtmlContainer03 {
         var document = new HtmlDocument {
             Head = {
                 Title = "Basic Demo Document Container 3", Author = "Przemysław Kłys", Revised = DateTime.Now
-            }
+            },
+            LibraryMode = LibraryMode.Online,
+            ThemeMode = ThemeMode.Light
         };
-
-        document.Body.ThemeMode = ThemeMode.Dark;
         document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
             page.Rows(row => {
@@ -44,6 +44,10 @@ internal class BasicHtmlContainer03 {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
+                    });
+                });
+                row.Column(8, column => {
+                    column.Card(card => {
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
                         table1.EnableOrdering = false;
                         table1.EnableSearching = false;
@@ -56,18 +60,10 @@ internal class BasicHtmlContainer03 {
                             dataGrid.AddItem("Port number", "3306");
                             dataGrid.AddItem("Creator", "Przemyslaw Klys");
                             dataGrid.AddItem("Edge network", new TablerBadgeStatus("Active", BadgeColor.Green));
-                            dataGrid.AddItem("Created", "2021-09-01");
                             dataGrid.Title("Domain Information").Content("This is the domain information");
                             dataGrid.AddItem("Expiration date", DateTime.Now.AddDays(5).ToString());
                             dataGrid.AddItem("Age", "5 days");
                             dataGrid.Title("Expiring").Content(new TablerBadgeSpan("Soon", BadgeColor.Azure, textColor: BadgeColor.White));
-
-                        });
-                    });
-                });
-                row.Column(4, column => {
-                    column.Card(4, card => {
-                        card.DataGrid(dataGrid => {
                             dataGrid.Title("Registrar").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true));
                             dataGrid.Title("Pill").Content(new TablerBadgeSpan("1", BadgeColor.Azure, BadgeStyle.Pill, false, BadgeColor.White));
                             dataGrid.Title("Outline").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Outline, false, BadgeColor.Cyan));
@@ -114,7 +110,6 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
-
                 row.Column(4, column => {
                     column.Card(4, card => {
                         card.ApexChart(chart => {
@@ -123,7 +118,7 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
-                row.Column(6, column => {
+                row.Column(4, column => {
                     column.Card(card => {
                         card.ApexChart(chart => {
                             chart.Title.Text("Bar chart");
@@ -131,7 +126,7 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
-                row.Column(6, column => {
+                row.Column(4, column => {
                     column.Card(card => {
                         card.ApexChart(chart => {
                             chart.Title.Text("Donut Chart").Color(RGBColor.FruitSalad);
