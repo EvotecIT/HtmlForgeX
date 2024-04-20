@@ -23,3 +23,15 @@ This project uses the following awesome libraries and frameworks that make it wh
 
 Please support their creators by checking them out and starring their projects.
 
+### Project folder structure
+
+- `HtmlForgeX` - main project
+  - Containers - classes that represent HTML containers
+  - Enums - enums used in the project
+  - Extensions - extension methods
+  - Resources - resources used in the project
+    - Classes - C# classes describing resources
+    - Scripts - JavaScript files, embedded resources
+    - Styles - CSS files, embedded resources
+- `HtmlForgeX.Tests` - tests for the project
+- `HtmlForgeX.Examples` - demo project
