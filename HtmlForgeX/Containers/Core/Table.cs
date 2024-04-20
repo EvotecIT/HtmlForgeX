@@ -4,54 +4,54 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class HtmlTable : HtmlElement {
+public class Table : Element {
     private TableType? Library;
     public List<string> TableHeaders { get; set; } = new List<string>();
     public List<string> TableFooters { get; set; } = new List<string>();
     public List<List<string>> TableRows { get; set; } = new List<List<string>>();
 
-    public HtmlTable(TableType? library = null) {
+    public Table(TableType? library = null) {
         Library = library;
         AddLibrariesBasedOnTableType();
     }
 
-    public HtmlTable(IEnumerable<object> objects, TableType? library = null) {
+    public Table(IEnumerable<object> objects, TableType? library = null) {
         Library = library;
         AddLibrariesBasedOnTableType();
 
         this.AddObjects(objects);
     }
 
-    public HtmlTable AddHeader(string header) {
+    public Table AddHeader(string header) {
         TableHeaders.Add(header);
         return this;
     }
-    public HtmlTable AddHeaders(params string[] headers) {
+    public Table AddHeaders(params string[] headers) {
         TableHeaders.AddRange(headers);
         return this;
     }
 
-    public HtmlTable AddFooter(string footer) {
+    public Table AddFooter(string footer) {
         TableFooters.Add(footer);
         return this;
     }
 
-    public HtmlTable AddFooters(params string[] footers) {
+    public Table AddFooters(params string[] footers) {
         TableFooters.AddRange(footers);
         return this;
     }
 
-    public HtmlTable AddRow(List<string> row) {
+    public Table AddRow(List<string> row) {
         TableRows.Add(row);
         return this;
     }
 
-    public HtmlTable AddRows(params List<string>[] rows) {
+    public Table AddRows(params List<string>[] rows) {
         TableRows.AddRange(rows);
         return this;
     }
 
-    public HtmlTable AddObjects(IEnumerable<object> objects, bool addFooter = false) {
+    public Table AddObjects(IEnumerable<object> objects, bool addFooter = false) {
         if (objects == null || !objects.Any()) return this;
 
         // Get the type of the objects
@@ -130,8 +130,8 @@ public class HtmlTable : HtmlElement {
         return html.ToString();
     }
 
-    public static HtmlTable Create(IEnumerable<object> objects, TableType tableType) {
-        HtmlTable table;
+    public static Table Create(IEnumerable<object> objects, TableType tableType) {
+        Table table;
         switch (tableType) {
             case TableType.BootstrapTable:
                 table = new BootstrapTable(objects, tableType);

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class LineBreak : HtmlElement {
+public class LineBreak : Element {
     public override string ToString() {
         return "<br />";
     }

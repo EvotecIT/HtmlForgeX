@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX;
-public class FlexPanel : HtmlElement {
-    public new FlexPanel Add(HtmlElement element) {
+public class FlexPanel : Element {
+    public new FlexPanel Add(Element element) {
         Children.Add(element);
         return this;
     }

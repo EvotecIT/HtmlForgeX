@@ -7,7 +7,7 @@ namespace HtmlForgeX;
 /// Represents the head section of an HTML document.
 /// This class allows you to add and manage meta tags, the title, and other elements in the head section.
 /// </summary>
-public class HtmlHead {
+public class Head {
     /// <summary>
     /// Gets or sets the title of the HTML document.
     /// This is displayed in the title bar of the web browser.
@@ -84,7 +84,7 @@ public class HtmlHead {
     /// </summary>
     /// <param name="title">The title to add.</param>
     /// <returns>The HtmlHead object, allowing for method chaining.</returns>
-    public HtmlHead AddTitle(string title) {
+    public Head AddTitle(string title) {
         Title = title;
         return this;
     }
@@ -96,7 +96,7 @@ public class HtmlHead {
     /// <param name="name">The name of the meta tag.</param>
     /// <param name="content">The content of the meta tag.</param>
     /// <returns>The HtmlHead object, allowing for method chaining.</returns>
-    public HtmlHead AddMeta(string name, string content) {
+    public Head AddMeta(string name, string content) {
         switch (name.ToLower()) {
             case "charset":
                 Charset = content;
@@ -126,38 +126,38 @@ public class HtmlHead {
         return this;
     }
 
-    public HtmlHead AddCharsetMeta(string charset) {
+    public Head AddCharsetMeta(string charset) {
         Charset = charset;
         return this;
     }
 
-    public HtmlHead AddHttpEquivMeta(string httpEquiv, string content) {
+    public Head AddHttpEquivMeta(string httpEquiv, string content) {
         HttpEquiv = httpEquiv;
         Content = content;
         return this;
     }
 
-    public HtmlHead AddViewportMeta(string content) {
+    public Head AddViewportMeta(string content) {
         Viewport = content;
         return this;
     }
 
-    public HtmlHead AddAuthorMeta(string author) {
+    public Head AddAuthorMeta(string author) {
         Author = author;
         return this;
     }
 
-    public HtmlHead AddRevisedMeta(DateTime date) {
+    public Head AddRevisedMeta(DateTime date) {
         Revised = date;
         return this;
     }
 
-    public HtmlHead AddStyle(Style style) {
+    public Head AddStyle(Style style) {
         Styles.Add(style);
         return this;
     }
 
-    public HtmlHead AddStyle(string style) {
+    public Head AddStyle(string style) {
         Styles.Add(style);
         return this;
     }
@@ -236,7 +236,7 @@ public class HtmlHead {
         return head.ToString();
     }
 
-    public HtmlHead AddDefaultStyles() {
+    public Head AddDefaultStyles() {
         Styles.Add(@"
             body {
                 font-family: 'Roboto Condensed', sans-serif;

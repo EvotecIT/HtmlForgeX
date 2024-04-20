@@ -6,7 +6,7 @@ internal class BasicHtmlTable01 {
         HelpersSpectre.PrintTitle("Basic Demo Document with Tables 1");
 
         // Create a new document with the title and author
-        HtmlDocument document = new HtmlDocument {
+        Document document = new Document {
             Head = {
                 Title = "Basic Demo Document with Tables 1",
                 Author = "Przemysław Kłys",

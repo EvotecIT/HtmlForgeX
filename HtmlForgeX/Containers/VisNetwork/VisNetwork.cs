@@ -2,7 +2,7 @@ using System.Text.Json;
 
 namespace HtmlForgeX;
 
-public class VisNetwork : HtmlElement {
+public class VisNetwork : Element {
     public string Id { get; set; }
     public List<object> Nodes { get; set; } = new List<object>();
     public List<object> Edges { get; set; } = new List<object>();

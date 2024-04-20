@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX;
-public class HtmlTag : HtmlElement {
+public class HtmlTag : Element {
     public string Tag { get; set; }
     public string Value { get; set; }
     public new List<HtmlTag> Children { get; set; } = new List<HtmlTag>();

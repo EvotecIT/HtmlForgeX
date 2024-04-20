@@ -2,9 +2,9 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class HtmlDocument : HtmlElement {
-    public HtmlHead Head = new HtmlHead();
-    public HtmlBody Body = new HtmlBody();
+public class Document : Element {
+    public Head Head = new Head();
+    public Body Body = new Body();
 
     public LibraryMode LibraryMode {
         get => GlobalStorage.LibraryMode;
@@ -31,7 +31,7 @@ public class HtmlDocument : HtmlElement {
         set => GlobalStorage.ScriptPath = value;
     }
 
-    public HtmlDocument(LibraryMode? librariesMode = null) {
+    public Document(LibraryMode? librariesMode = null) {
         if (librariesMode != null) {
             GlobalStorage.LibraryMode = librariesMode.Value;
         }

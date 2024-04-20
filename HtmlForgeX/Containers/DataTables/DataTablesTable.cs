@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace HtmlForgeX;
 
-public class DataTablesTable : HtmlTable {
+public class DataTablesTable : Table {
     public string Id;
     public List<BootStrapTableStyle> StyleList { get; set; } = new List<BootStrapTableStyle>();
     private readonly Dictionary<string, object> config = new Dictionary<string, object>();

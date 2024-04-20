@@ -2,18 +2,18 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class HtmlBody : HtmlElement {
-    public new HtmlBody Add(HtmlElement element) {
+public class Body : Element {
+    public new Body Add(Element element) {
         Children.Add(element);
         return this;
     }
 
-    public HtmlBody Add(string text) {
+    public Body Add(string text) {
         Children.Add(new HtmlText { Text = text });
         return this;
     }
 
-    public HtmlBody Add(Action<HtmlBody> buildAction) {
+    public Body Add(Action<Body> buildAction) {
         buildAction(this);
         return this;
     }

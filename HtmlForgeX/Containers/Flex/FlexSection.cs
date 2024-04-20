@@ -4,8 +4,8 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-public class FlexSection : HtmlElement {
-    public new FlexSection Add(HtmlElement element) {
+public class FlexSection : Element {
+    public new FlexSection Add(Element element) {
         Children.Add(element);
         return this;
     }
