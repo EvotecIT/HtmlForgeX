@@ -30,7 +30,7 @@ internal class BasicHtmlContainer02 {
             new { Name = "Jane", Age = 28, Occupation = "Doctor" },
         };
 
-        HtmlDocument document = new HtmlDocument {
+        Document document = new Document {
             Head = {
                 Title = "Basic Demo Document Container 2", Author = "Przemysław Kłys", Revised = DateTime.Now
             }

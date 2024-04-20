@@ -11,7 +11,7 @@ namespace HtmlForgeX.Examples.ByHand {
         public static void Demo1(bool openInBrowser = false) {
             HelpersSpectre.PrintTitle("Basic Html Building 1");
 
-            HtmlDocument document = new HtmlDocument();
+            Document document = new Document();
             document.Head.Title = "Basic Html Building 1";
             document.Head.Author = "Przemysław Kłys";
             document.Head.Revised = DateTime.Now;
@@ -90,7 +90,7 @@ namespace HtmlForgeX.Examples.ByHand {
         public static void Demo2(bool openInBrowser = false) {
             HelpersSpectre.PrintTitle("Basic Html Building 2");
 
-            HtmlDocument document = new HtmlDocument();
+            Document document = new Document();
 
             document.AddLibrary(new Bootstrap());
 
