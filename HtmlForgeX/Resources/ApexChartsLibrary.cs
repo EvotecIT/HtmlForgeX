@@ -6,8 +6,12 @@ namespace HtmlForgeX.Resources;
 public class ApexChartsLibrary : Library {
     public ApexChartsLibrary() {
         Header = new LibraryLinks {
-            CssLink = [],
-            JsLink = ["https://cdn.jsdelivr.net/npm/apexcharts@3.48.0/dist/apexcharts.min.js"]
+            JsLink = [
+                "https://cdn.jsdelivr.net/npm/apexcharts@3.48.0/dist/apexcharts.min.js"
+            ],
+            Js = [
+                "apexcharts.min.js"
+            ]
         };
         Comment = "ApexCharts library";
         LicenseLink = "https://github.com/apexcharts/apexcharts.js/blob/main/LICENSE";

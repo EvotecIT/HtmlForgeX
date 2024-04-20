@@ -4,7 +4,9 @@ internal class Tabler : Library {
     public Tabler() {
         Header = new LibraryLinks {
             CssLink = ["https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css"],
-            JsLink = ["https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"]
+            Css = ["tabler.min.css"],
+            JsLink = ["https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"],
+            Js = ["tabler.min.js"]
         };
         Comment = "Tabler library";
         LicenseLink = "https://github.com/tabler/tabler/blob/dev/LICENSE";

@@ -9,6 +9,9 @@ public class EasyQRCode : Library {
             JsLink = [
                 "https://cdn.jsdelivr.net/npm/easyqrcodejs@4.6.1/dist/easy.qrcode.min.js"
             ],
+            Js = [
+                "easy.qrcode.min.js"
+            ],
             CssStyle = [
                 new Style {
                     Selector = ".qrcode",
