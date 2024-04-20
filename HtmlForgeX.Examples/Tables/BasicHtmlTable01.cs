@@ -44,17 +44,15 @@ internal class BasicHtmlTable01 {
 
         // Add the drive information to the document again using DataTables
         var table4 = (DataTablesTable)document.Body.Table(drives, TableType.DataTables);
+        table4.Style(BootStrapTableStyle.Hover).Style(BootStrapTableStyle.Striped);
         table4.EnablePaging = true;
         table4.EnableSearching = false;
         table4.EnableOrdering = true;
         table4.EnableScrollX = true;
 
         var table5 = (BootstrapTable)document.Body.Table(drives, TableType.BootstrapTable);
-        table5.EnableBorders = true;
-        table5.EnableStriped = true;
-        table5.EnableHover = true;
-        table5.EnableResponsive = true;
-
+        table5.Style(BootStrapTableStyle.Striped).Style(BootStrapTableStyle.Hover);
+        table5.Style(BootStrapTableStyle.Responsive);
         document.Save("BasicDemoDocumentWithTables1.html", openInBrowser);
     }
 
