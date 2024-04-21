@@ -7,6 +7,7 @@ public enum Libraries {
     Bootstrap,
     DataTables,
     Tabler,
+    TablerIcon,
     JQuery,
     FancyTree,
     ApexCharts,
@@ -74,6 +75,8 @@ public class LibrariesConverter {
                 return new DataTables();
             case Libraries.Tabler:
                 return new Tabler();
+            case Libraries.TablerIcon:
+                return new TablerIconLibrary();
             case Libraries.JQuery:
                 return new Jquery();
             case Libraries.FancyTree:
