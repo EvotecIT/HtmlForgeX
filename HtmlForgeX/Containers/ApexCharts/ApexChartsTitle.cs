@@ -32,7 +32,7 @@ public class ApexChartsTitle {
     }
 
     public ApexChartsTitle Color(RGBColor color) {
-        Style["color"] = color.ToHex();
+        Style["color"] = color.ToString();
         return this;
     }
 
