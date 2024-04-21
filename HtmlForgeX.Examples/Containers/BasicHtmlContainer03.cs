@@ -38,22 +38,45 @@ internal class BasicHtmlContainer03 {
         };
         document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
-            page.Rows(row => {
-                row.Column(4, column => {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Row(cardRow => {
+                            cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
+                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Blue);
+                            });
+                            cardRow.Column(textColumn => {
+                                textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
+                                textColumn.Text("12 waiting payments").Style(TableTextStyle.Muted);
+                            });
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Blue));
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.CardMini().Avatar(TablerIcon.License).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Blue).Title("Title").Subtitle("Subtitle");
+
+                });
+
+                row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
                     });
                 });
-                row.Column(8, column => {
+                row.Column(TablerColumnNumber.Eight, column => {
                     column.Card(card => {
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
                         table1.EnableOrdering = false;
                         table1.EnableSearching = false;
                     });
                 });
-                row.Column(8, column => {
+                row.Column(TablerColumnNumber.Eight, column => {
                     column.Card(card => {
                         card.DataGrid(dataGrid => {
                             dataGrid.AddItem("Registrar", "Third Party");
@@ -73,7 +96,7 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
-                row.Column(4, column => {
+                row.Column(TablerColumnNumber.Four, column => {
                     column.Card(4, card => {
                         card.FancyTree(fancyTree => {
                             fancyTree.Title("Enable TSDebugMode").Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png");
@@ -110,7 +133,7 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
-                row.Column(4, column => {
+                row.Column(TablerColumnNumber.Four, column => {
                     column.Card(4, card => {
                         card.ApexChart(chart => {
                             chart.Title.Text("Pie Chart").Color(RGBColor.FruitSalad);
@@ -118,7 +141,7 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
-                row.Column(4, column => {
+                row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
                         card.ApexChart(chart => {
                             chart.Title.Text("Bar chart");
@@ -126,7 +149,7 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
-                row.Column(4, column => {
+                row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
                         card.ApexChart(chart => {
                             chart.Title.Text("Donut Chart").Color(RGBColor.FruitSalad);
@@ -134,7 +157,7 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
-                row.Column(8, column => {
+                row.Column(TablerColumnNumber.Eight, column => {
                     column.Card(card => {
                         card.DiagramNetwork(diagam => {
                             diagam.AddNode(new { id = 1, label = "Node 1" });
@@ -147,13 +170,13 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
-                row.Column(4, column => {
+                row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
                         card.QRCode("https://evotec.xyz");
                     });
                 });
                 // this will add a new row and push it all wide
-                row.Column(12, column => {
+                row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
@@ -167,6 +190,6 @@ internal class BasicHtmlContainer03 {
             });
         });
 
-        document.Save("BasicDemoDocumentContainer03.html", openInBrowser);
+        document.Save("BasicDemoDocumentContainer04.html", false);
     }
 }

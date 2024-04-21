@@ -37,8 +37,8 @@ internal class BasicHtmlContainer02 {
         };
 
         document.Body.Page(page => {
-            page.Rows(row => {
-                row.Column(12, column => {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
@@ -48,7 +48,7 @@ internal class BasicHtmlContainer02 {
                         table1.EnableSearching = false;
                     });
                 });
-                row.Column(12, column => {
+                row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
                         card.SetContent("Card 1").WithStyle("background-color: red;");
                     });
@@ -56,7 +56,7 @@ internal class BasicHtmlContainer02 {
                         card.SetContent("Card 2").WithStyle("background-color: blue;");
                     });
                 });
-                row.Column(12, column => {
+                row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(4, card => {
                         card.SetContent("Card 3").WithStyle("background-color: green;");
                     });
@@ -72,8 +72,8 @@ internal class BasicHtmlContainer02 {
 
 
         document.Body.Page(page => {
-            page.Rows(row => {
-                row.Column(4, column => {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
@@ -83,18 +83,18 @@ internal class BasicHtmlContainer02 {
                         table1.EnableSearching = false;
                     });
                 });
-                row.Column(4, column => {
+                row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
                         card.SetContent("Card 1").WithStyle("background-color: red;");
                     });
                 });
-                row.Column(4, column => {
+                row.Column(TablerColumnNumber.Four, column => {
                     column.Card(4, card => {
                         card.SetContent("Card 3").WithStyle("background-color: green;");
                     });
                 });
                 // this will add a new row and push it all wide
-                row.Column(12, column => {
+                row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();

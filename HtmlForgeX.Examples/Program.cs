@@ -7,16 +7,22 @@ using HtmlForgeX.Examples.Support;
 using HtmlForgeX.Examples.Tables;
 using HtmlForgeX.Examples.Tags;
 
+// Those are support examples that help with maintaining library, not a demo material
+//Support.DownloadLibraries();
+//Support.GenerateTableIcons();
+
 //BasicHtmlTagBuilding.Demo1();
 //BasicHtmlTagBuilding.Demo2();
 //BasicHtmlTagBuilding.Demo3();
 //BasicHtmlTagBuilding.Demo4();
+//ExampleTablerIcon.Demo();
+
 //BasicHtmlBuilding.Demo1(true);
 //BasicHtmlBuilding.Demo2(true);
 //BasicHtmlTable01.Demo1(true);
 //BasicHtmlContainer01.Demo01(true);
 //BasicHtmlContainer02.Demo02(true);
 BasicHtmlContainer03.Demo03(true);
-//Support.DownloadLibraries();
+
 
 //Experiments01.Demo();

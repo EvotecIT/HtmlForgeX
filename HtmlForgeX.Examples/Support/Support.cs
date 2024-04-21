@@ -15,4 +15,13 @@ internal class Support {
         string path = @"C:\Support\GitHub\HtmlForgeX\HtmlForgeX\Resources";
         libraryDownloader.DownloadLibrary(path);
     }
+
+    public static void GenerateTableIcons() {
+        HtmlForgeX.LibraryDownloader libraryDownloader = new HtmlForgeX.LibraryDownloader();
+        var list = libraryDownloader.GenerateTablerIconCode(
+            @"C:\Users\przemyslaw.klys\Downloads\tabler-icons-3.2.0\webfont\tabler-icons.css");
+        foreach (var item in list) {
+            Console.WriteLine(item);
+        }
+    }
 }
