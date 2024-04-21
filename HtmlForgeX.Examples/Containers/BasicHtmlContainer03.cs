@@ -41,27 +41,27 @@ internal class BasicHtmlContainer03 {
             page.Row(row => {
                 // first line of 4 cards
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(BadgeColor.Blue).TextColor(BadgeColor.White).Title("172 likes").Subtitle("2 today");
+                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerBadgeColor.Blue).TextColor(TablerBadgeColor.White).Title("172 likes").Subtitle("2 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(BadgeColor.Blue).TextColor(BadgeColor.White).Title("600 shares").Subtitle("16 today");
+                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerBadgeColor.Blue).TextColor(TablerBadgeColor.White).Title("600 shares").Subtitle("16 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Orange).Title("100 orders").Subtitle("0 today");
+                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerBadgeColor.Cyan).TextColor(TablerBadgeColor.Orange).Title("100 orders").Subtitle("0 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(BadgeColor.Azure).TextColor(BadgeColor.White).Title("5 sales").Subtitle("3 waiting");
+                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerBadgeColor.Azure).TextColor(TablerBadgeColor.White).Title("5 sales").Subtitle("3 waiting");
                 });
                 // second line of 3 cards
                 row.Column(TablerColumnNumber.Four, column => {
                     // let's build a card with an avatar manually
                     column.Card(card => {
                         card.Row(cardTitle => {
-                            cardTitle.HeaderLevel(HeaderLevel.H3, "Title").Class("card-title");
+                            cardTitle.HeaderLevel(HeaderLevelTag.H4, "Title").Class("card-title");
                         });
                         card.Row(cardRow => {
                             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Blue);
+                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerBadgeColor.Cyan).TextColor(TablerBadgeColor.Blue);
                             });
                             cardRow.Column(textColumn => {
                                 textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
@@ -72,7 +72,7 @@ internal class BasicHtmlContainer03 {
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Blue));
+                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerBadgeColor.Cyan).TextColor(TablerBadgeColor.Blue));
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
@@ -100,16 +100,16 @@ internal class BasicHtmlContainer03 {
                             dataGrid.AddItem("Registrar", "Third Party");
                             dataGrid.AddItem("Port number", "3306");
                             dataGrid.AddItem("Creator", "Przemyslaw Klys");
-                            dataGrid.AddItem("Edge network", new TablerBadgeStatus("Active", BadgeColor.Green));
+                            dataGrid.AddItem("Edge network", new TablerBadgeStatus("Active", TablerBadgeColor.Green));
                             dataGrid.Title("Domain Information").Content("This is the domain information");
                             dataGrid.AddItem("Expiration date", DateTime.Now.AddDays(5).ToString());
                             dataGrid.AddItem("Age", "5 days");
-                            dataGrid.Title("Expiring").Content(new TablerBadgeSpan("Soon", BadgeColor.Azure, textColor: BadgeColor.White));
-                            dataGrid.Title("Registrar").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true));
-                            dataGrid.Title("Pill").Content(new TablerBadgeSpan("1", BadgeColor.Azure, BadgeStyle.Pill, false, BadgeColor.White));
-                            dataGrid.Title("Outline").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Outline, false, BadgeColor.Cyan));
-                            dataGrid.Title("Text Color").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true, BadgeColor.Green));
-                            dataGrid.Title("Normal").Content(new TablerBadgeSpan("Testing", BadgeColor.Azure, BadgeStyle.Normal, true));
+                            dataGrid.Title("Expiring").Content(new TablerBadgeSpan("Soon", TablerBadgeColor.Azure, textColor: TablerBadgeColor.White));
+                            dataGrid.Title("Registrar").Content(new TablerBadgeSpan("Testing", TablerBadgeColor.Azure, TablerBadgeStyle.Normal, true));
+                            dataGrid.Title("Pill").Content(new TablerBadgeSpan("1", TablerBadgeColor.Azure, TablerBadgeStyle.Pill, false, TablerBadgeColor.White));
+                            dataGrid.Title("Outline").Content(new TablerBadgeSpan("Testing", TablerBadgeColor.Azure, TablerBadgeStyle.Outline, false, TablerBadgeColor.Cyan));
+                            dataGrid.Title("Text Color").Content(new TablerBadgeSpan("Testing", TablerBadgeColor.Azure, TablerBadgeStyle.Normal, true, TablerBadgeColor.Green));
+                            dataGrid.Title("Normal").Content(new TablerBadgeSpan("Testing", TablerBadgeColor.Azure, TablerBadgeStyle.Normal, true));
 
                         });
                     });

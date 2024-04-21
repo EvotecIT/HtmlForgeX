@@ -1,10 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace HtmlForgeX.Examples.Containers;
 internal class BasicHtmlContainer04 {
     public static void Demo01(bool openInBrowser = false) {
@@ -16,6 +9,20 @@ internal class BasicHtmlContainer04 {
             new { Name = "Jane", Age = 28, Occupation = "Doctor" },
             new { Name = "Bob", Age = 35, Occupation = "Architect" }
         };
+
+        var logs = @"
+Effective URL            https://evotec.xyz
+Redirect count           0
+Name lookup time         3.4e-05
+Connect time             0.000521
+Pre-transfer time        0.0
+Start-transfer time      0.0
+App connect time         0.0
+Redirect time            0.0
+Total time               28.000601
+Response code            0
+Return keyword           operation_timedout
+";
 
         var document = new Document {
             Head = {
@@ -29,27 +36,27 @@ internal class BasicHtmlContainer04 {
             page.Row(row => {
                 // first line of 4 cards
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(BadgeColor.Blue).TextColor(BadgeColor.White).Title("172 likes").Subtitle("2 today");
+                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerBadgeColor.Blue).TextColor(TablerBadgeColor.White).Title("172 likes").Subtitle("2 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(BadgeColor.Blue).TextColor(BadgeColor.White).Title("600 shares").Subtitle("16 today");
+                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerBadgeColor.Blue).TextColor(TablerBadgeColor.White).Title("600 shares").Subtitle("16 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Orange).Title("100 orders").Subtitle("0 today");
+                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerBadgeColor.Cyan).TextColor(TablerBadgeColor.Orange).Title("100 orders").Subtitle("0 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(BadgeColor.Azure).TextColor(BadgeColor.White).Title("5 sales").Subtitle("3 waiting");
+                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerBadgeColor.Azure).TextColor(TablerBadgeColor.White).Title("5 sales").Subtitle("3 waiting");
                 });
                 // second line of 3 cards
                 row.Column(TablerColumnNumber.Four, column => {
                     // let's build a card with an avatar manually
                     column.Card(card => {
                         card.Row(cardTitle => {
-                            cardTitle.HeaderLevel(HeaderLevel.H3, "Title").Class("card-title");
+                            cardTitle.HeaderLevel(HeaderLevelTag.H4, "Title").Class("card-title");
                         });
                         card.Row(cardRow => {
                             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Blue);
+                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerBadgeColor.Cyan).TextColor(TablerBadgeColor.Blue);
                             });
                             cardRow.Column(textColumn => {
                                 textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
@@ -60,15 +67,76 @@ internal class BasicHtmlContainer04 {
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Blue));
+                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerBadgeColor.Cyan).TextColor(TablerBadgeColor.Blue));
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
-                    column.CardMini().Avatar(TablerIcon.License);
+                    column.Card(card => {
+                        // card.Add(new TablerProgressBar(TablerProgressBarType.Regular, TablerProgressBarType.Small));
+                        card.ProgressBar(TablerProgressBarType.Small).AddItem(TablerBackground.Primary, 44, "")
+                            .AddItem(TablerBackground.Info, 23, "")
+                            .AddItem(TablerBackground.Success, 33, "");
+                        card.LineBreak();
+                        card.ProgressBar(TablerProgressBarType.Small).AddItem(TablerBackground.Primary, 44, "Test");
+                        card.LineBreak();
+                        card.ProgressBar(TablerProgressBarType.Separated).AddItem(TablerBackground.Primary, 44, "Test")
+                            .AddItem(TablerBackground.Info, 23, "Test")
+                            .AddItem(TablerBackground.Success, 33, "Test");
+                        card.LineBreak();
+                        card.ProgressBar(TablerProgressBarType.Small, 50, TablerBackground.FaceBook);
+
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Row(rowNested => {
+                        rowNested.Column(TablerColumnNumber.Twelve, column => {
+                            column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
+                        });
+                        rowNested.Column(TablerColumnNumber.Twelve, column => {
+                            column.CardBasic().Title("Last checked at").Text("27 seconds ago");
+                        });
+                        rowNested.Column(TablerColumnNumber.Twelve, column => {
+                            column.CardBasic("Incidents", "3");
+                        });
+                        rowNested.Column(TablerColumnNumber.Twelve, column => {
+                            column.CardBasic().Title("Uptime").Text("99.98%");
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Eight, column => {
+                    column.Card(card => {
+                        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
+                        card.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
+                    });
 
                 });
-
-
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Steps()
+                            .AddStep("Order received", false)
+                            .AddStep("Processing", true)
+                            .AddStep("Shipped", false)
+                            .AddStep("Delivered", false);
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Steps().Orientation(StepsOrientation.Vertical)
+                            .AddStep("Order received", "text", false)
+                            .AddStep("Processing", "more text", true)
+                            .AddStep("Shipped", "oops", false)
+                            .AddStep("Delivered", "opps", false);
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Steps().StepCounting().Color(TablerStepsColor.Red)
+                            .AddStep("Order received", false)
+                            .AddStep("Processing", true)
+                            .AddStep("Shipped", false)
+                            .AddStep("Delivered", false);
+                    });
+                });
             });
         });
 
