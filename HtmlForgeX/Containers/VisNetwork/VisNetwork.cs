@@ -35,16 +35,16 @@ public class VisNetwork : Element {
         HtmlTag divTag;
         if (EnableLoadingBar) {
             divTag = new HtmlTag("div").Class("diagramWrapper")
-                .Append(new HtmlTag("div").Class("diagram").Style("position:relative")
-                    .Append(new HtmlTag("div").Class("diagram diagramObject").Style("position:absolute").Id(Id)))
+                .Append(new HtmlTag("div").Class("diagram").Style("position", "relative")
+                    .Append(new HtmlTag("div").Class("diagram diagramObject").Style("position", "absolute").Id(Id)))
                 .Append(new HtmlTag("div").Id($"{Id}-diagramLoadingBar").Class("diagramLoadingBar")
                     .Append(new HtmlTag("div").Class("diagramOuterBorder")
                         .Append(new HtmlTag("div").Id($"{Id}-diagramText").Class("diagramText").SetValue("0%"))
                         .Append(new HtmlTag("div").Class("diagramBorder")
                             .Append(new HtmlTag("div").Id($"{Id}-diagramBar").Class("diagramBar")))));
         } else {
-            divTag = new HtmlTag("div").Class("diagram").Style("position:relative")
-                        .Append(new HtmlTag("div").Class("diagram diagramObject").Style("position:absolute").Id(Id));
+            divTag = new HtmlTag("div").Class("diagram").Style("position", "relative")
+                        .Append(new HtmlTag("div").Class("diagram diagramObject").Style("position", "absolute").Id(Id));
         }
 
         var nodesJson = JsonSerializer.Serialize(Nodes);
