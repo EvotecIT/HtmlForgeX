@@ -39,8 +39,26 @@ internal class BasicHtmlContainer03 {
         document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
             page.Row(row => {
+                // first line of 4 cards
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(BadgeColor.Blue).TextColor(BadgeColor.White).Title("172 likes").Subtitle("2 today");
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(BadgeColor.Blue).TextColor(BadgeColor.White).Title("600 shares").Subtitle("16 today");
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Orange).Title("100 orders").Subtitle("0 today");
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(BadgeColor.Azure).TextColor(BadgeColor.White).Title("5 sales").Subtitle("3 waiting");
+                });
+                // second line of 3 cards
                 row.Column(TablerColumnNumber.Four, column => {
+                    // let's build a card with an avatar manually
                     column.Card(card => {
+                        card.Row(cardTitle => {
+                            cardTitle.HeaderLevel(HeaderLevel.H3, "Title").Class("card-title");
+                        });
                         card.Row(cardRow => {
                             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
                                 avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Blue);
@@ -58,7 +76,7 @@ internal class BasicHtmlContainer03 {
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
-                    column.CardMini().Avatar(TablerIcon.License).BackgroundColor(BadgeColor.Cyan).TextColor(BadgeColor.Blue).Title("Title").Subtitle("Subtitle");
+                    column.CardMini().Avatar(TablerIcon.License);
 
                 });
 
@@ -190,6 +208,6 @@ internal class BasicHtmlContainer03 {
             });
         });
 
-        document.Save("BasicDemoDocumentContainer04.html", false);
+        document.Save("BasicDemoDocumentContainer03.html", openInBrowser);
     }
 }
