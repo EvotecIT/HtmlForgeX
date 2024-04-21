@@ -10,8 +10,8 @@ public class TablerColumn : Element {
         Class = "col";
     }
 
-    public TablerColumn(int count) {
-        Class = $"col-{count}";
+    public TablerColumn(TablerColumnNumber columnNumber) {
+        Class = columnNumber.ToString();
     }
 
     public TablerColumn WithClass(string className) {
