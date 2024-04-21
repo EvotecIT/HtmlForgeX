@@ -1,26 +1,16 @@
 namespace HtmlForgeX;
 
 public class TablerPage : Element {
-    // public List<HtmlTablerRow> Rows { get; set; } = new List<HtmlTablerRow>();
-
-
-    public TablerRow Rows(Action<TablerRow> config) {
-        var row = new TablerRow();
-        config(row);
-        this.Add(row);
-        return row;
-    }
-
-
-    //public HtmlTablerColumn Column() {
-    //    var column = new HtmlTablerColumn();
-    //    this.Add(column);
-    //    return column;
-    //}
-
     public TablerPage() {
         GlobalStorage.Libraries.Add(Libraries.Bootstrap);
         GlobalStorage.Libraries.Add(Libraries.Tabler);
+    }
+
+    public new TablerRow Row(Action<TablerRow> config) {
+        var row = new TablerRow(TablerRowType.Cards, TablerRowType.Deck);
+        config(row);
+        this.Add(row);
+        return row;
     }
 
     public override string ToString() {
