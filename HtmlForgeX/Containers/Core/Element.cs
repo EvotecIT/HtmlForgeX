@@ -131,4 +131,10 @@ public abstract class Element {
         this.Add(card);
         return card;
     }
+
+    public HeaderLevel HeaderLevel(HeaderLevel level, string text) {
+        var header = new HeaderLevel(level, text);
+        this.Add(header);
+        return header;
+    }
 }
