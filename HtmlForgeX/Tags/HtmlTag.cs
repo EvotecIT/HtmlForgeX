@@ -3,8 +3,8 @@ using System.Text;
 
 namespace HtmlForgeX;
 public class HtmlTag : Element {
-    public string Tag { get; set; }
-    public string Value { get; set; }
+    private string Tag { get; set; }
+    private string Value { get; set; } = "";
     public new List<HtmlTag> Children { get; set; } = new List<HtmlTag>();
     public Dictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
     public bool SelfClosing { get; set; }
@@ -47,11 +47,11 @@ public class HtmlTag : Element {
         }
     }
 
-    public HtmlTag Style(string style) {
+    public HtmlTag Style(string name, string value) {
         if (!Attributes.ContainsKey("style")) {
             Attributes["style"] = string.Empty;
         }
-        Attributes["style"] += style;
+        Attributes["style"] += $"{name}: {value}; ";
         return this;
     }
 
@@ -91,6 +91,11 @@ public class HtmlTag : Element {
         return this;
     }
 
+    public HtmlTag Append(Element value) {
+        Value += value.ToString();
+        return this;
+    }
+
     public override string ToString() {
         StringBuilder html = new StringBuilder($"<{Tag}");
 
@@ -127,7 +132,7 @@ public class HtmlTag : Element {
     }
 
     public HtmlTag SetValue(string value) {
-        Value = value;
+        Value += value;
         return this;
     }
 }
