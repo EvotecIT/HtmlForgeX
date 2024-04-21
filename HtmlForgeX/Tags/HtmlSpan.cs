@@ -124,15 +124,15 @@ public class HtmlSpan : Element {
         if (BackGroundColor != null) style.Add($"background-color: {BackGroundColor.ToHex()}");
         if (FontSize != null) style.Add($"font-size: {FontSize}");
         if (LineHeight != null) style.Add($"line-height: {LineHeight}");
-        if (FontWeight != null) style.Add($"font-weight: {FontWeight?.ToCssString()}");
+        if (FontWeight != null) style.Add($"font-weight: {FontWeight?.EnumToString()}");
         if (FontStyle != null) style.Add($"font-style: {FontStyle}");
-        if (FontVariant != null) style.Add($"font-variant: {FontVariant?.ToCssString()}");
+        if (FontVariant != null) style.Add($"font-variant: {FontVariant?.EnumToString()}");
         if (FontFamily != null) style.Add($"font-family: {FontFamily}");
         if (Alignment != null) style.Add($"text-align: {Alignment}");
-        if (TextDecoration != null) style.Add($"text-decoration: {TextDecoration?.ToCssString()}");
+        if (TextDecoration != null) style.Add($"text-decoration: {TextDecoration?.EnumToString()}");
         if (TextTransform != null) style.Add($"text-transform: {TextTransform}");
         if (Direction != null) style.Add($"direction: {Direction}");
-        if (Display != null) style.Add($"display: {Display?.ToCssString()}");
+        if (Display != null) style.Add($"display: {Display?.EnumToString()}");
         if (Opacity != null) style.Add($"opacity: {Opacity}");
 
         var styleString = string.Join("; ", style);
