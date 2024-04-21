@@ -15,3 +15,9 @@ public enum BadgeColor {
     Cyan,
     White
 }
+
+public static class BadgeColorExtensions {
+    public static string ToLowerString(this BadgeColor color) {
+        return color.ToString().ToLower();
+    }
+}
