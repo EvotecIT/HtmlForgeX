@@ -14,7 +14,12 @@ public class HtmlTag : Element {
         Tag = tag;
     }
 
-    public HtmlTag(string tag, string value, bool selfClosing = false, bool noClosing = false) {
+    public HtmlTag(string tag, string value) {
+        Tag = tag;
+        Value = value;
+    }
+
+    public HtmlTag(string tag, string value, bool selfClosing, bool noClosing = false) {
         Tag = tag;
         Value = value;
         SelfClosing = selfClosing;
@@ -42,8 +47,11 @@ public class HtmlTag : Element {
         }
     }
 
-    public HtmlTag Id(string id) {
-        Attributes["id"] = id;
+    public HtmlTag Style(string name, string value) {
+        if (!Attributes.ContainsKey("style")) {
+            Attributes["style"] = string.Empty;
+        }
+        Attributes["style"] += $"{name}: {value}; ";
         return this;
     }
 
@@ -63,23 +71,8 @@ public class HtmlTag : Element {
         return this;
     }
 
-    public HtmlTag Style(string name, string value) {
-        if (!Attributes.ContainsKey("style")) {
-            Attributes["style"] = string.Empty;
-        }
-        Attributes["style"] += $"{name}: {value}; ";
-        return this;
-    }
-
-    public HtmlTag SetAttribute(string name, string value) {
-        Attributes[name] = value;
-        return this;
-    }
-
-    public HtmlTag SetValue(string? value) {
-        if (value != null) {
-            Value += value;
-        }
+    public HtmlTag Id(string id) {
+        Attributes["id"] = id;
         return this;
     }
 
@@ -131,5 +124,18 @@ public class HtmlTag : Element {
         }
 
         return html.ToString();
+    }
+
+    public HtmlTag SetAttribute(string name, string value) {
+        Attributes[name] = value;
+        return this;
+    }
+
+    public HtmlTag SetValue(string? value) {
+        if (value != null) {
+            Value += value;
+        }
+
+        return this;
     }
 }
