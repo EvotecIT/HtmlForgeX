@@ -7,9 +7,9 @@ namespace HtmlForgeX;
 public class TablerBadgeButton : Element {
     public string Text { get; set; }
     public string BadgeText { get; set; }
-    public BadgeColor BadgeColor { get; set; }
+    public TablerBadgeColor BadgeColor { get; set; }
 
-    public TablerBadgeButton(string text, string badgeText, BadgeColor badgeColor) {
+    public TablerBadgeButton(string text, string badgeText, TablerBadgeColor badgeColor) {
         Text = text;
         BadgeText = badgeText;
         BadgeColor = badgeColor;

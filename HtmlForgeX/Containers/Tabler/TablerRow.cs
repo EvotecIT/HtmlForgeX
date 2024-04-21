@@ -20,7 +20,7 @@ public class TablerRow : Element {
     public override string ToString() {
         HtmlTag rowTag = new HtmlTag("div");
         foreach (var rowType in RowTypes) {
-            rowTag.Class(rowType.ToString());
+            rowTag.Class(rowType.EnumToString());
         }
         foreach (var child in Children) {
             rowTag.Append(child.ToString());

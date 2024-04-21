@@ -7,8 +7,8 @@ public class TablerCardMini : TablerCard {
     private string? CardStyle { get; set; }
 
     private TablerIcon AvatarIcon { get; set; } = TablerIcon.User;
-    private BadgeColor AvatarBackgroundColor { get; set; } = BadgeColor.Blue;
-    private BadgeColor AvatarTextColor { get; set; } = BadgeColor.White;
+    private TablerBadgeColor AvatarBackgroundColor { get; set; } = TablerBadgeColor.Blue;
+    private TablerBadgeColor AvatarTextColor { get; set; } = TablerBadgeColor.White;
     private string TitleText { get; set; } = "";
     private string SubtitleText { get; set; } = "";
 
@@ -18,12 +18,12 @@ public class TablerCardMini : TablerCard {
         return this;
     }
 
-    public TablerCardMini BackgroundColor(BadgeColor color) {
+    public TablerCardMini BackgroundColor(TablerBadgeColor color) {
         AvatarBackgroundColor = color;
         return this;
     }
 
-    public TablerCardMini TextColor(BadgeColor color) {
+    public TablerCardMini TextColor(TablerBadgeColor color) {
         AvatarTextColor = color;
         return this;
     }

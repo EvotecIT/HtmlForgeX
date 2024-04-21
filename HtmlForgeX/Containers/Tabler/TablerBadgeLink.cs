@@ -6,11 +6,11 @@ namespace HtmlForgeX;
 public class TablerBadgeLink : Element {
     public string Text { get; set; }
     public string Href { get; set; }
-    public BadgeColor Color { get; set; }
+    public TablerBadgeColor Color { get; set; }
     public bool IsLight { get; set; }
-    public BadgeStyle Style { get; set; }
+    public TablerBadgeStyle Style { get; set; }
 
-    public TablerBadgeLink(string text, string href, BadgeColor color, BadgeStyle style = BadgeStyle.Normal, bool isLight = false) {
+    public TablerBadgeLink(string text, string href, TablerBadgeColor color, TablerBadgeStyle style = TablerBadgeStyle.Normal, bool isLight = false) {
         Text = text;
         Href = href;
         Color = color;
@@ -24,9 +24,9 @@ public class TablerBadgeLink : Element {
             colorString += "-lt";
         }
         string classString = "badge";
-        if (Style == BadgeStyle.Outline) {
+        if (Style == TablerBadgeStyle.Outline) {
             classString += " badge-outline";
-        } else if (Style == BadgeStyle.Pill) {
+        } else if (Style == TablerBadgeStyle.Pill) {
             classString += " badge-pill bg-" + colorString;
         } else {
             classString += " bg-" + colorString;

@@ -6,12 +6,12 @@ namespace HtmlForgeX;
 
 public class TablerBadgeSpan : Element {
     public string Text { get; set; }
-    public BadgeColor Color { get; set; }
-    public BadgeColor? TextColor { get; set; }
+    public TablerBadgeColor Color { get; set; }
+    public TablerBadgeColor? TextColor { get; set; }
     public bool IsLight { get; set; }
-    public BadgeStyle Style { get; set; }
+    public TablerBadgeStyle Style { get; set; }
 
-    public TablerBadgeSpan(string text, BadgeColor color, BadgeStyle style = BadgeStyle.Normal, bool isLight = false, BadgeColor? textColor = null) {
+    public TablerBadgeSpan(string text, TablerBadgeColor color, TablerBadgeStyle style = TablerBadgeStyle.Normal, bool isLight = false, TablerBadgeColor? textColor = null) {
         Text = text;
         Color = color;
         IsLight = isLight;
@@ -25,10 +25,10 @@ public class TablerBadgeSpan : Element {
             colorString += "-lt";
         }
         string classString = "badge";
-        if (Style == BadgeStyle.Outline) {
+        if (Style == TablerBadgeStyle.Outline) {
             // Outline badges are not getting bg- color
             classString += " badge-outline";
-        } else if (Style == BadgeStyle.Pill) {
+        } else if (Style == TablerBadgeStyle.Pill) {
             classString += " badge-pill bg-" + colorString;
         } else {
             classString += " bg-" + colorString;

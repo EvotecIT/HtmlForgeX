@@ -3,9 +3,9 @@ namespace HtmlForgeX;
 
 public class TablerBadgeStatus : Element {
     public string Status { get; set; }
-    public BadgeColor Color { get; set; }
+    public TablerBadgeColor Color { get; set; }
 
-    public TablerBadgeStatus(string status, BadgeColor color) {
+    public TablerBadgeStatus(string status, TablerBadgeColor color) {
         Status = status;
         Color = color;
     }

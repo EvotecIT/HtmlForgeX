@@ -2,17 +2,6 @@ using System;
 
 namespace HtmlForgeX;
 
-public enum TablerFontWeight {
-    Medium,
-    // Add more options here as needed
-}
-
-public enum TablerTextStyle {
-    Muted,
-    Truncate
-    // Add more options here as needed
-}
-
 public class TablerText : Element {
     public TablerText() { }
     public TablerText(string text) {
