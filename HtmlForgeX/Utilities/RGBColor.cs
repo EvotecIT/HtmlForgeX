@@ -45,6 +45,16 @@ public class RGBColor {
         return $"#{Color.R:X2}{Color.G:X2}{Color.B:X2}";
     }
 
+    /// <summary>
+    /// Converts given color to Hexadecimal string for use in HTML
+    /// </summary>
+    /// <returns>
+    /// A <see cref="System.String" /> that represents this instance.
+    /// </returns>
+    public override string ToString() {
+        return ToHex();
+    }
+
     public static RGBColor None => new RGBColor(Color.FromArgb(0, 0, 0));
     public static RGBColor AirForceBlue => new RGBColor(Color.FromArgb(93, 138, 168));
     public static RGBColor Akaroa => new RGBColor(Color.FromArgb(195, 176, 145));
