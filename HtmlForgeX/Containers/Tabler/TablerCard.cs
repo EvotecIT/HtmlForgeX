@@ -9,7 +9,7 @@ public class TablerCard : Element {
     private int Number { get; set; }
 
     public TablerCard() {
-        CardStyle = $"col-0";
+        CardStyle = $"col";
     }
 
     public TablerCard(int number) {
