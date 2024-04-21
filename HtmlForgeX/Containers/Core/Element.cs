@@ -132,9 +132,50 @@ public abstract class Element {
         return card;
     }
 
-    public HeaderLevel HeaderLevel(HeaderLevel level, string text) {
+    public TablerCardBasic CardBasic() {
+        var card = new TablerCardBasic();
+        this.Add(card);
+        return card;
+    }
+
+    public TablerCardBasic CardBasic(string title, string text) {
+        var card = new TablerCardBasic(title, text);
+        this.Add(card);
+        return card;
+    }
+
+    public HeaderLevel HeaderLevel(HeaderLevelTag level, string text) {
         var header = new HeaderLevel(level, text);
         this.Add(header);
         return header;
+    }
+
+    public TablerProgressBar ProgressBar(TablerProgressBarType type) {
+        var progressBar = new TablerProgressBar(TablerProgressBarType.Regular, type);
+        this.Add(progressBar);
+        return progressBar;
+    }
+
+    public TablerProgressBar ProgressBar(TablerProgressBarType type, int percentage, TablerBackground? tablerBackground = null) {
+        var progressBar = new TablerProgressBar(TablerProgressBarType.Regular, type);
+        if (null == tablerBackground) {
+            progressBar.AddItem(TablerBackground.Primary, percentage, "");
+        } else {
+            progressBar.AddItem(tablerBackground, percentage, "");
+        }
+        this.Add(progressBar);
+        return progressBar;
+    }
+
+    public TablerLogs Logs(string code) {
+        var logs = new TablerLogs(code);
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerSteps Steps() {
+        var steps = new TablerSteps();
+        this.Add(steps);
+        return steps;
     }
 }
