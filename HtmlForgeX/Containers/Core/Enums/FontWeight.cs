@@ -17,7 +17,7 @@ public enum FontWeight {
 }
 
 public static class FontWeightExtensions {
-    public static string ToCssString(this FontWeight value) {
+    public static string EnumToString(this FontWeight value) {
         return value switch {
             FontWeight.Normal => "normal",
             FontWeight.Bold => "bold",

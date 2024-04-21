@@ -17,7 +17,7 @@ public enum TextDecoration {
 }
 
 public static class TextDecorationExtensions {
-    public static string ToCssString(this TextDecoration value) {
+    public static string EnumToString(this TextDecoration value) {
         return value switch {
             TextDecoration.None => "none",
             TextDecoration.LineThrough => "line-through",

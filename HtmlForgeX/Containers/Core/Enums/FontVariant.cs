@@ -6,7 +6,7 @@ public enum FontVariant {
 }
 
 public static class FontVariantExtensions {
-    public static string ToCssString(this FontVariant value) {
+    public static string EnumToString(this FontVariant value) {
         return value switch {
             FontVariant.Normal => "normal",
             FontVariant.SmallCaps => "small-caps",

@@ -68,7 +68,7 @@ public enum Display {
 }
 
 public static class DisplayExtensions {
-    public static string ToCssString(this Display value) {
+    public static string EnumToString(this Display value) {
         var fieldInfo = value.GetType().GetField(value.ToString());
         var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
