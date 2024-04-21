@@ -35,11 +35,4 @@ public class HeaderLevel : Element {
         }
         return tag.ToString();
     }
-
-    //public static HeaderLevel H1 => new HeaderLevel("h1");
-    //public static HeaderLevel H2 => new HeaderLevel("h2");
-    //public static HeaderLevel H3 => new HeaderLevel("h3");
-    //public static HeaderLevel H4 => new HeaderLevel("h4");
-    //public static HeaderLevel H5 => new HeaderLevel("h5");
-    //public static HeaderLevel H6 => new HeaderLevel("h6");
 }
