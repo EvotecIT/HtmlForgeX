@@ -72,4 +72,63 @@ public abstract class Element {
         this.Add(qrCode);
         return qrCode;
     }
+
+    public TablerColumn Column(Action<TablerColumn> config) {
+        var column = new TablerColumn();
+        config(column);
+        this.Add(column);
+        return column;
+    }
+
+    public TablerColumn Column(TablerColumnNumber number, Action<TablerColumn> config) {
+        var column = new TablerColumn(number);
+        config(column);
+        this.Add(column);
+        return column;
+    }
+
+    public TablerRow Row(Action<TablerRow> config) {
+        var row = new TablerRow();
+        config(row);
+        this.Add(row);
+        return row;
+    }
+
+    public TablerAvatar Avatar() {
+        var avatar = new TablerAvatar();
+        this.Add(avatar);
+        return avatar;
+    }
+
+    public TablerText Text(string text) {
+        var tablerText = new TablerText(text);
+        this.Add(tablerText);
+        return tablerText;
+    }
+
+    public TablerText Text() {
+        var tablerText = new TablerText();
+        this.Add(tablerText);
+        return tablerText;
+    }
+
+    public TablerCard Card(Action<TablerCard> config) {
+        var card = new TablerCard();
+        config(card);
+        this.Add(card);
+        return card;
+    }
+
+    public TablerCard Card(int count, Action<TablerCard> config) {
+        var card = new TablerCard(count);
+        config(card);
+        this.Add(card);
+        return card;
+    }
+
+    public TablerCardMini CardMini() {
+        var card = new TablerCardMini();
+        this.Add(card);
+        return card;
+    }
 }
