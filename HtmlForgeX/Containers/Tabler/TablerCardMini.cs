@@ -58,7 +58,7 @@ public class TablerCardMini : TablerCard {
             });
             cardRow.Column(textColumn => {
                 textColumn.Text(TitleText).Weight(TablerFontWeight.Medium);
-                textColumn.Text(SubtitleText).Style(TableTextStyle.Muted);
+                textColumn.Text(SubtitleText).Style(TablerTextStyle.Muted);
             });
         });
 

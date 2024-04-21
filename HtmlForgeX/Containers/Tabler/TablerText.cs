@@ -7,8 +7,9 @@ public enum TablerFontWeight {
     // Add more options here as needed
 }
 
-public enum TableTextStyle {
+public enum TablerTextStyle {
     Muted,
+    Truncate
     // Add more options here as needed
 }
 
@@ -18,7 +19,7 @@ public class TablerText : Element {
         ValueEntry = text;
     }
     private string ValueEntry { get; set; } = "";
-    private TableTextStyle? ClassTextStyle { get; set; }
+    private TablerTextStyle? ClassTextStyle { get; set; }
     private TablerFontWeight? ClassWeight { get; set; }
 
     public TablerText Value(string value) {
@@ -26,7 +27,7 @@ public class TablerText : Element {
         return this;
     }
 
-    public TablerText Style(TableTextStyle style) {
+    public TablerText Style(TablerTextStyle style) {
         ClassTextStyle = style;
         return this;
     }
