@@ -53,7 +53,7 @@ internal class BasicHtmlContainer04 {
                             });
                             cardRow.Column(textColumn => {
                                 textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
-                                textColumn.Text("12 waiting payments").Style(TableTextStyle.Muted);
+                                textColumn.Text("12 waiting payments").Style(TablerTextStyle.Muted);
                             });
                         });
                     });
