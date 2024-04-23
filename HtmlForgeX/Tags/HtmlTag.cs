@@ -5,7 +5,7 @@ namespace HtmlForgeX;
 public class HtmlTag : Element {
     private string PrivateTag { get; set; }
     private string PrivateValue { get; set; } = "";
-    public new List<HtmlTag> Children { get; set; } = new List<HtmlTag>();
+    public new List<object> Children { get; set; } = new List<object>();
     public Dictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
     public bool SelfClosing { get; set; }
     public bool NoClosing { get; set; }
@@ -17,6 +17,11 @@ public class HtmlTag : Element {
     public HtmlTag(string tag, string value) {
         PrivateTag = tag;
         PrivateValue = value;
+    }
+
+    public HtmlTag(string tag, bool selfClosing) {
+        PrivateTag = tag;
+        SelfClosing = selfClosing;
     }
 
     public HtmlTag(string tag, string value, bool selfClosing, bool noClosing = false) {
@@ -46,6 +51,10 @@ public class HtmlTag : Element {
             }
         }
     }
+    public HtmlTag Id(string id) {
+        Attributes["id"] = id;
+        return this;
+    }
 
     public HtmlTag Style(string name, string value) {
         if (!Attributes.ContainsKey("style")) {
@@ -71,11 +80,6 @@ public class HtmlTag : Element {
         return this;
     }
 
-    public HtmlTag Id(string id) {
-        Attributes["id"] = id;
-        return this;
-    }
-
     public HtmlTag Type(string type) {
         Attributes["type"] = type;
         return this;
@@ -96,11 +100,7 @@ public class HtmlTag : Element {
             html.Append(">");
 
             foreach (var child in Children) {
-                html.Append(child.ToString());
-            }
-
-            if (!string.IsNullOrEmpty(PrivateValue)) {
-                html.Append(PrivateValue);
+                html.Append(child);
             }
 
             if (!NoClosing) {
@@ -111,7 +111,7 @@ public class HtmlTag : Element {
         return html.ToString();
     }
 
-    public HtmlTag SetAttribute(string name, string value) {
+    public HtmlTag Attribute(string name, string value) {
         Attributes[name] = value;
         return this;
     }
@@ -123,15 +123,14 @@ public class HtmlTag : Element {
     }
 
     public HtmlTag Value(Element value) {
-        PrivateValue += value.ToString();
+        Children.Add(value);
         return this;
     }
 
     public HtmlTag Value(string? value) {
         if (value != null) {
-            PrivateValue += value;
+            Children.Add(value);
         }
-
         return this;
     }
 }
