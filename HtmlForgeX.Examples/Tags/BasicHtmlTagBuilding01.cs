@@ -1,5 +1,5 @@
 namespace HtmlForgeX.Examples.Tags {
-    internal class BasicHtmlTagBuilding {
+    internal class BasicHtmlTagBuilding01 {
         public static void Demo1() {
             HelpersSpectre.PrintTitle("Basic Demo 1");
 
