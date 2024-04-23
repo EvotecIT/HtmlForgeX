@@ -11,7 +11,7 @@ public class FancyTree : Element {
     }
 
     public override string ToString() {
-        var divTag = new HtmlTag("div").SetAttribute("id", Id).SetAttribute("class", "fancyTree");
+        var divTag = new HtmlTag("div").Attribute("id", Id).Attribute("class", "fancyTree");
         var serializedNodes = System.Text.Json.JsonSerializer.Serialize(Items);
         var scriptTag = new HtmlTag("script").Value($@"
                 $(function () {{

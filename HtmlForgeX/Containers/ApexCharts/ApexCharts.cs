@@ -49,7 +49,7 @@ public class ApexCharts : Element {
 
 
     public override string ToString() {
-        var divTag = new HtmlTag("div").SetAttribute("id", Id);
+        var divTag = new HtmlTag("div").Attribute("id", Id);
 
         var options = new Dictionary<string, object> {
             ["chart"] = new Dictionary<string, string> {

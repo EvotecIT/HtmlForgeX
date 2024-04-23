@@ -20,20 +20,20 @@ public class TablerProgressBarItem : Element {
     public override string ToString() {
         HtmlTag progressTag = new HtmlTag("div")
             .Class($"progress-bar {Background}")
-            .SetAttribute("role", "progressbar")
-            .SetAttribute("style", $"width: {Progress}%")
-            .SetAttribute("aria-label", Label);
+            .Attribute("role", "progressbar")
+            .Attribute("style", $"width: {Progress}%")
+            .Attribute("aria-label", Label);
 
         if (AriaValueNow.HasValue) {
-            progressTag.SetAttribute("aria-valuenow", AriaValueNow.Value.ToString());
+            progressTag.Attribute("aria-valuenow", AriaValueNow.Value.ToString());
         }
 
         if (AriaValueMin.HasValue) {
-            progressTag.SetAttribute("aria-valuemin", AriaValueMin.Value.ToString());
+            progressTag.Attribute("aria-valuemin", AriaValueMin.Value.ToString());
         }
 
         if (AriaValueMax.HasValue) {
-            progressTag.SetAttribute("aria-valuemax", AriaValueMax.Value.ToString());
+            progressTag.Attribute("aria-valuemax", AriaValueMax.Value.ToString());
         }
 
         return progressTag.ToString();

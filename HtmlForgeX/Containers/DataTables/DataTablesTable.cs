@@ -49,7 +49,7 @@ public class DataTablesTable : Table {
             .Id(Id)
             .Class(classNames)
             .Value(tableInside)
-            .SetAttribute("width", "100%");
+            .Attribute("width", "100%");
 
         //var configuration = System.Text.Json.JsonSerializer.Serialize(config);
         var configuration = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
