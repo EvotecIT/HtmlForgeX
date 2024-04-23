@@ -32,7 +32,7 @@ public class TablerAvatar : Element {
             avatarTag.Class($"text-{ClassTextColor.Value.EnumToString()}");
         }
         if (!string.IsNullOrEmpty(ValueEntry)) {
-            avatarTag.Append(ValueEntry);
+            avatarTag.Value(ValueEntry);
         }
         return avatarTag.ToString();
     }

@@ -19,13 +19,13 @@ public class TablerPage : Element {
         var pageWrapper = new HtmlTag("div").Class($"page-wrapper{layoutClass}");
 
         var pageBody = new HtmlTag("div").Class("page-body");
-        pageWrapper.Append(pageBody);
+        pageWrapper.Value(pageBody);
 
         var container = new HtmlTag("div").Class("container-xl");
         foreach (var child in Children) {
-            container.Append(child.ToString());
+            container.Value(child.ToString());
         }
-        pageBody.Append(container);
+        pageBody.Value(container);
 
         //Console.WriteLine("Generated HtmlPage: " + pageWrapper);
         return pageWrapper.ToString();

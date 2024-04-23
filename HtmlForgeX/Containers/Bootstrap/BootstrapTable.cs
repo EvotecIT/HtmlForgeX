@@ -22,7 +22,7 @@ public class BootstrapTable : Table {
         var tableTag = new HtmlTag("table")
             .Id(Id)
             .Class(classNames)
-            .SetValue(tableInside);
+            .Value(tableInside);
         return tableTag.ToString();
     }
 

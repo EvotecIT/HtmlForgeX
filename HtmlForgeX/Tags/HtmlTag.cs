@@ -3,32 +3,32 @@ using System.Text;
 
 namespace HtmlForgeX;
 public class HtmlTag : Element {
-    private string Tag { get; set; }
-    private string Value { get; set; } = "";
+    private string PrivateTag { get; set; }
+    private string PrivateValue { get; set; } = "";
     public new List<HtmlTag> Children { get; set; } = new List<HtmlTag>();
     public Dictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
     public bool SelfClosing { get; set; }
     public bool NoClosing { get; set; }
 
     public HtmlTag(string tag) {
-        Tag = tag;
+        PrivateTag = tag;
     }
 
     public HtmlTag(string tag, string value) {
-        Tag = tag;
-        Value = value;
+        PrivateTag = tag;
+        PrivateValue = value;
     }
 
     public HtmlTag(string tag, string value, bool selfClosing, bool noClosing = false) {
-        Tag = tag;
-        Value = value;
+        PrivateTag = tag;
+        PrivateValue = value;
         SelfClosing = selfClosing;
         NoClosing = noClosing;
     }
 
     public HtmlTag(string tag, string value, Dictionary<string, object> attributes = null, bool selfClosing = false, bool noClosing = false) {
-        Tag = tag;
-        Value = value;
+        PrivateTag = tag;
+        PrivateValue = value;
         SelfClosing = selfClosing;
         NoClosing = noClosing;
 
@@ -81,23 +81,8 @@ public class HtmlTag : Element {
         return this;
     }
 
-    public HtmlTag Append(HtmlTag child) {
-        Children.Add(child);
-        return this;
-    }
-
-    public HtmlTag Append(string value) {
-        Value += value;
-        return this;
-    }
-
-    public HtmlTag Append(Element value) {
-        Value += value.ToString();
-        return this;
-    }
-
     public override string ToString() {
-        StringBuilder html = new StringBuilder($"<{Tag}");
+        StringBuilder html = new StringBuilder($"<{PrivateTag}");
 
         foreach (var attribute in Attributes) {
             if (attribute.Value != null && !string.IsNullOrEmpty(attribute.Value.ToString())) {
@@ -114,12 +99,12 @@ public class HtmlTag : Element {
                 html.Append(child.ToString());
             }
 
-            if (!string.IsNullOrEmpty(Value)) {
-                html.Append(Value);
+            if (!string.IsNullOrEmpty(PrivateValue)) {
+                html.Append(PrivateValue);
             }
 
             if (!NoClosing) {
-                html.Append($"</{Tag}>");
+                html.Append($"</{PrivateTag}>");
             }
         }
 
@@ -131,9 +116,20 @@ public class HtmlTag : Element {
         return this;
     }
 
-    public HtmlTag SetValue(string? value) {
+
+    public HtmlTag Value(HtmlTag child) {
+        Children.Add(child);
+        return this;
+    }
+
+    public HtmlTag Value(Element value) {
+        PrivateValue += value.ToString();
+        return this;
+    }
+
+    public HtmlTag Value(string? value) {
         if (value != null) {
-            Value += value;
+            PrivateValue += value;
         }
 
         return this;

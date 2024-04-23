@@ -68,7 +68,7 @@ public class TablerProgressBar : Element {
         HtmlTag progressBarTag = new HtmlTag("div").Class(typeClass);
 
         foreach (var item in Items) {
-            progressBarTag.Append(item.ToString());
+            progressBarTag.Value(item.ToString());
         }
 
         return progressBarTag.ToString();

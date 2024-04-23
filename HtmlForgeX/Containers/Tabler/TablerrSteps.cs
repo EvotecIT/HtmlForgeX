@@ -43,7 +43,7 @@ public class TablerSteps : Element {
             stepsUl.Class(PrivateStepsColor.Value.EnumToString());
         }
         foreach (var stepItem in StepItems) {
-            stepsUl.Append(stepItem.ToString(PrivateOrientation));
+            stepsUl.Value(stepItem.ToString(PrivateOrientation));
         }
 
         return stepsUl.ToString();
@@ -93,11 +93,11 @@ public class TablerStepItem : Element {
             stepItemLi.Class("active");
         }
         if (orientation == StepsOrientation.Vertical) {
-            var nameDiv = new HtmlTag("div").Class(PrivateHeaderLevel.EnumToString()).Class(MarginStyle.EnumToString()).Append(Name);
-            var textDiv = new HtmlTag("div").Class(PrivateTextStyle.EnumToString().ToLower()).Append(Text);
-            stepItemLi.Append(nameDiv).Append(textDiv);
+            var nameDiv = new HtmlTag("div").Class(PrivateHeaderLevel.EnumToString()).Class(MarginStyle.EnumToString()).Value(Name);
+            var textDiv = new HtmlTag("div").Class(PrivateTextStyle.EnumToString().ToLower()).Value(Text);
+            stepItemLi.Value(nameDiv).Value(textDiv);
         } else {
-            stepItemLi.Append(Name);
+            stepItemLi.Value(Name);
         }
 
         return stepItemLi.ToString();

@@ -9,16 +9,16 @@ public class TablerDataGridItem : Element {
     public Element ContentElement { get; set; }
 
     public TablerDataGridItem Title(string title) {
-        TitleElement = new HtmlTag("div").Class("datagrid-title").Append(title);
+        TitleElement = new HtmlTag("div").Class("datagrid-title").Value(title);
         return this;
     }
 
     public TablerDataGridItem Content(string content) {
-        ContentElement = new HtmlTag("div").Class("datagrid-content").Append(content);
+        ContentElement = new HtmlTag("div").Class("datagrid-content").Value(content);
         return this;
     }
     public TablerDataGridItem Content(Element content) {
-        ContentElement = new HtmlTag("div").Class("datagrid-content").Append(content.ToString());
+        ContentElement = new HtmlTag("div").Class("datagrid-content").Value(content.ToString());
         return this;
     }
 

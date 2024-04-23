@@ -35,23 +35,23 @@ public class VisNetwork : Element {
         HtmlTag divTag;
         if (EnableLoadingBar) {
             divTag = new HtmlTag("div").Class("diagramWrapper")
-                .Append(new HtmlTag("div").Class("diagram").Style("position", "relative")
-                    .Append(new HtmlTag("div").Class("diagram diagramObject").Style("position", "absolute").Id(Id)))
-                .Append(new HtmlTag("div").Id($"{Id}-diagramLoadingBar").Class("diagramLoadingBar")
-                    .Append(new HtmlTag("div").Class("diagramOuterBorder")
-                        .Append(new HtmlTag("div").Id($"{Id}-diagramText").Class("diagramText").SetValue("0%"))
-                        .Append(new HtmlTag("div").Class("diagramBorder")
-                            .Append(new HtmlTag("div").Id($"{Id}-diagramBar").Class("diagramBar")))));
+                .Value(new HtmlTag("div").Class("diagram").Style("position", "relative")
+                    .Value(new HtmlTag("div").Class("diagram diagramObject").Style("position", "absolute").Id(Id)))
+                .Value(new HtmlTag("div").Id($"{Id}-diagramLoadingBar").Class("diagramLoadingBar")
+                    .Value(new HtmlTag("div").Class("diagramOuterBorder")
+                        .Value(new HtmlTag("div").Id($"{Id}-diagramText").Class("diagramText").Value("0%"))
+                        .Value(new HtmlTag("div").Class("diagramBorder")
+                            .Value(new HtmlTag("div").Id($"{Id}-diagramBar").Class("diagramBar")))));
         } else {
             divTag = new HtmlTag("div").Class("diagram").Style("position", "relative")
-                        .Append(new HtmlTag("div").Class("diagram diagramObject").Style("position", "absolute").Id(Id));
+                        .Value(new HtmlTag("div").Class("diagram diagramObject").Style("position", "absolute").Id(Id));
         }
 
         var nodesJson = JsonSerializer.Serialize(Nodes);
         var edgesJson = JsonSerializer.Serialize(Edges);
         var optionsJson = JsonSerializer.Serialize(Options);
 
-        var scriptTag = new HtmlTag("script").SetValue($@"
+        var scriptTag = new HtmlTag("script").Value($@"
             var nodes = new vis.DataSet({nodesJson});
             var edges = new vis.DataSet({edgesJson});
             var container = document.getElementById('{Id}');

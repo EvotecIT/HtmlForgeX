@@ -178,4 +178,11 @@ public abstract class Element {
         this.Add(steps);
         return steps;
     }
+
+    public TablerAccordion Accordion(Action<TablerAccordion> config) {
+        var accordion = new TablerAccordion();
+        config(accordion);
+        this.Add(accordion);
+        return accordion;
+    }
 }

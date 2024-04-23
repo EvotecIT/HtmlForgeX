@@ -35,15 +35,15 @@ public class TablerCard : Element {
 
         // Create the inner div for the card body
         var cardBodyDiv = new HtmlTag("div");
-        cardBodyDiv.Class("card-body").Append(Content);
+        cardBodyDiv.Class("card-body").Value(Content);
         cardBodyDiv.Attributes["style"] = Style;
 
         // Add the card body to the card
-        cardDiv.Append(cardBodyDiv);
+        cardDiv.Value(cardBodyDiv);
 
         // Add any child elements to the card body
         foreach (var child in Children) {
-            cardBodyDiv.Append(child.ToString());
+            cardBodyDiv.Value(child.ToString());
         }
 
         var result = cardDiv.ToString();

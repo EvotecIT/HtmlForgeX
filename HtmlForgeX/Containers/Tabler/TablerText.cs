@@ -40,7 +40,7 @@ public class TablerText : Element {
             textTag.Class($"text-{ClassTextStyle.Value.ToString().ToLower()}");
         }
         if (!string.IsNullOrEmpty(ValueEntry)) {
-            textTag.Append(ValueEntry);
+            textTag.Value(ValueEntry);
         }
         return textTag.ToString();
     }

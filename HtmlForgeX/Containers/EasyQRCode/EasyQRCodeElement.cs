@@ -13,7 +13,7 @@ public class EasyQRCodeElement : Element {
     public override string ToString() {
         var divTag = new HtmlTag("div").Class("qrcode").Id(Id);
 
-        var scriptTag = new HtmlTag("script").SetValue($@"
+        var scriptTag = new HtmlTag("script").Value($@"
             var options = {{
                 ""text"": ""{Text}""
             }};

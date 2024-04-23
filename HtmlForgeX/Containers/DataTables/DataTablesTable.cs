@@ -48,13 +48,13 @@ public class DataTablesTable : Table {
         var tableTag = new HtmlTag("table")
             .Id(Id)
             .Class(classNames)
-            .SetValue(tableInside)
+            .Value(tableInside)
             .SetAttribute("width", "100%");
 
         //var configuration = System.Text.Json.JsonSerializer.Serialize(config);
         var configuration = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
 
-        var scriptTag = new HtmlTag("script").SetValue($@"
+        var scriptTag = new HtmlTag("script").Value($@"
         $(document).ready(function() {{
                 $('#{Id}').DataTable({configuration});
             }});

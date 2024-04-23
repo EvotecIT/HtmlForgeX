@@ -13,7 +13,7 @@ public class FancyTree : Element {
     public override string ToString() {
         var divTag = new HtmlTag("div").SetAttribute("id", Id).SetAttribute("class", "fancyTree");
         var serializedNodes = System.Text.Json.JsonSerializer.Serialize(Items);
-        var scriptTag = new HtmlTag("script").SetValue($@"
+        var scriptTag = new HtmlTag("script").Value($@"
                 $(function () {{
                     $('#{Id}').fancytree({{
                         extensions: ['edit', 'filter', 'childcounter'],

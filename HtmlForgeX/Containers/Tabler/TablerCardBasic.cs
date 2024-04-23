@@ -33,18 +33,18 @@ public class TablerCardBasic : Element {
 
         // Add subheader to the card
         if (!string.IsNullOrEmpty(SubHeaderText)) {
-            var subheader = new HtmlTag("div").Class("subheader").Append(SubHeaderText);
-            cardBodyDiv.Append(subheader);
+            var subheader = new HtmlTag("div").Class("subheader").Value(SubHeaderText);
+            cardBodyDiv.Value(subheader);
         }
 
         // Add h3 to the card
         if (!string.IsNullOrEmpty(H3Text)) {
-            var h3 = new HtmlTag("div").Class("h3").Class("m-0").Append(H3Text);
-            cardBodyDiv.Append(h3);
+            var h3 = new HtmlTag("div").Class("h3").Class("m-0").Value(H3Text);
+            cardBodyDiv.Value(h3);
         }
 
         // Add the card body to the card
-        cardDiv.Append(cardBodyDiv);
+        cardDiv.Value(cardBodyDiv);
 
         return cardDiv.ToString();
     }

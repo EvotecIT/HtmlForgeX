@@ -25,8 +25,8 @@ public class TablerLogs : Element {
         }
 
         HtmlTag logsTag = new HtmlTag("div");
-        HtmlTag preTag = new HtmlTag("pre").SetValue(PrivateCode);
-        logsTag.SetValue(preTag.ToString());
+        HtmlTag preTag = new HtmlTag("pre").Value(PrivateCode);
+        logsTag.Value(preTag.ToString());
 
         if (header != null) {
             return header + logsTag.ToString();

@@ -47,7 +47,7 @@ public class TablerCardMini : TablerCard {
 
         // Create the inner div for the card body
         var cardBodyDiv = new HtmlTag("div");
-        cardBodyDiv.Class("card-body").Append(Content);
+        cardBodyDiv.Class("card-body").Value(Content);
         cardBodyDiv.Attributes["style"] = Style;
 
         var cardInside = cardBodyDiv.Row(cardRow => {
@@ -62,10 +62,10 @@ public class TablerCardMini : TablerCard {
             });
         });
 
-        cardBodyDiv.Append(cardInside);
+        cardBodyDiv.Value(cardInside);
 
         // Add the card body to the card
-        cardDiv.Append(cardBodyDiv);
+        cardDiv.Value(cardBodyDiv);
 
         var result = cardDiv.ToString();
 

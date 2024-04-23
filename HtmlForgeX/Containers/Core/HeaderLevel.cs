@@ -29,7 +29,7 @@ public class HeaderLevel : Element {
     }
 
     public override string ToString() {
-        var tag = new HtmlTag(PrivateTag.ToString()).SetValue(PrivateText);
+        var tag = new HtmlTag(PrivateTag.ToString()).Value(PrivateText);
         if (!string.IsNullOrEmpty(PrivateClass)) {
             tag.Class(PrivateClass);
         }
