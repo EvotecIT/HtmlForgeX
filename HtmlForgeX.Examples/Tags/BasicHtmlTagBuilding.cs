@@ -32,11 +32,11 @@ namespace HtmlForgeX.Examples.Tags {
             HelpersSpectre.PrintTitle("Basic Demo 2");
 
             var fluent = new HtmlTag("div").Class("control-group")
-                .Append(new HtmlTag("div").Class("controls")
-                    .Append(new HtmlTag("label").Class("checkbox")
-                        .Append(new HtmlTag("input").Type("checkbox"))
-                        .Append(" Remember me")))
-                .Append(new HtmlTag("button").Type("submit").Class("btn").Append("Sign in"));
+                .Value(new HtmlTag("div").Class("controls")
+                    .Value(new HtmlTag("label").Class("checkbox")
+                        .Value(new HtmlTag("input").Type("checkbox"))
+                        .Value(" Remember me")))
+                .Value(new HtmlTag("button").Type("submit").Class("btn").Value("Sign in"));
 
             HelpersSpectre.PrintHtmlTag(fluent);
         }
@@ -46,14 +46,14 @@ namespace HtmlForgeX.Examples.Tags {
 
             var html = new HtmlTag("html");
             var head = new HtmlTag("head");
-            var title = new HtmlTag("title").Append("HtmlForgeX Demo");
+            var title = new HtmlTag("title").Value("HtmlForgeX Demo");
             var body = new HtmlTag("body");
-            var h1 = new HtmlTag("h1").Append("HtmlForgeX Demo");
-            var p = new HtmlTag("p").Append("This is a demo of the HtmlForgeX library.");
+            var h1 = new HtmlTag("h1").Value("HtmlForgeX Demo");
+            var p = new HtmlTag("p").Value("This is a demo of the HtmlForgeX library.");
 
-            head.Append(title);
-            body.Append(h1).Append(p);
-            html.Append(head).Append(body);
+            head.Value(title);
+            body.Value(h1).Value(p);
+            html.Value(head).Value(body);
 
             HelpersSpectre.PrintHtmlTag(html);
         }
@@ -63,19 +63,19 @@ namespace HtmlForgeX.Examples.Tags {
 
             var html = new HtmlTag("html");
             var head = new HtmlTag("head");
-            var title = new HtmlTag("title").Append("HtmlForgeX Demo");
+            var title = new HtmlTag("title").Value("HtmlForgeX Demo");
             var body = new HtmlTag("body");
-            var h1 = new HtmlTag("h1").Append("HtmlForgeX Demo");
-            var p = new HtmlTag("p").Append("This is a demo of the HtmlForgeX library.");
+            var h1 = new HtmlTag("h1").Value("HtmlForgeX Demo");
+            var p = new HtmlTag("p").Value("This is a demo of the HtmlForgeX library.");
             var ul = new HtmlTag("ul");
-            var li1 = new HtmlTag("li").Append("Item 1");
-            var li2 = new HtmlTag("li").Append("Item 2");
-            var li3 = new HtmlTag("li").Append("Item 3");
+            var li1 = new HtmlTag("li").Value("Item 1");
+            var li2 = new HtmlTag("li").Value("Item 2");
+            var li3 = new HtmlTag("li").Value("Item 3");
 
-            head.Append(title);
-            ul.Append(li1).Append(li2).Append(li3);
-            body.Append(h1).Append(p).Append(ul);
-            html.Append(head).Append(body);
+            head.Value(title);
+            ul.Value(li1).Value(li2).Value(li3);
+            body.Value(h1).Value(p).Value(ul);
+            html.Value(head).Value(body);
 
             HelpersSpectre.PrintHtmlTag(html);
         }

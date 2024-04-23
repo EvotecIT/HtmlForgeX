@@ -118,8 +118,8 @@ namespace HtmlForgeX.Examples.ByHand {
 
             document.Body
                 .Add(new HtmlTag("div")
-                    .Append(new HtmlTag("h1", "Hello World!"))
-                    .Append(new HtmlTag("p", "This is a basic demo document."))
+                    .Value(new HtmlTag("h1", "Hello World!"))
+                    .Value(new HtmlTag("p", "This is a basic demo document."))
             );
 
             var span1 = new HtmlSpan()

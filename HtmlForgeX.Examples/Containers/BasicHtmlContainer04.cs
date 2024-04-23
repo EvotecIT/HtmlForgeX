@@ -117,6 +117,7 @@ Return keyword           operation_timedout
                             .AddStep("Processing", true)
                             .AddStep("Shipped", false)
                             .AddStep("Delivered", false);
+
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
@@ -137,6 +138,16 @@ Return keyword           operation_timedout
                             .AddStep("Delivered", false);
                     });
                 });
+                row.Column(TablerColumnNumber.Twelve, column => {
+                    column.Card(card => {
+                        card.Accordion(accordion => {
+                            accordion.AddItem("John", new HtmlSpan().AddContent("Test1"));
+                            accordion.AddItem("Jane", new HtmlSpan().AddContent("Test2"));
+
+                        });
+                    });
+                });
+
             });
         });
 
