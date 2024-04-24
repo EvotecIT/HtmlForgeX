@@ -95,6 +95,5 @@ public class LibrariesConverter {
             default:
                 throw new ArgumentException($"Unsupported library: {libraries}");
         }
-        return null;
     }
 }
