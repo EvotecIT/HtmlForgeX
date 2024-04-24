@@ -8,11 +8,6 @@ public class Body : Element {
         return this;
     }
 
-    public Body Add(string text) {
-        Children.Add(new HtmlText { Text = text });
-        return this;
-    }
-
     public Body Add(Action<Body> buildAction) {
         buildAction(this);
         return this;

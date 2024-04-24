@@ -15,8 +15,8 @@ public abstract class Element {
     /// </summary>
     /// <param name="content">The content.</param>
     /// <returns></returns>
-    public HtmlSpan Span(string content = "") {
-        var span = new HtmlSpan { Content = content };
+    public Span Span(string content = "") {
+        var span = new Span { Content = content };
         this.Add(span);
         return span;
     }

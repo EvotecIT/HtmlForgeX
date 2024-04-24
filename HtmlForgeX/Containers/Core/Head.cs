@@ -120,7 +120,7 @@ public class Head {
                 Keywords = content;
                 break;
             default:
-                MetaTags.Add(new HtmlTag("meta", "", attributes: new Dictionary<string, object> { { "name", name }, { "content", content } }, selfClosing: true));
+                MetaTags.Add(new HtmlTag("meta", "", attributes: new Dictionary<string, object> { { "name", name }, { "content", content } }, TagMode.SelfClosing));
                 break;
         }
         return this;
