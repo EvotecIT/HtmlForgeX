@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <Description></Description>
@@ -26,6 +26,10 @@
 
     <ItemGroup Condition="'$(TargetFramework)'=='net472' OR '$(TargetFramework)'=='net48'">
         <PackageReference Include="System.Text.Json" Version="8.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Containers\Flex\" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netcoreapp3.0' OR '$(TargetFramework)' == 'netcoreapp3.1' OR '$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">
