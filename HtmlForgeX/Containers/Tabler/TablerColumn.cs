@@ -11,7 +11,7 @@ public class TablerColumn : Element {
     }
 
     public TablerColumn(TablerColumnNumber columnNumber) {
-        Class = columnNumber.ToString();
+        Class = columnNumber.EnumToString();
     }
 
     public TablerColumn WithClass(string className) {
@@ -39,7 +39,7 @@ public class TablerColumn : Element {
         return card;
     }
 
-    public TablerCard Card(int count, Action<TablerCard> config) {
+    public new TablerCard Card(int count, Action<TablerCard> config) {
         var card = new TablerCard(count);
         config(card);
         this.Add(card);

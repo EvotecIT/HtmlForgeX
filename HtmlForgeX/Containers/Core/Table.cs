@@ -5,7 +5,7 @@ using System.Text;
 namespace HtmlForgeX;
 
 public class Table : Element {
-    private TableType? Library;
+    private readonly TableType? Library;
     public List<string> TableHeaders { get; set; } = new List<string>();
     public List<string> TableFooters { get; set; } = new List<string>();
     public List<List<string>> TableRows { get; set; } = new List<List<string>>();
