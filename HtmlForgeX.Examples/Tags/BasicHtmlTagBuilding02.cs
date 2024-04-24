@@ -27,31 +27,43 @@ internal class BasicHtmlTagBuilding02 {
         var abbr1 = new Abbr("HTML").Title("Hyper Text Markup Language");
         HelpersSpectre.PrintHtmlTag("Tag - HtmlAbbr 1", abbr1);
 
-
         var strong = new Strong("This is a paragraph.");
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlStrong 1", strong);
 
-        //  var image = new HtmlImage("/path/to/image.jpg", "An example image");
-        //  var paragraph = new HtmlParagraph("This is a paragraph.");
-        //var div = new HtmlDiv(link, image, paragraph);
+        var address = new Address("This is an address.");
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlAddress 1", address);
 
-        //var image = HtmlTags.Img("/path/to/image.jpg", "An example image");
-        //var paragraph = HtmlTags.P("This is a paragraph.");
-        //var div = HtmlTags.Div(link, image, paragraph);
+        var article = new Article("This is an article.");
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlArticle 1", article);
 
+        var br = new BR();
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlBr 1", br);
 
-        // HelpersSpectre.PrintHtmlTag(div);
+        var lineBreak = new LineBreak();
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlLineBreak 1", lineBreak);
 
+        var hr = new HR();
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlHr 1", hr);
 
-        //var paragraph2 = HtmlTags.P("This is another paragraph.").Style("color", "#000");
+        var horizontalRule = new HorizontalRule();
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlHorizontalRule 1", horizontalRule);
 
-        // HelpersSpectre.PrintHtmlTag(paragraph2);
-        // HelpersSpectre.PrintTitle("Basic Demo 1 - 4");
+        var h1 = new H1("This is a header 1.");
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlH1 1", h1);
 
+        var h2 = new H2("This is a header 2.");
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlH2 1", h2);
 
-        //var div1 = HtmlTags.Div(
-        //               HtmlTags.P(new Strong("This is a paragraph."), "test"),
-        //                          HtmlTags.P("This is another paragraph.").Style("color", "#000")
-        //                      );
-        // HelpersSpectre.PrintHtmlTag(div1);
+        var h3 = new H3("This is a header 3.");
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlH3 1", h3);
+
+        var h4 = new H4("This is a header 4.");
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlH4 1", h4);
+
+        var h5 = new H5("This is a header 5.");
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlH5 1", h5);
+
+        var h6 = new H6("This is a header 6.");
+        HelpersSpectre.PrintHtmlTag("Tag - HtmlH6 1", h6);
     }
 }

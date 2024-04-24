@@ -15,6 +15,8 @@ using HtmlForgeX.Examples.Tags;
 //BasicHtmlTagBuilding.Demo2();
 //BasicHtmlTagBuilding.Demo3();
 //BasicHtmlTagBuilding.Demo4();
+BasicHtmlTagBuilding02.Demo1();
+
 //ExampleTablerIcon.Demo();
 
 //BasicHtmlBuilding.Demo1(true);
@@ -23,9 +25,8 @@ using HtmlForgeX.Examples.Tags;
 //BasicHtmlContainer01.Demo01(true);
 //BasicHtmlContainer02.Demo02(true);
 //BasicHtmlContainer03.Demo03(false);
-//BasicHtmlContainer04.Demo01(false);
+BasicHtmlContainer04.Demo01(false);
 
 
-BasicHtmlTagBuilding02.Demo1();
 
 //Experiments01.Demo();

@@ -13,7 +13,7 @@ internal static class HelpersSpectre {
         AnsiConsole.MarkupLine($"[green]{markup}[/]");
     }
 
-    public static void PrintHtmlTag(string title, HtmlTag tag) {
+    public static void PrintHtmlTag(string title, Element tag) {
         AnsiConsole.MarkupLine($"[bold yellow]{title}[/]");
         AnsiConsole.WriteLine();
         var markup = Markup.Escape(tag.ToString());

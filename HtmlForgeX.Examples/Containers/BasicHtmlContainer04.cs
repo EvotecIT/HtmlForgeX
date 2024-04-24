@@ -141,8 +141,33 @@ Return keyword           operation_timedout
                 row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
                         card.Accordion(accordion => {
+                            // works
                             accordion.AddItem("John", new Span().AddContent("Test1"));
+                            // works
                             accordion.AddItem("Jane", new Span().AddContent("Test2"));
+                            // works 
+                            accordion.AddItem("Johny", item => {
+                                item.Content(new Span().AddContent("Test2"));
+                                item.Content(new TablerSteps().StepCounting().Color(TablerStepsColor.Red)
+                                    .AddStep("Order received", false)
+                                    .AddStep("Processing", true)
+                                    .AddStep("Shipped", false)
+                                    .AddStep("Delivered", false));
+                            });
+                            accordion.AddItem("Johny 2").Content(item => {
+                                item.Steps().StepCounting().Color(TablerStepsColor.Red)
+                                     .AddStep("Order received", false)
+                                     .AddStep("Processing", true)
+                                     .AddStep("Shipped", false)
+                                     .AddStep("Delivered", false);
+                            });
+
+                            accordion.AddItem("Johny 2").Content(item => {
+                                item.DataGrid(grid => {
+                                    grid.AddItem("Test", "Ok");
+                                    grid.AddItem("Test2", "Ok2");
+                                });
+                            });
                         });
                     });
                 });
