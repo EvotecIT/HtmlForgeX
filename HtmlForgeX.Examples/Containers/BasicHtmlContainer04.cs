@@ -141,9 +141,8 @@ Return keyword           operation_timedout
                 row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
                         card.Accordion(accordion => {
-                            accordion.AddItem("John", new HtmlSpan().AddContent("Test1"));
-                            accordion.AddItem("Jane", new HtmlSpan().AddContent("Test2"));
-
+                            accordion.AddItem("John", new Span().AddContent("Test1"));
+                            accordion.AddItem("Jane", new Span().AddContent("Test2"));
                         });
                     });
                 });

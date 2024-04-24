@@ -93,7 +93,7 @@ internal class BasicHtmlContainer01 {
         document.Body.Page(page => {
             page.Column(column => {
                 column.Card(card => {
-                    card.Add(new HtmlSpan().AddContent("This is table with DataTables").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed));
+                    card.Add(new Span().AddContent("This is table with DataTables").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed));
                     card.Table(data1, TableType.DataTables);
                 });
                 column.Card(card => {
@@ -107,7 +107,7 @@ internal class BasicHtmlContainer01 {
                         .AppendContent(" Great?!");
                     card.LineBreak();
 
-                    card.Add(new HtmlSpan().AddContent("This is table with ").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed)
+                    card.Add(new Span().AddContent("This is table with ").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed)
                         .AppendContent("Tabler").WithColor(RGBColor.RedPurple));
                     card.Table(data2, TableType.Tabler);
                     card.Span("").WithBackgroundColor(RGBColor.BrickRed).Table(data2, TableType.DataTables);

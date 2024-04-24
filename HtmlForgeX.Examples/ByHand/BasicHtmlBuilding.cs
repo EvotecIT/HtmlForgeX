@@ -60,7 +60,7 @@ namespace HtmlForgeX.Examples.ByHand {
 
             //document.Body.AddLineBreak();
 
-            var span4 = new HtmlSpan()
+            var span4 = new Span()
                 .AppendContent("Should be RED").WithColor(RGBColor.Red)
                 .AppendContent("Should be BLUE").WithColor(RGBColor.Blue)
                 .AppendContent("Should be GREEN").WithColor(RGBColor.Green);
@@ -106,7 +106,7 @@ namespace HtmlForgeX.Examples.ByHand {
             document.Head.AddViewportMeta("width=device-width, initial-scale=1.0");
 
             // lets add default styles
-            document.Head.AddDefaultStyles();
+            document.AddLibrary(Libraries.Primary);
 
             // lets add custom styles
             document.Head.AddStyle(
@@ -122,7 +122,7 @@ namespace HtmlForgeX.Examples.ByHand {
                     .Value(new HtmlTag("p", "This is a basic demo document."))
             );
 
-            var span1 = new HtmlSpan()
+            var span1 = new Span()
                 .AddContent("This is the content")
                 .WithColor(RGBColor.RedDevil)
                 .WithBackgroundColor(RGBColor.Yellow)
@@ -147,9 +147,9 @@ namespace HtmlForgeX.Examples.ByHand {
             document.Body.Add(span2);
             document.Body.Add(span3);
 
-            document.Body.Add(new HtmlSpan().AddContent("Should be Tractor Red").WithColor(RGBColor.TractorRed));
+            document.Body.Add(new Span().AddContent("Should be Tractor Red").WithColor(RGBColor.TractorRed));
 
-            var span10 = new HtmlSpan()
+            var span10 = new Span()
                 .AppendContent("Should be RED").WithColor(RGBColor.Red)
                 .AppendContent("Should be BLUE").WithColor(RGBColor.Blue)
                 .AppendContent("Should be GREEN").WithColor(RGBColor.Green);
