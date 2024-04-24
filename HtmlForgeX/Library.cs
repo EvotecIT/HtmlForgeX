@@ -4,6 +4,7 @@ namespace HtmlForgeX;
 
 public enum Libraries {
     None,
+    Primary,
     Bootstrap,
     DataTables,
     Tabler,
@@ -13,7 +14,7 @@ public enum Libraries {
     ApexCharts,
     VisNetwork,
     VisNetworkLoadingBar,
-    EasyQRCode
+    EasyQRCode,
 }
 
 public class Library {
@@ -69,6 +70,8 @@ public class LibraryLinks {
 public class LibrariesConverter {
     public static Library MapLibraryEnumToLibraryObject(Libraries libraries) {
         switch (libraries) {
+            case Libraries.Primary:
+                return new Primary();
             case Libraries.Bootstrap:
                 return new Bootstrap();
             case Libraries.DataTables:
