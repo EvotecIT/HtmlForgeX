@@ -5,8 +5,8 @@ using System.Text;
 namespace HtmlForgeX;
 
 public class TablerDataGridItem : Element {
-    public Element TitleElement { get; set; }
-    public Element ContentElement { get; set; }
+    private Element TitleElement { get; set; }
+    private Element ContentElement { get; set; }
 
     public TablerDataGridItem Title(string title) {
         TitleElement = new HtmlTag("div").Class("datagrid-title").Value(title);
