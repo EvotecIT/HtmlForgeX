@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace HtmlForgeX;
 public class ApexChartsTitle {
     [JsonPropertyName("text")]
-    public string TitleText { get; set; }
+    public string? TitleText { get; set; }
     [JsonPropertyName("align")]
     public string TitleAlign { get; set; } = "center";
     [JsonPropertyName("style")]
@@ -49,7 +49,7 @@ public class ApexChartsTitle {
 
 public class ApexChartSubtitle {
     [JsonPropertyName("text")]
-    public string SubTitleText { get; set; }
+    public string? SubTitleText { get; set; }
     public string SubTitleAlign { get; set; } = "center";
     public Dictionary<string, string> Style { get; set; } = new Dictionary<string, string>();
 
