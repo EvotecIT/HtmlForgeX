@@ -1,9 +1,6 @@
-using System;
-using System.Text;
-
 namespace HtmlForgeX;
 
-public class HtmlSpan : Element {
+public class Span : Element {
     public string? Content { get; set; }
     public RGBColor? Color { get; set; }
     public RGBColor? BackGroundColor { get; set; }
@@ -20,99 +17,99 @@ public class HtmlSpan : Element {
     public Display? Display { get; set; }
     public double? Opacity { get; set; }
 
-    public List<HtmlSpan> HtmlSpans { get; } = new List<HtmlSpan>();
-    private HtmlSpan Parent { get; set; }
-    public HtmlSpan(HtmlSpan? parent = null) {
+    public List<Span> HtmlSpans { get; } = new List<Span>();
+    private Span Parent { get; set; }
+    public Span(Span? parent = null) {
         this.Parent = parent ?? this;  // If no parent is provided, assume this is the root.
     }
 
-    public HtmlSpan AppendContent(string content) {
-        var newSpan = new HtmlSpan(this) {
+    public Span AppendContent(string content) {
+        var newSpan = new Span(this) {
             Content = content
         };
         this.Parent.HtmlSpans.Add(newSpan);  // Add to children of this span
         return newSpan;  // Return new span for modification
     }
 
-    public HtmlSpan AddContent(string content) {
-        var newSpan = new HtmlSpan { Content = content };
+    public Span AddContent(string content) {
+        var newSpan = new Span { Content = content };
         this.Add(newSpan);  // Add to children of this HtmlElement
         return newSpan;  // Return new span for modification
     }
 
-    public HtmlSpan Add(string content) {
-        var newSpan = new HtmlSpan { Content = content };
+    public Span Add(string content) {
+        var newSpan = new Span { Content = content };
         this.Add(newSpan);  // Add to children of this HtmlElement
         return newSpan;  // Return new span for modification
     }
 
-    public HtmlSpan WithColor(RGBColor color) {
+    public Span WithColor(RGBColor color) {
         this.Color = color;
         return this;
     }
 
-    public HtmlSpan WithBackgroundColor(RGBColor backgroundColor) {
+    public Span WithBackgroundColor(RGBColor backgroundColor) {
         BackGroundColor = backgroundColor;
         return this;
     }
 
 
-    public HtmlSpan WithFontSize(string fontSize) {
+    public Span WithFontSize(string fontSize) {
         FontSize = fontSize;
         return this;
     }
 
-    public HtmlSpan WithLineHeight(string lineHeight) {
+    public Span WithLineHeight(string lineHeight) {
         LineHeight = lineHeight;
         return this;
     }
 
-    public HtmlSpan WithFontWeight(FontWeight fontWeight) {
+    public Span WithFontWeight(FontWeight fontWeight) {
         FontWeight = fontWeight;
         return this;
     }
 
-    public HtmlSpan WithFontStyle(FontStyle fontStyle) {
+    public Span WithFontStyle(FontStyle fontStyle) {
         FontStyle = fontStyle;
         return this;
     }
 
-    public HtmlSpan WithFontVariant(FontVariant fontVariant) {
+    public Span WithFontVariant(FontVariant fontVariant) {
         FontVariant = fontVariant;
         return this;
     }
 
-    public HtmlSpan WithFontFamily(string fontFamily) {
+    public Span WithFontFamily(string fontFamily) {
         FontFamily = fontFamily;
         return this;
     }
 
-    public HtmlSpan WithAlignment(FontAlignment alignment) {
+    public Span WithAlignment(FontAlignment alignment) {
         Alignment = alignment;
         return this;
     }
 
-    public HtmlSpan WithTextDecoration(TextDecoration textDecoration) {
+    public Span WithTextDecoration(TextDecoration textDecoration) {
         TextDecoration = textDecoration;
         return this;
     }
 
-    public HtmlSpan WithTextTransform(TextTransform textTransform) {
+    public Span WithTextTransform(TextTransform textTransform) {
         TextTransform = textTransform;
         return this;
     }
 
-    public HtmlSpan WithDirection(Direction direction) {
+    public Span WithDirection(Direction direction) {
         Direction = direction;
         return this;
     }
 
-    public HtmlSpan WithDisplay(Display display) {
+    public Span WithDisplay(Display display) {
         Display = display;
         return this;
     }
 
-    public HtmlSpan WithOpacity(double? opacity) {
+    public Span WithOpacity(double? opacity) {
         Opacity = opacity;
         return this;
     }
