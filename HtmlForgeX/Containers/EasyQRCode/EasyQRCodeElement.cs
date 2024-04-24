@@ -2,12 +2,12 @@ namespace HtmlForgeX;
 
 public class EasyQRCodeElement : Element {
     public string Id { get; set; }
-    public string Text { get; set; }
+    private string PrivateText { get; set; }
 
     public EasyQRCodeElement(string text) {
         GlobalStorage.Libraries.Add(Libraries.EasyQRCode);
         Id = GlobalStorage.GenerateRandomId("QrCode");
-        Text = text;
+        PrivateText = text;
     }
 
     public override string ToString() {
@@ -15,7 +15,7 @@ public class EasyQRCodeElement : Element {
 
         var scriptTag = new HtmlTag("script").Value($@"
             var options = {{
-                ""text"": ""{Text}""
+                ""text"": ""{PrivateText}""
             }};
             new QRCode(document.getElementById(""{Id}""), options);
         ");
