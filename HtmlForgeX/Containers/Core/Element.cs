@@ -1,3 +1,5 @@
+using HtmlForgeX.Tags;
+
 namespace HtmlForgeX;
 
 public abstract class Element {
