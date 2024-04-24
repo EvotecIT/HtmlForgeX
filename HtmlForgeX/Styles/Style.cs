@@ -1,7 +1,7 @@
 namespace HtmlForgeX;
 
 public class Style {
-    public string Selector { get; set; }
+    public string? Selector { get; set; }
     public Dictionary<string, string> Properties { get; set; } = new Dictionary<string, string>();
 
     public Style(string selector) {
