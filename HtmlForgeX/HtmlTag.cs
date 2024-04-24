@@ -93,7 +93,7 @@ public class HtmlTag : Element {
         StringBuilder html = new StringBuilder($"<{PrivateTag}");
 
         foreach (var attribute in Attributes) {
-            if (!string.IsNullOrEmpty(attribute.Value.ToString())) {
+            if (attribute.Value != null && !string.IsNullOrEmpty(attribute.Value.ToString())) {
                 if (attribute.Key == "style" && attribute.Value is Dictionary<string, object> styleDict) {
                     StringBuilder styleValue = new StringBuilder();
                     foreach (var style in styleDict) {
