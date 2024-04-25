@@ -30,20 +30,21 @@ public class TablerAccordionItem : Element {
     }
 
     public override string ToString() {
-        var itemDiv = new HtmlTag("div").Class("accordion-item");
-
-        itemDiv.Value(new HtmlTag("h2").Class("accordion-header").Id("heading-" + Id).Value(
-            new HtmlTag("button").Class("accordion-button")
-                .Type("button")
-                .Attribute("data-bs-toggle", "collapse")
-                .Attribute("data-bs-target", "#collapse-" + Id)
-                .Value(TitleElement)
+        var itemDiv = new HtmlTag("div").Class("accordion-item").Value(
+            new HtmlTag("h2").Class("accordion-header").Id("heading-" + Id).Value(
+                new HtmlTag("button").Class("accordion-button")
+                    .Type("button")
+                    .Attribute("data-bs-toggle", "collapse")
+                    .Attribute("data-bs-target", "#collapse-" + Id)
+                    .Value(TitleElement)
         ));
 
-        var collapseDiv = new HtmlTag("div").Class("accordion-collapse").Class("collapse").Attribute("data-bs-parent", "#" + ParentId).Id("collapse-" + Id);
-        collapseDiv.Value(
-            new HtmlTag("div").Class("accordion-body").Class("pt-0").Value(ContentElement));
-
+        var collapseDiv = new HtmlTag("div")
+            .Class("accordion-collapse")
+            .Class("collapse")
+            .Attribute("data-bs-parent", "#" + ParentId)
+            .Id("collapse-" + Id).Value(
+                new HtmlTag("div").Class("accordion-body").Class("pt-0").Value(ContentElement));
 
         itemDiv.Value(collapseDiv.ToString());
 
