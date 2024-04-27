@@ -163,7 +163,7 @@ public abstract class Element {
         if (null == tablerBackground) {
             progressBar.AddItem(TablerBackground.Primary, percentage, "");
         } else {
-            progressBar.AddItem(tablerBackground, percentage, "");
+            progressBar.AddItem(tablerBackground.Value, percentage, "");
         }
         this.Add(progressBar);
         return progressBar;
@@ -186,5 +186,30 @@ public abstract class Element {
         config(accordion);
         this.Add(accordion);
         return accordion;
+    }
+
+    public TablerTabs Tabs(Action<TablerTabs> config) {
+        var tabs = new TablerTabs();
+        config(tabs);
+        this.Add(tabs);
+        return tabs;
+    }
+
+    public TablerDivider Divider(string text) {
+        var divider = new TablerDivider(text);
+        this.Add(divider);
+        return divider;
+    }
+
+    public TablerAlert Alert(string title, string message, TextColor alertColor = TextColor.Default, TablerAlertType alertType = TablerAlertType.Regular) {
+        var alert = new TablerAlert(title, message, alertColor, alertType);
+        this.Add(alert);
+        return alert;
+    }
+
+    public TrackingContainer Tracking() {
+        var tracking = new TrackingContainer();
+        this.Add(tracking);
+        return tracking;
     }
 }
