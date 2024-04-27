@@ -1,6 +1,8 @@
 namespace HtmlForgeX.Tags;
 
 public class Anchor : HtmlTag {
+    public Anchor() : base("a") { }
+
     public Anchor(string hrefLink, string text = "") : base("a") {
         Attributes["href"] = hrefLink;
         Value(text);
