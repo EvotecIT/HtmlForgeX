@@ -31,4 +31,37 @@ public class H5(string value) : HtmlTag("h5", value);
 
 public class H6(string value) : HtmlTag("h6", value);
 
+/// <summary>
+/// The non-breaking space character entity. Provides a space that will not break into a new line.
+/// Allows for the creation of a space character that will not break into a new line (usually 1 space wide).
+/// </summary>
+/// <seealso cref="HtmlForgeX.Element" />
+public class NonBreakingSpace : Element {
+    public override string ToString() {
+        return "&nbsp;";
+    }
+}
+
+/// <summary>
+/// The en space character entity. Provides a space equal to the width of a capital N.
+/// Allows for the creation of a space character that is wider than a standard space character (usually 2 spaces wide).
+/// </summary>
+/// <seealso cref="HtmlForgeX.Element" />
+public class EnSpace : Element {
+    public override string ToString() {
+        return "&ensp;";
+    }
+}
+
+/// <summary>
+/// The em space character entity. Provides a space equal to the width of a capital M.
+/// Allows for the creation of a space character that is wider than a standard space character (usually 4 spaces wide).
+/// </summary>
+/// <seealso cref="HtmlForgeX.Element" />
+public class EmSpace : Element {
+    public override string ToString() {
+        return "&emsp;";
+    }
+}
+
 public class Strong(string value) : HtmlTag("strong", value);
