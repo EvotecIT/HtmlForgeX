@@ -74,38 +74,3 @@ public class TablerProgressBar : Element {
         return progressBarTag.ToString();
     }
 }
-
-public class TablerBackground {
-    private string Background { get; }
-
-    private TablerBackground(string background) {
-        Background = background;
-    }
-
-    public override string ToString() {
-        return Background;
-    }
-
-    public static TablerBackground Primary => new TablerBackground("bg-primary");
-    public static TablerBackground Info => new TablerBackground("bg-info");
-    public static TablerBackground Success => new TablerBackground("bg-success");
-    public static TablerBackground FaceBook => new TablerBackground("bg-facebook");
-    // Add more backgrounds here
-}
-
-public class TablerProgressBarType {
-    private string Type { get; }
-
-    private TablerProgressBarType(string type) {
-        Type = type;
-    }
-
-    public override string ToString() {
-        return Type;
-    }
-
-    internal static TablerProgressBarType Regular => new TablerProgressBarType("progress");
-    public static TablerProgressBarType Separated => new TablerProgressBarType("progress-separated");
-    public static TablerProgressBarType Small => new TablerProgressBarType("progress-sm");
-    // Add more types here
-}
