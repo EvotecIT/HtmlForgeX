@@ -65,6 +65,15 @@ public class TestHtmlTags {
         var hr2 = new HorizontalRule();
         Assert.AreEqual("<hr>", hr2.ToString());
 
+        var nbsp = new NonBreakingSpace();
+        Assert.AreEqual("&nbsp;", nbsp.ToString());
+
+        var ensp = new EnSpace();
+        Assert.AreEqual("&ensp;", ensp.ToString());
+
+        var mnsp = new EmSpace();
+        Assert.AreEqual("&emsp;", mnsp.ToString());
+
         var strong = new Strong("This is a paragraph.");
         Assert.AreEqual("<strong>This is a paragraph.</strong>", strong.ToString());
 
