@@ -70,7 +70,7 @@ public class HtmlTag : Element {
 
     public HtmlTag Class(string? className) {
         // user used Class null so we don't do anything
-        if (className == null) {
+        if (string.IsNullOrEmpty(className)) {
             return this;
         }
         // class doesn't exist so we create it
