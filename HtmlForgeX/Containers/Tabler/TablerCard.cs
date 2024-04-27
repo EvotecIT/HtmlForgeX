@@ -1,6 +1,8 @@
 namespace HtmlForgeX;
 
 public class TablerCard : Element {
+    private TablerCardFooter PrivateFooter { get; set; } = new TablerCardFooter();
+
     public string? Content { get; set; }
     public string? Style { get; set; }
 
@@ -26,6 +28,19 @@ public class TablerCard : Element {
         return this;
     }
 
+    public TablerCardFooter Footer() {
+        PrivateFooter = new TablerCardFooter();
+        return PrivateFooter;
+    }
+
+
+    public TablerCard Footer(Action<TablerCardFooter> footer) {
+        var footerElement = new TablerCardFooter();
+        footer(footerElement);
+        PrivateFooter = footerElement;
+        return this;
+    }
+
     public override string ToString() {
         //Console.WriteLine("Generating HtmlCard...");
 
@@ -44,6 +59,11 @@ public class TablerCard : Element {
         // Add any child elements to the card body
         foreach (var child in Children) {
             cardBodyDiv.Value(child.ToString());
+        }
+
+        // Add the card footer to the card if Footer is not null
+        if (PrivateFooter != null) {
+            cardDiv.Value(PrivateFooter.ToString());
         }
 
         var result = cardDiv.ToString();
