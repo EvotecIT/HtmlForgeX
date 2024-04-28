@@ -1,17 +1,19 @@
-
-namespace HtmlForgeX;
+using HtmlForgeX;
 
 public class TablerBadgeStatus : Element {
     public string Status { get; set; }
-    public TablerBadgeColor Color { get; set; }
+    public TablerColor Color { get; set; }
 
-    public TablerBadgeStatus(string status, TablerBadgeColor color) {
+    public TablerBadgeStatus(string status, TablerColor color) {
         Status = status;
         Color = color;
     }
 
     public override string ToString() {
-        var colorString = Color.ToString().ToLower();
-        return $"<span class=\"status status-{colorString}\">{Status}</span>";
+        var badgeStatusTag = new HtmlTag("span")
+            .Class("status")
+            .Class(Color.ToTablerStatus())
+            .Value(Status);
+        return badgeStatusTag.ToString();
     }
 }
