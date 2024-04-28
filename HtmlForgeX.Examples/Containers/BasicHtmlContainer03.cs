@@ -41,16 +41,16 @@ internal class BasicHtmlContainer03 {
             page.Row(row => {
                 // first line of 4 cards
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerBadgeColor.Blue).TextColor(TablerBadgeColor.White).Title("172 likes").Subtitle("2 today");
+                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerColor.Facebook).TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerBadgeColor.Blue).TextColor(TablerBadgeColor.White).Title("600 shares").Subtitle("16 today");
+                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerColor.Twitter).TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerBadgeColor.Cyan).TextColor(TablerBadgeColor.Orange).Title("100 orders").Subtitle("0 today");
+                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerColor.CyanLight).TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerBadgeColor.Azure).TextColor(TablerBadgeColor.White).Title("5 sales").Subtitle("3 waiting");
+                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerColor.OrangeLight).TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
                 });
                 // second line of 3 cards
                 row.Column(TablerColumnNumber.Four, column => {
@@ -61,7 +61,7 @@ internal class BasicHtmlContainer03 {
                         });
                         card.Row(cardRow => {
                             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerBadgeColor.Cyan).TextColor(TablerBadgeColor.Blue);
+                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Gray300).TextColor(TablerColor.Pink);
                             });
                             cardRow.Column(textColumn => {
                                 textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
@@ -72,7 +72,7 @@ internal class BasicHtmlContainer03 {
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerBadgeColor.Cyan).TextColor(TablerBadgeColor.Blue));
+                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.BlueLight).TextColor(TablerColor.Flickr));
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
@@ -99,17 +99,17 @@ internal class BasicHtmlContainer03 {
                         card.DataGrid(dataGrid => {
                             dataGrid.AddItem("Registrar", "Third Party");
                             dataGrid.AddItem("Port number", "3306");
-                            dataGrid.AddItem("Creator", "Przemyslaw Klys");
-                            dataGrid.AddItem("Edge network", new TablerBadgeStatus("Active", TablerBadgeColor.Green));
+                            dataGrid.AddItem("Creator", "Przemysław Kłys");
+                            dataGrid.AddItem("Edge network", new TablerBadgeStatus("Active", TablerColor.Green));
                             dataGrid.Title("Domain Information").Content("This is the domain information");
                             dataGrid.AddItem("Expiration date", DateTime.Now.AddDays(5).ToString());
                             dataGrid.AddItem("Age", "5 days");
-                            dataGrid.Title("Expiring").Content(new TablerBadgeSpan("Soon", TablerBadgeColor.Azure, textColor: TablerBadgeColor.White));
-                            dataGrid.Title("Registrar").Content(new TablerBadgeSpan("Testing", TablerBadgeColor.Azure, TablerBadgeStyle.Normal, true));
-                            dataGrid.Title("Pill").Content(new TablerBadgeSpan("1", TablerBadgeColor.Azure, TablerBadgeStyle.Pill, false, TablerBadgeColor.White));
-                            dataGrid.Title("Outline").Content(new TablerBadgeSpan("Testing", TablerBadgeColor.Azure, TablerBadgeStyle.Outline, false, TablerBadgeColor.Cyan));
-                            dataGrid.Title("Text Color").Content(new TablerBadgeSpan("Testing", TablerBadgeColor.Azure, TablerBadgeStyle.Normal, true, TablerBadgeColor.Green));
-                            dataGrid.Title("Normal").Content(new TablerBadgeSpan("Testing", TablerBadgeColor.Azure, TablerBadgeStyle.Normal, true));
+                            dataGrid.Title("Expiring").Content(new TablerBadgeSpan("Soon", TablerColor.Azure, textColor: TablerColor.White));
+                            dataGrid.Title("Registrar").Content(new TablerBadgeSpan("Testing", TablerColor.OrangeLight, TablerBadgeStyle.Normal));
+                            dataGrid.Title("Pill").Content(new TablerBadgeSpan("1", TablerColor.Azure, TablerBadgeStyle.Pill, TablerColor.White));
+                            dataGrid.Title("Outline").Content(new TablerBadgeSpan("Testing", TablerColor.Azure, TablerBadgeStyle.Outline, TablerColor.Cyan));
+                            dataGrid.Title("Text Color").Content(new TablerBadgeSpan("Testing", TablerColor.Facebook, TablerBadgeStyle.Normal, TablerColor.Green));
+                            dataGrid.Title("Normal").Content(new TablerBadgeSpan("Testing", TablerColor.AzureLight, TablerBadgeStyle.Normal));
 
                         });
                     });

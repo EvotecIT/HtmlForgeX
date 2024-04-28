@@ -50,15 +50,15 @@ internal class BasicHtmlContainer02 {
                 });
                 row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
-                        card.SetContent("Card 1").WithStyle("background-color: red;");
+                        card.Content("Card 1").Style("background-color: red;");
                     });
                     column.Card(card => {
-                        card.SetContent("Card 2").WithStyle("background-color: blue;");
+                        card.Content("Card 2").Style("background-color: blue;");
                     });
                 });
                 row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(4, card => {
-                        card.SetContent("Card 3").WithStyle("background-color: green;");
+                        card.Content("Card 3").Style("background-color: green;");
                     });
                     column.Card(4, card => {
                         card.Table(data1, TableType.DataTables);
@@ -85,12 +85,12 @@ internal class BasicHtmlContainer02 {
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.SetContent("Card 1").WithStyle("background-color: red;");
+                        card.Content("Card 1").Style("background-color: red;");
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(4, card => {
-                        card.SetContent("Card 3").WithStyle("background-color: green;");
+                        card.Content("Card 3").Style("background-color: green;");
                     });
                 });
                 // this will add a new row and push it all wide

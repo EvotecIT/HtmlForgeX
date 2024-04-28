@@ -42,11 +42,11 @@ internal class BasicHtmlContainer01 {
         var page = new TablerPage()
             .Add(new TablerRow()
                 .Add(new TablerColumn().WithClass("col-6")
-                    .Add(new TablerCard().SetContent("Card 1").WithStyle("background-color: red;"))
-                    .Add(new TablerCard().SetContent("Card 2").WithStyle("background-color: blue;"))
+                    .Add(new TablerCard().Content("Card 1").Style("background-color: red;"))
+                    .Add(new TablerCard().Content("Card 2").Style("background-color: blue;"))
                 )
                 .Add(new TablerColumn().WithClass("col-6")
-                    .Add(new TablerCard().SetContent("Card 3").WithStyle("background-color: green;"))
+                    .Add(new TablerCard().Content("Card 3").Style("background-color: green;"))
                     .Add(new TablerCard().Table(data1, TableType.DataTables))
                 )
             );
@@ -55,23 +55,23 @@ internal class BasicHtmlContainer01 {
         document.Body.Add(page);
 
         var page1 = new TablerPage()
-            .Add(new TablerCard().SetContent("Card 1").WithStyle("background-color: red;"))
-            .Add(new TablerCard().SetContent("Card 2").WithStyle("background-color: blue;"))
+            .Add(new TablerCard().Content("Card 1").Style("background-color: red;"))
+            .Add(new TablerCard().Content("Card 2").Style("background-color: blue;"))
             .Add(new TablerCard())
             .Add(new TablerCard().Table(data2, TableType.DataTables))
-            .Add(new TablerCard().SetContent("Card 5"));
+            .Add(new TablerCard().Content("Card 5"));
 
         document.Body.Add(page1);
 
 
         var page2 = new TablerPage().Add(page => {
             page.Add(new TablerCard().Add(card => {
-                card.Content = "Card 1";
-                card.Style = "background-color: red;";
+                card.CardContent = "Card 1";
+                card.CardInnerStyle = "background-color: red;";
             }));
             page.Add(new TablerCard().Add(card => {
-                card.Content = "Card 2";
-                card.Style = "background-color: blue;";
+                card.CardContent = "Card 2";
+                card.CardInnerStyle = "background-color: blue;";
             }));
         });
 
@@ -80,12 +80,12 @@ internal class BasicHtmlContainer01 {
 
         document.Body.Page(page => {
             page.Add(new TablerCard().Add(card => {
-                card.Content = "Card 10";
-                card.Style = "background-color: red;";
+                card.CardContent = "Card 10";
+                card.CardInnerStyle = "background-color: red;";
             }));
             page.Add(new TablerCard().Add(card => {
-                card.Content = "Card 20";
-                card.Style = "background-color: blue;";
+                card.CardContent = "Card 20";
+                card.CardInnerStyle = "background-color: blue;";
             }));
         });
 

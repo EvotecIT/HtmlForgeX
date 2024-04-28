@@ -38,20 +38,20 @@ Return keyword           operation_timedout
             page.Row(row => {
                 // first line of 4 cards
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerBadgeColor.Blue)
-                        .TextColor(TablerBadgeColor.White).Title("172 likes").Subtitle("2 today");
+                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerColor.Facebook)
+                        .TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerBadgeColor.Blue)
-                        .TextColor(TablerBadgeColor.White).Title("600 shares").Subtitle("16 today");
+                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerColor.Twitter)
+                        .TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerBadgeColor.Cyan)
-                        .TextColor(TablerBadgeColor.Orange).Title("100 orders").Subtitle("0 today");
+                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerColor.Gray200)
+                        .TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerBadgeColor.Azure)
-                        .TextColor(TablerBadgeColor.White).Title("5 sales").Subtitle("3 waiting");
+                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerColor.CyanLight)
+                        .TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
                 });
                 // second line of 3 cards
                 row.Column(TablerColumnNumber.Four, column => {
@@ -62,8 +62,8 @@ Return keyword           operation_timedout
                         });
                         card.Row(cardRow => {
                             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerBadgeColor.Cyan)
-                                    .TextColor(TablerBadgeColor.Blue);
+                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Cyan)
+                                    .TextColor(TablerColor.Blue);
                             });
                             cardRow.Column(textColumn => {
                                 textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
@@ -74,25 +74,28 @@ Return keyword           operation_timedout
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerBadgeColor.Cyan)
-                            .TextColor(TablerBadgeColor.Blue));
+                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Cyan)
+                            .TextColor(TablerColor.Blue));
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        // card.Add(new TablerProgressBar(TablerProgressBarType.Regular, TablerProgressBarType.Small));
-                        card.ProgressBar(TablerProgressBarType.Small).AddItem(TablerBackground.Primary, 44, "")
-                            .AddItem(TablerBackground.Info, 23, "")
-                            .AddItem(TablerBackground.Success, 33, "");
+                        card.ProgressBar(TablerProgressBarType.Small)
+                            .Item(TablerColor.Primary, 44, "")
+                            .Item(TablerColor.Info, 23, "")
+                            .Item(TablerColor.Success, 33, "");
                         card.LineBreak();
-                        card.ProgressBar(TablerProgressBarType.Small).AddItem(TablerBackground.Primary, 44, "Test");
+                        card.ProgressBar(TablerProgressBarType.Small)
+                            .Item(TablerColor.Primary, 44, "Test");
                         card.LineBreak();
-                        card.ProgressBar(TablerProgressBarType.Separated).AddItem(TablerBackground.Primary, 44, "Test")
-                            .AddItem(TablerBackground.Info, 23, "Test")
-                            .AddItem(TablerBackground.Success, 33, "Test");
+                        card.ProgressBar(TablerProgressBarType.Separated)
+                            .Item(TablerColor.Primary, 44, "Test")
+                            .Item(TablerColor.Info, 23, "Test")
+                            .Item(TablerColor.Success, 33, "Test");
                         card.LineBreak();
-                        card.ProgressBar(TablerProgressBarType.Small, 50, TablerBackground.Facebook);
-
+                        card.ProgressBar(TablerProgressBarType.Small, 50, TablerColor.Facebook);
+                        card.LineBreak();
+                        card.ProgressBar(TablerProgressBarType.Indeterminate, 100, TablerColor.Facebook);
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
@@ -120,7 +123,7 @@ Return keyword           operation_timedout
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Steps()
+                        card.Steps().Color(TablerColor.AzureLight)
                             .AddStep("Order received", false)
                             .AddStep("Processing", true)
                             .AddStep("Shipped", false)
@@ -130,7 +133,7 @@ Return keyword           operation_timedout
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Steps().Orientation(StepsOrientation.Vertical)
+                        card.Steps().Orientation(StepsOrientation.Vertical).Color(TablerColor.Facebook)
                             .AddStep("Order received", "text", false)
                             .AddStep("Processing", "more text", true)
                             .AddStep("Shipped", "oops", false)
@@ -139,7 +142,7 @@ Return keyword           operation_timedout
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Steps().StepCounting().Color(TablerStepsColor.Red)
+                        card.Steps().StepCounting().Color(TablerColor.Red)
                             .AddStep("Order received", false)
                             .AddStep("Processing", true)
                             .AddStep("Shipped", false)
@@ -156,14 +159,14 @@ Return keyword           operation_timedout
                             // works 
                             accordion.AddItem("Johny", item => {
                                 item.Content(new Span().AddContent("Test2"));
-                                item.Content(new TablerSteps().StepCounting().Color(TablerStepsColor.Red)
+                                item.Content(new TablerSteps().StepCounting().Color(TablerColor.Red)
                                     .AddStep("Order received", false)
                                     .AddStep("Processing", true)
                                     .AddStep("Shipped", false)
                                     .AddStep("Delivered", false));
                             });
                             accordion.AddItem("Johny 2").Content(item => {
-                                item.Steps().StepCounting().Color(TablerStepsColor.Red)
+                                item.Steps().StepCounting().Color(TablerColor.Red)
                                     .AddStep("Order received", false)
                                     .AddStep("Processing", true)
                                     .AddStep("Shipped", false)
@@ -243,55 +246,55 @@ Return keyword           operation_timedout
                 row.Column(TablerColumnNumber.Three, column => {
                     column.Card(card => {
                         card.Alert("Wow! Everything worked!", "Your account has been created!")
-                            .Icon(TablerIcon.BrandTwitter).Color(TextColor.Danger);
+                            .Icon(TablerIcon.BrandTwitter).Color(TablerColor.Danger);
                     });
                 });
                 row.Column(TablerColumnNumber.Three, column => {
                     column.Card(card => {
                         card.Alert("Wow! Everything worked!", "Your account has been created!")
-                            .Color(TextColor.Facebook);
+                            .Color(TablerColor.Facebook);
                     });
                 });
                 row.Column(TablerColumnNumber.Three, column => {
                     column.Card(card => {
-                        card.Alert("Did you know?", "Here is something that you might like to know.", TextColor.Green,
+                        card.Alert("Did you know?", "Here is something that you might like to know.", TablerColor.Green,
                             TablerAlertType.Dismissible).Icon(TablerIcon.InfoCircle);
                     });
                 });
                 row.Column(TablerColumnNumber.Three, column => {
                     column.Card(card => {
                         card.Alert("Wow! Everything worked!", "Your account has been created!")
-                            .Icon(TablerIcon.ExclamationCircle).Color(TextColor.Twitter);
+                            .Icon(TablerIcon.ExclamationCircle).Color(TablerColor.Twitter);
                     });
                 });
                 row.Column(TablerColumnNumber.Three, column => {
                     column.Card(card => {
                         card.Alert("I'm so sorry…", "Your account has been deleted and can't be restored.")
-                            .Icon(TablerIcon.FaceIdError).Color(TextColor.Warning);
+                            .Icon(TablerIcon.FaceIdError).Color(TablerColor.Warning);
                     });
                 });
                 row.Column(TablerColumnNumber.Three, column => {
                     column.Card(card => {
                         card.Tracking()
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("No data", TablerBackground.Failed)
-                            .Block("No data", TablerBackground.Failed)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Downtime", TablerBackground.Danger)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success)
-                            .Block("Operational", TablerBackground.Success);
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("No data", TablerColor.Failed)
+                            .Block("No data", TablerColor.Failed)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Downtime", TablerColor.Danger)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success);
                     });
                 });
                 row.Column(TablerColumnNumber.Three, column => {
