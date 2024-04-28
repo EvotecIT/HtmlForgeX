@@ -3,28 +3,28 @@ namespace HtmlForgeX;
 public class TablerCard : Element {
     private TablerCardFooter PrivateFooter { get; set; } = new TablerCardFooter();
 
-    public string? Content { get; set; }
-    public string? Style { get; set; }
+    public string? CardContent { get; set; }
+    public string? CardInnerStyle { get; set; }
 
-    private string? CardStyle { get; set; }
+    private string? CardOuterStyle { get; set; }
 
     private int Number { get; set; }
 
     public TablerCard() {
-        CardStyle = $"col";
+        CardOuterStyle = $"col";
     }
 
     public TablerCard(int number) {
-        CardStyle = $"col-{number}";
+        CardOuterStyle = $"col-{number}";
     }
 
-    public TablerCard SetContent(string content) {
-        Content = content;
+    public TablerCard Content(string content) {
+        CardContent = content;
         return this;
     }
 
-    public TablerCard WithStyle(string style) {
-        Style = style;
+    public TablerCard Style(string style) {
+        CardInnerStyle = style;
         return this;
     }
 
@@ -46,12 +46,12 @@ public class TablerCard : Element {
 
         // Create the outer div for the card
         var cardDiv = new HtmlTag("div");
-        cardDiv.Class("card").Class(CardStyle).Class(null);
+        cardDiv.Class("card").Class(CardOuterStyle).Class(null);
 
         // Create the inner div for the card body
         var cardBodyDiv = new HtmlTag("div");
-        cardBodyDiv.Class("card-body").Value(Content);
-        cardBodyDiv.Attributes["style"] = Style;
+        cardBodyDiv.Class("card-body").Value(CardContent);
+        cardBodyDiv.Attributes["style"] = CardInnerStyle;
 
         // Add the card body to the card
         cardDiv.Value(cardBodyDiv);
