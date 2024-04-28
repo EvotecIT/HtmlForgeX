@@ -1,22 +1,28 @@
 namespace HtmlForgeX;
 
-// var badgeButton = new BadgeButton("Notifications", "4", BadgeColor.Red);
-// string htmlButton = badgeButton.ToString();  // "<button type=\"button\" class=\"btn\">Notifications <span class=\"badge bg-red ms-2\">4</span></button>"
-
-
 public class TablerBadgeButton : Element {
     public new string Text { get; set; }
     public string BadgeText { get; set; }
-    public TablerBadgeColor BadgeColor { get; set; }
+    public TablerColor BadgeColor { get; set; }
 
-    public TablerBadgeButton(string text, string badgeText, TablerBadgeColor badgeColor) {
+    public TablerBadgeButton(string text, string badgeText, TablerColor badgeColor) {
         Text = text;
         BadgeText = badgeText;
         BadgeColor = badgeColor;
     }
 
     public override string ToString() {
-        string colorString = BadgeColor.ToString().ToLower();
-        return $"<button type=\"button\" class=\"btn\">{Text} <span class=\"badge bg-{colorString} ms-2\">{BadgeText}</span></button>";
+        var badgeTag = new HtmlTag("span")
+            .Class("badge")
+            .Class("ms-2")
+            .Class(BadgeColor.ToTablerBackground())
+            .Value(BadgeText);
+
+        var buttonTag = new HtmlTag("button")
+            .Type("button")
+            .Class("btn")
+            .Value(Text, badgeTag);
+
+        return buttonTag.ToString();
     }
 }
