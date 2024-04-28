@@ -1,41 +1,34 @@
-namespace HtmlForgeX;
-
-// https://tabler.io/docs/components/badges
-// <span class="badge bg-blue">Blue</span>
-// <span class="badge bg-cyan-lt">Cyan</span>
+using HtmlForgeX;
+using HtmlForgeX.Tags;
 
 public class TablerBadgeSpan : Element {
     public new string Text { get; set; }
-    public TablerBadgeColor Color { get; set; }
-    public TablerBadgeColor? TextColor { get; set; }
-    public bool IsLight { get; set; }
+    public TablerColor? Color { get; set; }
+    public TablerColor? TextColor { get; set; }
     public TablerBadgeStyle Style { get; set; }
 
-    public TablerBadgeSpan(string text, TablerBadgeColor color, TablerBadgeStyle style = TablerBadgeStyle.Normal, bool isLight = false, TablerBadgeColor? textColor = null) {
+    public TablerBadgeSpan(string text, TablerColor color, TablerBadgeStyle style = TablerBadgeStyle.Normal, TablerColor? textColor = null) {
         Text = text;
         Color = color;
-        IsLight = isLight;
         Style = style;
         TextColor = textColor;
     }
 
     public override string ToString() {
         string colorString = Color.ToString().ToLower();
-        if (IsLight) {
-            colorString += "-lt";
-        }
-        string classString = "badge";
+
+        var badgeTag = new HtmlTag("span")
+            .Class("badge")
+            .Value(Text);
+
         if (Style == TablerBadgeStyle.Outline) {
-            // Outline badges are not getting bg- color
-            classString += " badge-outline";
+            badgeTag.Class("badge-outline");
         } else if (Style == TablerBadgeStyle.Pill) {
-            classString += " badge-pill bg-" + colorString;
+            badgeTag.Class("badge-pill").Class(Color?.ToTablerBackground());
         } else {
-            classString += " bg-" + colorString;
+            badgeTag.Class(Color?.ToTablerBackground());
         }
-        if (TextColor.HasValue) {
-            classString += " text-" + TextColor.Value.ToString().ToLower();
-        }
-        return $"<span class=\"{classString}\">{Text}</span>";
+        badgeTag.Class(TextColor?.ToTablerText());
+        return badgeTag.ToString();
     }
 }
