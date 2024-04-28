@@ -153,17 +153,17 @@ public abstract class Element {
     }
 
     public TablerProgressBar ProgressBar(TablerProgressBarType type) {
-        var progressBar = new TablerProgressBar(TablerProgressBarType.Regular, type);
+        var progressBar = new TablerProgressBar(type);
         this.Add(progressBar);
         return progressBar;
     }
 
-    public TablerProgressBar ProgressBar(TablerProgressBarType type, int percentage, TablerBackground? tablerBackground = null) {
-        var progressBar = new TablerProgressBar(TablerProgressBarType.Regular, type);
+    public TablerProgressBar ProgressBar(TablerProgressBarType type, int percentage, TablerColor? tablerBackground = null) {
+        var progressBar = new TablerProgressBar(type);
         if (null == tablerBackground) {
-            progressBar.AddItem(TablerBackground.Primary, percentage, "");
+            progressBar.Item(TablerColor.Primary, percentage, "");
         } else {
-            progressBar.AddItem(tablerBackground.Value, percentage, "");
+            progressBar.Item(tablerBackground.Value, percentage, "");
         }
         this.Add(progressBar);
         return progressBar;
@@ -201,14 +201,14 @@ public abstract class Element {
         return divider;
     }
 
-    public TablerAlert Alert(string title, string message, TextColor alertColor = TextColor.Default, TablerAlertType alertType = TablerAlertType.Regular) {
+    public TablerAlert Alert(string title, string message, TablerColor alertColor = TablerColor.Default, TablerAlertType alertType = TablerAlertType.Regular) {
         var alert = new TablerAlert(title, message, alertColor, alertType);
         this.Add(alert);
         return alert;
     }
 
-    public TrackingContainer Tracking() {
-        var tracking = new TrackingContainer();
+    public TablerTracking Tracking() {
+        var tracking = new TablerTracking();
         this.Add(tracking);
         return tracking;
     }
