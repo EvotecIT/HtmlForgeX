@@ -1,36 +1,33 @@
-namespace HtmlForgeX;
-
-// var badgeLink = new BadgeLink("Blue", "#", BadgeColor.Blue);
-// string htmlLink = badgeLink.ToString();  // "<a href=\"#\" class=\"badge bg-blue\">Blue</a>"
+using HtmlForgeX;
 
 public class TablerBadgeLink : Element {
-    public new string Text { get; set; }
-    public string Href { get; set; }
-    public TablerBadgeColor Color { get; set; }
-    public bool IsLight { get; set; }
-    public TablerBadgeStyle Style { get; set; }
+    private new string Text { get; set; }
+    private string Href { get; set; }
+    private TablerColor? Color { get; set; }
 
-    public TablerBadgeLink(string text, string href, TablerBadgeColor color, TablerBadgeStyle style = TablerBadgeStyle.Normal, bool isLight = false) {
+    private TablerBadgeStyle Style { get; set; }
+
+    public TablerBadgeLink(string text, string href, TablerColor color, TablerBadgeStyle style = TablerBadgeStyle.Normal) {
         Text = text;
         Href = href;
         Color = color;
-        IsLight = isLight;
         Style = style;
     }
 
     public override string ToString() {
-        string colorString = Color.ToString().ToLower();
-        if (IsLight) {
-            colorString += "-lt";
-        }
-        string classString = "badge";
+        var badgeTag = new HtmlTag("a")
+            .Attribute("href", Href)
+            .Class("badge")
+            .Value(Text);
+
         if (Style == TablerBadgeStyle.Outline) {
-            classString += " badge-outline";
+            badgeTag.Class("badge-outline");
         } else if (Style == TablerBadgeStyle.Pill) {
-            classString += " badge-pill bg-" + colorString;
+            badgeTag.Class("badge-pill").Class(Color?.ToTablerBackground());
         } else {
-            classString += " bg-" + colorString;
+            badgeTag.Class(Color?.ToTablerBackground());
         }
-        return $"<a href=\"{Href}\" class=\"{classString}\">{Text}</a>";
+
+        return badgeTag.ToString();
     }
 }
