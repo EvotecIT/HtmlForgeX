@@ -1,19 +1,19 @@
 namespace HtmlForgeX;
 
 public enum TablerProgressBarType {
-    Regular,
     Separated,
     Small,
-    // Add more types here
+    Indeterminate
 }
 
 
 public static class TablerProgressBarTypeExtensions {
     public static string ToClassString(this TablerProgressBarType type) {
         return type switch {
-            TablerProgressBarType.Regular => "progress",
             TablerProgressBarType.Separated => "progress-separated",
             TablerProgressBarType.Small => "progress-sm",
+            TablerProgressBarType.Indeterminate => "progress-bar-indeterminate",
+
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
         };
     }
