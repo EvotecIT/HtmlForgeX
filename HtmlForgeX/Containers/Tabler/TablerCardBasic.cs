@@ -1,7 +1,7 @@
 namespace HtmlForgeX;
 
 public class TablerCardBasic : Element {
-    private string? CardStyle { get; set; }
+    private string? PrivateCardStyle { get; set; }
     private string SubHeaderText { get; set; } = "";
     private string H3Text { get; set; } = "";
 
@@ -25,7 +25,7 @@ public class TablerCardBasic : Element {
     public override string ToString() {
         // Create the outer div for the card
         var cardDiv = new HtmlTag("div");
-        cardDiv.Class("card").Class(CardStyle);
+        cardDiv.Class("card").Class(PrivateCardStyle);
 
         // Create the inner div for the card body
         var cardBodyDiv = new HtmlTag("div");
