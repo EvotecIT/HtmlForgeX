@@ -2,9 +2,9 @@ namespace HtmlForgeX;
 
 public class TablerTrackingBlock : Element {
     private string TooltipTitle { get; set; }
-    private TablerBackground PrivateTrackingColor { get; set; }
+    private TablerColor PrivateTrackingColor { get; set; }
 
-    public TablerTrackingBlock(string tooltipTitle, TablerBackground trackingColor) {
+    public TablerTrackingBlock(string tooltipTitle, TablerColor trackingColor) {
         TooltipTitle = tooltipTitle;
         PrivateTrackingColor = trackingColor;
     }
@@ -12,7 +12,7 @@ public class TablerTrackingBlock : Element {
     public override string ToString() {
         var trackingBlockTag = new HtmlTag("div")
             .Class("tracking-block")
-            .Class(PrivateTrackingColor.EnumToString())
+            .Class(PrivateTrackingColor.ToTablerBackground())
             .Attribute("data-bs-toggle", "tooltip")
             .Attribute("data-bs-placement", "top")
             .Attribute("title", TooltipTitle);

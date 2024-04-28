@@ -8,7 +8,7 @@ public class TablerTracking : Element {
         return this;
     }
 
-    public TablerTracking Block(string tooltipTitle, TablerBackground trackingColor) {
+    public TablerTracking Block(string tooltipTitle, TablerColor trackingColor) {
         Blocks.Add(new TablerTrackingBlock(tooltipTitle, trackingColor));
         return this;
     }
