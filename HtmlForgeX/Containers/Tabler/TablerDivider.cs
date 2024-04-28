@@ -3,9 +3,9 @@ namespace HtmlForgeX;
 public class TablerDivider : Element {
     private string Text { get; }
     private HrTextAlignment Alignment { get; }
-    private TextColor Color { get; }
+    private TablerColor Color { get; }
 
-    public TablerDivider(string text, HrTextAlignment alignment = HrTextAlignment.Center, TextColor color = TextColor.Default) {
+    public TablerDivider(string text, HrTextAlignment alignment = HrTextAlignment.Center, TablerColor color = TablerColor.Default) {
         Text = text;
         Alignment = alignment;
         Color = color;
@@ -13,7 +13,7 @@ public class TablerDivider : Element {
 
     public override string ToString() {
         var alignmentClass = Alignment.ToClassString();
-        var colorClass = Color.ToClassString();
+        var colorClass = Color.ToTablerText();
 
         var dividerTag = new HtmlTag("div")
             .Class("hr-text")
