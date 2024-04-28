@@ -3,7 +3,7 @@ namespace HtmlForgeX;
 public class TablerSteps : Element {
     private StepsOrientation PrivateOrientation { get; set; } = StepsOrientation.Horizontal;
     private bool PrivateStepCounting { get; set; } = false;
-    private TablerStepsColor? PrivateStepsColor { get; set; }
+    private TablerColor? PrivateStepsColor { get; set; }
     private List<TablerStepItem> StepItems { get; set; } = new List<TablerStepItem>();
 
     public TablerSteps Orientation(StepsOrientation orientation) {
@@ -11,7 +11,7 @@ public class TablerSteps : Element {
         return this;
     }
 
-    public TablerSteps Color(TablerStepsColor color) {
+    public TablerSteps Color(TablerColor color) {
         PrivateStepsColor = color;
         return this;
     }
@@ -38,10 +38,8 @@ public class TablerSteps : Element {
         if (PrivateStepCounting) {
             stepsUl.Class("steps-counter");
         }
+        stepsUl.Class(PrivateStepsColor?.ToTablerSteps());
 
-        if (PrivateStepsColor != null) {
-            stepsUl.Class(PrivateStepsColor.Value.EnumToString());
-        }
         foreach (var stepItem in StepItems) {
             stepsUl.Value(stepItem.ToString(PrivateOrientation));
         }
