@@ -20,7 +20,7 @@ public class Head {
     /// <value>
     /// The charset.
     /// </value>
-    public string? Charset { get; set; }
+    public string? Charset { get; set; } = "utf-8";
 
     /// <summary>
     /// Gets or sets the HTTP equiv.
