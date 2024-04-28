@@ -10,12 +10,12 @@ public enum TablerAlertType {
 public class TablerAlert : Element {
     private string Title { get; }
     private string Message { get; }
-    private TextColor AlertColor { get; set; }
+    private TablerColor AlertColor { get; set; }
     private TablerAlertType AlertType { get; }
     private TablerIconElement? AlertIcon { get; set; }
     private string AlertImportant { get; set; }
 
-    public TablerAlert(string title, string message, TextColor alertColor = TextColor.Default, TablerAlertType alertType = TablerAlertType.Regular) {
+    public TablerAlert(string title, string message, TablerColor alertColor = TablerColor.Default, TablerAlertType alertType = TablerAlertType.Regular) {
         Title = title;
         Message = message;
         AlertColor = alertColor;
@@ -27,7 +27,7 @@ public class TablerAlert : Element {
         return this;
     }
 
-    public TablerAlert Color(TextColor color) {
+    public TablerAlert Color(TablerColor color) {
         AlertColor = color;
         return this;
     }
@@ -38,12 +38,10 @@ public class TablerAlert : Element {
     }
 
     public override string ToString() {
-        // TODO: decide whether using TextColor or create a new enum for AlertColor
-        var alertColorClass = AlertColor.ToClassString().Replace("text-", "alert-");
         var alertTypeClass = AlertType == TablerAlertType.Dismissible ? "alert-dismissible" : "";
         var alertTag = new HtmlTag("div")
             .Class("alert")
-            .Class(alertColorClass)
+            .Class(AlertColor.ToTablerAlert())
             .Class(alertTypeClass)
             .Class(AlertImportant)
             .Attribute("role", "alert");
