@@ -68,8 +68,8 @@ Please support their creators by checking them out and starring their projects.
 This example shows how to create a simple dashboard with different components like cards, tables, charts, diagrams, and more.
 WIth a few lines of code, you can create a complex HTML document with a lot of components.
 
-![BasicDemoDocumentContainer03](https://raw.githubusercontent.com/EvotecIT/HtmlForgeX/master/Data/Images/Example1-1.png)
-![BasicDemoDocumentContainer03](https://raw.githubusercontent.com/EvotecIT/HtmlForgeX/master/Data/Images/Example1-2.png)
+![BasicDemoDocumentContainer03](https://raw.githubusercontent.com/EvotecIT/HtmlForgeX/master/Assets/Examples/Example1-1.png)
+![BasicDemoDocumentContainer03](https://raw.githubusercontent.com/EvotecIT/HtmlForgeX/master/Assets/Examples/Example1-2.png)
 
 Here's how you do it - with just over 300 lines of code:
 
