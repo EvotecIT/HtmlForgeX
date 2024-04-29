@@ -12,19 +12,20 @@ internal class BasicHtmlContainer04 {
             new { Name = "Bob", Age = 35, Occupation = "Architect" }
         };
 
-        var logs = @"
-Effective URL            https://evotec.xyz
-Redirect count           0
-Name lookup time         3.4e-05
-Connect time             0.000521
-Pre-transfer time        0.0
-Start-transfer time      0.0
-App connect time         0.0
-Redirect time            0.0
-Total time               28.000601
-Response code            0
-Return keyword           operation_timedout
-";
+        var logs =
+            """
+            Effective URL            https://evotec.xyz
+            Redirect count           0
+            Name lookup time         3.4e-05
+            Connect time             0.000521
+            Pre-transfer time        0.0
+            Start-transfer time      0.0
+            App connect time         0.0
+            Redirect time            0.0
+            Total time               28.000601
+            Response code            0
+            Return keyword           operation_timedout
+            """;
 
         var document = new Document {
             Head = {
