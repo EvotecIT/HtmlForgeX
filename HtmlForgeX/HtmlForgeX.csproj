@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Description></Description>
+        <Description>HtmlForgeX is a C# library to create advanced HTML reports/pages without knowing any of HTML/CSS or JavaScript.</Description>
         <AssemblyName>HtmlForgeX</AssemblyName>
         <AssemblyTitle>HtmlForgeX</AssemblyTitle>
         <VersionPrefix>0.1.0</VersionPrefix>
@@ -13,7 +13,33 @@
         <LangVersion>Latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <PackageId>HtmlForgeX</PackageId>
+        <PackageIcon>HtmlForgeX1_128x128.png</PackageIcon>
+        <PackageTags>net472;net48;netstandard;netstandard2.0,netstandard2.1;net70;net80;html;css;javascript
+        </PackageTags>
+        <PackageProjectUrl>https://github.com/EvotecIT/HtmlForgeX</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+        <DelaySign>False</DelaySign>
+        <IsPublishable>True</IsPublishable>
+        <Copyright>(c) 2011 - 2024 Przemyslaw Klys @ Evotec. All rights reserved.</Copyright>
+
+        <RepositoryUrl>https://github.com/EvotecIT/HtmlForgeX</RepositoryUrl>
+        <DebugType>portable</DebugType>
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+        <ApplicationIcon>..\Assets\Icons\HtmlForgeX1_128x128.ico</ApplicationIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryType>git</RepositoryType>
+        <SignAssembly>False</SignAssembly>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
+
+    <ItemGroup Label="Files">
+        <None Include="..\Assets\Images\HtmlForgeX1_128x128.png" Pack="true" PackagePath=""/>
+        <None Include="..\README.MD" Pack="true" PackagePath=""/>
+    </ItemGroup>
 
     <ItemGroup>
         <EmbeddedResource Include="Resources\Scripts\**" />
@@ -26,10 +52,6 @@
 
     <ItemGroup Condition="'$(TargetFramework)'=='net472' OR '$(TargetFramework)'=='net48'">
         <PackageReference Include="System.Text.Json" Version="8.0.2" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Containers\Flex\" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netcoreapp3.0' OR '$(TargetFramework)' == 'netcoreapp3.1' OR '$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">

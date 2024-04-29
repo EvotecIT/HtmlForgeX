@@ -280,8 +280,8 @@ document.Save("BasicDemoDocumentContainer03.html", openInBrowser);
 
 This example shows how to create different components in cards like progress bars, steps, logs, accordions, and more.
 
-![BasicDemoDocumentContainer04](https://raw.githubusercontent.com/EvotecIT/HtmlForgeX/master/Data/Images/Example2-1.png)
-![BasicDemoDocumentContainer04](https://raw.githubusercontent.com/EvotecIT/HtmlForgeX/master/Data/Images/Example2-2.png)
+![BasicDemoDocumentContainer04](https://raw.githubusercontent.com/EvotecIT/HtmlForgeX/master/Assets/Examples/Example2-1.png)
+![BasicDemoDocumentContainer04](https://raw.githubusercontent.com/EvotecIT/HtmlForgeX/master/Assets/Examples/Example2-2.png)
 
 With just over 200 lines of code, you can create a complex HTML document with a lot of components:
 
