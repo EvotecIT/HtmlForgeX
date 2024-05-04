@@ -1,5 +1,4 @@
-using HtmlForgeX;
-using HtmlForgeX.Tags;
+namespace HtmlForgeX;
 
 public class TablerBadgeSpan : Element {
     public new string Text { get; set; }
