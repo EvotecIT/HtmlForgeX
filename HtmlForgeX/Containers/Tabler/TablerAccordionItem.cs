@@ -1,5 +1,3 @@
-using System;
-
 namespace HtmlForgeX;
 
 public class TablerAccordionItem : Element {
