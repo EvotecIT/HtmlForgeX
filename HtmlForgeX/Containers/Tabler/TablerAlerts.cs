@@ -1,11 +1,4 @@
-using HtmlForgeX.Tags;
-
 namespace HtmlForgeX;
-
-public enum TablerAlertType {
-    Regular,
-    Dismissible
-}
 
 public class TablerAlert : Element {
     private string Title { get; }
