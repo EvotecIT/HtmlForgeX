@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+namespace HtmlForgeX;
 
-namespace HtmlForgeX.Containers.Tabler;
 internal class TablerCardStorage {
 
 
