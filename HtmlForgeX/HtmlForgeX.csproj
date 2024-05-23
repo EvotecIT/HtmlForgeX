@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <Description>HtmlForgeX is a C# library to create advanced HTML reports/pages without knowing any of HTML/CSS or JavaScript.</Description>
@@ -16,7 +16,8 @@
 
         <PackageId>HtmlForgeX</PackageId>
         <PackageIcon>HtmlForgeX1_128x128.png</PackageIcon>
-        <PackageTags>net472;net48;netstandard;netstandard2.0,netstandard2.1;net70;net80;html;css;javascript
+        <PackageTags>
+            net472;net48;netstandard;netstandard2.0,netstandard2.1;net70;net80;html;css;javascript
         </PackageTags>
         <PackageProjectUrl>https://github.com/EvotecIT/HtmlForgeX</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -35,6 +36,16 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
+
+    <ItemGroup>
+        <Using Include="HtmlForgeX" />
+        <Using Include="HtmlForgeX.Tags" />
+        <Using Include="System" />
+        <Using Include="System.Text" />
+        <Using Include="System.Collections.Generic" />
+
+        <Using Include="System.Collections" />
+    </ItemGroup>
 
     <ItemGroup Label="Files">
         <None Include="..\Assets\Images\HtmlForgeX1_128x128.png" Pack="true" PackagePath=""/>

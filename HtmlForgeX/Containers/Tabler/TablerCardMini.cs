@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace HtmlForgeX;
+
 public class TablerCardMini : TablerCard {
     private string? PrivateCardStyle { get; set; }
     private TablerIcon AvatarIcon { get; set; } = TablerIcon.User;

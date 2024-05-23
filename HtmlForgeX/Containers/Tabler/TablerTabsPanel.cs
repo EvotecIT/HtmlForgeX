@@ -1,6 +1,5 @@
 namespace HtmlForgeX;
 
-
 public class TablerTabsPanel : Element {
     internal string Id { get; } = GlobalStorage.GenerateRandomId("tabsPanel");
     internal string PrivateTitle { get; set; }

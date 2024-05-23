@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace HtmlForgeX;
 
 public class TablerDataGrid : Element {

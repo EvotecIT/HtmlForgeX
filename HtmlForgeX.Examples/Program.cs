@@ -24,8 +24,9 @@ BasicHtmlTagBuilding02.Demo1();
 //BasicHtmlTable01.Demo1(true);
 //BasicHtmlContainer01.Demo01(true);
 //BasicHtmlContainer02.Demo02(true);
-BasicHtmlContainer03.Demo03(false);
-BasicHtmlContainer04.Demo01(false);
+BasicHtmlContainer03.Demo03(true);
+BasicHtmlContainer04.Demo01(true);
+DomainHealthCheck.Demo01(true);
 
 
 

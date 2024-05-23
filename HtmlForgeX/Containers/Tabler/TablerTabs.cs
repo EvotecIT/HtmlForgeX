@@ -1,5 +1,3 @@
-using HtmlForgeX.Tags;
-
 namespace HtmlForgeX;
 
 public class TablerTabs : Element {
