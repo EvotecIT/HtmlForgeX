@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlForgeX.Tests", "HtmlFor
 		{16217046-94C6-4F4B-8106-EF62B881613D} = {16217046-94C6-4F4B-8106-EF62B881613D}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlForgeX.PowerShell", "HtmlForgeX.PowerShell\HtmlForgeX.PowerShell.csproj", "{D17952DB-6D5D-4140-8D6E-D3C5B24F7C70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,12 +35,16 @@ Global
 		{71035363-38E9-4698-8B42-E5FA1BA189A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71035363-38E9-4698-8B42-E5FA1BA189A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71035363-38E9-4698-8B42-E5FA1BA189A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17952DB-6D5D-4140-8D6E-D3C5B24F7C70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17952DB-6D5D-4140-8D6E-D3C5B24F7C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17952DB-6D5D-4140-8D6E-D3C5B24F7C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17952DB-6D5D-4140-8D6E-D3C5B24F7C70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		FileExplorer = |..\PSWriteHTML\
 		SolutionGuid = {DF74206F-ECF1-4E9A-9EE5-3CB118C741EE}
+		FileExplorer = |..\PSWriteHTML\
 	EndGlobalSection
 EndGlobal
