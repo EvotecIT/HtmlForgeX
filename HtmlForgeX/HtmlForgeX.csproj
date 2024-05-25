@@ -33,7 +33,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryType>git</RepositoryType>
         <SignAssembly>False</SignAssembly>
-        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
         <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
 
@@ -43,13 +43,15 @@
         <Using Include="System" />
         <Using Include="System.Text" />
         <Using Include="System.Collections.Generic" />
-
         <Using Include="System.Collections" />
+        <Using Include="System.Linq" />
+        <Using Include="System.Text.Json" />
+        <Using Include="System.Text.Json.Serialization" />
     </ItemGroup>
 
     <ItemGroup Label="Files">
-        <None Include="..\Assets\Images\HtmlForgeX1_128x128.png" Pack="true" PackagePath=""/>
-        <None Include="..\README.MD" Pack="true" PackagePath=""/>
+        <None Include="..\Assets\Images\HtmlForgeX1_128x128.png" Pack="true" PackagePath="" />
+        <None Include="..\README.MD" Pack="true" PackagePath="" />
     </ItemGroup>
 
     <ItemGroup>
