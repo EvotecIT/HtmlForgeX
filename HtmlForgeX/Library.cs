@@ -15,6 +15,8 @@ public enum Libraries {
     VisNetwork,
     VisNetworkLoadingBar,
     EasyQRCode,
+    FullCalendar,
+    Popper
 }
 
 public class Library {
@@ -62,7 +64,6 @@ public class LibraryLinks {
     //public List<string> JsLinkOriginal { get; set; } = new List<string>();
     public List<string> JsLink { get; set; } = new List<string>();
     public List<string> Js { get; set; } = new List<string>();
-    public List<string> JsInLine = new List<string>();
     public List<string> JsScript = new List<string>();
 
 }
@@ -92,6 +93,10 @@ public class LibrariesConverter {
                 return new VisNetworkLoadingBarLibrary();
             case Libraries.EasyQRCode:
                 return new EasyQRCode();
+            case Libraries.FullCalendar:
+                return new FullCalendarLibrary();
+            case Libraries.Popper:
+                return new PopperLibrary();
             default:
                 throw new ArgumentException($"Unsupported library: {libraries}");
         }
