@@ -212,4 +212,11 @@ public abstract class Element {
         this.Add(tracking);
         return tracking;
     }
+
+    public FullCalendar FullCalendar(Action<FullCalendar> config) {
+        var fullCalendar = new FullCalendar();
+        config(fullCalendar);
+        this.Add(fullCalendar);
+        return fullCalendar;
+    }
 }
