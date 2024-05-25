@@ -117,6 +117,7 @@ internal class BasicHtmlContainer03 {
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(4, card => {
                         card.FancyTree(fancyTree => {
+                            fancyTree.AutoScroll(true).MinimumExpandLevel(2);
                             fancyTree.Title("Enable TSDebugMode").Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png");
                             fancyTree.Title("Check OS UBR").Icon("https://cdn-icons-png.flaticon.com/512/1294/1294758.png");
                             fancyTree.Title("OS is not supported - Needs to be Updated");
@@ -203,6 +204,22 @@ internal class BasicHtmlContainer03 {
                         table1.EnableOrdering = true;
                         table1.EnableSearching = true;
                         table1.EnableScrollX = true;
+                    });
+                });
+                row.Column(TablerColumnNumber.Eight, column => {
+                    column.Card(card => {
+                        card.FullCalendar(calendar => {
+                            calendar.NowIndicator(true).NavLinks(true).BusinessHours(true);
+                            calendar.AddEvent("Test Event", "Special event", DateTime.Today);
+                            calendar.AddEvent("Test Event 2", "Special event 2", DateTime.Today.AddDays(1));
+                            calendar.AddHeaderToolbar()
+                                .Left(FullCalendarToolbarOption.Prev, FullCalendarToolbarOption.Next,
+                                    FullCalendarToolbarOption.Today)
+                                .Center(FullCalendarToolbarOption.Title)
+                                .Right(FullCalendarToolbarOption.DayGridMonth, FullCalendarToolbarOption.TimeGridWeek,
+                                    FullCalendarToolbarOption.TimeGridDay, FullCalendarToolbarOption.ListMonth);
+                        });
+
                     });
                 });
             });
