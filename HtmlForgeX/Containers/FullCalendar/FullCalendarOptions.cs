@@ -1,7 +1,3 @@
-using System.ComponentModel;
-using System.Reflection;
-
-
 namespace HtmlForgeX;
 
 public class FullCalendarOptions {
@@ -53,13 +49,20 @@ public class FullCalendarOptions {
     [JsonPropertyName("events")]
     public List<FullCalendarEvent> Events { get; set; } = new List<FullCalendarEvent>();
 
+    [JsonPropertyName("eventTimeFormat")]
+    public FullCalendarEventTimeFormat EventTimeFormat { get; set; } = new FullCalendarEventTimeFormat();
+
+    [JsonPropertyName("slotLabelFormat")]
+    public FullCalendarEventTimeFormat TimeFormat { get; set; } = new FullCalendarEventTimeFormat();
+
     [JsonPropertyName("eventDidMount")]
-    public string EventDidMount { get; set; } = "__EVENT_DID_MOUNT__";
+    public string EventDidMountPlaceHolder { get; set; } = "__EVENT_DID_MOUNT__";
 
     [JsonPropertyName("eventClick")]
-    public string EventClick { get; set; } = "__EVENT_CLICK__";
+    public string EventClickPlaceHolder { get; set; } = "__EVENT_CLICK__";
 
-    internal string EventDidMountReplacement { get; set; } = @"
+    [JsonIgnore()]
+    public string EventDidMount { get; set; } = @"
         function (info) {
             var tooltip = new Tooltip(info.el, {
                 title: info.event.extendedProps.description,
@@ -70,7 +73,8 @@ public class FullCalendarOptions {
         }
     ";
 
-    internal string EventClickReplacement { get; set; } = @"
+    [JsonIgnore()]
+    public string EventClick { get; set; } = @"
         function (info) {
             var eventObj = info.event;
             if (eventObj.extendedProps.targetName) {

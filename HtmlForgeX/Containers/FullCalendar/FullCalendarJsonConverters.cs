@@ -86,3 +86,13 @@ public class FullCalendarToolbarConverter : JsonConverter<FullCalendarToolbar> {
             .Description;
     }
 }
+
+public class RGBColorConverter : JsonConverter<RGBColor> {
+    public override RGBColor Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
+        throw new NotImplementedException();
+    }
+
+    public override void Write(Utf8JsonWriter writer, RGBColor value, JsonSerializerOptions options) {
+        writer.WriteStringValue(value.ToHex());
+    }
+}
