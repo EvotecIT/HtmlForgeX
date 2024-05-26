@@ -210,8 +210,12 @@ internal class BasicHtmlContainer03 {
                     column.Card(card => {
                         card.FullCalendar(calendar => {
                             calendar.NowIndicator(true).NavLinks(true).BusinessHours(true);
-                            calendar.AddEvent("Test Event", "Special event", DateTime.Today);
-                            calendar.AddEvent("Test Event 2", "Special event 2", DateTime.Today.AddDays(1));
+                            calendar.AddEvent("Test Event", "Special event", DateTime.Today.AddHours(16))
+                                .Url("https://evotec.xyz").TextColor(RGBColor.BlueMarguerite);
+                            calendar
+                                .AddEvent("Test Event 2", "Special event 2", DateTime.Today.AddDays(1).AddHours(13))
+                                .Color(RGBColor.Yellow);
+
                             calendar.AddHeaderToolbar()
                                 .Left(FullCalendarToolbarOption.Prev, FullCalendarToolbarOption.Next,
                                     FullCalendarToolbarOption.Today)
