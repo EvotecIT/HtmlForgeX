@@ -4,7 +4,7 @@ public class FancyTree : Element {
     public string Id { get; set; }
     public List<FancyTreeNode> Items { get; set; } = new List<FancyTreeNode>();
 
-    private FancyTreeOptions Options { get; set; } = new FancyTreeOptions();
+    public FancyTreeOptions Options { get; set; } = new FancyTreeOptions();
 
     public FancyTree MinimumExpandLevel(int level) {
         Options.MinExpandLevel = level;
@@ -28,7 +28,6 @@ public class FancyTree : Element {
         };
 
         var divTag = new HtmlTag("div").Attribute("id", Id).Attribute("class", "fancyTree");
-        //var serializedNodes = System.Text.Json.JsonSerializer.Serialize(Items);
         Options.Source = Items; // Add this line to set the source in the options
         var serializedOptions = System.Text.Json.JsonSerializer.Serialize(Options, jsonOptions);
         var scriptTag = new HtmlTag("script").Value($@"
