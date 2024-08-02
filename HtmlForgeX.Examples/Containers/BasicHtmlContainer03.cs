@@ -41,16 +41,20 @@ internal class BasicHtmlContainer03 {
             page.Row(row => {
                 // first line of 4 cards
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerColor.Facebook).TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
+                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerColor.Facebook)
+                        .TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerColor.Twitter).TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
+                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerColor.Twitter)
+                        .TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerColor.CyanLight).TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
+                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerColor.CyanLight)
+                        .TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerColor.OrangeLight).TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
+                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerColor.OrangeLight)
+                        .TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
                 });
                 // second line of 3 cards
                 row.Column(TablerColumnNumber.Four, column => {
@@ -61,7 +65,8 @@ internal class BasicHtmlContainer03 {
                         });
                         card.Row(cardRow => {
                             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Gray300).TextColor(TablerColor.Pink);
+                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Gray300)
+                                    .TextColor(TablerColor.Pink);
                             });
                             cardRow.Column(textColumn => {
                                 textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
@@ -72,7 +77,8 @@ internal class BasicHtmlContainer03 {
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.BlueLight).TextColor(TablerColor.Flickr));
+                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.BlueLight)
+                            .TextColor(TablerColor.Flickr));
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
@@ -84,7 +90,8 @@ internal class BasicHtmlContainer03 {
                     column.Card(card => {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
-                        card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
+                        card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil)
+                            .AppendContent(" cool?");
                     });
                 });
                 row.Column(TablerColumnNumber.Eight, column => {
@@ -104,12 +111,18 @@ internal class BasicHtmlContainer03 {
                             dataGrid.Title("Domain Information").Content("This is the domain information");
                             dataGrid.AddItem("Expiration date", DateTime.Now.AddDays(5).ToString());
                             dataGrid.AddItem("Age", "5 days");
-                            dataGrid.Title("Expiring").Content(new TablerBadgeSpan("Soon", TablerColor.Azure, textColor: TablerColor.White));
-                            dataGrid.Title("Registrar").Content(new TablerBadgeSpan("Testing", TablerColor.OrangeLight, TablerBadgeStyle.Normal));
-                            dataGrid.Title("Pill").Content(new TablerBadgeSpan("1", TablerColor.Azure, TablerBadgeStyle.Pill, TablerColor.White));
-                            dataGrid.Title("Outline").Content(new TablerBadgeSpan("Testing", TablerColor.Azure, TablerBadgeStyle.Outline, TablerColor.Cyan));
-                            dataGrid.Title("Text Color").Content(new TablerBadgeSpan("Testing", TablerColor.Facebook, TablerBadgeStyle.Normal, TablerColor.Green));
-                            dataGrid.Title("Normal").Content(new TablerBadgeSpan("Testing", TablerColor.AzureLight, TablerBadgeStyle.Normal));
+                            dataGrid.Title("Expiring").Content(new TablerBadgeSpan("Soon", TablerColor.Azure,
+                                textColor: TablerColor.White));
+                            dataGrid.Title("Registrar").Content(new TablerBadgeSpan("Testing", TablerColor.OrangeLight,
+                                TablerBadgeStyle.Normal));
+                            dataGrid.Title("Pill").Content(new TablerBadgeSpan("1", TablerColor.Azure,
+                                TablerBadgeStyle.Pill, TablerColor.White));
+                            dataGrid.Title("Outline").Content(new TablerBadgeSpan("Testing", TablerColor.Azure,
+                                TablerBadgeStyle.Outline, TablerColor.Cyan));
+                            dataGrid.Title("Text Color").Content(new TablerBadgeSpan("Testing", TablerColor.Facebook,
+                                TablerBadgeStyle.Normal, TablerColor.Green));
+                            dataGrid.Title("Normal").Content(new TablerBadgeSpan("Testing", TablerColor.AzureLight,
+                                TablerBadgeStyle.Normal));
 
                         });
                     });
@@ -118,11 +131,14 @@ internal class BasicHtmlContainer03 {
                     column.Card(4, card => {
                         card.FancyTree(fancyTree => {
                             fancyTree.AutoScroll(true).MinimumExpandLevel(2);
-                            fancyTree.Title("Enable TSDebugMode").Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png");
-                            fancyTree.Title("Check OS UBR").Icon("https://cdn-icons-png.flaticon.com/512/1294/1294758.png");
+                            fancyTree.Title("Enable TSDebugMode")
+                                .Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png");
+                            fancyTree.Title("Check OS UBR")
+                                .Icon("https://cdn-icons-png.flaticon.com/512/1294/1294758.png");
                             fancyTree.Title("OS is not supported - Needs to be Updated");
                             fancyTree.Title("OS Supported")
-                                .AddNode(new FancyTreeNode("Pre-Check", "https://cdn-icons-png.flaticon.com/512/1294/1294758.png", true))
+                                .AddNode(new FancyTreeNode("Pre-Check",
+                                    "https://cdn-icons-png.flaticon.com/512/1294/1294758.png", true))
                                 .AddNode(node => {
                                     node.Title("Checking if DB is up and running");
                                     node.AddNode(nextNode => {
@@ -138,11 +154,14 @@ internal class BasicHtmlContainer03 {
                                 node.AddNode("Node nested under Shutdown 2-1");
                                 node.AddNode("Node nested under Shutdown 2-2");
                             });
-                            fancyTree.Title("Other").Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png").AddNode(node => {
-                                node.Title("PC Start Up").Icon("https://cdn-icons-png.flaticon.com/512/1294/1294758.png").AddNode(nestedNode => {
-                                    nestedNode.Title("Cleanup");
+                            fancyTree.Title("Other").Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png")
+                                .AddNode(node => {
+                                    node.Title("PC Start Up")
+                                        .Icon("https://cdn-icons-png.flaticon.com/512/1294/1294758.png").AddNode(
+                                            nestedNode => {
+                                                nestedNode.Title("Cleanup");
+                                            });
                                 });
-                            });
                             // Creates nesting of node, within node, within node, within node
                             fancyTree.Title("Test")
                                 .AddNode("PC Start Up")
@@ -199,8 +218,11 @@ internal class BasicHtmlContainer03 {
                     column.Card(card => {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
-                        card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
-                        var table1 = ((DataTablesTable)card.Table(data, TableType.DataTables)).Style(BootStrapTableStyle.Striped);
+                        card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil)
+                            .AppendContent(" cool?");
+                        var table1 =
+                            ((DataTablesTable)card.Table(data, TableType.DataTables))
+                            .Style(BootStrapTableStyle.Striped);
                         table1.EnableOrdering = true;
                         table1.EnableSearching = true;
                         table1.EnableScrollX = true;
@@ -224,6 +246,11 @@ internal class BasicHtmlContainer03 {
                                     FullCalendarToolbarOption.TimeGridDay, FullCalendarToolbarOption.ListMonth);
                         });
 
+                    });
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.Card(card => {
+                        card.TablerList().AddItem("Test", TablerIcon.Table).AddItem("test2", TablerIcon.AB);
                     });
                 });
             });
