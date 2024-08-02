@@ -53,7 +53,7 @@ internal class DomainHealthCheck {
                             //cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
                             //    avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Gray300).TextColor(TablerColor.Pink);
                             //});
-                            cardRow.Column(TablerColumnNumber.Auto, textColumn => {
+                            cardRow.Column(TablerColumnNumber.Three, textColumn => {
                                 textColumn.Add(new TablerIconElement(TablerIcon.ShieldCheck).FontSize(115).Color(RGBColor.LightGreen));
                             });
                             cardRow.Column(TablerColumnNumber.Three, textColumn => {
