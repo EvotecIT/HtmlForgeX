@@ -1,12 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Description>HtmlForgeX is a C# library to create advanced HTML reports/pages without knowing any of HTML/CSS or JavaScript.</Description>
+        <Description>HtmlForgeX is a C# library to create advanced HTML reports/pages without
+            knowing any of HTML/CSS or JavaScript.</Description>
         <AssemblyName>HtmlForgeX</AssemblyName>
         <AssemblyTitle>HtmlForgeX</AssemblyTitle>
         <VersionPrefix>0.1.0</VersionPrefix>
-        <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`Windows`))' ">netstandard2.0;netstandard2.1;net472;net48;net6.0;net7.0;net8.0</TargetFrameworks>
-        <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`OSX`))'  Or '$([MSBuild]::IsOsPlatform(`Linux`))' ">net6.0;net7.0;net8.0</TargetFrameworks>
+        <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`Windows`))' ">
+            netstandard2.0;netstandard2.1;net472;net48;net6.0;net7.0;net8.0</TargetFrameworks>
+        <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`OSX`))'  Or '$([MSBuild]::IsOsPlatform(`Linux`))' ">
+            net6.0;net7.0;net8.0</TargetFrameworks>
         <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <Company>Evotec</Company>
         <Authors>Przemyslaw Klys</Authors>
@@ -60,11 +63,15 @@
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0' OR '$(TargetFramework)'=='netstandard2.1'">
-        <PackageReference Include="System.Text.Json" Version="8.0.2" />
+        <PackageReference Include="System.Text.Json" Version="8.0.4" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)'=='net472' OR '$(TargetFramework)'=='net48'">
-        <PackageReference Include="System.Text.Json" Version="8.0.2" />
+        <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Containers\ScrollingText\" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netcoreapp3.0' OR '$(TargetFramework)' == 'netcoreapp3.1' OR '$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">
