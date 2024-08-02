@@ -16,7 +16,8 @@ public enum Libraries {
     VisNetworkLoadingBar,
     EasyQRCode,
     FullCalendar,
-    Popper
+    Popper,
+    ScrollingText
 }
 
 public class Library {
@@ -97,6 +98,8 @@ public class LibrariesConverter {
                 return new FullCalendarLibrary();
             case Libraries.Popper:
                 return new PopperLibrary();
+            case Libraries.ScrollingText:
+                return new ScrollingTextLibrary();
             default:
                 throw new ArgumentException($"Unsupported library: {libraries}");
         }
