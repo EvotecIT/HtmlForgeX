@@ -96,6 +96,13 @@ public abstract class Element {
         return row;
     }
 
+    public ScrollingText ScrollingText(Action<ScrollingText> config) {
+        var scrollingText = new ScrollingText();
+        config(scrollingText);
+        this.Add(scrollingText);
+        return scrollingText;
+    }
+
     public TablerAvatar Avatar() {
         var avatar = new TablerAvatar();
         this.Add(avatar);
@@ -218,5 +225,11 @@ public abstract class Element {
         config(fullCalendar);
         this.Add(fullCalendar);
         return fullCalendar;
+    }
+
+    public UnorderedList TablerList() {
+        var list = new UnorderedList();
+        this.Add(list);
+        return list;
     }
 }
