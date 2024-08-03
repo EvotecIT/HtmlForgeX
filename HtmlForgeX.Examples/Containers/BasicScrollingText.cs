@@ -14,8 +14,8 @@ internal class BasicScrollingText {
             page.Layout = TablerLayout.Fluid;
 
             page.ScrollingText(scroll => {
-                scroll.AddItem("First Section", "Text content");
-                scroll.AddItem("Second Section", item => {
+                scroll.ScrollingTextItem("First Section", "Text content");
+                scroll.ScrollingTextItem("Second Section", item => {
                     item.Card(card => {
                         card.Steps().StepCounting().Color(TablerColor.Red)
                             .AddStep("Order received", false)
@@ -38,12 +38,22 @@ internal class BasicScrollingText {
                             .Icon("https://cdn-icons-png.flaticon.com/512/1294/1294758.png");
                     });
                 });
-                scroll.AddItem().Title("MyTitle").Content(item => {
+                scroll.ScrollingTextItem().Title("MyTitle").Content(item => {
                     item.ApexChart(chart => {
                         chart.Title.Text("Bar chart");
                         chart.AddBar("Bar 1", 30).AddBar("Bar 2", 40).AddBar("Bar 3", 50);
                     });
+
+                    item.ScrollingTextItem(subItem => {
+                        subItem.ApexChart(chart => {
+                            chart.Title.Text("Bar chart");
+                            chart.AddBar("Bar 1", 30).AddBar("Bar 2", 40).AddBar("Bar 3", 50);
+                        });
+                    }).Title("Sub Title");
+
                 });
+
+
             });
 
         });

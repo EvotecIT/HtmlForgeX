@@ -103,6 +103,13 @@ public abstract class Element {
         return scrollingText;
     }
 
+    public ScrollingTextItem ScrollingTextItem(Action<ScrollingTextItem> config) {
+        var scrollingTextItem = new ScrollingTextItem();
+        config(scrollingTextItem);
+        this.Add(scrollingTextItem);
+        return scrollingTextItem;
+    }
+
     public TablerAvatar Avatar() {
         var avatar = new TablerAvatar();
         this.Add(avatar);

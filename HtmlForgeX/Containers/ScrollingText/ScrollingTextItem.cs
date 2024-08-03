@@ -1,6 +1,6 @@
 namespace HtmlForgeX;
 
-public class ScrollingTextItem {
+public class ScrollingTextItem : Element {
     [JsonPropertyName("id")]
     public string Id { get; set; }
 
@@ -64,8 +64,10 @@ public class ScrollingTextItem {
     public override string ToString() {
         if (ContentProperty != null) {
             return new HtmlTag("div").Value(ContentProperty).ToString();
-        } else {
+        } else if (ContentElement != null) {
             return ContentElement.ToString();
+        } else {
+            return "";
         }
     }
 }
