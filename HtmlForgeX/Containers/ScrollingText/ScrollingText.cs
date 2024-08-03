@@ -10,15 +10,28 @@ public class ScrollingText : Element {
         Id = GlobalStorage.GenerateRandomId("scrollingText");
     }
 
-    public ScrollingText AddItem(string title, string content) {
-        var item = new ScrollingTextItem(title, content);
+    public ScrollingTextItem AddItem() {
+        var item = new ScrollingTextItem();
         Items.Add(item);
-        return this;
+        return item;
     }
 
-    public ScrollingText AddItem(ScrollingTextItem item) {
+    public ScrollingTextItem AddItem(string title, string content) {
+        var item = new ScrollingTextItem(title, content);
         Items.Add(item);
-        return this;
+        return item;
+    }
+
+    public ScrollingTextItem AddItem(string title, Action<ElementContainer> contentAction) {
+        var item = new ScrollingTextItem(title);
+        item.Content(contentAction);
+        Items.Add(item);
+        return item;
+    }
+
+    public ScrollingTextItem AddItem(ScrollingTextItem item) {
+        Items.Add(item);
+        return item;
     }
 
     public override string ToString() {
@@ -40,8 +53,10 @@ public class ScrollingText : Element {
     private HtmlTag RenderItem(ScrollingTextItem item) {
         var sectionTag = new HtmlTag("section").Attribute("id", item.Id);
         sectionTag.Value(new HtmlTag("h2").Value(item.TitleProperty));
-        sectionTag.Value(new HtmlTag("div").Value(new HtmlTag("p").Value(item.ContentProperty)));
-
+        sectionTag.Value(new HtmlTag("div").Value(
+                // new HtmlTag("p").Value(item.ContentProperty)
+                item.ToString()
+            ));
         foreach (var child in item.Children) {
             sectionTag.Value(RenderItem(child));
         }

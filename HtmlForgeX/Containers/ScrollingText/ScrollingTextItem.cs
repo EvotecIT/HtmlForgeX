@@ -13,12 +13,24 @@ public class ScrollingTextItem {
     [JsonPropertyName("children")]
     public List<ScrollingTextItem> Children { get; set; } = new List<ScrollingTextItem>();
 
-    public ScrollingTextItem() { }
+    private Element ContentElement { get; set; }
 
-    public ScrollingTextItem(string title, string content) {
+    public ScrollingTextItem() {
+        Id = $"scrolling-{Guid.NewGuid().ToString("N")}";
+    }
+
+    public ScrollingTextItem(string title, string content = "") {
         Id = $"scrolling-{Guid.NewGuid().ToString("N")}";
         TitleProperty = title;
-        ContentProperty = content;
+        if (content != "") {
+            ContentProperty = content;
+        }
+    }
+
+    public ScrollingTextItem(string title, ElementContainer content) {
+        Id = $"scrolling-{Guid.NewGuid().ToString("N")}";
+        TitleProperty = title;
+        ContentElement = content;
     }
 
     public ScrollingTextItem Title(string title) {
@@ -31,14 +43,29 @@ public class ScrollingTextItem {
         return this;
     }
 
-    public ScrollingTextItem AddChild(ScrollingTextItem child) {
-        Children.Add(child);
+    public ScrollingTextItem Content(Action<ElementContainer> content) {
+        var contentElement = new ElementContainer();
+        content(contentElement);
+        ContentElement = contentElement;
         return this;
     }
 
-    public ScrollingTextItem AddChild(string title, string content) {
-        var child = new ScrollingTextItem(title, content);
-        Children.Add(child);
-        return this;
+    //public ScrollingTextItem AddChild(ScrollingTextItem child) {
+    //    Children.Add(child);
+    //    return this;
+    //}
+
+    //public ScrollingTextItem AddChild(string title, string content) {
+    //    var child = new ScrollingTextItem(title, content);
+    //    Children.Add(child);
+    //    return this;
+    //}
+
+    public override string ToString() {
+        if (ContentProperty != null) {
+            return new HtmlTag("div").Value(ContentProperty).ToString();
+        } else {
+            return ContentElement.ToString();
+        }
     }
 }
