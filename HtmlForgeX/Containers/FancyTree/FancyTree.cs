@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Fancy Tree element provides a tree view of the data in a graphical way.
+/// </summary>
 public class FancyTree : Element {
     public string Id { get; set; }
     public List<FancyTreeNode> Items { get; set; } = new List<FancyTreeNode>();
@@ -18,6 +21,7 @@ public class FancyTree : Element {
 
     public FancyTree() {
         // add library to the global storage, for HTML processing
+        GlobalStorage.Libraries.Add(Libraries.JQuery);
         GlobalStorage.Libraries.Add(Libraries.FancyTree);
         Id = GlobalStorage.GenerateRandomId("fancyTree");
     }
