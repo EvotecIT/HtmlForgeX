@@ -14,8 +14,36 @@ internal class BasicScrollingText {
             page.Layout = TablerLayout.Fluid;
 
             page.ScrollingText(scroll => {
-                scroll.AddItem("Test1", "Test")
-                    .AddItem("Test2", "test2");
+                scroll.AddItem("First Section", "Text content");
+                scroll.AddItem("Second Section", item => {
+                    item.Card(card => {
+                        card.Steps().StepCounting().Color(TablerColor.Red)
+                            .AddStep("Order received", false)
+                            .AddStep("Processing", true)
+                            .AddStep("Shipped", false)
+                            .AddStep("Delivered", false);
+                    });
+                    item.Steps().StepCounting().Color(TablerColor.Red)
+                        .AddStep("Order received", false)
+                        .AddStep("Processing", true)
+                        .AddStep("Shipped", false);
+
+                    item.LineBreak();
+
+                    item.FancyTree(fancyTree => {
+                        fancyTree.AutoScroll(true).MinimumExpandLevel(2);
+                        fancyTree.Title("Enable TSDebugMode")
+                            .Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png");
+                        fancyTree.Title("Check OS UBR")
+                            .Icon("https://cdn-icons-png.flaticon.com/512/1294/1294758.png");
+                    });
+                });
+                scroll.AddItem().Title("MyTitle").Content(item => {
+                    item.ApexChart(chart => {
+                        chart.Title.Text("Bar chart");
+                        chart.AddBar("Bar 1", 30).AddBar("Bar 2", 40).AddBar("Bar 3", 50);
+                    });
+                });
             });
 
         });
