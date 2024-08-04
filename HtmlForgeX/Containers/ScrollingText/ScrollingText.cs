@@ -10,27 +10,10 @@ public class ScrollingText : Element {
         Id = GlobalStorage.GenerateRandomId("scrollingText");
     }
 
-    public ScrollingTextItem AddItem(string title) {
-        var item = new ScrollingTextItem(title);
-        Items.Add(item);
-        return item;
-    }
-
-    public ScrollingTextItem AddItem(string title, string content) {
-        var item = new ScrollingTextItem(title, content);
-        Items.Add(item);
-        return item;
-    }
-
     public ScrollingTextItem AddItem(string title, Action<ScrollingTextItem> contentAction) {
         var item = new ScrollingTextItem(title);
         contentAction(item);
         //item.AddItem(item);
-        Items.Add(item);
-        return item;
-    }
-
-    public ScrollingTextItem AddItem(ScrollingTextItem item) {
         Items.Add(item);
         return item;
     }

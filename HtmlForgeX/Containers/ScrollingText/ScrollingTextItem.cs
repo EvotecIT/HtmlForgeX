@@ -38,13 +38,6 @@ public class ScrollingTextItem : Element {
         return this;
     }
 
-    public ScrollingTextItem AddItem(Action<ElementContainer> content) {
-        var contentElement = new ElementContainer();
-        content(contentElement);
-        ContentElement = contentElement;
-        return this;
-    }
-
     public ScrollingTextItem AddItem(ScrollingTextItem child) {
         Children.Add(child);
         return this;
@@ -70,15 +63,18 @@ public class ScrollingTextItem : Element {
 
         if (!string.IsNullOrEmpty(ContentProperty)) {
             sectionTag.Value(new HtmlTag("div").Value(ContentProperty));
-        } else if (ContentElement != null) {
-            sectionTag.Value(new HtmlTag("div").Value(ContentElement.ToString()));
         }
 
-        foreach (var child in Items) {  // Iterate over Items instead of Children
+        // Render all child elements recursively
+        foreach (var child in Children) {
+            sectionTag.Value(child.ToString());
+        }
+
+        // Render all nested items (aka ScrollingTextItems)
+        foreach (var child in Items) {
             sectionTag.Value(child.ToString());
         }
 
         return sectionTag.ToString();
     }
-
 }
