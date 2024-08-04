@@ -103,8 +103,8 @@ public abstract class Element {
         return scrollingText;
     }
 
-    public ScrollingTextItem ScrollingTextItem(Action<ScrollingTextItem> config) {
-        var scrollingTextItem = new ScrollingTextItem();
+    public ScrollingTextItem ScrollingTextItem(string title, Action<ScrollingTextItem> config) {
+        var scrollingTextItem = new ScrollingTextItem(title);
         config(scrollingTextItem);
         this.Add(scrollingTextItem);
         return scrollingTextItem;

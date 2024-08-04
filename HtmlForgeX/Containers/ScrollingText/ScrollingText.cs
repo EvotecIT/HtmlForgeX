@@ -10,26 +10,26 @@ public class ScrollingText : Element {
         Id = GlobalStorage.GenerateRandomId("scrollingText");
     }
 
-    public ScrollingTextItem ScrollingTextItem() {
-        var item = new ScrollingTextItem();
+    public ScrollingTextItem AddItem(string title) {
+        var item = new ScrollingTextItem(title);
         Items.Add(item);
         return item;
     }
 
-    public ScrollingTextItem ScrollingTextItem(string title, string content) {
+    public ScrollingTextItem AddItem(string title, string content) {
         var item = new ScrollingTextItem(title, content);
         Items.Add(item);
         return item;
     }
 
-    public ScrollingTextItem ScrollingTextItem(string title, Action<ElementContainer> contentAction) {
+    public ScrollingTextItem AddItem(string title, Action<ElementContainer> contentAction) {
         var item = new ScrollingTextItem(title);
-        item.Content(contentAction);
+        item.AddItem(contentAction);
         Items.Add(item);
         return item;
     }
 
-    public ScrollingTextItem ScrollingTextItem(ScrollingTextItem item) {
+    public ScrollingTextItem AddItem(ScrollingTextItem item) {
         Items.Add(item);
         return item;
     }
@@ -40,7 +40,7 @@ public class ScrollingText : Element {
         var divTagEmpty = new HtmlTag("div");
 
         foreach (var item in Items) {
-            divTagEmpty.Value(RenderItem(item));
+            divTagEmpty.Value(item.ToString());
         }
 
         sectionScrollingDiv.Value(divTagEmpty);
@@ -48,20 +48,6 @@ public class ScrollingText : Element {
 
         sectionMain.Value(sectionScrollingDiv);
         return sectionMain.ToString();
-    }
-
-    private HtmlTag RenderItem(ScrollingTextItem item) {
-        var sectionTag = new HtmlTag("section").Attribute("id", item.Id);
-        sectionTag.Value(new HtmlTag("h2").Value(item.TitleProperty));
-        sectionTag.Value(new HtmlTag("div").Value(
-                // new HtmlTag("p").Value(item.ContentProperty)
-                item.ToString()
-            ));
-        foreach (var child in item.Children) {
-            sectionTag.Value(RenderItem(child));
-        }
-
-        return sectionTag;
     }
 
     private HtmlTag RenderNav() {
@@ -82,7 +68,7 @@ public class ScrollingText : Element {
 
         if (item.Children.Count > 0) {
             var ulTag = new HtmlTag("ul");
-            foreach (var child in item.Children) {
+            foreach (var child in item.Items) {
                 ulTag.Value(RenderNavItem(child));
             }
             liTag.Value(ulTag);

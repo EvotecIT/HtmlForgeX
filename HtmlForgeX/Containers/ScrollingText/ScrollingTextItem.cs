@@ -11,7 +11,7 @@ public class ScrollingTextItem : Element {
     public string ContentProperty { get; set; }
 
     [JsonPropertyName("children")]
-    public List<ScrollingTextItem> Children { get; set; } = new List<ScrollingTextItem>();
+    public List<ScrollingTextItem> Items { get; set; } = new List<ScrollingTextItem>();
 
     private Element ContentElement { get; set; }
 
@@ -38,36 +38,39 @@ public class ScrollingTextItem : Element {
         return this;
     }
 
-    public ScrollingTextItem Content(string content) {
-        ContentProperty = content;
-        return this;
-    }
-
-    public ScrollingTextItem Content(Action<ElementContainer> content) {
+    public ScrollingTextItem AddItem(Action<ElementContainer> content) {
         var contentElement = new ElementContainer();
         content(contentElement);
         ContentElement = contentElement;
         return this;
     }
 
-    //public ScrollingTextItem AddChild(ScrollingTextItem child) {
-    //    Children.Add(child);
-    //    return this;
-    //}
+    public ScrollingTextItem AddItem(ScrollingTextItem child) {
+        Children.Add(child);
+        return this;
+    }
 
-    //public ScrollingTextItem AddChild(string title, string content) {
-    //    var child = new ScrollingTextItem(title, content);
-    //    Children.Add(child);
-    //    return this;
-    //}
+    public ScrollingTextItem AddItem(string title, string content) {
+        var child = new ScrollingTextItem(title, content);
+        Children.Add(child);
+        return this;
+    }
 
     public override string ToString() {
+        var sectionTag = new HtmlTag("section").Attribute("id", Id);
+        sectionTag.Value(new HtmlTag("h2").Value(TitleProperty));
         if (ContentProperty != null) {
-            return new HtmlTag("div").Value(ContentProperty).ToString();
+            sectionTag.Value(new HtmlTag("div").Value(ContentProperty));
         } else if (ContentElement != null) {
-            return ContentElement.ToString();
-        } else {
-            return "";
+            sectionTag.Value(new HtmlTag("div").Value(ContentElement.ToString()));
         }
+
+        foreach (var child in Children) {
+            sectionTag.Value(child.ToString());
+        }
+
+        return sectionTag.ToString();
     }
+
+
 }
