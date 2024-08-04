@@ -74,9 +74,9 @@ public class ScrollingText : Element {
         var liTag = new HtmlTag("li");
         liTag.Value(new HtmlTag("a").Attribute("href", $"#{item.Id}").Value(item.TitleProperty));
 
-        if (item.Children.Count > 0) {
+        if (item.Items.Count > 0) {  // Check Items instead of Children
             var ulTag = new HtmlTag("ul");
-            foreach (var child in item.Items) {
+            foreach (var child in item.Items) {  // Iterate over Items
                 ulTag.Value(RenderNavItem(child));
             }
             liTag.Value(ulTag);
@@ -84,4 +84,5 @@ public class ScrollingText : Element {
 
         return liTag;
     }
+
 }

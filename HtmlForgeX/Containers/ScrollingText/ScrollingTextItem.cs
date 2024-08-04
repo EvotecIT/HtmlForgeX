@@ -56,21 +56,29 @@ public class ScrollingTextItem : Element {
         return this;
     }
 
+    // Allow adding nested content
+    public ScrollingTextItem AddItem(string title, Action<ScrollingTextItem> config) {
+        var child = new ScrollingTextItem(title);
+        config(child);
+        Items.Add(child);  // Use Items instead of Children
+        return child;
+    }
+
     public override string ToString() {
         var sectionTag = new HtmlTag("section").Attribute("id", Id);
         sectionTag.Value(new HtmlTag("h2").Value(TitleProperty));
-        if (ContentProperty != null) {
+
+        if (!string.IsNullOrEmpty(ContentProperty)) {
             sectionTag.Value(new HtmlTag("div").Value(ContentProperty));
         } else if (ContentElement != null) {
             sectionTag.Value(new HtmlTag("div").Value(ContentElement.ToString()));
         }
 
-        foreach (var child in Children) {
+        foreach (var child in Items) {  // Iterate over Items instead of Children
             sectionTag.Value(child.ToString());
         }
 
         return sectionTag.ToString();
     }
-
 
 }
