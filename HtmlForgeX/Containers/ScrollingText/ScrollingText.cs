@@ -13,7 +13,6 @@ public class ScrollingText : Element {
     public ScrollingTextItem AddItem(string title, Action<ScrollingTextItem> contentAction) {
         var item = new ScrollingTextItem(title);
         contentAction(item);
-        //item.AddItem(item);
         Items.Add(item);
         return item;
     }
@@ -48,11 +47,11 @@ public class ScrollingText : Element {
 
     private HtmlTag RenderNavItem(ScrollingTextItem item) {
         var liTag = new HtmlTag("li");
-        liTag.Value(new HtmlTag("a").Attribute("href", $"#{item.Id}").Value(item.TitleProperty));
+        liTag.Value(new HtmlTag("a").Attribute("href", $"#{item.Id}").Value(item.Title));
 
-        if (item.Items.Count > 0) {  // Check Items instead of Children
+        if (item.Items.Count > 0) {
             var ulTag = new HtmlTag("ul");
-            foreach (var child in item.Items) {  // Iterate over Items
+            foreach (var child in item.Items) {
                 ulTag.Value(RenderNavItem(child));
             }
             liTag.Value(ulTag);
@@ -60,5 +59,4 @@ public class ScrollingText : Element {
 
         return liTag;
     }
-
 }
