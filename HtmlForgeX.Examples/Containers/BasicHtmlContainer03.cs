@@ -1,11 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace HtmlForgeX.Examples.Containers;
+
 internal class BasicHtmlContainer03 {
     public static void Demo03(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Basic Demo Document Container 3");
