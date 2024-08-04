@@ -22,17 +22,27 @@ internal class BasicScrollingText {
                     item.Text("Text within MyTitle");
                     item.Text("Text within MyTitle2");
 
-                    item.ScrollingTextItem("Another title", subItem => {
-                        //subItem.AddItem("Sub Title 1", item2 => {
-                        //    item2.Text("Text in theory in Sub Title 1");
-                        //    item2.Text("Text in theory in Sub Title 2");
-                        //});
 
+                    item.AddItem("Another title", subItem => {
+                        subItem.AddItem("Sub Title 1", item2 => {
+                            item2.Text("Text in theory in Sub Title 1");
+                            item2.Text("Text in theory in Sub Title 2");
+                        });
+                        subItem.AddItem("Sub Title 2", item3 => {
+                            item3.ApexChart(chart => {
+                                chart.Title.Text("Pie Chart").Color(RGBColor.FruitSalad);
+                                chart.AddPie("Pie 1", 30).AddPie("Pie 2", 40).AddPie("Pie 3", 50);
+                            });
+                        });
                     });
 
                 });
-
-
+                scroll.AddItem("Another section", item => {
+                    item.ApexChart(chart => {
+                        chart.Title.Text("Donut Chart").Color(RGBColor.FruitSalad);
+                        chart.AddDonut("Donut 1", 30).AddDonut("Donut 2", 40).AddDonut("Donut 3", 50);
+                    });
+                });
             });
 
         });

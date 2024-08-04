@@ -22,9 +22,17 @@ public class ScrollingText : Element {
         return item;
     }
 
-    public ScrollingTextItem AddItem(string title, Action<ElementContainer> contentAction) {
+    //public ScrollingTextItem AddItem(string title, Action<ElementContainer> contentAction) {
+    //    var item = new ScrollingTextItem(title);
+    //    item.AddItem(contentAction);
+    //    Items.Add(item);
+    //    return item;
+    //}
+
+    public ScrollingTextItem AddItem(string title, Action<ScrollingTextItem> contentAction) {
         var item = new ScrollingTextItem(title);
-        item.AddItem(contentAction);
+        contentAction(item);
+        //item.AddItem(item);
         Items.Add(item);
         return item;
     }
