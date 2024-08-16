@@ -7,6 +7,13 @@ public class TablerLogs : Element {
     public TablerLogs(string code) {
         PrivateCode = code;
     }
+    public TablerLogs(string[] code) {
+        PrivateCode = string.Join(Environment.NewLine, code);
+    }
+
+    public TablerLogs(List<string> code) {
+        PrivateCode = string.Join(Environment.NewLine, code);
+    }
 
     public TablerLogs Title(HeaderLevelTag level, string title) {
         PrivateLevelTitle = level;
