@@ -10,20 +10,16 @@ public class TablerTabs : Element {
         return this;
     }
 
-    public TablerTabs AddTab(TablerTabsPanel panel) {
-        Panels.Add(panel);
-        return this;
-    }
-
     public TablerTabsPanel AddTab(string title, Element content) {
-        var tabsPanel = new TablerTabsPanel().Title(title).Content(content);
+        var tabsPanel = new TablerTabsPanel().Title(title);
+        tabsPanel.Add(content);
         Panels.Add(tabsPanel);
         return tabsPanel;
     }
 
-    public TablerTabsPanel AddTab(string title, Action<TablerTabsPanel> panel) {
+    public TablerTabsPanel AddTab(string title, Action<TablerTabsPanel> panelAction) {
         var tabsPanel = new TablerTabsPanel().Title(title);
-        panel(tabsPanel);
+        panelAction(tabsPanel);
         Panels.Add(tabsPanel);
         return tabsPanel;
     }
@@ -53,13 +49,12 @@ public class TablerTabs : Element {
                         .Attribute("data-bs-toggle", "tab")
                         .Attribute("href", "#" + panel.Id)
                         .Value(panel.PrivateTitle + " " + new TablerIconElement(TablerIcon.Settings).FontSize(20))
-                    );
+                );
             tabsHeader.Value(tabHeaderItem);
         }
 
         cardHeaderDiv.Value(tabsHeader);
         cardBodyDiv.Value(tabsDiv);
-
 
         cardDiv.Value(cardHeaderDiv);
         cardDiv.Value(cardBodyDiv);

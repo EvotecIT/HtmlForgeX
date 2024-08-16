@@ -1,28 +1,14 @@
 namespace HtmlForgeX;
 
-public class TablerTabsPanel : Element {
+public class TablerTabsPanel : ElementContainer {
     internal string Id { get; } = GlobalStorage.GenerateRandomId("tabsPanel");
     internal string PrivateTitle { get; set; }
-    private Element ContentElement { get; set; }
     internal bool IsActive { get; set; }
     internal bool IsDisabled { get; set; }
     internal TabState? PrivateTabState { get; set; }
 
-
     public TablerTabsPanel Title(string title) {
         PrivateTitle = title;
-        return this;
-    }
-
-    public TablerTabsPanel Content(Element content) {
-        ContentElement = content;
-        return this;
-    }
-
-    public TablerTabsPanel Content(Action<ElementContainer> content) {
-        var contentElement = new ElementContainer();
-        content(contentElement);
-        ContentElement = contentElement;
         return this;
     }
 
@@ -45,8 +31,12 @@ public class TablerTabsPanel : Element {
         var panelDiv = new HtmlTag("div")
             .Class("tab-pane")
             .Class(IsActive ? "active show" : "")
-            .Id(Id)
-            .Value(ContentElement);
+            .Id(Id);
+
+        // Convert child elements to string and add them to the panelDiv
+        foreach (var child in Children) {
+            panelDiv.Value(child.ToString());
+        }
 
         return panelDiv.ToString();
     }
