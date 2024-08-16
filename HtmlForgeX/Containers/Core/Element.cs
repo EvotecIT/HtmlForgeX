@@ -182,6 +182,18 @@ public abstract class Element {
         return logs;
     }
 
+    public TablerLogs Logs(string[] code) {
+        var logs = new TablerLogs(code);
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(List<string> code) {
+        var logs = new TablerLogs(code);
+        this.Add(logs);
+        return logs;
+    }
+
     public TablerSteps Steps() {
         var steps = new TablerSteps();
         this.Add(steps);
