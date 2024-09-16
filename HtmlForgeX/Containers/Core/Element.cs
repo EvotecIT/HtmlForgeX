@@ -35,6 +35,12 @@ public abstract class Element {
         return table;
     }
 
+    public Table Table(Object objects, TableType tableType) {
+        var table = HtmlForgeX.Table.Create(objects, tableType);
+        this.Add(table);
+        return table;
+    }
+
     public LineBreak LineBreak() {
         var lineBreak = new LineBreak();
         this.Add(lineBreak);
