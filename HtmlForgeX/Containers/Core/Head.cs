@@ -77,6 +77,10 @@ public class Head {
     public List<string> Scripts { get; set; } = new List<string>();
     public List<string> CssLinks { get; set; } = new List<string>();
     public List<string> JsLinks { get; set; } = new List<string>();
+    /// <summary>
+    /// Represents the auto refresh time in seconds.
+    /// </summary>
+    public int? AutoRefresh { get; set; }
 
     /// <summary>
     /// Adds a title to the HTML document.
@@ -186,6 +190,10 @@ public class Head {
 
         if (!string.IsNullOrEmpty(HttpEquiv) && !string.IsNullOrEmpty(Content)) {
             head.AppendLine($"\t<meta http-equiv=\"{HttpEquiv}\" content=\"{Content}\">");
+        }
+
+        if (AutoRefresh.HasValue) {
+            head.AppendLine($"\t<meta http-equiv=\"refresh\" content=\"{AutoRefresh.Value}\">");
         }
 
         head.Append(MetaTagString("viewport", Viewport));
