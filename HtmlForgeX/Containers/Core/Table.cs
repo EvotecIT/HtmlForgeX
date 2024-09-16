@@ -270,6 +270,9 @@ public class Table : Element {
         return table;
     }
 
+    public static Table Create(object obj, TableType tableType) {
+        return Create(new[] { obj }, tableType);
+    }
 
     private void AddLibrariesBasedOnTableType() {
         if (Library.HasValue) {
@@ -326,5 +329,4 @@ public class Table : Element {
 
     //    return html.ToString();
     //}
-
 }
