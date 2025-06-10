@@ -12,16 +12,30 @@ public class TablerTabsPanel : ElementContainer {
         return this;
     }
 
-    public TablerTabsPanel Active() {
-        IsActive = true;
+    /// <summary>
+    /// Set the panel to be active, while allowing to use the non-default value
+    /// </summary>
+    /// <param name="isActive"></param>
+    /// <returns></returns>
+    public TablerTabsPanel Active(bool isActive = true) {
+        IsActive = isActive;
         return this;
     }
 
+    /// <summary>
+    /// Set the panel to be disabled
+    /// </summary>
+    /// <returns></returns>
     public TablerTabsPanel Disabled() {
         IsDisabled = true;
         return this;
     }
 
+    /// <summary>
+    /// Move the tabs to a specific state
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
     public TablerTabsPanel MoveTabs(TabState state) {
         PrivateTabState = state;
         return this;
