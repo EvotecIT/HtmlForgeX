@@ -1,4 +1,4 @@
-using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -8,14 +8,15 @@ namespace HtmlForgeX;
 /// Support class to help building HTMLForgeX without huge effort on maintaining CSS and JS files.
 /// </summary>
 public class LibraryDownloader {
+    private static readonly HttpClient _client = new();
     /// <summary>
     /// Downloads all CSS and JS files for all libraries into given folder for easy inclusion in project
     /// </summary>
     /// <param name="rootPath">The root path.</param>
-    public void DownloadLibrary(string rootPath) {
+    public async Task DownloadLibraryAsync(string rootPath) {
         foreach (Libraries library in Enum.GetValues(typeof(Libraries))) {
             if (library != Libraries.None) {
-                DownloadLibrary(rootPath, library);
+                await DownloadLibraryAsync(rootPath, library).ConfigureAwait(false);
             }
         }
     }
@@ -25,14 +26,14 @@ public class LibraryDownloader {
     /// </summary>
     /// <param name="path">The path.</param>
     /// <param name="libraryEnum">The library enum.</param>
-    public void DownloadLibrary(string path, Libraries libraryEnum) {
+    public async Task DownloadLibraryAsync(string path, Libraries libraryEnum) {
         var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
         foreach (var link in library.Header.JsLink) {
-            DownloadFile(path, link);
+            await DownloadFileAsync(path, link).ConfigureAwait(false);
         }
 
         foreach (var link in library.Header.CssLink) {
-            DownloadFile(path, link);
+            await DownloadFileAsync(path, link).ConfigureAwait(false);
         }
     }
 
@@ -41,9 +42,13 @@ public class LibraryDownloader {
     /// </summary>
     /// <param name="cssFilePath">The CSS file path.</param>
     /// <returns></returns>
-    public List<string> GenerateTablerIconCode(string cssFilePath) {
+    public async Task<List<string>> GenerateTablerIconCodeAsync(string cssFilePath) {
         var icons = new List<string>();
-        var cssText = File.ReadAllText(cssFilePath);
+        string cssText;
+        using (FileStream stream = File.OpenRead(cssFilePath))
+        using (StreamReader reader = new(stream)) {
+            cssText = await reader.ReadToEndAsync().ConfigureAwait(false);
+        }
         var regex = new Regex(@"\.ti-(.*?):before", RegexOptions.Compiled);
         var matches = regex.Matches(cssText);
 
@@ -62,21 +67,22 @@ public class LibraryDownloader {
     /// <param name="rootPath">The root path.</param>
     /// <param name="url">The URL.</param>
     /// <exception cref="System.ArgumentException">Unsupported file type: {fileName}</exception>
-    private void DownloadFile(string rootPath, string url) {
-        using (var client = new WebClient()) {
-            var uri = new Uri(url);
-            var fileName = Path.GetFileName(uri.AbsolutePath);
-            string localPath;
-            if (fileName.EndsWith(".css")) {
-                localPath = Path.Combine(rootPath, "Styles", fileName);
-            } else if (fileName.EndsWith(".js")) {
-                localPath = Path.Combine(rootPath, "Scripts", fileName);
-            } else {
-                throw new ArgumentException($"Unsupported file type: {fileName}");
-            }
+    private async Task DownloadFileAsync(string rootPath, string url) {
+        var uri = new Uri(url);
+        var fileName = Path.GetFileName(uri.AbsolutePath);
+        string localPath;
+        if (fileName.EndsWith(".css")) {
+            localPath = Path.Combine(rootPath, "Styles", fileName);
+        } else if (fileName.EndsWith(".js")) {
+            localPath = Path.Combine(rootPath, "Scripts", fileName);
+        } else {
+            throw new ArgumentException($"Unsupported file type: {fileName}");
+        }
 
-            Directory.CreateDirectory(Path.GetDirectoryName(localPath));
-            client.DownloadFile(url, localPath);
+        Directory.CreateDirectory(Path.GetDirectoryName(localPath));
+        using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
+            using Stream httpStream = await _client.GetStreamAsync(url).ConfigureAwait(false);
+            await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
         }
     }
 
