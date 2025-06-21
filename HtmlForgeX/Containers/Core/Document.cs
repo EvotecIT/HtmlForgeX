@@ -52,6 +52,7 @@ public class Document : Element {
             Console.WriteLine($"There were {countErrors} found during generation of HTML.");
         }
 
+        System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path));
         File.WriteAllText(path, this.ToString());
         Helpers.Open(path, openInBrowser);
     }
