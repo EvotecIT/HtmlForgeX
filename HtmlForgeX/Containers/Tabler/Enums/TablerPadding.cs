@@ -58,8 +58,46 @@ public static class TablerPaddingExtensions {
     public static string EnumToString(this TablerPadding padding) {
         var paddingStr = padding.ToString();
         var property = "p";
-        var side = paddingStr.Substring(0, paddingStr.IndexOfAny("0123456789".ToCharArray()));
-        var size = paddingStr.Substring(side.Length);
+
+        string side;
+        string size;
+
+        if (paddingStr.StartsWith("Top")) {
+            side = "t";
+            size = paddingStr[3..];
+        } else if (paddingStr.StartsWith("Bottom")) {
+            side = "b";
+            size = paddingStr[6..];
+        } else if (paddingStr.StartsWith("Start")) {
+            side = "s";
+            size = paddingStr[5..];
+        } else if (paddingStr.StartsWith("End")) {
+            side = "e";
+            size = paddingStr[3..];
+        } else if (paddingStr.StartsWith("Horizontal")) {
+            side = "x";
+            size = paddingStr[10..];
+        } else if (paddingStr.StartsWith("Vertical")) {
+            side = "y";
+            size = paddingStr[8..];
+        } else if (paddingStr.StartsWith("All")) {
+            side = string.Empty;
+            size = paddingStr[3..];
+        } else {
+            side = string.Empty;
+            size = paddingStr;
+        }
+
+        size = size switch {
+            "Auto" => "auto",
+            "Zero" => "0",
+            "Quarter" => "1",
+            "Half" => "2",
+            "Normal" => "3",
+            "OneAndHalf" => "4",
+            "Triple" => "5",
+            _ => size.ToLower()
+        };
 
         return $"{property}{side}-{size}";
     }
