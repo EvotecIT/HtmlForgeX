@@ -4,7 +4,7 @@ namespace HtmlForgeX.Tests;
 public class TestIdGeneration {
     [TestMethod]
     public void GenerateRandomIdIsUnique() {
-        const int iterations = 100;
+        const int iterations = 1000;
         var ids = new HashSet<string>();
 
         for (var i = 0; i < iterations; i++) {
