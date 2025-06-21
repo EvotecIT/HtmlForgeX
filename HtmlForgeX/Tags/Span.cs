@@ -27,8 +27,8 @@ public class Span : Element {
         var newSpan = new Span(this) {
             Content = content
         };
-        this.Parent.HtmlSpans.Add(newSpan);  // Add to children of this span
-        return newSpan;  // Return new span for modification
+        this.HtmlSpans.Add(newSpan);
+        return this;
     }
 
     public Span AddContent(string content) {
