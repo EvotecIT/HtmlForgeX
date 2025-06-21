@@ -27,7 +27,10 @@ public class Span : Element {
         var newSpan = new Span(this) {
             Content = content
         };
-        this.HtmlSpans.Add(newSpan);
+        // Keep appended spans on the parent collection so they appear
+        // alongside the original span when rendered.
+        this.Parent.HtmlSpans.Add(newSpan);
+        // Return the current span so chaining keeps the original context
         return this;
     }
 
