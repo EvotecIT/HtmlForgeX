@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace HtmlForgeX;
@@ -12,11 +13,18 @@ internal static class Helpers {
     /// <param name="filePath"></param>
     /// <param name="open"></param>
     public static void Open(string filePath, bool open) {
-        if (open) {
-            ProcessStartInfo startInfo = new ProcessStartInfo(filePath) {
-                UseShellExecute = true
-            };
-            Process.Start(startInfo);
+        if (!open) {
+            return;
+        }
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+            Process.Start(new ProcessStartInfo("cmd", $"/c start \"\" \"{filePath}\"") {
+                CreateNoWindow = true
+            });
+        } else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
+            Process.Start("open", filePath);
+        } else {
+            Process.Start("xdg-open", filePath);
         }
     }
 
