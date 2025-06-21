@@ -55,12 +55,37 @@ public enum TablerPadding {
 
 
 public static class TablerPaddingExtensions {
+    private static readonly Dictionary<string, string> _sideMap = new() {
+        { "Top", "t" },
+        { "Bottom", "b" },
+        { "Start", "s" },
+        { "End", "e" },
+        { "Horizontal", "x" },
+        { "Vertical", "y" },
+        { "All", string.Empty }
+    };
+
+    private static readonly Dictionary<string, string> _sizeMap = new() {
+        { "Auto", "auto" },
+        { "Zero", "0" },
+        { "Quarter", "1" },
+        { "Half", "2" },
+        { "Normal", "3" },
+        { "OneAndHalf", "4" },
+        { "Triple", "5" }
+    };
+
     public static string EnumToString(this TablerPadding padding) {
         var paddingStr = padding.ToString();
-        var property = "p";
-        var side = paddingStr.Substring(0, paddingStr.IndexOfAny("0123456789".ToCharArray()));
-        var size = paddingStr.Substring(side.Length);
+        foreach (var side in _sideMap.Keys) {
+            if (!paddingStr.StartsWith(side, StringComparison.Ordinal)) {
+                continue;
+            }
 
-        return $"{property}{side}-{size}";
+            var size = paddingStr[side.Length..];
+            return $"p{_sideMap[side]}-{_sizeMap[size]}";
+        }
+
+        throw new ArgumentOutOfRangeException(nameof(padding), padding, null);
     }
 }

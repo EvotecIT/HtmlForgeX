@@ -53,12 +53,37 @@ public enum TablerMargin {
 }
 
 public static class TablerMarginExtensions {
+    private static readonly Dictionary<string, string> _sideMap = new() {
+        { "Top", "t" },
+        { "Bottom", "b" },
+        { "Start", "s" },
+        { "End", "e" },
+        { "Horizontal", "x" },
+        { "Vertical", "y" },
+        { "All", string.Empty }
+    };
+
+    private static readonly Dictionary<string, string> _sizeMap = new() {
+        { "Auto", "auto" },
+        { "Zero", "0" },
+        { "Quarter", "1" },
+        { "Half", "2" },
+        { "Normal", "3" },
+        { "OneAndHalf", "4" },
+        { "Triple", "5" }
+    };
+
     public static string EnumToString(this TablerMargin margin) {
         var marginStr = margin.ToString();
-        var property = "m";
-        var side = marginStr.Substring(0, marginStr.IndexOfAny("0123456789".ToCharArray()));
-        var size = marginStr.Substring(side.Length);
+        foreach (var side in _sideMap.Keys) {
+            if (!marginStr.StartsWith(side, StringComparison.Ordinal)) {
+                continue;
+            }
 
-        return $"{property}{side}-{size}";
+            var size = marginStr[side.Length..];
+            return $"m{_sideMap[side]}-{_sizeMap[size]}";
+        }
+
+        throw new ArgumentOutOfRangeException(nameof(margin), margin, null);
     }
 }
