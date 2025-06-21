@@ -3,6 +3,8 @@
 [![nuget downloads](https://img.shields.io/nuget/dt/HtmlForgeX?label=nuget%20downloads)](https://www.nuget.org/packages/HtmlForgeX)
 [![nuget version](https://img.shields.io/nuget/v/HtmlForgeX)](https://www.nuget.org/packages/HtmlForgeX)
 [![license](https://img.shields.io/github/license/EvotecIT/HtmlForgeX.svg)](#)
+[![Test .NET Libraries](https://github.com/EvotecIT/HtmlForgeX/actions/workflows/test-dotnet.yml/badge.svg?branch=master)](https://github.com/EvotecIT/HtmlForgeX/actions/workflows/test-dotnet.yml)
+[![codecov](https://codecov.io/gh/EvotecIT/HtmlForgeX/branch/master/graph/badge.svg)](https://codecov.io/gh/EvotecIT/HtmlForgeX)
 [![wakatime](https://wakatime.com/badge/user/f1abc372-39bb-4b06-ad2b-3a24cf161f13/project/018e489c-bcef-4e14-a689-5180aa570f74.svg)](https://wakatime.com/badge/user/f1abc372-39bb-4b06-ad2b-3a24cf161f13/project/018e489c-bcef-4e14-a689-5180aa570f74)
 
 If you would like to contact me you can do so via Twitter or LinkedIn.
