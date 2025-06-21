@@ -56,8 +56,46 @@ public static class TablerMarginExtensions {
     public static string EnumToString(this TablerMargin margin) {
         var marginStr = margin.ToString();
         var property = "m";
-        var side = marginStr.Substring(0, marginStr.IndexOfAny("0123456789".ToCharArray()));
-        var size = marginStr.Substring(side.Length);
+
+        string side;
+        string size;
+
+        if (marginStr.StartsWith("Top")) {
+            side = "t";
+            size = marginStr.Substring(3);
+        } else if (marginStr.StartsWith("Bottom")) {
+            side = "b";
+            size = marginStr.Substring(6);
+        } else if (marginStr.StartsWith("Start")) {
+            side = "s";
+            size = marginStr.Substring(5);
+        } else if (marginStr.StartsWith("End")) {
+            side = "e";
+            size = marginStr.Substring(3);
+        } else if (marginStr.StartsWith("Horizontal")) {
+            side = "x";
+            size = marginStr.Substring(10);
+        } else if (marginStr.StartsWith("Vertical")) {
+            side = "y";
+            size = marginStr.Substring(8);
+        } else if (marginStr.StartsWith("All")) {
+            side = string.Empty;
+            size = marginStr.Substring(3);
+        } else {
+            side = string.Empty;
+            size = marginStr;
+        }
+
+        size = size switch {
+            "Auto" => "auto",
+            "Zero" => "0",
+            "Quarter" => "1",
+            "Half" => "2",
+            "Normal" => "3",
+            "OneAndHalf" => "4",
+            "Triple" => "5",
+            _ => size.ToLower()
+        };
 
         return $"{property}{side}-{size}";
     }

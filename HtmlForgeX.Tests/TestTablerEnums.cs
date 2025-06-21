@@ -43,4 +43,19 @@ public class TestTablerEnums {
             Assert.AreEqual("alert-" + color6.ToTablerString(), color6.ToTablerAlert());
         }
     }
+
+    [TestMethod]
+    public void TablerSpacingConversion() {
+        Assert.AreEqual("mt-auto", TablerMargin.TopAuto.EnumToString());
+        Assert.AreEqual("mb-0", TablerMargin.BottomZero.EnumToString());
+        Assert.AreEqual("mx-2", TablerMargin.HorizontalHalf.EnumToString());
+        Assert.AreEqual("my-3", TablerMargin.VerticalNormal.EnumToString());
+        Assert.AreEqual("m-5", TablerMargin.AllTriple.EnumToString());
+
+        Assert.AreEqual("pt-auto", TablerPadding.TopAuto.EnumToString());
+        Assert.AreEqual("pb-0", TablerPadding.BottomZero.EnumToString());
+        Assert.AreEqual("px-2", TablerPadding.HorizontalHalf.EnumToString());
+        Assert.AreEqual("py-3", TablerPadding.VerticalNormal.EnumToString());
+        Assert.AreEqual("p-5", TablerPadding.AllTriple.EnumToString());
+    }
 }
