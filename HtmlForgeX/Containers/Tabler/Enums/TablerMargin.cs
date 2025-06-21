@@ -80,7 +80,7 @@ public static class TablerMarginExtensions {
                 continue;
             }
 
-            var size = marginStr[side.Length..];
+            var size = marginStr.Substring(side.Length);
             return $"m{_sideMap[side]}-{_sizeMap[size]}";
         }
 

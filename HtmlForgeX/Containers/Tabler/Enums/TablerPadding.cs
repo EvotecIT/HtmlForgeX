@@ -82,7 +82,7 @@ public static class TablerPaddingExtensions {
                 continue;
             }
 
-            var size = paddingStr[side.Length..];
+            var size = paddingStr.Substring(side.Length);
             return $"p{_sideMap[side]}-{_sizeMap[size]}";
         }
 
