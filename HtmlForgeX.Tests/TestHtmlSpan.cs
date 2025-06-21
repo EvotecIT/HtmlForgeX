@@ -22,24 +22,21 @@ public class TestHtmlSpan {
         value.Body.Span("This is table with DataTables").WithAlignment(FontAlignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
 
-        var value1 = new Document().Body.Span("This is table with DataTables").WithAlignment(FontAlignment.Center)
-            .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
+        var expectedLines = new[] {
+            "<!DOCTYPE html>",
+            "<html>",
+            "<head>",
+            "\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">",
+            "</head>",
+            string.Empty,
+            "<body data-bs-theme=\"light\">",
+            "<span style=\"color: #FD0E35; text-align: Center\">This is table with DataTables</span><span> continue?</span>",
+            "</body>",
+            string.Empty,
+            "</html>"
+        };
+        var expected = string.Join(Environment.NewLine, expectedLines) + Environment.NewLine;
 
-        var expected = @"
-        <!DOCTYPE html>
-        <html>
-        <head>
-        </head>
-
-        <body>
-        <span style=""color: #FD0E35; text-align: Center"">This is table with DataTables</span><span> continue?</span>
-        </body>
-
-        </html>
-        ";
-
-        Assert.AreEqual(expected.Trim(), value.ToString().Trim());
-
-        Assert.AreEqual(value.ToString(), value1.ToString());
+        Assert.AreEqual(expected, value.ToString());
     }
 }
