@@ -44,7 +44,11 @@ public class LibraryDownloader {
     /// <returns></returns>
     public async Task<List<string>> GenerateTablerIconCodeAsync(string cssFilePath) {
         var icons = new List<string>();
-        var cssText = await File.ReadAllTextAsync(cssFilePath).ConfigureAwait(false);
+        string cssText;
+        using (FileStream stream = File.OpenRead(cssFilePath))
+        using (StreamReader reader = new(stream)) {
+            cssText = await reader.ReadToEndAsync().ConfigureAwait(false);
+        }
         var regex = new Regex(@"\.ti-(.*?):before", RegexOptions.Compiled);
         var matches = regex.Matches(cssText);
 
@@ -76,9 +80,10 @@ public class LibraryDownloader {
         }
 
         Directory.CreateDirectory(Path.GetDirectoryName(localPath));
-        await using var fileStream = File.Create(localPath);
-        await using var httpStream = await _client.GetStreamAsync(url).ConfigureAwait(false);
-        await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
+        using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
+            using Stream httpStream = await _client.GetStreamAsync(url).ConfigureAwait(false);
+            await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
+        }
     }
 
 
