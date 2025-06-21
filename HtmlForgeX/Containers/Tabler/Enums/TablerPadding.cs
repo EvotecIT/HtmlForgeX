@@ -64,25 +64,25 @@ public static class TablerPaddingExtensions {
 
         if (paddingStr.StartsWith("Top")) {
             side = "t";
-            size = paddingStr[3..];
+            size = paddingStr.Substring(3);
         } else if (paddingStr.StartsWith("Bottom")) {
             side = "b";
-            size = paddingStr[6..];
+            size = paddingStr.Substring(6);
         } else if (paddingStr.StartsWith("Start")) {
             side = "s";
-            size = paddingStr[5..];
+            size = paddingStr.Substring(5);
         } else if (paddingStr.StartsWith("End")) {
             side = "e";
-            size = paddingStr[3..];
+            size = paddingStr.Substring(3);
         } else if (paddingStr.StartsWith("Horizontal")) {
             side = "x";
-            size = paddingStr[10..];
+            size = paddingStr.Substring(10);
         } else if (paddingStr.StartsWith("Vertical")) {
             side = "y";
-            size = paddingStr[8..];
+            size = paddingStr.Substring(8);
         } else if (paddingStr.StartsWith("All")) {
             side = string.Empty;
-            size = paddingStr[3..];
+            size = paddingStr.Substring(3);
         } else {
             side = string.Empty;
             size = paddingStr;

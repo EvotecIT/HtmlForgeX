@@ -62,25 +62,25 @@ public static class TablerMarginExtensions {
 
         if (marginStr.StartsWith("Top")) {
             side = "t";
-            size = marginStr[3..];
+            size = marginStr.Substring(3);
         } else if (marginStr.StartsWith("Bottom")) {
             side = "b";
-            size = marginStr[6..];
+            size = marginStr.Substring(6);
         } else if (marginStr.StartsWith("Start")) {
             side = "s";
-            size = marginStr[5..];
+            size = marginStr.Substring(5);
         } else if (marginStr.StartsWith("End")) {
             side = "e";
-            size = marginStr[3..];
+            size = marginStr.Substring(3);
         } else if (marginStr.StartsWith("Horizontal")) {
             side = "x";
-            size = marginStr[10..];
+            size = marginStr.Substring(10);
         } else if (marginStr.StartsWith("Vertical")) {
             side = "y";
-            size = marginStr[8..];
+            size = marginStr.Substring(8);
         } else if (marginStr.StartsWith("All")) {
             side = string.Empty;
-            size = marginStr[3..];
+            size = marginStr.Substring(3);
         } else {
             side = string.Empty;
             size = marginStr;
