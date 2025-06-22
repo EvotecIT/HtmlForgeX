@@ -1,3 +1,5 @@
+using System.Threading;
+
 namespace HtmlForgeX.Logging;
 
 /// <summary>
@@ -13,20 +15,26 @@ public class Settings {
     /// <summary>
     /// Lock object used to synchronize access to <see cref="_logger" />.
     /// </summary>
-    private static readonly object LoggerLock = new();
+    private static readonly ReaderWriterLockSlim LoggerLock = new();
 
     /// <summary>
     /// Gets or sets a value indicating whether error logging is enabled.
     /// </summary>
     public bool Error {
         get {
-            lock (LoggerLock) {
+            LoggerLock.EnterReadLock();
+            try {
                 return _logger.IsError;
+            } finally {
+                LoggerLock.ExitReadLock();
             }
         }
         set {
-            lock (LoggerLock) {
+            LoggerLock.EnterWriteLock();
+            try {
                 _logger.IsError = value;
+            } finally {
+                LoggerLock.ExitWriteLock();
             }
         }
     }
@@ -36,13 +44,19 @@ public class Settings {
     /// </summary>
     public bool Verbose {
         get {
-            lock (LoggerLock) {
+            LoggerLock.EnterReadLock();
+            try {
                 return _logger.IsVerbose;
+            } finally {
+                LoggerLock.ExitReadLock();
             }
         }
         set {
-            lock (LoggerLock) {
+            LoggerLock.EnterWriteLock();
+            try {
                 _logger.IsVerbose = value;
+            } finally {
+                LoggerLock.ExitWriteLock();
             }
         }
     }
@@ -52,13 +66,19 @@ public class Settings {
     /// </summary>
     public bool Warning {
         get {
-            lock (LoggerLock) {
+            LoggerLock.EnterReadLock();
+            try {
                 return _logger.IsWarning;
+            } finally {
+                LoggerLock.ExitReadLock();
             }
         }
         set {
-            lock (LoggerLock) {
+            LoggerLock.EnterWriteLock();
+            try {
                 _logger.IsWarning = value;
+            } finally {
+                LoggerLock.ExitWriteLock();
             }
         }
     }
@@ -68,13 +88,19 @@ public class Settings {
     /// </summary>
     public bool Progress {
         get {
-            lock (LoggerLock) {
+            LoggerLock.EnterReadLock();
+            try {
                 return _logger.IsProgress;
+            } finally {
+                LoggerLock.ExitReadLock();
             }
         }
         set {
-            lock (LoggerLock) {
+            LoggerLock.EnterWriteLock();
+            try {
                 _logger.IsProgress = value;
+            } finally {
+                LoggerLock.ExitWriteLock();
             }
         }
     }
@@ -84,13 +110,19 @@ public class Settings {
     /// </summary>
     public bool Debug {
         get {
-            lock (LoggerLock) {
+            LoggerLock.EnterReadLock();
+            try {
                 return _logger.IsDebug;
+            } finally {
+                LoggerLock.ExitReadLock();
             }
         }
         set {
-            lock (LoggerLock) {
+            LoggerLock.EnterWriteLock();
+            try {
                 _logger.IsDebug = value;
+            } finally {
+                LoggerLock.ExitWriteLock();
             }
         }
     }
