@@ -5,6 +5,9 @@ using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents an HTML document.
+/// </summary>
 public class Document : Element {
     private static readonly InternalLogger _logger = new();
     public Head Head = new Head();
@@ -35,12 +38,23 @@ public class Document : Element {
         set => GlobalStorage.ScriptPath = value;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Document"/> class.
+    /// </summary>
+    /// <param name="librariesMode">Initial library mode.</param>
     public Document(LibraryMode? librariesMode = null) {
         if (librariesMode != null) {
             GlobalStorage.LibraryMode = librariesMode.Value;
         }
     }
 
+    /// <summary>
+    /// Saves the document to disk.
+    /// </summary>
+    /// <param name="path">File path.</param>
+    /// <param name="openInBrowser">Whether to open the file after saving.</param>
+    /// <param name="scriptPath">Optional scripts path.</param>
+    /// <param name="stylePath">Optional styles path.</param>
     public void Save(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
         GlobalStorage.Path = path;
         if (!string.IsNullOrEmpty(scriptPath)) {
@@ -68,6 +82,7 @@ public class Document : Element {
         Helpers.Open(path, openInBrowser);
     }
 
+    /// <inheritdoc/>
     public override string ToString() {
         StringBuilder html = new StringBuilder();
 
@@ -80,10 +95,18 @@ public class Document : Element {
         return html.ToString();
     }
 
+    /// <summary>
+    /// Adds a predefined library.
+    /// </summary>
+    /// <param name="library">Library identifier.</param>
     public void AddLibrary(Libraries library) {
         GlobalStorage.Libraries.Add(library);
     }
 
+    /// <summary>
+    /// Adds a custom library definition.
+    /// </summary>
+    /// <param name="library">Library to add.</param>
     public void AddLibrary(Library library) {
         if (GlobalStorage.LibraryMode == LibraryMode.Online) {
             foreach (var link in library.Header.CssLink) {
