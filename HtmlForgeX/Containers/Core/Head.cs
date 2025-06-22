@@ -315,6 +315,10 @@ public class Head {
                 var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
                 // we need to save the js file to disk
                 var jsFileName = Path.Combine(GlobalStorage.Path, Path.GetFileName(js));
+                var jsDirectory = Path.GetDirectoryName(jsFileName);
+                if (!string.IsNullOrEmpty(jsDirectory)) {
+                    Directory.CreateDirectory(jsDirectory);
+                }
                 File.WriteAllText(jsFileName, jsContent);
             }
         }
