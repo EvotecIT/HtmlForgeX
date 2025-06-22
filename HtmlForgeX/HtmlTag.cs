@@ -2,32 +2,62 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX;
+/// <summary>
+/// Represents a generic HTML tag that can contain attributes and child elements.
+/// </summary>
 public class HtmlTag : Element {
     private string PrivateTag { get; set; }
     private TagMode PrivateTagMode { get; set; } = TagMode.Normal;
     private new List<object> Children { get; set; } = new List<object>();
     public Dictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HtmlTag"/> class with the specified tag name.
+    /// </summary>
+    /// <param name="tag">The name of the tag.</param>
     public HtmlTag(string tag) {
         PrivateTag = tag;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HtmlTag"/> class with a value contained within the tag.
+    /// </summary>
+    /// <param name="tag">The name of the tag.</param>
+    /// <param name="value">The inner value for the tag.</param>
     public HtmlTag(string tag, string value) {
         PrivateTag = tag;
         Children.Add(value);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HtmlTag"/> class with the specified tag mode.
+    /// </summary>
+    /// <param name="tag">The name of the tag.</param>
+    /// <param name="tagMode">The <see cref="TagMode"/> indicating how the tag should be rendered.</param>
     public HtmlTag(string tag, TagMode tagMode) {
         PrivateTag = tag;
         PrivateTagMode = tagMode;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HtmlTag"/> class with a value and specific tag mode.
+    /// </summary>
+    /// <param name="tag">The name of the tag.</param>
+    /// <param name="value">The inner value for the tag.</param>
+    /// <param name="tagMode">The <see cref="TagMode"/> indicating how the tag should be rendered.</param>
     public HtmlTag(string tag, string value, TagMode tagMode) {
         PrivateTag = tag;
         PrivateTagMode = tagMode;
         Children.Add(value);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HtmlTag"/> class with a value, attributes and tag mode.
+    /// </summary>
+    /// <param name="tag">The name of the tag.</param>
+    /// <param name="value">The inner value for the tag.</param>
+    /// <param name="attributes">Optional attributes to apply.</param>
+    /// <param name="tagMode">The <see cref="TagMode"/> indicating how the tag should be rendered.</param>
     public HtmlTag(string tag, string value, Dictionary<string, object>? attributes = null, TagMode tagMode = TagMode.Normal) {
         PrivateTag = tag;
         Children.Add(value);
@@ -55,11 +85,22 @@ public class HtmlTag : Element {
         }
     }
 
+    /// <summary>
+    /// Sets the id attribute for the tag.
+    /// </summary>
+    /// <param name="id">The id value.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Id(string id) {
         Attributes["id"] = id;
         return this;
     }
 
+    /// <summary>
+    /// Adds a style declaration to the tag.
+    /// </summary>
+    /// <param name="name">The CSS property name.</param>
+    /// <param name="value">The CSS property value.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Style(string name, string value) {
         if (!Attributes.ContainsKey("style")) {
             Attributes["style"] = string.Empty;
@@ -68,6 +109,11 @@ public class HtmlTag : Element {
         return this;
     }
 
+    /// <summary>
+    /// Adds a CSS class to the tag.
+    /// </summary>
+    /// <param name="className">The class name to add.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Class(string? className) {
         // user used Class null so we don't do anything
         if (string.IsNullOrEmpty(className)) {
@@ -84,11 +130,20 @@ public class HtmlTag : Element {
         return this;
     }
 
+    /// <summary>
+    /// Sets the type attribute for the tag.
+    /// </summary>
+    /// <param name="type">The type value.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Type(string type) {
         Attributes["type"] = type;
         return this;
     }
 
+    /// <summary>
+    /// Returns the HTML representation of the tag.
+    /// </summary>
+    /// <returns>A string containing the rendered HTML.</returns>
     public override string ToString() {
         StringBuilder html = new StringBuilder($"<{PrivateTag}");
 
@@ -123,22 +178,43 @@ public class HtmlTag : Element {
         return html.ToString();
     }
 
+    /// <summary>
+    /// Adds or updates an attribute on the tag.
+    /// </summary>
+    /// <param name="name">The attribute name.</param>
+    /// <param name="value">The attribute value.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Attribute(string name, string value) {
         Attributes[name] = value;
         return this;
     }
 
 
+    /// <summary>
+    /// Appends a child tag.
+    /// </summary>
+    /// <param name="child">The child tag to add.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Value(HtmlTag child) {
         Children.Add(child);
         return this;
     }
 
+    /// <summary>
+    /// Appends a child element.
+    /// </summary>
+    /// <param name="value">The child element.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Value(Element value) {
         Children.Add(value);
         return this;
     }
 
+    /// <summary>
+    /// Appends a string value to the tag.
+    /// </summary>
+    /// <param name="value">The text value.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Value(string? value) {
         if (value != null) {
             Children.Add(value);
@@ -146,12 +222,22 @@ public class HtmlTag : Element {
         return this;
     }
 
+    /// <summary>
+    /// Appends multiple string values to the tag.
+    /// </summary>
+    /// <param name="value">String values to append.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Value(params string[] value) {
         foreach (var val in value) {
             Children.Add(val);
         }
         return this;
     }
+    /// <summary>
+    /// Appends multiple objects to the tag using their <see cref="object.ToString"/> representation.
+    /// </summary>
+    /// <param name="value">Objects to append.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Value(params object[] value) {
         // this largely works because of ToString() on the object that we should make sure is there, implemented correctly
         foreach (var val in value) {
