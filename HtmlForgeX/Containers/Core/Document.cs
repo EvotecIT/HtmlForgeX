@@ -1,8 +1,12 @@
+using System;
+using System.IO;
 using System.Text;
+using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
 
 public class Document : Element {
+    private static readonly InternalLogger _logger = new();
     public Head Head = new Head();
     public Body Body = new Body();
 
@@ -53,7 +57,11 @@ public class Document : Element {
         }
 
         System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path));
-        File.WriteAllText(path, this.ToString());
+        try {
+            File.WriteAllText(path, ToString());
+        } catch (Exception ex) {
+            _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
+        }
         Helpers.Open(path, openInBrowser);
     }
 
