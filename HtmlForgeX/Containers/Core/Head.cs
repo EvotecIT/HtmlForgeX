@@ -1,5 +1,8 @@
+using System;
+using System.IO;
 using System.Reflection;
 using System.Text;
+using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
 
@@ -8,6 +11,7 @@ namespace HtmlForgeX;
 /// This class allows you to add and manage meta tags, the title, and other elements in the head section.
 /// </summary>
 public class Head {
+    private static readonly InternalLogger _logger = new();
     /// <summary>
     /// Gets or sets the title of the HTML document.
     /// This is displayed in the title bar of the web browser.
@@ -319,7 +323,11 @@ public class Head {
                 if (!string.IsNullOrEmpty(jsDirectory)) {
                     Directory.CreateDirectory(jsDirectory);
                 }
-                File.WriteAllText(jsFileName, jsContent);
+                try {
+                    File.WriteAllText(jsFileName, jsContent);
+                } catch (Exception ex) {
+                    _logger.WriteError($"Failed to write file '{jsFileName}'. {ex.Message}");
+                }
             }
         }
 
