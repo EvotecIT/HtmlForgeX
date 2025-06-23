@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
+using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
 
@@ -9,6 +10,7 @@ namespace HtmlForgeX;
 /// </summary>
 public class LibraryDownloader {
     private static readonly HttpClient _client = new();
+    private static readonly InternalLogger _logger = new();
     /// <summary>
     /// Downloads all CSS and JS files for all libraries into given folder for easy inclusion in project
     /// </summary>
@@ -78,6 +80,8 @@ public class LibraryDownloader {
         } else {
             throw new ArgumentException($"Unsupported file type: {fileName}");
         }
+
+        _logger.WriteVerbose($"Saving '{url}' to '{localPath}'");
 
         Directory.CreateDirectory(Path.GetDirectoryName(localPath));
         using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
