@@ -30,4 +30,13 @@ internal class Primary : Library {
         Comment = "Main definition, similar to PSWriteHTML";
         LicenseLink = "MIT";
     }
+
+    /// <summary>
+    /// Loads a custom font file and adds it to the library styles.
+    /// </summary>
+    /// <param name="fontFamily">Font family name.</param>
+    /// <param name="fontFilePath">Path to the font file.</param>
+    public void LoadFont(string fontFamily, string fontFilePath) {
+        Header.CssStyle.Add(FontLoader.LoadFontAsStyle(fontFamily, fontFilePath));
+    }
 }
