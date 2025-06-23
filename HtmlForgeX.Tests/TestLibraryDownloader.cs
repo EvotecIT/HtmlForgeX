@@ -23,8 +23,9 @@ public class TestLibraryDownloader {
         listener.Start();
         _ = Task.Run(async () => {
             var context = await listener.GetContextAsync();
-            await using var stream = context.Response.OutputStream;
-            await stream.WriteAsync(System.Text.Encoding.UTF8.GetBytes("test"));
+            using var stream = context.Response.OutputStream;
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes("test");
+            await stream.WriteAsync(bytes, 0, bytes.Length);
             context.Response.Close();
             listener.Close();
         });
