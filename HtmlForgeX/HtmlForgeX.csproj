@@ -61,6 +61,8 @@
     <ItemGroup>
         <EmbeddedResource Include="Resources\Scripts\**" />
         <EmbeddedResource Include="Resources\Styles\**" />
+        <EmbeddedResource Include="Resources\Fonts\**" />
+        <EmbeddedResource Include="Resources\Images\**" />
     </ItemGroup>
 
     <ItemGroup

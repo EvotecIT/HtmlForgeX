@@ -70,14 +70,14 @@ public class LibraryDownloader {
     private async Task DownloadFileAsync(string rootPath, string url) {
         var uri = new Uri(url);
         var fileName = Path.GetFileName(uri.AbsolutePath);
-        string localPath;
-        if (fileName.EndsWith(".css")) {
-            localPath = Path.Combine(rootPath, "Styles", fileName);
-        } else if (fileName.EndsWith(".js")) {
-            localPath = Path.Combine(rootPath, "Scripts", fileName);
-        } else {
-            throw new ArgumentException($"Unsupported file type: {fileName}");
-        }
+        var extension = Path.GetExtension(fileName).ToLowerInvariant();
+        string localPath = extension switch {
+            ".css" => Path.Combine(rootPath, "Styles", fileName),
+            ".js" => Path.Combine(rootPath, "Scripts", fileName),
+            ".woff" or ".woff2" or ".eot" or ".ttf" => Path.Combine(rootPath, "Fonts", fileName),
+            ".svg" or ".png" or ".jpg" or ".jpeg" or ".gif" => Path.Combine(rootPath, "Images", fileName),
+            _ => throw new ArgumentException($"Unsupported file type: {fileName}")
+        };
 
         Directory.CreateDirectory(Path.GetDirectoryName(localPath));
         using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
