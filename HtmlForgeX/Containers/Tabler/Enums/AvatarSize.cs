@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Defines the available avatar sizes.
+/// </summary>
 public enum AvatarSize {
     XS,
     SM,

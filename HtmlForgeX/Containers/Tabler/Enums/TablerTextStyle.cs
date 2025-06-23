@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Defines additional text style utilities.
+/// </summary>
 public enum TablerTextStyle {
     Muted,
     Truncate

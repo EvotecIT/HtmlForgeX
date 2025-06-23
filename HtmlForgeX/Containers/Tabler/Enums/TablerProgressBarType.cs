@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Specifies progress bar variations.
+/// </summary>
 public enum TablerProgressBarType {
     Separated,
     Small,

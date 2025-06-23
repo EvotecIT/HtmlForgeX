@@ -4,6 +4,9 @@ using System.Text;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Defines orientation for a steps component.
+/// </summary>
 public enum StepsOrientation {
     Horizontal,
     Vertical
