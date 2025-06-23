@@ -21,11 +21,19 @@ public class TestLibraryDownloader {
         HttpListener listener = new();
         listener.Prefixes.Add(prefix);
         listener.Start();
-        _ = Task.Run(async () => {
+        _ = Task.Run(async () =>
+        {
             var context = await listener.GetContextAsync();
-            using var stream = context.Response.OutputStream;
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes("test");
-            await stream.WriteAsync(bytes, 0, bytes.Length);
+            context.Response.StatusCode = (int)HttpStatusCode.OK;
+            context.Response.ContentType = "text/plain";
+            context.Response.ContentLength64 = bytes.Length;
+            context.Response.KeepAlive = false;
+            using (var stream = context.Response.OutputStream)
+            {
+                await stream.WriteAsync(bytes, 0, bytes.Length);
+                await stream.FlushAsync();
+            }
             context.Response.Close();
             listener.Close();
         });
