@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace HtmlForgeX.Logging;
 
 /// <summary>
@@ -87,9 +89,9 @@ public class InternalLogger {
             OnProgressMessage?.Invoke(this, new LogEventArgs(activity, currentOperation, currentSteps, totalSteps, percentCompleted));
             if (IsProgress) {
                 if (currentSteps.HasValue && totalSteps.HasValue) {
-                    Console.WriteLine("[progress] activity: {0} / operation: {1} / percent completed: {2}% ({3} out of {4})", activity, currentOperation, percentCompleted, currentSteps, totalSteps);
+                    Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[progress] activity: {0} / operation: {1} / percent completed: {2}% ({3} out of {4})", activity, currentOperation, percentCompleted, currentSteps, totalSteps));
                 } else {
-                    Console.WriteLine("[progress] activity: {0} / operation: {1} / percent completed: {2}%", activity, currentOperation, percentCompleted);
+                    Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[progress] activity: {0} / operation: {1} / percent completed: {2}%", activity, currentOperation, percentCompleted));
                 }
             }
         }
@@ -115,9 +117,9 @@ public class InternalLogger {
     /// <param name="args">An array of objects to write using format.</param>
     public void WriteError(string message, params object[] args) {
         lock (_lock) {
-            OnErrorMessage?.Invoke(this, new LogEventArgs(string.Format(message, args)));
+            OnErrorMessage?.Invoke(this, new LogEventArgs(string.Format(CultureInfo.InvariantCulture, message, args)));
             if (IsError) {
-                Console.WriteLine("[error] " + message, args);
+                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[error] " + message, args));
             }
         }
     }
@@ -142,9 +144,9 @@ public class InternalLogger {
     /// <param name="args">An array of objects to write using format.</param>
     public void WriteWarning(string message, params object[] args) {
         lock (_lock) {
-            OnWarningMessage?.Invoke(this, new LogEventArgs(string.Format(message, args)));
+            OnWarningMessage?.Invoke(this, new LogEventArgs(string.Format(CultureInfo.InvariantCulture, message, args)));
             if (IsWarning) {
-                Console.WriteLine("[warning] " + message, args);
+                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[warning] " + message, args));
             }
         }
     }
@@ -171,7 +173,7 @@ public class InternalLogger {
         lock (_lock) {
             OnVerboseMessage?.Invoke(this, new LogEventArgs(message, args));
             if (IsVerbose) {
-                Console.WriteLine(message, args);
+                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, message, args));
             }
         }
     }
@@ -185,7 +187,7 @@ public class InternalLogger {
         lock (_lock) {
             OnDebugMessage?.Invoke(this, new LogEventArgs(message, args));
             if (IsDebug) {
-                Console.WriteLine("[debug] " + message, args);
+                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[debug] " + message, args));
             }
         }
     }
@@ -199,7 +201,7 @@ public class InternalLogger {
         lock (_lock) {
             OnInformationMessage?.Invoke(this, new LogEventArgs(message, args));
             if (IsInformation) {
-                Console.WriteLine("[information] " + message, args);
+                Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[information] " + message, args));
             }
         }
     }
@@ -261,7 +263,7 @@ public class LogEventArgs : EventArgs {
     public LogEventArgs(string message, object[] args) {
         Message = message;
         Args = args;
-        FullMessage = string.Format(message, args);
+        FullMessage = string.Format(CultureInfo.InvariantCulture, message, args);
     }
 
     /// <summary>
