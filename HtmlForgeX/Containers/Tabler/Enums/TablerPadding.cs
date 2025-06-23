@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Defines padding utility classes.
+/// </summary>
 public enum TablerPadding {
     TopAuto,
     TopZero,

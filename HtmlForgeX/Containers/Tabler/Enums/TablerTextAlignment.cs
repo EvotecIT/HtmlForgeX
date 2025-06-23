@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Describes text alignment classes.
+/// </summary>
 public enum TextAlignment {
     Center,
     Left,

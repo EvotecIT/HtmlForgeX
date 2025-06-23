@@ -2,6 +2,9 @@ using System.Text.RegularExpressions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Defines the standard Tabler color palette.
+/// </summary>
 public enum TablerColor {
     // Base colors
 
