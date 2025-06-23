@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents the margin spacing scale.
+/// </summary>
 public enum TablerMarginStyle {
     M0,
     M1,

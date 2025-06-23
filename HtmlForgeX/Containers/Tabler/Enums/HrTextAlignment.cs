@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Specifies horizontal rule text alignment options.
+/// </summary>
 public enum HrTextAlignment {
     Center,
     Left,

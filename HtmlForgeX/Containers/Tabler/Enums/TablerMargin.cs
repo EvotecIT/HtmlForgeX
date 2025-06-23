@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Defines margin utility classes.
+/// </summary>
 public enum TablerMargin {
     TopAuto,
     TopZero,
