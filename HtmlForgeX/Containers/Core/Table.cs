@@ -278,16 +278,16 @@ public class Table : Element {
         if (Library.HasValue) {
             switch (Library.Value) {
                 case TableType.BootstrapTable:
-                    GlobalStorage.Libraries.Add(Libraries.Bootstrap);
+                    GlobalStorage.Libraries.TryAdd(Libraries.Bootstrap, 0);
                     break;
                 case TableType.DataTables:
-                    GlobalStorage.Libraries.Add(Libraries.Bootstrap);
-                    GlobalStorage.Libraries.Add(Libraries.JQuery);
-                    GlobalStorage.Libraries.Add(Libraries.DataTables);
+                    GlobalStorage.Libraries.TryAdd(Libraries.Bootstrap, 0);
+                    GlobalStorage.Libraries.TryAdd(Libraries.JQuery, 0);
+                    GlobalStorage.Libraries.TryAdd(Libraries.DataTables, 0);
                     break;
                 case TableType.Tabler:
-                    GlobalStorage.Libraries.Add(Libraries.Bootstrap);
-                    GlobalStorage.Libraries.Add(Libraries.Tabler);
+                    GlobalStorage.Libraries.TryAdd(Libraries.Bootstrap, 0);
+                    GlobalStorage.Libraries.TryAdd(Libraries.Tabler, 0);
                     break;
                 default:
                     throw new Exception("Library not supported");

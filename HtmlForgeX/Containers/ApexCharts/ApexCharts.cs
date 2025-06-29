@@ -16,7 +16,7 @@ public class ApexCharts : Element {
     public ApexChartSubtitle Subtitle { get; set; } = new ApexChartSubtitle();
 
     public ApexCharts() {
-        GlobalStorage.Libraries.Add(Libraries.ApexCharts);
+        GlobalStorage.Libraries.TryAdd(Libraries.ApexCharts, 0);
         Id = GlobalStorage.GenerateRandomId("apexChart");
     }
 

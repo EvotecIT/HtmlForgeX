@@ -100,7 +100,7 @@ public class Document : Element {
     /// </summary>
     /// <param name="library">Library identifier.</param>
     public void AddLibrary(Libraries library) {
-        GlobalStorage.Libraries.Add(library);
+        GlobalStorage.Libraries.TryAdd(library, 0);
     }
 
     /// <summary>

@@ -2,8 +2,8 @@ namespace HtmlForgeX;
 
 public class TablerPage : Element {
     public TablerPage() {
-        GlobalStorage.Libraries.Add(Libraries.Bootstrap);
-        GlobalStorage.Libraries.Add(Libraries.Tabler);
+        GlobalStorage.Libraries.TryAdd(Libraries.Bootstrap, 0);
+        GlobalStorage.Libraries.TryAdd(Libraries.Tabler, 0);
     }
 
     public new TablerRow Row(Action<TablerRow> config) {

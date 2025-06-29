@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -9,9 +11,9 @@ internal static class GlobalStorage {
     /// <summary>Gets or sets the library mode.</summary>
     internal static LibraryMode LibraryMode { get; set; } = LibraryMode.Online;
     /// <summary>Collection of libraries used by the document.</summary>
-    internal static HashSet<Libraries> Libraries { get; } = new HashSet<Libraries>();
+    internal static ConcurrentDictionary<Libraries, byte> Libraries { get; } = new();
     /// <summary>Collection of processing errors.</summary>
-    internal static List<string> Errors { get; } = new List<string>();
+    internal static ConcurrentBag<string> Errors { get; } = new();
     /// <summary>Output path for generated files.</summary>
     internal static string Path { get; set; } = "";
     /// <summary>Location for CSS resources.</summary>

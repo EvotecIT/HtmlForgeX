@@ -176,7 +176,7 @@ public class Head {
     /// </summary>
     /// <returns>A string that represents the head section of an HTML document.</returns>
     public override string ToString() {
-        foreach (var libraryEnum in GlobalStorage.Libraries) {
+        foreach (var libraryEnum in GlobalStorage.Libraries.Keys) {
             var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessLibrary(library);
         }

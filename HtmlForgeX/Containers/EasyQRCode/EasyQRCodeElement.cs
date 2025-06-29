@@ -5,7 +5,7 @@ public class EasyQRCodeElement : Element {
     private string PrivateText { get; set; }
 
     public EasyQRCodeElement(string text) {
-        GlobalStorage.Libraries.Add(Libraries.EasyQRCode);
+        GlobalStorage.Libraries.TryAdd(Libraries.EasyQRCode, 0);
         Id = GlobalStorage.GenerateRandomId("QrCode");
         PrivateText = text;
     }

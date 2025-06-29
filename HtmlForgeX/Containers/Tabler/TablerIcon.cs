@@ -7,7 +7,7 @@ public class TablerIconElement : Element {
     public Dictionary<string, string> IconStyle { get; set; } = new Dictionary<string, string>();
 
     public TablerIconElement(TablerIcon icon) {
-        GlobalStorage.Libraries.Add(Libraries.TablerIcon);
+        GlobalStorage.Libraries.TryAdd(Libraries.TablerIcon, 0);
         Icon = icon;
     }
 
