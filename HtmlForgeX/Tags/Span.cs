@@ -141,16 +141,18 @@ public class Span : Element {
 
     public override string ToString() {
         var styleString = GenerateStyle();
-        styleString = !string.IsNullOrEmpty(styleString) ? $" style=\"{styleString}\"" : "";
+        styleString = !string.IsNullOrEmpty(styleString) ? $" style=\"{Helpers.HtmlEncode(styleString)}\"" : "";
 
         var childrenHtml = string.Join("", Children.Select(child => child.ToString()));
 
         var childrenParentHtml = string.Join("", this.Parent.HtmlSpans.Select(child => {
             var childStyle = child.GenerateStyle();
-            childStyle = !string.IsNullOrEmpty(childStyle) ? $" style=\"{childStyle}\"" : "";
-            return $"<span{childStyle}>{child.Content}</span>";
+            childStyle = !string.IsNullOrEmpty(childStyle) ? $" style=\"{Helpers.HtmlEncode(childStyle)}\"" : "";
+            var content = Helpers.HtmlEncode(child.Content ?? string.Empty);
+            return $"<span{childStyle}>{content}</span>";
         }));
 
-        return $"<span{styleString}>{Content}{childrenHtml}</span>{childrenParentHtml}";
+        var mainContent = Helpers.HtmlEncode(Content ?? string.Empty);
+        return $"<span{styleString}>{mainContent}{childrenHtml}</span>{childrenParentHtml}";
     }
 }
