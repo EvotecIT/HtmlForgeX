@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
@@ -109,7 +110,12 @@ public class Document : Element {
             System.IO.Directory.CreateDirectory(directory);
         }
         try {
+#if NET5_0_OR_GREATER
             await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8).ConfigureAwait(false);
+#else
+            using var writer = new StreamWriter(path, false, Encoding.UTF8);
+            await writer.WriteAsync(ToString()).ConfigureAwait(false);
+#endif
         } catch (Exception ex) {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
         }
