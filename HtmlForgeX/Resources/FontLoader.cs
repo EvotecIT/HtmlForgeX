@@ -30,8 +30,9 @@ public static class FontLoader {
         };
 
         var fontData = Convert.ToBase64String(File.ReadAllBytes(fontFilePath));
+        var escapedFontFamily = fontFamily.Replace("\"", "\\\"");
         var properties = new Dictionary<string, string> {
-            { "font-family", $"'{fontFamily}'" },
+            { "font-family", $"\"{escapedFontFamily}\"" },
             { "src", $"url(data:{mime};base64,{fontData}) format('{format}')" }
         };
         return new Style("@font-face", properties);
