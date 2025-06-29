@@ -6,6 +6,7 @@ namespace HtmlForgeX;
 /// Provides application wide storage for configuration and state.
 /// </summary>
 internal static class GlobalStorage {
+    internal const int DefaultRandomIdLength = 8;
     /// <summary>Gets or sets the current theme mode.</summary>
     internal static ThemeMode ThemeMode { get; set; } = ThemeMode.Light;
     /// <summary>Gets or sets the library mode.</summary>
@@ -27,10 +28,10 @@ internal static class GlobalStorage {
     /// </summary>
     /// <param name="preText">Prefix for the identifier.</param>
     /// <returns>Generated identifier.</returns>
-    internal static string GenerateRandomId(string preText) {
+    internal static string GenerateRandomId(string preText, int length = DefaultRandomIdLength) {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         lock (RandomGenerator) {
-            var randomId = new string(Enumerable.Repeat(chars, 5)
+            var randomId = new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[RandomGenerator.Next(s.Length)]).ToArray());
             return $"{preText}-{randomId}";
         }
