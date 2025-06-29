@@ -85,8 +85,9 @@ public class InternalLogger {
     /// <param name="currentSteps">The current step of the operation (optional).</param>
     /// <param name="totalSteps">The total steps of the operation (optional).</param>
     public void WriteProgress(string activity, string currentOperation, int percentCompleted, int? currentSteps = null, int? totalSteps = null) {
+        LogEventArgs args;
         lock (_lock) {
-            OnProgressMessage?.Invoke(this, new LogEventArgs(activity, currentOperation, currentSteps, totalSteps, percentCompleted));
+            args = new LogEventArgs(activity, currentOperation, currentSteps, totalSteps, percentCompleted);
             if (IsProgress) {
                 if (currentSteps.HasValue && totalSteps.HasValue) {
                     Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[progress] activity: {0} / operation: {1} / percent completed: {2}% ({3} out of {4})", activity, currentOperation, percentCompleted, currentSteps, totalSteps));
@@ -95,6 +96,7 @@ public class InternalLogger {
                 }
             }
         }
+        OnProgressMessage?.Invoke(this, args);
     }
 
     /// <summary>
@@ -102,12 +104,14 @@ public class InternalLogger {
     /// </summary>
     /// <param name="message">The error message to be logged.</param>
     public void WriteError(string message) {
+        LogEventArgs args;
         lock (_lock) {
-            OnErrorMessage?.Invoke(this, new LogEventArgs(message));
+            args = new LogEventArgs(message);
             if (IsError) {
                 Console.WriteLine("[error] " + message);
             }
         }
+        OnErrorMessage?.Invoke(this, args);
     }
 
     /// <summary>
@@ -116,12 +120,14 @@ public class InternalLogger {
     /// <param name="message">The error message to be logged, with format items.</param>
     /// <param name="args">An array of objects to write using format.</param>
     public void WriteError(string message, params object[] args) {
+        LogEventArgs logArgs;
         lock (_lock) {
-            OnErrorMessage?.Invoke(this, new LogEventArgs(string.Format(CultureInfo.InvariantCulture, message, args)));
+            logArgs = new LogEventArgs(string.Format(CultureInfo.InvariantCulture, message, args));
             if (IsError) {
                 Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[error] " + message, args));
             }
         }
+        OnErrorMessage?.Invoke(this, logArgs);
     }
 
     /// <summary>
@@ -129,12 +135,14 @@ public class InternalLogger {
     /// </summary>
     /// <param name="message">The warning message to be logged.</param>
     public void WriteWarning(string message) {
+        LogEventArgs args;
         lock (_lock) {
-            OnWarningMessage?.Invoke(this, new LogEventArgs(message));
+            args = new LogEventArgs(message);
             if (IsWarning) {
                 Console.WriteLine("[warning] " + message);
             }
         }
+        OnWarningMessage?.Invoke(this, args);
     }
 
     /// <summary>
@@ -143,12 +151,14 @@ public class InternalLogger {
     /// <param name="message">The warning message to be logged, with format items.</param>
     /// <param name="args">An array of objects to write using format.</param>
     public void WriteWarning(string message, params object[] args) {
+        LogEventArgs logArgs;
         lock (_lock) {
-            OnWarningMessage?.Invoke(this, new LogEventArgs(string.Format(CultureInfo.InvariantCulture, message, args)));
+            logArgs = new LogEventArgs(string.Format(CultureInfo.InvariantCulture, message, args));
             if (IsWarning) {
                 Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[warning] " + message, args));
             }
         }
+        OnWarningMessage?.Invoke(this, logArgs);
     }
 
     /// <summary>
@@ -156,12 +166,14 @@ public class InternalLogger {
     /// </summary>
     /// <param name="message">The verbose message to be logged.</param>
     public void WriteVerbose(string message) {
+        LogEventArgs args;
         lock (_lock) {
-            OnVerboseMessage?.Invoke(this, new LogEventArgs(message));
+            args = new LogEventArgs(message);
             if (IsVerbose) {
                 Console.WriteLine(message);
             }
         }
+        OnVerboseMessage?.Invoke(this, args);
     }
 
     /// <summary>
@@ -170,12 +182,14 @@ public class InternalLogger {
     /// <param name="message">The verbose message to be logged, with format items.</param>
     /// <param name="args">An array of objects to write using format.</param>
     public void WriteVerbose(string message, params object[] args) {
+        LogEventArgs logArgs;
         lock (_lock) {
-            OnVerboseMessage?.Invoke(this, new LogEventArgs(message, args));
+            logArgs = new LogEventArgs(message, args);
             if (IsVerbose) {
                 Console.WriteLine(string.Format(CultureInfo.InvariantCulture, message, args));
             }
         }
+        OnVerboseMessage?.Invoke(this, logArgs);
     }
 
     /// <summary>
@@ -184,12 +198,14 @@ public class InternalLogger {
     /// <param name="message">The debug message to be logged.</param>
     /// <param name="args">An array of objects to write using format.</param>
     public void WriteDebug(string message, params object[] args) {
+        LogEventArgs logArgs;
         lock (_lock) {
-            OnDebugMessage?.Invoke(this, new LogEventArgs(message, args));
+            logArgs = new LogEventArgs(message, args);
             if (IsDebug) {
                 Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[debug] " + message, args));
             }
         }
+        OnDebugMessage?.Invoke(this, logArgs);
     }
 
     /// <summary>
@@ -198,12 +214,14 @@ public class InternalLogger {
     /// <param name="message">The information message to be logged.</param>
     /// <param name="args">An array of objects to write using format.</param>
     public void WriteInformation(string message, params object[] args) {
+        LogEventArgs logArgs;
         lock (_lock) {
-            OnInformationMessage?.Invoke(this, new LogEventArgs(message, args));
+            logArgs = new LogEventArgs(message, args);
             if (IsInformation) {
                 Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "[information] " + message, args));
             }
         }
+        OnInformationMessage?.Invoke(this, logArgs);
     }
 }
 
