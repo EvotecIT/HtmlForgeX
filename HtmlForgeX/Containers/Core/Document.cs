@@ -75,7 +75,7 @@ public class Document : Element {
             System.IO.Directory.CreateDirectory(directory);
         }
         try {
-            File.WriteAllText(path, ToString());
+            File.WriteAllText(path, ToString(), Encoding.UTF8);
         } catch (Exception ex) {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
         }
