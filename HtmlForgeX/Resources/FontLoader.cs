@@ -37,4 +37,37 @@ public static class FontLoader {
         };
         return new Style("@font-face", properties);
     }
+
+    public static Style LoadFontAsStyle(string fontFamily, Stream fontStream, string extension) {
+        if (fontStream is null) {
+            throw new ArgumentNullException(nameof(fontStream));
+        }
+
+        extension = extension.StartsWith(".") ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
+        var mime = extension switch {
+            ".woff2" => "font/woff2",
+            ".woff" => "font/woff",
+            ".ttf" => "font/ttf",
+            ".otf" => "font/otf",
+            _ => "application/octet-stream"
+        };
+        var format = extension switch {
+            ".woff2" => "woff2",
+            ".woff" => "woff",
+            ".ttf" => "truetype",
+            ".otf" => "opentype",
+            _ => "truetype"
+        };
+
+        fontStream.Position = 0;
+        using var memoryStream = new MemoryStream();
+        fontStream.CopyTo(memoryStream);
+        var fontData = Convert.ToBase64String(memoryStream.ToArray());
+        var escapedFontFamily = fontFamily.Replace("\"", "\\\"");
+        var properties = new Dictionary<string, string> {
+            { "font-family", $"\"{escapedFontFamily}\"" },
+            { "src", $"url(data:{mime};base64,{fontData}) format('{format}')" }
+        };
+        return new Style("@font-face", properties);
+    }
 }
