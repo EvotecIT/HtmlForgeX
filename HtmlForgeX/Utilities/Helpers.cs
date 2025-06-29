@@ -13,20 +13,28 @@ internal static class Helpers {
     /// </summary>
     /// <param name="filePath"></param>
     /// <param name="open"></param>
-    public static void Open(string filePath, bool open) {
+    public static bool Open(string filePath, bool open) {
         if (!open) {
-            return;
+            return true;
         }
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
-            using Process? process = Process.Start(new ProcessStartInfo("cmd", $"/c start \"\" \"{filePath}\"") {
-                CreateNoWindow = true
-            });
-        } else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
-            using Process? process = Process.Start("open", filePath);
-        } else {
-            using Process? process = Process.Start("xdg-open", filePath);
+        try {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+                using Process? process = Process.Start(new ProcessStartInfo("cmd", $"/c start \"\" \"{filePath}\"") {
+                    CreateNoWindow = true
+                });
+            } else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
+                using Process? process = Process.Start("open", filePath);
+            } else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
+                using Process? process = Process.Start("xdg-open", filePath);
+            } else {
+                return false;
+            }
+        } catch (Exception) {
+            return false;
         }
+
+        return true;
     }
 
     /// <summary>
