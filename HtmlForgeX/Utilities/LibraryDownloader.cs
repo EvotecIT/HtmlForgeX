@@ -83,7 +83,11 @@ public class LibraryDownloader {
 
         _logger.WriteVerbose($"Saving '{url}' to '{localPath}'");
 
-        Directory.CreateDirectory(Path.GetDirectoryName(localPath));
+        var directory = Path.GetDirectoryName(localPath);
+        if (string.IsNullOrEmpty(directory)) {
+            directory = rootPath;
+        }
+        Directory.CreateDirectory(directory);
         using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
             using Stream httpStream = await _client.GetStreamAsync(url).ConfigureAwait(false);
             await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
