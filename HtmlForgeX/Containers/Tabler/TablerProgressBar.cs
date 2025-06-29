@@ -17,6 +17,10 @@ public class TablerProgressBarItem : Element {
     /// <param name="background">Background color for the progress bar segment.</param>
     /// <param name="progress">Progress percentage.</param>
     public TablerProgressBarItem(TablerColor background, int progress) {
+        if (progress is < 0 or > 100) {
+            throw new ArgumentOutOfRangeException(nameof(progress), progress, null);
+        }
+
         Background = background;
         Progress = progress;
     }
@@ -31,6 +35,10 @@ public class TablerProgressBarItem : Element {
     /// <param name="valueMin">Optional minimum value.</param>
     /// <param name="valueMax">Optional maximum value.</param>
     public TablerProgressBarItem(TablerColor background, int progress, string label, int? valueNow = null, int? valueMin = null, int? valueMax = null) {
+        if (progress is < 0 or > 100) {
+            throw new ArgumentOutOfRangeException(nameof(progress), progress, null);
+        }
+
         Background = background;
         Progress = progress;
         PrivateLabel = label;
