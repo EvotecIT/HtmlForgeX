@@ -84,7 +84,9 @@ public class Document : Element {
         } catch (Exception ex) {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
         }
-        Helpers.Open(path, openInBrowser);
+        if (!Helpers.Open(path, openInBrowser)) {
+            _logger.WriteError($"Failed to open file '{path}' using the default application.");
+        }
     }
 
     /// <summary>
@@ -123,7 +125,9 @@ public class Document : Element {
         } catch (Exception ex) {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
         }
-        Helpers.Open(path, openInBrowser);
+        if (!Helpers.Open(path, openInBrowser)) {
+            _logger.WriteError($"Failed to open file '{path}' using the default application.");
+        }
     }
 
     /// <inheritdoc/>
