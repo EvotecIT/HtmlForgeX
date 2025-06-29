@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Net;
 
 namespace HtmlForgeX;
 
@@ -71,6 +72,10 @@ internal static class Helpers {
 
         //file is not locked
         return false;
+    }
+
+    public static string HtmlEncode(string value) {
+        return WebUtility.HtmlEncode(value);
     }
 
 }

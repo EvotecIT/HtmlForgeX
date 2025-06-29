@@ -154,9 +154,11 @@ public class HtmlTag : Element {
                     foreach (var style in styleDict) {
                         styleValue.Append($"{style.Key}: {style.Value}; ");
                     }
-                    html.Append($" style=\"{styleValue.ToString().TrimEnd(' ', ';')}\"");
+                    var styleString = styleValue.ToString().TrimEnd(' ', ';');
+                    html.Append($" style=\"{Helpers.HtmlEncode(styleString)}\"");
                 } else {
-                    html.Append($" {attribute.Key}=\"{attribute.Value.ToString()?.Trim()}\"");
+                    var value = Helpers.HtmlEncode(attribute.Value.ToString()?.Trim() ?? string.Empty);
+                    html.Append($" {attribute.Key}=\"{value}\"");
                 }
             }
         }
@@ -171,7 +173,11 @@ public class HtmlTag : Element {
             // if the tag is normal we add the children
             html.Append(">");
             foreach (var child in Children) {
-                html.Append(child);
+                if (child is string str) {
+                    html.Append(Helpers.HtmlEncode(str));
+                } else {
+                    html.Append(child.ToString());
+                }
             }
             html.Append($"</{PrivateTag}>");
         }

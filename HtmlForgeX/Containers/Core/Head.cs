@@ -185,15 +185,15 @@ public class Head {
         head.AppendLine("<head>");
 
         if (!string.IsNullOrEmpty(Title)) {
-            head.AppendLine($"\t<title>{Title}</title>");
+            head.AppendLine($"\t<title>{Helpers.HtmlEncode(Title)}</title>");
         }
 
         if (!string.IsNullOrEmpty(Charset)) {
-            head.AppendLine($"\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Charset}\">");
+            head.AppendLine($"\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Helpers.HtmlEncode(Charset)}\">");
         }
 
         if (!string.IsNullOrEmpty(HttpEquiv) && !string.IsNullOrEmpty(Content)) {
-            head.AppendLine($"\t<meta http-equiv=\"{HttpEquiv}\" content=\"{Content}\">");
+            head.AppendLine($"\t<meta http-equiv=\"{Helpers.HtmlEncode(HttpEquiv)}\" content=\"{Helpers.HtmlEncode(Content)}\">");
         }
 
         if (AutoRefresh.HasValue) {
@@ -288,7 +288,11 @@ public class Head {
     }
 
     private string MetaTagString(string name, string? content) {
-        return string.IsNullOrEmpty(content) ? string.Empty : $"\t<meta name=\"{name}\" content=\"{content}\">\n";
+        if (string.IsNullOrEmpty(content)) {
+            return string.Empty;
+        }
+        var encoded = Helpers.HtmlEncode(content);
+        return $"\t<meta name=\"{name}\" content=\"{encoded}\">\n";
     }
 
     private void ProcessLibrary(Library library) {
