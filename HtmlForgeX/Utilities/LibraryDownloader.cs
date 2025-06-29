@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
@@ -16,11 +17,13 @@ public class LibraryDownloader {
     /// </summary>
     /// <param name="rootPath">The root path.</param>
     public async Task DownloadLibraryAsync(string rootPath) {
+        var tasks = new List<Task>();
         foreach (Libraries library in Enum.GetValues(typeof(Libraries))) {
             if (library != Libraries.None) {
-                await DownloadLibraryAsync(rootPath, library).ConfigureAwait(false);
+                tasks.Add(DownloadLibraryAsync(rootPath, library));
             }
         }
+        await Task.WhenAll(tasks).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -30,13 +33,27 @@ public class LibraryDownloader {
     /// <param name="libraryEnum">The library enum.</param>
     public async Task DownloadLibraryAsync(string path, Libraries libraryEnum) {
         var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
-        foreach (var link in library.Header.JsLink) {
-            await DownloadFileAsync(path, link).ConfigureAwait(false);
+        var links = library.Header.JsLink.Concat(library.Header.CssLink).ToList();
+        if (links.Count == 0) {
+            return;
         }
 
-        foreach (var link in library.Header.CssLink) {
-            await DownloadFileAsync(path, link).ConfigureAwait(false);
+        var tasks = new List<Task>();
+        int completed = 0;
+        foreach (var link in links) {
+            tasks.Add(Task.Run(async () => {
+                await DownloadFileAsync(path, link).ConfigureAwait(false);
+                int done = Interlocked.Increment(ref completed);
+                _logger.WriteProgress(
+                    libraryEnum.ToString(),
+                    Path.GetFileName(link),
+                    done * 100 / links.Count,
+                    done,
+                    links.Count);
+            }));
         }
+
+        await Task.WhenAll(tasks).ConfigureAwait(false);
     }
 
     /// <summary>
