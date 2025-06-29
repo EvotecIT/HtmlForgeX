@@ -18,13 +18,13 @@ internal static class Helpers {
         }
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
-            Process.Start(new ProcessStartInfo("cmd", $"/c start \"\" \"{filePath}\"") {
+            using Process? process = Process.Start(new ProcessStartInfo("cmd", $"/c start \"\" \"{filePath}\"") {
                 CreateNoWindow = true
             });
         } else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
-            Process.Start("open", filePath);
+            using Process? process = Process.Start("open", filePath);
         } else {
-            Process.Start("xdg-open", filePath);
+            using Process? process = Process.Start("xdg-open", filePath);
         }
     }
 
