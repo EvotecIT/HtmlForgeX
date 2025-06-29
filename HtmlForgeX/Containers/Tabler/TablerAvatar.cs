@@ -41,16 +41,30 @@ public class TablerAvatar : Element {
     }
 
     public override string ToString() {
-        HtmlTag avatarTag = new HtmlTag("span").Class("avatar");
-        avatarTag.Class(PrivateAvatarSize?.EnumToString());
-        avatarTag.Class(PrivateAvatarMargin?.EnumToString());
-        avatarTag.Class(ClassBackgroundColor?.ToTablerBackground());
-        avatarTag.Class(ClassTextColor?.ToTablerText());
+        HtmlTag avatarTag = new HtmlTag("span");
+        var classes = new List<string> { "avatar" };
+
+        void AddClass(string? className) {
+            if (!string.IsNullOrEmpty(className) && !classes.Contains(className)) {
+                classes.Add(className);
+            }
+        }
+
+        AddClass(PrivateAvatarSize?.EnumToString());
+        AddClass(PrivateAvatarMargin?.EnumToString());
+        AddClass(ClassBackgroundColor?.ToTablerBackground());
+        AddClass(ClassTextColor?.ToTablerText());
+
+        foreach (var className in classes) {
+            avatarTag.Class(className);
+        }
+
         if (!string.IsNullOrEmpty(ImageUrl)) {
             avatarTag.Style("background-image", $"url({ImageUrl})");
         } else if (!string.IsNullOrEmpty(ValueEntry)) {
             avatarTag.Value(ValueEntry);
         }
+
         return avatarTag.ToString();
     }
 }
