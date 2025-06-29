@@ -6,7 +6,7 @@ public class ScrollingText : Element {
 
     public ScrollingText() {
         // Add library to the global storage, for HTML processing
-        GlobalStorage.Libraries.Add(Libraries.ScrollingText);
+        GlobalStorage.Libraries.TryAdd(Libraries.ScrollingText, 0);
         Id = GlobalStorage.GenerateRandomId("scrollingText");
     }
 

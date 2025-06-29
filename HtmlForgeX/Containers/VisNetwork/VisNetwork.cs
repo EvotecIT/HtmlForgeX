@@ -11,8 +11,8 @@ public class VisNetwork : Element {
     public bool EnableLoadingBar { get; set; }
 
     public VisNetwork() {
-        GlobalStorage.Libraries.Add(Libraries.VisNetwork);
-        GlobalStorage.Libraries.Add(Libraries.VisNetworkLoadingBar);
+        GlobalStorage.Libraries.TryAdd(Libraries.VisNetwork, 0);
+        GlobalStorage.Libraries.TryAdd(Libraries.VisNetworkLoadingBar, 0);
         Id = GlobalStorage.GenerateRandomId("Diagram");
     }
 

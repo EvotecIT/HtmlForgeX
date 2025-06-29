@@ -67,8 +67,8 @@ public class FullCalendar : Element {
 
     public FullCalendar() {
         // add library to the global storage, for HTML processing
-        GlobalStorage.Libraries.Add(Libraries.FullCalendar);
-        GlobalStorage.Libraries.Add(Libraries.Popper);
+        GlobalStorage.Libraries.TryAdd(Libraries.FullCalendar, 0);
+        GlobalStorage.Libraries.TryAdd(Libraries.Popper, 0);
         Id = GlobalStorage.GenerateRandomId("fullCalendar");
     }
 

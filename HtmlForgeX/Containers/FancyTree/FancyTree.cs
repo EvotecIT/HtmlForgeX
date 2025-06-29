@@ -21,8 +21,8 @@ public class FancyTree : Element {
 
     public FancyTree() {
         // add library to the global storage, for HTML processing
-        GlobalStorage.Libraries.Add(Libraries.JQuery);
-        GlobalStorage.Libraries.Add(Libraries.FancyTree);
+        GlobalStorage.Libraries.TryAdd(Libraries.JQuery, 0);
+        GlobalStorage.Libraries.TryAdd(Libraries.FancyTree, 0);
         Id = GlobalStorage.GenerateRandomId("fancyTree");
     }
 
