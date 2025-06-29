@@ -45,6 +45,12 @@ internal static class Helpers {
             //or being processed by another thread
             //or does not exist (has already been processed)
             return true;
+        } catch (UnauthorizedAccessException) {
+            //the file is unavailable because it is:
+            //still being written to
+            //or being processed by another thread
+            //or does not exist (has already been processed)
+            return true;
         }
 
         //file is not locked
@@ -63,6 +69,12 @@ internal static class Helpers {
                 stream.Close();
             }
         } catch (IOException) {
+            //the file is unavailable because it is:
+            //still being written to
+            //or being processed by another thread
+            //or does not exist (has already been processed)
+            return true;
+        } catch (UnauthorizedAccessException) {
             //the file is unavailable because it is:
             //still being written to
             //or being processed by another thread
