@@ -39,4 +39,14 @@ internal class Primary : Library {
     public void LoadFont(string fontFamily, string fontFilePath) {
         Header.CssStyle.Add(FontLoader.LoadFontAsStyle(fontFamily, fontFilePath));
     }
+
+    /// <summary>
+    /// Loads a custom font stream and adds it to the library styles.
+    /// </summary>
+    /// <param name="fontFamily">Font family name.</param>
+    /// <param name="fontStream">Stream containing the font.</param>
+    /// <param name="extension">Font file extension.</param>
+    public void LoadFont(string fontFamily, Stream fontStream, string extension) {
+        Header.CssStyle.Add(FontLoader.LoadFontAsStyle(fontFamily, fontStream, extension));
+    }
 }
