@@ -118,12 +118,20 @@ public class Document : Element {
             }
         } else if (GlobalStorage.LibraryMode == LibraryMode.Offline) {
             foreach (var css in library.Header.Css) {
-                var cssContent = System.IO.File.ReadAllText(css);
+                if (!File.Exists(css)) {
+                    _logger.WriteError($"CSS file '{css}' not found.");
+                    continue;
+                }
+                var cssContent = File.ReadAllText(css);
                 this.Head.AddCssInline(cssContent);
             }
 
             foreach (var js in library.Header.Js) {
-                var jsContent = System.IO.File.ReadAllText(js);
+                if (!File.Exists(js)) {
+                    _logger.WriteError($"JS file '{js}' not found.");
+                    continue;
+                }
+                var jsContent = File.ReadAllText(js);
                 this.Head.AddJsInline(jsContent);
             }
         }
