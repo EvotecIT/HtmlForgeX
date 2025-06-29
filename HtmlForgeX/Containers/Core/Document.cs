@@ -132,7 +132,7 @@ public class Document : Element {
 
     /// <inheritdoc/>
     public override string ToString() {
-        StringBuilder html = new StringBuilder();
+        var html = StringBuilderCache.Acquire();
 
         html.AppendLine("<!DOCTYPE html>");
         html.AppendLine("<html>");
@@ -140,7 +140,7 @@ public class Document : Element {
         html.AppendLine(this.Body.ToString());
         html.AppendLine("</html>");
 
-        return html.ToString();
+        return StringBuilderCache.GetStringAndRelease(html);
     }
 
     /// <summary>

@@ -227,7 +227,7 @@ public class Table : Element {
     }
 
     public virtual string BuildTable() {
-        StringBuilder html = new StringBuilder();
+        var html = StringBuilderCache.Acquire();
         // Add table headers
         if (TableHeaders.Count > 0) {
             html.Append("<thead><tr>");
@@ -259,7 +259,7 @@ public class Table : Element {
             html.Append("</tr></tfoot>");
         }
 
-        return html.ToString();
+        return StringBuilderCache.GetStringAndRelease(html);
     }
 
     public static Table Create(IEnumerable<object> objects, TableType tableType) {
