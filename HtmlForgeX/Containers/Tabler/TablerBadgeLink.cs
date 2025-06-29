@@ -1,8 +1,17 @@
-using HtmlForgeX;
+namespace HtmlForgeX;
 
 public class TablerBadgeLink : Element {
     private new string Text { get; set; }
-    private string Href { get; set; }
+    private string Href {
+        get => _href;
+        set {
+            if (!Uri.TryCreate(value, UriKind.RelativeOrAbsolute, out _)) {
+                throw new ArgumentException($"Invalid href value: {value}", nameof(value));
+            }
+            _href = value;
+        }
+    }
+    private string _href = string.Empty;
     private TablerColor? Color { get; set; }
 
     private TablerBadgeStyle Style { get; set; }
