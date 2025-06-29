@@ -82,6 +82,40 @@ public class Document : Element {
         Helpers.Open(path, openInBrowser);
     }
 
+    /// <summary>
+    /// Saves the document to disk asynchronously.
+    /// </summary>
+    /// <param name="path">File path.</param>
+    /// <param name="openInBrowser">Whether to open the file after saving.</param>
+    /// <param name="scriptPath">Optional scripts path.</param>
+    /// <param name="stylePath">Optional styles path.</param>
+    public async Task SaveAsync(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
+        GlobalStorage.Path = path;
+        if (!string.IsNullOrEmpty(scriptPath)) {
+            GlobalStorage.ScriptPath = scriptPath;
+        }
+
+        if (!string.IsNullOrEmpty(stylePath)) {
+            GlobalStorage.StylePath = stylePath;
+        }
+
+        var countErrors = GlobalStorage.Errors.Count;
+        if (countErrors > 0) {
+            Console.WriteLine($"There were {countErrors} found during generation of HTML.");
+        }
+
+        var directory = System.IO.Path.GetDirectoryName(path);
+        if (!string.IsNullOrEmpty(directory)) {
+            System.IO.Directory.CreateDirectory(directory);
+        }
+        try {
+            await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8).ConfigureAwait(false);
+        } catch (Exception ex) {
+            _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
+        }
+        Helpers.Open(path, openInBrowser);
+    }
+
     /// <inheritdoc/>
     public override string ToString() {
         StringBuilder html = new StringBuilder();
