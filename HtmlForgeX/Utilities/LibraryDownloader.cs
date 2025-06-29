@@ -89,7 +89,13 @@ public class LibraryDownloader {
         }
         Directory.CreateDirectory(directory);
         using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
-            using Stream httpStream = await _client.GetStreamAsync(url).ConfigureAwait(false);
+            using HttpResponseMessage response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+            if (!response.IsSuccessStatusCode) {
+                _logger.WriteError($"Failed to download '{url}' - Status code: {(int)response.StatusCode}");
+                throw new HttpRequestException($"Request for '{url}' failed with status code {response.StatusCode}");
+            }
+
+            using Stream httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
             await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
         }
     }
