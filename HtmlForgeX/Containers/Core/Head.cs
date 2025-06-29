@@ -328,7 +328,7 @@ public class Head {
                     Directory.CreateDirectory(jsDirectory);
                 }
                 try {
-                    File.WriteAllText(jsFileName, jsContent);
+                    File.WriteAllText(jsFileName, jsContent, Encoding.UTF8);
                 } catch (Exception ex) {
                     _logger.WriteError($"Failed to write file '{jsFileName}'. {ex.Message}");
                 }
