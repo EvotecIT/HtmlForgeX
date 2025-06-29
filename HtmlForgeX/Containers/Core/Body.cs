@@ -50,7 +50,7 @@ public class Body : Element {
 
     /// <inheritdoc/>
     public override string ToString() {
-        StringBuilder bodyBuilder = new StringBuilder();
+        var bodyBuilder = StringBuilderCache.Acquire();
         if (GlobalStorage.ThemeMode == ThemeMode.Dark) {
             bodyBuilder.AppendLine("<body data-bs-theme=\"dark\">");
         } else if (GlobalStorage.ThemeMode == ThemeMode.Light) {
@@ -68,6 +68,6 @@ public class Body : Element {
 
         bodyBuilder.AppendLine("</body>");
 
-        return bodyBuilder.ToString();
+        return StringBuilderCache.GetStringAndRelease(bodyBuilder);
     }
 }

@@ -181,7 +181,7 @@ public class Head {
             ProcessLibrary(library);
         }
 
-        StringBuilder head = new StringBuilder();
+        var head = StringBuilderCache.Acquire();
         head.AppendLine("<head>");
 
         if (!string.IsNullOrEmpty(Title)) {
@@ -245,7 +245,7 @@ public class Head {
         }
 
         head.AppendLine("</head>");
-        return head.ToString();
+        return StringBuilderCache.GetStringAndRelease(head);
     }
 
     public Head AddDefaultStyles() {

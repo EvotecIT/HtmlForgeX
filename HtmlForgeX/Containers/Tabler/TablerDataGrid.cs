@@ -27,7 +27,8 @@ public class TablerDataGrid : Element {
     }
 
     public override string ToString() {
-        StringBuilder html = new StringBuilder("<div class=\"datagrid\">");
+        var html = StringBuilderCache.Acquire();
+        html.Append("<div class=\"datagrid\">");
 
         foreach (var item in Items) {
             html.Append(item.ToString());
@@ -35,6 +36,6 @@ public class TablerDataGrid : Element {
 
         html.Append("</div>");
 
-        return html.ToString();
+        return StringBuilderCache.GetStringAndRelease(html);
     }
 }
