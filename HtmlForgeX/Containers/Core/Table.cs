@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Collections.Concurrent;
+using System.Collections;
 using System.Text;
 
 namespace HtmlForgeX;
@@ -70,6 +71,20 @@ public class Table : Element {
         if (firstObject == null) {
             // Handle the case where the first object is null
             return this;
+        }
+
+        if (firstObject is IEnumerable enumerable && firstObject is not string && firstObject is not IDictionary) {
+            var flattened = new List<object>();
+            foreach (var obj in objects) {
+                if (obj is IEnumerable inner && obj is not string && obj is not IDictionary) {
+                    foreach (var innerItem in inner) {
+                        flattened.Add(innerItem!);
+                    }
+                } else {
+                    flattened.Add(obj);
+                }
+            }
+            return AddObjects(flattened, addFooter);
         }
 
         if (firstObject is IDictionary<string, object>) {
@@ -281,6 +296,10 @@ public class Table : Element {
     }
 
     public static Table Create(object obj, TableType tableType) {
+        if (obj is IEnumerable enumerable && obj is not string && obj is not IDictionary) {
+            return Create(enumerable.Cast<object>(), tableType);
+        }
+
         return Create(new[] { obj }, tableType);
     }
 
