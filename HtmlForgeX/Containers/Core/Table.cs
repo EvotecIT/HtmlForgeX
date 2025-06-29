@@ -1,15 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Collections.Concurrent;
 using System.Text;
 
 namespace HtmlForgeX;
 
 public class Table : Element {
     private readonly TableType? Library;
+    private static readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyCache = new();
     public List<string> TableHeaders { get; set; } = new List<string>();
     public List<string> TableFooters { get; set; } = new List<string>();
     public List<List<string>> TableRows { get; set; } = new List<List<string>>();
+
+    private static PropertyInfo[] GetCachedProperties(Type type) {
+        return PropertyCache.GetOrAdd(type, t => t.GetProperties());
+    }
+
+    private static PropertyInfo? GetCachedProperty(Type type, string name) {
+        return Array.Find(GetCachedProperties(type), p => p.Name == name);
+    }
 
     public Table(TableType? library = null) {
         Library = library;
@@ -79,14 +89,14 @@ public class Table : Element {
     }
 
     private bool IsDynamicObject(Type type) {
-        return type.GetProperty("Members") != null || type.GetProperty("Properties") != null ||
+        return GetCachedProperty(type, "Members") != null || GetCachedProperty(type, "Properties") != null ||
                type.GetInterfaces().Any(i => i == typeof(System.Dynamic.IDynamicMetaObjectProvider));
     }
 
 
     private void AddStandardObjects(IEnumerable<object> objects, bool addFooter) {
         var type = objects.First().GetType();
-        var properties = type.GetProperties();
+        var properties = GetCachedProperties(type);
 
         // Add the headers
         foreach (var property in properties) {
@@ -148,8 +158,8 @@ public class Table : Element {
         var type = obj.GetType();
 
         // Check for properties typically present in a PSObject
-        return type.GetProperty("Properties") != null &&
-               type.GetProperty("Members") != null;
+        return GetCachedProperty(type, "Properties") != null &&
+               GetCachedProperty(type, "Members") != null;
     }
 
     private void AddPsObjectLike(IEnumerable<object> objects, bool addFooter) {
@@ -184,15 +194,15 @@ public class Table : Element {
     private IDictionary<string, object> GetPsObjectProperties(object psObject) {
         var properties = new Dictionary<string, object>();
 
-        var propertiesProperty = psObject.GetType().GetProperty("Properties");
+        var propertiesProperty = GetCachedProperty(psObject.GetType(), "Properties");
         if (propertiesProperty != null) {
             var propertiesValue = propertiesProperty.GetValue(psObject);
             var enumerable = propertiesValue as IEnumerable;
 
             if (enumerable != null) {
                 foreach (var item in enumerable) {
-                    var nameProperty = item.GetType().GetProperty("Name");
-                    var valueProperty = item.GetType().GetProperty("Value");
+                    var nameProperty = GetCachedProperty(item.GetType(), "Name");
+                    var valueProperty = GetCachedProperty(item.GetType(), "Value");
 
                     if (nameProperty != null && valueProperty != null) {
                         var name = nameProperty.GetValue(item)?.ToString();
