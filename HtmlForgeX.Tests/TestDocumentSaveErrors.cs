@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using HtmlForgeX.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -38,11 +37,12 @@ public class TestDocumentSaveErrors {
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
         var doc = new Document();
-        string path = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-            ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), $"file_{Guid.NewGuid()}.html")
-            : Path.Combine("/proc", $"file_{Guid.NewGuid()}.html");
-        doc.Save(path);
+        var path = Path.Combine(Path.GetTempPath(), $"file_{Guid.NewGuid()}.html");
+        using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
+            doc.Save(path);
+        }
         logger.OnErrorMessage -= handler;
+        File.Delete(path);
         Assert.IsNotNull(received);
         StringAssert.Contains(received!, path);
     }
