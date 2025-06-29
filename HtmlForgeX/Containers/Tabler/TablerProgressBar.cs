@@ -137,8 +137,11 @@ public class TablerProgressBar : Element {
         string typeClass = string.Join(" ", Types.Select(t => t.ToClassString()));
 
         HtmlTag progressBarTag = new HtmlTag("div")
-            .Class("progress")
-            .Class(typeClass);
+            .Class("progress");
+
+        if (!string.IsNullOrEmpty(typeClass)) {
+            progressBarTag.Class(typeClass);
+        }
         // TODO: We need to add handling for mb-3 and similar for margins and padding
 
         foreach (var item in Items) {
