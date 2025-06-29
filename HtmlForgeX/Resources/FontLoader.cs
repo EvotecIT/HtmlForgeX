@@ -43,7 +43,7 @@ public static class FontLoader {
             throw new ArgumentNullException(nameof(fontStream));
         }
 
-        extension = extension.StartsWith('.') ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
+        extension = extension.StartsWith(".") ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
         var mime = extension switch {
             ".woff2" => "font/woff2",
             ".woff" => "font/woff",
