@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
@@ -80,6 +81,45 @@ public class Document : Element {
         }
         try {
             File.WriteAllText(path, ToString(), Encoding.UTF8);
+        } catch (Exception ex) {
+            _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
+        }
+        Helpers.Open(path, openInBrowser);
+    }
+
+    /// <summary>
+    /// Saves the document to disk asynchronously.
+    /// </summary>
+    /// <param name="path">File path.</param>
+    /// <param name="openInBrowser">Whether to open the file after saving.</param>
+    /// <param name="scriptPath">Optional scripts path.</param>
+    /// <param name="stylePath">Optional styles path.</param>
+    public async Task SaveAsync(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
+        GlobalStorage.Path = path;
+        if (!string.IsNullOrEmpty(scriptPath)) {
+            GlobalStorage.ScriptPath = scriptPath;
+        }
+
+        if (!string.IsNullOrEmpty(stylePath)) {
+            GlobalStorage.StylePath = stylePath;
+        }
+
+        var countErrors = GlobalStorage.Errors.Count;
+        if (countErrors > 0) {
+            Console.WriteLine($"There were {countErrors} found during generation of HTML.");
+        }
+
+        var directory = System.IO.Path.GetDirectoryName(path);
+        if (!string.IsNullOrEmpty(directory)) {
+            System.IO.Directory.CreateDirectory(directory);
+        }
+        try {
+#if NET5_0_OR_GREATER
+            await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8).ConfigureAwait(false);
+#else
+            using var writer = new StreamWriter(path, false, Encoding.UTF8);
+            await writer.WriteAsync(ToString()).ConfigureAwait(false);
+#endif
         } catch (Exception ex) {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
         }
