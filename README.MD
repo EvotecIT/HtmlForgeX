@@ -631,3 +631,64 @@ Please consider sharing a post about HtmlForgeX and the value it provides. It re
 [![Share on twitter](https://img.shields.io/badge/share%20on-twitter-03A9F4?logo=twitter)](https://twitter.com/share?url=https://github.com/EvotecIT/HtmlForgeX&t=HtmlForgeX)
 [![Share on facebook](https://img.shields.io/badge/share%20on-facebook-1976D2?logo=facebook)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/EvotecIT/HtmlForgeX)
 [![Share on linkedin](https://img.shields.io/badge/share%20on-linkedin-3949AB?logo=linkedin)](https://www.linkedin.com/shareArticle?url=https://github.com/EvotecIT/HtmlForgeX&title=HtmlForgeX)
+
+## SVG Icon System
+
+### Migration from TablerIcon
+
+**Old TablerIcon System (REPLACED):**
+```csharp
+// OLD: CSS-based icons with external dependencies
+TablerIcon.ArrowDown   // "ti-arrow-down"
+TablerIcon.Settings    // "ti-settings"
+TablerIcon.User        // "ti-user"
+```
+
+**New SVG Icon System:**
+```csharp
+// NEW: Direct SVG with full styling control
+SvgIconLibrary.GetIcon(TablerIconType.ArrowDown)
+SvgIconLibrary.GetIcon(TablerIconType.Settings)
+SvgIconLibrary.GetIcon(TablerIconType.User)
+
+// With advanced styling capabilities
+var styledIcon = SvgIconLibrary.GetIcon(TablerIconType.Heart)
+    .Size(32)
+    .StrokeColor(RGBColor.Red)
+    .FillColor(RGBColor.Pink)
+    .Rotate(45)
+    .AddStyle("filter", "drop-shadow(2px 2px 4px rgba(0,0,0,0.3))");
+```
+
+### Benefits of New System
+
+✅ **1,780+ Icons Available** - Download-on-demand from GitHub
+✅ **Zero External Dependencies** - No CSS files needed
+✅ **Full Styling Control** - Colors, sizes, transforms, custom CSS
+✅ **Crisp SVG Rendering** - Vector graphics, not font icons
+✅ **Transform Support** - Rotate, scale, position
+✅ **Custom Styling** - Filters, shadows, animations
+✅ **Clean Repository** - No large icon files to commit
+
+### Icon Generation
+
+The system automatically downloads and generates icons during build:
+
+```powershell
+# Manual regeneration (only when needed)
+.\Regenerate-Icons.ps1
+
+# Force regeneration
+.\Regenerate-Icons.ps1 -Force
+
+# Generate specific icon sets
+.\Regenerate-Icons.ps1 -IconSet outline -MaxIcons 500
+```
+
+**Performance:**
+- **First build:** ~15 seconds (downloads + generates)
+- **Subsequent builds:** ~0 seconds (smart change detection)
+
+---
+
+*The new SVG system completely replaces the old 5,000+ line TablerIcon class with a modern, flexible, and dependency-free approach.*

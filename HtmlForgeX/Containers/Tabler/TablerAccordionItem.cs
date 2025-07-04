@@ -44,7 +44,7 @@ public class TablerAccordionItem : Element {
             .Id("collapse-" + Id).Value(
                 new HtmlTag("div").Class("accordion-body").Class("pt-0").Value(ContentElement));
 
-        itemDiv.Value(collapseDiv.ToString());
+        itemDiv.Value(collapseDiv);
 
 
         return itemDiv.ToString();

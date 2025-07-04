@@ -20,8 +20,8 @@ public class TablerAvatar : Element {
         return this;
     }
 
-    public TablerAvatar Icon(TablerIcon icon) {
-        ValueEntry = new TablerIconElement(icon).ToString();
+    public TablerAvatar Icon(TablerIconType TablerIconType) {
+        ValueEntry = new TablerIconElement(TablerIconType).ToString();
         return this;
     }
 
