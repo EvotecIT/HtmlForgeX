@@ -13,7 +13,7 @@ public class TestTablerTag {
     [TestMethod]
     public void TagDismissAndSize() {
         var tag = new TablerTag("Close", TablerColor.Red).Dismissable().TagSize(TablerTagSize.Small);
-        var expected = "<span class=\"tag tag-sm bg-red\">Close<a class=\"tag-remove\" href=\"#\"><i class=\"ti ti-x\"></i></a></span>";
+        var expected = "<span class=\"tag tag-sm bg-red\">Close<a class=\"btn-close\" href=\"#\"></a></span>";
         Assert.AreEqual(expected, tag.ToString());
     }
 }

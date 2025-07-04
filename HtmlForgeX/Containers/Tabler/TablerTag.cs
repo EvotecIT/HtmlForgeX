@@ -4,7 +4,7 @@ namespace HtmlForgeX;
 /// Represents a <c>span</c> element styled as a Tabler tag.
 /// </summary>
 public class TablerTag : Element {
-    private string Text { get; }
+    private string TagText { get; }
     private TablerColor? Color { get; set; }
     private bool Dismiss { get; set; }
     private TablerTagSize Size { get; set; } = TablerTagSize.Normal;
@@ -15,7 +15,7 @@ public class TablerTag : Element {
     /// <param name="text">Text displayed inside the tag.</param>
     /// <param name="color">Optional background color.</param>
     public TablerTag(string text, TablerColor? color = null) {
-        Text = text;
+        TagText = text;
         Color = color;
     }
 
@@ -61,12 +61,11 @@ public class TablerTag : Element {
         if (Color != null) {
             tag.Class(Color.Value.ToTablerBackground());
         }
-        tag.Value(Text);
+        tag.Value(TagText);
         if (Dismiss) {
             var dismiss = new HtmlTag("a")
-                .Class("tag-remove")
-                .Attribute("href", "#")
-                .Value(new TablerIconElement(TablerIconType.X));
+                .Class("btn-close")
+                .Attribute("href", "#");
             tag.Value(dismiss);
         }
         return tag.ToString();
