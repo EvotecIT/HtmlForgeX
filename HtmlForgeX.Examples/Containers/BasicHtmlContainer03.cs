@@ -117,6 +117,8 @@ internal class BasicHtmlContainer03 {
                                 TablerBadgeStyle.Normal, TablerColor.Green));
                             dataGrid.Title("Normal").Content(new TablerBadgeSpan("Testing", TablerColor.AzureLight,
                                 TablerBadgeStyle.Normal));
+                            dataGrid.Title("Tag").Content(new TablerTag("New", TablerColor.Lime).Dismissable());
+                            dataGrid.Title("Large Tag").Content(new TablerTag("Download", TablerColor.Green).TagSize(TablerTagSize.Large).Dismissable());
 
                         });
                     });

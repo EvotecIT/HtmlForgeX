@@ -175,6 +175,8 @@ document.Body.Page(page => {
                     dataGrid.Title("Outline").Content(new TablerBadgeSpan("Testing", TablerColor.Azure, TablerBadgeStyle.Outline, TablerColor.Cyan));
                     dataGrid.Title("Text Color").Content(new TablerBadgeSpan("Testing", TablerColor.Facebook, TablerBadgeStyle.Normal, TablerColor.Green));
                     dataGrid.Title("Normal").Content(new TablerBadgeSpan("Testing", TablerColor.AzureLight, TablerBadgeStyle.Normal));
+                    dataGrid.Title("Tag").Content(new TablerTag("New", TablerColor.Lime).Dismissable());
+                    dataGrid.Title("Large Tag").Content(new TablerTag("Download", TablerColor.Green).TagSize(TablerTagSize.Large).Dismissable());
 
                 });
             });
