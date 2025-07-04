@@ -35,19 +35,19 @@ internal class BasicHtmlContainer03 {
             page.Row(row => {
                 // first line of 4 cards
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerColor.Facebook)
+                    column.CardMini().Avatar(TablerIconType.BrandFacebook).BackgroundColor(TablerColor.Facebook)
                         .TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerColor.Twitter)
+                    column.CardMini().Avatar(TablerIconType.BrandTwitter).BackgroundColor(TablerColor.Twitter)
                         .TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerColor.CyanLight)
+                    column.CardMini().Avatar(TablerIconType.Basket).BackgroundColor(TablerColor.CyanLight)
                         .TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerColor.OrangeLight)
+                    column.CardMini().Avatar(TablerIconType.BasketDollar).BackgroundColor(TablerColor.OrangeLight)
                         .TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
                 });
                 // second line of 3 cards
@@ -59,7 +59,7 @@ internal class BasicHtmlContainer03 {
                         });
                         card.Row(cardRow => {
                             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Gray300)
+                                avatarColumn.Avatar().Icon(TablerIconType.BrandMastercard).BackgroundColor(TablerColor.Gray300)
                                     .TextColor(TablerColor.Pink);
                             });
                             cardRow.Column(textColumn => {
@@ -71,12 +71,12 @@ internal class BasicHtmlContainer03 {
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.BlueLight)
+                        card.Add(new TablerAvatar().Icon(TablerIconType.BrandMastercard).BackgroundColor(TablerColor.BlueLight)
                             .TextColor(TablerColor.Flickr));
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
-                    column.CardMini().Avatar(TablerIcon.License);
+                    column.CardMini().Avatar(TablerIconType.BrandMastercard);
 
                 });
 
@@ -246,7 +246,7 @@ internal class BasicHtmlContainer03 {
                 });
                 row.Column(TablerColumnNumber.Three, column => {
                     column.Card(card => {
-                        card.TablerList().AddItem("Test", TablerIcon.Table).AddItem("test2", TablerIcon.AB);
+                        card.TablerList().AddItem("Test", TablerIconType.BrandAirtable).AddItem("test2", TablerIconType.AB);
                     });
                 });
             });

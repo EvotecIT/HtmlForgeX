@@ -54,7 +54,7 @@ internal class DomainHealthCheck {
                             //    avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Gray300).TextColor(TablerColor.Pink);
                             //});
                             cardRow.Column(TablerColumnNumber.Three, textColumn => {
-                                textColumn.Add(new TablerIconElement(TablerIcon.ShieldCheck).FontSize(115).Color(RGBColor.LightGreen));
+                                textColumn.Add(new TablerIconElement(TablerIconType.BasketCheck).FontSize(115).Color(RGBColor.LightGreen));
                             });
                             cardRow.Column(TablerColumnNumber.Three, textColumn => {
                                 textColumn.HeaderLevel(HeaderLevelTag.H4, "OUTBOUND EMAIL").Class("card-title");
@@ -211,7 +211,7 @@ internal class DomainHealthCheck {
                 //            accordion.AddItem("John", new Span().AddContent("Test1"));
                 //            // works
                 //            accordion.AddItem("Jane", new Span().AddContent("Test2"));
-                //            // works 
+                //            // works
                 //            accordion.AddItem("Johny", item => {
                 //                item.Content(new Span().AddContent("Test2"));
                 //                item.Content(new TablerSteps().StepCounting().Color(TablerColor.Red)

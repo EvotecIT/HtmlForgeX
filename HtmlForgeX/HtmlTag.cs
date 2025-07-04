@@ -174,7 +174,10 @@ public class HtmlTag : Element {
             html.Append(">");
             foreach (var child in Children) {
                 if (child is string str) {
-                    html.Append(Helpers.HtmlEncode(str));
+                    //html.Append(Helpers.HtmlEncode(str));
+                    html.Append(str);
+                } else if (child is RawHtml rawHtml) {
+                    html.Append(rawHtml.Content);
                 } else {
                     html.Append(child.ToString());
                 }

@@ -49,7 +49,7 @@ public class TablerTabsPanel : ElementContainer {
 
         // Convert child elements to string and add them to the panelDiv
         foreach (var child in Children) {
-            panelDiv.Value(child.ToString());
+            panelDiv.Value(child);
         }
 
         return panelDiv.ToString();

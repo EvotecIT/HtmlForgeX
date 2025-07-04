@@ -60,12 +60,12 @@ public class ScrollingTextItem : Element {
 
         // Render all child elements recursively
         foreach (var child in Children) {
-            sectionTag.Value(child.ToString());
+            sectionTag.Value(child);
         }
 
         // Render all nested items (aka ScrollingTextItems)
         foreach (var child in Items) {
-            sectionTag.Value(child.ToString());
+            sectionTag.Value(child);
         }
 
         return sectionTag.ToString();

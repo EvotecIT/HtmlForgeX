@@ -58,12 +58,12 @@ public class TablerCard : Element {
 
         // Add any child elements to the card body
         foreach (var child in Children) {
-            cardBodyDiv.Value(child.ToString());
+            cardBodyDiv.Value(child);
         }
 
         // Add the card footer to the card if Footer is not null
         if (PrivateFooter != null) {
-            cardDiv.Value(PrivateFooter.ToString());
+            cardDiv.Value(PrivateFooter);
         }
 
         var result = cardDiv.ToString();

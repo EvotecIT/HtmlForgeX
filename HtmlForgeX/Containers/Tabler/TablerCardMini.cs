@@ -2,14 +2,14 @@ namespace HtmlForgeX;
 
 public class TablerCardMini : TablerCard {
     private string? PrivateCardStyle { get; set; }
-    private TablerIcon AvatarIcon { get; set; } = TablerIcon.User;
+    private TablerIconType AvatarIcon { get; set; } = TablerIconType.Badge;
     private TablerColor AvatarBackgroundColor { get; set; } = TablerColor.Blue;
     private TablerColor AvatarTextColor { get; set; } = TablerColor.White;
     private string TitleText { get; set; } = "";
     private string SubtitleText { get; set; } = "";
 
-    public TablerCardMini Avatar(TablerIcon icon) {
-        AvatarIcon = icon;
+    public TablerCardMini Avatar(TablerIconType TablerIconType) {
+        AvatarIcon = TablerIconType;
         return this;
     }
 

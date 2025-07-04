@@ -23,7 +23,7 @@ public class TablerPage : Element {
 
         var container = new HtmlTag("div").Class("container-xl");
         foreach (var child in Children) {
-            container.Value(child.ToString());
+            container.Value(child);
         }
         pageBody.Value(container);
 

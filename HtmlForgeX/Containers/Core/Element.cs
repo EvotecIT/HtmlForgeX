@@ -246,8 +246,8 @@ public abstract class Element {
     }
 
     public UnorderedList TablerList() {
-        var list = new UnorderedList();
-        this.Add(list);
-        return list;
+        var unorderedList = new UnorderedList();
+        this.Add(unorderedList);
+        return unorderedList;
     }
 }
