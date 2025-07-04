@@ -82,6 +82,7 @@ internal class DomainHealthCheck {
                                     dataGrid.AddItem("Name", "evotec.xyz");
                                     dataGrid.AddItem("DNSSEC", new TablerBadgeSpan("yes", TablerColor.GreenLight));
                                     dataGrid.AddItem("Monitoring", new TablerBadgeSpan("yes", TablerColor.GreenLight));
+                                    dataGrid.AddItem("Status", new TablerTag("Active", TablerColor.Lime).Dismissable());
 
                                 });
                             });

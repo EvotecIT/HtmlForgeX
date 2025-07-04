@@ -18,6 +18,7 @@ using HtmlForgeX.Examples.Tags;
 //BasicHtmlTagBuilding02.Demo1();
 
 //ExampleTablerIcon.Demo();
+ExampleTablerTag.Demo();
 
 //BasicHtmlBuilding.Demo1(true);
 //BasicHtmlBuilding.Demo2(true);
