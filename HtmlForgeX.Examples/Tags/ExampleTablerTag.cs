@@ -12,12 +12,13 @@ internal static class ExampleTablerTag {
                         card.DataGrid(dataGrid => {
                             dataGrid.Title("Tag").Content(new TablerTag("Example", TablerColor.Green).Dismissable());
                             dataGrid.Title("Large Tag").Content(new TablerTag("Download", TablerColor.Lime).TagSize(TablerTagSize.Large).Dismissable());
+                            dataGrid.Title("Small Tag").Content(new TablerTag("Download", TablerColor.AzureLight).TagSize(TablerTagSize.Small).Dismissable());
                         });
                     });
                 });
             });
         });
 
-        Console.WriteLine(document);
+        document.Save("TagDemo.html", true);
     }
 }

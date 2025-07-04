@@ -66,7 +66,7 @@ public class TablerTag : Element {
             var dismiss = new HtmlTag("a")
                 .Class("tag-remove")
                 .Attribute("href", "#")
-                .Value(new TablerIconElement(TablerIcon.X));
+                .Value(new TablerIconElement(TablerIconType.X));
             tag.Value(dismiss);
         }
         return tag.ToString();
