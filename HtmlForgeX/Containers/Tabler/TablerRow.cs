@@ -23,7 +23,7 @@ public class TablerRow : Element {
             rowTag.Class(rowType.EnumToString());
         }
         foreach (var child in Children) {
-            rowTag.Value(child.ToString());
+            rowTag.Value(child);
         }
         return rowTag.ToString();
     }

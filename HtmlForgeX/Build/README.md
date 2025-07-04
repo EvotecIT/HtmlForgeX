@@ -26,7 +26,7 @@ pwsh ./GenerateIcons.ps1 -IconSet both -MaxIcons 1000 -Force
 
 ## Generated Files
 
-- **`IconType.cs`** - Enum with all icon types (⚠️ auto-generated, do not edit manually)
+- **`TablerIconType.cs`** - Enum with all icon types (⚠️ auto-generated, do not edit manually)
 - **`SvgIconLibrary.cs`** - Library with embedded SVG content (⚠️ auto-generated, do not edit manually)
 
 Both files are **committed to git** so other developers don't need to regenerate them.
@@ -67,7 +67,7 @@ The new SVG system completely replaces the old CSS-based `TablerIcon` class:
 new TablerIconElement(TablerIcon.Home)
 
 // NEW (SVG-based)
-new TablerIconElement(IconType.Home)
+new TablerIconElement(TablerIconType.Home)
 ```
 
 Key improvements:

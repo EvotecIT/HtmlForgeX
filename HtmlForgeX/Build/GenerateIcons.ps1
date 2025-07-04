@@ -6,7 +6,7 @@
 .DESCRIPTION
     This script downloads only the SVG files needed and generates C# code with embedded content
     - Downloads SVG files from GitHub directly (no local repo needed)
-    - Generates IconType enum with all icon names
+    - Generates TablerIcon enum with all icon names
     - Generates SvgIconLibrary with embedded SVG content
     - No separate resource files needed
 .PARAMETER Force
@@ -37,11 +37,11 @@ Write-Host "Project: $ProjectPath" -ForegroundColor Gray
 
 # Check if regeneration is needed
 if (-not $Force) {
-    $iconTypeFile = Join-Path $ProjectPath "Containers\Core\IconType.cs"
-    $libraryFile = Join-Path $ProjectPath "Containers\Core\SvgIconLibrary.cs"
+    $TablerIconFile = Join-Path $ProjectPath "Containers\Tabler\TablerIcon.cs"
+    $libraryFile = Join-Path $ProjectPath "Containers\Tabler\TablerIconLibrary.cs"
 
-    if ((Test-Path $iconTypeFile) -and (Test-Path $libraryFile)) {
-        $oldestTarget = @(Get-Item $iconTypeFile), @(Get-Item $libraryFile) | Sort-Object LastWriteTime | Select-Object -First 1
+    if ((Test-Path $TablerIconFile) -and (Test-Path $libraryFile)) {
+        $oldestTarget = @(Get-Item $TablerIconFile), @(Get-Item $libraryFile) | Sort-Object LastWriteTime | Select-Object -First 1
         $daysSinceGeneration = (Get-Date) - $oldestTarget.LastWriteTime
 
         if ($daysSinceGeneration.TotalDays -lt 7) {
@@ -204,8 +204,8 @@ foreach ($icon in $allIcons) {
 
 Write-Host "✅ Downloaded $($downloadedIcons.Count) unique icons" -ForegroundColor Green
 
-# Generate IconType enum
-Write-Host "🔧 Generating IconType enum..." -ForegroundColor Yellow
+# Generate TablerIcon enum
+Write-Host "🔧 Generating TablerIcon enum..." -ForegroundColor Yellow
 
 $enumContent = @'
 //------------------------------------------------------------------------------
@@ -226,7 +226,7 @@ namespace HtmlForgeX;
 /// Enumeration of all available SVG icons from tabler-icons
 /// This is an auto-generated partial class - do not modify manually
 /// </summary>
-public enum IconType {
+public enum TablerIcon {
 '@
 
 $enumValues = $downloadedIcons.Keys | Sort-Object | ForEach-Object {
@@ -240,9 +240,9 @@ $enumContent += "`n" + ($enumValues -join "`n") + "`n}"
 $enumContent = $enumContent -replace '\{ICON_COUNT\}', $downloadedIcons.Count
 $enumContent = $enumContent -replace '\{GENERATION_DATE\}', (Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC")
 
-# Write IconType.cs
-Set-Content "$ProjectPath/Containers/Core/IconType.cs" $enumContent -Encoding UTF8
-Write-Host "✅ Generated IconType.cs with $($downloadedIcons.Count) icons" -ForegroundColor Green
+# Write TablerIcon.cs
+Set-Content "$ProjectPath/Containers/Core/TablerIcon.cs" $enumContent -Encoding UTF8
+Write-Host "✅ Generated TablerIcon.cs with $($downloadedIcons.Count) icons" -ForegroundColor Green
 
 # Generate SvgIconLibrary with embedded content
 Write-Host "🔧 Generating SvgIconLibrary with embedded content..." -ForegroundColor Yellow
@@ -270,15 +270,15 @@ namespace HtmlForgeX;
 /// Static library for SVG icons with embedded content from tabler-icons
 /// This is an auto-generated class - do not modify manually
 /// </summary>
-public static class SvgIconLibrary {
-    private static readonly Dictionary<IconType, string> _iconContent = new() {
+public static class TablerIconLibrary {
+    private static readonly Dictionary<TablerIcon, string> _iconContent = new() {
 '@
 
 # Add embedded icon content
 foreach ($enumName in ($downloadedIcons.Keys | Sort-Object)) {
     $icon = $downloadedIcons[$enumName]
     $escapedContent = Escape-CSharpString $icon.Content
-    $libraryContent += "`n        { IconType.$enumName, `"$escapedContent`" },"
+    $libraryContent += "`n        { TablerIcon.$enumName, `"$escapedContent`" },"
 }
 
 $libraryContent += @'
@@ -288,33 +288,33 @@ $libraryContent += @'
     /// <summary>
     /// Get an SVG icon by type
     /// </summary>
-    public static SvgIcon GetIcon(IconType iconType) {
-        var svgContent = GetSvgContent(iconType);
-        return new SvgIcon(svgContent);
+    public static TablerIcon GetIcon(TablerIcon TablerIcon) {
+        var svgContent = GetSvgContent(TablerIcon);
+        return new TablerIcon(svgContent);
     }
 
     /// <summary>
     /// Get raw SVG content for an icon
     /// </summary>
-    public static string GetSvgContent(IconType iconType) {
-        if (_iconContent.TryGetValue(iconType, out var content)) {
+    public static string GetSvgContent(TablerIcon TablerIcon) {
+        if (_iconContent.TryGetValue(TablerIcon, out var content)) {
             return content;
         }
 
-        throw new ArgumentException($"Icon not found: {iconType}");
+        throw new ArgumentException($"Icon not found: {TablerIcon}");
     }
 
     /// <summary>
     /// Check if an icon exists
     /// </summary>
-    public static bool HasIcon(IconType iconType) {
-        return _iconContent.ContainsKey(iconType);
+    public static bool HasIcon(TablerIcon TablerIcon) {
+        return _iconContent.ContainsKey(TablerIcon);
     }
 
     /// <summary>
     /// Get all available icon types
     /// </summary>
-    public static IEnumerable<IconType> GetAllIcons() {
+    public static IEnumerable<TablerIcon> GetAllIcons() {
         return _iconContent.Keys;
     }
 '@
@@ -325,7 +325,7 @@ $libraryContent += "`n`n    // Common icons as static properties`n"
 
 foreach ($iconName in $commonIcons) {
     if ($downloadedIcons.ContainsKey($iconName)) {
-        $libraryContent += "    public static SvgIcon $iconName => GetIcon(IconType.$iconName);`n"
+        $libraryContent += "    public static TablerIcon $iconName => GetIcon(TablerIcon.$iconName);`n"
     }
 }
 
@@ -335,9 +335,9 @@ $libraryContent += "}"
 $libraryContent = $libraryContent -replace '\{ICON_COUNT\}', $downloadedIcons.Count
 $libraryContent = $libraryContent -replace '\{GENERATION_DATE\}', (Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC")
 
-# Write SvgIconLibrary.cs
-Set-Content "$ProjectPath/Containers/Core/SvgIconLibrary.cs" $libraryContent -Encoding UTF8
-Write-Host "✅ Generated SvgIconLibrary.cs with embedded content" -ForegroundColor Green
+# Write TablerIconLibrary.cs
+Set-Content "$ProjectPath/Containers/Core/TablerIconLibrary.cs" $libraryContent -Encoding UTF8
+Write-Host "✅ Generated TablerIconLibrary.cs with embedded content" -ForegroundColor Green
 
 # Clean up temp directory
 Remove-Item $TempPath -Recurse -Force -ErrorAction SilentlyContinue

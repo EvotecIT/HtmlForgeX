@@ -18,7 +18,7 @@ public class TablerDataGridItem : Element {
         return this;
     }
     public TablerDataGridItem Content(Element content) {
-        ContentElement = new HtmlTag("div").Class("datagrid-content").Value(content.ToString());
+        ContentElement = new HtmlTag("div").Class("datagrid-content").Value(content);
         return this;
     }
 

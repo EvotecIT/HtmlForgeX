@@ -33,19 +33,19 @@ internal class BasicScrollingText {
                         subItem.Row(row => {
                             // first line of 4 cards
                             row.Column(TablerColumnNumber.Three, column => {
-                                column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerColor.Facebook)
+                                column.CardMini().Avatar(TablerIconType.BrandFacebook).BackgroundColor(TablerColor.Facebook)
                                     .TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
                             });
                             row.Column(TablerColumnNumber.Three, column => {
-                                column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerColor.Twitter)
+                                column.CardMini().Avatar(TablerIconType.BrandTwitter).BackgroundColor(TablerColor.Twitter)
                                     .TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
                             });
                             row.Column(TablerColumnNumber.Three, column => {
-                                column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerColor.CyanLight)
+                                column.CardMini().Avatar(TablerIconType.Basket).BackgroundColor(TablerColor.CyanLight)
                                     .TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
                             });
                             row.Column(TablerColumnNumber.Three, column => {
-                                column.CardMini().Avatar(TablerIcon.CurrencyDollar)
+                                column.CardMini().Avatar(TablerIconType.BasketDollar)
                                     .BackgroundColor(TablerColor.OrangeLight)
                                     .TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
                             });

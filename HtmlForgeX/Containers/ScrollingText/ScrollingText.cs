@@ -23,7 +23,7 @@ public class ScrollingText : Element {
         var divTagEmpty = new HtmlTag("div");
 
         foreach (var item in Items) {
-            divTagEmpty.Value(item.ToString());
+            divTagEmpty.Value(item);
         }
 
         sectionScrollingDiv.Value(divTagEmpty);
