@@ -3,9 +3,9 @@ namespace HtmlForgeX.Resources;
 internal class Tabler : Library {
     public Tabler() {
         Header = new LibraryLinks {
-            CssLink = ["https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css"],
+            CssLink = ["https://cdn.jsdelivr.net/npm/@tabler/core@1.3.0/dist/css/tabler.min.css"],
             Css = ["tabler.min.css"],
-            JsLink = ["https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"],
+            JsLink = ["https://cdn.jsdelivr.net/npm/@tabler/core@1.3.0/dist/js/tabler.min.js"],
             Js = ["tabler.min.js"]
         };
         Comment = "Tabler library";
