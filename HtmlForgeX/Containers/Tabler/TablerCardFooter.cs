@@ -15,7 +15,7 @@ public class TablerCardFooter : Element {
             footerDiv.Class("card-footer").Value(Content);
 
             foreach (var child in Children) {
-                footerDiv.Value(child.ToString());
+                footerDiv.Value(child);
             }
 
             return footerDiv.ToString();

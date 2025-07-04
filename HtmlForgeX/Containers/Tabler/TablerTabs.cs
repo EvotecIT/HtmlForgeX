@@ -38,18 +38,23 @@ public class TablerTabs : Element {
 
         foreach (var panel in Panels) {
             tabsDiv.Value(panel);
+            var anchor = new Anchor()
+                .Class("nav-link")
+                .Class(panel.IsActive ? "active" : "")
+                .Class(panel.IsDisabled ? "disabled" : "")
+                .Attribute("data-bs-toggle", "tab")
+                .Attribute("href", "#" + panel.Id);
+
+            // Add title text
+            anchor.Value(panel.PrivateTitle + " ");
+
+            // Add icon as raw HTML to prevent double encoding
+            anchor.Value(TablerIconLibrary.GetIcon(TablerIconType.Adjustments).Size(20));
+
             var tabHeaderItem = new HtmlTag("li")
                 .Class("nav-item")
                 .Class(panel.PrivateTabState?.EnumToString())
-                .Value(
-                    new Anchor()
-                        .Class("nav-link")
-                        .Class(panel.IsActive ? "active" : "")
-                        .Class(panel.IsDisabled ? "disabled" : "")
-                        .Attribute("data-bs-toggle", "tab")
-                        .Attribute("href", "#" + panel.Id)
-                        .Value(panel.PrivateTitle + " " + new TablerIconElement(TablerIcon.Settings).FontSize(20))
-                );
+                .Value(anchor);
             tabsHeader.Value(tabHeaderItem);
         }
 

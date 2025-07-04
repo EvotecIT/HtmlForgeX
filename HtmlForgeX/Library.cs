@@ -2,14 +2,19 @@ using HtmlForgeX.Resources;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Enumeration of available libraries.
+/// Order is important, as it determines the order of the libraries in the HTML.
+/// Having JQuery first is important for other libraries that depend on it.
+/// </summary>
 public enum Libraries {
     None,
     Primary,
+    JQuery,
     Bootstrap,
     DataTables,
     Tabler,
     TablerIcon,
-    JQuery,
     FancyTree,
     ApexCharts,
     VisNetwork,
@@ -81,7 +86,7 @@ public class LibrariesConverter {
             case Libraries.Tabler:
                 return new Tabler();
             case Libraries.TablerIcon:
-                return new TablerIconLibrary();
+                return new Resources.TablerIconLibrary();
             case Libraries.JQuery:
                 return new Jquery();
             case Libraries.FancyTree:

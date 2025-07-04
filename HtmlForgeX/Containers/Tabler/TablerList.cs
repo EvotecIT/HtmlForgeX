@@ -8,9 +8,9 @@ public class UnorderedList : Element {
         ulTag = new HtmlTag("ul").Class("list-unstyled space-y-1");
     }
 
-    public UnorderedList AddItem(string item, TablerIcon icon) {
+    public UnorderedList AddItem(string item, TablerIconType TablerIconType) {
         liTag = new HtmlTag("li");
-        liTag.Value(new TablerIconElement(icon)).Value(" " + item);
+        liTag.Value(new TablerIconElement(TablerIconType)).Value(" " + item);
         ulTag.Value(liTag);
         return this;
     }

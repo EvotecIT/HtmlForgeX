@@ -145,7 +145,7 @@ public class TablerProgressBar : Element {
         // TODO: We need to add handling for mb-3 and similar for margins and padding
 
         foreach (var item in Items) {
-            progressBarTag.Value(item.ToString());
+            progressBarTag.Value(item);
         }
 
         return progressBarTag.ToString();

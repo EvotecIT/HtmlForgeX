@@ -15,8 +15,8 @@ public class TablerAlert : Element {
         AlertType = alertType;
     }
 
-    public TablerAlert Icon(TablerIcon icon) {
-        AlertIcon = new TablerIconElement(icon).FontSize(24);
+    public TablerAlert Icon(TablerIconType TablerIconType) {
+        AlertIcon = new TablerIconElement(TablerIconType).FontSize(24);
         return this;
     }
 
@@ -45,7 +45,7 @@ public class TablerAlert : Element {
 
         if (AlertIcon != null) {
             var divIcon = new HtmlTag("div")
-                .Value(AlertIcon.ToString())
+                .Value(AlertIcon)
                 .Value(new NonBreakingSpace(), new NonBreakingSpace()); // Add some space between icon and text, not great but works
 
             flex.Value(divIcon);

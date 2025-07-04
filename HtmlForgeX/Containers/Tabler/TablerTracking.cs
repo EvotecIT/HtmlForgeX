@@ -17,7 +17,7 @@ public class TablerTracking : Element {
         var trackingContainerTag = new HtmlTag("div").Class("tracking");
 
         foreach (var block in Blocks) {
-            trackingContainerTag.Value(block.ToString());
+            trackingContainerTag.Value(block);
         }
 
         return trackingContainerTag.ToString();
