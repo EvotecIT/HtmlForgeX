@@ -1,11 +1,29 @@
-using System.Reflection;
-using HtmlForgeX.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
 [TestClass]
 public class TestLibraryIntegration {
+    [TestMethod]
+    public void DocumentIncludesCustomLibraryLinks() {
+        var customLibrary = new Library {
+            Header = new LibraryLinks {
+                CssLink = ["https://example.com/style.css"],
+                JsLink = ["https://example.com/script.js"]
+            }
+        };
+
+        var storage = typeof(Document).Assembly.GetType("HtmlForgeX.GlobalStorage")!;
+        var prop = storage.GetProperty("LibraryMode", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)!;
+        prop.SetValue(null, LibraryMode.Online);
+        var doc = new Document();
+        doc.AddLibrary(customLibrary);
+        var html = doc.ToString();
+
+        StringAssert.Contains(html, "<link rel=\"stylesheet\" href=\"https://example.com/style.css\">");
+        StringAssert.Contains(html, "<script src=\"https://example.com/script.js\"></script>");
+    }
+    
     private static InternalLogger GetLogger() {
         var field = typeof(Document).GetField("_logger", BindingFlags.NonPublic | BindingFlags.Static);
         Assert.IsNotNull(field);
