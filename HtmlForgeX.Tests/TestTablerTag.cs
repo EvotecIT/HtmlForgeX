@@ -16,4 +16,11 @@ public class TestTablerTag {
         var expected = "<span class=\"tag tag-sm bg-red\">Close<a class=\"btn-close\" href=\"#\"></a></span>";
         Assert.AreEqual(expected, tag.ToString());
     }
+    [TestMethod]
+    public void DismissableAndSize_GeneratesExpectedHtml() {
+        var tag = new TablerTag("Close", TablerColor.Red).Dismissable().TagSize(TablerTagSize.Small);
+        var expected = "<span class=\"tag tag-sm bg-red\">Close<a class=\"btn-close\" href=\"#\"></a></span>";
+        Assert.AreEqual(expected, tag.ToString());
+    }
+
 }
