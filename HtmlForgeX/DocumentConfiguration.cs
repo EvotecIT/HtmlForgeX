@@ -8,20 +8,36 @@ namespace HtmlForgeX;
 public class DocumentConfiguration {
     internal const int DefaultRandomIdLength = 8;
 
-    /// <summary>Gets or sets the current theme mode.</summary>
-    public ThemeMode ThemeMode { get; set; } = ThemeMode.Light;
+    /// <summary>
+    /// Gets or sets the theme mode for the document.
+    /// </summary>
+    public ThemeMode ThemeMode { get; set; } = ThemeMode.System;
 
-    /// <summary>Gets or sets the library mode.</summary>
+    /// <summary>
+    /// Gets or sets the library mode for the document.
+    /// </summary>
     public LibraryMode LibraryMode { get; set; } = LibraryMode.Online;
 
-    /// <summary>Collection of libraries used by the document.</summary>
+    /// <summary>
+    /// Gets or sets whether to enable deferred script execution to prevent timing issues.
+    /// When enabled, component scripts will wait for all libraries to load before executing.
+    /// </summary>
+    public bool EnableDeferredScripts { get; set; } = false;
+
+    /// <summary>
+    /// Thread-safe collection of libraries used by the document.
+    /// </summary>
     public ConcurrentDictionary<Libraries, byte> Libraries { get; } = new();
 
-    /// <summary>Collection of processing errors.</summary>
+    /// <summary>
+    /// Thread-safe collection of errors encountered during document processing.
+    /// </summary>
     public ConcurrentBag<string> Errors { get; } = new();
 
-    /// <summary>Output path for generated files.</summary>
-    public string Path { get; set; } = "";
+    /// <summary>
+    /// Gets or sets the path for saving documents and related files.
+    /// </summary>
+    public string Path { get; set; } = System.IO.Path.GetTempPath();
 
     /// <summary>Location for CSS resources.</summary>
     public string StylePath { get; set; } = "";

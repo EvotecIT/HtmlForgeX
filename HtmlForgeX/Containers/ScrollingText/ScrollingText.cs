@@ -5,9 +5,15 @@ public class ScrollingText : Element {
     public List<ScrollingTextItem> Items { get; set; } = new List<ScrollingTextItem>();
 
     public ScrollingText() {
-        // Add library to the global storage, for HTML processing
-        GlobalStorage.Libraries.TryAdd(Libraries.ScrollingText, 0);
+        // Libraries will be registered via RegisterLibraries method
         Id = GlobalStorage.GenerateRandomId("scrollingText");
+    }
+
+    /// <summary>
+    /// Registers the required libraries for ScrollingText.
+    /// </summary>
+    protected internal override void RegisterLibraries() {
+        Document?.Configuration.Libraries.TryAdd(Libraries.ScrollingText, 0);
     }
 
     public ScrollingTextItem AddItem(string title, Action<ScrollingTextItem> contentAction) {

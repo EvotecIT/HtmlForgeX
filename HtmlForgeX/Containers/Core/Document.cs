@@ -57,6 +57,10 @@ public class Document : Element {
         // Initialize Head and Body with reference to this document's configuration
         Head = new Head(this);
         Body = new Body(this);
+
+        // Set the document reference for Head and Body so they can propagate it to children
+        Head.Document = this;
+        Body.Document = this;
     }
 
     /// <summary>
@@ -140,17 +144,47 @@ public class Document : Element {
         }
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Converts the Document to its HTML string representation.
+    /// </summary>
+    /// <returns>Complete HTML document as string.</returns>
     public override string ToString() {
-        var html = StringBuilderCache.Acquire();
+        // Pre-register libraries from all elements before rendering the head
+        RegisterAllLibraries();
 
+        var html = StringBuilderCache.Acquire();
         html.AppendLine("<!DOCTYPE html>");
         html.AppendLine("<html>");
-        html.AppendLine(this.Head.ToString());
-        html.AppendLine(this.Body.ToString());
+        html.Append(Head.ToString());
+        html.AppendLine();
+        html.Append(Body.ToString());
+        html.AppendLine();
         html.AppendLine("</html>");
-
         return StringBuilderCache.GetStringAndRelease(html);
+    }
+
+    /// <summary>
+    /// Recursively registers libraries from all elements in the document.
+    /// </summary>
+    private void RegisterAllLibraries() {
+        // Register libraries from Head
+        Head.RegisterLibraries();
+        RegisterLibrariesFromElement(Head);
+
+        // Register libraries from Body and its children
+        Body.RegisterLibraries();
+        RegisterLibrariesFromElement(Body);
+    }
+
+    /// <summary>
+    /// Recursively registers libraries from an element and all its children.
+    /// </summary>
+    /// <param name="element">The element to process.</param>
+    private void RegisterLibrariesFromElement(Element element) {
+        foreach (var child in element.Children) {
+            child.RegisterLibraries();
+            RegisterLibrariesFromElement(child);
+        }
     }
 
     /// <summary>

@@ -22,7 +22,7 @@ public class Body : Element {
     /// <param name="element">Element to add.</param>
     /// <returns>The current <see cref="Body"/> instance.</returns>
     public new Body Add(Element element) {
-        Children.Add(element);
+        base.Add(element);
         return this;
     }
 
@@ -71,9 +71,26 @@ public class Body : Element {
         } else {
             bodyBuilder.AppendLine("<body>");
         }
+
+        // Add body scripts (from library Body sections) at the top of body
+        var bodyScripts = _document.Head.GenerateBodyScripts();
+        if (!string.IsNullOrEmpty(bodyScripts.Trim())) {
+            bodyBuilder.AppendLine();
+            bodyBuilder.AppendLine("\t<!-- Body Scripts -->");
+            bodyBuilder.Append(bodyScripts);
+        }
+
         // Add the HTML of the child elements
         foreach (var child in Children) {
             bodyBuilder.AppendLine(child.ToString());
+        }
+
+        // Add footer scripts (from library Footer sections) before closing body tag
+        var footerScripts = _document.Head.GenerateFooterScripts();
+        if (!string.IsNullOrEmpty(footerScripts.Trim())) {
+            bodyBuilder.AppendLine();
+            bodyBuilder.AppendLine("\t<!-- Footer Scripts -->");
+            bodyBuilder.Append(footerScripts);
         }
 
         bodyBuilder.AppendLine("</body>");

@@ -20,10 +20,16 @@ public class FancyTree : Element {
     }
 
     public FancyTree() {
-        // add library to the global storage, for HTML processing
-        GlobalStorage.Libraries.TryAdd(Libraries.JQuery, 0);
-        GlobalStorage.Libraries.TryAdd(Libraries.FancyTree, 0);
+        // Libraries will be registered via RegisterLibraries method
         Id = GlobalStorage.GenerateRandomId("fancyTree");
+    }
+
+    /// <summary>
+    /// Registers the required libraries for FancyTree.
+    /// </summary>
+    protected internal override void RegisterLibraries() {
+        Document?.Configuration.Libraries.TryAdd(Libraries.JQuery, 0);
+        Document?.Configuration.Libraries.TryAdd(Libraries.FancyTree, 0);
     }
 
     public override string ToString() {
