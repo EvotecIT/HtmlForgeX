@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using HtmlForgeX.Tags;
 
 namespace HtmlForgeX.Examples.Tags;
-internal class BasicHtmlTagBuilding02 {
-    public static void Demo1() {
+internal partial class BasicHtmlTagBuilding {
+    public static void Demo6() {
         HtmlTag tag = new HtmlTag("div", "Hello, World!", new Dictionary<string, object> {
             { "style", new Dictionary<string, object> {
                 { "color", "red" },
