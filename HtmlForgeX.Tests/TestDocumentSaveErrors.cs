@@ -1,7 +1,9 @@
 using System;
 using System.IO;
 using System.Reflection;
+
 using HtmlForgeX.Logging;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
@@ -14,6 +16,8 @@ public class TestDocumentSaveErrors {
         return (InternalLogger)field!.GetValue(null)!;
     }
 
+
+
     [TestMethod]
     public void Save_PathIsDirectory_LogsError() {
         var logger = GetLogger();
@@ -21,7 +25,8 @@ public class TestDocumentSaveErrors {
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
         var doc = new Document();
-        var dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var dir = Path.Combine(tempDir, Guid.NewGuid().ToString());
         Directory.CreateDirectory(dir);
         doc.Save(dir);
         logger.OnErrorMessage -= handler;
@@ -37,7 +42,8 @@ public class TestDocumentSaveErrors {
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
         var doc = new Document();
-        var path = Path.Combine(Path.GetTempPath(), $"file_{Guid.NewGuid()}.html");
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, $"file_{Guid.NewGuid()}.html");
         using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
             doc.Save(path);
         }
@@ -46,4 +52,6 @@ public class TestDocumentSaveErrors {
         Assert.IsNotNull(received);
         StringAssert.Contains(received!, path);
     }
+
+
 }
