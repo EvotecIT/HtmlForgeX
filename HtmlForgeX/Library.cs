@@ -22,7 +22,8 @@ public enum Libraries {
     EasyQRCode,
     FullCalendar,
     Popper,
-    ScrollingText
+    ScrollingText,
+    StarRating
 }
 
 public class Library {
@@ -105,6 +106,8 @@ public class LibrariesConverter {
                 return new PopperLibrary();
             case Libraries.ScrollingText:
                 return new ScrollingTextLibrary();
+            case Libraries.StarRating:
+                return new StarRatingLibrary();
             default:
                 throw new ArgumentException($"Unsupported library: {libraries}");
         }
