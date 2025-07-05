@@ -22,6 +22,7 @@ using HtmlForgeX.Examples.Tags;
 // ExampleSvgIcons.Demo();
 
 // ExampleTablerTag.Demo();
+ExampleTablerAlerts.Demo();
 BasicHtmlBuilding.Demo1(true);
 // BasicHtmlBuilding.Demo2(true);
 BasicHtmlTable01.Demo1(true);
