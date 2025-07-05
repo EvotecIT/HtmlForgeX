@@ -32,6 +32,7 @@ BasicHtmlContainer03.Demo03(true);
 BasicHtmlContainer04.Demo01(true);
 DomainHealthCheck.Demo01(false);
 BasicScrollingText.Demo01(true);
+ExampleStarRating.Demo(true);
 
 // Email Examples
 // EmailExamples.CreateConfirmationEmail(true);
