@@ -12,6 +12,16 @@ namespace HtmlForgeX;
 /// </summary>
 public class Head {
     private static readonly InternalLogger _logger = new();
+    private readonly Document _document;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Head"/> class.
+    /// </summary>
+    /// <param name="document">The parent document.</param>
+    public Head(Document document) {
+        _document = document;
+    }
+
     /// <summary>
     /// Gets or sets the title of the HTML document.
     /// This is displayed in the title bar of the web browser.
@@ -176,7 +186,7 @@ public class Head {
     /// </summary>
     /// <returns>A string that represents the head section of an HTML document.</returns>
     public override string ToString() {
-        foreach (var libraryEnum in GlobalStorage.Libraries.Keys) {
+        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
             var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessLibrary(library);
         }
@@ -296,7 +306,7 @@ public class Head {
     }
 
     private void ProcessLibrary(Library library) {
-        if (GlobalStorage.LibraryMode == LibraryMode.Online) {
+        if (_document.Configuration.LibraryMode == LibraryMode.Online) {
             foreach (var link in library.Header.CssLink) {
                 AddCssLink(link);
             }
@@ -304,7 +314,7 @@ public class Head {
             foreach (var link in library.Header.JsLink) {
                 AddJsLink(link);
             }
-        } else if (GlobalStorage.LibraryMode == LibraryMode.Offline) {
+        } else if (_document.Configuration.LibraryMode == LibraryMode.Offline) {
             foreach (var css in library.Header.Css) {
                 var cssContent = ReadEmbeddedResource("HtmlForgeX.Resources.Styles." + css);
                 AddCssInline(cssContent);
@@ -315,14 +325,14 @@ public class Head {
                 AddJsInline(jsContent);
             }
 
-        } else if (GlobalStorage.LibraryMode == LibraryMode.OfflineWithFiles) {
+        } else if (_document.Configuration.LibraryMode == LibraryMode.OfflineWithFiles) {
             foreach (var css in library.Header.Css) {
                 AddCssLink(css);
             }
             foreach (var js in library.Header.Js) {
                 var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
                 // we need to save the js file to disk
-                var jsFileName = Path.Combine(GlobalStorage.Path, Path.GetFileName(js));
+                var jsFileName = Path.Combine(_document.Configuration.Path, Path.GetFileName(js));
                 var jsDirectory = Path.GetDirectoryName(jsFileName);
                 if (!string.IsNullOrEmpty(jsDirectory)) {
                     Directory.CreateDirectory(jsDirectory);
