@@ -199,8 +199,8 @@ public class TestComponentInteractions {
         Assert.IsTrue(html.Contains("Event 1") && html.Contains("Event 2"), "Should contain both calendar events");
         
         // Should not duplicate libraries excessively
-        var qrLibraryCount = html.Split("easy.qrcode").Length - 1;
-        var calendarLibraryCount = html.Split("fullcalendar").Length - 1;
+        var qrLibraryCount = html.Split(new string[] { "easy.qrcode" }, StringSplitOptions.None).Length - 1;
+        var calendarLibraryCount = html.Split(new string[] { "fullcalendar" }, StringSplitOptions.None).Length - 1;
         
         Assert.IsTrue(qrLibraryCount <= 3, "QR code library should not be excessively duplicated");
         Assert.IsTrue(calendarLibraryCount <= 3, "Calendar library should not be excessively duplicated");
