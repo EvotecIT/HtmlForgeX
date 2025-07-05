@@ -148,7 +148,7 @@ public class TestLibraryPlacement {
         var html = doc.ToString();
         
         // Should only include library once even with multiple components
-        var scriptCount = html.Split("easy.qrcode").Length - 1;
+        var scriptCount = html.Split(new string[] { "easy.qrcode" }, StringSplitOptions.None).Length - 1;
         Assert.IsTrue(scriptCount <= 2, "Library should not be duplicated excessively");
     }
 }

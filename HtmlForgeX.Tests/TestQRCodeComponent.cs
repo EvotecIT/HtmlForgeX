@@ -40,7 +40,7 @@ public class TestQRCodeComponent {
         Assert.IsTrue(html.Contains("https://example2.com"), "Should contain second QR code data");
         
         // Library should only be included once
-        var libraryCount = html.Split("easy.qrcode").Length - 1;
+        var libraryCount = html.Split(new string[] { "easy.qrcode" }, StringSplitOptions.None).Length - 1;
         Assert.IsTrue(libraryCount <= 2, "QR code library should not be excessively duplicated");
     }
 
