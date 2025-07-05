@@ -43,7 +43,7 @@ public class TestLibraryDownloader {
     private static async Task RunTestAsync(string extension, string folder) {
         string prefix = StartServer();
         string url = $"{prefix}file{extension}";
-        string tempDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+        string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
         var downloader = new LibraryDownloader();
         var method = typeof(LibraryDownloader).GetMethod("DownloadFileAsync", BindingFlags.Instance | BindingFlags.NonPublic);
         await (Task)method!.Invoke(downloader, new object[] { tempDir, url })!;
@@ -60,4 +60,6 @@ public class TestLibraryDownloader {
     public async Task DownloadFilePlacesCorrectly(string extension, string folder) {
         await RunTestAsync(extension, folder);
     }
+
+
 }
