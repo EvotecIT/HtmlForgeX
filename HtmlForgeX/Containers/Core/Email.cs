@@ -7,25 +7,25 @@ using HtmlForgeX.Logging;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Represents an HTML document.
+/// Represents an email document with XHTML 1.0 Strict compliance for email clients.
 /// </summary>
-public class Document : Element {
+public class Email : Element {
     private static readonly InternalLogger _logger = new();
 
     /// <summary>
-    /// Configuration and state for this document instance.
+    /// Configuration and state for this email document instance.
     /// </summary>
-    public DocumentConfiguration Configuration { get; } = new();
+    public EmailConfiguration Configuration { get; } = new();
 
-    public Head Head { get; }
-    public Body Body { get; }
+    public EmailHead Head { get; }
+    public EmailBody Body { get; }
 
-    public LibraryMode LibraryMode {
+    public EmailLibraryMode LibraryMode {
         get => Configuration.LibraryMode;
         set => Configuration.LibraryMode = value;
     }
 
-    public ThemeMode ThemeMode {
+    public EmailThemeMode ThemeMode {
         get => Configuration.ThemeMode;
         set => Configuration.ThemeMode = value;
     }
@@ -35,54 +35,35 @@ public class Document : Element {
         set => Configuration.Path = value;
     }
 
-    public string StylePath {
-        get => Configuration.StylePath;
-        set => Configuration.StylePath = value;
-    }
-
-    public string ScriptPath {
-        get => Configuration.ScriptPath;
-        set => Configuration.ScriptPath = value;
-    }
-
     /// <summary>
-    /// Initializes a new instance of the <see cref="Document"/> class.
+    /// Initializes a new instance of the <see cref="Email"/> class.
     /// </summary>
-    /// <param name="librariesMode">Initial library mode.</param>
-    public Document(LibraryMode? librariesMode = null) {
+    /// <param name="librariesMode">Initial library mode (must be inline CSS only).</param>
+    public Email(EmailLibraryMode? librariesMode = null) {
         if (librariesMode != null) {
             Configuration.LibraryMode = librariesMode.Value;
         }
 
-        // Initialize Head and Body with reference to this document's configuration
-        Head = new Head(this);
-        Body = new Body(this);
+        // Initialize Head and Body with reference to this email's configuration
+        Head = new EmailHead(this);
+        Body = new EmailBody(this);
 
-        // Set the document reference for Head and Body so they can propagate it to children
-        Head.Document = this;
-        Body.Document = this;
+        // Set the email reference for Head and Body so they can propagate it to children
+        Head.Email = this;
+        Body.Email = this;
     }
 
     /// <summary>
-    /// Saves the document to disk.
+    /// Saves the email to disk.
     /// </summary>
     /// <param name="path">File path.</param>
     /// <param name="openInBrowser">Whether to open the file after saving.</param>
-    /// <param name="scriptPath">Optional scripts path.</param>
-    /// <param name="stylePath">Optional styles path.</param>
-    public void Save(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
+    public void Save(string path, bool openInBrowser = false) {
         Configuration.Path = path;
-        if (!string.IsNullOrEmpty(scriptPath)) {
-            Configuration.ScriptPath = scriptPath;
-        }
-
-        if (!string.IsNullOrEmpty(stylePath)) {
-            Configuration.StylePath = stylePath;
-        }
 
         var countErrors = Configuration.Errors.Count;
         if (countErrors > 0) {
-            Console.WriteLine($"There were {countErrors} found during generation of HTML.");
+            Console.WriteLine($"There were {countErrors} found during generation of email HTML.");
         }
 
         var directory = System.IO.Path.GetDirectoryName(path);
@@ -104,25 +85,16 @@ public class Document : Element {
     }
 
     /// <summary>
-    /// Saves the document to disk asynchronously.
+    /// Saves the email to disk asynchronously.
     /// </summary>
     /// <param name="path">File path.</param>
     /// <param name="openInBrowser">Whether to open the file after saving.</param>
-    /// <param name="scriptPath">Optional scripts path.</param>
-    /// <param name="stylePath">Optional styles path.</param>
-    public async Task SaveAsync(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
+    public async Task SaveAsync(string path, bool openInBrowser = false) {
         Configuration.Path = path;
-        if (!string.IsNullOrEmpty(scriptPath)) {
-            Configuration.ScriptPath = scriptPath;
-        }
-
-        if (!string.IsNullOrEmpty(stylePath)) {
-            Configuration.StylePath = stylePath;
-        }
 
         var countErrors = Configuration.Errors.Count;
         if (countErrors > 0) {
-            Console.WriteLine($"There were {countErrors} found during generation of HTML.");
+            Console.WriteLine($"There were {countErrors} found during generation of email HTML.");
         }
 
         var directory = System.IO.Path.GetDirectoryName(path);
@@ -145,16 +117,16 @@ public class Document : Element {
     }
 
     /// <summary>
-    /// Converts the Document to its HTML string representation.
+    /// Converts the Email to its XHTML string representation.
     /// </summary>
-    /// <returns>Complete HTML document as string.</returns>
+    /// <returns>Complete XHTML email document as string.</returns>
     public override string ToString() {
         // Pre-register libraries from all elements before rendering the head
         RegisterAllLibraries();
 
         var html = StringBuilderCache.Acquire();
-        html.AppendLine("<!DOCTYPE html>");
-        html.AppendLine("<html>");
+        html.AppendLine("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
+        html.AppendLine("<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" style=\"color-scheme: light dark; supported-color-schemes: light dark;\">");
         html.Append(Head.ToString());
         html.AppendLine();
         html.Append(Body.ToString());
@@ -164,7 +136,7 @@ public class Document : Element {
     }
 
     /// <summary>
-    /// Recursively registers libraries from all elements in the document.
+    /// Recursively registers libraries from all elements in the email.
     /// </summary>
     private void RegisterAllLibraries() {
         // Register libraries from Head
@@ -188,44 +160,22 @@ public class Document : Element {
     }
 
     /// <summary>
-    /// Adds a predefined library.
+    /// Adds a predefined email library.
     /// </summary>
     /// <param name="library">Library identifier.</param>
-    public void AddLibrary(Libraries library) {
+    public void AddLibrary(EmailLibraries library) {
         Configuration.Libraries.TryAdd(library, 0);
     }
 
     /// <summary>
-    /// Adds a custom library definition.
+    /// Adds a custom email library definition.
+    /// Email libraries can only contain inline CSS - no external links or JavaScript.
     /// </summary>
     /// <param name="library">Library to add.</param>
-    public void AddLibrary(Library library) {
-        if (Configuration.LibraryMode == LibraryMode.Online) {
-            foreach (var link in library.Header.CssLink) {
-                this.Head.AddCssLink(link);
-            }
-
-            foreach (var link in library.Header.JsLink) {
-                this.Head.AddJsLink(link);
-            }
-        } else if (Configuration.LibraryMode == LibraryMode.Offline) {
-            foreach (var css in library.Header.Css) {
-                if (!File.Exists(css)) {
-                    _logger.WriteError($"CSS file '{css}' not found.");
-                    continue;
-                }
-                var cssContent = File.ReadAllText(css);
-                this.Head.AddCssInline(cssContent);
-            }
-
-            foreach (var js in library.Header.Js) {
-                if (!File.Exists(js)) {
-                    _logger.WriteError($"JS file '{js}' not found.");
-                    continue;
-                }
-                var jsContent = File.ReadAllText(js);
-                this.Head.AddJsInline(jsContent);
-            }
+    public void AddLibrary(EmailLibrary library) {
+        // Email libraries only support inline CSS
+        foreach (var css in library.InlineCss) {
+            this.Head.AddCssInline(css);
         }
     }
 }

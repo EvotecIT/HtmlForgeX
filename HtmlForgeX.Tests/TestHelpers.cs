@@ -1,4 +1,5 @@
 using HtmlForgeX;
+
 using System.Reflection;
 
 namespace HtmlForgeX.Tests;
@@ -7,7 +8,8 @@ namespace HtmlForgeX.Tests;
 public class TestHelpers {
     [TestMethod]
     public void IsFileLockedDetectsOpenStream() {
-        var path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, Path.GetRandomFileName());
         File.WriteAllText(path, "test");
         var fileInfo = new FileInfo(path);
 

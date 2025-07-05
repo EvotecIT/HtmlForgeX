@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 using HtmlForgeX.Resources;
 
-namespace HtmlForgeX.Examples.ByHand {
-    internal class BasicHtmlBuilding {
-        public static void Demo1(bool openInBrowser = false) {
+namespace HtmlForgeX.Examples.ByHand
+{
+    internal class BasicHtmlBuilding
+    {
+        public static void Demo1(bool openInBrowser = false)
+        {
             HelpersSpectre.PrintTitle("Basic Html Building 1");
 
             Document document = new Document();
@@ -33,32 +36,33 @@ namespace HtmlForgeX.Examples.ByHand {
             document.Body.LineBreak();
 
             //// Add span x 3 one after another in a single line
-            //var span1 = new HtmlSpan()
-            //    .AddContent("This is the content")
-            //    .WithColor(RGBColor.RedDevil)
-            //    .WithBackgroundColor(RGBColor.Yellow)
-            //    .WithFontSize("12px")
-            //    .WithLineHeight("1.5")
-            //    .WithFontWeight(FontWeight.Bold)
-            //    .WithFontStyle(FontStyle.Italic)
-            //    .WithFontVariant(FontVariant.SmallCaps)
-            //    .WithFontFamily("Arial")
-            //    .WithAlignment(FontAlignment.Center)
-            //    .WithTextDecoration(TextDecoration.Underline)
-            //    .WithTextTransform(TextTransform.Uppercase)
-            //    .WithDirection(Direction.Rtl)
-            //    .WithDisplay(Display.Block)
-            //    .WithOpacity(0.8);
+            var span1 = new Span()
+               .AddContent("This is the content")
+               .WithColor(RGBColor.RedDevil)
+               .WithBackgroundColor(RGBColor.GreenMist)
+               .WithFontSize("12px")
+               .WithLineHeight("1.5")
+               .WithFontWeight(FontWeight.Bold)
+               .WithFontStyle(FontStyle.Italic)
+               .WithFontVariant(FontVariant.SmallCaps)
+               .WithFontFamily("Arial")
+               .WithAlignment(FontAlignment.Center)
+               .WithTextDecoration(TextDecoration.Underline)
+               .WithTextTransform(TextTransform.Uppercase)
+               .WithDirection(Direction.Rtl)
+               .WithDisplay(Display.Block)
+               .WithOpacity(0.8);
 
-            //var span2 = span1.AddContent(" more content").WithColor(RGBColor.GreenWaterloo);
+            var span2 = span1.AddContent(" more content").WithColor(RGBColor.BlueDiamond);
 
-            //var span3 = span2.AddContent(" even more content").WithColor(RGBColor.Armygreen);
+            var span3 = span2.AddContent(" even more content").WithColor(RGBColor.WhiteSmoke).WithBackgroundColor(RGBColor.Redwood);
 
-            //document.Body.Add(span1);
-            //document.Body.Add(span2);
-            //document.Body.Add(span3);
-
-            //document.Body.AddLineBreak();
+            document.Body.Add(span1);
+            document.Body.LineBreak();
+            document.Body.Add(span2);
+            document.Body.LineBreak();
+            document.Body.Add(span3);
+            document.Body.LineBreak();
 
             var span4 = new Span()
                 .AppendContent("Should be RED").WithColor(RGBColor.Red)
@@ -67,27 +71,28 @@ namespace HtmlForgeX.Examples.ByHand {
 
             document.Body.Add(span4);
 
-            //document.Body.AddLineBreak();
+            document.Body.LineBreak();
 
-            //// Add span x 3 one after another in a single line
-            //document.Body.AddSpan("Hello, world!")
-            //    .WithColor(RGBColor.Red)
-            //    .WithFontSize("20px")
-            //    .WithAlignment(FontAlignment.Justify);
+            // Add span x 3 one after another in a single line
+            document.Body.Span("Hello, world!")
+               .WithColor(RGBColor.Red)
+               .WithFontSize("20px")
+               .WithAlignment(FontAlignment.Justify);
 
-            //document.Body.AddSpan(" Welcome to HTML by HtmlForgeX")
-            //        .WithColor(RGBColor.HarvestGold)
-            //        .WithBackgroundColor(RGBColor.AirForceBlue);
+            document.Body.Span(" Welcome to HTML by HtmlForgeX")
+                   .WithColor(RGBColor.HarvestGold)
+                   .WithBackgroundColor(RGBColor.AirForceBlue);
 
-            //document.Body.AddSpan(" Hurray!");
+            document.Body.Span(" Hurray!");
 
-            //document.Body.AddLineBreak();
+            document.Body.LineBreak();
 
             document.Save("BasicDemoDocument1.html", openInBrowser);
         }
 
 
-        public static void Demo2(bool openInBrowser = false) {
+        public static void Demo2(bool openInBrowser = false)
+        {
             HelpersSpectre.PrintTitle("Basic Html Building 2");
 
             Document document = new Document();

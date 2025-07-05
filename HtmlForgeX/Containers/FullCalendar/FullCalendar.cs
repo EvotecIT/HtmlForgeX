@@ -66,10 +66,16 @@ public class FullCalendar : Element {
     public FullCalendarOptions Options { get; set; } = new FullCalendarOptions();
 
     public FullCalendar() {
-        // add library to the global storage, for HTML processing
-        GlobalStorage.Libraries.TryAdd(Libraries.FullCalendar, 0);
-        GlobalStorage.Libraries.TryAdd(Libraries.Popper, 0);
+        // Libraries will be registered via RegisterLibraries method
         Id = GlobalStorage.GenerateRandomId("fullCalendar");
+    }
+
+    /// <summary>
+    /// Registers the required libraries for FullCalendar.
+    /// </summary>
+    protected internal override void RegisterLibraries() {
+        Document?.Configuration.Libraries.TryAdd(Libraries.FullCalendar, 0);
+        Document?.Configuration.Libraries.TryAdd(Libraries.Popper, 0);
     }
 
     public override string ToString() {
@@ -83,11 +89,11 @@ public class FullCalendar : Element {
         serializedOptions = serializedOptions.Replace("\"__EVENT_CLICK__\"", Options.EventClick);
         var scriptTag = new HtmlTag("script").Value($@"
         document.addEventListener('DOMContentLoaded', function () {{
-                var calendarEl = document.getElementById('{Id}');
+            var calendarEl = document.getElementById('{Id}');
                 var calendar = new FullCalendar.Calendar(calendarEl, {serializedOptions});
-                calendar.render();
-            }});
-        ");
+            calendar.render();
+        }});
+    ");
 
         return divTag + scriptTag.ToString();
     }

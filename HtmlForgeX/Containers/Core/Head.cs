@@ -10,8 +10,18 @@ namespace HtmlForgeX;
 /// Represents the head section of an HTML document.
 /// This class allows you to add and manage meta tags, the title, and other elements in the head section.
 /// </summary>
-public class Head {
+public class Head : Element {
     private static readonly InternalLogger _logger = new();
+    private readonly Document _document;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Head"/> class.
+    /// </summary>
+    /// <param name="document">The parent document.</param>
+    public Head(Document document) {
+        _document = document;
+    }
+
     /// <summary>
     /// Gets or sets the title of the HTML document.
     /// This is displayed in the title bar of the web browser.
@@ -176,7 +186,7 @@ public class Head {
     /// </summary>
     /// <returns>A string that represents the head section of an HTML document.</returns>
     public override string ToString() {
-        foreach (var libraryEnum in GlobalStorage.Libraries.Keys) {
+        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
             var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessLibrary(library);
         }
@@ -296,33 +306,36 @@ public class Head {
     }
 
     private void ProcessLibrary(Library library) {
-        if (GlobalStorage.LibraryMode == LibraryMode.Online) {
-            foreach (var link in library.Header.CssLink) {
+        // Only process Header section in the head
+        var headerLinks = library.Header;
+
+        if (_document.Configuration.LibraryMode == LibraryMode.Online) {
+            foreach (var link in headerLinks.CssLink) {
                 AddCssLink(link);
             }
 
-            foreach (var link in library.Header.JsLink) {
+            foreach (var link in headerLinks.JsLink) {
                 AddJsLink(link);
             }
-        } else if (GlobalStorage.LibraryMode == LibraryMode.Offline) {
-            foreach (var css in library.Header.Css) {
+        } else if (_document.Configuration.LibraryMode == LibraryMode.Offline) {
+            foreach (var css in headerLinks.Css) {
                 var cssContent = ReadEmbeddedResource("HtmlForgeX.Resources.Styles." + css);
                 AddCssInline(cssContent);
             }
 
-            foreach (var js in library.Header.Js) {
+            foreach (var js in headerLinks.Js) {
                 var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
                 AddJsInline(jsContent);
             }
 
-        } else if (GlobalStorage.LibraryMode == LibraryMode.OfflineWithFiles) {
-            foreach (var css in library.Header.Css) {
+        } else if (_document.Configuration.LibraryMode == LibraryMode.OfflineWithFiles) {
+            foreach (var css in headerLinks.Css) {
                 AddCssLink(css);
             }
-            foreach (var js in library.Header.Js) {
+            foreach (var js in headerLinks.Js) {
                 var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
                 // we need to save the js file to disk
-                var jsFileName = Path.Combine(GlobalStorage.Path, Path.GetFileName(js));
+                var jsFileName = Path.Combine(_document.Configuration.Path, Path.GetFileName(js));
                 var jsDirectory = Path.GetDirectoryName(jsFileName);
                 if (!string.IsNullOrEmpty(jsDirectory)) {
                     Directory.CreateDirectory(jsDirectory);
@@ -336,13 +349,136 @@ public class Head {
         }
 
         // add css styles regardless of the mode
-        foreach (var style in library.Header.CssStyle) {
+        foreach (var style in headerLinks.CssStyle) {
             AddCssStyle(style);
         }
         // add js inline script regardless of the mode
-        foreach (var style in library.Header.JsScript) {
+        foreach (var style in headerLinks.JsScript) {
             AddJsInline(style);
         }
+    }
+
+    /// <summary>
+    /// Processes a library section (Header, Footer, or Body) and adds to StringBuilder
+    /// </summary>
+    /// <param name="libraryLinks">The library links to process</param>
+    /// <param name="output">StringBuilder to append to</param>
+    private void ProcessLibrarySection(LibraryLinks libraryLinks, StringBuilder output) {
+        ProcessLibrarySectionLinks(libraryLinks, output);
+    }
+
+    /// <summary>
+    /// Unified processing for library links - handles CSS, JS, and inline content consistently
+    /// </summary>
+    /// <param name="libraryLinks">The library links to process</param>
+    /// <param name="output">StringBuilder to append to</param>
+    private void ProcessLibrarySectionLinks(LibraryLinks libraryLinks, StringBuilder output) {
+        if (_document.Configuration.LibraryMode == LibraryMode.Online) {
+            // Process CSS links
+            foreach (var link in libraryLinks.CssLink) {
+                output.AppendLine($"\t<link rel=\"stylesheet\" href=\"{link}\">");
+            }
+
+            // Process JS links
+            foreach (var link in libraryLinks.JsLink) {
+                output.AppendLine($"\t<script src=\"{link}\"></script>");
+            }
+        } else if (_document.Configuration.LibraryMode == LibraryMode.Offline) {
+            // Process embedded CSS
+            foreach (var css in libraryLinks.Css) {
+                var cssContent = ReadEmbeddedResource("HtmlForgeX.Resources.Styles." + css);
+                output.AppendLine($"\t<style>{cssContent}</style>");
+            }
+
+            // Process embedded JS
+            foreach (var js in libraryLinks.Js) {
+                var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
+                output.AppendLine($"\t<script>{jsContent}</script>");
+            }
+        } else if (_document.Configuration.LibraryMode == LibraryMode.OfflineWithFiles) {
+            // Process CSS file links
+            foreach (var css in libraryLinks.Css) {
+                output.AppendLine($"\t<link rel=\"stylesheet\" href=\"{Path.GetFileName(css)}\">");
+            }
+
+            // Process JS file links
+            foreach (var js in libraryLinks.Js) {
+                output.AppendLine($"\t<script src=\"{Path.GetFileName(js)}\"></script>");
+            }
+        }
+
+        // Process inline CSS styles (consistent with Header processing)
+        foreach (var style in libraryLinks.CssStyle) {
+            output.AppendLine($"\t<style type=\"text/css\">");
+            output.AppendLine(style.ToString());
+            output.AppendLine($"\t</style>");
+        }
+
+        // Process inline JS scripts (consistent with Header processing)
+        foreach (var script in libraryLinks.JsScript) {
+            output.AppendLine($"\t<script type=\"text/javascript\">");
+            output.AppendLine(script);
+            output.AppendLine($"\t</script>");
+        }
+    }
+
+    /// <summary>
+    /// Generates footer scripts from library Footer sections with optional deferred execution
+    /// </summary>
+    /// <returns>HTML string with footer scripts</returns>
+    public string GenerateFooterScripts() {
+        var footer = StringBuilderCache.Acquire();
+
+        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
+            var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
+            ProcessLibrarySectionLinks(library.Footer, footer);
+        }
+
+        // Only add deferred script system if enabled
+        if (_document.Configuration.EnableDeferredScripts) {
+            footer.AppendLine($@"	<script>
+		window.htmlForgeXLibrariesLoaded = true;
+		// Trigger any deferred component initializations
+		if (window.htmlForgeXDeferredScripts) {{
+			window.htmlForgeXDeferredScripts.forEach(function(script) {{ script(); }});
+			window.htmlForgeXDeferredScripts = [];
+		}}
+	</script>");
+        }
+
+        return StringBuilderCache.GetStringAndRelease(footer);
+    }
+
+    /// <summary>
+    /// Generates body scripts from library Body sections with optional deferred execution setup
+    /// </summary>
+    /// <returns>HTML string with body scripts</returns>
+    public string GenerateBodyScripts() {
+        var body = StringBuilderCache.Acquire();
+
+        // Only initialize deferred script system if enabled
+        if (_document.Configuration.EnableDeferredScripts) {
+            body.AppendLine($@"	<script>
+		window.htmlForgeXLibrariesLoaded = false;
+		window.htmlForgeXDeferredScripts = [];
+
+		// Helper function to defer script execution until libraries are loaded
+		function deferUntilLibrariesLoaded(callback) {{
+			if (window.htmlForgeXLibrariesLoaded) {{
+				callback();
+			}} else {{
+				window.htmlForgeXDeferredScripts.push(callback);
+			}}
+		}}
+	</script>");
+        }
+
+        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
+            var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
+            ProcessLibrarySectionLinks(library.Body, body);
+        }
+
+        return StringBuilderCache.GetStringAndRelease(body);
     }
 
     private string ReadEmbeddedResource(string resourceName) {
