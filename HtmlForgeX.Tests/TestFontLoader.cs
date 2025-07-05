@@ -1,14 +1,19 @@
+using System;
+using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HtmlForgeX.Resources;
 
 namespace HtmlForgeX.Tests;
 
 [TestClass]
 public class TestFontLoader {
+
     [TestMethod]
     public void LoadFontFromStreamMatchesFile() {
         var fontFamily = "Test Font";
         var bytes = new byte[] { 1, 2, 3, 4, 5, 6 };
-        var path = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.ttf");
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, $"{Guid.NewGuid():N}.ttf");
         File.WriteAllBytes(path, bytes);
         var expected = FontLoader.LoadFontAsStyle(fontFamily, path);
         using var stream = new MemoryStream(bytes);
