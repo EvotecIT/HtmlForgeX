@@ -24,14 +24,21 @@ public class Table : Element {
 
     public Table(TableType? library = null) {
         Library = library;
-        AddLibrariesBasedOnTableType();
+        // Libraries will be registered via RegisterLibraries method
     }
 
     public Table(IEnumerable<object> objects, TableType? library = null) {
         Library = library;
-        AddLibrariesBasedOnTableType();
+        // Libraries will be registered via RegisterLibraries method
 
         this.AddObjects(objects);
+    }
+
+    /// <summary>
+    /// Registers the required libraries for Table based on its TableType.
+    /// </summary>
+    protected internal override void RegisterLibraries() {
+        AddLibrariesBasedOnTableType();
     }
 
     public Table AddHeader(string header) {
@@ -126,7 +133,7 @@ public class Table : Element {
                     var value = property.GetValue(obj);
                     row.Add(value != null ? value.ToString() : "");
                 } catch (Exception ex) {
-                    GlobalStorage.Errors.Add($"Error getting value for property {property.Name}: {ex.Message}");
+                    Document?.Configuration.Errors.Add($"Error getting value for property {property.Name}: {ex.Message}");
                     row.Add("");
                 }
             }
@@ -155,7 +162,7 @@ public class Table : Element {
                     var value = dict[key];
                     row.Add(value != null ? value.ToString() : "");
                 } catch (Exception ex) {
-                    GlobalStorage.Errors.Add($"Error getting value for key {key}: {ex.Message}");
+                    Document?.Configuration.Errors.Add($"Error getting value for key {key}: {ex.Message}");
                     row.Add("");
                 }
             }
@@ -307,16 +314,16 @@ public class Table : Element {
         if (Library.HasValue) {
             switch (Library.Value) {
                 case TableType.BootstrapTable:
-                    GlobalStorage.Libraries.TryAdd(Libraries.Bootstrap, 0);
+                    Document?.Configuration.Libraries.TryAdd(Libraries.Bootstrap, 0);
                     break;
                 case TableType.DataTables:
-                    GlobalStorage.Libraries.TryAdd(Libraries.Bootstrap, 0);
-                    GlobalStorage.Libraries.TryAdd(Libraries.JQuery, 0);
-                    GlobalStorage.Libraries.TryAdd(Libraries.DataTables, 0);
+                    Document?.Configuration.Libraries.TryAdd(Libraries.Bootstrap, 0);
+                    Document?.Configuration.Libraries.TryAdd(Libraries.JQuery, 0);
+                    Document?.Configuration.Libraries.TryAdd(Libraries.DataTables, 0);
                     break;
                 case TableType.Tabler:
-                    GlobalStorage.Libraries.TryAdd(Libraries.Bootstrap, 0);
-                    GlobalStorage.Libraries.TryAdd(Libraries.Tabler, 0);
+                    Document?.Configuration.Libraries.TryAdd(Libraries.Bootstrap, 0);
+                    Document?.Configuration.Libraries.TryAdd(Libraries.Tabler, 0);
                     break;
                 default:
                     throw new Exception("Library not supported");

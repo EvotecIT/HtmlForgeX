@@ -5,9 +5,43 @@ namespace HtmlForgeX;
 public abstract class Element {
     public List<Element> Children { get; } = new List<Element>();
 
+    private Document? _document;
+
+    /// <summary>
+    /// Gets or sets the parent document reference. Used internally for library registration.
+    /// </summary>
+    protected internal Document? Document {
+        get => _document;
+        set {
+            _document = value;
+            // Propagate the document reference to all child elements
+            PropagateDocumentToChildren();
+        }
+    }
+
     public Element Add(Element child) {
         Children.Add(child);
+        // Propagate the document reference to child elements
+        if (Document != null) {
+            child.Document = Document;
+        }
         return this;
+    }
+
+    /// <summary>
+    /// Recursively sets the document reference for all child elements.
+    /// </summary>
+    private void PropagateDocumentToChildren() {
+        foreach (var child in Children) {
+            child.Document = Document;
+        }
+    }
+
+    /// <summary>
+    /// Registers required libraries for this element. Override in derived classes to register specific libraries.
+    /// </summary>
+    protected internal virtual void RegisterLibraries() {
+        // Base implementation does nothing - override in derived classes
     }
 
     public abstract override string ToString();

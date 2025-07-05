@@ -11,9 +11,16 @@ public class VisNetwork : Element {
     public bool EnableLoadingBar { get; set; }
 
     public VisNetwork() {
-        GlobalStorage.Libraries.TryAdd(Libraries.VisNetwork, 0);
-        GlobalStorage.Libraries.TryAdd(Libraries.VisNetworkLoadingBar, 0);
+        // Libraries will be registered via RegisterLibraries method
         Id = GlobalStorage.GenerateRandomId("Diagram");
+    }
+
+    /// <summary>
+    /// Registers the required libraries for VisNetwork.
+    /// </summary>
+    protected internal override void RegisterLibraries() {
+        Document?.Configuration.Libraries.TryAdd(Libraries.VisNetwork, 0);
+        Document?.Configuration.Libraries.TryAdd(Libraries.VisNetworkLoadingBar, 0);
     }
 
     public VisNetwork AddNode(object node) {

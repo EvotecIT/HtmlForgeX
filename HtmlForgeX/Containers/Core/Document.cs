@@ -11,32 +11,38 @@ namespace HtmlForgeX;
 /// </summary>
 public class Document : Element {
     private static readonly InternalLogger _logger = new();
-    public Head Head = new Head();
-    public Body Body = new Body();
+
+    /// <summary>
+    /// Configuration and state for this document instance.
+    /// </summary>
+    public DocumentConfiguration Configuration { get; } = new();
+
+    public Head Head { get; }
+    public Body Body { get; }
 
     public LibraryMode LibraryMode {
-        get => GlobalStorage.LibraryMode;
-        set => GlobalStorage.LibraryMode = value;
+        get => Configuration.LibraryMode;
+        set => Configuration.LibraryMode = value;
     }
 
     public ThemeMode ThemeMode {
-        get => GlobalStorage.ThemeMode;
-        set => GlobalStorage.ThemeMode = value;
+        get => Configuration.ThemeMode;
+        set => Configuration.ThemeMode = value;
     }
 
     public string Path {
-        get => GlobalStorage.Path;
-        set => GlobalStorage.Path = value;
+        get => Configuration.Path;
+        set => Configuration.Path = value;
     }
 
     public string StylePath {
-        get => GlobalStorage.StylePath;
-        set => GlobalStorage.StylePath = value;
+        get => Configuration.StylePath;
+        set => Configuration.StylePath = value;
     }
 
     public string ScriptPath {
-        get => GlobalStorage.ScriptPath;
-        set => GlobalStorage.ScriptPath = value;
+        get => Configuration.ScriptPath;
+        set => Configuration.ScriptPath = value;
     }
 
     /// <summary>
@@ -45,8 +51,16 @@ public class Document : Element {
     /// <param name="librariesMode">Initial library mode.</param>
     public Document(LibraryMode? librariesMode = null) {
         if (librariesMode != null) {
-            GlobalStorage.LibraryMode = librariesMode.Value;
+            Configuration.LibraryMode = librariesMode.Value;
         }
+
+        // Initialize Head and Body with reference to this document's configuration
+        Head = new Head(this);
+        Body = new Body(this);
+
+        // Set the document reference for Head and Body so they can propagate it to children
+        Head.Document = this;
+        Body.Document = this;
     }
 
     /// <summary>
@@ -57,16 +71,16 @@ public class Document : Element {
     /// <param name="scriptPath">Optional scripts path.</param>
     /// <param name="stylePath">Optional styles path.</param>
     public void Save(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
-        GlobalStorage.Path = path;
+        Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath)) {
-            GlobalStorage.ScriptPath = scriptPath;
+            Configuration.ScriptPath = scriptPath;
         }
 
         if (!string.IsNullOrEmpty(stylePath)) {
-            GlobalStorage.StylePath = stylePath;
+            Configuration.StylePath = stylePath;
         }
 
-        var countErrors = GlobalStorage.Errors.Count;
+        var countErrors = Configuration.Errors.Count;
         if (countErrors > 0) {
             Console.WriteLine($"There were {countErrors} found during generation of HTML.");
         }
@@ -97,16 +111,16 @@ public class Document : Element {
     /// <param name="scriptPath">Optional scripts path.</param>
     /// <param name="stylePath">Optional styles path.</param>
     public async Task SaveAsync(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
-        GlobalStorage.Path = path;
+        Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath)) {
-            GlobalStorage.ScriptPath = scriptPath;
+            Configuration.ScriptPath = scriptPath;
         }
 
         if (!string.IsNullOrEmpty(stylePath)) {
-            GlobalStorage.StylePath = stylePath;
+            Configuration.StylePath = stylePath;
         }
 
-        var countErrors = GlobalStorage.Errors.Count;
+        var countErrors = Configuration.Errors.Count;
         if (countErrors > 0) {
             Console.WriteLine($"There were {countErrors} found during generation of HTML.");
         }
@@ -130,17 +144,47 @@ public class Document : Element {
         }
     }
 
-    /// <inheritdoc/>
+    /// <summary>
+    /// Converts the Document to its HTML string representation.
+    /// </summary>
+    /// <returns>Complete HTML document as string.</returns>
     public override string ToString() {
-        var html = StringBuilderCache.Acquire();
+        // Pre-register libraries from all elements before rendering the head
+        RegisterAllLibraries();
 
+        var html = StringBuilderCache.Acquire();
         html.AppendLine("<!DOCTYPE html>");
         html.AppendLine("<html>");
-        html.AppendLine(this.Head.ToString());
-        html.AppendLine(this.Body.ToString());
+        html.Append(Head.ToString());
+        html.AppendLine();
+        html.Append(Body.ToString());
+        html.AppendLine();
         html.AppendLine("</html>");
-
         return StringBuilderCache.GetStringAndRelease(html);
+    }
+
+    /// <summary>
+    /// Recursively registers libraries from all elements in the document.
+    /// </summary>
+    private void RegisterAllLibraries() {
+        // Register libraries from Head
+        Head.RegisterLibraries();
+        RegisterLibrariesFromElement(Head);
+
+        // Register libraries from Body and its children
+        Body.RegisterLibraries();
+        RegisterLibrariesFromElement(Body);
+    }
+
+    /// <summary>
+    /// Recursively registers libraries from an element and all its children.
+    /// </summary>
+    /// <param name="element">The element to process.</param>
+    private void RegisterLibrariesFromElement(Element element) {
+        foreach (var child in element.Children) {
+            child.RegisterLibraries();
+            RegisterLibrariesFromElement(child);
+        }
     }
 
     /// <summary>
@@ -148,7 +192,7 @@ public class Document : Element {
     /// </summary>
     /// <param name="library">Library identifier.</param>
     public void AddLibrary(Libraries library) {
-        GlobalStorage.Libraries.TryAdd(library, 0);
+        Configuration.Libraries.TryAdd(library, 0);
     }
 
     /// <summary>
@@ -156,7 +200,7 @@ public class Document : Element {
     /// </summary>
     /// <param name="library">Library to add.</param>
     public void AddLibrary(Library library) {
-        if (GlobalStorage.LibraryMode == LibraryMode.Online) {
+        if (Configuration.LibraryMode == LibraryMode.Online) {
             foreach (var link in library.Header.CssLink) {
                 this.Head.AddCssLink(link);
             }
@@ -164,7 +208,7 @@ public class Document : Element {
             foreach (var link in library.Header.JsLink) {
                 this.Head.AddJsLink(link);
             }
-        } else if (GlobalStorage.LibraryMode == LibraryMode.Offline) {
+        } else if (Configuration.LibraryMode == LibraryMode.Offline) {
             foreach (var css in library.Header.Css) {
                 if (!File.Exists(css)) {
                     _logger.WriteError($"CSS file '{css}' not found.");

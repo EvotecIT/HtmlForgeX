@@ -16,8 +16,15 @@ public class ApexCharts : Element {
     public ApexChartSubtitle Subtitle { get; set; } = new ApexChartSubtitle();
 
     public ApexCharts() {
-        GlobalStorage.Libraries.TryAdd(Libraries.ApexCharts, 0);
+        // Libraries will be registered via RegisterLibraries method
         Id = GlobalStorage.GenerateRandomId("apexChart");
+    }
+
+    /// <summary>
+    /// Registers the required libraries for ApexCharts.
+    /// </summary>
+    protected internal override void RegisterLibraries() {
+        Document?.Configuration.Libraries.TryAdd(Libraries.ApexCharts, 0);
     }
 
     public ApexCharts AddPie(string name, double value) {
@@ -47,8 +54,12 @@ public class ApexCharts : Element {
         return this;
     }
 
-
     public override string ToString() {
+        // Generate ID using document configuration if available, otherwise use GlobalStorage as fallback
+        if (string.IsNullOrEmpty(Id)) {
+            Id = Document?.Configuration.GenerateRandomId("apexChart") ?? GlobalStorage.GenerateRandomId("apexChart");
+        }
+
         var divTag = new HtmlTag("div").Attribute("id", Id);
 
         var options = new Dictionary<string, object> {
