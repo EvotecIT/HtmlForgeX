@@ -32,7 +32,7 @@ public class TestHtmlTagValidation {
         tag.Attributes.Add("class", "container");
         tag.Attributes.Add("data-value", "123");
         var result = tag.ToString();
-        
+
         Assert.IsTrue(result.Contains("id=\"test\""));
         Assert.IsTrue(result.Contains("class=\"container\""));
         Assert.IsTrue(result.Contains("data-value=\"123\""));
@@ -47,7 +47,7 @@ public class TestHtmlTagValidation {
                 { "padding", "5px" }
             } }
         });
-        
+
         var result = tag.ToString();
         Assert.IsTrue(result.Contains("style=\""));
         Assert.IsTrue(result.Contains("background-color: blue"));
@@ -67,7 +67,7 @@ public class TestHtmlTagValidation {
         tag.Attributes.Add("type", "checkbox");
         tag.Attributes.Add("checked", true);
         tag.Attributes.Add("disabled", false);
-        
+
         var result = tag.ToString();
         Assert.IsTrue(result.Contains("checked=\"True\""));
         Assert.IsTrue(result.Contains("disabled=\"False\""));
@@ -92,14 +92,34 @@ public class TestHtmlTagValidation {
         Assert.IsTrue(result.Contains("Hello") && result.Contains("World"));
     }
 
+
+
+    [TestMethod]
+    public void HtmlTag_WithNumericAttributes_CultureIndependent() {
+        // Test that numeric attributes use invariant culture formatting
+        var tag = new HtmlTag("div");
+        tag.Attributes.Add("data-count", 42);
+        tag.Attributes.Add("data-price", 19.99);
+        tag.Attributes.Add("data-ratio", 0.75);
+
+        var result = tag.ToString();
+
+        // These should always use invariant culture formatting (period as decimal separator)
+        Assert.IsTrue(result.Contains("data-count=\"42\""));
+        Assert.IsTrue(result.Contains("data-price=\"19.99\""));
+        Assert.IsTrue(result.Contains("data-ratio=\"0.75\""));
+    }
+
     [TestMethod]
     public void HtmlTag_WithNumericAttributes() {
         var tag = new HtmlTag("div");
         tag.Attributes.Add("data-count", 42);
         tag.Attributes.Add("data-price", 19.99);
-        
+
         var result = tag.ToString();
         Assert.IsTrue(result.Contains("data-count=\"42\""));
         Assert.IsTrue(result.Contains("data-price=\"19.99\""));
     }
+
+
 }

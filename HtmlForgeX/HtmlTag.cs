@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 
 namespace HtmlForgeX;
 /// <summary>
@@ -157,7 +158,14 @@ public class HtmlTag : Element {
                     var styleString = styleValue.ToString().TrimEnd(' ', ';');
                     html.Append($" style=\"{Helpers.HtmlEncode(styleString)}\"");
                 } else {
-                    var value = Helpers.HtmlEncode(attribute.Value.ToString()?.Trim() ?? string.Empty);
+                    // Use invariant culture for numeric types to ensure consistent formatting
+                    string valueString;
+                    if (attribute.Value is IFormattable formattable) {
+                        valueString = formattable.ToString(null, CultureInfo.InvariantCulture);
+                    } else {
+                        valueString = attribute.Value.ToString();
+                    }
+                    var value = Helpers.HtmlEncode(valueString?.Trim() ?? string.Empty);
                     html.Append($" {attribute.Key}=\"{value}\"");
                 }
             }

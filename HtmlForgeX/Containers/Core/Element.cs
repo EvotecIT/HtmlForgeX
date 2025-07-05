@@ -84,6 +84,21 @@ public abstract class Element {
     }
 
     /// <summary>
+    /// Adds a simple text span with optional color and size.
+    /// </summary>
+    /// <param name="content">The text content.</param>
+    /// <param name="color">Optional text color.</param>
+    /// <param name="fontSize">Optional font size.</param>
+    /// <returns></returns>
+    public Span Text(string content, RGBColor? color = null, string? fontSize = null) {
+        var span = new Span { Content = content };
+        if (color != null) span.WithColor(color);
+        if (fontSize != null) span.WithFontSize(fontSize);
+        this.Add(span);
+        return span;
+    }
+
+    /// <summary>
     /// Adds the table.
     /// </summary>
     /// <param name="objects">The objects.</param>
