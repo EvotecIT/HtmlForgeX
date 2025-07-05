@@ -371,3 +371,5 @@ build/*
 /Ignore/*
 dotnet-install.sh
 packages-microsoft-prod.deb
+.claude/*
+HtmlForgeX.Examples/*.html

@@ -16,7 +16,7 @@ public class TestUtilitiesAndHelpers {
         try {
             await downloader.DownloadLibraryAsync(tempDir, Libraries.JQuery);
             Assert.IsTrue(Directory.Exists(tempDir));
-        } catch (System.Net.Http.HttpRequestException) {
+        } catch (Exception ex) when (ex.GetType().Name.Contains("Http") || ex.Message.Contains("network") || ex.Message.Contains("connection")) {
             Assert.Inconclusive("Network not available for test");
         } finally {
             if (Directory.Exists(tempDir)) {
