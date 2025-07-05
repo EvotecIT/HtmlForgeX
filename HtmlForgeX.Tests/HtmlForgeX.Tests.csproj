@@ -28,4 +28,16 @@
         <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
     </ItemGroup>
 
+        <ItemGroup>
+        <Using Include="HtmlForgeX" />
+        <Using Include="HtmlForgeX.Tags" />
+        <Using Include="System" />
+        <Using Include="System.Text" />
+        <Using Include="System.Collections.Generic" />
+        <Using Include="System.Collections" />
+        <Using Include="System.Linq" />
+        <Using Include="System.Text.Json" />
+        <Using Include="System.Text.Json.Serialization" />
+    </ItemGroup>
+
 </Project>

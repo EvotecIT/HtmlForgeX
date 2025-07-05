@@ -6,6 +6,7 @@ public abstract class Element {
     public List<Element> Children { get; } = new List<Element>();
 
     private Document? _document;
+    private Email? _email;
 
     /// <summary>
     /// Gets or sets the parent document reference. Used internally for library registration.
@@ -19,11 +20,27 @@ public abstract class Element {
         }
     }
 
+    /// <summary>
+    /// Gets or sets the parent email reference. Used internally for email-specific functionality.
+    /// </summary>
+    protected internal Email? Email {
+        get => _email;
+        set {
+            _email = value;
+            // Propagate the email reference to all child elements
+            PropagateEmailToChildren();
+        }
+    }
+
     public Element Add(Element child) {
         Children.Add(child);
         // Propagate the document reference to child elements
         if (Document != null) {
             child.Document = Document;
+        }
+        // Propagate the email reference to child elements
+        if (Email != null) {
+            child.Email = Email;
         }
         return this;
     }
@@ -34,6 +51,15 @@ public abstract class Element {
     private void PropagateDocumentToChildren() {
         foreach (var child in Children) {
             child.Document = Document;
+        }
+    }
+
+    /// <summary>
+    /// Recursively sets the email reference for all child elements.
+    /// </summary>
+    private void PropagateEmailToChildren() {
+        foreach (var child in Children) {
+            child.Email = Email;
         }
     }
 
@@ -53,6 +79,21 @@ public abstract class Element {
     /// <returns></returns>
     public Span Span(string content = "") {
         var span = new Span { Content = content };
+        this.Add(span);
+        return span;
+    }
+
+    /// <summary>
+    /// Adds a simple text span with optional color and size.
+    /// </summary>
+    /// <param name="content">The text content.</param>
+    /// <param name="color">Optional text color.</param>
+    /// <param name="fontSize">Optional font size.</param>
+    /// <returns></returns>
+    public Span Text(string content, RGBColor? color = null, string? fontSize = null) {
+        var span = new Span { Content = content };
+        if (color != null) span.WithColor(color);
+        if (fontSize != null) span.WithFontSize(fontSize);
         this.Add(span);
         return span;
     }

@@ -1,5 +1,5 @@
 namespace HtmlForgeX.Examples.Tags {
-    internal class BasicHtmlTagBuilding01 {
+    internal partial class BasicHtmlTagBuilding {
         public static void Demo1() {
             HelpersSpectre.PrintTitle("Basic Demo 1");
 
@@ -13,7 +13,7 @@ namespace HtmlForgeX.Examples.Tags {
             HelpersSpectre.PrintHtmlTag(tag);
         }
 
-        public static void Demo5() {
+        public static void Demo2() {
             HelpersSpectre.PrintTitle("Basic Demo 1");
 
             HtmlTag tag = new HtmlTag("span", "Hello, World!", new Dictionary<string, object> {
@@ -28,7 +28,7 @@ namespace HtmlForgeX.Examples.Tags {
         }
 
 
-        public static void Demo2() {
+        public static void Demo3() {
             HelpersSpectre.PrintTitle("Basic Demo 2");
 
             var fluent = new HtmlTag("div").Class("control-group")
@@ -41,7 +41,7 @@ namespace HtmlForgeX.Examples.Tags {
             HelpersSpectre.PrintHtmlTag(fluent);
         }
 
-        public static void Demo3() {
+        public static void Demo4() {
             HelpersSpectre.PrintTitle("Basic Demo 3");
 
             var html = new HtmlTag("html");
@@ -58,7 +58,7 @@ namespace HtmlForgeX.Examples.Tags {
             HelpersSpectre.PrintHtmlTag(html);
         }
 
-        public static void Demo4() {
+        public static void Demo5() {
             HelpersSpectre.PrintTitle("Basic Demo 4");
 
             var html = new HtmlTag("html");
