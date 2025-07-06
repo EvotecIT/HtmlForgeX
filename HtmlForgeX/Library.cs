@@ -15,6 +15,10 @@ public enum Libraries {
     DataTables,
     Tabler,
     TablerIcon,
+    TablerFlags,
+    TablerSocials,
+    TablerPayments,
+    TablerThemes,
     FancyTree,
     ApexCharts,
     VisNetwork,
@@ -87,6 +91,14 @@ public class LibrariesConverter {
                 return new Tabler();
             case Libraries.TablerIcon:
                 return new Resources.TablerIconLibrary();
+            case Libraries.TablerFlags:
+                return new Resources.TablerFlags();
+            case Libraries.TablerSocials:
+                return new Resources.TablerSocials();
+            case Libraries.TablerPayments:
+                return new Resources.TablerPayments();
+            case Libraries.TablerThemes:
+                return new Resources.TablerThemes();
             case Libraries.JQuery:
                 return new Jquery();
             case Libraries.FancyTree:
