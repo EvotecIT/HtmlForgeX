@@ -83,6 +83,8 @@ public class EmailHeader : Element {
         return this;
     }
 
+
+
     /// <summary>
     /// Sets the logo dimensions.
     /// </summary>
@@ -134,52 +136,60 @@ public class EmailHeader : Element {
     public override string ToString() {
         var html = StringBuilderCache.Acquire();
 
-        html.AppendLine("<!-- HEADER -->");
-        html.AppendLine("\t\t\t\t\t\t\t\t<table cellpadding=\"0\" cellspacing=\"0\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;\">");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t<tr>");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t<td class=\"py-lg\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding-top: {Padding}; padding-bottom: {Padding};\">");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t<table cellspacing=\"0\" cellpadding=\"0\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;\">");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t<tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t<td style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;\">");
+        html.AppendLine($@"
+<!-- HEADER -->
+<table cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;"">
+<tr>
+<td class=""py-lg"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding-top: {Padding}; padding-bottom: {Padding};"">
+<table cellspacing=""0"" cellpadding=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;"">
+<tr>
+<td style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;"">
+");
 
         // Logo section
         if (!string.IsNullOrEmpty(LogoSrc)) {
             if (!string.IsNullOrEmpty(LogoLink)) {
-                html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"{Helpers.HtmlEncode(LogoLink)}\" style=\"color: #066FD1; text-decoration: none;\">");
+                html.AppendLine($@"<a href=""{Helpers.HtmlEncode(LogoLink)}"" style=""color: #066FD1; text-decoration: none;"">");
             }
 
             // Light mode logo
-            html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src=\"{Helpers.HtmlEncode(LogoSrc)}\" class=\"img-light\" width=\"{LogoWidth}\" height=\"{LogoHeight}\" alt=\"{Helpers.HtmlEncode(LogoAlt)}\" style=\"display: inline-block; line-height: 100%; outline: none; text-decoration: none; vertical-align: bottom; font-size: 0; border-style: none; border-width: 0;\" />");
+            html.AppendLine($@"<img src=""{Helpers.HtmlEncode(LogoSrc)}"" class=""img-light"" width=""{LogoWidth}"" height=""{LogoHeight}"" alt=""{Helpers.HtmlEncode(LogoAlt)}"" style=""display: inline-block; line-height: 100%; outline: none; text-decoration: none; vertical-align: bottom; font-size: 0; border-style: none; border-width: 0;"" />");
 
             // Dark mode logo (conditionally rendered)
             if (!string.IsNullOrEmpty(LogoDarkSrc) && Email?.Configuration.DarkModeSupport == true) {
-                html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<!--[if !mso]> <!-->");
-                html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src=\"{Helpers.HtmlEncode(LogoDarkSrc)}\" class=\"img-dark\" width=\"{LogoWidth}\" height=\"{LogoHeight}\" alt=\"{Helpers.HtmlEncode(LogoAlt)}\" style=\"display: none; line-height: 100%; outline: none; text-decoration: none; vertical-align: bottom; font-size: 0; border-style: none; border-width: 0;\" />");
-                html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<!-- <![endif]-->");
+                html.AppendLine($@"<!--[if !mso]> <!-->
+<img src=""{Helpers.HtmlEncode(LogoDarkSrc)}"" class=""img-dark"" width=""{LogoWidth}"" height=""{LogoHeight}"" alt=""{Helpers.HtmlEncode(LogoAlt)}"" style=""display: none; line-height: 100%; outline: none; text-decoration: none; vertical-align: bottom; font-size: 0; border-style: none; border-width: 0;"" />
+<!-- <![endif]-->");
             }
 
             if (!string.IsNullOrEmpty(LogoLink)) {
-                html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>");
+                html.AppendLine($@"</a>");
             }
         }
 
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t</td>");
+        html.AppendLine($@"
+</td>
+");
 
         // View online link section
         if (IncludeViewOnline && !string.IsNullOrEmpty(ViewOnlineLink)) {
-            html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"text-right\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;\" align=\"right\">");
-            html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"{Helpers.HtmlEncode(ViewOnlineLink)}\" class=\"text-muted-light\" style=\"color: #8491a1; text-decoration: none;\">");
-            html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{Helpers.HtmlEncode(ViewOnlineText)}");
-            html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>");
-            html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t</td>");
+            html.AppendLine($@"
+<td class=""text-right"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;"" align=""right"">
+<a href=""{Helpers.HtmlEncode(ViewOnlineLink)}"" class=""text-muted-light"" style=""color: #8491a1; text-decoration: none;"">
+{Helpers.HtmlEncode(ViewOnlineText)}
+</a>
+</td>
+");
         }
 
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t</tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t</table>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t</td>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t</tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t</table>");
-        html.AppendLine("<!-- /HEADER -->");
+        html.AppendLine($@"
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!-- /HEADER -->
+");
 
         return StringBuilderCache.GetStringAndRelease(html);
     }

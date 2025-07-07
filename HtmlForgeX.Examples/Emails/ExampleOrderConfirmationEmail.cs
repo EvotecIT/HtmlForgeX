@@ -1,0 +1,183 @@
+using System;
+
+namespace HtmlForgeX.Examples.Emails;
+
+/// <summary>
+/// Example of creating an order confirmation email with tables and complex layouts.
+/// Demonstrates e-commerce email patterns using flexible HtmlForgeX components.
+/// </summary>
+public static class ExampleOrderConfirmationEmail {
+    public static void Create(bool openInBrowser = false) {
+        Console.WriteLine("Creating order confirmation email example...");
+
+        var email = new Email();
+
+        // Email settings
+        email.Head.AddTitle("Order Confirmation #12345")
+                  .AddEmailCoreStyles();
+
+        // Header box with logo and basic info
+        email.Body.EmailBox(emailBox => {
+            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+
+            // Header with logo
+            var header = new EmailHeader()
+                .SetLogo("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                .SetLogoLink("https://htmlforgex.com");
+            emailBox.Add(header);
+
+            // View online link using EmailContent for consistent alignment
+            emailBox.EmailContent(content => {
+                content.EmailText("Having trouble viewing this email? View it online")
+                    .WithFontSize("12px")
+                    .WithColor("#9CA3AF")
+                    .WithAlignment("center");
+            });
+        });
+
+        // Success message box
+        email.Body.EmailBox(emailBox => {
+            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+
+            // Success section using EmailContent for consistent alignment
+            emailBox.EmailContent(content => {
+                content.EmailText("✅ Order Confirmed!")
+                    .WithFontSize("32px")
+                    .WithFontWeight("bold")
+                    .WithAlignment("center")
+                    .WithColor("#059669");
+
+                content.EmailText("Thank you for your order! We're getting everything ready for shipment.")
+                    .WithFontSize("18px")
+                    .WithColor("#6B7280")
+                    .WithAlignment("center")
+                    .WithLineHeight("1.6");
+            });
+        });
+
+        // Order details box
+        email.Body.EmailBox(emailBox => {
+            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+
+            // Order details in a two-column layout
+            emailBox.EmailRow(row => {
+                row.DisableAutoSpacing(); // Disable automatic column spacing to align with other content
+                // Left column - Customer info
+                row.EmailColumn(col => {
+                    col.SetWidth("50%").SetPadding("0");
+                    col.EmailText("📋 Order Details")
+                        .WithFontSize("18px")
+                        .WithFontWeight("bold")
+                        .WithColor("#111827");
+                    col.EmailText("Order #: #12345")
+                        .WithFontWeight("600")
+                        .WithColor("#374151");
+                    col.EmailText("Date: January 6, 2025")
+                        .WithFontWeight("600")
+                        .WithColor("#374151");
+                });
+
+                // Right column - Shipping info
+                row.EmailColumn(col => {
+                    col.SetWidth("50%").SetPadding("0");
+                    col.EmailText("🚚 Shipping Info")
+                        .WithFontSize("18px")
+                        .WithFontWeight("bold")
+                        .WithColor("#111827");
+                    col.EmailText("Estimated Delivery: Jan 10-12, 2025")
+                        .WithFontWeight("600")
+                        .WithColor("#059669");
+                    col.EmailText("Tracking available once shipped")
+                        .WithFontSize("14px")
+                        .WithColor("#9CA3AF");
+                });
+            });
+
+        });
+
+        // Order items table box
+        email.Body.EmailBox(emailBox => {
+            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+
+            // Order items title using EmailContent for consistent alignment
+            emailBox.EmailContent(content => {
+                content.EmailText("📦 Your Order")
+                    .WithFontSize("20px")
+                    .WithFontWeight("bold")
+                    .WithColor("#111827");
+            });
+
+            // Order items table
+            emailBox.EmailTable(table => {
+                table.AddHeader(new[] { "Item", "Quantity", "Price" });
+                table.AddRow(new[] { "HtmlForgeX Pro License", "1", "$99.00" });
+                table.AddRow(new[] { "Premium Support Package", "1", "$29.00" });
+                table.AddRow(new[] { "Tax", "", "$12.80" });
+                table.AddRow(new[] { "", "Total:", "$140.80" });
+                table.SetStyle(EmailTableStyle.Invoice);
+            });
+        });
+
+        // Action buttons box
+        email.Body.EmailBox(emailBox => {
+            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+
+            // Action buttons using row layout
+            emailBox.EmailRow(row => {
+                // Use default spacing for buttons (wider spacing appropriate for buttons)
+                row.EmailColumn(col => {
+                    col.SetWidth("50%");
+                    var trackButton = new EmailButton("Track Order", "https://htmlforgex.com/orders/12345/track");
+                    col.Add(trackButton);
+                });
+
+                row.EmailColumn(col => {
+                    col.SetWidth("50%");
+                    var supportButton = new EmailButton("Contact Support", "https://htmlforgex.com/support");
+                    col.Add(supportButton);
+                });
+            });
+
+            // Help section using EmailContent for consistent alignment
+            emailBox.EmailContent(content => {
+                content.EmailText("Questions about your order? Email us or call 1-800-HTMLFX")
+                    .WithFontSize("14px")
+                    .WithColor("#6B7280")
+                    .WithAlignment("center");
+            });
+        });
+
+        // Footer box
+        email.Body.EmailBox(emailBox => {
+            emailBox.SetOuterMargin("0 auto 0 auto").SetMaxWidth("600px"); // No bottom margin for last box
+
+            // Footer section using EmailContent for consistent alignment
+            emailBox.EmailContent(content => {
+                content.EmailText("Stay Connected")
+                    .WithFontSize("16px")
+                    .WithFontWeight("bold")
+                    .WithAlignment("center")
+                    .WithColor("#111827");
+
+                content.EmailText("Follow us: GitHub | Twitter | LinkedIn")
+                    .WithColor("#066FD1")
+                    .WithAlignment("center");
+
+                content.EmailText("HtmlForgeX Inc. | 123 Developer St, Code City, CA 90210")
+                    .WithFontSize("12px")
+                    .WithColor("#9CA3AF")
+                    .WithAlignment("center");
+
+                content.EmailText("Don't want order updates? Manage preferences")
+                    .WithFontSize("12px")
+                    .WithColor("#9CA3AF")
+                    .WithAlignment("center");
+            });
+        });
+
+        // Save email
+        email.Save("order-confirmation-email.html", openInBrowser);
+        Console.WriteLine("✅ Order confirmation email created successfully!");
+        Console.WriteLine("📧 Demonstrates: E-commerce layouts, two-column design, tables, multiple action buttons, social links");
+    }
+}

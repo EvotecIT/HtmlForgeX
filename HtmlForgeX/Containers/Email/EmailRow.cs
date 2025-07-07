@@ -16,6 +16,16 @@ public class EmailRow : Element {
     public string TableLayout { get; set; } = "fixed";
 
     /// <summary>
+    /// Gets or sets the spacing between columns.
+    /// </summary>
+    public string ColumnSpacing { get; set; } = "16px";
+
+    /// <summary>
+    /// Gets or sets whether to automatically add spacing between columns.
+    /// </summary>
+    public bool AutoSpaceColumns { get; set; } = true;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="EmailRow"/> class.
     /// </summary>
     public EmailRow() { }
@@ -67,6 +77,26 @@ public class EmailRow : Element {
     }
 
     /// <summary>
+    /// Sets the spacing between columns.
+    /// </summary>
+    /// <param name="spacing">The spacing value.</param>
+    /// <returns>The EmailRow object, allowing for method chaining.</returns>
+    public EmailRow SetColumnSpacing(string spacing) {
+        ColumnSpacing = spacing;
+        AutoSpaceColumns = true;
+        return this;
+    }
+
+    /// <summary>
+    /// Disables automatic spacing between columns.
+    /// </summary>
+    /// <returns>The EmailRow object, allowing for method chaining.</returns>
+    public EmailRow DisableAutoSpacing() {
+        AutoSpaceColumns = false;
+        return this;
+    }
+
+    /// <summary>
     /// Converts the EmailRow to its HTML table representation.
     /// </summary>
     /// <returns>HTML string representing the email row as a table.</returns>
@@ -79,8 +109,11 @@ public class EmailRow : Element {
         html.AppendLine($"\t\t\t\t\t\t\t\t<table class=\"{CssClass}\" cellspacing=\"0\" cellpadding=\"0\" style=\"{tableStyle}\">");
         html.AppendLine("\t\t\t\t\t\t\t\t\t<tr>");
 
-        // Render child columns
-        foreach (var child in Children) {
+                // Render child columns
+        for (int i = 0; i < Children.Count; i++) {
+            var child = Children[i];
+            var isLastChild = i == Children.Count - 1;
+
             if (child is EmailColumn column) {
                 // Render column as table cell
                 var cellStyle = "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;";
@@ -88,14 +121,19 @@ public class EmailRow : Element {
                     cellStyle += $" width: {column.Width};";
                 }
 
+                // Add spacing between columns if enabled
+                if (AutoSpaceColumns && !isLastChild) {
+                    cellStyle += $" padding-right: {ColumnSpacing};";
+                }
+
                 html.AppendLine($"\t\t\t\t\t\t\t\t\t\t<td class=\"{column.CssClass}\" style=\"{cellStyle}\" valign=\"top\">");
-                
+
                 // Render column content
                 var columnContent = column.GetContentString();
                 if (!string.IsNullOrEmpty(columnContent)) {
                     html.AppendLine(columnContent);
                 }
-                
+
                 html.AppendLine("\t\t\t\t\t\t\t\t\t\t</td>");
             } else {
                 // For non-column children, wrap in a single cell spanning all columns

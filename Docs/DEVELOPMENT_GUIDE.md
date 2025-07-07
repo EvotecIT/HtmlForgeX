@@ -179,6 +179,228 @@ public static string ToTablerSize(this TablerSize size) {
 
 ---
 
+## HtmlForgeX Component Usage Patterns
+
+### Core Design Philosophy
+HtmlForgeX follows specific patterns that **must** be adhered to in all examples and implementations:
+
+1. **Direct Component Methods**: Components provide direct methods, not wrapper patterns
+2. **Fluent API Chaining**: Methods return the component itself for continued chaining
+3. **Lambda-Based Builders**: Complex components use lambda functions for configuration
+4. **No HTML/CSS/JS**: Users work with C# components, never raw markup
+5. **Hierarchical Building**: Components build through method calls, not manual DOM construction
+
+### ✅ Correct Patterns
+
+#### Span Text Building
+```csharp
+// CORRECT: Direct span methods with chaining
+card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
+card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil)
+    .AppendContent(" cool?");
+
+// CORRECT: Using Span constructor with chaining
+card.Add(new Span().AddContent("This is table with ").WithAlignment(FontAlignment.Center)
+    .WithColor(RGBColor.TractorRed).AppendContent("Tabler").WithColor(RGBColor.RedPurple));
+```
+
+#### DataGrid Building
+```csharp
+// CORRECT: Direct dataGrid methods
+card.DataGrid(dataGrid => {
+    dataGrid.AddItem("Registrar", "Third Party");
+    dataGrid.AddItem("Port number", "3306");
+    dataGrid.AddItem("Creator", "Przemysław Kłys");
+    dataGrid.Title("Domain Information").Content("This is the domain information");
+    dataGrid.Title("Expiring").Content(new TablerBadgeSpan("Soon", TablerColor.Azure));
+});
+```
+
+#### FancyTree Building
+```csharp
+// CORRECT: Lambda-based tree building
+card.FancyTree(fancyTree => {
+    fancyTree.AutoScroll(true).MinimumExpandLevel(2);
+    fancyTree.Title("Enable TSDebugMode")
+        .Icon("https://cdn-icons-png.flaticon.com/512/5610/5610944.png");
+    fancyTree.Title("OS Supported")
+        .AddNode(new FancyTreeNode("Pre-Check", "icon.png", true))
+        .AddNode(node => {
+            node.Title("Checking if DB is up and running");
+            node.AddNode(nextNode => {
+                nextNode.Title("DB is up and running");
+                nextNode.AddNode("Testing DB Connection");
+            });
+        });
+});
+```
+
+#### Tabs Building
+```csharp
+// CORRECT: Direct tab methods with lambda content
+column.Tabs(tabs => {
+    tabs.AddTab("Tab 1", new Strong("Content 1")).Active();
+    tabs.AddTab("Tab With Tracking", tab => {
+        tab.Text("This is tracking");
+        tab.Tracking()
+            .Block("Operational", TablerColor.Success)
+            .Block("No data", TablerColor.Failed)
+            .Block("Downtime", TablerColor.Danger);
+    }).Active();
+});
+```
+
+### ❌ Incorrect Patterns
+
+#### Never Use BasicElement Wrappers
+```csharp
+// WRONG: Using BasicElement wrappers
+content.Add(new BasicElement().Add(heading));
+content.Add(new BasicElement().Add(bodyText));
+
+// CORRECT: Direct component methods
+content.Span("Heading text").WithFontSize("32px").WithFontWeight(FontWeight.Bold);
+content.Span("Body text").WithFontSize("16px").WithColor(new RGBColor("#667382"));
+```
+
+#### Never Use Manual HTML/CSS
+```csharp
+// WRONG: Raw HTML in components
+content.SetHtml("<h1 class=\"text-center\">Title</h1>");
+content.SetHtml("<div style=\"background-color: #f6f6f6;\">Content</div>");
+
+// CORRECT: Use library components
+content.HeaderLevel(HeaderLevelTag.H1, "Title").WithAlignment(FontAlignment.Center);
+content.Span("Content").WithBackgroundColor(new RGBColor("#f6f6f6"));
+```
+
+### Email Component Patterns
+
+HtmlForgeX provides **TWO email patterns** for different use cases:
+
+#### 1. Direct Email Pattern (Simple Top-to-Bottom)
+
+For simple emails like writing in Outlook - direct content flow:
+
+```csharp
+// DIRECT pattern - simple top-to-bottom like Outlook
+var email = new Email();
+email.Head.AddTitle("Simple Email").AddEmailCoreStyles();
+
+email.Body
+    .EmailText("This is simple text")
+    .WithFontSize("16px")
+    .WithFontFamily("Calibri");
+
+email.Body.EmailTextBox(textBox => {
+    textBox.WithFontFamily("Calibri")
+           .WithFontSize("15px")
+           .AddText(
+               "Multi-line text content",
+               "Each line flows naturally",
+               "Like writing in email client"
+           );
+});
+
+email.Body.EmailTable(table => {
+    table.AddHeader(new[] { "Name", "Value" });
+    table.AddRow(new[] { "Item 1", "Value 1" });
+});
+
+email.Body.EmailList(list => {
+    list.AddItem("First item").WithColor(new RGBColor("#ff0000"));
+    list.AddItem("Second item").WithColor(new RGBColor("#008000"));
+});
+```
+
+#### 2. Layout Email Pattern (Structured Rows/Columns)
+
+For complex layouts with structured rows and columns:
+
+```csharp
+// LAYOUT pattern - structured with containers
+var email = new Email();
+email.Head.AddTitle("Structured Email").AddEmailCoreStyles();
+
+email.Body.EmailBox(emailBox => {
+    emailBox.SetPadding("8px"); // Configurable padding
+    
+    // Row with full-width image
+    emailBox.EmailRow(row => {
+        row.EmailColumn(col => {
+            col.SetWidth("600px");
+            col.EmailImage("https://example.com/banner.jpg", "600");
+        });
+    });
+    
+    // Row with two columns
+    emailBox.EmailRow(row => {
+        row.EmailColumn(col => {
+            col.SetWidth("50%");
+            col.EmailText("Left column");
+            col.EmailTable(table => {
+                table.AddRow(new[] { "Data", "Value" });
+            });
+        });
+        row.EmailColumn(col => {
+            col.SetWidth("50%");
+            col.EmailText("Right column");
+            col.EmailImage("image.jpg", "300");
+        });
+    });
+});
+```
+
+#### Available Email Extension Methods
+
+All email components inherit the natural builder pattern from Element:
+
+**Text Components:**
+- `EmailText(string content)` - Simple text with styling
+- `EmailText(Action<EmailText> config)` - Text with lambda configuration  
+- `EmailTextBox(Action<EmailTextBox> config)` - Multi-line text container
+
+**Media Components:**
+- `EmailImage(string source)` - Image with source
+- `EmailImage(string source, string width)` - Image with dimensions
+- `EmailImage(Action<EmailImage> config)` - Image with lambda configuration
+
+**Structure Components:**
+- `EmailTable(Action<EmailTable> config)` - Tables with rows/columns
+- `EmailList(Action<EmailList> config)` - Lists with items
+- `EmailRow(Action<EmailRow> config)` - Layout rows  
+- `EmailColumn(Action<EmailColumn> config)` - Layout columns
+- `EmailBox(Action<EmailBox> config)` - Content containers
+
+**Utility:**
+- `EmailLineBreak()` - Line breaks
+
+#### Key Design Principles
+
+1. **Two Patterns**: Use Direct for simple emails, Layout for complex structures
+2. **Configurable Padding**: EmailBox padding is configurable (default reduced to 16px)
+3. **Natural Flow**: Same builder pattern as dashboards
+4. **Email-Safe**: All components generate email-client compatible HTML
+
+```csharp
+// Dashboard pattern
+document.Body.Page(page => {
+    page.Row(row => {
+        row.Column(column => {
+            column.Card(card => {
+                card.Span("text").Table(data).DataGrid(grid => {});
+            });
+        });
+    });
+});
+
+// Email patterns (same natural structure!)
+// Direct: email.Body.EmailText().EmailTable().EmailList()
+// Layout: email.Body.EmailBox(box => { box.EmailRow().EmailColumn() })
+```
+
+---
+
 ## Testing Requirements
 
 ### 1. Unit Test Structure

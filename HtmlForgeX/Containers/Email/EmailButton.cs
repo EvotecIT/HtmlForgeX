@@ -155,23 +155,25 @@ public class EmailButton : Element {
         // Build table width
         var tableWidth = FullWidth ? "100%" : "100%";
 
-        html.AppendLine("<!-- BUTTON -->");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t<table cellspacing=\"0\" cellpadding=\"0\" role=\"presentation\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;\">");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td align=\"center\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;\">");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"{GetStyleClass()} rounded-lg\" role=\"presentation\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: separate; width: {tableWidth}; color: {txtColor}; border-radius: {BorderRadius};\" bgcolor=\"{bgColor}\">");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td align=\"center\" valign=\"top\" class=\"lh-1\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; line-height: 100%;\">");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href=\"{Helpers.HtmlEncode(Href)}\" class=\"{buttonClasses}\" style=\"color: {txtColor}; text-decoration: none; white-space: nowrap; font-weight: 500; font-size: {fontSize}; border-radius: {BorderRadius}; line-height: 125%; display: block; background-color: {bgColor}; padding: {padding}; border: 1px solid {borderColor};\">");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span class=\"btn-span\" style=\"color: {txtColor}; font-size: 14px; text-decoration: none; white-space: nowrap; font-weight: 500; line-height: 100%;\">{Helpers.HtmlEncode(Text)}</span>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</table>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t</table>");
-        html.AppendLine("<!-- /BUTTON -->");
+        html.AppendLine($@"
+<!-- BUTTON -->
+<table cellspacing=""0"" cellpadding=""0"" role=""presentation"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;"">
+<tr>
+<td align=""center"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;"">
+<table cellpadding=""0"" cellspacing=""0"" border=""0"" class=""{GetStyleClass()} rounded-lg"" role=""presentation"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: separate; width: {tableWidth}; color: {txtColor}; border-radius: {BorderRadius};"" bgcolor=""{bgColor}"">
+<tr>
+<td align=""center"" valign=""top"" class=""lh-1"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; line-height: 100%;"">
+<a href=""{Helpers.HtmlEncode(Href)}"" class=""{buttonClasses}"" style=""color: {txtColor}; text-decoration: none; white-space: nowrap; font-weight: 500; font-size: {fontSize}; border-radius: {BorderRadius}; line-height: 125%; display: block; background-color: {bgColor}; padding: {padding}; border: 1px solid {borderColor};"">
+<span class=""btn-span"" style=""color: {txtColor}; font-size: 14px; text-decoration: none; white-space: nowrap; font-weight: 500; line-height: 100%;"">{Helpers.HtmlEncode(Text)}</span>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!-- /BUTTON -->
+");
 
         return StringBuilderCache.GetStringAndRelease(html);
     }

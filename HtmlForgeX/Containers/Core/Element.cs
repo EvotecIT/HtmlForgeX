@@ -325,4 +325,183 @@ public abstract class Element {
         this.Add(unorderedList);
         return unorderedList;
     }
+
+    // Email Extension Methods for Natural Builder Pattern
+
+    /// <summary>
+    /// Adds email text with customizable styling.
+    /// </summary>
+    /// <param name="content">The text content.</param>
+    /// <returns>The EmailText object for further configuration.</returns>
+    public EmailText EmailText(string content = "") {
+        var emailText = new EmailText(content);
+        this.Add(emailText);
+        return emailText;
+    }
+
+    /// <summary>
+    /// Adds email text with configuration action.
+    /// </summary>
+    /// <param name="config">Configuration action for the email text.</param>
+    /// <returns>The current element for method chaining.</returns>
+    public Element EmailText(Action<EmailText> config) {
+        var emailText = new EmailText();
+        config(emailText);
+        this.Add(emailText);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds email table with configuration action.
+    /// </summary>
+    /// <param name="config">Configuration action for the email table.</param>
+    /// <returns>The current element for method chaining.</returns>
+    public Element EmailTable(Action<EmailTable> config) {
+        var emailTable = new EmailTable();
+        config(emailTable);
+        this.Add(emailTable);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds email table populated from data collection.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the data collection.</typeparam>
+    /// <param name="data">The data collection to populate the table.</param>
+    /// <returns>The EmailTable object for further configuration.</returns>
+    public EmailTable EmailTable<T>(IEnumerable<T> data) where T : class {
+        var emailTable = new EmailTable();
+        emailTable.PopulateFromData(data);
+        this.Add(emailTable);
+        return emailTable;
+    }
+
+    /// <summary>
+    /// Adds email list with configuration action.
+    /// </summary>
+    /// <param name="config">Configuration action for the email list.</param>
+    /// <returns>The current element for method chaining.</returns>
+    public Element EmailList(Action<EmailList> config) {
+        var emailList = new EmailList();
+        config(emailList);
+        this.Add(emailList);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds email row with configuration action.
+    /// </summary>
+    /// <param name="config">Configuration action for the email row.</param>
+    /// <returns>The current element for method chaining.</returns>
+    public Element EmailRow(Action<EmailRow> config) {
+        var emailRow = new EmailRow();
+        config(emailRow);
+        this.Add(emailRow);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds email column with configuration action.
+    /// </summary>
+    /// <param name="config">Configuration action for the email column.</param>
+    /// <returns>The current element for method chaining.</returns>
+    public Element EmailColumn(Action<EmailColumn> config) {
+        var emailColumn = new EmailColumn();
+        config(emailColumn);
+        this.Add(emailColumn);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds email box with configuration action.
+    /// </summary>
+    /// <param name="config">Configuration action for the email box.</param>
+    /// <returns>The current element for method chaining.</returns>
+    public Element EmailBox(Action<EmailBox> config) {
+        var emailBox = new EmailBox();
+        config(emailBox);
+        this.Add(emailBox);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds email text box with configuration action.
+    /// </summary>
+    /// <param name="config">Configuration action for the email text box.</param>
+    /// <returns>The current element for method chaining.</returns>
+    public Element EmailTextBox(Action<EmailTextBox> config) {
+        var emailTextBox = new EmailTextBox();
+        config(emailTextBox);
+        this.Add(emailTextBox);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds email image with configuration action.
+    /// </summary>
+    /// <param name="config">Configuration action for the email image.</param>
+    /// <returns>The current element for method chaining.</returns>
+    public Element EmailImage(Action<EmailImage> config) {
+        var emailImage = new EmailImage();
+        config(emailImage);
+        this.Add(emailImage);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds email image with source.
+    /// </summary>
+    /// <param name="source">The image source URL.</param>
+    /// <returns>The EmailImage object for further configuration.</returns>
+    public EmailImage EmailImage(string source) {
+        var emailImage = new EmailImage(source);
+        this.Add(emailImage);
+        return emailImage;
+    }
+
+    /// <summary>
+    /// Adds email image with source and width.
+    /// </summary>
+    /// <param name="source">The image source URL.</param>
+    /// <param name="width">The image width.</param>
+    /// <returns>The EmailImage object for further configuration.</returns>
+    public EmailImage EmailImage(string source, string width) {
+        var emailImage = new EmailImage(source, width);
+        this.Add(emailImage);
+        return emailImage;
+    }
+
+    /// <summary>
+    /// Adds line break for emails.
+    /// </summary>
+    /// <returns>The EmailLineBreak object for further configuration.</returns>
+    public EmailLineBreak EmailLineBreak() {
+        var lineBreak = new EmailLineBreak();
+        this.Add(lineBreak);
+        return lineBreak;
+    }
+
+    /// <summary>
+    /// Adds line break for emails with specified height.
+    /// </summary>
+    /// <param name="height">The height of the line break.</param>
+    /// <returns>The EmailLineBreak object for further configuration.</returns>
+    public EmailLineBreak EmailLineBreak(string height) {
+        var lineBreak = new EmailLineBreak(height);
+        this.Add(lineBreak);
+        return lineBreak;
+    }
+
+    /// <summary>
+    /// Adds email content wrapper that provides consistent single-column structure matching EmailColumn alignment.
+    /// Use this when you need single-column content that aligns with multi-column layouts.
+    /// </summary>
+    /// <param name="config">Configuration action for the email content.</param>
+    /// <returns>The current element for method chaining.</returns>
+    public Element EmailContent(Action<EmailContent> config) {
+        var emailContent = new EmailContent();
+        config(emailContent);
+        this.Add(emailContent);
+        return this;
+    }
 }

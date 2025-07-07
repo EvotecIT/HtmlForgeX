@@ -23,6 +23,11 @@ public class EmailColumn : Element {
     public string VerticalAlign { get; set; } = "top";
 
     /// <summary>
+    /// Gets or sets the text alignment of the column content.
+    /// </summary>
+    public string TextAlign { get; set; } = "left";
+
+    /// <summary>
     /// Gets or sets additional inline styles for the column.
     /// </summary>
     public string InlineStyle { get; set; } = "";
@@ -80,6 +85,16 @@ public class EmailColumn : Element {
     /// <returns>The EmailColumn object, allowing for method chaining.</returns>
     public EmailColumn SetPadding(string padding) {
         AddStyle($"padding: {padding};");
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the text alignment of the column content.
+    /// </summary>
+    /// <param name="alignment">The text alignment (left, center, right, justify).</param>
+    /// <returns>The EmailColumn object, allowing for method chaining.</returns>
+    public EmailColumn SetAlignment(string alignment) {
+        TextAlign = alignment;
         return this;
     }
 
@@ -152,13 +167,19 @@ public class EmailColumn : Element {
         if (!string.IsNullOrEmpty(Width)) {
             cellStyle += $" width: {Width};";
         }
+
+        if (!string.IsNullOrEmpty(TextAlign) && TextAlign != "left") {
+            cellStyle += $" text-align: {TextAlign};";
+        }
         
         if (!string.IsNullOrEmpty(InlineStyle)) {
             cellStyle += " " + InlineStyle;
         }
 
+        var alignAttr = !string.IsNullOrEmpty(TextAlign) && TextAlign != "left" ? $" align=\"{TextAlign}\"" : "";
+
         var html = StringBuilderCache.Acquire();
-        html.AppendLine($"<td class=\"{CssClass}\" style=\"{cellStyle}\" valign=\"{VerticalAlign}\">");
+        html.AppendLine($"<td class=\"{CssClass}\" style=\"{cellStyle}\" valign=\"{VerticalAlign}\"{alignAttr}>");
 
         // Render child content
         var contentString = GetContentString();

@@ -6,10 +6,15 @@ using HtmlForgeX.Examples.Experimenting;
 using HtmlForgeX.Examples.Support;
 using HtmlForgeX.Examples.Tables;
 using HtmlForgeX.Examples.Tags;
+using HtmlForgeX.Examples.Emails;
 
 // Those are support examples that help with maintaining library, not a demo material
 // Support.DownloadLibraries();
 // Support.GenerateTableIcons();
+
+// NOTE: Email layout consistency is now managed through EmailLayout static class
+// You can customize spacing globally by setting EmailLayout.ContainerPadding,
+// EmailLayout.TableCellPaddingVertical, etc. before generating emails.
 
 // Those are to display examples in console
 // BasicHtmlTagBuilding.Demo1();
@@ -22,19 +27,24 @@ using HtmlForgeX.Examples.Tags;
 // ExampleSvgIcons.Demo();
 
 // ExampleTablerTag.Demo();
-ExampleTablerAlerts.Demo();
-BasicHtmlBuilding.Demo1(true);
-// BasicHtmlBuilding.Demo2(true);
-BasicHtmlTable01.Demo1(true);
-BasicHtmlContainer01.Demo01(true);
-BasicHtmlContainer02.Demo02(true);
-BasicHtmlContainer03.Demo03(true);
-BasicHtmlContainer04.Demo01(true);
-DomainHealthCheck.Demo01(false);
-BasicScrollingText.Demo01(true);
+// ExampleTablerAlerts.Demo();
+// BasicHtmlBuilding.Demo1(true);
+// BasicHtmlContainer01.Demo(true);
+// BasicHtmlContainer02.Demo(true);
+// BasicHtmlContainer03.Demo(true);
+// BasicHtmlContainer04.Demo(true);
+// BasicHtmlContainer05.Demo(true);
+// BasicHtmlContainer06.Demo(true);
+// DomainHealthCheck.Demo(true);
+// BasicHtmlTable01.Demo(true);
 
-// Email Examples
-// EmailExamples.CreateConfirmationEmail(true);
-// EmailExamples.CreateInvoiceEmail(true);
-// EmailExamples.CreateNewsletterEmail(true);
-// Experiments01.Demo();
+// Email Examples - Generate all email examples
+ExampleCorrectedEmailPattern.Create(true);
+ExampleDirectEmailPattern.Create(true);
+ExampleInvoiceEmail.Create(true);
+ExampleLayoutEmailPattern.Create(true);
+ExampleNewsletterEmail.Create(true);
+ExampleOrderConfirmationEmail.Create(true);
+ExamplePasswordResetEmail.Create(true);
+ExampleSimpleConfirmationEmail.Create(true);
+ExampleWelcomeEmail.Create(true);

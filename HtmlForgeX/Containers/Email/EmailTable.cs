@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -40,9 +42,27 @@ public class EmailTable : Element {
     public string StripeColor { get; set; } = "#f9fafb";
 
     /// <summary>
+    /// Gets or sets the header style.
+    /// </summary>
+    public string HeaderStyle { get; set; } = "text-transform: uppercase; font-weight: 600; color: #667382; font-size: 12px; background-color: #f8fafc; text-align: left; vertical-align: top;";
+
+    /// <summary>
+    /// Gets or sets the cell style.
+    /// </summary>
+    public string CellStyle { get; set; } = "color: #374151; font-size: 14px; line-height: 1.5; text-align: left; vertical-align: top;";
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="EmailTable"/> class.
     /// </summary>
     public EmailTable() { }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailTable"/> class with data.
+    /// </summary>
+    /// <param name="data">The data collection to populate the table.</param>
+    public EmailTable(IEnumerable<object> data) {
+        PopulateFromData(data);
+    }
 
     /// <summary>
     /// Adds a header to the table.
@@ -57,6 +77,18 @@ public class EmailTable : Element {
             Align = align,
             ColSpan = colspan
         });
+        return this;
+    }
+
+    /// <summary>
+    /// Adds multiple headers to the table.
+    /// </summary>
+    /// <param name="headers">The header texts.</param>
+    /// <returns>The EmailTable object, allowing for method chaining.</returns>
+    public EmailTable AddHeader(params string[] headers) {
+        foreach (var header in headers) {
+            AddHeader(header);
+        }
         return this;
     }
 
@@ -111,66 +143,196 @@ public class EmailTable : Element {
     }
 
     /// <summary>
+    /// Sets the CSS class for the table.
+    /// </summary>
+    /// <param name="cssClass">The CSS class.</param>
+    /// <returns>The EmailTable object, allowing for method chaining.</returns>
+    public EmailTable SetClass(string cssClass) {
+        CssClass = cssClass;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the table style using predefined styles.
+    /// </summary>
+    /// <param name="style">The predefined table style.</param>
+    /// <returns>The EmailTable object, allowing for method chaining.</returns>
+    public EmailTable SetStyle(EmailTableStyle style) {
+        var (cssClass, striped, bordered, headerStyle, cellStyle, borderColor, stripeColor) = style.GetStyle();
+        CssClass = cssClass;
+        StripedRows = striped;
+        IncludeBorders = bordered;
+        HeaderStyle = headerStyle;
+        CellStyle = cellStyle;
+        BorderColor = borderColor;
+        StripeColor = stripeColor;
+        return this;
+    }
+
+    /// <summary>
+    /// Populates the table from a data collection.
+    /// </summary>
+    /// <typeparam name="T">The type of objects in the data collection.</typeparam>
+    /// <param name="data">The data collection to populate from.</param>
+    /// <returns>The EmailTable object, allowing for method chaining.</returns>
+    public EmailTable PopulateFromData<T>(IEnumerable<T> data) where T : class {
+        if (data == null || !data.Any()) {
+            return this;
+        }
+
+        var dataList = data.ToList();
+        var firstItem = dataList.First();
+
+        // Get property names from the first object using reflection
+        var properties = typeof(T).GetProperties()
+            .Where(p => p.CanRead && p.GetIndexParameters().Length == 0) // Exclude indexers
+            .Select(p => p.Name)
+            .ToArray();
+
+        // Clear existing headers and rows
+        Headers.Clear();
+        Rows.Clear();
+
+        // Add headers from property names
+        AddHeader(properties);
+
+        // Add rows from data
+        foreach (var item in dataList) {
+            var values = new string[properties.Length];
+            for (int i = 0; i < properties.Length; i++) {
+                var prop = typeof(T).GetProperty(properties[i]);
+                var value = prop?.GetValue(item)?.ToString() ?? "";
+                values[i] = value;
+            }
+            AddRow(values);
+        }
+
+        return this;
+    }
+
+    /// <summary>
+    /// Populates the table from a data collection (object version for backwards compatibility).
+    /// </summary>
+    /// <param name="data">The data collection to populate from.</param>
+    /// <returns>The EmailTable object, allowing for method chaining.</returns>
+    public EmailTable PopulateFromData(IEnumerable<object> data) {
+        if (data == null || !data.Any()) {
+            return this;
+        }
+
+        var dataList = data.ToList();
+        var firstItem = dataList.First();
+
+        // Get property names from the first object using reflection
+        var properties = firstItem.GetType().GetProperties()
+            .Where(p => p.CanRead && p.GetIndexParameters().Length == 0) // Exclude indexers
+            .Select(p => p.Name)
+            .ToArray();
+
+        // Clear existing headers and rows
+        Headers.Clear();
+        Rows.Clear();
+
+        // Add headers from property names
+        AddHeader(properties);
+
+        // Add rows from data
+        foreach (var item in dataList) {
+            var values = new string[properties.Length];
+            for (int i = 0; i < properties.Length; i++) {
+                var prop = item.GetType().GetProperty(properties[i]);
+                var value = prop?.GetValue(item)?.ToString() ?? "";
+                values[i] = value;
+            }
+            AddRow(values);
+        }
+
+        return this;
+    }
+
+    /// <summary>
     /// Converts the EmailTable to its HTML representation.
     /// </summary>
     /// <returns>HTML string representing the email table.</returns>
     public override string ToString() {
         var html = StringBuilderCache.Acquire();
 
-        var tableStyle = "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;";
+        var tableStyle = "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);";
 
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t<table class=\"{CssClass}\" cellspacing=\"0\" cellpadding=\"0\" style=\"{tableStyle}\">");
+        html.AppendLine($@"
+<table class=""{CssClass}"" cellspacing=""0"" cellpadding=""0"" style=""{tableStyle}"">
+");
 
         // Render headers
         if (Headers.Count > 0) {
-            html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>");
+            html.AppendLine($@"
+<tr>
+");
+            var totalHeaders = Headers.Count;
+            var defaultWidth = totalHeaders > 0 ? (100.0 / totalHeaders).ToString("F1") + "%" : "";
+
             foreach (var header in Headers) {
-                var headerStyle = "text-transform: uppercase; font-weight: 600; color: #667382; font-size: 12px; padding: 0 0 4px;";
                 var colspanAttr = header.ColSpan > 1 ? $" colspan=\"{header.ColSpan}\"" : "";
                 var alignAttr = !string.IsNullOrEmpty(header.Align) && header.Align != "left" ? $" align=\"{header.Align}\"" : "";
-                
-                html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<th{colspanAttr} style=\"{headerStyle}\"{alignAttr}>{Helpers.HtmlEncode(header.Text)}</th>");
+                var widthAttr = $" width=\"{defaultWidth}\"";
+
+                var completeHeaderStyle = $"padding: {EmailLayout.GetTableCellPadding()}; {HeaderStyle}";
+                html.AppendLine($@"<th{colspanAttr}{widthAttr} style=""{completeHeaderStyle}""{alignAttr}>{Helpers.HtmlEncode(header.Text)}</th>");
             }
-            html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>");
+            html.AppendLine($@"
+</tr>
+");
         }
 
         // Render rows
         for (int i = 0; i < Rows.Count; i++) {
             var row = Rows[i];
             var rowBgColor = "";
-            
+
             if (StripedRows && i % 2 == 1) {
                 rowBgColor = $" bgcolor=\"{StripeColor}\"";
             }
 
-            html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr{rowBgColor}>");
+            html.AppendLine($@"
+<tr{rowBgColor}>
+");
+
+            var totalCells = row.Cells.Count;
+            var defaultCellWidth = totalCells > 0 ? (100.0 / totalCells).ToString("F1") + "%" : "";
 
             foreach (var cell in row.Cells) {
-                var cellStyle = "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding: 4px 12px;";
-                
+                var baseCellStyle = $"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding: {EmailLayout.GetTableCellPadding()}; {CellStyle}";
+
                 if (IncludeBorders && cell.IncludeTopBorder) {
-                    cellStyle += $" border-top: 1px solid {BorderColor};";
+                    baseCellStyle += $" border-top: 1px solid {BorderColor};";
                 }
-                
-                if (!string.IsNullOrEmpty(cell.Width)) {
-                    cellStyle += $" width: {cell.Width};";
+
+                // Use cell width if specified, otherwise use calculated default
+                var cellWidth = !string.IsNullOrEmpty(cell.Width) ? cell.Width : defaultCellWidth;
+                if (!string.IsNullOrEmpty(cellWidth)) {
+                    baseCellStyle += $" width: {cellWidth};";
                 }
-                
+
                 if (!string.IsNullOrEmpty(cell.InlineStyle)) {
-                    cellStyle += " " + cell.InlineStyle;
+                    baseCellStyle += " " + cell.InlineStyle;
                 }
 
                 var alignAttr = !string.IsNullOrEmpty(cell.Align) && cell.Align != "left" ? $" align=\"{cell.Align}\"" : "";
                 var colspanAttr = cell.ColSpan > 1 ? $" colspan=\"{cell.ColSpan}\"" : "";
                 var cssClassAttr = !string.IsNullOrEmpty(cell.CssClass) ? $" class=\"{cell.CssClass}\"" : "";
+                var widthAttr = !string.IsNullOrEmpty(cellWidth) ? $" width=\"{cellWidth}\"" : "";
 
-                html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td{cssClassAttr} style=\"{cellStyle}\"{alignAttr}{colspanAttr}>{cell.GetContentHtml()}</td>");
+                html.AppendLine($@"<td{cssClassAttr}{widthAttr} style=""{baseCellStyle}""{alignAttr}{colspanAttr}>{cell.GetContentHtml()}</td>");
             }
 
-            html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>");
+            html.AppendLine($@"
+</tr>
+");
         }
 
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t</table>");
+        html.AppendLine($@"
+</table>
+");
 
         return StringBuilderCache.GetStringAndRelease(html);
     }
@@ -245,14 +407,14 @@ public class EmailTableCell {
     public string CssClass { get; set; } = "";
     public string InlineStyle { get; set; } = "";
     public bool IncludeTopBorder { get; set; } = false;
-    
+
     // Image properties
     public string ImageSrc { get; set; } = "";
     public int ImageWidth { get; set; } = 0;
     public int ImageHeight { get; set; } = 0;
     public string ImageAlt { get; set; } = "";
     public string ImageLink { get; set; } = "";
-    
+
     // Rich content
     public string HtmlContent { get; set; } = "";
 
@@ -336,11 +498,11 @@ public class EmailTableCell {
     internal string GetContentHtml() {
         if (!string.IsNullOrEmpty(ImageSrc)) {
             var imageHtml = $"<img src=\"{Helpers.HtmlEncode(ImageSrc)}\" class=\"rounded bg-light\" width=\"{ImageWidth}\" height=\"{ImageHeight}\" alt=\"{Helpers.HtmlEncode(ImageAlt)}\" style=\"display: inline-block; line-height: 100%; outline: none; text-decoration: none; vertical-align: bottom; font-size: 0; background-color: #f6f6f6; border-radius: 4px; border-style: none; border-width: 0;\" />";
-            
+
             if (!string.IsNullOrEmpty(ImageLink)) {
                 return $"<a href=\"{Helpers.HtmlEncode(ImageLink)}\" style=\"color: #066FD1; text-decoration: none;\">{imageHtml}</a>";
             }
-            
+
             return imageHtml;
         }
 

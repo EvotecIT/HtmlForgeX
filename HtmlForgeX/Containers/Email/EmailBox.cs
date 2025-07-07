@@ -43,12 +43,33 @@ public class EmailBox : Element {
     /// <summary>
     /// Gets or sets the padding inside the box.
     /// </summary>
-    public string Padding { get; set; } = "48px";
+    public string Padding { get; set; } = EmailLayout.GetContainerPadding();
 
     /// <summary>
     /// Gets or sets additional inline styles.
     /// </summary>
     public string InlineStyle { get; set; } = "";
+
+    /// <summary>
+    /// Gets or sets whether to use consistent spacing between elements.
+    /// When true, applies consistent vertical spacing between child elements.
+    /// </summary>
+    public bool UseConsistentSpacing { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets the spacing between child elements.
+    /// </summary>
+    public string ChildSpacing { get; set; } = EmailLayout.ChildSpacing;
+
+    /// <summary>
+    /// Gets or sets the outer margin around the entire box.
+    /// </summary>
+    public string OuterMargin { get; set; } = $"0 auto {EmailLayout.BoxSpacing} auto";
+
+    /// <summary>
+    /// Gets or sets the maximum width of the box.
+    /// </summary>
+    public string MaxWidth { get; set; } = "600px";
 
     /// <summary>
     /// Initializes a new instance of the <see cref="EmailBox"/> class.
@@ -115,6 +136,56 @@ public class EmailBox : Element {
     }
 
     /// <summary>
+    /// Sets the consistent spacing between child elements.
+    /// </summary>
+    /// <param name="spacing">The spacing value.</param>
+    /// <returns>The EmailBox object, allowing for method chaining.</returns>
+    public EmailBox SetChildSpacing(string spacing) {
+        ChildSpacing = spacing;
+        UseConsistentSpacing = true;
+        return this;
+    }
+
+    /// <summary>
+    /// Disables consistent spacing between child elements.
+    /// </summary>
+    /// <returns>The EmailBox object, allowing for method chaining.</returns>
+    public EmailBox DisableConsistentSpacing() {
+        UseConsistentSpacing = false;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the outer margin around the box.
+    /// </summary>
+    /// <param name="margin">The margin value (e.g., "0 auto 24px auto").</param>
+    /// <returns>The EmailBox object, allowing for method chaining.</returns>
+    public EmailBox SetOuterMargin(string margin) {
+        OuterMargin = margin;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the maximum width of the box.
+    /// </summary>
+    /// <param name="maxWidth">The maximum width value.</param>
+    /// <returns>The EmailBox object, allowing for method chaining.</returns>
+    public EmailBox SetMaxWidth(string maxWidth) {
+        MaxWidth = maxWidth;
+        return this;
+    }
+
+    /// <summary>
+    /// Centers the box with specific horizontal margins.
+    /// </summary>
+    /// <param name="verticalMargin">The vertical margin (top and bottom).</param>
+    /// <returns>The EmailBox object, allowing for method chaining.</returns>
+    public EmailBox CenterWithMargin(string verticalMargin = "24px") {
+        OuterMargin = $"{verticalMargin} auto";
+        return this;
+    }
+
+    /// <summary>
     /// Adds an element to the box.
     /// </summary>
     /// <param name="element">The element to add.</param>
@@ -147,48 +218,63 @@ public class EmailBox : Element {
 
         // Build the inline style for the box div
         var boxStyle = $"background-color: {BackgroundColor}; border-radius: {BorderRadius};";
-        
+
         if (IncludeBoxShadow) {
             boxStyle += $" -webkit-box-shadow: {BoxShadow}; box-shadow: {BoxShadow};";
         }
-        
+
         boxStyle += $" border: {BorderWidth} solid {BorderColor};";
-        
+
         if (!string.IsNullOrEmpty(InlineStyle)) {
             boxStyle += " " + InlineStyle;
         }
 
-        // Create the main content div
-        html.AppendLine($"\t\t\t\t\t\t\t\t<div class=\"main-content\">");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t<div class=\"{CssClass}\" style=\"{boxStyle}\">");
-
-        // Create the inner table structure for email compatibility
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t<table class=\"box-table\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; border-radius: {BorderRadius};\" bgcolor=\"{BackgroundColor}\">");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t<tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t<td style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;\">");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t<table cellpadding=\"0\" cellspacing=\"0\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;\">");
+        // Create the main content div with outer margin and max width
+        var outerStyle = $"margin: {OuterMargin}; max-width: {MaxWidth};";
+        html.AppendLine($@"
+<div class=""main-content"" style=""{outerStyle}"">
+<div class=""{CssClass}"" style=""{boxStyle}"">
+<table class=""box-table"" cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; border-radius: {BorderRadius};"" bgcolor=""{BackgroundColor}"">
+<tr>
+<td style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;"">
+<table cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;"">
+");
 
         // Add content rows
-        foreach (var child in Children) {
-            html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>");
-            html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class=\"content\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding: {Padding};\">");
-            
+        for (int i = 0; i < Children.Count; i++) {
+            var child = Children[i];
+            var isLastChild = i == Children.Count - 1;
+
+            // Apply consistent spacing or use default padding
+            var cellPadding = UseConsistentSpacing && !isLastChild
+                ? $"{Padding} {Padding} {ChildSpacing} {Padding}"  // top right bottom left
+                : Padding;
+
+            html.AppendLine($@"
+<tr>
+<td class=""content"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding: {cellPadding};"">
+");
+
             var childContent = child.ToString();
             if (!string.IsNullOrEmpty(childContent)) {
                 html.AppendLine(childContent);
             }
-            
-            html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>");
-            html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>");
+
+            html.AppendLine($@"
+</td>
+</tr>
+");
         }
 
         // Close the table structure
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t\t</table>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t\t</td>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t\t</tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t\t</table>");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t</div>");
-        html.AppendLine("\t\t\t\t\t\t\t\t</div>");
+        html.AppendLine($@"
+</table>
+</td>
+</tr>
+</table>
+</div>
+</div>
+");
 
         return StringBuilderCache.GetStringAndRelease(html);
     }
