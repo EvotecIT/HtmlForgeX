@@ -10,7 +10,11 @@ public class TestLibraryDownloaderIcons {
     public async Task GenerateTablerIconCodeAsync_ParsesIcons() {
         var css = ".ti-user:before{} .ti-3d-cube:before{}";
         var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), "icons.css");
+#if NET8_0_OR_GREATER
         await File.WriteAllTextAsync(path, css);
+#else
+        File.WriteAllText(path, css);
+#endif
 
         try {
             var dl = new LibraryDownloader();
