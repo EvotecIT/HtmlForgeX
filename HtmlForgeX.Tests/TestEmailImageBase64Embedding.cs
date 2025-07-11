@@ -396,6 +396,36 @@ public class TestEmailImageBase64Embedding
         Assert.AreEqual(httpsUrl, emailImage.Source);
     }
 
+    [TestMethod]
+    public void EmailImage_ToString_WithEmbedAsBase64WithoutMimeType_ShouldThrow()
+    {
+        // Arrange
+        var emailImage = new EmailImage
+        {
+            Base64Data = Convert.ToBase64String(_testImageData),
+            EmbedAsBase64 = true,
+            Source = $"data:;base64,{Convert.ToBase64String(_testImageData)}"
+        };
+
+        // Act & Assert
+        Assert.ThrowsException<InvalidOperationException>(() => emailImage.ToString());
+    }
+
+    [TestMethod]
+    public void EmailImage_ToString_WithEmbedFromBase64_ShouldContainDataUri()
+    {
+        // Arrange
+        var emailImage = new EmailImage();
+        var base64Data = Convert.ToBase64String(_testImageData);
+        emailImage.EmbedFromBase64(base64Data, "image/png");
+
+        // Act
+        var html = emailImage.ToString();
+
+        // Assert
+        Assert.IsTrue(html.Contains($"data:image/png;base64,{base64Data}"));
+    }
+
     [TestCleanup]
     public void TestCleanup()
     {
