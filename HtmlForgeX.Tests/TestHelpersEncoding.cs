@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace HtmlForgeX.Tests;
 
@@ -14,5 +15,12 @@ public class TestHelpersEncoding {
     public void Open_ReturnsTrueWhenDisabled() {
         var result = Helpers.Open("dummy", false);
         Assert.IsTrue(result);
+    }
+
+    [TestMethod]
+    public void Open_ReturnsFalseForMissingFile() {
+        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName());
+        var result = Helpers.Open(path, true);
+        Assert.IsFalse(result);
     }
 }

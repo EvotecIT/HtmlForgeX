@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Net;
+using System.IO;
 
 namespace HtmlForgeX;
 
@@ -16,6 +17,10 @@ internal static class Helpers {
     public static bool Open(string filePath, bool open) {
         if (!open) {
             return true;
+        }
+
+        if (!File.Exists(filePath)) {
+            return false;
         }
 
         try {
