@@ -1,3 +1,6 @@
+using System.Text.Encodings.Web;
+using System.Text.Json;
+
 namespace HtmlForgeX;
 
 public class EasyQRCodeElement : Element {
@@ -20,9 +23,14 @@ public class EasyQRCodeElement : Element {
     public override string ToString() {
         var divTag = new HtmlTag("div").Class("qrcode").Id(Id);
 
+        var serializedText = JsonSerializer.Serialize(
+            PrivateText,
+            new JsonSerializerOptions { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping }
+        );
+
         var scriptTag = new HtmlTag("script").Value($@"
             var options = {{
-                ""text"": ""{PrivateText}""
+                ""text"": {serializedText}
             }};
         new QRCode(document.getElementById(""{Id}""), options);
     ");

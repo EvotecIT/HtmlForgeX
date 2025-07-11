@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 
 namespace HtmlForgeX.Tests;
 
@@ -145,6 +147,22 @@ public class TestQRCodeComponent {
         if (qrCodeMatches.Count >= 2) {
             Assert.AreNotEqual(qrCodeMatches[0].Value, qrCodeMatches[1].Value, "QR code IDs should be unique");
         }
+    }
+
+    [TestMethod]
+    public void QRCode_TextWithQuotesAndNewlines() {
+        var doc = new Document();
+
+        doc.Body.Add(element => {
+            element.QRCode("Line1\n\"Quoted\"");
+        });
+
+        var html = doc.ToString();
+
+        var encoded = JsonSerializer.Serialize("Line1\n\"Quoted\"",
+            new JsonSerializerOptions { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
+
+        Assert.IsTrue(html.Contains(encoded), "QR data should be JSON-encoded with escaped characters");
     }
 
     [TestMethod]
