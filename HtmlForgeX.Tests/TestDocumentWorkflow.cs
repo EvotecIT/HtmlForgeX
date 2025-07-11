@@ -80,9 +80,17 @@ public class TestDocumentWorkflow {
     public void Document_WithHeadTitle() {
         var doc = new Document();
         doc.Head.AddTitle("Test Page");
-        
+
         var html = doc.ToString();
         Assert.IsTrue(html.Contains("<title>Test Page</title>"));
+    }
+
+    [TestMethod]
+    public void Document_AddTitle_EncodesInput() {
+        var doc = new Document();
+        doc.Head.AddTitle("<b>Title & Test</b>");
+
+        Assert.AreEqual("&lt;b&gt;Title &amp; Test&lt;/b&gt;", doc.Head.Title);
     }
 
     [TestMethod]
