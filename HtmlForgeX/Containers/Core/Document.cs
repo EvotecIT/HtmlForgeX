@@ -10,7 +10,7 @@ namespace HtmlForgeX;
 /// Represents an HTML document.
 /// </summary>
 public class Document : Element {
-    private static readonly InternalLogger _logger = new();
+    internal static readonly InternalLogger _logger = new();
 
     /// <summary>
     /// Configuration and state for this document instance.
@@ -127,13 +127,18 @@ public class Document : Element {
 
         var directory = System.IO.Path.GetDirectoryName(path);
         if (!string.IsNullOrEmpty(directory)) {
-            System.IO.Directory.CreateDirectory(directory);
+            try {
+                System.IO.Directory.CreateDirectory(directory);
+            } catch (Exception ex) {
+                _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
+            }
         }
         try {
 #if NET5_0_OR_GREATER
             await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8).ConfigureAwait(false);
 #else
             using var writer = new StreamWriter(path, false, Encoding.UTF8);
+            // Prevent returning to the captured context (e.g. UI thread)
             await writer.WriteAsync(ToString()).ConfigureAwait(false);
 #endif
         } catch (Exception ex) {
@@ -214,8 +219,12 @@ public class Document : Element {
                     _logger.WriteError($"CSS file '{css}' not found.");
                     continue;
                 }
-                var cssContent = File.ReadAllText(css);
-                this.Head.AddCssInline(cssContent);
+                try {
+                    var cssContent = File.ReadAllText(css);
+                    this.Head.AddCssInline(cssContent);
+                } catch (Exception ex) {
+                    _logger.WriteError($"Failed to read CSS file '{css}'. {ex.Message}");
+                }
             }
 
             foreach (var js in library.Header.Js) {
@@ -223,8 +232,12 @@ public class Document : Element {
                     _logger.WriteError($"JS file '{js}' not found.");
                     continue;
                 }
-                var jsContent = File.ReadAllText(js);
-                this.Head.AddJsInline(jsContent);
+                try {
+                    var jsContent = File.ReadAllText(js);
+                    this.Head.AddJsInline(jsContent);
+                } catch (Exception ex) {
+                    _logger.WriteError($"Failed to read JS file '{js}'. {ex.Message}");
+                }
             }
         }
     }

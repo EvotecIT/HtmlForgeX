@@ -14,10 +14,11 @@ public class NewsUpdate {
 /// <summary>
 /// Example of a newsletter email using natural HtmlForgeX patterns.
 /// Demonstrates newsletter layout with multiple content sections and social links.
+/// Now includes advanced base64 embedding with URL support and smart embedding.
 /// </summary>
 public static class ExampleNewsletterEmail {
     public static void Create(bool openInBrowser = false) {
-        Console.WriteLine("Creating newsletter email example...");
+        Console.WriteLine("Creating newsletter email example with advanced base64 embedding...");
 
         var email = new Email();
 
@@ -29,10 +30,13 @@ public static class ExampleNewsletterEmail {
         email.Body.EmailBox(emailBox => {
             // Header section using EmailContent for consistent alignment
             emailBox.EmailContent(content => {
+                // Use smart embedding - automatically detects file vs URL
                 content.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .EmbedSmart("../../../../Assets/Images/WhiteBackground/Logo-evotec.png") // Smart embedding
                     .WithWidth("200px")
                     .WithAlignment("center")
                     .WithLink("https://evotec.xyz")
+                    .WithAlternativeText("Evotec Logo")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Large, EmailSpacing.None);
 
                 content.EmailText("📰 January 2025 Newsletter")
@@ -101,6 +105,9 @@ public static class ExampleNewsletterEmail {
                     col.EmailText("• Improved type safety for data binding")
                         .WithFontSize(EmailFontSize.Regular)
                         .WithColor("#374151");
+                    col.EmailText("• Base64 image embedding for offline emails")
+                        .WithFontSize(EmailFontSize.Regular)
+                        .WithColor("#374151");
                 });
 
                 // Right column - Community News
@@ -119,6 +126,99 @@ public static class ExampleNewsletterEmail {
                     col.EmailText("• Monthly webinar series started")
                         .WithFontSize(EmailFontSize.Regular)
                         .WithColor("#374151");
+                    col.EmailText("• Offline email support requested")
+                        .WithFontSize(EmailFontSize.Regular)
+                        .WithColor("#374151");
+                });
+            });
+
+            // Demo section showing different embedding methods
+            emailBox.EmailContent(content => {
+                content.EmailText("🎯 Image Embedding Demo")
+                    .WithFontSize(EmailFontSize.Large)
+                    .WithFontWeight(EmailFontWeight.SemiBold)
+                    .WithColor("#111827")
+                    .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
+
+                content.EmailText("This newsletter demonstrates different ways to embed images for offline compatibility:")
+                    .WithFontSize(EmailFontSize.Medium)
+                    .WithColor("#6B7280")
+                    .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
+            });
+
+            // Three-column demo of different embedding methods
+            emailBox.EmailRow(row => {
+                row.SetColumnSpacing("16px");
+
+                // Column 1 - File embedding
+                row.EmailColumn(col => {
+                    col.SetWidth("33.33%");
+                    col.EmailText("📁 File Embedding")
+                        .WithFontSize(EmailFontSize.Medium)
+                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithColor("#059669")
+                        .WithAlignment("center");
+
+                    // Demonstrate file embedding with optimization
+                    col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                        .EmbedFromFile("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                        .WithOptimization(100, 100, 80) // Optimize to max 100x100, 80% quality
+                        .WithWidth("80px")
+                        .WithAlignment("center")
+                        .WithAlternativeText("Local file embedded");
+
+                    col.EmailText(".EmbedFromFile()")
+                        .WithFontSize(EmailFontSize.Small)
+                        .WithColor("#6B7280")
+                        .WithAlignment("center");
+                });
+
+                // Column 2 - URL embedding (commented out for demo purposes)
+                row.EmailColumn(col => {
+                    col.SetWidth("33.33%");
+                    col.EmailText("🌐 URL Embedding")
+                        .WithFontSize(EmailFontSize.Medium)
+                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithColor("#0EA5E9")
+                        .WithAlignment("center");
+
+                    // Note: URL embedding is commented out for this demo to avoid external dependencies
+                    // In real usage, you would use:
+                    // col.EmailImage("https://example.com/image.png")
+                    //     .EmbedFromUrl("https://example.com/image.png")
+                    //     .WithWidth("80px")
+                    //     .WithAlignment("center");
+
+                    col.EmailText("(Demo: URL embedding)")
+                        .WithFontSize(EmailFontSize.Small)
+                        .WithColor("#6B7280")
+                        .WithAlignment("center");
+
+                    col.EmailText(".EmbedFromUrl()")
+                        .WithFontSize(EmailFontSize.Small)
+                        .WithColor("#6B7280")
+                        .WithAlignment("center");
+                });
+
+                // Column 3 - Smart embedding
+                row.EmailColumn(col => {
+                    col.SetWidth("33.33%");
+                    col.EmailText("🧠 Smart Embedding")
+                        .WithFontSize(EmailFontSize.Medium)
+                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithColor("#7C3AED")
+                        .WithAlignment("center");
+
+                    col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                        .EmbedSmart("../../../../Assets/Images/WhiteBackground/Logo-evotec.png") // Auto-detects file vs URL
+                        .WithWidth("80px")
+                        .WithAlignment("center")
+                        .WithAlternativeText("Smart embedded");
+
+                    col.EmailText(".EmbedSmart()")
+                        .WithFontSize(EmailFontSize.Small)
+                        .WithColor("#6B7280")
+                        .WithAlignment("center");
                 });
             });
 
@@ -133,6 +233,7 @@ public static class ExampleNewsletterEmail {
 
             var newsData = new List<NewsUpdate> {
                 new NewsUpdate { Title = "Email Components 2.0", Description = "Major release with new features", Category = "Product" },
+                new NewsUpdate { Title = "Base64 Image Embedding", Description = "Offline email support added", Category = "Feature" },
                 new NewsUpdate { Title = "PowerShell Integration", Description = "Seamless PowerShell support added", Category = "Feature" },
                 new NewsUpdate { Title = "Community Growth", Description = "Reached 1000+ active users", Category = "Milestone" }
             };
@@ -182,7 +283,12 @@ public static class ExampleNewsletterEmail {
 
         // Save email
         email.Save("newsletter-email.html", openInBrowser);
+
         Console.WriteLine("✅ Newsletter email created successfully!");
-        Console.WriteLine("📧 Demonstrates: Newsletter layout, multiple sections, data tables, social links, proper column spacing");
+        Console.WriteLine($@"📧 Demonstrates: Newsletter layout, multiple sections, data tables, social links, proper column spacing
+🔧 New Features: Advanced base64 embedding with URL support and smart embedding
+📁 Multiple embedding methods: .EmbedFromFile(), .EmbedFromUrl(), .EmbedSmart()
+⚡ Image optimization: .WithOptimization() for size and quality control
+💡 Smart embedding auto-detects file paths vs URLs and handles appropriately");
     }
 }

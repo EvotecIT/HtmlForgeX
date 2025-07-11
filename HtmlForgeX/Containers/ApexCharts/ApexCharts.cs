@@ -55,9 +55,9 @@ public class ApexCharts : Element {
     }
 
     public override string ToString() {
-        // Generate ID using document configuration if available, otherwise use GlobalStorage as fallback
+        // Generate ID if not already set
         if (string.IsNullOrEmpty(Id)) {
-            Id = Document?.Configuration.GenerateRandomId("apexChart") ?? GlobalStorage.GenerateRandomId("apexChart");
+            Id = GlobalStorage.GenerateRandomId("apexChart");
         }
 
         var divTag = new HtmlTag("div").Attribute("id", Id);

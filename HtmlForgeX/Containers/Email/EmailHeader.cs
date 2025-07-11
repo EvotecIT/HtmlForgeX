@@ -1,53 +1,14 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// Represents an email header section with logo and view online link.
+/// Represents a flexible email header section that works like Body.
+/// Users can directly call email.Header.EmailRow(), email.Header.EmailContent(), etc.
 /// </summary>
 public class EmailHeader : Element {
     /// <summary>
-    /// Gets or sets the logo image source.
+    /// Gets the child elements of the header.
     /// </summary>
-    public string LogoSrc { get; set; } = "./assets/sample-logo.png";
-
-    /// <summary>
-    /// Gets or sets the dark mode logo image source.
-    /// </summary>
-    public string LogoDarkSrc { get; set; } = "./assets/sample-logo-white.png";
-
-    /// <summary>
-    /// Gets or sets the logo width.
-    /// </summary>
-    public int LogoWidth { get; set; } = 114;
-
-    /// <summary>
-    /// Gets or sets the logo height.
-    /// </summary>
-    public int LogoHeight { get; set; } = 32;
-
-    /// <summary>
-    /// Gets or sets the logo alt text.
-    /// </summary>
-    public string LogoAlt { get; set; } = "";
-
-    /// <summary>
-    /// Gets or sets the logo link URL.
-    /// </summary>
-    public string LogoLink { get; set; } = "";
-
-    /// <summary>
-    /// Gets or sets the "View online" link URL.
-    /// </summary>
-    public string ViewOnlineLink { get; set; } = "";
-
-    /// <summary>
-    /// Gets or sets the "View online" link text.
-    /// </summary>
-    public string ViewOnlineText { get; set; } = "View online";
-
-    /// <summary>
-    /// Gets or sets whether to include the "View online" link.
-    /// </summary>
-    public bool IncludeViewOnline { get; set; } = true;
+    public List<Element> Children { get; private set; } = new List<Element>();
 
     /// <summary>
     /// Gets or sets the padding for the header section.
@@ -55,77 +16,113 @@ public class EmailHeader : Element {
     public string Padding { get; set; } = "24px";
 
     /// <summary>
+    /// Gets or sets the background color for the header section.
+    /// </summary>
+    public string BackgroundColor { get; set; } = "transparent";
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="EmailHeader"/> class.
     /// </summary>
-    public EmailHeader() { }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="EmailHeader"/> class with custom settings.
-    /// </summary>
-    /// <param name="logoSrc">The logo image source.</param>
-    /// <param name="logoLink">The logo link URL.</param>
-    public EmailHeader(string logoSrc, string logoLink = "") {
-        LogoSrc = logoSrc;
-        LogoLink = logoLink;
+    public EmailHeader() {
+        // Header is just a container - no complex setup needed
     }
 
     /// <summary>
-    /// Sets the logo image source.
+    /// Adds an element to the header.
     /// </summary>
-    /// <param name="src">The image source URL.</param>
-    /// <param name="darkSrc">The dark mode image source URL (optional).</param>
+    /// <param name="element">The element to add.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader SetLogo(string src, string darkSrc = "") {
-        LogoSrc = src;
-        if (!string.IsNullOrEmpty(darkSrc)) {
-            LogoDarkSrc = darkSrc;
-        }
-        return this;
-    }
-
-
-
-    /// <summary>
-    /// Sets the logo dimensions.
-    /// </summary>
-    /// <param name="width">The logo width in pixels.</param>
-    /// <param name="height">The logo height in pixels.</param>
-    /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader SetLogoDimensions(int width, int height) {
-        LogoWidth = width;
-        LogoHeight = height;
+    public EmailHeader Add(Element element) {
+        element.Email = this.Email;
+        Children.Add(element);
         return this;
     }
 
     /// <summary>
-    /// Sets the logo link URL.
+    /// Adds an EmailRow to the header.
     /// </summary>
-    /// <param name="url">The URL to link to when logo is clicked.</param>
+    /// <param name="configure">Action to configure the row.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader SetLogoLink(string url) {
-        LogoLink = url;
+    public EmailHeader EmailRow(Action<EmailRow> configure) {
+        var row = new EmailRow();
+        configure(row);
+        Add(row);
         return this;
     }
 
     /// <summary>
-    /// Sets the "View online" link.
+    /// Adds an EmailContent section to the header.
     /// </summary>
-    /// <param name="url">The URL for the online version.</param>
-    /// <param name="text">The link text (optional).</param>
+    /// <param name="configure">Action to configure the content.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader SetViewOnlineLink(string url, string text = "View online") {
-        ViewOnlineLink = url;
-        ViewOnlineText = text;
-        IncludeViewOnline = true;
+    public EmailHeader EmailContent(Action<EmailContent> configure) {
+        var content = new EmailContent();
+        configure(content);
+        Add(content);
         return this;
     }
 
     /// <summary>
-    /// Hides the "View online" link.
+    /// Adds an EmailText to the header.
     /// </summary>
+    /// <param name="text">The text content.</param>
+    /// <returns>The EmailText object, allowing for method chaining.</returns>
+    public EmailText EmailText(string text) {
+        var textElement = new EmailText(text);
+        Add(textElement);
+        return textElement;
+    }
+
+    /// <summary>
+    /// Adds an EmailImage to the header.
+    /// </summary>
+    /// <returns>The EmailImage object, allowing for method chaining.</returns>
+    public EmailImage EmailImage() {
+        var image = new EmailImage();
+        Add(image);
+        return image;
+    }
+
+    /// <summary>
+    /// Adds an EmailImage to the header with a source.
+    /// </summary>
+    /// <param name="source">The image source URL or file path.</param>
+    /// <returns>The EmailImage object, allowing for method chaining.</returns>
+    public EmailImage EmailImage(string source) {
+        var image = new EmailImage(source);
+        Add(image);
+        return image;
+    }
+
+    /// <summary>
+    /// Adds an EmailLink to the header.
+    /// </summary>
+    /// <param name="text">The link text.</param>
+    /// <param name="url">The link URL.</param>
+    /// <returns>The EmailLink object, allowing for method chaining.</returns>
+    public EmailLink EmailLink(string text, string url) {
+        var link = new EmailLink(text, url);
+        Add(link);
+        return link;
+    }
+
+    /// <summary>
+    /// Sets the header padding.
+    /// </summary>
+    /// <param name="padding">The padding value.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader HideViewOnline() {
-        IncludeViewOnline = false;
+    public EmailHeader SetPadding(string padding) {
+        Padding = padding;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the header background color.
+    /// </summary>
+    /// <param name="color">The background color.</param>
+    /// <returns>The EmailHeader object, allowing for method chaining.</returns>
+    public EmailHeader SetBackgroundColor(string color) {
+        BackgroundColor = color;
         return this;
     }
 
@@ -136,60 +133,19 @@ public class EmailHeader : Element {
     public override string ToString() {
         var html = StringBuilderCache.Acquire();
 
-        html.AppendLine($@"
-<!-- HEADER -->
-<table cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;"">
-<tr>
-<td class=""py-lg"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding-top: {Padding}; padding-bottom: {Padding};"">
-<table cellspacing=""0"" cellpadding=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;"">
-<tr>
-<td style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;"">
-");
+        html.AppendLine($@"<!-- HEADER -->");
+        html.AppendLine($@"<table role=""presentation"" cellpadding=""0"" cellspacing=""0"" border=""0"" width=""100%"" style=""background-color: {BackgroundColor};"">");
+        html.AppendLine($@"  <tr>");
+        html.AppendLine($@"    <td style=""padding: {Padding};"">");
 
-        // Logo section
-        if (!string.IsNullOrEmpty(LogoSrc)) {
-            if (!string.IsNullOrEmpty(LogoLink)) {
-                html.AppendLine($@"<a href=""{Helpers.HtmlEncode(LogoLink)}"" style=""color: #066FD1; text-decoration: none;"">");
-            }
-
-            // Light mode logo
-            html.AppendLine($@"<img src=""{Helpers.HtmlEncode(LogoSrc)}"" class=""img-light"" width=""{LogoWidth}"" height=""{LogoHeight}"" alt=""{Helpers.HtmlEncode(LogoAlt)}"" style=""display: inline-block; line-height: 100%; outline: none; text-decoration: none; vertical-align: bottom; font-size: 0; border-style: none; border-width: 0;"" />");
-
-            // Dark mode logo (conditionally rendered)
-            if (!string.IsNullOrEmpty(LogoDarkSrc) && Email?.Configuration.DarkModeSupport == true) {
-                html.AppendLine($@"<!--[if !mso]> <!-->
-<img src=""{Helpers.HtmlEncode(LogoDarkSrc)}"" class=""img-dark"" width=""{LogoWidth}"" height=""{LogoHeight}"" alt=""{Helpers.HtmlEncode(LogoAlt)}"" style=""display: none; line-height: 100%; outline: none; text-decoration: none; vertical-align: bottom; font-size: 0; border-style: none; border-width: 0;"" />
-<!-- <![endif]-->");
-            }
-
-            if (!string.IsNullOrEmpty(LogoLink)) {
-                html.AppendLine($@"</a>");
-            }
+        foreach (var child in Children) {
+            html.AppendLine(child.ToString());
         }
 
-        html.AppendLine($@"
-</td>
-");
-
-        // View online link section
-        if (IncludeViewOnline && !string.IsNullOrEmpty(ViewOnlineLink)) {
-            html.AppendLine($@"
-<td class=""text-right"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;"" align=""right"">
-<a href=""{Helpers.HtmlEncode(ViewOnlineLink)}"" class=""text-muted-light"" style=""color: #8491a1; text-decoration: none;"">
-{Helpers.HtmlEncode(ViewOnlineText)}
-</a>
-</td>
-");
-        }
-
-        html.AppendLine($@"
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<!-- /HEADER -->
-");
+        html.AppendLine($@"    </td>");
+        html.AppendLine($@"  </tr>");
+        html.AppendLine($@"</table>");
+        html.AppendLine($@"<!-- /HEADER -->");
 
         return StringBuilderCache.GetStringAndRelease(html);
     }

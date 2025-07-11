@@ -189,6 +189,255 @@ public static class EmailLibrariesConverter {
 
         .theme-dark .h1, .theme-dark .h2, .theme-dark .h3, .theme-dark .h4 {
             color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        /* Dark mode body and backgrounds */
+        .theme-dark body {
+            background-color: #1f2937 !important;
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .theme-dark .main {
+            background-color: #1f2937 !important;
+        }
+
+        /* Dark mode buttons */
+        .theme-dark .btn {
+            background-color: #374151 !important;
+            border-color: #4b5563 !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        .theme-dark .bg-blue {
+            background-color: #1d4ed8 !important;
+            border-color: #1d4ed8 !important;
+        }
+
+        .theme-dark .bg-secondary {
+            background-color: #374151 !important;
+            border-color: #4b5563 !important;
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* Dark mode text colors */
+        .theme-dark .text-center,
+        .theme-dark .text-right,
+        .theme-dark .text-left {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        /* Dark mode backgrounds */
+        .theme-dark .bg-light {
+            background-color: #374151 !important;
+        }
+
+        /* Dark mode links */
+        .theme-dark a {
+            color: #60a5fa !important;
+        }
+
+        .theme-dark a:hover {
+            color: #93c5fd !important;
+        }
+
+        /* Dark mode tables */
+        .theme-dark .email-table th {
+            color: rgba(255, 255, 255, 0.6) !important;
+            background-color: #374151 !important;
+        }
+
+        .theme-dark .email-table td {
+            color: rgba(255, 255, 255, 0.8) !important;
+            border-color: #4b5563 !important;
+        }
+
+        .theme-dark .email-table .border-top {
+            border-color: #4b5563 !important;
+        }
+
+        .theme-dark .email-table .product-image {
+            background-color: #4b5563 !important;
+        }
+
+        .theme-dark .email-table .product-description {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        /* Enhanced dark mode table styling */
+        .theme-dark .email-table {
+            background-color: #2b3648 !important;
+            border-color: #4b5563 !important;
+        }
+
+        .theme-dark .email-table tbody tr:nth-child(even) {
+            background-color: #374151 !important;
+        }
+
+        .theme-dark .email-table tbody tr:nth-child(odd) {
+            background-color: #2b3648 !important;
+        }
+
+        .theme-dark .email-table tbody tr:hover {
+            background-color: #4b5563 !important;
+        }
+
+        .theme-dark .email-table th {
+            background-color: #1f2937 !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            border-bottom: 2px solid #4b5563 !important;
+        }
+
+        .theme-dark .email-table td {
+            border-top: 1px solid #4b5563 !important;
+            border-bottom: 1px solid #4b5563 !important;
+        }
+
+        .theme-dark .email-table .text-muted {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .theme-dark .email-table .rounded {
+            background-color: #374151 !important;
+        }
+
+        .theme-dark .email-table .bg-light {
+            background-color: #374151 !important;
+        }
+
+        /* Auto dark mode table styling */
+        @media (prefers-color-scheme: dark) {
+            .auto-dark-mode .email-table {
+                background-color: #2b3648 !important;
+                border-color: #4b5563 !important;
+            }
+
+            .auto-dark-mode .email-table th {
+                background-color: #1f2937 !important;
+                color: rgba(255, 255, 255, 0.9) !important;
+                border-bottom: 2px solid #4b5563 !important;
+            }
+
+            .auto-dark-mode .email-table td {
+                color: rgba(255, 255, 255, 0.8) !important;
+                border-color: #4b5563 !important;
+            }
+
+            .auto-dark-mode .email-table tbody tr:nth-child(even) {
+                background-color: #374151 !important;
+            }
+
+            .auto-dark-mode .email-table tbody tr:nth-child(odd) {
+                background-color: #2b3648 !important;
+            }
+
+            /* Restore other auto dark mode styles */
+            .auto-dark-mode .box {
+                background-color: #2b3648 !important;
+                color: rgba(255, 255, 255, 0.7) !important;
+                border-color: #2b3648 !important;
+            }
+
+            .auto-dark-mode .text-muted {
+                color: rgba(255, 255, 255, 0.4) !important;
+            }
+
+            .auto-dark-mode .h1, .auto-dark-mode .h2, .auto-dark-mode .h3, .auto-dark-mode .h4 {
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+
+            .auto-dark-mode body {
+                background-color: #1f2937 !important;
+                color: rgba(255, 255, 255, 0.8) !important;
+            }
+
+            .auto-dark-mode .main {
+                background-color: #1f2937 !important;
+            }
+
+            .auto-dark-mode .bg-blue {
+                background-color: #1d4ed8 !important;
+                border-color: #1d4ed8 !important;
+            }
+
+            .auto-dark-mode .bg-secondary {
+                background-color: #374151 !important;
+                border-color: #4b5563 !important;
+                color: rgba(255, 255, 255, 0.8) !important;
+            }
+
+            .auto-dark-mode a {
+                color: #60a5fa !important;
+            }
+
+            /* Dark mode image swapping for auto mode */
+            .auto-dark-mode .dark-img {
+                display: block !important;
+                width: auto !important;
+                overflow: visible !important;
+                float: none !important;
+                max-height: inherit !important;
+                max-width: inherit !important;
+                line-height: auto !important;
+                margin-top: 0px !important;
+                visibility: inherit !important;
+            }
+
+            .auto-dark-mode .light-img {
+                display: none !important;
+            }
+        }
+
+        /* Dark mode image swapping CSS */
+        .theme-dark .dark-img {
+            display: block !important;
+            width: auto !important;
+            overflow: visible !important;
+            float: none !important;
+            max-height: inherit !important;
+            max-width: inherit !important;
+            line-height: auto !important;
+            margin-top: 0px !important;
+            visibility: inherit !important;
+        }
+
+        .theme-dark .light-img {
+            display: none !important;
+        }
+
+        /* Outlook-specific dark mode image support */
+        [data-ogsc] .dark-img {
+            display: block !important;
+            width: auto !important;
+            overflow: visible !important;
+            float: none !important;
+            max-height: inherit !important;
+            max-width: inherit !important;
+            line-height: auto !important;
+            margin-top: 0px !important;
+            visibility: inherit !important;
+        }
+
+        [data-ogsc] .light-img {
+            display: none !important;
+        }
+
+        /* Enhanced link styling for dark mode */
+        .theme-dark a {
+            color: #60a5fa !important;
+            text-decoration: none !important;
+        }
+
+        .theme-dark a:hover {
+            color: #93c5fd !important;
+            text-decoration: underline !important;
+        }
+
+        .theme-dark a:visited {
+            color: #a78bfa !important;
+        }
+
+        .theme-dark a:active {
+            color: #c4b5fd !important;
         }";
 
         library.AddCss(coreStyles);

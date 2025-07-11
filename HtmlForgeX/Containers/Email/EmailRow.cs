@@ -63,6 +63,20 @@ public class EmailRow : Element {
     }
 
     /// <summary>
+    /// Adds a column to the row using a configuration action.
+    /// This method provides the same functionality as AddColumn but with the standard EmailColumn naming convention.
+    /// </summary>
+    /// <param name="config">The configuration action for the column.</param>
+    /// <returns>The EmailColumn that was added.</returns>
+    public new EmailColumn EmailColumn(Action<EmailColumn> config) {
+        var column = new EmailColumn();
+        column.Email = this.Email;
+        config(column);
+        this.Add(column);
+        return column;
+    }
+
+    /// <summary>
     /// Adds a spacer column to create spacing between content columns.
     /// </summary>
     /// <param name="width">The width of the spacer in pixels.</param>

@@ -31,11 +31,18 @@ public static class ExampleCorrectedEmailPattern
         email.Body.EmailBox(emailBox => {
             emailBox.SetOuterMargin("0 auto 24px auto").SetMaxWidth("600px");
 
-            // Header with logo
-            var header = new EmailHeader()
-                .SetLogo("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
-                .SetLogoLink("https://htmlforgex.com");
-            emailBox.Add(header);
+                        // Header with logo using new direct pattern
+            email.Header.SetPadding("20px");
+            email.Header.EmailRow(row => {
+                row.EmailColumn(col => {
+                    col.SetAlignment("center");
+                    col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                        .WithWidth("150px")
+                        .WithHeight("42px")
+                        .WithAlternativeText("HtmlForgeX Logo")
+                        .WithLink("https://htmlforgex.com", true);
+                });
+            });
 
             emailBox.EmailText("🎉 Welcome to HtmlForgeX!")
                 .WithFontSize("32px")

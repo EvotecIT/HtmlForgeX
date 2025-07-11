@@ -32,17 +32,28 @@ public abstract class Element {
         }
     }
 
-    public Element Add(Element child) {
-        Children.Add(child);
-        // Propagate the document reference to child elements
-        if (Document != null) {
-            child.Document = Document;
-        }
-        // Propagate the email reference to child elements
-        if (Email != null) {
-            child.Email = Email;
-        }
+    /// <summary>
+    /// Adds a child element to this element.
+    /// </summary>
+    /// <param name="element">The element to add.</param>
+    /// <returns>This element for method chaining.</returns>
+    public virtual Element Add(Element element) {
+        element.Email = this.Email;
+        Children.Add(element);
+
+        // Notify the element that it has been added to a document
+        element.OnAddedToDocument();
+
         return this;
+    }
+
+    /// <summary>
+    /// Called when this element is added to a document.
+    /// Override this method to apply document-specific configuration.
+    /// </summary>
+    protected virtual void OnAddedToDocument() {
+        // Base implementation does nothing
+        // Derived classes can override to apply configuration
     }
 
     /// <summary>
@@ -490,6 +501,43 @@ public abstract class Element {
         var lineBreak = new EmailLineBreak(height);
         this.Add(lineBreak);
         return lineBreak;
+    }
+
+    /// <summary>
+    /// Adds an email link with content and URL.
+    /// </summary>
+    /// <param name="content">The link text content.</param>
+    /// <param name="href">The link URL.</param>
+    /// <returns>The EmailLink object for further configuration.</returns>
+    public EmailLink EmailLink(string content, string href) {
+        var emailLink = new EmailLink(content, href);
+        this.Add(emailLink);
+        return emailLink;
+    }
+
+    /// <summary>
+    /// Adds an email link with content, URL, and new window setting.
+    /// </summary>
+    /// <param name="content">The link text content.</param>
+    /// <param name="href">The link URL.</param>
+    /// <param name="openInNewWindow">Whether to open in a new window.</param>
+    /// <returns>The EmailLink object for further configuration.</returns>
+    public EmailLink EmailLink(string content, string href, bool openInNewWindow) {
+        var emailLink = new EmailLink(content, href, openInNewWindow);
+        this.Add(emailLink);
+        return emailLink;
+    }
+
+    /// <summary>
+    /// Adds an email link with a configuration action.
+    /// </summary>
+    /// <param name="config">The configuration action for the EmailLink.</param>
+    /// <returns>The Element object for further chaining.</returns>
+    public Element EmailLink(Action<EmailLink> config) {
+        var emailLink = new EmailLink();
+        config(emailLink);
+        this.Add(emailLink);
+        return this;
     }
 
     /// <summary>

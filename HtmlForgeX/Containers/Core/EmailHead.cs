@@ -215,7 +215,7 @@ public class EmailHead : Element {
     /// <returns>A string that represents the head section of an email document.</returns>
     public override string ToString() {
         // Process any registered email libraries
-        foreach (var libraryEnum in _email.Configuration.Libraries.Keys) {
+        foreach (var libraryEnum in _email.Configuration.Email.Libraries.Keys) {
             var library = EmailLibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessEmailLibrary(library);
         }

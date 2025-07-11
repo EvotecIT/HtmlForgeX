@@ -18,10 +18,18 @@ public static class ExamplePasswordResetEmail
         email.Head.AddTitle("Reset Your Password")
                   .AddEmailCoreStyles();
 
-        // Header with logo
-        var header = new EmailHeader()
-                            .SetLogo("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
-            .SetLogoLink("https://htmlforgex.com");
+                // Header with logo using new direct pattern
+        email.Header.SetPadding("20px");
+        email.Header.EmailRow(row => {
+            row.EmailColumn(col => {
+                col.SetAlignment("center");
+                col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .WithWidth("150px")
+                    .WithHeight("42px")
+                    .WithAlternativeText("HtmlForgeX Logo")
+                    .WithLink("https://htmlforgex.com", true);
+            });
+        });
 
         // Main content
         var content = new EmailBox();
@@ -151,8 +159,7 @@ public static class ExamplePasswordResetEmail
         footer.Add(new BasicElement().Add(copyright));
 
         // Assemble email
-        email.Body.Add(header)
-                  .Add(content)
+        email.Body.Add(content)
                   .Add(footer);
 
         // Save email

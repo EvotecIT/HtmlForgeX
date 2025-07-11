@@ -110,6 +110,40 @@ public class EmailColumn : Element {
     }
 
     /// <summary>
+    /// Adds an EmailImage to the column.
+    /// </summary>
+    /// <returns>The EmailImage object, allowing for method chaining.</returns>
+    public EmailImage EmailImage() {
+        var image = new EmailImage();
+        Add(image);
+        return image;
+    }
+
+    /// <summary>
+    /// Adds an EmailImage to the column with a source.
+    /// </summary>
+    /// <param name="source">The image source URL or file path.</param>
+    /// <returns>The EmailImage object, allowing for method chaining.</returns>
+    public new EmailImage EmailImage(string source) {
+        var image = new EmailImage(source);
+        Add(image);
+        return image;
+    }
+
+    /// <summary>
+    /// Adds an EmailImage to the column with source and dimensions.
+    /// </summary>
+    /// <param name="source">The image source URL or file path.</param>
+    /// <param name="width">The image width.</param>
+    /// <param name="height">The image height.</param>
+    /// <returns>The EmailImage object, allowing for method chaining.</returns>
+    public EmailImage EmailImage(string source, string width, string height = "") {
+        var image = new EmailImage(source, width, height);
+        Add(image);
+        return image;
+    }
+
+    /// <summary>
     /// Adds content to the column using a configuration action.
     /// </summary>
     /// <param name="config">The configuration action for the content.</param>
@@ -163,7 +197,7 @@ public class EmailColumn : Element {
     public override string ToString() {
         // Build the cell style
         var cellStyle = "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;";
-        
+
         if (!string.IsNullOrEmpty(Width)) {
             cellStyle += $" width: {Width};";
         }
@@ -171,7 +205,7 @@ public class EmailColumn : Element {
         if (!string.IsNullOrEmpty(TextAlign) && TextAlign != "left") {
             cellStyle += $" text-align: {TextAlign};";
         }
-        
+
         if (!string.IsNullOrEmpty(InlineStyle)) {
             cellStyle += " " + InlineStyle;
         }

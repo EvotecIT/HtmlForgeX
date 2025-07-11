@@ -24,6 +24,13 @@ public class EmailBody : Element {
     public string BackgroundColor { get; set; } = "#f9fafb";
 
     /// <summary>
+    /// Gets the appropriate background color based on theme mode.
+    /// </summary>
+    public string GetThemeBackgroundColor() {
+        return _email.Configuration.Email.ThemeMode == EmailThemeMode.Dark ? "#1f2937" : BackgroundColor;
+    }
+
+    /// <summary>
     /// Gets or sets additional CSS classes for the body.
     /// </summary>
     public string CssClass { get; set; } = "bg-body";
@@ -32,24 +39,24 @@ public class EmailBody : Element {
     /// Gets or sets the maximum width of the email content.
     /// </summary>
     public int MaxWidth {
-        get => _email.Configuration.MaxWidth;
-        set => _email.Configuration.MaxWidth = value;
+        get => _email.Configuration.Email.MaxWidth;
+        set => _email.Configuration.Email.MaxWidth = value;
     }
 
     /// <summary>
     /// Gets or sets the preheader text.
     /// </summary>
     public string PreheaderText {
-        get => _email.Configuration.PreheaderText;
-        set => _email.Configuration.PreheaderText = value;
+        get => _email.Configuration.Email.PreheaderText;
+        set => _email.Configuration.Email.PreheaderText = value;
     }
 
     /// <summary>
     /// Gets or sets whether to include preheader text.
     /// </summary>
     public bool IncludePreheader {
-        get => _email.Configuration.IncludePreheader;
-        set => _email.Configuration.IncludePreheader = value;
+        get => _email.Configuration.Email.IncludePreheader;
+        set => _email.Configuration.Email.IncludePreheader = value;
     }
 
     /// <summary>
@@ -107,11 +114,17 @@ public class EmailBody : Element {
         var bodyStyle = $"font-size: 15px; line-height: 160%; mso-line-height-rule: exactly; color: #4b5563; width: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -webkit-font-feature-settings: &quot;cv02&quot;, &quot;cv03&quot;, &quot;cv04&quot;, &quot;cv11&quot;; font-feature-settings: &quot;cv02&quot;, &quot;cv03&quot;, &quot;cv04&quot;, &quot;cv11&quot;; font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; margin: 0; padding: 0;";
 
         // Apply dark mode styles if enabled
-        var themeClass = _email.Configuration.ThemeMode == EmailThemeMode.Dark ? " theme-dark" : "";
+        var themeClass = _email.Configuration.Email.ThemeMode switch {
+            EmailThemeMode.Dark => " theme-dark",
+            EmailThemeMode.Auto => " auto-dark-mode",
+            _ => ""
+        };
 
-        body.AppendLine($"<body class=\"{CssClass}{themeClass}\" style=\"{bodyStyle}\" bgcolor=\"{BackgroundColor}\">");
+        var actualBackgroundColor = GetThemeBackgroundColor();
+
+        body.AppendLine($"<body class=\"{CssClass}{themeClass}\" style=\"{bodyStyle}\" bgcolor=\"{actualBackgroundColor}\">");
         body.AppendLine("\t<center>");
-        body.AppendLine($"\t\t<table class=\"main {CssClass}\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" role=\"presentation\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;\" bgcolor=\"{BackgroundColor}\">");
+        body.AppendLine($"\t\t<table class=\"main {CssClass}{themeClass}\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" role=\"presentation\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;\" bgcolor=\"{actualBackgroundColor}\">");
         body.AppendLine("\t\t\t<tr>");
         body.AppendLine("\t\t\t\t<td align=\"center\" valign=\"top\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;\">");
 

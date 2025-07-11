@@ -86,7 +86,7 @@ public class LibraryDownloader {
     /// <param name="rootPath">The root path.</param>
     /// <param name="url">The URL.</param>
     /// <exception cref="System.ArgumentException">Unsupported file type: {fileName}</exception>
-    private async Task DownloadFileAsync(string rootPath, string url) {
+    internal async Task DownloadFileAsync(string rootPath, string url) {
         var uri = new Uri(url);
         var fileName = Path.GetFileName(uri.AbsolutePath);
         var extension = Path.GetExtension(fileName).ToLowerInvariant();
@@ -104,7 +104,11 @@ public class LibraryDownloader {
         if (string.IsNullOrEmpty(directory)) {
             directory = rootPath;
         }
-        Directory.CreateDirectory(directory);
+        try {
+            Directory.CreateDirectory(directory);
+        } catch (Exception ex) {
+            _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
+        }
         using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
             using HttpResponseMessage response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode) {

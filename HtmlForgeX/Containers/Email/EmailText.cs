@@ -31,6 +31,22 @@ public class EmailText : Element {
     public string Color { get; set; } = "#4b5563";
 
     /// <summary>
+    /// Gets the appropriate text color based on theme mode.
+    /// </summary>
+    public string GetThemeColor() {
+        // If a custom color was explicitly set (not default), use it
+        if (Color != "#4b5563") {
+            return Color;
+        }
+
+        // Use theme-appropriate default color
+        if (Email?.Configuration?.Email?.ThemeMode == EmailThemeMode.Dark) {
+            return "rgba(255, 255, 255, 0.8)"; // Dark mode text color
+        }
+        return Color; // Light mode text color
+    }
+
+    /// <summary>
     /// Gets or sets the text alignment.
     /// </summary>
     public string TextAlign { get; set; } = "left";
@@ -51,6 +67,11 @@ public class EmailText : Element {
     public string Margin { get; set; } = "0";
 
     /// <summary>
+    /// Gets or sets the padding.
+    /// </summary>
+    public string Padding { get; set; } = "";
+
+    /// <summary>
     /// Gets or sets whether to include line break.
     /// </summary>
     public bool LineBreak { get; set; } = false;
@@ -58,13 +79,16 @@ public class EmailText : Element {
     /// <summary>
     /// Initializes a new instance of the <see cref="EmailText"/> class.
     /// </summary>
-    public EmailText() { }
+    public EmailText() {
+        // Set default padding from EmailLayout for consistency
+        Padding = EmailLayout.GetContentPadding();
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="EmailText"/> class with content.
     /// </summary>
     /// <param name="content">The text content.</param>
-    public EmailText(string content) {
+    public EmailText(string content) : this() {
         Content = content;
     }
 
@@ -232,6 +256,26 @@ public class EmailText : Element {
     }
 
     /// <summary>
+    /// Sets the padding.
+    /// </summary>
+    /// <param name="padding">The padding value.</param>
+    /// <returns>The EmailText object, allowing for method chaining.</returns>
+    public EmailText WithPadding(string padding) {
+        Padding = padding;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the padding using predefined spacing values.
+    /// </summary>
+    /// <param name="spacing">The predefined spacing value for all sides.</param>
+    /// <returns>The EmailText object, allowing for method chaining.</returns>
+    public EmailText WithPadding(EmailSpacing spacing) {
+        Padding = spacing.ToCssValue();
+        return this;
+    }
+
+    /// <summary>
     /// Enables line break after this text.
     /// </summary>
     /// <returns>The EmailText object, allowing for method chaining.</returns>
@@ -247,19 +291,61 @@ public class EmailText : Element {
     public override string ToString() {
         var html = StringBuilderCache.Acquire();
 
-        // Build inline style using EmailLayout system for consistent padding
-        var style = $"font-family: {FontFamily}; font-size: {FontSize}; line-height: {LineHeight}; color: {Color}; text-align: {TextAlign}; font-weight: {FontWeight}; text-decoration: {TextDecoration}; margin: {Margin}; padding: {EmailLayout.GetContentPadding()};";
+        // Get theme-aware color
+        var actualColor = GetThemeColor();
 
-        // Use table structure for better email client compatibility
-        var encodedContent = Helpers.HtmlEncode(Content);
-        html.AppendLine($@"
+        // Get theme class for CSS
+        var themeClass = Email?.Configuration?.Email?.ThemeMode switch {
+            EmailThemeMode.Dark => " theme-dark",
+            EmailThemeMode.Auto => " auto-dark-mode",
+            _ => ""
+        };
+
+        // Build inline style - consistent with other email components
+        var style = new List<string>();
+        style.Add($"font-family: {FontFamily}");
+        style.Add($"font-size: {FontSize}");
+        style.Add($"line-height: {LineHeight}");
+        style.Add($"color: {actualColor}");
+        style.Add($"text-align: {TextAlign}");
+        style.Add($"font-weight: {FontWeight}");
+        style.Add($"text-decoration: {TextDecoration}");
+        style.Add($"margin: {Margin}");
+        style.Add($"padding: {Padding}");
+
+        var styleAttr = $"style=\"{string.Join("; ", style)}\"";
+
+        // Check if we're being rendered inside an EmailColumn (part of a row)
+        // If so, don't wrap in table structure - just return the content
+        var isInColumn = IsInEmailColumn();
+
+        if (isInColumn) {
+            // When inside a column, render as a div or span, not a table
+            html.AppendLine($@"<div class=""email-text{themeClass}"" {styleAttr}>
+{Helpers.HtmlEncode(Content)}{(LineBreak ? "<br>" : "")}
+</div>");
+        } else {
+            // When standalone, use table structure for email compatibility
+            html.AppendLine($@"
 <tr>
-<td style=""{style}"">
-{encodedContent}{(LineBreak ? "<br>" : "")}
+<td class=""email-text{themeClass}"" {styleAttr}>
+{Helpers.HtmlEncode(Content)}{(LineBreak ? "<br>" : "")}
 </td>
 </tr>
 ");
+        }
 
         return StringBuilderCache.GetStringAndRelease(html);
+    }
+
+    /// <summary>
+    /// Checks if this EmailText is being rendered inside an EmailColumn.
+    /// </summary>
+    /// <returns>True if inside an EmailColumn, false otherwise.</returns>
+    private bool IsInEmailColumn() {
+        // Check if we're in a context where we should render as inline content
+        // This is a simple heuristic - if we're in an email context, assume we might be in a column
+        // In the future, we could implement a more sophisticated parent tracking system
+        return Email != null;
     }
 }

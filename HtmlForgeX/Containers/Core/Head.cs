@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+
 using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
@@ -259,9 +260,10 @@ public class Head : Element {
     }
 
     public Head AddDefaultStyles() {
-        Styles.Add(@"
+        Styles.Add(
+            """
             body {
-                font-family: 'Roboto Condensed', sans-serif;
+                font-family: "Roboto Condensed", sans-serif;
                 font-size: 8pt;
                 margin: 0px;
             }
@@ -273,7 +275,7 @@ public class Head : Element {
             .main-section {
                 margin-top: 0px;
             }
-        ");
+            """);
         return this;
     }
 
@@ -338,7 +340,11 @@ public class Head : Element {
                 var jsFileName = Path.Combine(_document.Configuration.Path, Path.GetFileName(js));
                 var jsDirectory = Path.GetDirectoryName(jsFileName);
                 if (!string.IsNullOrEmpty(jsDirectory)) {
-                    Directory.CreateDirectory(jsDirectory);
+                    try {
+                        Directory.CreateDirectory(jsDirectory);
+                    } catch (Exception ex) {
+                        _logger.WriteError($"Failed to create directory '{jsDirectory}'. {ex.Message}");
+                    }
                 }
                 try {
                     File.WriteAllText(jsFileName, jsContent, Encoding.UTF8);

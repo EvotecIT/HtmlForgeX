@@ -11,6 +11,26 @@ public class EmailBox : Element {
     public string BackgroundColor { get; set; } = "#ffffff";
 
     /// <summary>
+    /// Gets the appropriate background color based on theme mode.
+    /// </summary>
+    public string GetThemeBackgroundColor() {
+        if (Email?.Configuration?.Email?.ThemeMode == EmailThemeMode.Dark) {
+            return "#2b3648"; // Dark mode background
+        }
+        return BackgroundColor; // Light mode background
+    }
+
+    /// <summary>
+    /// Gets the appropriate border color based on theme mode.
+    /// </summary>
+    public string GetThemeBorderColor() {
+        if (Email?.Configuration?.Email?.ThemeMode == EmailThemeMode.Dark) {
+            return "#4b5563"; // Dark mode border
+        }
+        return BorderColor; // Light mode border
+    }
+
+    /// <summary>
     /// Gets or sets the border radius of the box.
     /// </summary>
     public string BorderRadius { get; set; } = "8px";
@@ -72,6 +92,13 @@ public class EmailBox : Element {
     public string MaxWidth { get; set; } = "600px";
 
     /// <summary>
+    /// Gets or sets whether to use structural mode (no visual styling).
+    /// When true, renders as a simple table structure without borders, shadows, or background.
+    /// Perfect for headers, footers, or when you just need layout structure.
+    /// </summary>
+    public bool StructuralMode { get; set; } = false;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="EmailBox"/> class.
     /// </summary>
     public EmailBox() { }
@@ -84,6 +111,35 @@ public class EmailBox : Element {
     public EmailBox(string backgroundColor, string padding = "48px") {
         BackgroundColor = backgroundColor;
         Padding = padding;
+    }
+
+    /// <summary>
+    /// Enables structural mode - renders as simple table without visual styling.
+    /// Perfect for headers, footers, or when you just need layout structure.
+    /// </summary>
+    /// <returns>The EmailBox object, allowing for method chaining.</returns>
+    public EmailBox EnableStructuralMode() {
+        StructuralMode = true;
+        return this;
+    }
+
+    /// <summary>
+    /// Disables structural mode - renders with full visual styling.
+    /// </summary>
+    /// <returns>The EmailBox object, allowing for method chaining.</returns>
+    public EmailBox DisableStructuralMode() {
+        StructuralMode = false;
+        return this;
+    }
+
+    /// <summary>
+    /// Enables visual mode with styled container (borders, shadows, background).
+    /// This is the default mode for content boxes.
+    /// </summary>
+    /// <returns>The EmailBox object, allowing for method chaining.</returns>
+    public EmailBox EnableVisualMode() {
+        StructuralMode = false;
+        return this;
     }
 
     /// <summary>
@@ -216,65 +272,114 @@ public class EmailBox : Element {
     public override string ToString() {
         var html = StringBuilderCache.Acquire();
 
-        // Build the inline style for the box div
-        var boxStyle = $"background-color: {BackgroundColor}; border-radius: {BorderRadius};";
+        // Get theme class for CSS
+        var themeClass = Email?.Configuration?.Email?.ThemeMode switch {
+            EmailThemeMode.Dark => " theme-dark",
+            EmailThemeMode.Auto => " auto-dark-mode",
+            _ => ""
+        };
 
-        if (IncludeBoxShadow) {
-            boxStyle += $" -webkit-box-shadow: {BoxShadow}; box-shadow: {BoxShadow};";
-        }
+        if (StructuralMode) {
+            // Structural mode - simple table without visual styling
+            html.AppendLine($@"
+<table class=""structural-table{themeClass}"" cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; max-width: {MaxWidth}; margin: {OuterMargin};"">
+");
 
-        boxStyle += $" border: {BorderWidth} solid {BorderColor};";
+            // Add content rows
+            for (int i = 0; i < Children.Count; i++) {
+                var child = Children[i];
+                var isLastChild = i == Children.Count - 1;
 
-        if (!string.IsNullOrEmpty(InlineStyle)) {
-            boxStyle += " " + InlineStyle;
-        }
+                // Apply consistent spacing or use default padding
+                var cellPadding = UseConsistentSpacing && !isLastChild
+                    ? $"{Padding} {Padding} {ChildSpacing} {Padding}"  // top right bottom left
+                    : Padding;
 
-        // Create the main content div with outer margin and max width
-        var outerStyle = $"margin: {OuterMargin}; max-width: {MaxWidth};";
-        html.AppendLine($@"
-<div class=""main-content"" style=""{outerStyle}"">
-<div class=""{CssClass}"" style=""{boxStyle}"">
-<table class=""box-table"" cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; border-radius: {BorderRadius};"" bgcolor=""{BackgroundColor}"">
+                html.AppendLine($@"
+<tr>
+<td class=""structural-content"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding: {cellPadding};"">
+");
+
+                var childContent = child.ToString();
+                if (!string.IsNullOrEmpty(childContent)) {
+                    html.AppendLine(childContent);
+                }
+
+                html.AppendLine($@"
+</td>
+</tr>
+");
+            }
+
+            html.AppendLine($@"
+</table>
+");
+        } else {
+            // Visual mode - full styling with borders, shadows, background
+            // Get theme-aware colors
+            var actualBackgroundColor = GetThemeBackgroundColor();
+            var actualBorderColor = GetThemeBorderColor();
+
+            // Build the inline style for the box div
+            var boxStyle = $"background-color: {actualBackgroundColor}; border-radius: {BorderRadius};";
+
+            if (IncludeBoxShadow) {
+                boxStyle += $" -webkit-box-shadow: {BoxShadow}; box-shadow: {BoxShadow};";
+            }
+
+            boxStyle += $" border: {BorderWidth} solid {actualBorderColor};";
+
+            if (!string.IsNullOrEmpty(InlineStyle)) {
+                boxStyle += " " + InlineStyle;
+            }
+
+            // Create the main content div with outer margin and max width
+            var outerStyle = $"margin: {OuterMargin}; max-width: {MaxWidth};";
+            html.AppendLine($@"
+<div class=""main-content{themeClass}"" style=""{outerStyle}"">
+<div class=""{CssClass}{themeClass}"" style=""{boxStyle}"">
+<table class=""box-table{themeClass}"" cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; border-radius: {BorderRadius};"" bgcolor=""{actualBackgroundColor}"">
 <tr>
 <td style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;"">
 <table cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%;"">
 ");
 
-        // Add content rows
-        for (int i = 0; i < Children.Count; i++) {
-            var child = Children[i];
-            var isLastChild = i == Children.Count - 1;
+            // Add content rows
+            for (int i = 0; i < Children.Count; i++) {
+                var child = Children[i];
+                var isLastChild = i == Children.Count - 1;
 
-            // Apply consistent spacing or use default padding
-            var cellPadding = UseConsistentSpacing && !isLastChild
-                ? $"{Padding} {Padding} {ChildSpacing} {Padding}"  // top right bottom left
-                : Padding;
+                // Apply consistent spacing or use default padding
+                var cellPadding = UseConsistentSpacing && !isLastChild
+                    ? $"{Padding} {Padding} {ChildSpacing} {Padding}"  // top right bottom left
+                    : Padding;
 
-            html.AppendLine($@"
+                html.AppendLine($@"
 <tr>
 <td class=""content"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding: {cellPadding};"">
 ");
 
-            var childContent = child.ToString();
-            if (!string.IsNullOrEmpty(childContent)) {
-                html.AppendLine(childContent);
+                var childContent = child.ToString();
+                if (!string.IsNullOrEmpty(childContent)) {
+                    html.AppendLine(childContent);
+                }
+
+                html.AppendLine($@"
+</td>
+</tr>
+");
             }
 
+            // Close the table structure
             html.AppendLine($@"
+</table>
 </td>
 </tr>
+</table>
+</div>
+</div>
 ");
         }
-
-        // Close the table structure
-        html.AppendLine($@"
-</table>
-</td>
-</tr>
-</table>
-</div>
-</div>
-");
 
         return StringBuilderCache.GetStringAndRelease(html);
     }

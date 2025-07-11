@@ -15,14 +15,22 @@ public class InvoiceItem {
 /// <summary>
 /// Example of an invoice email using natural HtmlForgeX patterns.
 /// Demonstrates professional invoice layout with tables and proper alignment.
+/// Uses the natural Document-style configuration approach.
 /// </summary>
 public static class ExampleInvoiceEmail
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating invoice email example...");
+        Console.WriteLine("Creating invoice email example with Document-style configuration...");
 
-        var email = new Email();
+        // Natural Document-style configuration - just like document.Head.AddTitle()!
+        var email = new Email()
+            .EnableImageEmbedding(timeout: 30, optimize: true)  // Auto-embed images with optimization
+            .ConfigureImageOptimization(maxWidth: 600, maxHeight: 400, quality: 90)
+            .SetMaxEmbedFileSize(1 * 1024 * 1024) // 1MB limit for invoices
+            .SetSmartImageDetection(true)
+            .SetDarkModeSupport(true)
+            .ConfigureLayout(containerPadding: "16px", contentPadding: "12px", maxWidth: "600px");
 
         // Email configuration
         email.Head.AddTitle("Invoice #INV-2025-001")
@@ -32,10 +40,12 @@ public static class ExampleInvoiceEmail
         email.Body.EmailBox(emailBox => {
             // Header section using EmailContent for consistent alignment
             emailBox.EmailContent(content => {
+                // Logo automatically embeds based on email configuration - no duplication!
                 content.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .WithWidth("150px")
                     .WithAlignment("center")
                     .WithLink("https://evotec.xyz")
+                    .WithAlternativeText("Evotec Logo")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Large, EmailSpacing.None);
 
                 // Invoice title
@@ -135,17 +145,27 @@ public static class ExampleInvoiceEmail
 
             // Footer using EmailContent for consistent alignment
             emailBox.EmailContent(content => {
-                content.EmailText("Questions about this invoice? Contact us at contact@evotec.xyz")
+                content.EmailText("Questions about this invoice?")
                     .WithFontSize(EmailFontSize.Regular)
                     .WithColor("#6B7280")
                     .WithAlignment("center")
-                    .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.None, EmailSpacing.None);
+                    .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Small, EmailSpacing.None);
+
+                // Use EmailLink instead of Span for better consistency
+                content.EmailLink("Contact us at contact@evotec.xyz", "mailto:contact@evotec.xyz")
+                    .WithFontSize(EmailFontSize.Regular)
+                    .WithColor("#066FD1")
+                    .WithAlignment("center");
             });
         });
 
         // Save email
         email.Save("invoice-email.html", openInBrowser);
+
         Console.WriteLine("✅ Invoice email created successfully!");
-        Console.WriteLine("📧 Demonstrates: Professional invoice layout, type-safe tables, proper alignment, button spacing");
+        Console.WriteLine($@"📧 Demonstrates: Professional invoice layout, type-safe tables, proper alignment
+🔧 Improved Features: Document-style configuration, automatic base64 embedding, EmailLink usage
+📁 Logo automatically embedded as base64 data URI via email configuration!
+💡 Natural configuration: email.EnableImageEmbedding().ConfigureLayout() - just like Document!");
     }
 }

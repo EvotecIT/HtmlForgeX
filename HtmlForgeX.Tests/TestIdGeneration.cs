@@ -1,3 +1,4 @@
+
 namespace HtmlForgeX.Tests;
 
 [TestClass]
@@ -16,9 +17,13 @@ public class TestIdGeneration {
 
     [TestMethod]
     public void GenerateRandomIdCustomLength() {
-        var globalStorage = typeof(DataTablesTable).Assembly.GetType("HtmlForgeX.GlobalStorage")!;
-        var method = globalStorage.GetMethod("GenerateRandomId", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)!;
-        var id = (string)method.Invoke(null, new object?[] { "test", 5 })!;
+        var id = GlobalStorage.GenerateRandomId("test", 5);
         Assert.AreEqual("test-".Length + 5, id.Length);
+    }
+
+    [TestMethod]
+    public void GenerateRandomIdInvalidInput() {
+        Assert.ThrowsException<ArgumentException>(() => GlobalStorage.GenerateRandomId(null!, 5));
+        Assert.ThrowsException<ArgumentException>(() => GlobalStorage.GenerateRandomId(" ", 5));
     }
 }

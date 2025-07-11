@@ -53,6 +53,53 @@ public class EmailConfiguration {
     /// Gets or sets the preheader text for email preview.
     /// </summary>
     public string PreheaderText { get; set; } = "This is preheader text. Some clients will show this text as a preview.";
+
+    /// <summary>
+    /// Gets or sets whether to automatically embed images as base64 data URIs.
+    /// When enabled, all EmailImage instances will attempt to embed images unless overridden.
+    /// </summary>
+    public bool AutoEmbedImages { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the timeout in seconds for downloading remote images for embedding.
+    /// </summary>
+    public int EmbeddingTimeout { get; set; } = 30;
+
+    /// <summary>
+    /// Gets or sets whether to automatically optimize images during embedding.
+    /// </summary>
+    public bool OptimizeImages { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the default email layout padding.
+    /// </summary>
+    public string DefaultPadding { get; set; } = "12px";
+
+    /// <summary>
+    /// Gets or sets whether to use consistent spacing between email elements.
+    /// </summary>
+    public bool UseConsistentSpacing { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets whether to automatically detect and handle file paths vs URLs in images.
+    /// </summary>
+    public bool SmartImageDetection { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets whether to include fallback images for email clients that don't support base64.
+    /// </summary>
+    public bool IncludeFallbackImages { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the maximum file size (in bytes) for automatic image embedding.
+    /// Images larger than this will not be embedded automatically.
+    /// </summary>
+    public long MaxEmbedFileSize { get; set; } = 2 * 1024 * 1024; // 2MB
+
+    /// <summary>
+    /// Gets or sets whether to log warnings when image embedding fails.
+    /// </summary>
+    public bool LogEmbeddingWarnings { get; set; } = true;
 }
 
 /// <summary>

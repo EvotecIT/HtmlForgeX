@@ -1,54 +1,70 @@
+using System;
 using System.Collections.Concurrent;
 
 namespace HtmlForgeX;
 
 /// <summary>
-/// Configuration and state for a Document instance, replacing the static GlobalStorage.
+/// Configuration class for Document instances.
+/// Manages state, libraries, and settings for document generation.
 /// </summary>
 public class DocumentConfiguration {
-    internal const int DefaultRandomIdLength = 8;
-
     /// <summary>
-    /// Gets or sets the theme mode for the document.
-    /// </summary>
-    public ThemeMode ThemeMode { get; set; } = ThemeMode.System;
-
-    /// <summary>
-    /// Gets or sets the library mode for the document.
+    /// Gets or sets the library mode for this document.
     /// </summary>
     public LibraryMode LibraryMode { get; set; } = LibraryMode.Online;
 
     /// <summary>
-    /// Gets or sets whether to enable deferred script execution to prevent timing issues.
-    /// When enabled, component scripts will wait for all libraries to load before executing.
+    /// Gets or sets the theme mode for this document.
+    /// </summary>
+    public ThemeMode ThemeMode { get; set; } = ThemeMode.Light;
+
+    /// <summary>
+    /// Gets or sets the file path for this document.
+    /// </summary>
+    public string Path { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the style path for this document.
+    /// </summary>
+    public string StylePath { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets the script path for this document.
+    /// </summary>
+    public string ScriptPath { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Gets or sets whether deferred scripts are enabled.
     /// </summary>
     public bool EnableDeferredScripts { get; set; } = false;
 
     /// <summary>
-    /// Thread-safe collection of libraries used by the document.
+    /// Gets or sets whether dark mode support is enabled.
     /// </summary>
-    public ConcurrentDictionary<Libraries, byte> Libraries { get; } = new();
+    public bool DarkModeSupport { get; set; } = true;
 
     /// <summary>
-    /// Thread-safe collection of errors encountered during document processing.
+    /// Collection of libraries registered for this document.
     /// </summary>
-    public ConcurrentBag<string> Errors { get; } = new();
+    public ConcurrentDictionary<Libraries, int> Libraries { get; } = new();
 
     /// <summary>
-    /// Gets or sets the path for saving documents and related files.
+    /// Collection of errors that occurred during document generation.
     /// </summary>
-    public string Path { get; set; } = System.IO.Path.GetTempPath();
-
-    /// <summary>Location for CSS resources.</summary>
-    public string StylePath { get; set; } = "";
-
-    /// <summary>Location for script resources.</summary>
-    public string ScriptPath { get; set; } = "";
-
-    private readonly Random _randomGenerator = new();
+    public List<string> Errors { get; } = new();
 
     /// <summary>
-    /// Generates a pseudo random identifier with a prefix.
+    /// Email-specific configuration.
+    /// </summary>
+    public EmailConfiguration Email { get; } = new();
+
+    /// <summary>
+    /// Image-specific configuration.
+    /// </summary>
+    public ImageConfiguration Images { get; } = new();
+
+    /// <summary>
+    /// Layout-specific configuration.
     /// </summary>
     /// <param name="preText">Prefix for the identifier.</param>
     /// <param name="length">Length of the random part.</param>
