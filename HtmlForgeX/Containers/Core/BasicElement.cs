@@ -54,6 +54,10 @@ public class BasicElement : Element {
     /// </summary>
     /// <returns>HTML string representing the element.</returns>
     public override string ToString() {
+        if (string.IsNullOrEmpty(HtmlContent) && string.IsNullOrEmpty(TextContent) && Children.Count == 0) {
+            return string.Empty;
+        }
+
         var html = StringBuilderCache.Acquire();
 
         // Render HTML content if available, otherwise text content
