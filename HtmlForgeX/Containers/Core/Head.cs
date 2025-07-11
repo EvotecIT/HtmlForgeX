@@ -338,7 +338,11 @@ public class Head : Element {
                 var jsFileName = Path.Combine(_document.Configuration.Path, Path.GetFileName(js));
                 var jsDirectory = Path.GetDirectoryName(jsFileName);
                 if (!string.IsNullOrEmpty(jsDirectory)) {
-                    Directory.CreateDirectory(jsDirectory);
+                    try {
+                        Directory.CreateDirectory(jsDirectory);
+                    } catch (Exception ex) {
+                        _logger.WriteError($"Failed to create directory '{jsDirectory}'. {ex.Message}");
+                    }
                 }
                 try {
                     File.WriteAllText(jsFileName, jsContent, Encoding.UTF8);
