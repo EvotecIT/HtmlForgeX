@@ -127,7 +127,11 @@ public class Document : Element {
 
         var directory = System.IO.Path.GetDirectoryName(path);
         if (!string.IsNullOrEmpty(directory)) {
-            System.IO.Directory.CreateDirectory(directory);
+            try {
+                System.IO.Directory.CreateDirectory(directory);
+            } catch (Exception ex) {
+                _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
+            }
         }
         try {
 #if NET5_0_OR_GREATER

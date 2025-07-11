@@ -104,7 +104,11 @@ public class LibraryDownloader {
         if (string.IsNullOrEmpty(directory)) {
             directory = rootPath;
         }
-        Directory.CreateDirectory(directory);
+        try {
+            Directory.CreateDirectory(directory);
+        } catch (Exception ex) {
+            _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
+        }
         using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
             using HttpResponseMessage response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             if (!response.IsSuccessStatusCode) {

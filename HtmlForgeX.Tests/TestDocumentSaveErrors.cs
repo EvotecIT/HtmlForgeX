@@ -53,5 +53,23 @@ public class TestDocumentSaveErrors {
         StringAssert.Contains(received!, path);
     }
 
+    [TestMethod]
+    public void Save_DirectoryCreationFails_LogsError() {
+        var logger = GetLogger();
+        string? received = null;
+        EventHandler<LogEventArgs> handler = (_, e) => received ??= e.FullMessage;
+        logger.OnErrorMessage += handler;
+        var doc = new Document();
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var dirPath = Path.Combine(tempDir, $"dir_{Guid.NewGuid()}");
+        File.WriteAllText(dirPath, string.Empty);
+        var filePath = Path.Combine(dirPath, "file.html");
+        doc.Save(filePath);
+        logger.OnErrorMessage -= handler;
+        File.Delete(dirPath);
+        Assert.IsNotNull(received);
+        StringAssert.Contains(received!, dirPath);
+    }
+
 
 }
