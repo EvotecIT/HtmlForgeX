@@ -138,6 +138,7 @@ public class Document : Element {
             await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8).ConfigureAwait(false);
 #else
             using var writer = new StreamWriter(path, false, Encoding.UTF8);
+            // Prevent returning to the captured context (e.g. UI thread)
             await writer.WriteAsync(ToString()).ConfigureAwait(false);
 #endif
         } catch (Exception ex) {
