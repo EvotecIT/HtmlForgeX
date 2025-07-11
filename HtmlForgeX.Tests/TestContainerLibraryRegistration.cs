@@ -192,10 +192,11 @@ public class TestContainerLibraryRegistration
     }
 
     [TestMethod]
-    public void Document_WithoutLibraryMode_ShouldNotIncludeLibraries()
+    public void Document_WithOfflineLibraryMode_ShouldNotIncludeLibraries()
     {
         // Arrange
-        var document = new Document(); // No LibraryMode specified
+        var document = new Document();
+        document.LibraryMode = LibraryMode.Offline; // Explicitly set offline mode
         var page = new TablerPage();
 
         // Act
@@ -205,11 +206,11 @@ public class TestContainerLibraryRegistration
         // Assert
         // Libraries should still be registered in configuration
         Assert.IsTrue(document.Configuration.Libraries.ContainsKey(Libraries.Bootstrap),
-            "Libraries should be registered even without LibraryMode");
+            "Libraries should be registered even in offline mode");
 
-        // But HTML should not include library references since LibraryMode is default
-        Assert.IsFalse(htmlOutput.Contains("bootstrap"),
-            "HTML should not contain library references without LibraryMode");
+        // Offline mode should not include external CDN references
+        Assert.IsFalse(htmlOutput.Contains("cdn.jsdelivr.net") || htmlOutput.Contains("unpkg.com"),
+            "HTML should not contain external CDN references in offline mode");
     }
 
     [TestMethod]

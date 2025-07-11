@@ -17,12 +17,12 @@ public class DocumentConfiguration {
     /// <summary>
     /// Gets or sets the theme mode for this document.
     /// </summary>
-    public ThemeMode ThemeMode { get; set; } = ThemeMode.Light;
+    public ThemeMode ThemeMode { get; set; } = ThemeMode.System;
 
     /// <summary>
     /// Gets or sets the file path for this document.
     /// </summary>
-    public string Path { get; set; } = string.Empty;
+    public string Path { get; set; } = System.IO.Path.GetTempPath();
 
     /// <summary>
     /// Gets or sets the style path for this document.
