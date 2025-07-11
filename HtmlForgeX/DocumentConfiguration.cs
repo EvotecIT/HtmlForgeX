@@ -1,4 +1,5 @@
 using System;
+using System;
 using System.Collections.Concurrent;
 
 namespace HtmlForgeX;
@@ -66,15 +67,70 @@ public class DocumentConfiguration {
     /// <summary>
     /// Layout-specific configuration.
     /// </summary>
-    /// <param name="preText">Prefix for the identifier.</param>
-    /// <param name="length">Length of the random part.</param>
-    /// <returns>Generated identifier.</returns>
-    public string GenerateRandomId(string preText, int length = DefaultRandomIdLength) {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        lock (_randomGenerator) {
-            var randomId = new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[_randomGenerator.Next(s.Length)]).ToArray());
-            return $"{preText}-{randomId}";
-        }
-    }
+    public LayoutConfiguration Layout { get; } = new();
+}
+
+/// <summary>
+/// Image processing configuration settings.
+/// </summary>
+public class ImageConfiguration {
+    /// <summary>
+    /// Gets or sets whether to automatically optimize images.
+    /// </summary>
+    public bool AutoOptimize { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the maximum width for image optimization (in pixels).
+    /// </summary>
+    public int MaxWidth { get; set; } = 800;
+
+    /// <summary>
+    /// Gets or sets the maximum height for image optimization (in pixels).
+    /// </summary>
+    public int MaxHeight { get; set; } = 600;
+
+    /// <summary>
+    /// Gets or sets the quality for JPEG compression (0-100).
+    /// </summary>
+    public int Quality { get; set; } = 85;
+
+    /// <summary>
+    /// Gets or sets the default image format for optimization.
+    /// </summary>
+    public string DefaultFormat { get; set; } = "png";
+
+    /// <summary>
+    /// Gets or sets whether to preserve image metadata during optimization.
+    /// </summary>
+    public bool PreserveMetadata { get; set; } = false;
+}
+
+/// <summary>
+/// Layout configuration settings.
+/// </summary>
+public class LayoutConfiguration {
+    /// <summary>
+    /// Gets or sets the default container padding.
+    /// </summary>
+    public string ContainerPadding { get; set; } = "12px";
+
+    /// <summary>
+    /// Gets or sets the default content padding.
+    /// </summary>
+    public string ContentPadding { get; set; } = "8px";
+
+    /// <summary>
+    /// Gets or sets the default spacing between elements.
+    /// </summary>
+    public string ElementSpacing { get; set; } = "12px";
+
+    /// <summary>
+    /// Gets or sets whether to use responsive design by default.
+    /// </summary>
+    public bool UseResponsiveDesign { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets the default maximum content width.
+    /// </summary>
+    public string MaxContentWidth { get; set; } = "600px";
 }
