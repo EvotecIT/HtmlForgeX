@@ -1,19 +1,21 @@
 using System;
 using System.IO;
 using System.Text;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
 /// <summary>
 /// Tests for EmailImage base64 embedding functionality.
 /// </summary>
+[TestClass]
 public class TestEmailImageBase64Embedding
 {
-    private readonly string _testImagePath;
-    private readonly byte[] _testImageData;
+    private string _testImagePath = string.Empty;
+    private byte[] _testImageData = Array.Empty<byte>();
 
-    public TestEmailImageBase64Embedding()
+    [TestInitialize]
+    public void TestInitialize()
     {
         // Create a simple test image (1x1 PNG)
         _testImageData = new byte[]
@@ -30,7 +32,7 @@ public class TestEmailImageBase64Embedding
         File.WriteAllBytes(_testImagePath, _testImageData);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedFromFile_ShouldEmbedValidImage()
     {
         // Arrange
@@ -40,13 +42,13 @@ public class TestEmailImageBase64Embedding
         emailImage.EmbedFromFile(_testImagePath);
 
         // Assert
-        Assert.True(emailImage.EmbedAsBase64);
-        Assert.Equal("image/png", emailImage.MimeType);
-        Assert.NotEmpty(emailImage.Base64Data);
-        Assert.StartsWith("data:image/png;base64,", emailImage.Source);
+        Assert.IsTrue(emailImage.EmbedAsBase64);
+        Assert.AreEqual("image/png", emailImage.MimeType);
+        Assert.IsFalse(string.IsNullOrEmpty(emailImage.Base64Data));
+        Assert.IsTrue(emailImage.Source.StartsWith("data:image/png;base64,"));
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedFromFile_WithNonExistentFile_ShouldFallbackToPath()
     {
         // Arrange
@@ -57,11 +59,11 @@ public class TestEmailImageBase64Embedding
         emailImage.EmbedFromFile(nonExistentPath);
 
         // Assert
-        Assert.False(emailImage.EmbedAsBase64);
-        Assert.Equal(nonExistentPath, emailImage.Source);
+        Assert.IsFalse(emailImage.EmbedAsBase64);
+        Assert.AreEqual(nonExistentPath, emailImage.Source);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedFromFile_WithDifferentExtensions_ShouldSetCorrectMimeType()
     {
         // Arrange & Act & Assert
@@ -89,12 +91,12 @@ public class TestEmailImageBase64Embedding
             var emailImage = new EmailImage();
             emailImage.EmbedFromFile(testFile);
 
-            Assert.Equal(expectedMimeType, emailImage.MimeType);
+            Assert.AreEqual(expectedMimeType, emailImage.MimeType);
             File.Delete(testFile);
         }
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedFromBase64_ShouldSetPropertiesCorrectly()
     {
         // Arrange
@@ -106,13 +108,13 @@ public class TestEmailImageBase64Embedding
         emailImage.EmbedFromBase64(base64Data, mimeType);
 
         // Assert
-        Assert.True(emailImage.EmbedAsBase64);
-        Assert.Equal(mimeType, emailImage.MimeType);
-        Assert.Equal(base64Data, emailImage.Base64Data);
-        Assert.Equal($"data:{mimeType};base64,{base64Data}", emailImage.Source);
+        Assert.IsTrue(emailImage.EmbedAsBase64);
+        Assert.AreEqual(mimeType, emailImage.MimeType);
+        Assert.AreEqual(base64Data, emailImage.Base64Data);
+        Assert.AreEqual($"data:{mimeType};base64,{base64Data}", emailImage.Source);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedSmart_WithFilePath_ShouldEmbedFile()
     {
         // Arrange
@@ -122,12 +124,12 @@ public class TestEmailImageBase64Embedding
         emailImage.EmbedSmart(_testImagePath);
 
         // Assert
-        Assert.True(emailImage.EmbedAsBase64);
-        Assert.Equal("image/png", emailImage.MimeType);
-        Assert.NotEmpty(emailImage.Base64Data);
+        Assert.IsTrue(emailImage.EmbedAsBase64);
+        Assert.AreEqual("image/png", emailImage.MimeType);
+        Assert.IsFalse(string.IsNullOrEmpty(emailImage.Base64Data));
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedSmart_WithNonExistentPath_ShouldFallbackToSource()
     {
         // Arrange
@@ -138,11 +140,11 @@ public class TestEmailImageBase64Embedding
         emailImage.EmbedSmart(nonExistentPath);
 
         // Assert
-        Assert.False(emailImage.EmbedAsBase64);
-        Assert.Equal(nonExistentPath, emailImage.Source);
+        Assert.IsFalse(emailImage.EmbedAsBase64);
+        Assert.AreEqual(nonExistentPath, emailImage.Source);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedSmart_WithEmptyString_ShouldReturnSelf()
     {
         // Arrange
@@ -152,11 +154,11 @@ public class TestEmailImageBase64Embedding
         var result = emailImage.EmbedSmart("");
 
         // Assert
-        Assert.Same(emailImage, result);
-        Assert.False(emailImage.EmbedAsBase64);
+        Assert.AreSame(emailImage, result);
+        Assert.IsFalse(emailImage.EmbedAsBase64);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_WithOptimization_ShouldSetOptimizationProperties()
     {
         // Arrange
@@ -166,13 +168,13 @@ public class TestEmailImageBase64Embedding
         emailImage.WithOptimization(800, 600, 90);
 
         // Assert
-        Assert.True(emailImage.OptimizeImage);
-        Assert.Equal(800, emailImage.MaxWidth);
-        Assert.Equal(600, emailImage.MaxHeight);
-        Assert.Equal(90, emailImage.Quality);
+        Assert.IsTrue(emailImage.OptimizeImage);
+        Assert.AreEqual(800, emailImage.MaxWidth);
+        Assert.AreEqual(600, emailImage.MaxHeight);
+        Assert.AreEqual(90, emailImage.Quality);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_WithOptimization_ShouldClampQuality()
     {
         // Arrange
@@ -180,13 +182,13 @@ public class TestEmailImageBase64Embedding
 
         // Act & Assert
         emailImage.WithOptimization(0, 0, 150);
-        Assert.Equal(100, emailImage.Quality);
+        Assert.AreEqual(100, emailImage.Quality);
 
         emailImage.WithOptimization(0, 0, -10);
-        Assert.Equal(0, emailImage.Quality);
+        Assert.AreEqual(0, emailImage.Quality);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_WithoutOptimization_ShouldDisableOptimization()
     {
         // Arrange
@@ -197,10 +199,10 @@ public class TestEmailImageBase64Embedding
         emailImage.WithoutOptimization();
 
         // Assert
-        Assert.False(emailImage.OptimizeImage);
+        Assert.IsFalse(emailImage.OptimizeImage);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_ToString_WithEmbeddedImage_ShouldContainBase64Data()
     {
         // Arrange
@@ -213,13 +215,13 @@ public class TestEmailImageBase64Embedding
         var html = emailImage.ToString();
 
         // Assert
-        Assert.Contains("data:image/png;base64,", html);
-        Assert.Contains("width=\"100px\"", html);
-        Assert.Contains("alt=\"Test Image\"", html);
-        Assert.Contains("<img", html);
+        Assert.IsTrue(html.Contains("data:image/png;base64,"));
+        Assert.IsTrue(html.Contains("width=\"100px\""));
+        Assert.IsTrue(html.Contains("alt=\"Test Image\""));
+        Assert.IsTrue(html.Contains("<img"));
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_ToString_WithLink_ShouldWrapInAnchor()
     {
         // Arrange
@@ -231,12 +233,12 @@ public class TestEmailImageBase64Embedding
         var html = emailImage.ToString();
 
         // Assert
-        Assert.Contains("<a href=\"https://example.com\"", html);
-        Assert.Contains("target=\"_blank\"", html);
-        Assert.Contains("</a>", html);
+        Assert.IsTrue(html.Contains("<a href=\"https://example.com\""));
+        Assert.IsTrue(html.Contains("target=\"_blank\""));
+        Assert.IsTrue(html.Contains("</a>"));
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_ToString_WithStyling_ShouldIncludeStyles()
     {
         // Arrange
@@ -250,12 +252,12 @@ public class TestEmailImageBase64Embedding
         var html = emailImage.ToString();
 
         // Assert
-        Assert.Contains("border: 2px solid red", html);
-        Assert.Contains("border-radius: 8px", html);
-        Assert.Contains("text-align: center", html);
+        Assert.IsTrue(html.Contains("border: 2px solid red"));
+        Assert.IsTrue(html.Contains("border-radius: 8px"));
+        Assert.IsTrue(html.Contains("text-align: center"));
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_ChainedMethods_ShouldReturnSelf()
     {
         // Arrange
@@ -274,19 +276,19 @@ public class TestEmailImageBase64Embedding
             .WithAlternativeText("Chained image");
 
         // Assert
-        Assert.Same(emailImage, result);
-        Assert.True(emailImage.EmbedAsBase64);
-        Assert.Equal("100px", emailImage.Width);
-        Assert.Equal("100px", emailImage.Height);
-        Assert.True(emailImage.OptimizeImage);
-        Assert.Equal("center", emailImage.Alignment);
-        Assert.Equal("1px solid black", emailImage.Border);
-        Assert.Equal("4px", emailImage.BorderRadius);
-        Assert.Equal("https://example.com", emailImage.LinkUrl);
-        Assert.Equal("Chained image", emailImage.AlternativeText);
+        Assert.AreSame(emailImage, result);
+        Assert.IsTrue(emailImage.EmbedAsBase64);
+        Assert.AreEqual("100px", emailImage.Width);
+        Assert.AreEqual("100px", emailImage.Height);
+        Assert.IsTrue(emailImage.OptimizeImage);
+        Assert.AreEqual("center", emailImage.Alignment);
+        Assert.AreEqual("1px solid black", emailImage.Border);
+        Assert.AreEqual("4px", emailImage.BorderRadius);
+        Assert.AreEqual("https://example.com", emailImage.LinkUrl);
+        Assert.AreEqual("Chained image", emailImage.AlternativeText);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_GetMimeTypeFromExtension_ShouldReturnCorrectTypes()
     {
         // This tests the private method indirectly through EmbedFromFile
@@ -315,12 +317,12 @@ public class TestEmailImageBase64Embedding
             var emailImage = new EmailImage();
             emailImage.EmbedFromFile(testFile);
 
-            Assert.Equal(expectedMimeType, emailImage.MimeType);
+            Assert.AreEqual(expectedMimeType, emailImage.MimeType);
             File.Delete(testFile);
         }
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedFromFile_WithOptimization_ShouldLogOptimizationNote()
     {
         // Arrange
@@ -339,7 +341,7 @@ public class TestEmailImageBase64Embedding
 
             // Assert
             var output = stringWriter.ToString();
-            Assert.Contains("Note: Image optimization is enabled but not yet implemented", output);
+            Assert.IsTrue(output.Contains("Note: Image optimization is enabled but not yet implemented"));
         }
         finally
         {
@@ -347,7 +349,7 @@ public class TestEmailImageBase64Embedding
         }
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedFromUrl_WithInvalidUrl_ShouldFallbackToUrl()
     {
         // Arrange
@@ -358,11 +360,11 @@ public class TestEmailImageBase64Embedding
         emailImage.EmbedFromUrl(invalidUrl, 1); // 1 second timeout
 
         // Assert
-        Assert.False(emailImage.EmbedAsBase64);
-        Assert.Equal(invalidUrl, emailImage.Source);
+        Assert.IsFalse(emailImage.EmbedAsBase64);
+        Assert.AreEqual(invalidUrl, emailImage.Source);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedSmart_WithHttpUrl_ShouldAttemptUrlEmbedding()
     {
         // Arrange
@@ -374,11 +376,11 @@ public class TestEmailImageBase64Embedding
 
         // Assert
         // Should fallback to URL since it's not a valid image URL
-        Assert.False(emailImage.EmbedAsBase64);
-        Assert.Equal(httpUrl, emailImage.Source);
+        Assert.IsFalse(emailImage.EmbedAsBase64);
+        Assert.AreEqual(httpUrl, emailImage.Source);
     }
 
-    [Fact]
+    [TestMethod]
     public void EmailImage_EmbedSmart_WithHttpsUrl_ShouldAttemptUrlEmbedding()
     {
         // Arrange
@@ -390,12 +392,12 @@ public class TestEmailImageBase64Embedding
 
         // Assert
         // Should fallback to URL since it's not a valid image URL
-        Assert.False(emailImage.EmbedAsBase64);
-        Assert.Equal(httpsUrl, emailImage.Source);
+        Assert.IsFalse(emailImage.EmbedAsBase64);
+        Assert.AreEqual(httpsUrl, emailImage.Source);
     }
 
-    // Cleanup
-    public void Dispose()
+    [TestCleanup]
+    public void TestCleanup()
     {
         if (File.Exists(_testImagePath))
         {

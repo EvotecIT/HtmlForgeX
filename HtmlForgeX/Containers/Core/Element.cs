@@ -44,6 +44,7 @@ public abstract class Element {
     /// <returns>This element for method chaining.</returns>
     public virtual Element Add(Element element) {
         element.Email = this.Email;
+        element.Document = this.Document;
         Children.Add(element);
 
         // Notify the element that it has been added to a document

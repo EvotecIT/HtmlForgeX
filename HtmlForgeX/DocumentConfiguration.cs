@@ -68,6 +68,19 @@ public class DocumentConfiguration {
     /// Layout-specific configuration.
     /// </summary>
     public LayoutConfiguration Layout { get; } = new();
+    
+    /// <summary>
+    /// Generates a random ID with the specified prefix.
+    /// </summary>
+    /// <param name="preText">The prefix for the ID.</param>
+    /// <param name="length">Length of the random part (default: 8).</param>
+    /// <returns>Generated identifier.</returns>
+    public string GenerateRandomId(string preText, int length = 8) {
+        if (string.IsNullOrWhiteSpace(preText)) {
+            throw new ArgumentException("PreText cannot be null or empty.", nameof(preText));
+        }
+        return GlobalStorage.GenerateRandomId(preText, length);
+    }
 }
 
 /// <summary>

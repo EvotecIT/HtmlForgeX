@@ -23,7 +23,10 @@ internal class BasicHtmlContainer01 {
             new { Name = "Jane", Age = 28, Occupation = "Doctor" },
         };
 
-        Document document = new Document();
+        Document document = new Document {
+            LibraryMode = LibraryMode.Online,
+            ThemeMode = ThemeMode.Light
+        };
         document.Head.Title = "Basic Demo Document Container 1";
         document.Head.Author = "Przemysław Kłys";
         document.Head.Revised = DateTime.Now;
@@ -34,7 +37,6 @@ internal class BasicHtmlContainer01 {
         document.Head.AddCharsetMeta("utf-8");
         // document.Head.AddHttpEquivMeta("Content-Type", "text/html; charset=utf-8");
         document.Head.AddViewportMeta("width=device-width, initial-scale=1.0");
-
 
         // Add the table to the document
         document.Body.Table(data, TableType.Tabler);

@@ -33,7 +33,9 @@ internal class BasicHtmlContainer02 {
         Document document = new Document {
             Head = {
                 Title = "Basic Demo Document Container 2", Author = "Przemysław Kłys", Revised = DateTime.Now
-            }
+            },
+            LibraryMode = LibraryMode.Online,
+            ThemeMode = ThemeMode.Light
         };
 
         document.Body.Page(page => {
