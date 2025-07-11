@@ -77,11 +77,19 @@ public class TestDocumentConfiguration {
     [TestMethod]
     public void DocumentConfiguration_GenerateRandomIdWithCustomLength() {
         var config = new DocumentConfiguration();
-        
+
         var id = config.GenerateRandomId("test", 12);
-        
+
         Assert.IsNotNull(id);
         Assert.IsTrue(id.StartsWith("test"));
         Assert.IsTrue(id.Length > 4);
+    }
+
+    [TestMethod]
+    public void DocumentConfiguration_GenerateRandomId_InvalidInput() {
+        var config = new DocumentConfiguration();
+
+        Assert.ThrowsException<ArgumentException>(() => config.GenerateRandomId(null!));
+        Assert.ThrowsException<ArgumentException>(() => config.GenerateRandomId(" \t\n"));
     }
 }
