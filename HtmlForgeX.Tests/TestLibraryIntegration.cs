@@ -13,9 +13,7 @@ public class TestLibraryIntegration {
             }
         };
 
-        var storage = typeof(Document).Assembly.GetType("HtmlForgeX.GlobalStorage")!;
-        var prop = storage.GetProperty("LibraryMode", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)!;
-        prop.SetValue(null, LibraryMode.Online);
+        GlobalStorage.LibraryMode = LibraryMode.Online;
         var doc = new Document();
         doc.AddLibrary(customLibrary);
         var html = doc.ToString();

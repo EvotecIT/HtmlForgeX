@@ -86,7 +86,7 @@ public class LibraryDownloader {
     /// <param name="rootPath">The root path.</param>
     /// <param name="url">The URL.</param>
     /// <exception cref="System.ArgumentException">Unsupported file type: {fileName}</exception>
-    private async Task DownloadFileAsync(string rootPath, string url) {
+    internal async Task DownloadFileAsync(string rootPath, string url) {
         var uri = new Uri(url);
         var fileName = Path.GetFileName(uri.AbsolutePath);
         var extension = Path.GetExtension(fileName).ToLowerInvariant();
