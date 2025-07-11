@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+
 using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
@@ -259,9 +260,10 @@ public class Head : Element {
     }
 
     public Head AddDefaultStyles() {
-        Styles.Add(@"
+        Styles.Add(
+            """
             body {
-                font-family: 'Roboto Condensed', sans-serif;
+                font-family: "Roboto Condensed", sans-serif;
                 font-size: 8pt;
                 margin: 0px;
             }
@@ -273,7 +275,7 @@ public class Head : Element {
             .main-section {
                 margin-top: 0px;
             }
-        ");
+            """);
         return this;
     }
 
