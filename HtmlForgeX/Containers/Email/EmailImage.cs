@@ -812,6 +812,10 @@ public class EmailImage : Element {
     /// </summary>
     /// <returns>HTML string representing the email image.</returns>
     public override string ToString() {
+        if (EmbedAsBase64 && string.IsNullOrWhiteSpace(MimeType)) {
+            throw new InvalidOperationException("EmbedAsBase64 is enabled but MimeType is not specified.");
+        }
+
         var html = StringBuilderCache.Acquire();
 
         // Build image attributes for light mode image
