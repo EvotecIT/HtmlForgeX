@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Reflection;
 
 using HtmlForgeX.Logging;
 
@@ -11,9 +10,7 @@ namespace HtmlForgeX.Tests;
 [TestClass]
 public class TestDocumentSaveErrors {
     private static InternalLogger GetLogger() {
-        var field = typeof(Document).GetField("_logger", BindingFlags.NonPublic | BindingFlags.Static);
-        Assert.IsNotNull(field);
-        return (InternalLogger)field!.GetValue(null)!;
+        return Document._logger;
     }
 
 
@@ -70,6 +67,4 @@ public class TestDocumentSaveErrors {
         Assert.IsNotNull(received);
         StringAssert.Contains(received!, dirPath);
     }
-
-
 }

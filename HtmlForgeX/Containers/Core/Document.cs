@@ -10,7 +10,7 @@ namespace HtmlForgeX;
 /// Represents an HTML document.
 /// </summary>
 public class Document : Element {
-    private static readonly InternalLogger _logger = new();
+    internal static readonly InternalLogger _logger = new();
 
     /// <summary>
     /// Configuration and state for this document instance.

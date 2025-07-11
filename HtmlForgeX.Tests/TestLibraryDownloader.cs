@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
@@ -45,8 +44,7 @@ public class TestLibraryDownloader {
         string url = $"{prefix}file{extension}";
         string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
         var downloader = new LibraryDownloader();
-        var method = typeof(LibraryDownloader).GetMethod("DownloadFileAsync", BindingFlags.Instance | BindingFlags.NonPublic);
-        await (Task)method!.Invoke(downloader, new object[] { tempDir, url })!;
+        await downloader.DownloadFileAsync(tempDir, url);
         string expected = Path.Combine(tempDir, folder, $"file{extension}");
         Assert.IsTrue(File.Exists(expected));
         Directory.Delete(tempDir, true);
