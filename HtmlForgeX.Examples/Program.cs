@@ -49,6 +49,9 @@ internal class Program {
         Console.WriteLine("📧 Running Email Examples with Document-Style Configuration:");
         Console.WriteLine();
 
+        // Text wrapping demo
+        ExampleTextWrappingDemo.Create(openInBrowser);
+
         // Direct email pattern
         ExampleDirectEmailPattern.Create(openInBrowser);
 

@@ -130,11 +130,11 @@ public class EmailRow : Element {
             var isLastChild = i == Children.Count - 1;
 
             if (child is EmailColumn column) {
-                // Build cell style with overflow protection
+                // Build cell style with configurable wrapping behavior
+                var wrapCss = column.WrapMode.ToCssProperties();
                 var cellStyles = new List<string> {
                     "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif",
-                    "word-wrap: break-word",
-                    "overflow-wrap: break-word"
+                    wrapCss
                 };
 
                 if (!string.IsNullOrEmpty(column.Width)) {

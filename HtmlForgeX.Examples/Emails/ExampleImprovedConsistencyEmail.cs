@@ -241,19 +241,23 @@ public static class ExampleImprovedConsistencyEmail {
 
                     col.EmailText("• EnableImageEmbedding()")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithColor("#374151");
+                        .WithColor("#374151")
+                        .WithNaturalWrapping();
 
                     col.EmailText("• DisableImageEmbedding()")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithColor("#374151");
+                        .WithColor("#374151")
+                        .WithNaturalWrapping();
 
                     col.EmailText("• ConfigureImageOptimization()")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithColor("#374151");
+                        .WithColor("#374151")
+                        .WithNaturalWrapping();
 
                     col.EmailText("• SetMaxEmbedFileSize()")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithColor("#374151");
+                        .WithColor("#374151")
+                        .WithNaturalWrapping();
                 });
 
                 row.EmailColumn(col => {
@@ -266,11 +270,13 @@ public static class ExampleImprovedConsistencyEmail {
 
                     col.EmailText("• SetSmartImageDetection()")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithColor("#374151");
+                        .WithColor("#374151")
+                        .WithNaturalWrapping();
 
                     col.EmailText("• SetEmbeddingWarnings()")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithColor("#374151");
+                        .WithColor("#374151")
+                        .WithNaturalWrapping();
 
                     col.EmailText("• Auto file vs URL detection")
                         .WithFontSize(EmailFontSize.Small)
@@ -291,11 +297,13 @@ public static class ExampleImprovedConsistencyEmail {
 
                     col.EmailText("• ConfigureLayout()")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithColor("#374151");
+                        .WithColor("#374151")
+                        .WithNaturalWrapping();
 
                     col.EmailText("• SetDarkModeSupport()")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithColor("#374151");
+                        .WithColor("#374151")
+                        .WithNaturalWrapping();
 
                     col.EmailText("• Container padding")
                         .WithFontSize(EmailFontSize.Small)
@@ -344,7 +352,8 @@ public static class ExampleImprovedConsistencyEmail {
                 content.EmailText("document.Head.AddTitle(\"Title\").AddMeta(\"description\", \"desc\")")
                     .WithFontSize(EmailFontSize.Regular)
                     .WithColor("#6B7280")
-                    .WithFontFamily("monospace");
+                    .WithFontFamily("monospace")
+                    .WithNaturalWrapping();
 
                 content.EmailText("Email Pattern:")
                     .WithFontSize(EmailFontSize.Medium)
@@ -354,7 +363,8 @@ public static class ExampleImprovedConsistencyEmail {
                 content.EmailText("email.EnableImageEmbedding().ConfigureLayout().SetDarkModeSupport()")
                     .WithFontSize(EmailFontSize.Regular)
                     .WithColor("#6B7280")
-                    .WithFontFamily("monospace");
+                    .WithFontFamily("monospace")
+                    .WithNaturalWrapping();
             });
 
             // Summary

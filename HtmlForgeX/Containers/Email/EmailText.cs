@@ -77,6 +77,11 @@ public class EmailText : Element {
     public bool LineBreak { get; set; } = false;
 
     /// <summary>
+    /// Gets or sets the text wrapping mode for controlling how text breaks and wraps.
+    /// </summary>
+    public EmailTextWrapMode WrapMode { get; set; } = EmailTextWrapMode.Default;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="EmailText"/> class.
     /// </summary>
     public EmailText() {
@@ -285,6 +290,56 @@ public class EmailText : Element {
     }
 
     /// <summary>
+    /// Sets the text wrapping mode for controlling how text breaks and wraps.
+    /// </summary>
+    /// <param name="wrapMode">The text wrapping mode.</param>
+    /// <returns>The EmailText object, allowing for method chaining.</returns>
+    public EmailText WithWrapMode(EmailTextWrapMode wrapMode) {
+        WrapMode = wrapMode;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets natural text wrapping - only breaks at word boundaries.
+    /// Perfect for method names like "ConfigureImageOptimization" that should stay intact.
+    /// </summary>
+    /// <returns>The EmailText object, allowing for method chaining.</returns>
+    public EmailText WithNaturalWrapping() {
+        WrapMode = EmailTextWrapMode.Natural;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets smart text wrapping - tries to keep camelCase and method names intact.
+    /// Best for technical documentation and API references.
+    /// </summary>
+    /// <returns>The EmailText object, allowing for method chaining.</returns>
+    public EmailText WithSmartWrapping() {
+        WrapMode = EmailTextWrapMode.Smart;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets aggressive text wrapping - breaks anywhere to fit narrow spaces.
+    /// Useful for very narrow columns or mobile layouts.
+    /// </summary>
+    /// <returns>The EmailText object, allowing for method chaining.</returns>
+    public EmailText WithAggressiveWrapping() {
+        WrapMode = EmailTextWrapMode.Aggressive;
+        return this;
+    }
+
+    /// <summary>
+    /// Preserves exact text formatting - maintains whitespace and prevents wrapping.
+    /// Perfect for code blocks and preformatted text.
+    /// </summary>
+    /// <returns>The EmailText object, allowing for method chaining.</returns>
+    public EmailText WithPreservedFormatting() {
+        WrapMode = EmailTextWrapMode.Preserve;
+        return this;
+    }
+
+    /// <summary>
     /// Converts the EmailText to its HTML representation.
     /// </summary>
     /// <returns>HTML string representing the email text.</returns>
@@ -313,6 +368,10 @@ public class EmailText : Element {
         style.Add($"margin: {Margin}");
         style.Add($"padding: {Padding}");
 
+        // Add configurable wrapping behavior
+        var wrapCssProperties = WrapMode.ToCssProperties();
+        style.Add(wrapCssProperties);
+
         var styleAttr = $"style=\"{string.Join("; ", style)}\"";
 
         // Check if we're being rendered inside an EmailColumn (part of a row)
@@ -327,19 +386,24 @@ public class EmailText : Element {
                 effectiveAlignment = ParentColumn.TextAlign;
             }
 
-            // Build style with overflow protection
+            // Build style with configurable wrapping behavior
+            var wrapCss = WrapMode.ToCssProperties();
             var columnStyle = $@"font-family: {FontFamily}; font-size: {FontSize}; line-height: {LineHeight};
                 color: {actualColor}; text-align: {effectiveAlignment}; font-weight: {FontWeight};
                 text-decoration: {TextDecoration}; margin: {Margin}; padding: {Padding};
-                word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;";
+                {wrapCss}; max-width: 100%;";
 
+            // First HTML encode the content, then process for soft line breaks
             var content = Helpers.HtmlEncode(Content);
+            content = content.ProcessTextForWrapping(WrapMode);
             var lineBreak = LineBreak ? "<br>" : "";
 
             html.AppendLine($@"<div class=""email-text{themeClass}"" style=""{columnStyle}"">{content}{lineBreak}</div>");
         } else {
             // When standalone, use table structure for email compatibility
+            // First HTML encode the content, then process for soft line breaks
             var content = Helpers.HtmlEncode(Content);
+            content = content.ProcessTextForWrapping(WrapMode);
             var lineBreak = LineBreak ? "<br>" : "";
 
             html.AppendLine($@"<tr>

@@ -33,6 +33,11 @@ public class EmailColumn : Element {
     public string InlineStyle { get; set; } = "";
 
     /// <summary>
+    /// Gets or sets the text wrapping mode for controlling how text breaks and wraps in this column.
+    /// </summary>
+    public EmailTextWrapMode WrapMode { get; set; } = EmailTextWrapMode.Default;
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="EmailColumn"/> class.
     /// </summary>
     public EmailColumn() { }
@@ -95,6 +100,36 @@ public class EmailColumn : Element {
     /// <returns>The EmailColumn object, allowing for method chaining.</returns>
     public EmailColumn SetAlignment(string alignment) {
         TextAlign = alignment;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the text wrapping mode for controlling how text breaks and wraps in this column.
+    /// </summary>
+    /// <param name="wrapMode">The text wrapping mode.</param>
+    /// <returns>The EmailColumn object, allowing for method chaining.</returns>
+    public EmailColumn SetWrapMode(EmailTextWrapMode wrapMode) {
+        WrapMode = wrapMode;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets natural text wrapping for this column - only breaks at word boundaries.
+    /// Perfect for columns containing method names like "ConfigureImageOptimization".
+    /// </summary>
+    /// <returns>The EmailColumn object, allowing for method chaining.</returns>
+    public EmailColumn WithNaturalWrapping() {
+        WrapMode = EmailTextWrapMode.Natural;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets smart text wrapping for this column - tries to keep camelCase and method names intact.
+    /// Best for technical documentation and API reference columns.
+    /// </summary>
+    /// <returns>The EmailColumn object, allowing for method chaining.</returns>
+    public EmailColumn WithSmartWrapping() {
+        WrapMode = EmailTextWrapMode.Smart;
         return this;
     }
 
@@ -199,11 +234,11 @@ public class EmailColumn : Element {
     /// </summary>
     /// <returns>HTML string representing the email column.</returns>
     public override string ToString() {
-        // Build cell style with overflow protection
+        // Build cell style with configurable wrapping behavior
+        var wrapCss = WrapMode.ToCssProperties();
         var cellStyles = new List<string> {
             "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif",
-            "word-wrap: break-word",
-            "overflow-wrap: break-word"
+            wrapCss
         };
 
         if (!string.IsNullOrEmpty(Width)) {
