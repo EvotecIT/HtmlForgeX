@@ -62,10 +62,8 @@ public class TestDocumentConfiguration {
 
     [TestMethod]
     public void DocumentConfiguration_GenerateRandomId() {
-        var config = new DocumentConfiguration();
-        
-        var id1 = config.GenerateRandomId("test");
-        var id2 = config.GenerateRandomId("test");
+        var id1 = GlobalStorage.GenerateRandomId("test");
+        var id2 = GlobalStorage.GenerateRandomId("test");
         
         Assert.IsNotNull(id1);
         Assert.IsNotNull(id2);
@@ -76,9 +74,7 @@ public class TestDocumentConfiguration {
 
     [TestMethod]
     public void DocumentConfiguration_GenerateRandomIdWithCustomLength() {
-        var config = new DocumentConfiguration();
-
-        var id = config.GenerateRandomId("test", 12);
+        var id = GlobalStorage.GenerateRandomId("test", 12);
 
         Assert.IsNotNull(id);
         Assert.IsTrue(id.StartsWith("test"));
@@ -87,9 +83,7 @@ public class TestDocumentConfiguration {
 
     [TestMethod]
     public void DocumentConfiguration_GenerateRandomId_InvalidInput() {
-        var config = new DocumentConfiguration();
-
-        Assert.ThrowsException<ArgumentException>(() => config.GenerateRandomId(null!));
-        Assert.ThrowsException<ArgumentException>(() => config.GenerateRandomId(" \t\n"));
+        Assert.ThrowsException<ArgumentException>(() => GlobalStorage.GenerateRandomId(null!));
+        Assert.ThrowsException<ArgumentException>(() => GlobalStorage.GenerateRandomId(" \t\n"));
     }
 }

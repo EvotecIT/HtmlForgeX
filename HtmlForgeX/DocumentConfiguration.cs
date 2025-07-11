@@ -17,7 +17,7 @@ public class DocumentConfiguration {
     /// <summary>
     /// Gets or sets the theme mode for this document.
     /// </summary>
-    public ThemeMode ThemeMode { get; set; } = ThemeMode.Light;
+    public ThemeMode ThemeMode { get; set; } = ThemeMode.System;
 
     /// <summary>
     /// Gets or sets the file path for this document.

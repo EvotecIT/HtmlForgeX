@@ -172,6 +172,20 @@ public abstract class Element {
         return qrCode;
     }
 
+    public MermaidDiagram DiagramMermaid(Action<MermaidDiagram> config) {
+        var diagram = new MermaidDiagram();
+        config(diagram);
+        this.Add(diagram);
+        return diagram;
+    }
+
+    public MermaidDiagram DiagramMermaid(string code) {
+        var diagram = new MermaidDiagram();
+        diagram.Code(code);
+        this.Add(diagram);
+        return diagram;
+    }
+
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);

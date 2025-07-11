@@ -66,7 +66,7 @@ public class TestParallelDocuments {
         
         var tasks = Enumerable.Range(0, documentCount).Select(async i => {
             var doc = new Document();
-            var randomId = doc.Configuration.GenerateRandomId($"test{i}");
+            var randomId = GlobalStorage.GenerateRandomId($"test{i}");
             
             // Configure each document differently
             doc.LibraryMode = (LibraryMode)(i % 3);
