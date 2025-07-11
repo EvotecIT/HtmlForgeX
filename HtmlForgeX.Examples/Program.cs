@@ -22,6 +22,27 @@ internal class Program {
         // Configuration for opening files in browser (set to true to open automatically)
         bool openInBrowser = true;
 
+        // Handle command line arguments for specific examples
+        if (args.Length > 0 && args[0] == "--example") {
+            if (args.Length > 1) {
+                var exampleName = args[1];
+                switch (exampleName) {
+                    case "LayoutConfigurationDemo":
+                        ExampleLayoutConfigurationDemo.Create(openInBrowser);
+                        return;
+                    case "ImprovedConsistencyEmail":
+                        ExampleImprovedConsistencyEmail.Create(openInBrowser);
+                        return;
+                    case "TextWrappingDemo":
+                        ExampleTextWrappingDemo.Create(openInBrowser);
+                        return;
+                    default:
+                        Console.WriteLine($"Unknown example: {exampleName}");
+                        return;
+                }
+            }
+        }
+
         // Support examples (uncomment to run)
         // Support.DownloadLibraries();
         // Support.GenerateTableIcons();
@@ -104,6 +125,9 @@ internal class Program {
 
         // Improved consistency demonstration - ACTIVE by default to show new features!
         ExampleImprovedConsistencyEmail.Create(openInBrowser);
+
+        // Layout configuration demonstration - NEW enum-based configuration system!
+        ExampleLayoutConfigurationDemo.Create(openInBrowser);
 
         // Tabler examples
         // ExampleTablerIcon.Create(openInBrowser);
