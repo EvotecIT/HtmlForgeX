@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 
 namespace HtmlForgeX;
@@ -54,6 +55,10 @@ public class DocumentConfiguration {
     /// <param name="length">Length of the random part.</param>
     /// <returns>Generated identifier.</returns>
     public string GenerateRandomId(string preText, int length = DefaultRandomIdLength) {
+        if (string.IsNullOrWhiteSpace(preText)) {
+            throw new ArgumentException("Value cannot be null or whitespace.", nameof(preText));
+        }
+
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         lock (_randomGenerator) {
             var randomId = new string(Enumerable.Repeat(chars, length)

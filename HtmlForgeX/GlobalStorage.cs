@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 
 namespace HtmlForgeX;
@@ -29,6 +30,10 @@ internal static class GlobalStorage {
     /// <param name="preText">Prefix for the identifier.</param>
     /// <returns>Generated identifier.</returns>
     internal static string GenerateRandomId(string preText, int length = DefaultRandomIdLength) {
+        if (string.IsNullOrWhiteSpace(preText)) {
+            throw new ArgumentException("Value cannot be null or whitespace.", nameof(preText));
+        }
+
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         lock (RandomGenerator) {
             var randomId = new string(Enumerable.Repeat(chars, length)
