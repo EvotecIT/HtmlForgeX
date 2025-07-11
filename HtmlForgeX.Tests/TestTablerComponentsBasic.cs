@@ -82,8 +82,16 @@ public class TestTablerComponentsBasic {
     public void TablerBadgeSpan_BasicCreation() {
         var badge = new TablerBadgeSpan("Test", TablerColor.Primary);
         var html = badge.ToString();
-        
+
         Assert.IsTrue(html.Contains("Test"));
         Assert.IsTrue(html.Contains("class=\"badge bg-primary\""));
+    }
+
+    [TestMethod]
+    public void TablerBadgeSpan_NullColor() {
+        var badge = new TablerBadgeSpan("txt", null);
+        var html = badge.ToString();
+
+        Assert.IsTrue(html.Contains("class=\"badge\""));
     }
 }
