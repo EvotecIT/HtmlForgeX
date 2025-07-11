@@ -9,6 +9,11 @@ public abstract class Element {
     private Email? _email;
 
     /// <summary>
+    /// Gets or sets the parent EmailColumn reference. Used internally for column-aware rendering.
+    /// </summary>
+    protected internal EmailColumn? ParentColumn { get; set; }
+
+    /// <summary>
     /// Gets or sets the parent document reference. Used internally for library registration.
     /// </summary>
     protected internal Document? Document {

@@ -98,14 +98,18 @@ public class EmailColumn : Element {
         return this;
     }
 
-    /// <summary>
+            /// <summary>
     /// Adds an element to the column.
     /// </summary>
     /// <param name="element">The element to add.</param>
     /// <returns>The EmailColumn object, allowing for method chaining.</returns>
-    public EmailColumn Add(Element element) {
-        element.Email = this.Email;
-        Children.Add(element);
+    public override Element Add(Element element) {
+        // Set a parent reference so child elements know they're in a column
+        element.ParentColumn = this;
+
+        // Call the base implementation to handle the rest
+        base.Add(element);
+
         return this;
     }
 
@@ -195,25 +199,31 @@ public class EmailColumn : Element {
     /// </summary>
     /// <returns>HTML string representing the email column.</returns>
     public override string ToString() {
-        // Build the cell style
-        var cellStyle = "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;";
+        // Build cell style with overflow protection
+        var cellStyles = new List<string> {
+            "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif",
+            "word-wrap: break-word",
+            "overflow-wrap: break-word"
+        };
 
         if (!string.IsNullOrEmpty(Width)) {
-            cellStyle += $" width: {Width};";
+            cellStyles.Add($"width: {Width}");
+            cellStyles.Add($"max-width: {Width}");
         }
 
         if (!string.IsNullOrEmpty(TextAlign) && TextAlign != "left") {
-            cellStyle += $" text-align: {TextAlign};";
+            cellStyles.Add($"text-align: {TextAlign}");
         }
 
         if (!string.IsNullOrEmpty(InlineStyle)) {
-            cellStyle += " " + InlineStyle;
+            cellStyles.Add(InlineStyle);
         }
 
-        var alignAttr = !string.IsNullOrEmpty(TextAlign) && TextAlign != "left" ? $" align=\"{TextAlign}\"" : "";
+        var cellStyle = string.Join("; ", cellStyles);
+        var alignAttr = !string.IsNullOrEmpty(TextAlign) && TextAlign != "left" ? $@" align=""{TextAlign}""" : "";
 
         var html = StringBuilderCache.Acquire();
-        html.AppendLine($"<td class=\"{CssClass}\" style=\"{cellStyle}\" valign=\"{VerticalAlign}\"{alignAttr}>");
+        html.AppendLine($@"<td class=""{CssClass}"" style=""{cellStyle}"" valign=""{VerticalAlign}""{alignAttr}>");
 
         // Render child content
         var contentString = GetContentString();

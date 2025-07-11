@@ -865,17 +865,27 @@ public class EmailImage : Element {
 
         if (isInColumn) {
             // When inside a column, render as a div, not a table
-            var divStyle = $"margin: {Margin}; padding: {Padding}; text-align: {Alignment}; font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;";
+            // Inherit alignment from parent column if not explicitly set
+            var effectiveAlignment = Alignment;
+            if (Alignment == "left" && ParentColumn != null && !string.IsNullOrEmpty(ParentColumn.TextAlign)) {
+                effectiveAlignment = ParentColumn.TextAlign;
+            }
+
+            var divStyle = $@"margin: {Margin}; padding: {Padding}; text-align: {effectiveAlignment};
+                font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+                max-width: 100%; overflow: hidden;";
+
             html.AppendLine($@"<div style=""{divStyle}"">");
 
             // Light mode image (always present)
+            var imgTag = $@"<img {string.Join(" ", imgAttributes)}{imgStyleAttr} />";
+
             if (!string.IsNullOrEmpty(LinkUrl)) {
                 var target = OpenInNewWindow ? " target=\"_blank\"" : "";
-                html.AppendLine($@"<a href=""{Helpers.HtmlEncode(LinkUrl)}""{target} style=""color: #066FD1; text-decoration: none;"">");
-                html.AppendLine($@"<img {string.Join(" ", imgAttributes)}{imgStyleAttr} />");
-                html.AppendLine($@"</a>");
+                var linkStyle = "color: #066FD1; text-decoration: none;";
+                html.AppendLine($@"<a href=""{Helpers.HtmlEncode(LinkUrl)}""{target} style=""{linkStyle}"">{imgTag}</a>");
             } else {
-                html.AppendLine($@"<img {string.Join(" ", imgAttributes)}{imgStyleAttr} />");
+                html.AppendLine(imgTag);
             }
 
             // Dark mode image (if provided and swapping is enabled)
@@ -998,9 +1008,6 @@ public class EmailImage : Element {
     /// </summary>
     /// <returns>True if inside an EmailColumn, false otherwise.</returns>
     private bool IsInEmailColumn() {
-        // Check if we're in a context where we should render as inline content
-        // This is a simple heuristic - if we're in an email context, assume we might be in a column
-        // In the future, we could implement a more sophisticated parent tracking system
-        return Email != null;
+        return ParentColumn != null;
     }
 }

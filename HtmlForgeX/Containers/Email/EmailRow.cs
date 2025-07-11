@@ -118,29 +118,42 @@ public class EmailRow : Element {
         var html = StringBuilderCache.Acquire();
 
         // Create table element with row styling
-        var tableStyle = $"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; table-layout: {TableLayout};";
+        var tableStyle = $@"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+            border-collapse: collapse; width: 100%; table-layout: {TableLayout};";
 
-        html.AppendLine($"\t\t\t\t\t\t\t\t<table class=\"{CssClass}\" cellspacing=\"0\" cellpadding=\"0\" style=\"{tableStyle}\">");
-        html.AppendLine("\t\t\t\t\t\t\t\t\t<tr>");
+        html.AppendLine($@"<table class=""{CssClass}"" cellspacing=""0"" cellpadding=""0"" style=""{tableStyle}"">
+<tr>");
 
-                // Render child columns
+        // Render child columns
         for (int i = 0; i < Children.Count; i++) {
             var child = Children[i];
             var isLastChild = i == Children.Count - 1;
 
             if (child is EmailColumn column) {
-                // Render column as table cell
-                var cellStyle = "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;";
+                // Build cell style with overflow protection
+                var cellStyles = new List<string> {
+                    "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif",
+                    "word-wrap: break-word",
+                    "overflow-wrap: break-word"
+                };
+
                 if (!string.IsNullOrEmpty(column.Width)) {
-                    cellStyle += $" width: {column.Width};";
+                    cellStyles.Add($"width: {column.Width}");
+                    cellStyles.Add($"max-width: {column.Width}");
                 }
 
-                // Add spacing between columns if enabled
+                if (!string.IsNullOrEmpty(column.TextAlign) && column.TextAlign != "left") {
+                    cellStyles.Add($"text-align: {column.TextAlign}");
+                }
+
                 if (AutoSpaceColumns && !isLastChild) {
-                    cellStyle += $" padding-right: {ColumnSpacing};";
+                    cellStyles.Add($"padding-right: {ColumnSpacing}");
                 }
 
-                html.AppendLine($"\t\t\t\t\t\t\t\t\t\t<td class=\"{column.CssClass}\" style=\"{cellStyle}\" valign=\"top\">");
+                var cellStyle = string.Join("; ", cellStyles);
+                var alignAttr = !string.IsNullOrEmpty(column.TextAlign) && column.TextAlign != "left" ? $@" align=""{column.TextAlign}""" : "";
+
+                html.AppendLine($@"<td class=""{column.CssClass}"" style=""{cellStyle}"" valign=""{column.VerticalAlign}""{alignAttr}>");
 
                 // Render column content
                 var columnContent = column.GetContentString();
@@ -148,20 +161,23 @@ public class EmailRow : Element {
                     html.AppendLine(columnContent);
                 }
 
-                html.AppendLine("\t\t\t\t\t\t\t\t\t\t</td>");
+                html.AppendLine("</td>");
             } else {
                 // For non-column children, wrap in a single cell spanning all columns
-                html.AppendLine("\t\t\t\t\t\t\t\t\t\t<td style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;\">");
+                var nonColumnStyle = "font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;";
+                html.AppendLine($@"<td style=""{nonColumnStyle}"">");
+
                 var childContent = child.ToString();
                 if (!string.IsNullOrEmpty(childContent)) {
                     html.AppendLine(childContent);
                 }
-                html.AppendLine("\t\t\t\t\t\t\t\t\t\t</td>");
+
+                html.AppendLine("</td>");
             }
         }
 
-        html.AppendLine("\t\t\t\t\t\t\t\t\t</tr>");
-        html.AppendLine("\t\t\t\t\t\t\t\t</table>");
+        html.AppendLine($@"</tr>
+</table>");
 
         return StringBuilderCache.GetStringAndRelease(html);
     }

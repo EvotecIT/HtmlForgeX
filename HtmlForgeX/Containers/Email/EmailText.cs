@@ -320,19 +320,31 @@ public class EmailText : Element {
         var isInColumn = IsInEmailColumn();
 
         if (isInColumn) {
-            // When inside a column, render as a div or span, not a table
-            html.AppendLine($@"<div class=""email-text{themeClass}"" {styleAttr}>
-{Helpers.HtmlEncode(Content)}{(LineBreak ? "<br>" : "")}
-</div>");
+            // When inside a column, render as a div, not a table
+            // Inherit alignment from parent column if not explicitly set
+            var effectiveAlignment = TextAlign;
+            if (TextAlign == "left" && ParentColumn != null && !string.IsNullOrEmpty(ParentColumn.TextAlign)) {
+                effectiveAlignment = ParentColumn.TextAlign;
+            }
+
+            // Build style with overflow protection
+            var columnStyle = $@"font-family: {FontFamily}; font-size: {FontSize}; line-height: {LineHeight};
+                color: {actualColor}; text-align: {effectiveAlignment}; font-weight: {FontWeight};
+                text-decoration: {TextDecoration}; margin: {Margin}; padding: {Padding};
+                word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;";
+
+            var content = Helpers.HtmlEncode(Content);
+            var lineBreak = LineBreak ? "<br>" : "";
+
+            html.AppendLine($@"<div class=""email-text{themeClass}"" style=""{columnStyle}"">{content}{lineBreak}</div>");
         } else {
             // When standalone, use table structure for email compatibility
-            html.AppendLine($@"
-<tr>
-<td class=""email-text{themeClass}"" {styleAttr}>
-{Helpers.HtmlEncode(Content)}{(LineBreak ? "<br>" : "")}
-</td>
-</tr>
-");
+            var content = Helpers.HtmlEncode(Content);
+            var lineBreak = LineBreak ? "<br>" : "";
+
+            html.AppendLine($@"<tr>
+<td class=""email-text{themeClass}"" {styleAttr}>{content}{lineBreak}</td>
+</tr>");
         }
 
         return StringBuilderCache.GetStringAndRelease(html);
@@ -343,9 +355,8 @@ public class EmailText : Element {
     /// </summary>
     /// <returns>True if inside an EmailColumn, false otherwise.</returns>
     private bool IsInEmailColumn() {
-        // Check if we're in a context where we should render as inline content
-        // This is a simple heuristic - if we're in an email context, assume we might be in a column
-        // In the future, we could implement a more sophisticated parent tracking system
-        return Email != null;
+        return ParentColumn != null;
     }
+
+
 }

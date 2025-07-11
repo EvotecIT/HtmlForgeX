@@ -477,7 +477,13 @@ public class EmailLink : Element {
 
         if (isInColumn) {
             // When inside a column, render as a div, not a table
-            var divStyle = $"margin: {Margin}; padding: {Padding}; text-align: {TextAlign}; font-family: {FontFamily};";
+            // Inherit alignment from parent column if not explicitly set
+            var effectiveAlignment = TextAlign;
+            if (TextAlign == "left" && ParentColumn != null && !string.IsNullOrEmpty(ParentColumn.TextAlign)) {
+                effectiveAlignment = ParentColumn.TextAlign;
+            }
+
+            var divStyle = $"margin: {Margin}; padding: {Padding}; text-align: {effectiveAlignment}; font-family: {FontFamily};";
             html.AppendLine($@"<div class=""email-link{cellThemeClass}"" style=""{divStyle}"">");
             html.AppendLine($@"<a {string.Join(" ", linkAttributes)}{linkStyleAttr}>{Helpers.HtmlEncode(Content)}</a>");
             html.AppendLine($@"</div>");
@@ -500,9 +506,6 @@ public class EmailLink : Element {
     /// </summary>
     /// <returns>True if inside an EmailColumn, false otherwise.</returns>
     private bool IsInEmailColumn() {
-        // Check if we're in a context where we should render as inline content
-        // This is a simple heuristic - if we're in an email context, assume we might be in a column
-        // In the future, we could implement a more sophisticated parent tracking system
-        return Email != null;
+        return ParentColumn != null;
     }
 }
