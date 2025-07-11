@@ -147,7 +147,7 @@ public class Email : Element {
     }
 
     /// <summary>
-    /// Configures layout settings for this email.
+    /// Configures layout settings for this email using string values.
     /// </summary>
     /// <param name="containerPadding">Container padding (default: "12px").</param>
     /// <param name="contentPadding">Content padding (default: "8px").</param>
@@ -157,7 +157,63 @@ public class Email : Element {
         Configuration.Layout.ContainerPadding = containerPadding;
         Configuration.Layout.ContentPadding = contentPadding;
         Configuration.Layout.MaxContentWidth = maxWidth;
+
+        // IMPORTANT: Also update the Email configuration to ensure consistency
+        // Convert maxWidth to pixels for EmailBody.MaxWidth (which expects int)
+        if (maxWidth.EndsWith("px")) {
+            if (int.TryParse(maxWidth.Replace("px", ""), out int widthPx)) {
+                Configuration.Email.MaxWidth = widthPx;
+            }
+        } else if (maxWidth.EndsWith("%")) {
+            // For percentage widths, use a reasonable default
+            Configuration.Email.MaxWidth = 600;
+        } else {
+            // Try to parse as number (assume pixels)
+            if (int.TryParse(maxWidth, out int widthNum)) {
+                Configuration.Email.MaxWidth = widthNum;
+            }
+        }
+
+        // Apply layout changes to EmailLayout static properties for backward compatibility
+        EmailLayout.ContainerPadding = containerPadding;
+        EmailLayout.ContentPadding = contentPadding;
+
         return this;
+    }
+
+    /// <summary>
+    /// Configures layout settings for this email using predefined enum values.
+    /// Provides easy-to-use presets while maintaining full control.
+    /// </summary>
+    /// <param name="layoutSize">Predefined layout size (default: Standard).</param>
+    /// <param name="containerPadding">Container padding size (default: Medium).</param>
+    /// <param name="contentPadding">Content padding size (default: Small).</param>
+    /// <returns>The Email object, allowing for method chaining.</returns>
+    public Email ConfigureLayout(EmailLayoutSize layoutSize = EmailLayoutSize.Standard,
+                                EmailPaddingSize containerPadding = EmailPaddingSize.Medium,
+                                EmailPaddingSize contentPadding = EmailPaddingSize.Small) {
+        var maxWidth = layoutSize.ToCssValue();
+        var containerPaddingValue = containerPadding.ToCssValue();
+        var contentPaddingValue = contentPadding.ToCssValue();
+
+        return ConfigureLayout(containerPaddingValue, contentPaddingValue, maxWidth);
+    }
+
+    /// <summary>
+    /// Configures layout settings with custom width but predefined padding.
+    /// Perfect for when you know the exact width you want but prefer enum padding.
+    /// </summary>
+    /// <param name="customMaxWidth">Custom maximum width (e.g., "750px", "90%").</param>
+    /// <param name="containerPadding">Container padding size (default: Medium).</param>
+    /// <param name="contentPadding">Content padding size (default: Small).</param>
+    /// <returns>The Email object, allowing for method chaining.</returns>
+    public Email ConfigureLayout(string customMaxWidth,
+                                EmailPaddingSize containerPadding = EmailPaddingSize.Medium,
+                                EmailPaddingSize contentPadding = EmailPaddingSize.Small) {
+        var containerPaddingValue = containerPadding.ToCssValue();
+        var contentPaddingValue = contentPadding.ToCssValue();
+
+        return ConfigureLayout(containerPaddingValue, contentPaddingValue, customMaxWidth);
     }
 
     /// <summary>

@@ -62,8 +62,9 @@ public class EmailBox : Element {
 
     /// <summary>
     /// Gets or sets the padding inside the box.
+    /// If not explicitly set, uses the email's configured container padding.
     /// </summary>
-    public string Padding { get; set; } = EmailLayout.GetContainerPadding();
+    public string Padding { get; set; } = "";
 
     /// <summary>
     /// Gets or sets additional inline styles.
@@ -88,8 +89,9 @@ public class EmailBox : Element {
 
     /// <summary>
     /// Gets or sets the maximum width of the box.
+    /// If not explicitly set, uses the email's configured layout width.
     /// </summary>
-    public string MaxWidth { get; set; } = "600px";
+    public string MaxWidth { get; set; } = "";
 
     /// <summary>
     /// Gets or sets whether to use structural mode (no visual styling).
@@ -279,10 +281,19 @@ public class EmailBox : Element {
             _ => ""
         };
 
+        // Get effective values from email configuration if not explicitly set
+        var effectiveMaxWidth = string.IsNullOrEmpty(MaxWidth)
+            ? Email?.Configuration?.Layout?.MaxContentWidth ?? "600px"
+            : MaxWidth;
+
+        var effectivePadding = string.IsNullOrEmpty(Padding)
+            ? Email?.Configuration?.Layout?.ContainerPadding ?? EmailLayout.GetContainerPadding()
+            : Padding;
+
         if (StructuralMode) {
             // Structural mode - simple table without visual styling
             html.AppendLine($@"
-<table class=""structural-table{themeClass}"" cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; max-width: {MaxWidth}; margin: {OuterMargin};"">
+<table class=""structural-table{themeClass}"" cellpadding=""0"" cellspacing=""0"" style=""font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; max-width: {effectiveMaxWidth}; margin: {OuterMargin};"">
 ");
 
             // Add content rows
@@ -292,8 +303,8 @@ public class EmailBox : Element {
 
                 // Apply consistent spacing or use default padding
                 var cellPadding = UseConsistentSpacing && !isLastChild
-                    ? $"{Padding} {Padding} {ChildSpacing} {Padding}"  // top right bottom left
-                    : Padding;
+                    ? $"{effectivePadding} {effectivePadding} {ChildSpacing} {effectivePadding}"  // top right bottom left
+                    : effectivePadding;
 
                 html.AppendLine($@"
 <tr>
@@ -334,7 +345,7 @@ public class EmailBox : Element {
             }
 
             // Create the main content div with outer margin and max width
-            var outerStyle = $"margin: {OuterMargin}; max-width: {MaxWidth};";
+            var outerStyle = $"margin: {OuterMargin}; max-width: {effectiveMaxWidth};";
             html.AppendLine($@"
 <div class=""main-content{themeClass}"" style=""{outerStyle}"">
 <div class=""{CssClass}{themeClass}"" style=""{boxStyle}"">
@@ -351,8 +362,8 @@ public class EmailBox : Element {
 
                 // Apply consistent spacing or use default padding
                 var cellPadding = UseConsistentSpacing && !isLastChild
-                    ? $"{Padding} {Padding} {ChildSpacing} {Padding}"  // top right bottom left
-                    : Padding;
+                    ? $"{effectivePadding} {effectivePadding} {ChildSpacing} {effectivePadding}"  // top right bottom left
+                    : effectivePadding;
 
                 html.AppendLine($@"
 <tr>
