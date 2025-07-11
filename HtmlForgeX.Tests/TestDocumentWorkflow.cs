@@ -142,6 +142,29 @@ public class TestDocumentWorkflow {
     }
 
     [TestMethod]
+    public void Document_DuplicateCustomLibrariesSkipped() {
+        var doc = new Document();
+
+        var customLibrary = new Library {
+            Header = new LibraryLinks {
+                CssLink = ["https://dup.example.com/style.css"],
+                JsLink = ["https://dup.example.com/script.js"]
+            }
+        };
+
+        doc.AddLibrary(customLibrary);
+        doc.AddLibrary(customLibrary);
+
+        var html = doc.ToString();
+
+        var cssCount = html.Split("https://dup.example.com/style.css").Length - 1;
+        var jsCount = html.Split("https://dup.example.com/script.js").Length - 1;
+
+        Assert.AreEqual(1, cssCount, "CSS link should be included only once");
+        Assert.AreEqual(1, jsCount, "JS link should be included only once");
+    }
+
+    [TestMethod]
     public void Document_ErrorHandling() {
         var doc = new Document();
         
