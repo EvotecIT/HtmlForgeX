@@ -219,8 +219,12 @@ public class Document : Element {
                     _logger.WriteError($"CSS file '{css}' not found.");
                     continue;
                 }
-                var cssContent = File.ReadAllText(css);
-                this.Head.AddCssInline(cssContent);
+                try {
+                    var cssContent = File.ReadAllText(css);
+                    this.Head.AddCssInline(cssContent);
+                } catch (Exception ex) {
+                    _logger.WriteError($"Failed to read CSS file '{css}'. {ex.Message}");
+                }
             }
 
             foreach (var js in library.Header.Js) {
@@ -228,8 +232,12 @@ public class Document : Element {
                     _logger.WriteError($"JS file '{js}' not found.");
                     continue;
                 }
-                var jsContent = File.ReadAllText(js);
-                this.Head.AddJsInline(jsContent);
+                try {
+                    var jsContent = File.ReadAllText(js);
+                    this.Head.AddJsInline(jsContent);
+                } catch (Exception ex) {
+                    _logger.WriteError($"Failed to read JS file '{js}'. {ex.Message}");
+                }
             }
         }
     }
