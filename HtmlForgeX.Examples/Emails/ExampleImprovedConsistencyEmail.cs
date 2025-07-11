@@ -18,7 +18,7 @@ public static class ExampleImprovedConsistencyEmail {
             .SetMaxEmbedFileSize(2 * 1024 * 1024) // 2MB limit
             .SetSmartImageDetection(true)
             .SetDarkModeSupport(true)
-            .ConfigureLayout(containerPadding: "12px", contentPadding: "8px", maxWidth: "600px");
+            .ConfigureLayout(containerPadding: "12px", contentPadding: "8px", maxWidth: "1000px");
 
         // Or use pre-configured approach
         // var email = new Email(DocumentConfiguration.ForEmail());
