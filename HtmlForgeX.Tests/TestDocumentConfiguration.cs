@@ -1,3 +1,4 @@
+using HtmlForgeX;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Concurrent;
 
@@ -66,12 +67,13 @@ public class TestDocumentConfiguration {
         
         var id1 = config.GenerateRandomId("test");
         var id2 = config.GenerateRandomId("test");
-        
+
         Assert.IsNotNull(id1);
         Assert.IsNotNull(id2);
         Assert.AreNotEqual(id1, id2);
         Assert.IsTrue(id1.StartsWith("test"));
         Assert.IsTrue(id2.StartsWith("test"));
+        Assert.AreEqual("test-".Length + IdGenerator.DefaultRandomIdLength, id1.Length);
     }
 
     [TestMethod]
@@ -82,7 +84,7 @@ public class TestDocumentConfiguration {
 
         Assert.IsNotNull(id);
         Assert.IsTrue(id.StartsWith("test"));
-        Assert.IsTrue(id.Length > 4);
+        Assert.AreEqual("test-".Length + 12, id.Length);
     }
 
     [TestMethod]

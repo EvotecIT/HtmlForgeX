@@ -1,3 +1,5 @@
+using HtmlForgeX;
+
 
 namespace HtmlForgeX.Tests;
 
@@ -11,7 +13,7 @@ public class TestIdGeneration {
         for (var i = 0; i < iterations; i++) {
             var table = new DataTablesTable();
             Assert.IsTrue(ids.Add(table.Id), $"Duplicate id generated: {table.Id}");
-            Assert.AreEqual("table-".Length + 8, table.Id.Length);
+            Assert.AreEqual("table-".Length + IdGenerator.DefaultRandomIdLength, table.Id.Length);
         }
     }
 
