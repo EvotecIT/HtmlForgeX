@@ -34,21 +34,21 @@ public static class ExampleNewsletterEmail {
                 content.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .EmbedSmart("../../../../Assets/Images/WhiteBackground/Logo-evotec.png") // Smart embedding
                     .WithWidth("200px")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithLink("https://evotec.xyz")
                     .WithAlternativeText("Evotec Logo")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Large, EmailSpacing.None);
 
                 content.EmailText("📰 January 2025 Newsletter")
                     .WithFontSize(EmailFontSize.Heading1)
-                    .WithFontWeight(EmailFontWeight.Bold)
-                    .WithAlignment("center")
+                    .WithFontWeight(FontWeight.Bold)
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("Your monthly dose of updates, insights, and innovations from Evotec")
                     .WithFontSize(EmailFontSize.Large)
                     .WithColor("#6B7280")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithLineHeight("1.6")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.ExtraLarge, EmailSpacing.None);
             });
@@ -57,13 +57,13 @@ public static class ExampleNewsletterEmail {
             emailBox.EmailContent(content => {
                 content.EmailText("🔥 Featured Article")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
                 content.EmailText("HtmlForgeX: The Future of Email Development")
                     .WithFontSize(EmailFontSize.Large)
-                    .WithFontWeight(EmailFontWeight.SemiBold)
+                    .WithFontWeight(FontWeight.SemiBold)
                     .WithColor("#059669");
 
                 content.EmailText("Discover how HtmlForgeX is revolutionizing email template development with type-safe, user-friendly components that make creating beautiful emails as easy as writing C# code.")
@@ -80,7 +80,7 @@ public static class ExampleNewsletterEmail {
             emailBox.EmailContent(content => {
                 content.EmailText("📈 Latest Updates")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
             });
@@ -94,7 +94,7 @@ public static class ExampleNewsletterEmail {
                     col.SetWidth("50%");
                     col.EmailText("🚀 Product Updates")
                         .WithFontSize(EmailFontSize.Large)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#059669");
                     col.EmailText("• New email components released")
                         .WithFontSize(EmailFontSize.Regular)
@@ -115,7 +115,7 @@ public static class ExampleNewsletterEmail {
                     col.SetWidth("50%");
                     col.EmailText("👥 Community News")
                         .WithFontSize(EmailFontSize.Large)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#0EA5E9");
                     col.EmailText("• 1,000+ developers using HtmlForgeX")
                         .WithFontSize(EmailFontSize.Regular)
@@ -136,7 +136,7 @@ public static class ExampleNewsletterEmail {
             emailBox.EmailContent(content => {
                 content.EmailText("🎯 Image Embedding Demo")
                     .WithFontSize(EmailFontSize.Large)
-                    .WithFontWeight(EmailFontWeight.SemiBold)
+                    .WithFontWeight(FontWeight.SemiBold)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -155,22 +155,22 @@ public static class ExampleNewsletterEmail {
                     col.SetWidth("33.33%");
                     col.EmailText("📁 File Embedding")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#059669")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
 
                     // Demonstrate file embedding with optimization
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .EmbedFromFile("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithOptimization(100, 100, 80) // Optimize to max 100x100, 80% quality
                         .WithWidth("80px")
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithAlternativeText("Local file embedded");
 
                     col.EmailText(".EmbedFromFile()")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 // Column 2 - URL embedding (commented out for demo purposes)
@@ -178,26 +178,26 @@ public static class ExampleNewsletterEmail {
                     col.SetWidth("33.33%");
                     col.EmailText("🌐 URL Embedding")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#0EA5E9")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
 
                     // Note: URL embedding is commented out for this demo to avoid external dependencies
                     // In real usage, you would use:
                     // col.EmailImage("https://example.com/image.png")
                     //     .EmbedFromUrl("https://example.com/image.png")
                     //     .WithWidth("80px")
-                    //     .WithAlignment("center");
+                    //     .WithAlignment(FontAlignment.Center);
 
                     col.EmailText("(Demo: URL embedding)")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailText(".EmbedFromUrl()")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 // Column 3 - Smart embedding
@@ -205,20 +205,20 @@ public static class ExampleNewsletterEmail {
                     col.SetWidth("33.33%");
                     col.EmailText("🧠 Smart Embedding")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#7C3AED")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .EmbedSmart("../../../../Assets/Images/WhiteBackground/Logo-evotec.png") // Auto-detects file vs URL
                         .WithWidth("80px")
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithAlternativeText("Smart embedded");
 
                     col.EmailText(".EmbedSmart()")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
             });
 
@@ -226,7 +226,7 @@ public static class ExampleNewsletterEmail {
             emailBox.EmailContent(content => {
                 content.EmailText("📊 This Month's Highlights")
                     .WithFontSize(EmailFontSize.Large)
-                    .WithFontWeight(EmailFontWeight.SemiBold)
+                    .WithFontWeight(FontWeight.SemiBold)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
             });
@@ -245,15 +245,15 @@ public static class ExampleNewsletterEmail {
             emailBox.EmailContent(content => {
                 content.EmailText("🎯 Ready to Get Started?")
                     .WithFontSize(EmailFontSize.Heading3)
-                    .WithFontWeight(EmailFontWeight.Bold)
-                    .WithAlignment("center")
+                    .WithFontWeight(FontWeight.Bold)
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
                 content.EmailText("Join thousands of developers already using HtmlForgeX for their email templates.")
                     .WithFontSize(EmailFontSize.Medium)
                     .WithColor("#6B7280")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
             });
 
@@ -265,18 +265,18 @@ public static class ExampleNewsletterEmail {
                 content.EmailText("Follow us for more updates:")
                     .WithFontSize(EmailFontSize.Regular)
                     .WithColor("#6B7280")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Small, EmailSpacing.None);
 
                 content.EmailText("🐦 Twitter: @evotecpl | 🌐 Website: evotec.xyz | 📧 Email: contact@evotec.xyz")
                     .WithFontSize(EmailFontSize.Regular)
                     .WithColor("#0EA5E9")
-                    .WithAlignment("center");
+                    .WithAlignment(FontAlignment.Center);
 
                 content.EmailText("© 2025 Evotec - Monthly Newsletter | Unsubscribe | Privacy Policy")
                     .WithFontSize(EmailFontSize.Small)
                     .WithColor("#9CA3AF")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.None, EmailSpacing.None);
             });
         });

@@ -22,7 +22,7 @@ public static class ExamplePasswordResetEmail
         email.Header.SetPadding("20px");
         email.Header.EmailRow(row => {
             row.EmailColumn(col => {
-                col.SetAlignment("center");
+                col.SetAlignment(FontAlignment.Center);
                 col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .WithWidth("150px")
                     .WithHeight("42px")
@@ -66,7 +66,7 @@ public static class ExamplePasswordResetEmail
         var warningHeading = new Span()
             .AppendContent("⚠️ Important Security Information")
             .WithFontSize("18px")
-            .WithFontWeight(FontWeight.Bolder)
+            .WithFontWeight(FontWeight.ExtraBold)
             .WithColor(new RGBColor("#D97706"));
 
         securityBox.Add(new BasicElement().Add(warningHeading));

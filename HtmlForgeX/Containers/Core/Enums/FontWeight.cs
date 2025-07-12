@@ -1,38 +1,44 @@
 namespace HtmlForgeX;
 
 public enum FontWeight {
-    Normal = 1,
+    /// <summary>Thin text (100)</summary>
+    Thin,
+    /// <summary>Extra light text (200)</summary>
+    ExtraLight,
+    /// <summary>Light text (300)</summary>
+    Light,
+    /// <summary>Normal text (400)</summary>
+    Normal,
+    /// <summary>Medium text (500)</summary>
+    Medium,
+    /// <summary>Semi-bold text (600)</summary>
+    SemiBold,
+    /// <summary>Bold text (700)</summary>
     Bold,
-    Bolder,
-    Lighter,
-    W100 = 100,
-    W200 = 200,
-    W300 = 300,
-    W400 = 400,
-    W500 = 500,
-    W600 = 600,
-    W700 = 700,
-    W800 = 800,
-    W900 = 900
+    /// <summary>Extra bold text (800)</summary>
+    ExtraBold,
+    /// <summary>Black text (900)</summary>
+    Black
 }
 
 public static class FontWeightExtensions {
     public static string EnumToString(this FontWeight value) {
         return value switch {
-            FontWeight.Normal => "normal",
-            FontWeight.Bold => "bold",
-            FontWeight.Bolder => "bolder",
-            FontWeight.Lighter => "lighter",
-            FontWeight.W100 => "100",
-            FontWeight.W200 => "200",
-            FontWeight.W300 => "300",
-            FontWeight.W400 => "400",
-            FontWeight.W500 => "500",
-            FontWeight.W600 => "600",
-            FontWeight.W700 => "700",
-            FontWeight.W800 => "800",
-            FontWeight.W900 => "900",
-            _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
+            FontWeight.Thin => "100",
+            FontWeight.ExtraLight => "200",
+            FontWeight.Light => "300",
+            FontWeight.Normal => "400",
+            FontWeight.Medium => "500",
+            FontWeight.SemiBold => "600",
+            FontWeight.Bold => "700",
+            FontWeight.ExtraBold => "800",
+            FontWeight.Black => "900",
+            _ => "400"
         };
     }
+
+    /// <summary>
+    /// Converts the font weight to its CSS representation.
+    /// </summary>
+    public static string ToCssValue(this FontWeight value) => value.EnumToString();
 }

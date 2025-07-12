@@ -41,7 +41,7 @@ public static class ExampleDirectEmailPattern
                    .WithFontSize("17px")
                    .WithTextDecoration("underline")
                    .WithColor("#e9967a") // DarkSalmon
-                   .WithAlignment("center")
+                   .WithAlignment(FontAlignment.Center)
                    .AddText("Demonstration");
         });
 
@@ -79,7 +79,7 @@ public static class ExampleDirectEmailPattern
             list.WithFontSize("15px");
             list.AddItem("First item").WithColor("#ff0000"); // Red
             list.AddItem("2nd item").WithColor("#008000");   // Green
-            
+
             // Nested list
             list.Add(nestedList => {
                 nestedList.AddItem("3rd item").WithFontStyle("italic");

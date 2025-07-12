@@ -306,8 +306,14 @@ public class EmailImage : Element {
     /// </summary>
     /// <param name="alignment">The image alignment.</param>
     /// <returns>The EmailImage object, allowing for method chaining.</returns>
-    public EmailImage WithAlignment(string alignment) {
-        Alignment = alignment;
+    /// <summary>
+    /// Sets the image alignment.
+    /// </summary>
+    /// <param name="alignment">The alignment option.</param>
+    /// <returns>The <see cref="EmailImage"/> instance.</returns>
+    public EmailImage WithAlignment(FontAlignment alignment) {
+        alignment.ValidateEmailAlignment();
+        Alignment = alignment.ToCssValue();
         return this;
     }
 

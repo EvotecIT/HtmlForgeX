@@ -181,8 +181,14 @@ public class EmailText : Element {
     /// </summary>
     /// <param name="alignment">The text alignment.</param>
     /// <returns>The EmailText object, allowing for method chaining.</returns>
-    public EmailText WithAlignment(string alignment) {
-        TextAlign = alignment;
+    /// <summary>
+    /// Sets the text alignment.
+    /// </summary>
+    /// <param name="alignment">The alignment option.</param>
+    /// <returns>The <see cref="EmailText"/> instance.</returns>
+    public EmailText WithAlignment(FontAlignment alignment) {
+        alignment.ValidateEmailAlignment();
+        TextAlign = alignment.ToCssValue();
         return this;
     }
 
@@ -201,7 +207,7 @@ public class EmailText : Element {
     /// </summary>
     /// <param name="fontWeight">The predefined font weight.</param>
     /// <returns>The EmailText object, allowing for method chaining.</returns>
-    public EmailText WithFontWeight(EmailFontWeight fontWeight) {
+    public EmailText WithFontWeight(FontWeight fontWeight) {
         FontWeight = fontWeight.ToCssValue();
         return this;
     }
@@ -213,6 +219,16 @@ public class EmailText : Element {
     /// <returns>The EmailText object, allowing for method chaining.</returns>
     public EmailText WithTextDecoration(string textDecoration) {
         TextDecoration = textDecoration;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the text decoration using predefined options.
+    /// </summary>
+    /// <param name="decoration">The decoration option.</param>
+    /// <returns>The <see cref="EmailText"/> instance.</returns>
+    public EmailText WithTextDecoration(TextDecoration decoration) {
+        TextDecoration = decoration.EnumToString();
         return this;
     }
 

@@ -24,14 +24,14 @@ public static class ExampleBase64EmbeddingEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🖼️ Base64 Image Embedding Demo")
                     .WithFontSize(EmailFontSize.Heading1)
-                    .WithFontWeight(EmailFontWeight.Bold)
-                    .WithAlignment("center")
+                    .WithFontWeight(FontWeight.Bold)
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("Comprehensive demonstration of offline image embedding capabilities")
                     .WithFontSize(EmailFontSize.Large)
                     .WithColor("#6B7280")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithLineHeight("1.6")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.ExtraLarge, EmailSpacing.None);
             });
@@ -40,7 +40,7 @@ public static class ExampleBase64EmbeddingEmail
             emailBox.EmailContent(content => {
                 content.EmailText("📁 Method 1: File Embedding (.EmbedFromFile)")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#059669")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -59,20 +59,20 @@ public static class ExampleBase64EmbeddingEmail
                     col.SetWidth("33.33%");
                     col.EmailText("Basic Embedding")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .EmbedFromFile("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithWidth("120px")
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithAlternativeText("Basic embedded logo");
 
                     col.EmailText($@"emailImage
 .EmbedFromFile(""path/to/image.png"")")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 // File embedding with optimization
@@ -80,14 +80,14 @@ public static class ExampleBase64EmbeddingEmail
                     col.SetWidth("33.33%");
                     col.EmailText("With Optimization")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .EmbedFromFile("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithOptimization(100, 100, 75) // Max 100x100, 75% quality
                         .WithWidth("120px")
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithAlternativeText("Optimized embedded logo");
 
                     col.EmailText($@"emailImage
@@ -95,7 +95,7 @@ public static class ExampleBase64EmbeddingEmail
 .WithOptimization(100, 100, 75)")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 // File embedding with styling
@@ -103,13 +103,13 @@ public static class ExampleBase64EmbeddingEmail
                     col.SetWidth("33.33%");
                     col.EmailText("With Styling")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .EmbedFromFile("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithWidth("120px")
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithBorder("2px solid #059669")
                         .WithBorderRadius("8px")
                         .WithAlternativeText("Styled embedded logo");
@@ -120,7 +120,7 @@ public static class ExampleBase64EmbeddingEmail
 .WithBorderRadius(""8px"")")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
             });
 
@@ -128,7 +128,7 @@ public static class ExampleBase64EmbeddingEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🌐 Method 2: URL Embedding (.EmbedFromUrl)")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#0EA5E9")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -146,38 +146,38 @@ public static class ExampleBase64EmbeddingEmail
                     col.SetWidth("50%");
                     col.EmailText("Basic URL Embedding")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailText("(Demo - URL embedding disabled)")
                         .WithFontSize(EmailFontSize.Regular)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailText($@"emailImage
 .EmbedFromUrl(""https://example.com/image.png"")")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 row.EmailColumn(col => {
                     col.SetWidth("50%");
                     col.EmailText("With Timeout Control")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailText("(Demo - URL embedding disabled)")
                         .WithFontSize(EmailFontSize.Regular)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailText($@"emailImage
 .EmbedFromUrl(""https://example.com/image.png"", 60)")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
             });
 
@@ -185,7 +185,7 @@ public static class ExampleBase64EmbeddingEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🧠 Method 3: Smart Embedding (.EmbedSmart)")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#7C3AED")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -203,39 +203,39 @@ public static class ExampleBase64EmbeddingEmail
                     col.SetWidth("50%");
                     col.EmailText("Auto-detect File Path")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .EmbedSmart("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithWidth("100px")
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithAlternativeText("Smart embedded file");
 
                     col.EmailText($@"emailImage
 .EmbedSmart(""path/to/image.png"")")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 row.EmailColumn(col => {
                     col.SetWidth("50%");
                     col.EmailText("Auto-detect URL")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailText("(Demo - would auto-detect URL)")
                         .WithFontSize(EmailFontSize.Regular)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailText($@"emailImage
 .EmbedSmart(""https://example.com/image.png"")")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
             });
 
@@ -243,7 +243,7 @@ public static class ExampleBase64EmbeddingEmail
             emailBox.EmailContent(content => {
                 content.EmailText("📋 Method 4: Direct Base64 (.EmbedFromBase64)")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#DC2626")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -258,19 +258,19 @@ public static class ExampleBase64EmbeddingEmail
                     col.SetWidth("100%");
                     col.EmailText("Direct Base64 Embedding")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailText("(Demo - would use pre-encoded base64 data)")
                         .WithFontSize(EmailFontSize.Regular)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailText($@"emailImage
 .EmbedFromBase64(base64String, ""image/png"")")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
             });
 
@@ -278,7 +278,7 @@ public static class ExampleBase64EmbeddingEmail
             emailBox.EmailContent(content => {
                 content.EmailText("✅ Benefits of Base64 Embedding")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
             });
@@ -290,7 +290,7 @@ public static class ExampleBase64EmbeddingEmail
                     col.SetWidth("50%");
                     col.EmailText("🔒 Offline Compatibility")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#059669");
                     col.EmailText("• Works without internet connection")
                         .WithFontSize(EmailFontSize.Regular)
@@ -307,7 +307,7 @@ public static class ExampleBase64EmbeddingEmail
                     col.SetWidth("50%");
                     col.EmailText("📧 Email Client Support")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#0EA5E9");
                     col.EmailText("• Bypasses image blocking")
                         .WithFontSize(EmailFontSize.Regular)
@@ -325,7 +325,7 @@ public static class ExampleBase64EmbeddingEmail
             emailBox.EmailContent(content => {
                 content.EmailText("⚠️ Important Considerations")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#DC2626")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -347,7 +347,7 @@ public static class ExampleBase64EmbeddingEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🎯 Best Practices")
                     .WithFontSize(EmailFontSize.Heading3)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 

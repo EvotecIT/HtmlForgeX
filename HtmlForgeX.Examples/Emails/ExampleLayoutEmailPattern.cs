@@ -105,7 +105,7 @@ public static class ExampleLayoutEmailPattern
             // Sixth row - centered content
             emailBox.EmailRow(row => {
                 row.EmailColumn(col => {
-                    col.SetAlignment("center");
+                    col.SetAlignment(FontAlignment.Center);
                     col.EmailText("This is some text that's preformatted with Emoji 🤷‍♂️")
                        .WithFontFamily("Calibri")
                        .WithFontSize("15px")

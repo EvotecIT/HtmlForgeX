@@ -253,8 +253,14 @@ public class EmailLink : Element {
     /// </summary>
     /// <param name="alignment">The text alignment.</param>
     /// <returns>The EmailLink object, allowing for method chaining.</returns>
-    public EmailLink WithAlignment(string alignment) {
-        TextAlign = alignment;
+    /// <summary>
+    /// Sets the text alignment.
+    /// </summary>
+    /// <param name="alignment">The alignment option.</param>
+    /// <returns>The <see cref="EmailLink"/> instance.</returns>
+    public EmailLink WithAlignment(FontAlignment alignment) {
+        alignment.ValidateEmailAlignment();
+        TextAlign = alignment.ToCssValue();
         return this;
     }
 
@@ -273,7 +279,7 @@ public class EmailLink : Element {
     /// </summary>
     /// <param name="fontWeight">The predefined font weight.</param>
     /// <returns>The EmailLink object, allowing for method chaining.</returns>
-    public EmailLink WithFontWeight(EmailFontWeight fontWeight) {
+    public EmailLink WithFontWeight(FontWeight fontWeight) {
         FontWeight = fontWeight.ToCssValue();
         return this;
     }
@@ -285,6 +291,16 @@ public class EmailLink : Element {
     /// <returns>The EmailLink object, allowing for method chaining.</returns>
     public EmailLink WithTextDecoration(string textDecoration) {
         TextDecoration = textDecoration;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the text decoration using predefined options.
+    /// </summary>
+    /// <param name="decoration">The decoration option.</param>
+    /// <returns>The <see cref="EmailLink"/> instance.</returns>
+    public EmailLink WithTextDecoration(TextDecoration decoration) {
+        TextDecoration = decoration.EnumToString();
         return this;
     }
 

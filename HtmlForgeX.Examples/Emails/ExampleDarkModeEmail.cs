@@ -43,7 +43,7 @@ public static class ExampleDarkModeEmail
 
                     // View online link column
                     row.EmailColumn(col => {
-                        col.SetWidth("50%").SetAlignment("right");
+                        col.SetWidth("50%").SetAlignment(FontAlignment.Right);
                         col.EmailLink("View online", "https://evotec.xyz/newsletter")
                             .WithColor("#8491a1")
                             .WithFontSize("14px");
@@ -57,13 +57,13 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🌙 Dark Mode Demo")
                     .WithFontSize(EmailFontSize.Heading1)
-                    .WithFontWeight(EmailFontWeight.Bold)
-                    .WithAlignment("center")
+                    .WithFontWeight(FontWeight.Bold)
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#ffffff");
 
                 content.EmailText("This email demonstrates comprehensive dark mode support across all components!")
                     .WithFontSize(EmailFontSize.Large)
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithLineHeight("1.6");
             });
 
@@ -71,7 +71,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🎨 Theme Features")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#ffffff");
 
                 content.EmailText("✅ Dark backgrounds automatically applied")
@@ -94,7 +94,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🔘 Dark Mode Buttons")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#ffffff");
             });
 
@@ -130,7 +130,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🔗 Dark Mode Links")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#ffffff")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -158,7 +158,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🖼️ Dark Mode Images")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#ffffff")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -172,8 +172,8 @@ public static class ExampleDarkModeEmail
                     col.SetWidth("50%");
                     col.EmailText("Logo with Dark Mode Support")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     // This demonstrates automatic image switching
                     col.EmailImage()
@@ -184,21 +184,21 @@ public static class ExampleDarkModeEmail
                         )
                         .WithWidth("120px")
                         .WithHeight("34px")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 row.EmailColumn(col => {
                     col.SetWidth("50%");
                     col.EmailText("Regular Image (No Dark Mode)")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     // This image doesn't change in dark mode
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithWidth("120px")
                         .WithHeight("34px")
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithoutDarkModeSwapping(); // Explicitly disable dark mode switching
                 });
             });
@@ -207,7 +207,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("📊 Enhanced Dark Mode Tables")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#ffffff")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -233,7 +233,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("💡 Usage Examples")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#ffffff")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -247,7 +247,7 @@ public static class ExampleDarkModeEmail
                     col.SetWidth("100%");
                     col.EmailText("🖼️ Image with Dark Mode Variant:")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#60a5fa");
 
                     col.EmailText("emailImage.WithImagePair(\"logo-light.png\", \"logo-dark.png\", \"Logo\")")
@@ -258,7 +258,7 @@ public static class ExampleDarkModeEmail
 
                     col.EmailText("🔗 Theme-Aware Links:")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#60a5fa");
 
                     col.EmailText("emailLink.WithColor(\"#custom-color\") // Overrides theme defaults")
@@ -269,7 +269,7 @@ public static class ExampleDarkModeEmail
 
                     col.EmailText("📊 Enhanced Tables:")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#60a5fa");
 
                     col.EmailText("emailTable.SetCssClass(\"email-table\") // Enables dark mode styling")
@@ -283,7 +283,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("⚙️ Theme Mode Options")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#ffffff")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
             });
@@ -295,42 +295,42 @@ public static class ExampleDarkModeEmail
                     col.SetWidth("33.33%");
                     col.EmailText("Light Mode")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center")
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("#ffffff");
 
                     col.EmailText(".SetThemeMode(EmailThemeMode.Light)")
                         .WithFontSize(EmailFontSize.Small)
                         .WithFontFamily("monospace")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 row.EmailColumn(col => {
                     col.SetWidth("33.33%");
                     col.EmailText("Dark Mode")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center")
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("#ffffff");
 
                     col.EmailText(".SetThemeMode(EmailThemeMode.Dark)")
                         .WithFontSize(EmailFontSize.Small)
                         .WithFontFamily("monospace")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 row.EmailColumn(col => {
                     col.SetWidth("33.33%");
                     col.EmailText("Auto Mode")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center")
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("#ffffff");
 
                     col.EmailText(".SetThemeMode(EmailThemeMode.Auto)")
                         .WithFontSize(EmailFontSize.Small)
                         .WithFontFamily("monospace")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
             });
 
@@ -338,7 +338,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("💻 Implementation")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#ffffff")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -363,9 +363,9 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🌟 Dark Mode Features")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#ffffff")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
                 content.EmailText("✅ Automatic color scheme detection")
@@ -388,7 +388,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("Ready to implement dark mode in your emails?")
                     .WithFontSize(EmailFontSize.Large)
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#ffffff")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
             });
@@ -402,7 +402,7 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("Dark mode that actually works in email clients! 🎉")
                     .WithFontSize(EmailFontSize.Regular)
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.None, EmailSpacing.None);
             });
         });
@@ -439,13 +439,13 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("☀️ Light Mode Demo")
                     .WithFontSize(EmailFontSize.Heading1)
-                    .WithFontWeight(EmailFontWeight.Bold)
-                    .WithAlignment("center")
+                    .WithFontWeight(FontWeight.Bold)
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("This is the same email in light mode for comparison!")
                     .WithFontSize(EmailFontSize.Large)
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithLineHeight("1.6");
             });
 
@@ -476,17 +476,17 @@ public static class ExampleDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🔄 Auto Mode Demo")
                     .WithFontSize(EmailFontSize.Heading1)
-                    .WithFontWeight(EmailFontWeight.Bold)
-                    .WithAlignment("center");
+                    .WithFontWeight(FontWeight.Bold)
+                    .WithAlignment(FontAlignment.Center);
 
                 content.EmailText("This email automatically adapts to your system's dark/light mode preference!")
                     .WithFontSize(EmailFontSize.Large)
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithLineHeight("1.6");
 
                 content.EmailText("Try switching your system's theme to see the email change!")
                     .WithFontSize(EmailFontSize.Regular)
-                    .WithAlignment("center");
+                    .WithAlignment(FontAlignment.Center);
             });
 
                      var ctaButton = new EmailButton("Auto Mode Magic", "https://evotec.xyz/htmlforgex/")
@@ -547,7 +547,7 @@ public static class ExampleEnhancedDarkModeEmail
 
                     // View online link column
                     row.EmailColumn(col => {
-                        col.SetWidth("50%").SetAlignment("right");
+                        col.SetWidth("50%").SetAlignment(FontAlignment.Right);
                         col.EmailLink("View online", "https://evotec.xyz/newsletter")
                             .WithColor("#8491a1")
                             .WithFontSize("14px");
@@ -561,13 +561,13 @@ public static class ExampleEnhancedDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🚀 Enhanced Dark Mode Features")
                     .WithFontSize(EmailFontSize.Heading1)
-                    .WithFontWeight(EmailFontWeight.Bold)
-                    .WithAlignment("center")
+                    .WithFontWeight(FontWeight.Bold)
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#ffffff");
 
                 content.EmailText("Comprehensive dark mode support with image variants, enhanced links, and improved tables")
                     .WithFontSize(EmailFontSize.Regular)
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("rgba(255,255,255,0.7)");
             });
 
@@ -575,7 +575,7 @@ public static class ExampleEnhancedDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("✨ What's New")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
             });
 
@@ -585,14 +585,14 @@ public static class ExampleEnhancedDarkModeEmail
                     col.SetWidth("33.33%");
                     col.EmailText("🖼️")
                         .WithFontSize(EmailFontSize.ExtraLarge)
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                     col.EmailText("Image Variants")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
                     col.EmailText("Automatic switching between light and dark images")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("rgba(255,255,255,0.7)");
                 });
 
@@ -600,14 +600,14 @@ public static class ExampleEnhancedDarkModeEmail
                     col.SetWidth("33.33%");
                     col.EmailText("🔗")
                         .WithFontSize(EmailFontSize.ExtraLarge)
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                     col.EmailText("Enhanced Links")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
                     col.EmailText("Better contrast and hover states")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("rgba(255,255,255,0.7)");
                 });
 
@@ -615,14 +615,14 @@ public static class ExampleEnhancedDarkModeEmail
                     col.SetWidth("33.33%");
                     col.EmailText("📊")
                         .WithFontSize(EmailFontSize.ExtraLarge)
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                     col.EmailText("Better Tables")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
                     col.EmailText("Improved borders and cell styling")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("rgba(255,255,255,0.7)");
                 });
             });
@@ -631,7 +631,7 @@ public static class ExampleEnhancedDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🖼️ Smart Image Switching")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
                 content.EmailText("Images can now automatically switch between light and dark variants based on the theme:")
@@ -644,8 +644,8 @@ public static class ExampleEnhancedDarkModeEmail
                     col.SetWidth("50%");
                     col.EmailText("✅ With Dark Mode Variant")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center")
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("#10b981");
 
                                                               col.EmailImage()
@@ -656,12 +656,12 @@ public static class ExampleEnhancedDarkModeEmail
                          )
                          .WithWidth("120px")
                          .WithHeight("34px")
-                         .WithAlignment("center")
+                         .WithAlignment(FontAlignment.Center)
                          .WithLink("https://evotec.xyz");
 
                     col.EmailText("Automatically switches to dark variant")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("rgba(255,255,255,0.6)");
                 });
 
@@ -669,19 +669,19 @@ public static class ExampleEnhancedDarkModeEmail
                     col.SetWidth("50%");
                     col.EmailText("⚠️ Without Dark Mode")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center")
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("#f59e0b");
 
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithWidth("120px")
                         .WithHeight("34px")
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithoutDarkModeSwapping();
 
                     col.EmailText("May be hard to see on dark background")
                         .WithFontSize(EmailFontSize.Small)
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithColor("rgba(255,255,255,0.6)");
                 });
             });
@@ -690,7 +690,7 @@ public static class ExampleEnhancedDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("🔗 Enhanced Link Styling")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
                 content.EmailText("Links now have better contrast and hover states in dark mode:")
@@ -703,33 +703,33 @@ public static class ExampleEnhancedDarkModeEmail
                     col.SetWidth("33.33%");
                     col.EmailText("Standard Link")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailLink("Visit Website", "https://evotec.xyz")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 row.EmailColumn(col => {
                     col.SetWidth("33.33%");
                     col.EmailText("Email Link")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailLink("Contact Support", "mailto:support@evotec.xyz")
-                        .WithAlignment("center");
+                        .WithAlignment(FontAlignment.Center);
                 });
 
                 row.EmailColumn(col => {
                     col.SetWidth("33.33%");
                     col.EmailText("External Link")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
-                        .WithAlignment("center");
+                        .WithFontWeight(FontWeight.SemiBold)
+                        .WithAlignment(FontAlignment.Center);
 
                     col.EmailLink("GitHub Repo", "https://github.com/EvotecIT/HtmlForgeX")
-                        .WithAlignment("center")
+                        .WithAlignment(FontAlignment.Center)
                         .WithNewWindow(true);
                 });
             });
@@ -738,7 +738,7 @@ public static class ExampleEnhancedDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("📊 Enhanced Table Styling")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
                 content.EmailText("Tables now have comprehensive dark mode styling with proper contrast and borders:")
@@ -763,7 +763,7 @@ public static class ExampleEnhancedDarkModeEmail
             emailBox.EmailContent(content => {
                 content.EmailText("💡 How to Use")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
                 content.EmailText("Here's how to implement these features in your emails:")
@@ -778,7 +778,7 @@ public static class ExampleEnhancedDarkModeEmail
                     // Image pair example
                     col.EmailText("🖼️ Image with Dark Mode Variant")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#60a5fa");
 
                     col.EmailText("var image = new EmailImage()\n    .WithImagePair(\"logo-light.png\", \"logo-dark.png\", \"Logo\")\n    .WithWidth(\"120px\")\n    .WithAlignment(\"center\");")
@@ -790,7 +790,7 @@ public static class ExampleEnhancedDarkModeEmail
                     // Link example
                     col.EmailText("🔗 Theme-Aware Links")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#60a5fa");
 
                     col.EmailText("var link = new EmailLink(\"Visit Website\", \"https://example.com\")\n    .WithAlignment(\"center\");\n// Colors automatically adjust for dark mode")
@@ -802,7 +802,7 @@ public static class ExampleEnhancedDarkModeEmail
                     // Table example
                     col.EmailText("📊 Enhanced Tables")
                         .WithFontSize(EmailFontSize.Medium)
-                        .WithFontWeight(EmailFontWeight.SemiBold)
+                        .WithFontWeight(FontWeight.SemiBold)
                         .WithColor("#60a5fa");
 
                     col.EmailText("emailBox.EmailTable(data)\n    .SetStyle(EmailTableStyle.Striped)\n    .SetCssClass(\"email-table\"); // Enables dark mode styling")
@@ -820,7 +820,7 @@ public static class ExampleEnhancedDarkModeEmail
                 // Social links
                 footerBox.EmailRow(row => {
                     row.EmailColumn(col => {
-                        col.SetWidth("100%").SetAlignment("center");
+                        col.SetWidth("100%").SetAlignment(FontAlignment.Center);
                         col.EmailLink("Twitter", "https://twitter.com/evotecit")
                             .WithFontSize("14px")
                             .WithColor("#8491a1");
@@ -837,27 +837,27 @@ public static class ExampleEnhancedDarkModeEmail
                 footerBox.EmailText("If you have any questions, feel free to message us at ")
                     .WithFontSize("14px")
                     .WithColor("#8491a1")
-                    .WithAlignment("center");
+                    .WithAlignment(FontAlignment.Center);
                 footerBox.EmailLink("contact@evotec.xyz", "mailto:contact@evotec.xyz")
                     .WithFontSize("14px")
                     .WithColor("#8491a1")
-                    .WithAlignment("center");
+                    .WithAlignment(FontAlignment.Center);
 
                 // Unsubscribe
                 footerBox.EmailText("You are receiving this email because you have bought or downloaded one of our products. ")
                     .WithFontSize("14px")
                     .WithColor("#8491a1")
-                    .WithAlignment("center");
+                    .WithAlignment(FontAlignment.Center);
                 footerBox.EmailLink("Unsubscribe", "https://evotec.xyz/unsubscribe")
                     .WithFontSize("14px")
                     .WithColor("#8491a1")
-                    .WithAlignment("center");
+                    .WithAlignment(FontAlignment.Center);
 
                 // Copyright
                 footerBox.EmailText($"Copyright © {DateTime.Now.Year} Evotec. All rights reserved.")
                     .WithFontSize("14px")
                     .WithColor("#8491a1")
-                    .WithAlignment("center");
+                    .WithAlignment(FontAlignment.Center);
             });
 
             emailBox.Add(footer);

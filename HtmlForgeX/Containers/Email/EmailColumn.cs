@@ -96,10 +96,16 @@ public class EmailColumn : Element {
     /// <summary>
     /// Sets the text alignment of the column content.
     /// </summary>
-    /// <param name="alignment">The text alignment (left, center, right, justify).</param>
+    /// <param name="alignment">The text alignment (left, center, right).</param>
     /// <returns>The EmailColumn object, allowing for method chaining.</returns>
-    public EmailColumn SetAlignment(string alignment) {
-        TextAlign = alignment;
+    /// <summary>
+    /// Sets the text alignment of the column content.
+    /// </summary>
+    /// <param name="alignment">The alignment option.</param>
+    /// <returns>The <see cref="EmailColumn"/> instance.</returns>
+    public EmailColumn SetAlignment(FontAlignment alignment) {
+        alignment.ValidateEmailAlignment();
+        TextAlign = alignment.ToCssValue();
         return this;
     }
 

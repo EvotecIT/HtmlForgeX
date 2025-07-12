@@ -2,7 +2,7 @@ namespace HtmlForgeX.Examples.Tables;
 
 internal class BasicHtmlTable01 {
 
-    public static void Demo1(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Basic Demo Document with Tables 1");
 
         // Create a new document with the title and author

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HtmlForgeX.Examples.Experimenting;
 internal class Experiments01 {
-    public static void Demo() {
+    public static void Create() {
         //var value = new HtmlSpan().AddContent("This is table with DataTables").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed).ToString();
 
         //Console.WriteLine(value);

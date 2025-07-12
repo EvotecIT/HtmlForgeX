@@ -127,6 +127,16 @@ public class EmailHeader : Element {
     }
 
     /// <summary>
+    /// Sets the header background color.
+    /// </summary>
+    /// <param name="color">The background color.</param>
+    /// <returns>The EmailHeader object, allowing for method chaining.</returns>
+    public EmailHeader SetBackgroundColor(RGBColor color) {
+        BackgroundColor = color.ToString();
+        return this;
+    }
+
+    /// <summary>
     /// Converts the EmailHeader to its HTML representation.
     /// </summary>
     /// <returns>HTML string representing the email header.</returns>

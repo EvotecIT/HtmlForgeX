@@ -23,13 +23,13 @@ public static class ExampleAccountVerificationEmail {
                 content.EmailText("✉️ Verify Your Email Address")
                     .WithFontSize("32px")
                     .WithFontWeight("bold")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("Thanks for signing up! We're excited to have you on board.")
                     .WithFontSize("18px")
                     .WithColor("#374151")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithLineHeight("1.6");
 
                 content.EmailText("To complete your registration, please verify your email address by clicking the button below:")
@@ -95,7 +95,7 @@ public static class ExampleAccountVerificationEmail {
                 content.EmailText("© 2025 HtmlForgeX - Simple email verification system")
                     .WithFontSize("12px")
                     .WithColor("#9CA3AF")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithMargin("48px 0 0 0");
             });
         });

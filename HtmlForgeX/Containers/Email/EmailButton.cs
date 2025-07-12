@@ -127,6 +127,21 @@ public class EmailButton : Element {
     }
 
     /// <summary>
+    /// Sets custom colors for the button.
+    /// </summary>
+    /// <param name="backgroundColor">The background color.</param>
+    /// <param name="textColor">The text color.</param>
+    /// <param name="borderColor">The border color (optional).</param>
+    /// <returns>The EmailButton object, allowing for method chaining.</returns>
+    public EmailButton SetColors(RGBColor backgroundColor, RGBColor textColor, RGBColor? borderColor = null) {
+        BackgroundColor = backgroundColor.ToString();
+        TextColor = textColor.ToString();
+        BorderColor = borderColor?.ToString() ?? backgroundColor.ToString();
+        Style = EmailButtonStyle.Custom;
+        return this;
+    }
+
+    /// <summary>
     /// Makes the button full width.
     /// </summary>
     /// <returns>The EmailButton object, allowing for method chaining.</returns>

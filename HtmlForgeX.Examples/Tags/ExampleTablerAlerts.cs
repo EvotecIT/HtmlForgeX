@@ -1,7 +1,7 @@
 namespace HtmlForgeX.Examples.Tags;
 
 internal static class ExampleTablerAlerts {
-    public static void Demo() {
+    public static void Create() {
         var document = new Document { Head = { Title = "Alerts Demo" } };
         document.Body.Page(page => {
             page.Row(row => {
