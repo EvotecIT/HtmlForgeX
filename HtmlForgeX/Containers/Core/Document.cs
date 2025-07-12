@@ -71,6 +71,7 @@ public class Document : Element {
     /// <param name="scriptPath">Optional scripts path.</param>
     /// <param name="stylePath">Optional styles path.</param>
     public void Save(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
+        PathUtilities.Validate(path);
         Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath)) {
             Configuration.ScriptPath = scriptPath;
@@ -111,6 +112,7 @@ public class Document : Element {
     /// <param name="scriptPath">Optional scripts path.</param>
     /// <param name="stylePath">Optional styles path.</param>
     public async Task SaveAsync(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
+        PathUtilities.Validate(path);
         Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath)) {
             Configuration.ScriptPath = scriptPath;
@@ -215,28 +217,30 @@ public class Document : Element {
             }
         } else if (Configuration.LibraryMode == LibraryMode.Offline) {
             foreach (var css in library.Header.Css) {
-                if (!File.Exists(css)) {
-                    _logger.WriteError($"CSS file '{css}' not found.");
+                var resolved = System.IO.Path.IsPathRooted(css) ? css : System.IO.Path.Combine(Configuration.Path, css);
+                if (!File.Exists(resolved)) {
+                    _logger.WriteError($"CSS file '{resolved}' not found.");
                     continue;
                 }
                 try {
-                    var cssContent = File.ReadAllText(css, Encoding.UTF8);
+                    var cssContent = File.ReadAllText(resolved, Encoding.UTF8);
                     this.Head.AddCssInline(cssContent);
                 } catch (Exception ex) {
-                    _logger.WriteError($"Failed to read CSS file '{css}'. {ex.Message}");
+                    _logger.WriteError($"Failed to read CSS file '{resolved}'. {ex.Message}");
                 }
             }
 
             foreach (var js in library.Header.Js) {
-                if (!File.Exists(js)) {
-                    _logger.WriteError($"JS file '{js}' not found.");
+                var resolved = System.IO.Path.IsPathRooted(js) ? js : System.IO.Path.Combine(Configuration.Path, js);
+                if (!File.Exists(resolved)) {
+                    _logger.WriteError($"JS file '{resolved}' not found.");
                     continue;
                 }
                 try {
-                    var jsContent = File.ReadAllText(js, Encoding.UTF8);
+                    var jsContent = File.ReadAllText(resolved, Encoding.UTF8);
                     this.Head.AddJsInline(jsContent);
                 } catch (Exception ex) {
-                    _logger.WriteError($"Failed to read JS file '{js}'. {ex.Message}");
+                    _logger.WriteError($"Failed to read JS file '{resolved}'. {ex.Message}");
                 }
             }
         }
