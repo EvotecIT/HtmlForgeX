@@ -29,9 +29,10 @@ public class EmailConfiguration {
     }
 
     /// <summary>
-    /// Collection of libraries registered for this email document.
+    /// Collection of libraries registered for this email document. Works as a
+    /// set to prevent duplicate library registrations.
     /// </summary>
-    public ConcurrentDictionary<EmailLibraries, int> Libraries { get; } = new();
+    public ConcurrentDictionary<EmailLibraries, byte> Libraries { get; } = new();
 
     /// <summary>
     /// Collection of errors that occurred during email generation.

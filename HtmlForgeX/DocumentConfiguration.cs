@@ -56,9 +56,10 @@ public class DocumentConfiguration {
     public bool DarkModeSupport { get; set; } = true;
 
     /// <summary>
-    /// Collection of libraries registered for this document.
+    /// Collection of libraries registered for this document. Acts as a
+    /// thread-safe set to avoid duplicate registrations.
     /// </summary>
-    public ConcurrentDictionary<Libraries, int> Libraries { get; } = new();
+    public ConcurrentDictionary<Libraries, byte> Libraries { get; } = new();
 
     /// <summary>
     /// Collection of errors that occurred during document generation.
