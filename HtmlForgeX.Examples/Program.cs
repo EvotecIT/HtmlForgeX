@@ -32,8 +32,6 @@ internal class Program {
 
         // Tabler examples (console output)
         ExampleTablerIcon.Create();
-        ExampleTablerTag.Create();
-        ExampleTablerAlerts.Create();
         ExampleSvgIcons.Create();
 
         // Experimental examples (console output)
@@ -42,6 +40,10 @@ internal class Program {
         // Manual HTML building examples
         BasicHtmlBuilding.Demo1(openInBrowser);
         BasicHtmlBuilding.Demo2(openInBrowser);
+
+        // Examples per option
+        ExampleTablerTag.Create(openInBrowser);
+        ExampleTablerAlerts.Create(openInBrowser);
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
