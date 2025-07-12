@@ -245,6 +245,7 @@ public class Email : Element {
     /// <param name="path">File path.</param>
     /// <param name="openInBrowser">Whether to open the file after saving.</param>
     public void Save(string path, bool openInBrowser = false) {
+        PathUtilities.Validate(path);
         Configuration.Email.DefaultPadding = path; // Store path in configuration
 
         var countErrors = Configuration.Email.LogEmbeddingWarnings ? 0 : 0; // TODO: Implement error counting
@@ -276,6 +277,7 @@ public class Email : Element {
     /// <param name="path">File path.</param>
     /// <param name="openInBrowser">Whether to open the file after saving.</param>
     public async Task SaveAsync(string path, bool openInBrowser = false) {
+        PathUtilities.Validate(path);
         Configuration.Email.DefaultPadding = path; // Store path in configuration
 
         var countErrors = Configuration.Email.LogEmbeddingWarnings ? 0 : 0; // TODO: Implement error counting

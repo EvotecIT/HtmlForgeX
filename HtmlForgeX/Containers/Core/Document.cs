@@ -71,6 +71,7 @@ public class Document : Element {
     /// <param name="scriptPath">Optional scripts path.</param>
     /// <param name="stylePath">Optional styles path.</param>
     public void Save(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
+        PathUtilities.Validate(path);
         Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath)) {
             Configuration.ScriptPath = scriptPath;
@@ -111,6 +112,7 @@ public class Document : Element {
     /// <param name="scriptPath">Optional scripts path.</param>
     /// <param name="stylePath">Optional styles path.</param>
     public async Task SaveAsync(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "") {
+        PathUtilities.Validate(path);
         Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath)) {
             Configuration.ScriptPath = scriptPath;

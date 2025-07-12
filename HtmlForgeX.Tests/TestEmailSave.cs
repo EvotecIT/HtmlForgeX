@@ -32,4 +32,10 @@ public class TestEmailSave {
         File.Delete(tempPath);
         Assert.AreEqual(email.ToString(), contents);
     }
+
+    [TestMethod]
+    public async Task SaveAsync_InvalidPath_ThrowsArgumentException() {
+        var email = new Email();
+        await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await email.SaveAsync("invalid\0path.html"));
+    }
 }
