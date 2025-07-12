@@ -21,6 +21,7 @@ public enum Libraries {
     TablerThemes,
     FancyTree,
     ApexCharts,
+    ChartJs,
     VisNetwork,
     VisNetworkLoadingBar,
     EasyQRCode,
@@ -105,6 +106,8 @@ public class LibrariesConverter {
                 return new FancyTreeLibrary();
             case Libraries.ApexCharts:
                 return new ApexChartsLibrary();
+            case Libraries.ChartJs:
+                return new Resources.ChartJsLibrary();
             case Libraries.VisNetwork:
                 return new VisNetworkLibrary();
             case Libraries.VisNetworkLoadingBar:

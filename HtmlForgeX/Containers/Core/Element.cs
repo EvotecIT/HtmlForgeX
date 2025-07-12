@@ -160,6 +160,13 @@ public abstract class Element {
         return apexChart;
     }
 
+    public ChartJs ChartJs(Action<ChartJs> config) {
+        var chartJs = new ChartJs();
+        config(chartJs);
+        this.Add(chartJs);
+        return chartJs;
+    }
+
     public VisNetwork DiagramNetwork(Action<VisNetwork> config) {
         var visNetwork = new VisNetwork();
         config(visNetwork);
