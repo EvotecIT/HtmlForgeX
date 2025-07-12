@@ -7,7 +7,6 @@ namespace HtmlForgeX;
 /// Handles library tracking, error collection, and ID generation.
 /// </summary>
 internal class DocumentState {
-    internal const int DefaultRandomIdLength = 8;
 
     /// <summary>
     /// Gets or sets the theme mode for the document.
@@ -46,7 +45,6 @@ internal class DocumentState {
     /// <summary>Location for script resources.</summary>
     public string ScriptPath { get; set; } = "";
 
-    private readonly Random _randomGenerator = new();
 
     /// <summary>
     /// Generates a pseudo random identifier with a prefix.
@@ -54,12 +52,7 @@ internal class DocumentState {
     /// <param name="preText">Prefix for the identifier.</param>
     /// <param name="length">Length of the random part.</param>
     /// <returns>Generated identifier.</returns>
-    public string GenerateRandomId(string preText, int length = DefaultRandomIdLength) {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        lock (_randomGenerator) {
-            var randomId = new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[_randomGenerator.Next(s.Length)]).ToArray());
-            return $"{preText}-{randomId}";
-        }
+    public string GenerateRandomId(string preText, int length = IdGenerator.DefaultRandomIdLength) {
+        return IdGenerator.GenerateRandomId(preText, length);
     }
 }

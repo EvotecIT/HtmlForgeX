@@ -1,5 +1,3 @@
-using System;
-using System;
 using System.Collections.Concurrent;
 
 namespace HtmlForgeX;
@@ -75,11 +73,8 @@ public class DocumentConfiguration {
     /// <param name="preText">The prefix for the ID.</param>
     /// <param name="length">Length of the random part (default: 8).</param>
     /// <returns>Generated identifier.</returns>
-    public string GenerateRandomId(string preText, int length = 8) {
-        if (string.IsNullOrWhiteSpace(preText)) {
-            throw new ArgumentException("PreText cannot be null or empty.", nameof(preText));
-        }
-        return GlobalStorage.GenerateRandomId(preText, length);
+    public string GenerateRandomId(string preText, int length = IdGenerator.DefaultRandomIdLength) {
+        return IdGenerator.GenerateRandomId(preText, length);
     }
 }
 
