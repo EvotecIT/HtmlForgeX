@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using HtmlForgeX;
 
 namespace HtmlForgeX.Tests;
 
@@ -11,7 +13,7 @@ public class TestStringBuilderLeak {
         GC.WaitForPendingFinalizers();
         GC.Collect();
 
-        long before = GC.GetAllocatedBytesForCurrentThread();
+        long before = GetAllocated();
         for (int i = 0; i < 1000; i++) {
             var element = new BasicElement();
             _ = element.ToString();
@@ -19,9 +21,17 @@ public class TestStringBuilderLeak {
         GC.Collect();
         GC.WaitForPendingFinalizers();
         GC.Collect();
-        long after = GC.GetAllocatedBytesForCurrentThread();
+        long after = GetAllocated();
 
         // Ensure allocations stay reasonably low indicating the cached builder was reused
         Assert.IsTrue(after - before < 150_000, $"Too many bytes allocated: {after - before}");
+    }
+
+    private static long GetAllocated() {
+#if NETFRAMEWORK
+        return GC.GetTotalMemory(false);
+#else
+        return GC.GetAllocatedBytesForCurrentThread();
+#endif
     }
 }
