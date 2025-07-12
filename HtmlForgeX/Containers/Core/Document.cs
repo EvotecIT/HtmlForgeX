@@ -217,28 +217,30 @@ public class Document : Element {
             }
         } else if (Configuration.LibraryMode == LibraryMode.Offline) {
             foreach (var css in library.Header.Css) {
-                if (!File.Exists(css)) {
-                    _logger.WriteError($"CSS file '{css}' not found.");
+                var resolved = System.IO.Path.IsPathRooted(css) ? css : System.IO.Path.Combine(Configuration.Path, css);
+                if (!File.Exists(resolved)) {
+                    _logger.WriteError($"CSS file '{resolved}' not found.");
                     continue;
                 }
                 try {
-                    var cssContent = File.ReadAllText(css);
+                    var cssContent = File.ReadAllText(resolved);
                     this.Head.AddCssInline(cssContent);
                 } catch (Exception ex) {
-                    _logger.WriteError($"Failed to read CSS file '{css}'. {ex.Message}");
+                    _logger.WriteError($"Failed to read CSS file '{resolved}'. {ex.Message}");
                 }
             }
 
             foreach (var js in library.Header.Js) {
-                if (!File.Exists(js)) {
-                    _logger.WriteError($"JS file '{js}' not found.");
+                var resolved = System.IO.Path.IsPathRooted(js) ? js : System.IO.Path.Combine(Configuration.Path, js);
+                if (!File.Exists(resolved)) {
+                    _logger.WriteError($"JS file '{resolved}' not found.");
                     continue;
                 }
                 try {
-                    var jsContent = File.ReadAllText(js);
+                    var jsContent = File.ReadAllText(resolved);
                     this.Head.AddJsInline(jsContent);
                 } catch (Exception ex) {
-                    _logger.WriteError($"Failed to read JS file '{js}'. {ex.Message}");
+                    _logger.WriteError($"Failed to read JS file '{resolved}'. {ex.Message}");
                 }
             }
         }
