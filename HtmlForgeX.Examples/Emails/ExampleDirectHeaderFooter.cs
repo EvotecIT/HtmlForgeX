@@ -33,11 +33,11 @@ public static class ExampleDirectHeaderFooter
 
             // View online link column
             row.EmailColumn(col => {
-                col.SetWidth("40%").SetAlignment("right");
+                col.SetWidth("40%").SetAlignment(FontAlignment.Right);
                 col.EmailLink("View in browser", "https://evotec.xyz/newsletter")
                     .WithColor("#8491a1")
                     .WithFontSize("14px")
-                    .WithAlignment("right");
+                    .WithAlignment(FontAlignment.Right);
             });
         });
 
@@ -47,13 +47,13 @@ public static class ExampleDirectHeaderFooter
                 content.EmailText("🎯 Direct Header/Footer Pattern")
                     .WithFontSize("32px")
                     .WithFontWeight("bold")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("Now you can use email.Header.EmailRow() and email.Footer.EmailRow() directly!")
                     .WithFontSize("18px")
                     .WithColor("#6B7280")
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithLineHeight("1.6");
 
                 content.EmailText("✅ No more header.EmailBox() pattern")
@@ -77,7 +77,7 @@ public static class ExampleDirectHeaderFooter
         // ✅ NEW PATTERN: Direct access to Footer - clean and simple!
         email.Footer.EmailRow(row => {
             row.EmailColumn(col => {
-                col.SetAlignment("center");
+                col.SetAlignment(FontAlignment.Center);
                 col.EmailText("Questions? Contact us at ")
                     .WithFontSize("14px")
                     .WithColor("#6B7280");
@@ -90,7 +90,7 @@ public static class ExampleDirectHeaderFooter
 
         email.Footer.EmailRow(row => {
             row.EmailColumn(col => {
-                col.SetAlignment("center");
+                col.SetAlignment(FontAlignment.Center);
                 col.EmailText($"© {DateTime.Now.Year} Evotec. All rights reserved.")
                     .WithFontSize("12px")
                     .WithColor("#9CA3AF");

@@ -41,7 +41,7 @@ public static class ExampleDirectEmailPattern
                    .WithFontSize("17px")
                    .WithTextDecoration("underline")
                    .WithColor("#e9967a") // DarkSalmon
-                   .WithAlignment("center")
+                   .WithAlignment(FontAlignment.Center)
                    .AddText("Demonstration");
         });
 

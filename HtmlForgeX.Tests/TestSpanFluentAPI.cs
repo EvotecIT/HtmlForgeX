@@ -153,7 +153,7 @@ public class TestSpanFluentAPI {
         Assert.IsTrue(html.Contains("#FF0000"), "Should contain red color");
         Assert.IsTrue(html.Contains("#0000FF"), "Should contain blue color");
         Assert.IsTrue(html.Contains("#008000"), "Should contain green color");
-        Assert.IsTrue(html.Contains("font-weight: bold"), "Should contain bold weight");
+        Assert.IsTrue(html.Contains("font-weight: 700"), "Should contain bold weight");
         Assert.IsTrue(html.Contains("font-size: 16px"), "Should contain 16px size");
         Assert.IsTrue(html.Contains("font-size: 24px"), "Should contain 24px size");
     }

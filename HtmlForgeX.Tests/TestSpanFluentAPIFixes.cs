@@ -138,7 +138,7 @@ public class TestSpanFluentAPIFixes {
         Assert.IsTrue(html.Contains("color: #FF0000"));
         Assert.IsTrue(html.Contains("color: #0000FF"));
         Assert.IsTrue(html.Contains("color: #008000"));
-        Assert.IsTrue(html.Contains("font-weight: bold"));
+        Assert.IsTrue(html.Contains("font-weight: 700"));
         Assert.IsTrue(html.Contains("font-size: 20px"));
     }
     
@@ -156,7 +156,7 @@ public class TestSpanFluentAPIFixes {
         Assert.IsTrue(html.Contains("color: #FF0000"));
         Assert.IsTrue(html.Contains("color: #0000FF"));
         Assert.IsTrue(html.Contains("color: #008000"));
-        Assert.IsTrue(html.Contains("font-weight: bold"));
+        Assert.IsTrue(html.Contains("font-weight: 700"));
         Assert.IsTrue(html.Contains("font-size: 20px"));
     }
     

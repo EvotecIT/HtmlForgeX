@@ -262,12 +262,32 @@ public class EmailListItem {
     }
 
     /// <summary>
+    /// Sets the font weight using predefined values.
+    /// </summary>
+    /// <param name="fontWeight">The predefined font weight.</param>
+    /// <returns>The <see cref="EmailListItem"/> instance.</returns>
+    public EmailListItem WithFontWeight(FontWeight fontWeight) {
+        FontWeight = fontWeight.ToCssValue();
+        return this;
+    }
+
+    /// <summary>
     /// Sets the text decoration.
     /// </summary>
     /// <param name="textDecoration">The text decoration.</param>
     /// <returns>The EmailListItem object, allowing for method chaining.</returns>
     public EmailListItem WithTextDecoration(string textDecoration) {
         TextDecoration = textDecoration;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the text decoration using predefined options.
+    /// </summary>
+    /// <param name="decoration">The decoration option.</param>
+    /// <returns>The <see cref="EmailListItem"/> instance.</returns>
+    public EmailListItem WithTextDecoration(TextDecoration decoration) {
+        TextDecoration = decoration.EnumToString();
         return this;
     }
 

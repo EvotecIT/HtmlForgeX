@@ -135,8 +135,14 @@ public class EmailTextBox : Element {
     /// </summary>
     /// <param name="alignment">The text alignment.</param>
     /// <returns>The EmailTextBox object, allowing for method chaining.</returns>
-    public EmailTextBox WithAlignment(string alignment) {
-        TextAlign = alignment;
+    /// <summary>
+    /// Sets the text alignment.
+    /// </summary>
+    /// <param name="alignment">The alignment option.</param>
+    /// <returns>The <see cref="EmailTextBox"/> instance.</returns>
+    public EmailTextBox WithAlignment(FontAlignment alignment) {
+        alignment.ValidateEmailAlignment();
+        TextAlign = alignment.ToCssValue();
         return this;
     }
 
@@ -151,12 +157,32 @@ public class EmailTextBox : Element {
     }
 
     /// <summary>
+    /// Sets the font weight using predefined values.
+    /// </summary>
+    /// <param name="fontWeight">The predefined font weight.</param>
+    /// <returns>The <see cref="EmailTextBox"/> instance.</returns>
+    public EmailTextBox WithFontWeight(FontWeight fontWeight) {
+        FontWeight = fontWeight.ToCssValue();
+        return this;
+    }
+
+    /// <summary>
     /// Sets the text decoration.
     /// </summary>
     /// <param name="textDecoration">The text decoration.</param>
     /// <returns>The EmailTextBox object, allowing for method chaining.</returns>
     public EmailTextBox WithTextDecoration(string textDecoration) {
         TextDecoration = textDecoration;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the text decoration using predefined options.
+    /// </summary>
+    /// <param name="decoration">The decoration option.</param>
+    /// <returns>The <see cref="EmailTextBox"/> instance.</returns>
+    public EmailTextBox WithTextDecoration(TextDecoration decoration) {
+        TextDecoration = decoration.EnumToString();
         return this;
     }
 

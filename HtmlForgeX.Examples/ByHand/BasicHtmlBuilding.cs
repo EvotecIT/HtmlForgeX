@@ -28,7 +28,7 @@ namespace HtmlForgeX.Examples.ByHand
 
             // Add span 3 times in a single line, one after another
             document.Body.Span("Hello, world!")
-                .WithColor(RGBColor.Red).WithFontSize("20px").WithAlignment(FontAlignment.Justify)
+                .WithColor(RGBColor.Red).WithFontSize("20px").WithAlignment(FontAlignment.Left)
                 .AppendContent(" Welcome to HTML by HtmlForgeX")
                 .WithColor(RGBColor.HarvestGold).WithBackgroundColor(RGBColor.AirForceBlue)
                 .AppendContent(" Hurray!");
@@ -77,7 +77,7 @@ namespace HtmlForgeX.Examples.ByHand
             document.Body.Span("Hello, world!")
                .WithColor(RGBColor.Red)
                .WithFontSize("20px")
-               .WithAlignment(FontAlignment.Justify);
+               .WithAlignment(FontAlignment.Left);
 
             document.Body.Span(" Welcome to HTML by HtmlForgeX")
                    .WithColor(RGBColor.HarvestGold)
