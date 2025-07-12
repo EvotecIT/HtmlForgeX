@@ -7,6 +7,8 @@ namespace HtmlForgeX;
 /// Manages state, libraries, and settings specific to email generation.
 /// </summary>
 public class EmailConfiguration {
+    private readonly object _syncRoot = new();
+    private string _path = string.Empty;
     /// <summary>
     /// Gets or sets the library mode for this email document.
     /// Email documents only support inline CSS mode.
@@ -21,7 +23,10 @@ public class EmailConfiguration {
     /// <summary>
     /// Gets or sets the file path for this email document.
     /// </summary>
-    public string Path { get; set; } = string.Empty;
+    public string Path {
+        get { lock (_syncRoot) { return _path; } }
+        set { lock (_syncRoot) { _path = value; } }
+    }
 
     /// <summary>
     /// Collection of libraries registered for this email document.
@@ -31,7 +36,7 @@ public class EmailConfiguration {
     /// <summary>
     /// Collection of errors that occurred during email generation.
     /// </summary>
-    public List<string> Errors { get; } = new();
+    public ConcurrentBag<string> Errors { get; } = new();
 
     /// <summary>
     /// Gets or sets the maximum width for the email content (in pixels).

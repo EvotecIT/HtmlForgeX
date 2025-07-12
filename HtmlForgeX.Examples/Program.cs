@@ -38,6 +38,7 @@ internal class Program {
 
         // Experimental examples (console output)
         Experiments01.Create();
+        ExampleThreadSafeErrors.Create();
 
         // Manual HTML building examples
         BasicHtmlBuilding.Demo1(openInBrowser);

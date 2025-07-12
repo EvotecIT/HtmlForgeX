@@ -7,6 +7,10 @@ namespace HtmlForgeX;
 /// Manages state, libraries, and settings for document generation.
 /// </summary>
 public class DocumentConfiguration {
+    private readonly object _syncRoot = new();
+    private string _path = System.IO.Path.GetTempPath();
+    private string _stylePath = string.Empty;
+    private string _scriptPath = string.Empty;
     /// <summary>
     /// Gets or sets the library mode for this document.
     /// </summary>
@@ -20,17 +24,26 @@ public class DocumentConfiguration {
     /// <summary>
     /// Gets or sets the file path for this document.
     /// </summary>
-    public string Path { get; set; } = System.IO.Path.GetTempPath();
+    public string Path {
+        get { lock (_syncRoot) { return _path; } }
+        set { lock (_syncRoot) { _path = value; } }
+    }
 
     /// <summary>
     /// Gets or sets the style path for this document.
     /// </summary>
-    public string StylePath { get; set; } = string.Empty;
+    public string StylePath {
+        get { lock (_syncRoot) { return _stylePath; } }
+        set { lock (_syncRoot) { _stylePath = value; } }
+    }
 
     /// <summary>
     /// Gets or sets the script path for this document.
     /// </summary>
-    public string ScriptPath { get; set; } = string.Empty;
+    public string ScriptPath {
+        get { lock (_syncRoot) { return _scriptPath; } }
+        set { lock (_syncRoot) { _scriptPath = value; } }
+    }
 
     /// <summary>
     /// Gets or sets whether deferred scripts are enabled.
@@ -50,7 +63,7 @@ public class DocumentConfiguration {
     /// <summary>
     /// Collection of errors that occurred during document generation.
     /// </summary>
-    public List<string> Errors { get; } = new();
+    public ConcurrentBag<string> Errors { get; } = new();
 
     /// <summary>
     /// Email-specific configuration.
