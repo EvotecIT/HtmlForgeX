@@ -358,10 +358,13 @@ public class Head : Element {
                         _logger.WriteError($"Failed to create directory '{jsDirectory}'. {ex.Message}");
                     }
                 }
+                FileWriteLock.Semaphore.Wait();
                 try {
                     File.WriteAllText(jsFileName, jsContent, Encoding.UTF8);
                 } catch (Exception ex) {
                     _logger.WriteError($"Failed to write file '{jsFileName}'. {ex.Message}");
+                } finally {
+                    FileWriteLock.Semaphore.Release();
                 }
             }
         }

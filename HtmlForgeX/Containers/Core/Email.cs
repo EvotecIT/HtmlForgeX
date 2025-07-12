@@ -262,9 +262,12 @@ public class Email : Element {
             }
         }
         try {
+            FileWriteLock.Semaphore.Wait();
             File.WriteAllText(path, ToString(), Encoding.UTF8);
         } catch (Exception ex) {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
+        } finally {
+            FileWriteLock.Semaphore.Release();
         }
         if (!Helpers.Open(path, openInBrowser)) {
             _logger.WriteError($"Failed to open file '{path}' using the default application.");
@@ -293,16 +296,18 @@ public class Email : Element {
                 _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
             }
         }
+        await FileWriteLock.Semaphore.WaitAsync().ConfigureAwait(false);
         try {
 #if NET5_0_OR_GREATER
             await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8).ConfigureAwait(false);
 #else
             using var writer = new StreamWriter(path, false, Encoding.UTF8);
-            // Prevent returning to the captured context (e.g. UI thread)
             await writer.WriteAsync(ToString()).ConfigureAwait(false);
 #endif
         } catch (Exception ex) {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
+        } finally {
+            FileWriteLock.Semaphore.Release();
         }
         if (!Helpers.Open(path, openInBrowser)) {
             _logger.WriteError($"Failed to open file '{path}' using the default application.");
