@@ -103,10 +103,20 @@ public class HtmlTag : Element {
     /// <param name="value">The CSS property value.</param>
     /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
     public HtmlTag Style(string name, string value) {
-        if (!Attributes.ContainsKey("style")) {
+        if (!Attributes.ContainsKey("style") || Attributes["style"] is null) {
             Attributes["style"] = string.Empty;
         }
-        Attributes["style"] += $"{name}: {value}; ";
+
+        var current = Attributes["style"]?.ToString() ?? string.Empty;
+        current = current.Trim().TrimEnd(';');
+
+        if (string.IsNullOrEmpty(current)) {
+            current = $"{name}: {value}";
+        } else {
+            current = $"{current}; {name}: {value}";
+        }
+
+        Attributes["style"] = current.Trim().TrimEnd(';');
         return this;
     }
 
