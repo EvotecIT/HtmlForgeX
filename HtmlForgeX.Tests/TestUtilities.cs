@@ -18,7 +18,11 @@ public static class TestUtilities {
 #endif
         var tempPath = Path.Combine(Path.GetTempPath(), "HtmlForgeX_Tests", frameworkId);
         if (!Directory.Exists(tempPath)) {
-            Directory.CreateDirectory(tempPath);
+            try {
+                Directory.CreateDirectory(tempPath);
+            } catch (Exception ex) {
+                Document._logger.WriteError($"Failed to create directory '{tempPath}'. {ex.Message}");
+            }
         }
         return tempPath;
     }

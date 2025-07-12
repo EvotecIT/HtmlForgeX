@@ -11,7 +11,11 @@ public class TestUtilitiesAndHelpers {
     public async Task LibraryDownloader_DownloadLibrary() {
         var downloader = new LibraryDownloader();
         var tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"lib_test_{System.Guid.NewGuid()}");
-        Directory.CreateDirectory(tempDir);
+        try {
+            Directory.CreateDirectory(tempDir);
+        } catch (Exception ex) {
+            Document._logger.WriteError($"Failed to create directory '{tempDir}'. {ex.Message}");
+        }
         
         try {
             await downloader.DownloadLibraryAsync(tempDir, Libraries.JQuery);

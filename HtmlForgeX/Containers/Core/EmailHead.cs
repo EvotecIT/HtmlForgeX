@@ -70,7 +70,7 @@ public class EmailHead : Element {
     /// <param name="title">The title to add.</param>
     /// <returns>The EmailHead object, allowing for method chaining.</returns>
     public EmailHead AddTitle(string title) {
-        Title = title;
+        Title = Helpers.HtmlEncode(title);
         return this;
     }
 
@@ -228,7 +228,7 @@ public class EmailHead : Element {
 
         // Title
         if (!string.IsNullOrEmpty(Title)) {
-            head.AppendLine($"\t<title>{Helpers.HtmlEncode(Title)}</title>");
+            head.AppendLine($"\t<title>{Title}</title>");
         }
 
         // Viewport meta tag

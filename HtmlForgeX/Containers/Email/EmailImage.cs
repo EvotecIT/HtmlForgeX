@@ -418,6 +418,9 @@ public class EmailImage : Element {
                 Base64Data = Convert.ToBase64String(bytes);
                 EmbedAsBase64 = true;
                 Source = $"data:{MimeType};base64,{Base64Data}";
+            } else {
+                // File doesn't exist, fallback to file path
+                Source = filePath;
             }
         } catch (Exception ex) {
             // Fallback to file path if embedding fails
@@ -765,9 +768,8 @@ public class EmailImage : Element {
         // - Compressing JPEG images based on Quality setting
         // - Converting to more efficient formats if needed
 
-        if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-            Console.WriteLine($"Note: Image optimization is enabled but not yet implemented. Using original image.");
-        }
+        // Always log optimization note when optimization is enabled
+        Console.WriteLine($"Note: Image optimization is enabled but not yet implemented. Using original image.");
         return bytes;
     }
 
@@ -810,6 +812,10 @@ public class EmailImage : Element {
     /// </summary>
     /// <returns>HTML string representing the email image.</returns>
     public override string ToString() {
+        if (EmbedAsBase64 && string.IsNullOrWhiteSpace(MimeType)) {
+            throw new InvalidOperationException("EmbedAsBase64 is enabled but MimeType is not specified.");
+        }
+
         var html = StringBuilderCache.Acquire();
 
         // Build image attributes for light mode image

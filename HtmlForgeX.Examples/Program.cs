@@ -53,12 +53,14 @@ internal class Program {
         // BasicHtmlTagBuilding02.Demo3(openInBrowser);
 
         // Container examples
-        // BasicHtmlContainer01.Demo01(openInBrowser);
-        // BasicHtmlContainer02.Demo02(openInBrowser);
-        // BasicHtmlContainer03.Demo03(openInBrowser);
-        // BasicHtmlContainer04.Demo04(openInBrowser);
-        // BasicScrollingText.Create(openInBrowser);
-        // DomainHealthCheck.Create(openInBrowser);
+        BasicHtmlContainer01.Demo01(openInBrowser);
+        BasicHtmlContainer02.Demo02(openInBrowser);
+        BasicHtmlContainer03.Demo03(openInBrowser);
+        BasicHtmlContainer04.Demo01(openInBrowser);
+        BasicScrollingText.Demo01(openInBrowser);
+        DomainHealthCheck.Demo01(openInBrowser);
+
+
 
         // Table examples
         // BasicHtmlTable01.Create(openInBrowser);
@@ -78,6 +80,8 @@ internal class Program {
 
         // Corrected email pattern
         ExampleCorrectedEmailPattern.Create(openInBrowser);
+
+        return;
 
         // Layout email pattern
         ExampleLayoutEmailPattern.Create(openInBrowser);

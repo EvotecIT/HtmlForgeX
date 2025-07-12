@@ -104,7 +104,7 @@ public class Head : Element {
     /// <param name="title">The title to add.</param>
     /// <returns>The HtmlHead object, allowing for method chaining.</returns>
     public Head AddTitle(string title) {
-        Title = title;
+        Title = Helpers.HtmlEncode(title);
         return this;
     }
 
@@ -196,7 +196,7 @@ public class Head : Element {
         head.AppendLine("<head>");
 
         if (!string.IsNullOrEmpty(Title)) {
-            head.AppendLine($"\t<title>{Helpers.HtmlEncode(Title)}</title>");
+            head.AppendLine($"\t<title>{Title}</title>");
         }
 
         if (!string.IsNullOrEmpty(Charset)) {
