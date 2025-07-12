@@ -3,7 +3,7 @@ using System;
 namespace HtmlForgeX.Examples.Tags;
 
 internal class ExampleSvgIcons {
-    public static void Demo() {
+    public static void Create() {
         Console.WriteLine("=== SVG Icons Demo ===");
 
         // Basic icon usage

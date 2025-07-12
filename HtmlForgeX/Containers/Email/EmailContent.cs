@@ -103,7 +103,7 @@ public class EmailContent : Element {
     /// <returns>The HTML string</returns>
     public override string ToString() {
         var html = new StringBuilder();
-        var contentPadding = string.IsNullOrEmpty(_padding) || _padding == "0px" ? 
+        var contentPadding = string.IsNullOrEmpty(_padding) || _padding == "0px" ?
             EmailLayout.GetContentPadding() : _padding;
 
         // Create a single-column structure that matches EmailColumn alignment

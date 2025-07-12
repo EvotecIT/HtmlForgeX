@@ -77,7 +77,7 @@ namespace HtmlForgeX.Examples.ByHand
             document.Body.Span("Hello, world!")
                .WithColor(RGBColor.Red)
                .WithFontSize("20px")
-               .WithAlignment(FontAlignment.Left);
+               .WithAlignment(FontAlignment.Justify);
 
             document.Body.Span(" Welcome to HTML by HtmlForgeX")
                    .WithColor(RGBColor.HarvestGold)

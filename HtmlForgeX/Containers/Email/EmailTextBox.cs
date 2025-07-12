@@ -219,7 +219,7 @@ public class EmailTextBox : Element {
         // Use div structure for text box content
         html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>");
         html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td style=\"font-family: {FontFamily};\">");
-        
+
         if (TextAlign == "center") {
             html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div align=\"center\">");
         } else {
@@ -231,7 +231,7 @@ public class EmailTextBox : Element {
             for (int i = 0; i < TextContent.Count; i++) {
                 var text = TextContent[i];
                 var encodedText = Helpers.HtmlEncode(text);
-                
+
                 if (string.IsNullOrEmpty(text)) {
                     // Empty line
                     html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span style=\"{containerStyle}\"></span>");
