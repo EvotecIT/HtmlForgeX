@@ -92,6 +92,10 @@ public class Head : Element {
     public List<string> Scripts { get; set; } = new List<string>();
     public List<string> CssLinks { get; set; } = new List<string>();
     public List<string> JsLinks { get; set; } = new List<string>();
+    private readonly HashSet<string> _cssLinkSet = new();
+    private readonly HashSet<string> _jsLinkSet = new();
+    private readonly HashSet<string> _cssInlineSet = new();
+    private readonly HashSet<string> _jsInlineSet = new();
     /// <summary>
     /// Represents the auto refresh time in seconds.
     /// </summary>
@@ -280,19 +284,27 @@ public class Head : Element {
     }
 
     public void AddCssLink(string link) {
-        CssLinks.Add($"<link rel=\"stylesheet\" href=\"{link}\">");
+        if (_cssLinkSet.Add(link)) {
+            CssLinks.Add($"<link rel=\"stylesheet\" href=\"{link}\">");
+        }
     }
 
     public void AddJsLink(string link) {
-        JsLinks.Add($"<script src=\"{link}\"></script>");
+        if (_jsLinkSet.Add(link)) {
+            JsLinks.Add($"<script src=\"{link}\"></script>");
+        }
     }
 
     public void AddCssInline(string css) {
-        Styles.Add($"<style>{css}</style>");
+        if (_cssInlineSet.Add(css)) {
+            Styles.Add($"<style>{css}</style>");
+        }
     }
 
     public void AddJsInline(string js) {
-        Scripts.Add($"<script>{js}</script>");
+        if (_jsInlineSet.Add(js)) {
+            Scripts.Add($"<script>{js}</script>");
+        }
     }
 
     public void AddCssStyle(Style style) {

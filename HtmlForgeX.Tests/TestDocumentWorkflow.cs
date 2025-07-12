@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace HtmlForgeX.Tests;
 
@@ -147,6 +148,29 @@ public class TestDocumentWorkflow {
         var html = doc.ToString();
         Assert.IsTrue(html.Contains("https://lib1.com/style.css"));
         Assert.IsTrue(html.Contains("https://lib2.com/script.js"));
+    }
+
+    [TestMethod]
+    public void Document_DuplicateCustomLibrariesSkipped() {
+        var doc = new Document();
+
+        var customLibrary = new Library {
+            Header = new LibraryLinks {
+                CssLink = ["https://dup.example.com/style.css"],
+                JsLink = ["https://dup.example.com/script.js"]
+            }
+        };
+
+        doc.AddLibrary(customLibrary);
+        doc.AddLibrary(customLibrary);
+
+        var html = doc.ToString();
+
+        var cssCount = Regex.Matches(html, "https://dup.example.com/style.css").Count;
+        var jsCount = Regex.Matches(html, "https://dup.example.com/script.js").Count;
+
+        Assert.AreEqual(1, cssCount, "CSS link should be included only once");
+        Assert.AreEqual(1, jsCount, "JS link should be included only once");
     }
 
     [TestMethod]
