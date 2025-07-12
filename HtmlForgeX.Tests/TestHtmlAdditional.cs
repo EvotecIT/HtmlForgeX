@@ -22,7 +22,15 @@ public class TestHtmlAdditional {
     public void HtmlTagClassAndStyleChainingProducesCorrectOutput() {
         var tag = new HtmlTag("p").Style("color", "red").Style("font-size", "12px")
             .Class(null).Class(string.Empty).Class("first").Class("second");
-        Assert.AreEqual("<p style=\"color: red; font-size: 12px;\" class=\"first second\"></p>", tag.ToString());
+        Assert.AreEqual("<p style=\"color: red; font-size: 12px\" class=\"first second\"></p>", tag.ToString());
+    }
+
+    [TestMethod]
+    public void HtmlTagStyleShouldNotHaveTrailingSemicolonOrSpace() {
+        var tag = new HtmlTag("div").Style("margin", "10px").Style("padding", "5px");
+        var html = tag.ToString();
+        Assert.IsFalse(html.Contains(";\""));
+        Assert.AreEqual("<div style=\"margin: 10px; padding: 5px\"></div>", html);
     }
 
     [TestMethod]
