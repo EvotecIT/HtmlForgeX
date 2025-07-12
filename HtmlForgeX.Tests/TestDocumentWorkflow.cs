@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace HtmlForgeX.Tests;
 
@@ -157,8 +158,8 @@ public class TestDocumentWorkflow {
 
         var html = doc.ToString();
 
-        var cssCount = html.Split("https://dup.example.com/style.css").Length - 1;
-        var jsCount = html.Split("https://dup.example.com/script.js").Length - 1;
+        var cssCount = Regex.Matches(html, "https://dup.example.com/style.css").Count;
+        var jsCount = Regex.Matches(html, "https://dup.example.com/script.js").Count;
 
         Assert.AreEqual(1, cssCount, "CSS link should be included only once");
         Assert.AreEqual(1, jsCount, "JS link should be included only once");
