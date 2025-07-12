@@ -223,7 +223,7 @@ public class Document : Element {
                     continue;
                 }
                 try {
-                    var cssContent = File.ReadAllText(resolved);
+                    var cssContent = File.ReadAllText(resolved, Encoding.UTF8);
                     this.Head.AddCssInline(cssContent);
                 } catch (Exception ex) {
                     _logger.WriteError($"Failed to read CSS file '{resolved}'. {ex.Message}");
@@ -237,7 +237,7 @@ public class Document : Element {
                     continue;
                 }
                 try {
-                    var jsContent = File.ReadAllText(resolved);
+                    var jsContent = File.ReadAllText(resolved, Encoding.UTF8);
                     this.Head.AddJsInline(jsContent);
                 } catch (Exception ex) {
                     _logger.WriteError($"Failed to read JS file '{resolved}'. {ex.Message}");
