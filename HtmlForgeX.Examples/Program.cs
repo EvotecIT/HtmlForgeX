@@ -7,7 +7,6 @@ using HtmlForgeX.Examples.Tables;
 using HtmlForgeX.Examples.ByHand;
 using HtmlForgeX.Examples.Experimenting;
 using HtmlForgeX.Examples.Support;
-using Spectre.Console;
 
 namespace HtmlForgeX.Examples;
 
@@ -20,11 +19,11 @@ internal class Program {
         HelpersSpectre.PrintTitle("HtmlForgeX Examples - Document-Style Configuration");
 
         // Configuration for opening files in browser (set to true to open automatically)
-        bool openInBrowser = true;
+        bool openInBrowser = false;
 
         // Not real examples, but useful for development
-        // Support.DownloadLibraries();
-        // Support.GenerateTableIcons();
+        // Support.DownloadLibrariesAsync();
+        //Support.GenerateTableIconsAsync();
 
         // Basic HTML Tag Building examples (console output)
         BasicHtmlTagBuilding.Demo1();
@@ -58,6 +57,12 @@ internal class Program {
         // Email examples - showcasing the new Document-style configuration!
         Console.WriteLine("📧 Running Email Examples with Document-Style Configuration:");
         Console.WriteLine();
+
+        // Text wrapping demo
+        ExampleTextWrappingDemo.Create(openInBrowser);
+
+        // // Improved consistency email with Document-style configuration
+        ExampleImprovedConsistencyEmail.Create(openInBrowser);
 
         // Text wrapping demo
         ExampleTextWrappingDemo.Create(openInBrowser);
@@ -108,9 +113,6 @@ internal class Program {
 
         // Base64 embedding examples (if they exist)
         ExampleBase64EmbeddingEmail.Create(openInBrowser);
-
-        // Improved consistency demonstration - ACTIVE by default to show new features!
-        ExampleImprovedConsistencyEmail.Create(openInBrowser);
 
         // Layout configuration demonstration - NEW enum-based configuration system!
         ExampleLayoutConfigurationDemo.Create(openInBrowser);

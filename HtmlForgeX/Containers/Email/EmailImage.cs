@@ -109,6 +109,11 @@ public class EmailImage : Element {
     public bool SkipAutoEmbedding { get; set; } = false;
 
     /// <summary>
+    /// Stores the original source path before any embedding occurs.
+    /// </summary>
+    private string _originalSource = "";
+
+    /// <summary>
     /// Gets or sets whether to force embedding for this specific image.
     /// When true, overrides document configuration to force embedding.
     /// </summary>
@@ -162,6 +167,7 @@ public class EmailImage : Element {
     /// <param name="source">The image source URL or file path.</param>
     public EmailImage(string source) : this() {
         Source = source;
+        _originalSource = source; // Store original source
         // Auto-embedding will be applied when added to document
     }
 
@@ -174,6 +180,7 @@ public class EmailImage : Element {
     /// <param name="height">The image height.</param>
     public EmailImage(string source, string width, string height = "") : this() {
         Source = source;
+        _originalSource = source; // Store original source
         Width = width;
         Height = height;
         // Auto-embedding will be applied when added to document
@@ -188,6 +195,7 @@ public class EmailImage : Element {
     /// <param name="autoEmbed">Whether to automatically embed this image (overrides document configuration).</param>
     public EmailImage(string source, string width, string height, bool autoEmbed) : this() {
         Source = source;
+        _originalSource = source; // Store original source
         Width = width;
         Height = height;
 
@@ -247,6 +255,7 @@ public class EmailImage : Element {
     /// <returns>The EmailImage object, allowing for method chaining.</returns>
     public EmailImage WithSource(string source, bool? autoEmbed = null) {
         Source = source;
+        _originalSource = source; // Store original source
 
         if (autoEmbed == true) {
             ForceEmbedding = true;
@@ -369,13 +378,22 @@ public class EmailImage : Element {
         return this;
     }
 
-    /// <summary>
+        /// <summary>
     /// Skips automatic embedding for this image, even if document configuration enables it.
     /// </summary>
     /// <returns>The EmailImage object, allowing for method chaining.</returns>
     public EmailImage WithoutAutoEmbedding() {
         SkipAutoEmbedding = true;
         ForceEmbedding = false;
+
+        // Reset any auto-embedding that already happened and restore original source
+        if (EmbedAsBase64 && !string.IsNullOrEmpty(_originalSource)) {
+            EmbedAsBase64 = false;
+            Base64Data = "";
+            MimeType = "";
+            Source = _originalSource; // Restore original file path
+        }
+
         return this;
     }
 

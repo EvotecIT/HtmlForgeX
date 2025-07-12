@@ -24,10 +24,9 @@ public static class ExampleImprovedConsistencyEmail {
         // var email = new Email(DocumentConfiguration.ForEmail());
 
         // Email configuration
-        email.Head.AddTitle("Improved Consistency Demo - HtmlForgeX")
-                  .AddEmailCoreStyles();
+        email.Head.AddTitle("Improved Consistency Demo - HtmlForgeX").AddEmailCoreStyles();
 
-                // Header with consolidated EmailImage integration using new direct pattern
+        // Header with consolidated EmailImage integration using new direct pattern
         email.Header.SetPadding("20px");
         email.Header.EmailRow(row => {
             // Logo column

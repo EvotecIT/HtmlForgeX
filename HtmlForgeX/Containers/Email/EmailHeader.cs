@@ -5,10 +5,7 @@ namespace HtmlForgeX;
 /// Users can directly call email.Header.EmailRow(), email.Header.EmailContent(), etc.
 /// </summary>
 public class EmailHeader : Element {
-    /// <summary>
-    /// Gets the child elements of the header.
-    /// </summary>
-    public List<Element> Children { get; private set; } = new List<Element>();
+    // Remove the shadowing Children property - use the base Element.Children instead
 
     /// <summary>
     /// Gets or sets the padding for the header section.
@@ -27,15 +24,35 @@ public class EmailHeader : Element {
         // Header is just a container - no complex setup needed
     }
 
-    /// <summary>
+        /// <summary>
     /// Adds an element to the header.
     /// </summary>
     /// <param name="element">The element to add.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
     public EmailHeader Add(Element element) {
-        element.Email = this.Email;
-        Children.Add(element);
+        // Propagate the Email reference to child elements for configuration access
+        if (element != null && this.Email != null) {
+            PropagateEmailReference(element, this.Email);
+        }
+
+        base.Add(element);
         return this;
+    }
+
+    /// <summary>
+    /// Recursively propagates the Email reference to an element and all its children.
+    /// </summary>
+    /// <param name="element">The element to propagate to.</param>
+    /// <param name="email">The Email instance to propagate.</param>
+    private static void PropagateEmailReference(Element element, Email email) {
+        if (element == null || email == null) return;
+
+        element.Email = email;
+
+        // Recursively propagate to all children
+        foreach (var child in element.Children) {
+            PropagateEmailReference(child, email);
+        }
     }
 
     /// <summary>
@@ -45,6 +62,8 @@ public class EmailHeader : Element {
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
     public EmailHeader EmailRow(Action<EmailRow> configure) {
         var row = new EmailRow();
+        // Set Email reference BEFORE configuration so child elements can access it
+        row.Email = this.Email;
         configure(row);
         Add(row);
         return this;
@@ -57,6 +76,8 @@ public class EmailHeader : Element {
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
     public EmailHeader EmailContent(Action<EmailContent> configure) {
         var content = new EmailContent();
+        // Set Email reference BEFORE configuration so child elements can access it
+        content.Email = this.Email;
         configure(content);
         Add(content);
         return this;
@@ -148,7 +169,7 @@ public class EmailHeader : Element {
         html.AppendLine($@"  <tr>");
         html.AppendLine($@"    <td style=""padding: {Padding};"">");
 
-        foreach (var child in Children) {
+        foreach (var child in base.Children) {
             html.AppendLine(child.ToString());
         }
 

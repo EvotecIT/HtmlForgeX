@@ -148,6 +148,11 @@ public class EmailColumn : Element {
         // Set a parent reference so child elements know they're in a column
         element.ParentColumn = this;
 
+        // Propagate Email reference to child elements for configuration access
+        if (element != null && this.Email != null) {
+            element.Email = this.Email;
+        }
+
         // Call the base implementation to handle the rest
         base.Add(element);
 
@@ -195,9 +200,8 @@ public class EmailColumn : Element {
     /// <returns>The EmailColumn object, allowing for method chaining.</returns>
     public EmailColumn Add(Action<BasicElement> config) {
         var element = new BasicElement();
-        element.Email = this.Email;
         config(element);
-        Children.Add(element);
+        this.Add(element);
         return this;
     }
 
@@ -208,8 +212,7 @@ public class EmailColumn : Element {
     /// <returns>The EmailColumn object, allowing for method chaining.</returns>
     public EmailColumn AddText(string text) {
         var textElement = new BasicElement(text);
-        textElement.Email = this.Email;
-        Children.Add(textElement);
+        this.Add(textElement);
         return this;
     }
 

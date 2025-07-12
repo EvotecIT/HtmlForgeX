@@ -259,8 +259,7 @@ public class EmailBox : Element {
     /// <param name="element">The element to add.</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
     public EmailBox Add(Element element) {
-        element.Email = this.Email;
-        Children.Add(element);
+        base.Add(element);
         return this;
     }
 

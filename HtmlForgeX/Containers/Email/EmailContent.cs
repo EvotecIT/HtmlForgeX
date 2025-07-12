@@ -93,6 +93,7 @@ public class EmailContent : Element {
     /// <param name="element">The element to add</param>
     /// <returns>The EmailContent object, allowing for method chaining.</returns>
     public new EmailContent Add(Element element) {
+        base.Add(element);
         _elements.Add(element);
         return this;
     }
