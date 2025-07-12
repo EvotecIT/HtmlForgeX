@@ -116,5 +116,8 @@ internal class Program {
 
         // Layout configuration demonstration - NEW enum-based configuration system!
         ExampleLayoutConfigurationDemo.Create(openInBrowser);
+
+        // ChartJs examples
+        BasicChartJs.Demo(openInBrowser);
     }
 }
