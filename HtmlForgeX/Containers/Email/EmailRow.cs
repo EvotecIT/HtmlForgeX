@@ -44,8 +44,11 @@ public class EmailRow : Element {
     /// <param name="column">The column to add.</param>
     /// <returns>The EmailRow object, allowing for method chaining.</returns>
     public EmailRow Add(EmailColumn column) {
-        column.Email = this.Email;
-        Children.Add(column);
+        // Propagate Email reference to the column
+        if (column != null && this.Email != null) {
+            column.Email = this.Email;
+        }
+        base.Add(column);
         return this;
     }
 
@@ -56,7 +59,7 @@ public class EmailRow : Element {
     /// <returns>The EmailColumn that was added.</returns>
     public EmailColumn AddColumn(Action<EmailColumn> config) {
         var column = new EmailColumn();
-        column.Email = this.Email;
+        column.Email = this.Email;  // Set Email reference BEFORE configuration
         config(column);
         this.Add(column);
         return column;
@@ -70,7 +73,7 @@ public class EmailRow : Element {
     /// <returns>The EmailColumn that was added.</returns>
     public new EmailColumn EmailColumn(Action<EmailColumn> config) {
         var column = new EmailColumn();
-        column.Email = this.Email;
+        column.Email = this.Email;  // Set Email reference BEFORE configuration
         config(column);
         this.Add(column);
         return column;
@@ -83,10 +86,9 @@ public class EmailRow : Element {
     /// <returns>The EmailRow object, allowing for method chaining.</returns>
     public EmailRow AddSpacer(int width = 24) {
         var spacer = new EmailColumn();
-        spacer.Email = this.Email;
         spacer.SetWidth($"{width}px");
         spacer.CssClass = "col-spacer";
-        Children.Add(spacer);
+        this.Add(spacer);
         return this;
     }
 

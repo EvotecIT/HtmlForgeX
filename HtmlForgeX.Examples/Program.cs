@@ -7,7 +7,6 @@ using HtmlForgeX.Examples.Tables;
 using HtmlForgeX.Examples.ByHand;
 using HtmlForgeX.Examples.Experimenting;
 using HtmlForgeX.Examples.Support;
-using Spectre.Console;
 
 namespace HtmlForgeX.Examples;
 
@@ -20,37 +19,29 @@ internal class Program {
         HelpersSpectre.PrintTitle("HtmlForgeX Examples - Document-Style Configuration");
 
         // Configuration for opening files in browser (set to true to open automatically)
-        bool openInBrowser = true;
+        bool openInBrowser = false;
 
-        // Handle command line arguments for specific examples
-        if (args.Length > 0 && args[0] == "--example") {
-            if (args.Length > 1) {
-                var exampleName = args[1];
-                switch (exampleName) {
-                    case "LayoutConfigurationDemo":
-                        ExampleLayoutConfigurationDemo.Create(openInBrowser);
-                        return;
-                    case "ImprovedConsistencyEmail":
-                        ExampleImprovedConsistencyEmail.Create(openInBrowser);
-                        return;
-                    case "TextWrappingDemo":
-                        ExampleTextWrappingDemo.Create(openInBrowser);
-                        return;
-                    default:
-                        Console.WriteLine($"Unknown example: {exampleName}");
-                        return;
-                }
-            }
-        }
+        // Not real examples, but useful for development
+        // Support.DownloadLibrariesAsync();
+        //Support.GenerateTableIconsAsync();
 
-        // Support examples (uncomment to run)
-        // Support.DownloadLibraries();
-        // Support.GenerateTableIcons();
+        // Basic HTML Tag Building examples (console output)
+        BasicHtmlTagBuilding.Demo1();
+        BasicHtmlTagBuilding.Demo2();
+        BasicHtmlTagBuilding.Demo3();
 
-        // Basic HTML Tag Building examples
-        // BasicHtmlTagBuilding01.Demo1(openInBrowser);
-        // BasicHtmlTagBuilding01.Demo2(openInBrowser);
-        // BasicHtmlTagBuilding02.Demo3(openInBrowser);
+        // Tabler examples (console output)
+        ExampleTablerIcon.Create();
+        ExampleTablerTag.Create();
+        ExampleTablerAlerts.Create();
+        ExampleSvgIcons.Create();
+
+        // Experimental examples (console output)
+        Experiments01.Create();
+
+        // Manual HTML building examples
+        BasicHtmlBuilding.Demo1(openInBrowser);
+        BasicHtmlBuilding.Demo2(openInBrowser);
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
@@ -60,17 +51,18 @@ internal class Program {
         BasicScrollingText.Demo01(openInBrowser);
         DomainHealthCheck.Demo01(openInBrowser);
 
-
-
         // Table examples
-        // BasicHtmlTable01.Create(openInBrowser);
-
-        // Experimental examples
-        // Experiments01.Create(openInBrowser);
+        BasicHtmlTable01.Create(openInBrowser);
 
         // Email examples - showcasing the new Document-style configuration!
         Console.WriteLine("📧 Running Email Examples with Document-Style Configuration:");
         Console.WriteLine();
+
+        // Text wrapping demo
+        ExampleTextWrappingDemo.Create(openInBrowser);
+
+        // // Improved consistency email with Document-style configuration
+        ExampleImprovedConsistencyEmail.Create(openInBrowser);
 
         // Text wrapping demo
         ExampleTextWrappingDemo.Create(openInBrowser);
@@ -80,8 +72,6 @@ internal class Program {
 
         // Corrected email pattern
         ExampleCorrectedEmailPattern.Create(openInBrowser);
-
-        return;
 
         // Layout email pattern
         ExampleLayoutEmailPattern.Create(openInBrowser);
@@ -101,16 +91,13 @@ internal class Program {
         ExampleDarkModeEmail.CreateAutoModeExample(openInBrowser);  // 🔄 AUTO MODE
 
         // Enhanced dark mode example (NEW - showcases all improvements)
-        // ExampleEnhancedDarkModeEmail.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
+        ExampleEnhancedDarkModeEmail.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
 
         // Flexible header/footer example (NEW - demonstrates the flexible pattern)
         ExampleFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO
 
         // Direct header/footer pattern (NEWEST - demonstrates email.Header.EmailRow())
         ExampleDirectHeaderFooter.Create(openInBrowser);  // 🚀 DIRECT PATTERN DEMO
-
-        // Header test (DEBUG - minimal test for header layout)
-        // ExampleHeaderTest.Create(openInBrowser);  // 🐛 DEBUG HEADER LAYOUT
 
         // Order confirmation email
         ExampleOrderConfirmationEmail.Create(openInBrowser);
@@ -127,27 +114,7 @@ internal class Program {
         // Base64 embedding examples (if they exist)
         ExampleBase64EmbeddingEmail.Create(openInBrowser);
 
-        // Improved consistency demonstration - ACTIVE by default to show new features!
-        ExampleImprovedConsistencyEmail.Create(openInBrowser);
-
         // Layout configuration demonstration - NEW enum-based configuration system!
         ExampleLayoutConfigurationDemo.Create(openInBrowser);
-
-        // Tabler examples
-        // ExampleTablerIcon.Create(openInBrowser);
-        // ExampleTablerTag.Create(openInBrowser);
-        // ExampleTablerAlerts.Create(openInBrowser);
-        // ExampleSvgIcons.Create(openInBrowser);
-
-        // Manual HTML building examples
-        // BasicHtmlBuilding.CreateStaticFiles(openInBrowser);
-
-        Console.WriteLine();
-        Console.WriteLine("🎉 Email generated with Document-style configuration!");
-        Console.WriteLine("📁 Check 'improved-consistency-demo.html' to see the results!");
-        Console.WriteLine();
-        Console.WriteLine("💡 To enable other examples, uncomment them in Program.cs");
-        Console.WriteLine("💡 To open files automatically in browser, set openInBrowser = true");
-        Console.WriteLine("💡 Much more natural than separate configuration objects!");
     }
 }

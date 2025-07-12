@@ -155,6 +155,16 @@ public class EmailBox : Element {
     }
 
     /// <summary>
+    /// Sets the background color of the box.
+    /// </summary>
+    /// <param name="color">The background color.</param>
+    /// <returns>The EmailBox object, allowing for method chaining.</returns>
+    public EmailBox SetBackgroundColor(RGBColor color) {
+        BackgroundColor = color.ToString();
+        return this;
+    }
+
+    /// <summary>
     /// Sets the padding of the box.
     /// </summary>
     /// <param name="padding">The padding value.</param>
@@ -249,8 +259,7 @@ public class EmailBox : Element {
     /// <param name="element">The element to add.</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
     public EmailBox Add(Element element) {
-        element.Email = this.Email;
-        Children.Add(element);
+        base.Add(element);
         return this;
     }
 

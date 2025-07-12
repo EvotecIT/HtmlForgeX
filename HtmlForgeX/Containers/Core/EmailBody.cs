@@ -94,6 +94,16 @@ public class EmailBody : Element {
     }
 
     /// <summary>
+    /// Sets the background color of the email body.
+    /// </summary>
+    /// <param name="color">The background color.</param>
+    /// <returns>The EmailBody object, allowing for method chaining.</returns>
+    public EmailBody SetBackgroundColor(RGBColor color) {
+        BackgroundColor = color.ToString();
+        return this;
+    }
+
+    /// <summary>
     /// Sets the CSS class of the email body.
     /// </summary>
     /// <param name="cssClass">The CSS class.</param>

@@ -23,14 +23,14 @@ public static class ExampleTextWrappingDemo
             emailBox.EmailContent(content => {
                 content.EmailText("📝 Text Wrapping Modes Demo")
                     .WithFontSize(EmailFontSize.Heading1)
-                    .WithFontWeight(EmailFontWeight.Bold)
-                    .WithAlignment("center")
+                    .WithFontWeight(FontWeight.Bold)
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Large, EmailSpacing.None);
 
                 content.EmailText("Compare how different wrapping modes handle long method names and technical content")
                     .WithFontSize(EmailFontSize.Regular)
-                    .WithAlignment("center")
+                    .WithAlignment(FontAlignment.Center)
                     .WithColor("#6B7280")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.ExtraLarge, EmailSpacing.None);
             });
@@ -44,7 +44,7 @@ public static class ExampleTextWrappingDemo
                 row.EmailColumn(col => {
                     col.SetWidth("150px");
                     col.EmailText("Default Wrapping:")
-                        .WithFontWeight(EmailFontWeight.Bold)
+                        .WithFontWeight(FontWeight.Bold)
                         .WithColor("#059669");
                 });
                 row.EmailColumn(col => {
@@ -62,7 +62,7 @@ public static class ExampleTextWrappingDemo
                 row.EmailColumn(col => {
                     col.SetWidth("150px");
                     col.EmailText("Natural Wrapping:")
-                        .WithFontWeight(EmailFontWeight.Bold)
+                        .WithFontWeight(FontWeight.Bold)
                         .WithColor("#2563EB");
                 });
                 row.EmailColumn(col => {
@@ -80,7 +80,7 @@ public static class ExampleTextWrappingDemo
                 row.EmailColumn(col => {
                     col.SetWidth("150px");
                     col.EmailText("Smart Wrapping:")
-                        .WithFontWeight(EmailFontWeight.Bold)
+                        .WithFontWeight(FontWeight.Bold)
                         .WithColor("#7C3AED");
                 });
                 row.EmailColumn(col => {
@@ -98,7 +98,7 @@ public static class ExampleTextWrappingDemo
                 row.EmailColumn(col => {
                     col.SetWidth("150px");
                     col.EmailText("Aggressive Wrapping:")
-                        .WithFontWeight(EmailFontWeight.Bold)
+                        .WithFontWeight(FontWeight.Bold)
                         .WithColor("#DC2626");
                 });
                 row.EmailColumn(col => {
@@ -115,7 +115,7 @@ public static class ExampleTextWrappingDemo
             emailBox.EmailContent(content => {
                 content.EmailText("Technical Content Example")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Large, EmailSpacing.None);
             });
@@ -125,7 +125,7 @@ public static class ExampleTextWrappingDemo
                 row.EmailColumn(col => {
                     col.SetWidth("300px").WithNaturalWrapping();
                     col.EmailText("Natural Wrapping Column")
-                        .WithFontWeight(EmailFontWeight.Bold)
+                        .WithFontWeight(FontWeight.Bold)
                         .WithColor("#2563EB")
                         .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Small, EmailSpacing.None);
                     col.EmailText(technicalContent)
@@ -136,7 +136,7 @@ public static class ExampleTextWrappingDemo
                 row.EmailColumn(col => {
                     col.SetWidth("300px").WithSmartWrapping();
                     col.EmailText("Smart Wrapping Column")
-                        .WithFontWeight(EmailFontWeight.Bold)
+                        .WithFontWeight(FontWeight.Bold)
                         .WithColor("#7C3AED")
                         .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Small, EmailSpacing.None);
                     col.EmailText(technicalContent)
@@ -150,7 +150,7 @@ public static class ExampleTextWrappingDemo
             emailBox.EmailContent(content => {
                 content.EmailText("Code Example with Preserved Formatting")
                     .WithFontSize(EmailFontSize.Heading3)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
 
@@ -171,7 +171,7 @@ public static class ExampleTextWrappingDemo
             emailBox.EmailContent(content => {
                 content.EmailText("Usage Guide")
                     .WithFontSize(EmailFontSize.Heading2)
-                    .WithFontWeight(EmailFontWeight.Bold)
+                    .WithFontWeight(FontWeight.Bold)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Large, EmailSpacing.None);
 

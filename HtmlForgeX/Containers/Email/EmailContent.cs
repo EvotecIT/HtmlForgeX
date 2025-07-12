@@ -28,8 +28,14 @@ public class EmailContent : Element {
     /// </summary>
     /// <param name="alignment">The alignment value ("left", "center", "right")</param>
     /// <returns>The EmailContent object, allowing for method chaining.</returns>
-    public EmailContent SetAlignment(string alignment) {
-        _alignment = alignment;
+    /// <summary>
+    /// Sets the text alignment for the content.
+    /// </summary>
+    /// <param name="alignment">The alignment option.</param>
+    /// <returns>The <see cref="EmailContent"/> instance.</returns>
+    public EmailContent SetAlignment(FontAlignment alignment) {
+        alignment.ValidateEmailAlignment();
+        _alignment = alignment.ToCssValue();
         return this;
     }
 
@@ -87,6 +93,7 @@ public class EmailContent : Element {
     /// <param name="element">The element to add</param>
     /// <returns>The EmailContent object, allowing for method chaining.</returns>
     public new EmailContent Add(Element element) {
+        base.Add(element);
         _elements.Add(element);
         return this;
     }
@@ -97,7 +104,7 @@ public class EmailContent : Element {
     /// <returns>The HTML string</returns>
     public override string ToString() {
         var html = new StringBuilder();
-        var contentPadding = string.IsNullOrEmpty(_padding) || _padding == "0px" ? 
+        var contentPadding = string.IsNullOrEmpty(_padding) || _padding == "0px" ?
             EmailLayout.GetContentPadding() : _padding;
 
         // Create a single-column structure that matches EmailColumn alignment

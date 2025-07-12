@@ -16,7 +16,7 @@ public abstract class Element {
     /// <summary>
     /// Gets or sets the parent document reference. Used internally for library registration.
     /// </summary>
-    protected internal Document? Document {
+    public Document? Document {
         get => _document;
         set {
             _document = value;
@@ -28,7 +28,7 @@ public abstract class Element {
     /// <summary>
     /// Gets or sets the parent email reference. Used internally for email-specific functionality.
     /// </summary>
-    protected internal Email? Email {
+    public Email? Email {
         get => _email;
         set {
             _email = value;
@@ -412,6 +412,7 @@ public abstract class Element {
     /// <returns>The current element for method chaining.</returns>
     public Element EmailRow(Action<EmailRow> config) {
         var emailRow = new EmailRow();
+        emailRow.Email = this.Email;  // Set Email reference BEFORE configuration
         config(emailRow);
         this.Add(emailRow);
         return this;
@@ -424,6 +425,7 @@ public abstract class Element {
     /// <returns>The current element for method chaining.</returns>
     public Element EmailColumn(Action<EmailColumn> config) {
         var emailColumn = new EmailColumn();
+        emailColumn.Email = this.Email;  // Set Email reference BEFORE configuration
         config(emailColumn);
         this.Add(emailColumn);
         return this;
@@ -436,6 +438,7 @@ public abstract class Element {
     /// <returns>The current element for method chaining.</returns>
     public Element EmailBox(Action<EmailBox> config) {
         var emailBox = new EmailBox();
+        emailBox.Email = this.Email;  // Set Email reference BEFORE configuration
         config(emailBox);
         this.Add(emailBox);
         return this;
@@ -554,6 +557,7 @@ public abstract class Element {
     /// <returns>The current element for method chaining.</returns>
     public Element EmailContent(Action<EmailContent> config) {
         var emailContent = new EmailContent();
+        emailContent.Email = this.Email;  // Set Email reference BEFORE configuration
         config(emailContent);
         this.Add(emailContent);
         return this;

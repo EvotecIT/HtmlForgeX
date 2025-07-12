@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HtmlForgeX.Examples.Support;
 
-internal class Support {
+public static class Support {
     /// <summary>
     /// Helps build HtmlForgeX library downloadable content
     /// </summary>

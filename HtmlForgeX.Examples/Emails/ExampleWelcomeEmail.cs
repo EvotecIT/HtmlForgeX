@@ -22,7 +22,7 @@ public static class ExampleWelcomeEmail
         email.Header.SetPadding("20px");
         email.Header.EmailRow(row => {
             row.EmailColumn(col => {
-                col.SetAlignment("center");
+                col.SetAlignment(FontAlignment.Center);
                 col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .WithWidth("150px")
                     .WithHeight("42px")
@@ -70,7 +70,7 @@ public static class ExampleWelcomeEmail
         var nextStepsTitle = new Span()
             .AppendContent("What's next?")
             .WithFontSize("20px")
-            .WithFontWeight(FontWeight.Lighter)
+            .WithFontWeight(FontWeight.Normal)
             .WithColor(new RGBColor("#111827"));
 
         content.Add(new BasicElement().Add(nextStepsTitle));

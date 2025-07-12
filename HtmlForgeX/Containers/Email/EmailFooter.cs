@@ -16,6 +16,19 @@ public class EmailFooter : Element {
     public string Padding { get; set; } = "48px";
 
     /// <summary>
+    /// Gets or sets the Email reference and propagates it to the FooterBox.
+    /// </summary>
+    public new Email? Email {
+        get => base.Email;
+        set {
+            base.Email = value;
+            if (FooterBox != null && value != null) {
+                FooterBox.Email = value;
+            }
+        }
+    }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="EmailFooter"/> class.
     /// </summary>
     public EmailFooter() {
