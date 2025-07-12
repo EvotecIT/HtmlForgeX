@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using HtmlForgeX.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -46,6 +47,24 @@ public class TestEmailSaveErrors {
         var path = Path.Combine(tempDir, $"file_{Guid.NewGuid()}.html");
         using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
             email.Save(path);
+        }
+        logger.OnErrorMessage -= handler;
+        File.Delete(path);
+        Assert.IsNotNull(received);
+        StringAssert.Contains(received!, path);
+    }
+
+    [TestMethod]
+    public async Task SaveAsync_UnwritableLocation_LogsError() {
+        var logger = GetLogger();
+        string? received = null;
+        EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
+        logger.OnErrorMessage += handler;
+        var email = new Email();
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, $"file_{Guid.NewGuid():N}.html");
+        using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
+            await email.SaveAsync(path);
         }
         logger.OnErrorMessage -= handler;
         File.Delete(path);

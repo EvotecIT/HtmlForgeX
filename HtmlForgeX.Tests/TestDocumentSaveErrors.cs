@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 using HtmlForgeX.Logging;
 
@@ -47,6 +48,24 @@ public class TestDocumentSaveErrors {
         var path = Path.Combine(tempDir, $"file_{Guid.NewGuid()}.html");
         using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
             doc.Save(path);
+        }
+        logger.OnErrorMessage -= handler;
+        File.Delete(path);
+        Assert.IsNotNull(received);
+        StringAssert.Contains(received!, path);
+    }
+
+    [TestMethod]
+    public async Task SaveAsync_UnwritableLocation_LogsError() {
+        var logger = GetLogger();
+        string? received = null;
+        EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
+        logger.OnErrorMessage += handler;
+        var doc = new Document();
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, $"file_{Guid.NewGuid():N}.html");
+        using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
+            await doc.SaveAsync(path);
         }
         logger.OnErrorMessage -= handler;
         File.Delete(path);
