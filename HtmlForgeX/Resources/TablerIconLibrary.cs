@@ -6,7 +6,7 @@ namespace HtmlForgeX.Resources;
 internal class TablerIconLibrary : Library {
     public TablerIconLibrary() {
         Header = new LibraryLinks {
-            CssLink = ["https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"],
+            CssLink = ["https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css"],
             Css = ["tabler-icons.min.css"],
             JsLink = [],
             Js = []
