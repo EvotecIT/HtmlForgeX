@@ -33,4 +33,10 @@ public class TestDocumentSave {
         File.Delete(tempPath);
         Assert.AreEqual(doc.ToString(), contents);
     }
+
+    [TestMethod]
+    public async Task SaveAsync_InvalidPath_ThrowsArgumentException() {
+        var doc = new Document();
+        await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await doc.SaveAsync("invalid\0path.html"));
+    }
 }
