@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using System.Runtime.InteropServices;
+using HtmlForgeX.Logging;
 
 namespace HtmlForgeX.Tests;
 
@@ -22,5 +24,22 @@ public class TestHelpersEncoding {
         var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName());
         var result = Helpers.Open(path, true);
         Assert.IsFalse(result);
+    }
+
+    [TestMethod]
+    public void Open_UnsupportedOS_LogsError() {
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, Path.GetRandomFileName());
+        File.WriteAllText(path, "test");
+        string? message = null;
+        EventHandler<LogEventArgs> handler = (_, e) => message = e.FullMessage;
+        Document._logger.OnErrorMessage += handler;
+        Helpers.PlatformOverride = OSPlatform.Create("other");
+        var result = Helpers.Open(path, true);
+        Helpers.PlatformOverride = null;
+        Document._logger.OnErrorMessage -= handler;
+        File.Delete(path);
+        Assert.IsFalse(result);
+        Assert.IsNotNull(message);
     }
 }

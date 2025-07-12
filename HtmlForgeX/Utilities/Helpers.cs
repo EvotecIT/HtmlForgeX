@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Net;
@@ -9,6 +10,7 @@ using System.IO;
 namespace HtmlForgeX;
 
 internal static class Helpers {
+    internal static OSPlatform? PlatformOverride { get; set; }
     /// <summary>
     /// Opens up any file using assigned Application
     /// </summary>
@@ -24,17 +26,28 @@ internal static class Helpers {
         }
 
         try {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+            bool isWindows = PlatformOverride.HasValue ? PlatformOverride.Value == OSPlatform.Windows : RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            bool isOsx = PlatformOverride.HasValue ? PlatformOverride.Value == OSPlatform.OSX : RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
+            bool isLinux = PlatformOverride.HasValue ? PlatformOverride.Value == OSPlatform.Linux : RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+            if (isWindows) {
                 using Process? process = Process.Start(new ProcessStartInfo("cmd", $"/c start \"\" \"{filePath}\"") {
                     CreateNoWindow = true
                 });
-            } else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
+            } else if (isOsx) {
                 using Process? process = Process.Start("open", filePath);
-            } else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
+            } else if (isLinux) {
                 using Process? process = Process.Start("xdg-open", filePath);
             } else {
+                Document._logger.WriteError($"Unsupported operating system while opening '{filePath}'.");
                 return false;
             }
+        } catch (Win32Exception ex) {
+            Document._logger.WriteError($"Failed to open '{filePath}'. {ex.Message}");
+            return false;
+        } catch (FileNotFoundException ex) {
+            Document._logger.WriteError($"Failed to open '{filePath}'. {ex.Message}");
+            return false;
         } catch (Exception) {
             return false;
         }
