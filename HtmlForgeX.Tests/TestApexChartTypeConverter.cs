@@ -7,10 +7,13 @@ namespace HtmlForgeX.Tests;
 public class TestApexChartTypeConverter {
     [TestMethod]
     public void ApexChartType_SerializesAndDeserializes() {
-        var type = ApexChartType.Bar;
-        var json = JsonSerializer.Serialize(type);
+        var json = JsonSerializer.Serialize(ApexChartType.Bar);
         Assert.AreEqual("\"bar\"", json);
-        var back = JsonSerializer.Deserialize<ApexChartType>(json);
-        Assert.AreEqual(type, back);
+
+        var types = new[] { ApexChartType.Bar, ApexChartType.Radar, ApexChartType.Heatmap, ApexChartType.Mixed };
+        foreach (var type in types) {
+            var roundtrip = JsonSerializer.Deserialize<ApexChartType>(JsonSerializer.Serialize(type));
+            Assert.AreEqual(type, roundtrip);
+        }
     }
 }

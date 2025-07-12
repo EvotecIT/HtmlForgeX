@@ -191,6 +191,31 @@ internal class BasicHtmlContainer03 {
                         });
                     });
                 });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.ApexChart(chart => {
+                            chart.Title.Text("Radar Chart");
+                            chart.AddRadar("R1", 10).AddRadar("R2", 20).AddRadar("R3", 30);
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.ApexChart(chart => {
+                            chart.Title.Text("Heatmap Chart");
+                            chart.AddHeatmap("H1", 5).AddHeatmap("H2", 10).AddHeatmap("H3", 15);
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.ApexChart(chart => {
+                            chart.Title.Text("Mixed Chart");
+                            chart.AddMixed("bar", "Bar", new[] { 1.0, 2.0, 3.0 });
+                            chart.AddMixed("line", "Line", new[] { 3.0, 4.0, 5.0 });
+                        });
+                    });
+                });
                 row.Column(TablerColumnNumber.Eight, column => {
                     column.Card(card => {
                         card.DiagramNetwork(diagam => {

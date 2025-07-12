@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Linq;
 
 namespace HtmlForgeX;
 
@@ -12,6 +13,7 @@ public class ApexCharts : Element {
     public string Type { get; set; }
     public List<double> Series { get; set; } = new List<double>();
     public List<string> Labels { get; set; } = new List<string>();
+    public List<ApexMixedSeries> MixedSeries { get; set; } = new();
     public ApexChartsTitle Title { get; set; } = new ApexChartsTitle();
     public ApexChartSubtitle Subtitle { get; set; } = new ApexChartSubtitle();
 
@@ -48,6 +50,26 @@ public class ApexCharts : Element {
         return this;
     }
 
+    public ApexCharts AddRadar(string name, double value) {
+        Type = "radar";
+        Labels.Add(name);
+        Series.Add(value);
+        return this;
+    }
+
+    public ApexCharts AddHeatmap(string name, double value) {
+        Type = "heatmap";
+        Labels.Add(name);
+        Series.Add(value);
+        return this;
+    }
+
+    public ApexCharts AddMixed(string type, string name, IEnumerable<double> data) {
+        Type = "line";
+        MixedSeries.Add(new ApexMixedSeries { Name = name, Type = type, Data = data.ToList() });
+        return this;
+    }
+
     public ApexCharts Data(string name, double value) {
         Labels.Add(name);
         Series.Add(value);
@@ -76,7 +98,9 @@ public class ApexCharts : Element {
             options["subtitle"] = Subtitle;
         }
 
-        if (Series.Count > 0) {
+        if (MixedSeries.Count > 0) {
+            options["series"] = MixedSeries;
+        } else if (Series.Count > 0) {
             if (Type == "bar") {
                 options["series"] = new List<object> { new { data = Series } };
             } else {
@@ -100,4 +124,10 @@ public class ApexCharts : Element {
 
         return divTag + scriptTag.ToString();
     }
+}
+
+public class ApexMixedSeries {
+    public string Name { get; set; }
+    public string Type { get; set; }
+    public List<double> Data { get; set; } = new();
 }
