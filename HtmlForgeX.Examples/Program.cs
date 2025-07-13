@@ -7,6 +7,7 @@ using HtmlForgeX.Examples.Tables;
 using HtmlForgeX.Examples.ByHand;
 using HtmlForgeX.Examples.Experimenting;
 using HtmlForgeX.Examples.Support;
+using HtmlForgeX.Examples.Forms;
 
 namespace HtmlForgeX.Examples;
 
@@ -48,6 +49,7 @@ internal class Program {
         // Toast examples
         ExampleTablerToast.Create(openInBrowser);
         ExampleTablerToastAdvanced.Create(openInBrowser);
+        ExampleTablerForm.Create(openInBrowser);
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
