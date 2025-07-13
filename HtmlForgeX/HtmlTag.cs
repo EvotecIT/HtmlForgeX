@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Globalization;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 /// <summary>
@@ -190,7 +192,7 @@ public class HtmlTag : Element {
         } else {
             // if the tag is normal we add the children
             html.Append(">");
-            foreach (var child in Children) {
+            foreach (var child in Children.WhereNotNull()) {
                 if (child is string str) {
                     //html.Append(Helpers.HtmlEncode(str));
                     html.Append(str);

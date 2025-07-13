@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -248,7 +251,7 @@ public class EmailTextBox : Element {
         }
 
         // Render child elements (nested content)
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             html.AppendLine(child.ToString());
         }
 

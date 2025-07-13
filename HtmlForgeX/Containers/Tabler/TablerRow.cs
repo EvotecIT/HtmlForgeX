@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -22,7 +25,7 @@ public class TablerRow : Element {
         foreach (var rowType in RowTypes) {
             rowTag.Class(rowType.EnumToString());
         }
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             rowTag.Value(child);
         }
         return rowTag.ToString();

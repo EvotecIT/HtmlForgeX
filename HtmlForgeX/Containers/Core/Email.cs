@@ -2,7 +2,9 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 using HtmlForgeX.Logging;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -384,7 +386,7 @@ public class Email : Element {
     /// </summary>
     /// <param name="element">The element to process.</param>
     private void RegisterLibrariesFromElement(Element element) {
-        foreach (var child in element.Children) {
+        foreach (var child in element.Children.WhereNotNull()) {
             child.RegisterLibraries();
             RegisterLibrariesFromElement(child);
         }

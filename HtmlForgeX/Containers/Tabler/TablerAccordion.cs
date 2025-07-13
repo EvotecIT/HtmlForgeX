@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerAccordion : Element {
@@ -32,7 +35,7 @@ public class TablerAccordion : Element {
     public override string ToString() {
         var accordionDiv = new HtmlTag("div").Class("accordion").Id(Id);
 
-        foreach (var item in Items) {
+        foreach (var item in Items.WhereNotNull()) {
             accordionDiv.Value(item);
         }
 

@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -56,7 +59,7 @@ public class ScrollingText : Element {
         var sectionScrollingDiv = new HtmlTag("div").Attribute("class", "sectionScrolling");
         var divTagEmpty = new HtmlTag("div");
 
-        foreach (var item in Items) {
+        foreach (var item in Items.WhereNotNull()) {
             divTagEmpty.Value(item);
         }
 
@@ -75,7 +78,7 @@ public class ScrollingText : Element {
         var navTag = new HtmlTag("nav").Attribute("class", "section-nav");
         var olTag = new HtmlTag("ol");
 
-        foreach (var item in Items) {
+        foreach (var item in Items.WhereNotNull()) {
             olTag.Value(RenderNavItem(item));
         }
 

@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -68,7 +71,7 @@ public class BasicElement : Element {
         }
 
         // Render child elements
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             var childContent = child.ToString();
             if (!string.IsNullOrEmpty(childContent)) {
                 html.AppendLine(childContent);

@@ -1,4 +1,6 @@
 using System.Text;
+using System.Linq;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -227,7 +229,7 @@ public class EmailColumn : Element {
 
         var content = StringBuilderCache.Acquire();
 
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             var childContent = child.ToString();
             if (!string.IsNullOrEmpty(childContent)) {
                 content.AppendLine(childContent);
