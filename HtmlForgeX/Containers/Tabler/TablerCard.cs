@@ -293,14 +293,51 @@ public class TablerCard : Element {
             }
         }
 
-        // Add background images
+        // Add background images - these should be applied to the card element itself
         var backgroundImages = CardImages.Where(img => {
             var property = img.GetType().GetProperty("Position", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             var pos = property?.GetValue(img)?.ToString();
             return pos == "Background";
         });
+        
         foreach (var image in backgroundImages) {
-            cardTag.Value(image.ToString());
+            // Get the image URL and apply it as background to the card
+            var urlProperty = image.GetType().GetProperty("ImageUrl", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var imageUrl = urlProperty?.GetValue(image)?.ToString();
+            
+            if (!string.IsNullOrEmpty(imageUrl)) {
+                // Check if image is embedded as base64
+                var embedProperty = image.GetType().GetProperty("EmbedAsBase64", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                var isEmbedded = (bool)(embedProperty?.GetValue(image) ?? false);
+                
+                string finalUrl = imageUrl;
+                if (isEmbedded) {
+                    var base64Property = image.GetType().GetProperty("Base64Data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    var mimeProperty = image.GetType().GetProperty("MimeType", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    var base64Data = base64Property?.GetValue(image)?.ToString();
+                    var mimeType = mimeProperty?.GetValue(image)?.ToString();
+                    
+                    if (!string.IsNullOrEmpty(base64Data) && !string.IsNullOrEmpty(mimeType)) {
+                        finalUrl = "data:" + mimeType + ";base64," + base64Data;
+                    }
+                }
+                
+                cardTag.Style("background-image", "url(" + finalUrl + ")");
+                cardTag.Style("background-size", "cover");
+                cardTag.Style("background-position", "center");
+                classes.Add("card-img-background");
+                
+                // Get effect class if any
+                var effectProperty = image.GetType().GetProperty("Effect", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                var effect = effectProperty?.GetValue(image);
+                if (effect != null) {
+                    var effectMethod = effect.GetType().GetMethod("ToTablerImageEffectClass");
+                    var effectClass = effectMethod?.Invoke(effect, null)?.ToString();
+                    if (!string.IsNullOrEmpty(effectClass)) {
+                        classes.Add(effectClass);
+                    }
+                }
+            }
         }
 
         // Add bottom images
