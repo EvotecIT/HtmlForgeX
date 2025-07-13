@@ -350,6 +350,19 @@ public abstract class Element {
         return unorderedList;
     }
 
+    public TablerToast Toast(string title, string message, TablerToastType type = TablerToastType.Default) {
+        var toast = new TablerToast(title, message, type);
+        this.Add(toast);
+        return toast;
+    }
+
+    public TablerToast Toast(Action<TablerToast> config) {
+        var toast = new TablerToast();
+        config(toast);
+        this.Add(toast);
+        return toast;
+    }
+
     // Email Extension Methods for Natural Builder Pattern
 
     /// <summary>

@@ -34,6 +34,8 @@ internal class Program {
         ExampleTablerIcon.Create();
         ExampleTablerTag.Create();
         ExampleTablerAlerts.Create();
+        ExampleTablerToast.Create();
+        ExampleTablerToastAdvanced.Create();
         ExampleSvgIcons.Create();
 
         // Experimental examples (console output)
