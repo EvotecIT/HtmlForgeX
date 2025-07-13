@@ -15,10 +15,11 @@ internal class BasicQuillEditor {
                 card.QuillEditor(editor => {
                     editor.Height = "200px";
                     editor.Options.Placeholder = "Compose an epic...";
-                    editor.Options.Theme = QuillTheme.Bubble;
-                    editor.Options.Modules = new QuillModules {
-                        Toolbar = new() { QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Image }
-                    };
+                    // THOSE OPTIONS don't really work correctly, at least theme, formats, it needs improvements
+                    //editor.Options.Theme = QuillTheme.Bubble;
+                    // editor.Options.Modules = new QuillModules {
+                    //     Toolbar = new() { QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Image, QuillFormat.Code, QuillFormat.CodeBlock }
+                    // };
                     editor.Options.Formats = new() { QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Image };
                 });
             });
