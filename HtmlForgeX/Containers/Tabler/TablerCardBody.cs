@@ -10,9 +10,10 @@ public class TablerCardBody : Element {
     private string? BodyText { get; set; }
     private List<TablerCardText> TextElements { get; set; } = new List<TablerCardText>();
     private List<TablerCardList> Lists { get; set; } = new List<TablerCardList>();
+    private List<TablerDataGrid> DataGrids { get; set; } = new List<TablerDataGrid>();
     private TablerCardImage? BodyImage { get; set; }
     private TablerCardAlignment Alignment { get; set; } = TablerCardAlignment.Start;
-    
+
     /// <summary>
     /// Set the card body title
     /// </summary>
@@ -20,7 +21,7 @@ public class TablerCardBody : Element {
         TitleText = title;
         return this;
     }
-    
+
     /// <summary>
     /// Set the main body text
     /// </summary>
@@ -28,7 +29,7 @@ public class TablerCardBody : Element {
         BodyText = text;
         return this;
     }
-    
+
     /// <summary>
     /// Add formatted text element
     /// </summary>
@@ -38,7 +39,7 @@ public class TablerCardBody : Element {
         TextElements.Add(textElement);
         return this;
     }
-    
+
     /// <summary>
     /// Add a list to the card body
     /// </summary>
@@ -48,7 +49,17 @@ public class TablerCardBody : Element {
         Lists.Add(list);
         return this;
     }
-    
+
+    /// <summary>
+    /// Add a DataGrid to the card body using the enhanced TablerDataGrid component
+    /// </summary>
+    public TablerCardBody DataGrid(Action<TablerDataGrid> dataGridConfig) {
+        var dataGrid = new TablerDataGrid();
+        dataGridConfig(dataGrid);
+        DataGrids.Add(dataGrid);
+        return this;
+    }
+
     /// <summary>
     /// Add an image to the card body
     /// </summary>
@@ -57,7 +68,7 @@ public class TablerCardBody : Element {
         imageConfig(BodyImage);
         return this;
     }
-    
+
     /// <summary>
     /// Set content alignment
     /// </summary>
@@ -65,46 +76,51 @@ public class TablerCardBody : Element {
         Alignment = alignment;
         return this;
     }
-    
+
     public override string ToString() {
         var bodyDiv = new HtmlTag("div");
         var classes = new List<string> { "card-body" };
-        
+
         // Add alignment classes
         var alignmentClass = Alignment.ToTablerCardAlignmentClass();
         if (!string.IsNullOrEmpty(alignmentClass)) {
             classes.Add(alignmentClass);
         }
-        
+
         bodyDiv.Class(string.Join(" ", classes));
-        
+
         // Add title if specified
         if (!string.IsNullOrEmpty(TitleText)) {
             var titleElement = new HtmlTag("h3").Class("card-title").Value(TitleText);
             bodyDiv.Value(titleElement);
         }
-        
+
         // Add main text if specified
         if (!string.IsNullOrEmpty(BodyText)) {
             var textElement = new HtmlTag("p").Value(BodyText);
             bodyDiv.Value(textElement);
         }
-        
+
         // Add formatted text elements
         foreach (var textElement in TextElements) {
             bodyDiv.Value(textElement.ToString());
         }
-        
+
         // Add lists
         foreach (var list in Lists) {
             bodyDiv.Value(list.ToString());
         }
-        
+
+        // Add DataGrids
+        foreach (var dataGrid in DataGrids) {
+            bodyDiv.Value(dataGrid.ToString());
+        }
+
         // Add image if specified
         if (BodyImage != null) {
             bodyDiv.Value(BodyImage.ToString());
         }
-        
+
         return bodyDiv.ToString();
     }
 }
@@ -121,78 +137,78 @@ public class TablerCardText : Element {
     private bool IsStrong { get; set; } = false;
     private bool IsEmphasized { get; set; } = false;
     private string HtmlTag { get; set; } = "p";
-    
+
     public TablerCardText WithContent(string content) {
         Content = content;
         return this;
     }
-    
+
     public TablerCardText Style(TablerTextStyle style) {
         TextStyle = style;
         return this;
     }
-    
+
     public TablerCardText Weight(TablerFontWeight weight) {
         FontWeight = weight;
         return this;
     }
-    
+
     public TablerCardText Color(TablerColor color) {
         TextColor = color;
         return this;
     }
-    
+
     public TablerCardText Align(TablerTextAlignment alignment) {
         TextAlignment = alignment;
         return this;
     }
-    
+
     public TablerCardText Strong() {
         IsStrong = true;
         return this;
     }
-    
+
     public TablerCardText Emphasized() {
         IsEmphasized = true;
         return this;
     }
-    
+
     public TablerCardText Tag(string tag) {
         HtmlTag = tag;
         return this;
     }
-    
+
     public override string ToString() {
         var textElement = new HtmlTag(HtmlTag);
         var classes = new List<string>();
-        
+
         // Add text style classes
         var styleClass = TextStyle.EnumToString();
         if (!string.IsNullOrEmpty(styleClass)) {
             classes.Add(styleClass);
         }
-        
+
         // Add weight classes
         var weightClass = GetFontWeightClass(FontWeight);
         if (!string.IsNullOrEmpty(weightClass)) {
             classes.Add(weightClass);
         }
-        
+
         // Add color classes
         if (TextColor.HasValue) {
             classes.Add(TextColor.Value.ToTablerText());
         }
-        
+
         // Add alignment classes
         var alignmentClass = TextAlignment.ToTablerTextAlignmentClass();
         if (!string.IsNullOrEmpty(alignmentClass)) {
             classes.Add(alignmentClass);
         }
-        
+
         if (classes.Count > 0) {
             textElement.Class(string.Join(" ", classes));
         }
-        
+
         // Wrap content in formatting tags if needed
         var content = Content ?? "";
         if (IsStrong) {
@@ -201,11 +217,11 @@ public class TablerCardText : Element {
         if (IsEmphasized) {
             content = $"<em>{content}</em>";
         }
-        
+
         textElement.Value(content);
         return textElement.ToString();
     }
-    
+
     private static string GetFontWeightClass(TablerFontWeight weight) {
         return weight switch {
             TablerFontWeight.Medium => "fw-medium",
