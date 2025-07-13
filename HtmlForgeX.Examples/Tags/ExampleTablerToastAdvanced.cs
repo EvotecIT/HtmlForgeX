@@ -1,7 +1,7 @@
 namespace HtmlForgeX.Examples.Tags;
 
 internal static class ExampleTablerToastAdvanced {
-    public static void Create() {
+    public static void Create(bool openInBrowser = false) {
         var data = new[] {
             new { Name = "Alice", Age = 30 },
             new { Name = "Bob", Age = 25 }
@@ -38,6 +38,6 @@ internal static class ExampleTablerToastAdvanced {
             });
         });
 
-        document.Save("AdvancedToastDemo.html", true);
+        document.Save("AdvancedToastDemo.html", openInBrowser);
     }
 }

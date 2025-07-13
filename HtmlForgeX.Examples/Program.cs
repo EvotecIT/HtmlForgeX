@@ -34,8 +34,6 @@ internal class Program {
         ExampleTablerIcon.Create();
         ExampleTablerTag.Create();
         ExampleTablerAlerts.Create();
-        ExampleTablerToast.Create();
-        ExampleTablerToastAdvanced.Create();
         ExampleSvgIcons.Create();
 
         // Experimental examples (console output)
@@ -45,6 +43,10 @@ internal class Program {
         // Manual HTML building examples
         BasicHtmlBuilding.Demo1(openInBrowser);
         BasicHtmlBuilding.Demo2(openInBrowser);
+
+        // Toast examples
+        ExampleTablerToast.Create(openInBrowser);
+        ExampleTablerToastAdvanced.Create(openInBrowser);
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
