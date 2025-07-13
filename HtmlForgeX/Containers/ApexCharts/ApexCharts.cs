@@ -9,7 +9,7 @@ namespace HtmlForgeX;
 
 public class ApexCharts : Element {
     public string Id { get; set; }
-    public string Type { get; set; }
+    public ApexChartType Type { get; set; }
     public List<double> Series { get; set; } = new List<double>();
     public List<string> Labels { get; set; } = new List<string>();
     public ApexChartsTitle Title { get; set; } = new ApexChartsTitle();
@@ -29,56 +29,56 @@ public class ApexCharts : Element {
     }
 
     public ApexCharts AddPie(string name, double value) {
-        Type = "pie";
+        Type = ApexChartType.Pie;
         Labels.Add(name);
         Series.Add(value);
         return this;
     }
 
     public ApexCharts AddDonut(string name, double value) {
-        Type = "donut";
+        Type = ApexChartType.Donut;
         Labels.Add(name);
         Series.Add(value);
         return this;
     }
 
     public ApexCharts AddBar(string name, double value) {
-        Type = "bar";
+        Type = ApexChartType.Bar;
         Labels.Add(name);
         Series.Add(value);
         return this;
     }
 
     public ApexCharts AddArea(string name, double value) {
-        Type = "area";
+        Type = ApexChartType.Area;
         Labels.Add(name);
         Series.Add(value);
         return this;
     }
 
     public ApexCharts AddTreemap(string name, double value) {
-        Type = "treemap";
+        Type = ApexChartType.Treemap;
         Labels.Add(name);
         Series.Add(value);
         return this;
     }
 
     public ApexCharts AddRadar(string name, double value) {
-        Type = "radar";
+        Type = ApexChartType.Radar;
         Labels.Add(name);
         Series.Add(value);
         return this;
     }
 
     public ApexCharts AddHeatmap(string name, double value) {
-        Type = "heatmap";
+        Type = ApexChartType.Heatmap;
         Labels.Add(name);
         Series.Add(value);
         return this;
     }
 
     public ApexCharts AddMixed(string name, double value) {
-        Type = "mixed";
+        Type = ApexChartType.Mixed;
         Labels.Add(name);
         Series.Add(value);
         return this;
@@ -136,7 +136,7 @@ public class ApexCharts : Element {
         var divTag = new HtmlTag("div").Attribute("id", Id);
 
         var options = new Dictionary<string, object> {
-            ["chart"] = new Dictionary<string, string> {
+            ["chart"] = new Dictionary<string, object> {
                 ["type"] = Type
             }
         };
@@ -150,10 +150,10 @@ public class ApexCharts : Element {
         }
 
         if (Series.Count > 0) {
-            if (Type == "bar") {
-                options["series"] = new List<object> { new { data = Series } };
-            } else {
+            if (Type is ApexChartType.Pie or ApexChartType.Donut) {
                 options["series"] = Series;
+            } else {
+                options["series"] = new List<object> { new { data = Series } };
             }
         }
 
