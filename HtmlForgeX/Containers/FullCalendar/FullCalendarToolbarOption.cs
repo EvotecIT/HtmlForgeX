@@ -2,9 +2,13 @@ using System.ComponentModel;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Options that can be placed on a FullCalendar toolbar.
+/// </summary>
 [JsonConverter(typeof(DescriptionEnumConverter<FullCalendarToolbarOption>))]
 public enum FullCalendarToolbarOption {
     [Description("title")]
+    /// <summary>Displays the current view title.</summary>
     Title,
 
     [Description("prev")]

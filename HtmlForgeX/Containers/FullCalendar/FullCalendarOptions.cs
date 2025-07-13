@@ -1,9 +1,13 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Configuration options for the FullCalendar component.
+/// </summary>
 public class FullCalendarOptions {
     [JsonConverter(typeof(FullCalendarToolbarConverter))]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("headerToolbar")]
+    /// <summary>Toolbar displayed at the top.</summary>
     public FullCalendarToolbar HeaderToolbar { get; set; }
 
     [JsonConverter(typeof(FullCalendarToolbarConverter))]

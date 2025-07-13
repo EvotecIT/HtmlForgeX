@@ -3,7 +3,13 @@ using System.Text.Json;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Helper for building simple Chart.js charts.
+/// </summary>
 public class ChartJs : Element {
+    /// <summary>
+    /// Gets or sets the canvas identifier.
+    /// </summary>
     public string Id { get; set; }
     public ChartJsType Type { get; set; } = ChartJsType.Bar;
     public List<string> Labels { get; } = new();
