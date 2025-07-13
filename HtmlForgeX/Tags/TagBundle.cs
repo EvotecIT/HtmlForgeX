@@ -1,34 +1,82 @@
 namespace HtmlForgeX.Tags;
 
+/// <summary>
+/// Represents an HTML <c>&lt;abbr&gt;</c> tag.
+/// </summary>
+/// <remarks>
+/// The <c>&lt;abbr&gt;</c> tag is used to denote an abbreviation or acronym and can
+/// include a tooltip with the expanded text via the <c>title</c> attribute.
+/// </remarks>
 public class Abbr(string value) : HtmlTag("abbr", value) {
+    /// <summary>
+    /// Sets the <c>title</c> attribute providing the expanded abbreviation text.
+    /// </summary>
+    /// <param name="title">Full text for the abbreviation.</param>
+    /// <returns>The current <see cref="Abbr"/> instance.</returns>
     public Abbr Title(string title) {
         Attributes["title"] = title;
         return this;
     }
 }
 
+/// <summary>
+/// Represents an HTML <c>&lt;address&gt;</c> tag.
+/// </summary>
 public class Address(string value) : HtmlTag("address", value);
 
+/// <summary>
+/// Represents an HTML <c>&lt;article&gt;</c> tag.
+/// </summary>
 public class Article(string value) : HtmlTag("article", value);
 
+/// <summary>
+/// Represents an HTML <c>&lt;br&gt;</c> tag.
+/// </summary>
 public class BR() : HtmlTag("br", TagMode.NoClosing);
 
+/// <summary>
+/// Alias for <see cref="BR"/>, provides a line break.
+/// </summary>
 public class LineBreak() : HtmlTag("br", TagMode.NoClosing);
 
+/// <summary>
+/// Represents an HTML <c>&lt;hr&gt;</c> tag.
+/// </summary>
 public class HR() : HtmlTag("hr", TagMode.NoClosing);
 
+/// <summary>
+/// Alias for <see cref="HR"/>, renders a horizontal rule.
+/// </summary>
 public class HorizontalRule() : HtmlTag("hr", TagMode.NoClosing);
 
+/// <summary>
+/// Represents an HTML <c>&lt;h1&gt;</c> tag.
+/// </summary>
 public class H1(string value) : HtmlTag("h1", value);
 
+/// <summary>
+/// Represents an HTML <c>&lt;h2&gt;</c> tag.
+/// </summary>
 public class H2(string value) : HtmlTag("h2", value);
 
+/// <summary>
+/// Represents an HTML <c>&lt;h3&gt;</c> tag.
+/// </summary>
 public class H3(string value) : HtmlTag("h3", value);
 
+/// <summary>
+/// Represents an HTML <c>&lt;h4&gt;</c> tag.
+/// </summary>
 public class H4(string value) : HtmlTag("h4", value);
 
+/// <summary>
+/// Represents an HTML <c>&lt;h5&gt;</c> tag.
+/// </summary>
 public class H5(string value) : HtmlTag("h5", value);
 
+/// <summary>
+/// Represents an HTML <c>&lt;h6&gt;</c> tag.
+/// </summary>
 public class H6(string value) : HtmlTag("h6", value);
 
 /// <summary>
