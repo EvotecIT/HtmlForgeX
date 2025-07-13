@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class Span : Element {
@@ -381,9 +384,9 @@ public class Span : Element {
         var styleString = GenerateStyle();
         styleString = !string.IsNullOrEmpty(styleString) ? $" style=\"{Helpers.HtmlEncode(styleString)}\"" : "";
 
-        var childrenHtml = string.Join("", Children.Select(child => child.ToString()));
+        var childrenHtml = string.Join("", Children.WhereNotNull().Select(child => child.ToString()));
 
-        var childrenParentHtml = string.Join("", this.Parent.HtmlSpans.Select(child => {
+        var childrenParentHtml = string.Join("", this.Parent.HtmlSpans.WhereNotNull().Select(child => {
             var childStyle = child.GenerateStyle();
             childStyle = !string.IsNullOrEmpty(childStyle) ? $" style=\"{Helpers.HtmlEncode(childStyle)}\"" : "";
             var content = Helpers.HtmlEncode(child.Content ?? string.Empty);

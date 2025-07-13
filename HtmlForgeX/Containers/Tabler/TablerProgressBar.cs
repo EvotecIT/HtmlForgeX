@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -144,7 +147,7 @@ public class TablerProgressBar : Element {
         }
         // TODO: We need to add handling for mb-3 and similar for margins and padding
 
-        foreach (var item in Items) {
+        foreach (var item in Items.WhereNotNull()) {
             progressBarTag.Value(item);
         }
 

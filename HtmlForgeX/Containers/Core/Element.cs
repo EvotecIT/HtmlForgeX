@@ -1,4 +1,6 @@
+using System.Linq;
 using HtmlForgeX.Tags;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -66,7 +68,7 @@ public abstract class Element {
     /// Recursively sets the document reference for all child elements.
     /// </summary>
     private void PropagateDocumentToChildren() {
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             child.Document = Document;
         }
     }
@@ -75,7 +77,7 @@ public abstract class Element {
     /// Recursively sets the email reference for all child elements.
     /// </summary>
     private void PropagateEmailToChildren() {
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             child.Email = Email;
         }
     }

@@ -1,4 +1,6 @@
 using System.Text;
+using System.Linq;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -81,7 +83,7 @@ public class Body : Element {
         }
 
         // Add the HTML of the child elements
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             bodyBuilder.AppendLine(child.ToString());
         }
 

@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -59,12 +62,12 @@ public class ScrollingTextItem : Element {
         }
 
         // Render all child elements recursively
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             sectionTag.Value(child);
         }
 
         // Render all nested items (aka ScrollingTextItems)
-        foreach (var child in Items) {
+        foreach (var child in Items.WhereNotNull()) {
             sectionTag.Value(child);
         }
 
