@@ -64,10 +64,10 @@ public class LibraryDownloader {
     public async Task<List<string>> GenerateTablerIconCodeAsync(string cssFilePath) {
         var icons = new List<string>();
         string cssText;
-#if NET472
-        using var stream = File.OpenRead(cssFilePath);
-#else
+#if NET5_0_OR_GREATER || NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         await using var stream = File.OpenRead(cssFilePath);
+#else
+        using var stream = File.OpenRead(cssFilePath);
 #endif
         using var reader = new StreamReader(stream);
         cssText = await reader.ReadToEndAsync().ConfigureAwait(false);
@@ -112,10 +112,10 @@ public class LibraryDownloader {
         } catch (Exception ex) {
             _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
         }
-#if NET472
-        using var fileStream = new FileStream(localPath, FileMode.Create, FileAccess.Write, FileShare.None);
-#else
+#if NET5_0_OR_GREATER || NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         await using var fileStream = new FileStream(localPath, FileMode.Create, FileAccess.Write, FileShare.None);
+#else
+        using var fileStream = new FileStream(localPath, FileMode.Create, FileAccess.Write, FileShare.None);
 #endif
         using HttpResponseMessage response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
         if (!response.IsSuccessStatusCode) {
@@ -123,10 +123,10 @@ public class LibraryDownloader {
             throw new HttpRequestException($"Request for '{url}' failed with status code {response.StatusCode}");
         }
 
-#if NET472
-        using var httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-#else
+#if NET5_0_OR_GREATER || NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         await using var httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+#else
+        using var httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 #endif
         await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
     }
