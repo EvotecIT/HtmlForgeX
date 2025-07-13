@@ -189,9 +189,9 @@ public class TablerCard : Element {
             if (!string.IsNullOrEmpty(RibbonText)) {
                 var textLength = RibbonText.Length;
                 if (textLength > 5) {
-                    // Calculate width more generously to ensure text fits
-                    var minWidth = Math.Min(textLength * 0.9 + 2, 15);
-                    ribbonDiv.Attribute("style", $"min-width: {minWidth:F1}rem; white-space: nowrap; overflow: visible;");
+                    // Use very aggressive CSS to completely override Tabler's ribbon constraints
+                    var minWidth = Math.Max(textLength * 1.2 + 1, 10);
+                    ribbonDiv.Attribute("style", $"min-width: {minWidth:F1}rem !important; max-width: none !important; width: auto !important; white-space: nowrap !important; overflow: visible !important; padding: 0.25rem 0.75rem !important; transform: none !important; box-sizing: border-box !important;");
                 }
                 ribbonDiv.Value(RibbonText);
             } else if (RibbonIcon.HasValue) {
