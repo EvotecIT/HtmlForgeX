@@ -61,6 +61,9 @@ internal static class Helpers {
     /// <param name="file"></param>
     /// <returns></returns>
     public static bool IsFileLocked(this FileInfo file) {
+        if (!file.Exists) {
+            return false;
+        }
         try {
             using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None)) {
                 stream.Close();
@@ -89,6 +92,9 @@ internal static class Helpers {
     /// <param name="fileName"></param>
     /// <returns></returns>
     public static bool IsFileLocked(this string fileName) {
+        if (!File.Exists(fileName)) {
+            return false;
+        }
         try {
             var file = new FileInfo(fileName);
             using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None)) {
