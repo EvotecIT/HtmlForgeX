@@ -55,6 +55,8 @@ internal class Program {
 
         // Table examples
         BasicHtmlTable01.Create(openInBrowser);
+        BasicHtmlTable02.Create(openInBrowser);
+        BasicHtmlTable03.Create(openInBrowser);
 
         // Email examples - showcasing the new Document-style configuration!
         Console.WriteLine("📧 Running Email Examples with Document-Style Configuration:");

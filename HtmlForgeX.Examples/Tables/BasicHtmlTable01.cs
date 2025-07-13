@@ -49,6 +49,11 @@ internal class BasicHtmlTable01 {
         table4.EnableSearching = false;
         table4.EnableOrdering = true;
         table4.EnableScrollX = true;
+        table4.Configure(o =>
+        {
+            o.PageLength = 25;
+            o.StateSave = true;
+        });
 
         var table5 = (BootstrapTable)document.Body.Table(drives, TableType.BootstrapTable);
         table5.Style(BootStrapTableStyle.Striped).Style(BootStrapTableStyle.Hover);
