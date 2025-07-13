@@ -400,7 +400,9 @@ public class TestVisNetworkComponent {
 
         File.Delete(path);
 
-        Assert.IsTrue(html.Contains(path), "Should keep path without embedding");
+        var escapedPath = path.Replace("\\", "\\\\");
+        Assert.IsTrue(html.Contains(escapedPath), "Should keep path without embedding");
+        Assert.IsFalse(html.Contains("data:image"), "Should not embed image");
     }
 
     [TestMethod]
