@@ -14,6 +14,7 @@ public class ApexCharts : Element {
     public List<string> Labels { get; set; } = new List<string>();
     public ApexChartsTitle Title { get; set; } = new ApexChartsTitle();
     public ApexChartSubtitle Subtitle { get; set; } = new ApexChartSubtitle();
+    public Dictionary<string, object> Options { get; set; } = new();
 
     public ApexCharts() {
         // Libraries will be registered via RegisterLibraries method
@@ -46,6 +47,78 @@ public class ApexCharts : Element {
         Labels.Add(name);
         Series.Add(value);
         return this;
+    }
+
+    public ApexCharts AddArea(string name, double value) {
+        Type = "area";
+        Labels.Add(name);
+        Series.Add(value);
+        return this;
+    }
+
+    public ApexCharts AddTreemap(string name, double value) {
+        Type = "treemap";
+        Labels.Add(name);
+        Series.Add(value);
+        return this;
+    }
+
+    public ApexCharts AddRadar(string name, double value) {
+        Type = "radar";
+        Labels.Add(name);
+        Series.Add(value);
+        return this;
+    }
+
+    public ApexCharts AddHeatmap(string name, double value) {
+        Type = "heatmap";
+        Labels.Add(name);
+        Series.Add(value);
+        return this;
+    }
+
+    public ApexCharts AddMixed(string name, double value) {
+        Type = "mixed";
+        Labels.Add(name);
+        Series.Add(value);
+        return this;
+    }
+
+    public ApexCharts SetOption(string key, object value) {
+        Options[key] = value;
+        return this;
+    }
+
+    public ApexCharts PlotOptions(Action<ApexPlotOptions> configure) {
+        var options = new ApexPlotOptions();
+        configure(options);
+        return SetOption("plotOptions", options);
+    }
+
+    public ApexCharts Grid(Action<ApexGridOptions> configure) {
+        var options = new ApexGridOptions();
+        configure(options);
+        return SetOption("grid", options);
+    }
+
+    public ApexCharts Legend(Action<ApexLegendOptions> configure) {
+        var options = new ApexLegendOptions();
+        configure(options);
+        return SetOption("legend", options);
+    }
+
+    public ApexCharts Responsive(object value) => SetOption("responsive", value);
+
+    public ApexCharts Tooltip(Action<ApexTooltipOptions> configure) {
+        var options = new ApexTooltipOptions();
+        configure(options);
+        return SetOption("tooltip", options);
+    }
+
+    public ApexCharts Theme(Action<ApexThemeOptions> configure) {
+        var options = new ApexThemeOptions();
+        configure(options);
+        return SetOption("theme", options);
     }
 
     public ApexCharts Data(string name, double value) {
@@ -86,6 +159,10 @@ public class ApexCharts : Element {
 
         if (Labels.Count > 0) {
             options["labels"] = Labels;
+        }
+
+        foreach (var kv in Options) {
+            options[kv.Key] = kv.Value;
         }
 
         //options = options.RemoveEmptyCollections();

@@ -13,4 +13,32 @@ public class TestApexCharts {
         Assert.IsTrue(html.Contains("\"pie\""));
         Assert.IsTrue(html.Contains("A"));
     }
+
+    [TestMethod]
+    public void ApexCharts_SupportsAdditionalTypes() {
+        var chart = new ApexCharts();
+        chart.AddArea("Area", 1)
+            .AddTreemap("Tree", 2)
+            .AddRadar("Radar", 3)
+            .AddHeatmap("Heat", 4)
+            .AddMixed("Mixed", 5);
+        var html = chart.ToString();
+        Assert.IsTrue(html.Contains("area") || html.Contains("treemap") || html.Contains("radar") || html.Contains("heatmap") || html.Contains("mixed"));
+    }
+
+    [TestMethod]
+    public void ApexCharts_FluentOptions() {
+        var chart = new ApexCharts();
+        chart.AddArea("A", 1)
+            .Grid(g => g.PaddingOptions(p => p.All(2)))
+            .PlotOptions(o => o.HeatmapOptions(h => h.RadiusValue(3)))
+            .Legend(l => l.ShowLegend(true))
+            .Tooltip(t => t.Enable(true))
+            .Theme(th => th.ModeValue(ApexThemeMode.Dark));
+
+        var html = chart.ToString();
+        Assert.IsTrue(html.Contains("\"padding\""));
+        Assert.IsTrue(html.Contains("\"radius\""));
+        Assert.IsTrue(html.Contains("dark"));
+    }
 }

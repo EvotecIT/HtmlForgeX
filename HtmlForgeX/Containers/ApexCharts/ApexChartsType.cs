@@ -8,7 +8,12 @@ public enum ApexChartType {
     Pie,
     Donut,
     Bar,
-    RadialBar
+    RadialBar,
+    Area,
+    Treemap,
+    Heatmap,
+    Radar,
+    Mixed
 }
 
 public class ApexChartTypeConverter : JsonConverter<ApexChartType> {
@@ -20,6 +25,11 @@ public class ApexChartTypeConverter : JsonConverter<ApexChartType> {
             "donut" => ApexChartType.Donut,
             "bar" => ApexChartType.Bar,
             "radialBar" => ApexChartType.RadialBar,
+            "area" => ApexChartType.Area,
+            "treemap" => ApexChartType.Treemap,
+            "heatmap" => ApexChartType.Heatmap,
+            "radar" => ApexChartType.Radar,
+            "mixed" => ApexChartType.Mixed,
             _ => throw new JsonException()
         };
     }
@@ -30,6 +40,11 @@ public class ApexChartTypeConverter : JsonConverter<ApexChartType> {
             ApexChartType.Donut => "donut",
             ApexChartType.Bar => "bar",
             ApexChartType.RadialBar => "radialBar",
+            ApexChartType.Area => "area",
+            ApexChartType.Treemap => "treemap",
+            ApexChartType.Heatmap => "heatmap",
+            ApexChartType.Radar => "radar",
+            ApexChartType.Mixed => "mixed",
             _ => throw new JsonException()
         };
 

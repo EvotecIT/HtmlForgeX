@@ -120,5 +120,6 @@ internal class Program {
 
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
+        BasicApexCharts.Demo(openInBrowser);
     }
 }
