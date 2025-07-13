@@ -85,8 +85,6 @@ public class FullCalendar : Element {
 
         var divTag = new HtmlTag("div").Attribute("id", Id).Attribute("class", "calendarFullCalendar");
         var serializedOptions = System.Text.Json.JsonSerializer.Serialize(Options, jsonOptions);
-        serializedOptions = serializedOptions.Replace("\"__EVENT_DID_MOUNT__\"", Options.EventDidMount);
-        serializedOptions = serializedOptions.Replace("\"__EVENT_CLICK__\"", Options.EventClick);
         var scriptTag = new HtmlTag("script").Value($@"
         document.addEventListener('DOMContentLoaded', function () {{
             var calendarEl = document.getElementById('{Id}');
