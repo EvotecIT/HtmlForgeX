@@ -112,8 +112,18 @@ public class TablerCardHeader : Element {
                     var actionsCol = new HtmlTag("div").Class("col-auto");
                     var actionsDiv = new HtmlTag("div").Class("card-actions");
                     
-                    foreach (var action in Actions) {
-                        actionsDiv.Value(action.ToString());
+                    for (int i = 0; i < Actions.Count; i++) {
+                        var action = Actions[i];
+                        
+                        // Add spacing between buttons (except for the first one)
+                        if (i > 0) {
+                            // Create a wrapper div with margin for spacing
+                            var actionWrapper = new HtmlTag("span").Class("ms-1");
+                            actionWrapper.Value(action.ToString());
+                            actionsDiv.Value(actionWrapper);
+                        } else {
+                            actionsDiv.Value(action.ToString());
+                        }
                     }
                     
                     actionsCol.Value(actionsDiv);

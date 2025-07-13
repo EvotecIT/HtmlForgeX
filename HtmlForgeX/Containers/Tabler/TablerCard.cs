@@ -185,10 +185,17 @@ public class TablerCard : Element {
 
             ribbonDiv.Class(string.Join(" ", ribbonClasses));
 
-            if (RibbonIcon.HasValue) {
-                ribbonDiv.Value(new TablerIconElement(RibbonIcon.Value));
-            } else if (!string.IsNullOrEmpty(RibbonText)) {
+            // Adjust ribbon width based on text length for better display
+            if (!string.IsNullOrEmpty(RibbonText)) {
+                var textLength = RibbonText.Length;
+                if (textLength > 5) {
+                    // Calculate width more generously to ensure text fits
+                    var minWidth = Math.Min(textLength * 0.9 + 2, 15);
+                    ribbonDiv.Attribute("style", $"min-width: {minWidth:F1}rem; white-space: nowrap; overflow: visible;");
+                }
                 ribbonDiv.Value(RibbonText);
+            } else if (RibbonIcon.HasValue) {
+                ribbonDiv.Value(new TablerIconElement(RibbonIcon.Value));
             }
 
             cardTag.Value(ribbonDiv);
@@ -218,8 +225,8 @@ public class TablerCard : Element {
 
         // Add top images first
         var topImages = CardImages.Where(img => {
-            var field = img.GetType().GetField("Position", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var pos = field?.GetValue(img)?.ToString();
+            var property = img.GetType().GetProperty("Position", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var pos = property?.GetValue(img)?.ToString();
             return pos == "Top";
         });
         foreach (var image in topImages) {
@@ -233,8 +240,8 @@ public class TablerCard : Element {
 
         // Check for side images that need special layout
         var sideImages = CardImages.Where(img => {
-            var field = img.GetType().GetField("Position", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var pos = field?.GetValue(img)?.ToString();
+            var property = img.GetType().GetProperty("Position", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var pos = property?.GetValue(img)?.ToString();
             return pos == "Left" || pos == "Right";
         }).ToList();
 
@@ -288,8 +295,8 @@ public class TablerCard : Element {
 
         // Add background images
         var backgroundImages = CardImages.Where(img => {
-            var field = img.GetType().GetField("Position", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var pos = field?.GetValue(img)?.ToString();
+            var property = img.GetType().GetProperty("Position", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var pos = property?.GetValue(img)?.ToString();
             return pos == "Background";
         });
         foreach (var image in backgroundImages) {
@@ -298,8 +305,8 @@ public class TablerCard : Element {
 
         // Add bottom images
         var bottomImages = CardImages.Where(img => {
-            var field = img.GetType().GetField("Position", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            var pos = field?.GetValue(img)?.ToString();
+            var property = img.GetType().GetProperty("Position", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            var pos = property?.GetValue(img)?.ToString();
             return pos == "Bottom";
         });
         foreach (var image in bottomImages) {

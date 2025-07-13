@@ -62,18 +62,21 @@ public class TablerCardImage : Element {
     }
     
     private string CreateStandardImage() {
-        var imageDiv = new HtmlTag("div");
-        var classes = new List<string>();
+        var imgTag = new HtmlTag("img");
+        imgTag.Attribute("src", ImageUrl);
+        imgTag.Attribute("alt", AltText ?? "");
         
-        if (IsResponsive) {
-            classes.Add("img-responsive");
-            classes.Add(Size.ToTablerImageSizeClass());
-        }
+        var classes = new List<string>();
         
         // Add position classes
         var positionClass = Position.ToTablerCardImageClass();
         if (!string.IsNullOrEmpty(positionClass)) {
             classes.Add(positionClass);
+        }
+        
+        // Add responsive classes
+        if (IsResponsive) {
+            classes.Add("img-fluid");
         }
         
         // Add effect classes
@@ -82,10 +85,11 @@ public class TablerCardImage : Element {
             classes.Add(effectClass);
         }
         
-        imageDiv.Class(string.Join(" ", classes));
-        imageDiv.Style("background-image", $"url({ImageUrl})");
+        if (classes.Count > 0) {
+            imgTag.Class(string.Join(" ", classes));
+        }
         
-        return imageDiv.ToString();
+        return imgTag.ToString();
     }
     
     private string CreateBackgroundImage() {
