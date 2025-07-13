@@ -14,6 +14,11 @@ internal class BasicQuillEditor {
             page.Card(card => {
                 card.QuillEditor(editor => {
                     editor.Options.Placeholder = "Compose an epic...";
+                    editor.Options.Theme = QuillTheme.Bubble;
+                    editor.Options.Modules = new QuillModules {
+                        Toolbar = new() { QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Image }
+                    };
+                    editor.Options.Formats = new() { QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Image };
                 });
             });
         });

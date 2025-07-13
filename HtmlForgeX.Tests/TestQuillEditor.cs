@@ -14,6 +14,22 @@ public class TestQuillEditor {
     }
 
     [TestMethod]
+    public void QuillEditor_ThemeSerialized() {
+        var editor = new QuillEditor();
+        editor.Options.Theme = QuillTheme.Bubble;
+        var html = editor.ToString();
+        Assert.IsTrue(html.Contains("\"theme\": \"bubble\""));
+    }
+
+    [TestMethod]
+    public void QuillEditor_ModulesToolbarSerialized() {
+        var editor = new QuillEditor();
+        editor.Options.Modules = new QuillModules { Toolbar = new() { QuillFormat.Bold } };
+        var html = editor.ToString();
+        Assert.IsTrue(html.Contains("toolbar"));
+    }
+
+    [TestMethod]
     public void QuillEditor_RegistersLibrary() {
         var doc = new Document();
         doc.Body.Add(el => {

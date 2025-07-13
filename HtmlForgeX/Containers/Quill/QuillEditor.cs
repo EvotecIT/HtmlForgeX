@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 
@@ -17,7 +18,13 @@ public class QuillEditor : Element {
 
     public override string ToString() {
         var div = new HtmlTag("div").Id(Id);
-        var json = JsonSerializer.Serialize(Options, new JsonSerializerOptions { WriteIndented = true });
+        var options = new JsonSerializerOptions {
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+        options.Converters.Add(new DescriptionEnumConverter<QuillTheme>());
+        options.Converters.Add(new EnumListDescriptionConverter<QuillFormat>());
+        var json = JsonSerializer.Serialize(Options, options);
         var script = new HtmlTag("script").Value($"var quill = new Quill('#{Id}', {json});");
         return div + script.ToString();
     }

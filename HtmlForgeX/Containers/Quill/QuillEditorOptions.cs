@@ -5,7 +5,7 @@ namespace HtmlForgeX;
 
 public class QuillEditorOptions {
     [JsonPropertyName("theme")]
-    public string Theme { get; set; } = "snow";
+    public QuillTheme Theme { get; set; } = QuillTheme.Snow;
 
     [JsonPropertyName("readOnly")]
     public bool ReadOnly { get; set; }
@@ -16,5 +16,10 @@ public class QuillEditorOptions {
 
     [JsonPropertyName("modules")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public Dictionary<string, object>? Modules { get; set; }
+    public QuillModules? Modules { get; set; }
+
+    [JsonPropertyName("formats")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonConverter(typeof(EnumListDescriptionConverter<QuillFormat>))]
+    public List<QuillFormat>? Formats { get; set; }
 }
