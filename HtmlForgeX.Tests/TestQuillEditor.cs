@@ -11,6 +11,7 @@ public class TestQuillEditor {
         var html = editor.ToString();
         Assert.IsTrue(html.Contains("new Quill"));
         Assert.IsTrue(html.Contains("Type here"));
+        Assert.IsTrue(html.Contains("style=\"height:"));
     }
 
     [TestMethod]

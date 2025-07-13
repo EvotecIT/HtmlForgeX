@@ -13,6 +13,7 @@ internal class BasicQuillEditor {
         document.Body.Page(page => {
             page.Card(card => {
                 card.QuillEditor(editor => {
+                    editor.Height = "200px";
                     editor.Options.Placeholder = "Compose an epic...";
                     editor.Options.Theme = QuillTheme.Bubble;
                     editor.Options.Modules = new QuillModules {

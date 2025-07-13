@@ -6,6 +6,8 @@ namespace HtmlForgeX;
 public class QuillEditor : Element {
     public string Id { get; set; }
 
+    public string Height { get; set; } = "200px";
+
     public QuillEditorOptions Options { get; set; } = new QuillEditorOptions();
 
     public QuillEditor() {
@@ -17,7 +19,7 @@ public class QuillEditor : Element {
     }
 
     public override string ToString() {
-        var div = new HtmlTag("div").Id(Id);
+        var div = new HtmlTag("div").Id(Id).Style("height", Height);
         var options = new JsonSerializerOptions {
             WriteIndented = true,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
