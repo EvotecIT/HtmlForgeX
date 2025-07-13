@@ -64,7 +64,11 @@ public class LibraryDownloader {
     public async Task<List<string>> GenerateTablerIconCodeAsync(string cssFilePath) {
         var icons = new List<string>();
         string cssText;
-        await using FileStream stream = File.OpenRead(cssFilePath);
+#if NET472
+        using var stream = File.OpenRead(cssFilePath);
+#else
+        await using var stream = File.OpenRead(cssFilePath);
+#endif
         using var reader = new StreamReader(stream);
         cssText = await reader.ReadToEndAsync().ConfigureAwait(false);
         var regex = new Regex(@"\.ti-(.*?):before", RegexOptions.Compiled);
@@ -108,14 +112,22 @@ public class LibraryDownloader {
         } catch (Exception ex) {
             _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
         }
-        await using FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None);
+#if NET472
+        using var fileStream = new FileStream(localPath, FileMode.Create, FileAccess.Write, FileShare.None);
+#else
+        await using var fileStream = new FileStream(localPath, FileMode.Create, FileAccess.Write, FileShare.None);
+#endif
         using HttpResponseMessage response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
         if (!response.IsSuccessStatusCode) {
             _logger.WriteError($"Failed to download '{url}' - Status code: {(int)response.StatusCode}");
             throw new HttpRequestException($"Request for '{url}' failed with status code {response.StatusCode}");
         }
 
-        await using Stream httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+#if NET472
+        using var httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+#else
+        await using var httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+#endif
         await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
     }
 
