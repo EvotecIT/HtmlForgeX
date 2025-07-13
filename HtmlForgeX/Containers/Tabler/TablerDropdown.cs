@@ -14,6 +14,11 @@ public class TablerDropdown : Element {
         _label = label;
     }
 
+    protected internal override void RegisterLibraries() {
+        Document?.Configuration.Libraries.TryAdd(Libraries.Bootstrap, 0);
+        Document?.Configuration.Libraries.TryAdd(Libraries.Tabler, 0);
+    }
+
     public TablerDropdown Dark() {
         _dark = true;
         return this;
@@ -52,7 +57,9 @@ public class TablerDropdown : Element {
         var toggle = new HtmlTag("a")
             .Class("btn dropdown-toggle")
             .Attribute("href", "#")
+            .Attribute("role", "button")
             .Attribute("data-bs-toggle", "dropdown")
+            .Attribute("aria-expanded", "false")
             .Value(_label);
 
         var menu = new HtmlTag("div")

@@ -18,6 +18,7 @@ public class TestTablerDropdown {
         Assert.IsTrue(html.Contains("dropdown-menu-dark"));
         Assert.IsTrue(html.Contains("dropdown-menu-arrow"));
         Assert.IsTrue(html.Contains("dropdown-item"));
+        Assert.IsTrue(html.Contains("role=\"button\""));
     }
 
     [TestMethod]
