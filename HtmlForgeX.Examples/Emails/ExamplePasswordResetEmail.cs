@@ -22,7 +22,7 @@ public static class ExamplePasswordResetEmail
         email.Header.SetPadding("20px");
         email.Header.EmailRow(row => {
             row.EmailColumn(col => {
-                col.SetAlignment(FontAlignment.Center);
+                col.SetAlignment(Alignment.Center);
                 col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .WithWidth("150px")
                     .WithHeight("42px")
@@ -41,7 +41,7 @@ public static class ExamplePasswordResetEmail
             .AppendContent("Password Reset Request")
             .WithFontSize("28px")
             .WithFontWeight(FontWeight.Bold)
-            .WithAlignment(FontAlignment.Center)
+            .WithAlignment(Alignment.Center)
             .WithColor(new RGBColor("#111827"));
 
         content.Add(new BasicElement().Add(heading));
@@ -146,7 +146,7 @@ public static class ExamplePasswordResetEmail
             .AppendContent("🛡️ For your security, this email was sent from a secure server.")
             .WithFontSize("14px")
             .WithColor(new RGBColor("#059669"))
-            .WithAlignment(FontAlignment.Center);
+            .WithAlignment(Alignment.Center);
 
         footer.Add(new BasicElement().Add(securityNotice));
 
@@ -154,7 +154,7 @@ public static class ExamplePasswordResetEmail
             .AppendContent("© 2025 HtmlForgeX - Secure Email System")
             .WithFontSize("12px")
             .WithColor(new RGBColor("#9CA3AF"))
-            .WithAlignment(FontAlignment.Center);
+            .WithAlignment(Alignment.Center);
 
         footer.Add(new BasicElement().Add(copyright));
 

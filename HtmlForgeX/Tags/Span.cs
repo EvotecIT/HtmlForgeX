@@ -10,7 +10,7 @@ public class Span : Element {
     public FontStyle? FontStyle { get; set; }
     public FontVariant? FontVariant { get; set; }
     public string? FontFamily { get; set; }
-    public FontAlignment? Alignment { get; set; }
+    public Alignment? Alignment { get; set; }
     public TextDecoration? TextDecoration { get; set; }
     public TextTransform? TextTransform { get; set; }
     public Direction? Direction { get; set; }
@@ -75,7 +75,7 @@ public class Span : Element {
             return _rootParent;
         }
         
-        public override Span WithAlignment(FontAlignment alignment) {
+        public override Span WithAlignment(Alignment alignment) {
             _currentSpan.Alignment = alignment;
             return _rootParent;
         }
@@ -166,7 +166,7 @@ public class Span : Element {
             return this;
         }
         
-        public override Span WithAlignment(FontAlignment alignment) {
+        public override Span WithAlignment(Alignment alignment) {
             _currentSpan.Alignment = alignment;
             return this;
         }
@@ -290,7 +290,7 @@ public class Span : Element {
         return this;
     }
 
-    public virtual Span WithAlignment(FontAlignment alignment) {
+    public virtual Span WithAlignment(Alignment alignment) {
         Alignment = alignment;
         return this;
     }

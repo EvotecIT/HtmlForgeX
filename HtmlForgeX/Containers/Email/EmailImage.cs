@@ -320,7 +320,7 @@ public class EmailImage : Element {
     /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailImage"/> instance.</returns>
-    public EmailImage WithAlignment(FontAlignment alignment) {
+    public EmailImage WithAlignment(Alignment alignment) {
         alignment.ValidateEmailAlignment();
         Alignment = alignment.ToCssValue();
         return this;
@@ -332,6 +332,7 @@ public class EmailImage : Element {
     /// <param name="margin">The margin value.</param>
     /// <returns>The EmailImage object, allowing for method chaining.</returns>
     public EmailImage WithMargin(string margin) {
+        margin.ValidateMargin();
         Margin = margin;
         return this;
     }

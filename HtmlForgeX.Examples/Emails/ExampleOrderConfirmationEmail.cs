@@ -24,7 +24,7 @@ public static class ExampleOrderConfirmationEmail {
             email.Header.SetPadding("20px");
             email.Header.EmailRow(row => {
                 row.EmailColumn(col => {
-                    col.SetAlignment(FontAlignment.Center);
+                    col.SetAlignment(Alignment.Center);
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithWidth("150px")
                         .WithHeight("42px")
@@ -38,7 +38,7 @@ public static class ExampleOrderConfirmationEmail {
                 content.EmailText("Having trouble viewing this email? View it online")
                     .WithFontSize("12px")
                     .WithColor("#9CA3AF")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
             });
         });
 
@@ -51,13 +51,13 @@ public static class ExampleOrderConfirmationEmail {
                 content.EmailText("✅ Order Confirmed!")
                     .WithFontSize("32px")
                     .WithFontWeight("bold")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#059669");
 
                 content.EmailText("Thank you for your order! We're getting everything ready for shipment.")
                     .WithFontSize("18px")
                     .WithColor("#6B7280")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithLineHeight("1.6");
             });
         });
@@ -150,7 +150,7 @@ public static class ExampleOrderConfirmationEmail {
                 content.EmailText("Questions about your order? Email us or call 1-800-HTMLFX")
                     .WithFontSize("14px")
                     .WithColor("#6B7280")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
             });
         });
 
@@ -163,22 +163,22 @@ public static class ExampleOrderConfirmationEmail {
                 content.EmailText("Stay Connected")
                     .WithFontSize("16px")
                     .WithFontWeight("bold")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("Follow us: GitHub | Twitter | LinkedIn")
                     .WithColor("#066FD1")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 content.EmailText("HtmlForgeX Inc. | 123 Developer St, Code City, CA 90210")
                     .WithFontSize("12px")
                     .WithColor("#9CA3AF")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 content.EmailText("Don't want order updates? Manage preferences")
                     .WithFontSize("12px")
                     .WithColor("#9CA3AF")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
             });
         });
 

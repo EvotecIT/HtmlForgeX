@@ -41,7 +41,7 @@ public static class ExampleImprovedConsistencyEmail {
 
             // View online link column
             row.EmailColumn(col => {
-                col.SetWidth("30%").SetAlignment(FontAlignment.Right);
+                col.SetWidth("30%").SetAlignment(Alignment.Right);
                 col.EmailLink("View Online", "https://evotec.xyz/newsletter")
                     .WithFontSize(EmailFontSize.Small)
                     .WithColor("#6B7280");
@@ -55,13 +55,13 @@ public static class ExampleImprovedConsistencyEmail {
                 content.EmailText("🎯 Document-Style Configuration")
                     .WithFontSize(EmailFontSize.Heading1)
                     .WithFontWeight(FontWeight.Bold)
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("Configure your email just like Document - natural and intuitive!")
                     .WithFontSize(EmailFontSize.Large)
                     .WithColor("#6B7280")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithLineHeight("1.6");
             });
 
@@ -116,12 +116,12 @@ public static class ExampleImprovedConsistencyEmail {
                     col.EmailText("Auto-embedded (Email Config)")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center);
+                        .WithAlignment(Alignment.Center);
 
                     // Automatically embedded based on email configuration - no duplication!
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithWidth("120px")
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithAlternativeText("Auto-embedded via email config");
                 });
 
@@ -130,13 +130,13 @@ public static class ExampleImprovedConsistencyEmail {
                     col.EmailText("Override Per-Image")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center);
+                        .WithAlignment(Alignment.Center);
 
                     // Can still override email configuration for specific images
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithoutAutoEmbedding() // Override config for this image
                         .WithWidth("120px")
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithAlternativeText("Config overridden");
                 });
             });
@@ -168,10 +168,10 @@ public static class ExampleImprovedConsistencyEmail {
                     col.EmailText("Basic Link")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center);
+                        .WithAlignment(Alignment.Center);
 
                     col.EmailLink("Visit our website", "https://evotec.xyz")
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithFontSize(EmailFontSize.Regular);
                 });
 
@@ -180,10 +180,10 @@ public static class ExampleImprovedConsistencyEmail {
                     col.EmailText("Styled Link")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center);
+                        .WithAlignment(Alignment.Center);
 
                     col.EmailLink("Contact Support", "mailto:support@evotec.xyz")
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithFontSize(EmailFontSize.Regular)
                         .WithColor("#059669")
                         .WithFontWeight(FontWeight.SemiBold);
@@ -194,10 +194,10 @@ public static class ExampleImprovedConsistencyEmail {
                     col.EmailText("New Window Link")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center);
+                        .WithAlignment(Alignment.Center);
 
                     col.EmailLink("Open GitHub", "https://github.com/EvotecIT/HtmlForgeX")
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithFontSize(EmailFontSize.Regular)
                         .WithNewWindow(true)
                         .WithColor("#7C3AED");
@@ -235,7 +235,7 @@ public static class ExampleImprovedConsistencyEmail {
                     col.EmailText("Image Methods")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithColor("#0EA5E9");
 
                     col.EmailText("• EnableImageEmbedding()")
@@ -264,7 +264,7 @@ public static class ExampleImprovedConsistencyEmail {
                     col.EmailText("Detection Methods")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithColor("#7C3AED");
 
                     col.EmailText("• SetSmartImageDetection()")
@@ -291,7 +291,7 @@ public static class ExampleImprovedConsistencyEmail {
                     col.EmailText("Layout Methods")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithColor("#DC2626");
 
                     col.EmailText("• ConfigureLayout()")
@@ -372,7 +372,7 @@ public static class ExampleImprovedConsistencyEmail {
                     .WithFontSize(EmailFontSize.Heading2)
                     .WithFontWeight(FontWeight.Bold)
                     .WithColor("#111827")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 content.EmailText("✅ Natural and intuitive - follows Document pattern")
                     .WithFontSize(EmailFontSize.Regular)
@@ -399,7 +399,7 @@ public static class ExampleImprovedConsistencyEmail {
             emailBox.EmailContent(content => {
                 content.EmailText("Ready to experience Document-style email configuration?")
                     .WithFontSize(EmailFontSize.Large)
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#111827")
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
             });
@@ -412,7 +412,7 @@ public static class ExampleImprovedConsistencyEmail {
                 content.EmailText("Natural configuration that feels just like Document!")
                     .WithFontSize(EmailFontSize.Regular)
                     .WithColor("#6B7280")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.None, EmailSpacing.None);
             });
         });

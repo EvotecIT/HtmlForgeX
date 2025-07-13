@@ -29,7 +29,7 @@ public static class ExampleFlexibleHeaderFooter
                 headerBox.EmailRow(row => {
                     // Logo column
                     row.EmailColumn(col => {
-                        col.SetWidth("50%").SetAlignment(FontAlignment.Left);
+                        col.SetWidth("50%").SetAlignment(Alignment.Left);
                         col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                             .WithWidth("150px")
                             .WithHeight("42px")
@@ -40,13 +40,13 @@ public static class ExampleFlexibleHeaderFooter
 
                     // View online link column - properly positioned on the right
                     row.EmailColumn(col => {
-                        col.SetWidth("50%").SetAlignment(FontAlignment.Right);
+                        col.SetWidth("50%").SetAlignment(Alignment.Right);
                         col.EmailText("") // Empty spacer to push link to the right
-                            .WithAlignment(FontAlignment.Right);
+                            .WithAlignment(Alignment.Right);
                         col.EmailLink("View in browser", "https://evotec.xyz/newsletter")
                             .WithColor("#8491a1")
                             .WithFontSize("14px")
-                            .WithAlignment(FontAlignment.Right)
+                            .WithAlignment(Alignment.Right)
                             .WithTextDecoration("none");
                     });
                 });
@@ -59,11 +59,11 @@ public static class ExampleFlexibleHeaderFooter
                 content.EmailText("🎉 Flexible Pattern Demo")
                     .WithFontSize(EmailFontSize.Heading1)
                     .WithFontWeight(FontWeight.Bold)
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 content.EmailText("This email demonstrates the new flexible header/footer pattern!")
                     .WithFontSize(EmailFontSize.Regular)
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 content.EmailText("✅ No more preset methods like SetLogo() or SetViewOnlineLink()")
                     .WithFontSize(EmailFontSize.Regular);
@@ -105,11 +105,11 @@ public static class ExampleFlexibleHeaderFooter
             visualBox.EmailText("📦 This is a Visual Mode EmailBox")
                 .WithFontSize(EmailFontSize.Medium)
                 .WithFontWeight(FontWeight.SemiBold)
-                .WithAlignment(FontAlignment.Center);
+                .WithAlignment(Alignment.Center);
 
             visualBox.EmailText("It has borders, background color, and styling - perfect for content sections!")
                 .WithFontSize(EmailFontSize.Regular)
-                .WithAlignment(FontAlignment.Center);
+                .WithAlignment(Alignment.Center);
 
             emailBox.Add(visualBox);
 
@@ -121,11 +121,11 @@ public static class ExampleFlexibleHeaderFooter
             structuralBox.EmailText("🏗️ This is a Structural Mode EmailBox")
                 .WithFontSize(EmailFontSize.Medium)
                 .WithFontWeight(FontWeight.SemiBold)
-                .WithAlignment(FontAlignment.Center);
+                .WithAlignment(Alignment.Center);
 
             structuralBox.EmailText("It provides layout structure without visual styling - perfect for headers and footers!")
                 .WithFontSize(EmailFontSize.Regular)
-                .WithAlignment(FontAlignment.Center);
+                .WithAlignment(Alignment.Center);
 
             emailBox.Add(structuralBox);
 
@@ -137,7 +137,7 @@ public static class ExampleFlexibleHeaderFooter
                 // Social links row
                 footerBox.EmailRow(row => {
                     row.EmailColumn(col => {
-                        col.SetWidth("100%").SetAlignment(FontAlignment.Center);
+                        col.SetWidth("100%").SetAlignment(Alignment.Center);
 
                         // Build social links however you want
                         col.EmailLink("🐦 Twitter", "https://twitter.com/evotecit")
@@ -166,29 +166,29 @@ public static class ExampleFlexibleHeaderFooter
                 footerBox.EmailText("Questions? Contact us at ")
                     .WithFontSize("14px")
                     .WithColor("#8491a1")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 footerBox.EmailLink("support@evotec.xyz", "mailto:support@evotec.xyz")
                     .WithFontSize("14px")
                     .WithColor("#066FD1")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 // Unsubscribe section
                 footerBox.EmailText("Don't want these emails? ")
                     .WithFontSize("14px")
                     .WithColor("#8491a1")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 footerBox.EmailLink("Unsubscribe here", "https://evotec.xyz/unsubscribe")
                     .WithFontSize("14px")
                     .WithColor("#066FD1")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 // Copyright
                 footerBox.EmailText($"© {DateTime.Now.Year} Evotec. All rights reserved.")
                     .WithFontSize("12px")
                     .WithColor("#8491a1")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
             });
 
             emailBox.Add(footer);
