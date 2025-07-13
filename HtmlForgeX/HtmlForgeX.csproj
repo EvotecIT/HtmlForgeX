@@ -83,12 +83,12 @@
         <Folder Include="Containers\ScrollingText\" />
     </ItemGroup>
 
-    <ItemGroup>
+    <!-- <ItemGroup>
       <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         <PrivateAssets>all</PrivateAssets>
       </PackageReference>
-    </ItemGroup>
+    </ItemGroup> -->
 
     <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netcoreapp3.0' OR '$(TargetFramework)' == 'netcoreapp3.1' OR '$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">
         <DefineConstants>NETCOREAPP2_1_OR_GREATER</DefineConstants>
