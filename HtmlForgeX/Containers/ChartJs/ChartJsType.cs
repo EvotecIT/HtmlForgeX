@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Available Chart.js chart types.
+/// </summary>
 [JsonConverter(typeof(ChartJsTypeConverter))]
 public enum ChartJsType {
     Line,

@@ -4,7 +4,13 @@ using System.Text.Json;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Table integrated with the DataTables library.
+/// </summary>
 public class DataTablesTable : Table {
+    /// <summary>
+    /// Gets the table identifier.
+    /// </summary>
     public string Id;
     public List<BootStrapTableStyle> StyleList { get; set; } = new List<BootStrapTableStyle>();
     private readonly Dictionary<string, object> config = new Dictionary<string, object>();

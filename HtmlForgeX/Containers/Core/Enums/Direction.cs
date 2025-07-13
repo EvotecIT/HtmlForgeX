@@ -1,6 +1,11 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Text direction.
+/// </summary>
 public enum Direction {
-    Ltr,  // Left-to-right
-    Rtl   // Right-to-left
+    /// <summary>Left to right.</summary>
+    Ltr,
+    /// <summary>Right to left.</summary>
+    Rtl
 }

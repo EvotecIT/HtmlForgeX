@@ -2,8 +2,12 @@ using System.ComponentModel;
 using System.Reflection;
 
 namespace HtmlForgeX;
+/// <summary>
+/// Toolbar configuration for FullCalendar.
+/// </summary>
 public class FullCalendarToolbar {
     [JsonPropertyName("left")]
+    /// <summary>Options on the left side.</summary>
     public List<FullCalendarToolbarOption> LeftOptions { get; set; } = new List<FullCalendarToolbarOption>();
     [JsonPropertyName("center")]
     public List<FullCalendarToolbarOption> CenterOptions { get; set; } = new List<FullCalendarToolbarOption>();

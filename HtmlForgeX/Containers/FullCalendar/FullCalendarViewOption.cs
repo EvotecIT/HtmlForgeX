@@ -5,10 +5,13 @@ using System.Text;
 
 namespace HtmlForgeX;
 
-
+/// <summary>
+/// Built-in calendar view options.
+/// </summary>
 [JsonConverter(typeof(DescriptionEnumConverter<FullCalendarViewOption>))]
 public enum FullCalendarViewOption {
     [Description("listWeek")]
+    /// <summary>List events for a week.</summary>
     ListWeek,
 
     [Description("listMonth")]

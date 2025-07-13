@@ -2,8 +2,12 @@ using System.ComponentModel;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// CSS <c>display</c> property values.
+/// </summary>
 public enum Display {
     [Description("none")]
+    /// <summary>Specifies <c>display: none</c>.</summary>
     None = 1,
 
     [Description("inline")]

@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Text transformation options.
+/// </summary>
 public enum TextTransform {
     Uppercase,
     Lowercase,
