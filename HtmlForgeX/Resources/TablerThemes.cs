@@ -1,6 +1,12 @@
 namespace HtmlForgeX.Resources;
 
+/// <summary>
+/// Library descriptor for Tabler theme support.
+/// </summary>
 internal class TablerThemes : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TablerThemes"/> class.
+    /// </summary>
     public TablerThemes() {
         Header = new LibraryLinks {
             CssLink = ["https://cdn.jsdelivr.net/npm/@tabler/core@1.3.0/dist/css/tabler-themes.min.css"],

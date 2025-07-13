@@ -1,6 +1,12 @@
 namespace HtmlForgeX.Resources;
 
+/// <summary>
+/// Library providing assets for the scrolling text component.
+/// </summary>
 public class ScrollingTextLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ScrollingTextLibrary"/> class.
+    /// </summary>
     public ScrollingTextLibrary() {
         Header = new LibraryLinks {
             CssLink = ["https://cdn.jsdelivr.net/gh/evotecit/cdn@0.0.27/CSS/sectionScrolling.min.css"],

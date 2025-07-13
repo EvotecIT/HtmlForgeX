@@ -1,6 +1,12 @@
 namespace HtmlForgeX.Resources;
 
+/// <summary>
+/// Provides metadata and asset links for the FancyTree jQuery plugin.
+/// </summary>
 public class FancyTreeLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FancyTreeLibrary"/> class.
+    /// </summary>
     public FancyTreeLibrary() {
         Header = new LibraryLinks {
             CssLink = ["https://cdn.jsdelivr.net/npm/jquery.fancytree@2.38.2/dist/skin-win8/ui.fancytree.min.css"],
