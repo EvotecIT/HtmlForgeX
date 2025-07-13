@@ -121,5 +121,8 @@ internal class Program {
 
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
+
+        // Quill editor example
+        BasicQuillEditor.Demo(openInBrowser);
     }
 }
