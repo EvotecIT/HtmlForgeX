@@ -66,8 +66,8 @@ public class TestTablerComponentsBasic {
         var data = new List<object> { "Item 1", "Item 2" };
         var table = new TablerTable(data, TableType.Tabler);
         var html = table.ToString();
-        
-        Assert.IsTrue(html.Contains("class=\"table\""));
+
+        Assert.IsTrue(html.Contains("table-responsive"));
     }
 
     [TestMethod]
