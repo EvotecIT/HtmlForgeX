@@ -7,22 +7,29 @@ namespace HtmlForgeX;
 /// Converts <see cref="DateTime"/> values to ISO-8601 date strings.
 /// </summary>
 public class Iso8601DateConverter : JsonConverter<DateTime> {
+    /// <inheritdoc />
     public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         return DateTime.Parse(reader.GetString());
     }
 
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options) {
         writer.WriteStringValue(value.ToString("yyyy-MM-dd")); // "yyyy-MM-dd" format string represents an ISO 8601 date string
     }
 }
 
+/// <summary>
+/// Converts enum values using their <see cref="DescriptionAttribute"/> when serializing.
+/// </summary>
 public class DescriptionEnumConverter<T> : JsonConverter<T> where T : Enum {
+    /// <inheritdoc />
     public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         var enumString = reader.GetString();
         return ((T[])Enum.GetValues(typeof(T)))
             .First(enumValue => GetEnumDescription(enumValue) == enumString);
     }
 
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options) {
         writer.WriteStringValue(GetEnumDescription(value));
     }
@@ -36,7 +43,11 @@ public class DescriptionEnumConverter<T> : JsonConverter<T> where T : Enum {
     }
 }
 
+/// <summary>
+/// Handles serialization of <see cref="Dictionary{FullCalendarViewOption, FullCalendarView}"/> using description names.
+/// </summary>
 public class ViewOptionDictionaryConverter : JsonConverter<Dictionary<FullCalendarViewOption, FullCalendarView>> {
+    /// <inheritdoc />
     public override Dictionary<FullCalendarViewOption, FullCalendarView> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         var value = JsonSerializer.Deserialize<Dictionary<string, FullCalendarView>>(ref reader, options);
         var result = new Dictionary<FullCalendarViewOption, FullCalendarView>();
@@ -50,6 +61,7 @@ public class ViewOptionDictionaryConverter : JsonConverter<Dictionary<FullCalend
         return result;
     }
 
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, Dictionary<FullCalendarViewOption, FullCalendarView> value, JsonSerializerOptions options) {
         var newDict = value.ToDictionary(
             kvp => GetEnumDescription(kvp.Key),
@@ -68,11 +80,16 @@ public class ViewOptionDictionaryConverter : JsonConverter<Dictionary<FullCalend
     }
 }
 
+/// <summary>
+/// Serializes <see cref="FullCalendarToolbar"/> instances to JSON.
+/// </summary>
 public class FullCalendarToolbarConverter : JsonConverter<FullCalendarToolbar> {
+    /// <inheritdoc />
     public override FullCalendarToolbar Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         throw new NotImplementedException();
     }
 
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, FullCalendarToolbar value, JsonSerializerOptions options) {
         writer.WriteStartObject();
         writer.WriteString("left", string.Join(",", value.LeftOptions.Select(o => GetEnumDescription(o))));
@@ -90,21 +107,31 @@ public class FullCalendarToolbarConverter : JsonConverter<FullCalendarToolbar> {
     }
 }
 
+/// <summary>
+/// Writes <see cref="RGBColor"/> values as hexadecimal strings.
+/// </summary>
 public class RGBColorConverter : JsonConverter<RGBColor> {
+    /// <inheritdoc />
     public override RGBColor Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         throw new NotImplementedException();
     }
 
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, RGBColor value, JsonSerializerOptions options) {
         writer.WriteStringValue(value.ToHex());
     }
 }
 
+/// <summary>
+/// Allows embedding of raw JavaScript functions within JSON options.
+/// </summary>
 public class JavaScriptFunctionConverter : JsonConverter<string> {
+    /// <inheritdoc />
     public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         return reader.GetString() ?? string.Empty;
     }
 
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, string value, JsonSerializerOptions options) {
         writer.WriteRawValue(value, skipInputValidation: true);
     }

@@ -26,5 +26,8 @@ public enum FullCalendarViewOption {
 
 public class FullCalendarView {
     [JsonPropertyName("buttonText")]
+    /// <summary>
+    /// Gets or sets the text shown on the corresponding toolbar button.
+    /// </summary>
     public string ButtonText { get; set; }
 }
