@@ -3,7 +3,7 @@ using System;
 namespace HtmlForgeX.Examples.Tags;
 
 internal static class ExampleTablerTag {
-    public static void Create() {
+    public static void Create(bool openInBrowser = false) {
         var document = new Document { Head = { Title = "Tag Demo" } };
         document.Body.Page(page => {
             page.Row(row => {
@@ -19,6 +19,6 @@ internal static class ExampleTablerTag {
             });
         });
 
-        document.Save("TagDemo.html", true);
+        document.Save("TagDemo.html", openInBrowser);
     }
 }
