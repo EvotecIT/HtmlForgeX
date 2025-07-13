@@ -103,7 +103,7 @@ public class EmailColumn : Element {
     /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailColumn"/> instance.</returns>
-    public EmailColumn SetAlignment(FontAlignment alignment) {
+    public EmailColumn SetAlignment(Alignment alignment) {
         alignment.ValidateEmailAlignment();
         TextAlign = alignment.ToCssValue();
         return this;

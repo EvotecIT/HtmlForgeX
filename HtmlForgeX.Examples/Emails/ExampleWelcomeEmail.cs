@@ -22,7 +22,7 @@ public static class ExampleWelcomeEmail
         email.Header.SetPadding("20px");
         email.Header.EmailRow(row => {
             row.EmailColumn(col => {
-                col.SetAlignment(FontAlignment.Center);
+                col.SetAlignment(Alignment.Center);
                 col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .WithWidth("150px")
                     .WithHeight("42px")
@@ -39,7 +39,7 @@ public static class ExampleWelcomeEmail
             .AppendContent("Welcome to HtmlForgeX!")
             .WithFontSize("32px")
             .WithFontWeight(FontWeight.Bold)
-            .WithAlignment(FontAlignment.Center)
+            .WithAlignment(Alignment.Center)
             .WithColor(new RGBColor("#111827"));
 
         content.Add(new BasicElement().Add(welcomeHeading));
@@ -49,7 +49,7 @@ public static class ExampleWelcomeEmail
             .AppendContent("We're excited to have you join our community of developers building beautiful web interfaces.")
             .WithFontSize("18px")
             .WithColor(new RGBColor("#667382"))
-            .WithAlignment(FontAlignment.Center)
+            .WithAlignment(Alignment.Center)
             .WithLineHeight("1.6");
 
         content.Add(new BasicElement().Add(subtitle));
@@ -62,7 +62,7 @@ public static class ExampleWelcomeEmail
         var divider = new Span()
             .AppendContent("─────────────────────────────")
             .WithColor(new RGBColor("#e8ebee"))
-            .WithAlignment(FontAlignment.Center);
+            .WithAlignment(Alignment.Center);
 
         content.Add(new BasicElement().Add(divider));
 
@@ -127,7 +127,7 @@ public static class ExampleWelcomeEmail
             .AppendContent("© 2025 HtmlForgeX. All rights reserved.")
             .WithFontSize("14px")
             .WithColor(new RGBColor("#9CA3AF"))
-            .WithAlignment(FontAlignment.Center);
+            .WithAlignment(Alignment.Center);
 
         footer.Add(new BasicElement().Add(copyright));
 

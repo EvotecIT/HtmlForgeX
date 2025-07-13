@@ -33,7 +33,7 @@ public class EmailContent : Element {
     /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailContent"/> instance.</returns>
-    public EmailContent SetAlignment(FontAlignment alignment) {
+    public EmailContent SetAlignment(Alignment alignment) {
         alignment.ValidateEmailAlignment();
         _alignment = alignment.ToCssValue();
         return this;

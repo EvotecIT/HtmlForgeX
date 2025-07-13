@@ -5,14 +5,14 @@ namespace HtmlForgeX.Tests;
 public class TestHtmlSpan {
     [TestMethod]
     public void HtmlSpan01() {
-        var value = new Span().AddContent("This is table with DataTables").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed);
+        var value = new Span().AddContent("This is table with DataTables").WithAlignment(Alignment.Center).WithColor(RGBColor.TractorRed);
         // After fix: AddContent creates child spans with individual styling, root span manages the container
         Assert.AreEqual("<span><span style=\"color: #FD0E35; text-align: Center\">This is table with DataTables</span></span>", value.ToString());
     }
 
     [TestMethod]
     public void HtmlSpanChaining() {
-        var value = new Span().AddContent("This is table with DataTables").WithAlignment(FontAlignment.Center)
+        var value = new Span().AddContent("This is table with DataTables").WithAlignment(Alignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
         // After fix: Both AddContent and AppendContent create properly structured child spans
         Assert.AreEqual("<span><span style=\"color: #FD0E35; text-align: Center\">This is table with DataTables</span></span><span> continue?</span>", value.ToString());
@@ -21,7 +21,7 @@ public class TestHtmlSpan {
     [TestMethod]
     public void HtmlSpanChainingWithDocument() {
         var value = new Document();
-        value.Body.Span("This is table with DataTables").WithAlignment(FontAlignment.Center)
+        value.Body.Span("This is table with DataTables").WithAlignment(Alignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
 
         var expectedLines = new[] {

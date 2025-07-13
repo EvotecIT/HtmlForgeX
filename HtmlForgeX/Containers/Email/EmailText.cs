@@ -186,7 +186,7 @@ public class EmailText : Element {
     /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailText"/> instance.</returns>
-    public EmailText WithAlignment(FontAlignment alignment) {
+    public EmailText WithAlignment(Alignment alignment) {
         alignment.ValidateEmailAlignment();
         TextAlign = alignment.ToCssValue();
         return this;
@@ -238,6 +238,7 @@ public class EmailText : Element {
     /// <param name="margin">The margin value.</param>
     /// <returns>The EmailText object, allowing for method chaining.</returns>
     public EmailText WithMargin(string margin) {
+        margin.ValidateMargin();
         Margin = margin;
         return this;
     }
