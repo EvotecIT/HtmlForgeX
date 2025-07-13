@@ -53,17 +53,17 @@ internal class Program {
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
-        BasicHtmlContainer02.Demo02(openInBrowser);
-        BasicHtmlContainer03.Demo03(openInBrowser);
-        BasicHtmlContainer04.Demo01(openInBrowser);
-        BasicScrollingText.Demo01(openInBrowser);
+        BasicHtmlContainer02.Demo02(true);
+        BasicHtmlContainer03.Demo03(true);
+        BasicHtmlContainer04.Demo01(true);
+        BasicScrollingText.Demo01(true);
         DomainHealthCheck.Demo01(true);
-        EnhancedDataGridDemo.Create(openInBrowser);
+        EnhancedDataGridDemo.Create(true);
 
         // Complete Tabler Cards demo - ALL features
-        TablerCardsCompleteDemo.Demo01(openInBrowser);
-        TablerCardsEnhancedDemo.Demo01(openInBrowser);
-        TablerCardsProperDemo.Demo01(openInBrowser);
+        TablerCardsCompleteDemo.Demo01(true);
+        TablerCardsEnhancedDemo.Demo01(true);
+        TablerCardsProperDemo.Demo01(true);
 
         // Table examples
         BasicHtmlTable01.Create(openInBrowser);
@@ -84,10 +84,10 @@ internal class Program {
         ExampleTextWrappingDemo.Create(openInBrowser);
 
         // Direct email pattern
-        ExampleDirectEmailPattern.Create(openInBrowser);
+        ExampleDirectEmailPattern.Create(true);
 
         // Corrected email pattern
-        ExampleCorrectedEmailPattern.Create(openInBrowser);
+        ExampleCorrectedEmailPattern.Create(true);
 
         // Layout email pattern
         ExampleLayoutEmailPattern.Create(openInBrowser);
@@ -96,7 +96,7 @@ internal class Program {
         ExampleInvoiceEmail.Create(openInBrowser);
 
         // Newsletter email
-        ExampleNewsletterEmail.Create(openInBrowser);
+        ExampleNewsletterEmail.Create(true);
 
         // Account verification email
         ExampleAccountVerificationEmail.Create(openInBrowser);
