@@ -120,5 +120,8 @@ internal class Program {
 
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
+
+        // VisNetwork images demo
+        BasicVisNetwork.Demo(openInBrowser);
     }
 }

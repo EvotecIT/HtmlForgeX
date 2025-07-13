@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Linq;
 
 namespace HtmlForgeX;
 
@@ -23,12 +24,33 @@ public class VisNetwork : Element {
         Document?.Configuration.Libraries.TryAdd(Libraries.VisNetworkLoadingBar, 0);
     }
 
+    protected override void OnAddedToDocument() {
+        foreach (var nodeObj in Nodes) {
+            if (nodeObj is VisNetworkNode node) {
+                node.ApplyDocumentConfiguration(Document!);
+            }
+        }
+    }
+
     public VisNetwork AddNode(object node) {
         Nodes.Add(node);
         return this;
     }
 
+    public VisNetwork AddNode(VisNetworkNode node) {
+        if (Document != null) {
+            node.ApplyDocumentConfiguration(Document);
+        }
+        Nodes.Add(node);
+        return this;
+    }
+
     public VisNetwork AddEdge(object edge) {
+        Edges.Add(edge);
+        return this;
+    }
+
+    public VisNetwork AddEdge(VisNetworkEdge edge) {
         Edges.Add(edge);
         return this;
     }
@@ -54,8 +76,17 @@ public class VisNetwork : Element {
                         .Value(new HtmlTag("div").Class("diagram diagramObject").Style("position", "absolute").Id(Id));
         }
 
-        var nodesJson = JsonSerializer.Serialize(Nodes);
-        var edgesJson = JsonSerializer.Serialize(Edges);
+        foreach (var n in Nodes) {
+            if (n is VisNetworkNode vn) {
+                vn.ApplyDocumentConfiguration(Document!);
+            }
+        }
+        var nodeObjects = Nodes.Select(n => n is VisNetworkNode vn ? vn.ToDictionary() : n).ToList();
+
+        var edgeObjects = Edges.Select(e => e is VisNetworkEdge ve ? ve.ToDictionary() : e).ToList();
+
+        var nodesJson = JsonSerializer.Serialize(nodeObjects);
+        var edgesJson = JsonSerializer.Serialize(edgeObjects);
         var optionsJson = JsonSerializer.Serialize(Options);
 
         var scriptTag = new HtmlTag("script").Value($@"

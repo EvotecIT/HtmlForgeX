@@ -14,7 +14,16 @@ public class DocumentConfiguration {
     /// <summary>
     /// Gets or sets the library mode for this document.
     /// </summary>
-    public LibraryMode LibraryMode { get; set; } = LibraryMode.Online;
+    private LibraryMode _libraryMode = LibraryMode.Online;
+    public LibraryMode LibraryMode {
+        get => _libraryMode;
+        set {
+            _libraryMode = value;
+            if (value == LibraryMode.Offline) {
+                Images.AutoEmbedImages = true;
+            }
+        }
+    }
 
     /// <summary>
     /// Gets or sets the theme mode for this document.
@@ -100,6 +109,16 @@ public class ImageConfiguration {
     /// Gets or sets whether to automatically optimize images.
     /// </summary>
     public bool AutoOptimize { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets whether to automatically embed images when possible.
+    /// </summary>
+    public bool AutoEmbedImages { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets the timeout in seconds when downloading images for embedding.
+    /// </summary>
+    public int EmbeddingTimeout { get; set; } = 30;
 
     /// <summary>
     /// Gets or sets the maximum width for image optimization (in pixels).
