@@ -32,9 +32,11 @@ internal class Program {
 
         // Tabler examples (console output)
         ExampleTablerIcon.Create();
-        ExampleTablerTag.Create();
-        ExampleTablerAlerts.Create();
         ExampleSvgIcons.Create();
+
+        // Tabler examples html output
+        ExampleTablerTag.Create(openInBrowser);
+        ExampleTablerAlerts.Create(openInBrowser);
 
         // Experimental examples (console output)
         Experiments01.Create();
@@ -52,10 +54,18 @@ internal class Program {
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
         BasicHtmlContainer02.Demo02(openInBrowser);
-        BasicHtmlContainer03.Demo03(openInBrowser);
+        BasicHtmlContainer03.Demo03(true);
         BasicHtmlContainer04.Demo01(openInBrowser);
         BasicScrollingText.Demo01(openInBrowser);
-        DomainHealthCheck.Demo01(openInBrowser);
+        DomainHealthCheck.Demo01(true);
+
+        // Complete Tabler Cards demo - ALL features from 3 HTML files using proper C# API
+        TablerCardsCompleteDemo.Demo01(true);
+        
+        // Enhanced Tabler Cards demo - Advanced features using proper C# API
+        TablerCardsEnhancedDemo.Demo01(true);
+
+        TablerCardsProperDemo.Demo01(true);
 
         // Table examples
         BasicHtmlTable01.Create(openInBrowser);
