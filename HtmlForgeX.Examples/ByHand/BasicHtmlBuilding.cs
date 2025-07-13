@@ -180,5 +180,18 @@ namespace HtmlForgeX.Examples.ByHand
             document.Save("BasicDemoDocument2.html", openInBrowser);
 
         }
+
+        public static void DemoAnalytics(bool openInBrowser = false)
+        {
+            HelpersSpectre.PrintTitle("Analytics Example");
+
+            var document = new Document();
+            document.Head.AddTitle("Analytics Demo");
+            document.Head.AddAnalytics(AnalyticsProvider.GoogleAnalytics, "G-XXXXXXX");
+
+            document.Body.Span("Hello Analytics!");
+
+            document.Save("AnalyticsDemo.html", openInBrowser);
+        }
     }
 }

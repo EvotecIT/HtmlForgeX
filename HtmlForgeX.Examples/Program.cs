@@ -43,6 +43,7 @@ internal class Program {
         // Manual HTML building examples
         BasicHtmlBuilding.Demo1(openInBrowser);
         BasicHtmlBuilding.Demo2(openInBrowser);
+        BasicHtmlBuilding.DemoAnalytics(openInBrowser);
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
