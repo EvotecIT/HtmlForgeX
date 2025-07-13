@@ -3,10 +3,20 @@ using System.Text.Json;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Renders a QR code using the EasyQRCode library.
+/// </summary>
 public class EasyQRCodeElement : Element {
+    /// <summary>
+    /// Gets the HTML element identifier.
+    /// </summary>
     public string Id { get; set; }
     private string PrivateText { get; set; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EasyQRCodeElement"/> class.
+    /// </summary>
+    /// <param name="text">Text to encode.</param>
     public EasyQRCodeElement(string text) {
         // Libraries will be registered via RegisterLibraries method
         Id = GlobalStorage.GenerateRandomId("QrCode");
@@ -20,6 +30,10 @@ public class EasyQRCodeElement : Element {
         Document?.Configuration.Libraries.TryAdd(Libraries.EasyQRCode, 0);
     }
 
+    /// <summary>
+    /// Generates the HTML and script elements for the QR code.
+    /// </summary>
+    /// <returns>The HTML string.</returns>
     public override string ToString() {
         var divTag = new HtmlTag("div").Class("qrcode").Id(Id);
 
