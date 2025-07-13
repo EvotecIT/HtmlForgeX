@@ -12,6 +12,7 @@ public class ApexCharts : Element {
     public ApexChartType Type { get; set; }
     public List<double> Series { get; set; } = new List<double>();
     public List<string> Labels { get; set; } = new List<string>();
+    public List<ApexHeatmapSeries> HeatmapSeries { get; set; } = new();
     public ApexChartsTitle Title { get; set; } = new ApexChartsTitle();
     public ApexChartSubtitle Subtitle { get; set; } = new ApexChartSubtitle();
     public Dictionary<string, object> Options { get; set; } = new();
@@ -70,10 +71,13 @@ public class ApexCharts : Element {
         return this;
     }
 
-    public ApexCharts AddHeatmap(string name, double value) {
+    public ApexCharts AddHeatmap(string name, IEnumerable<(string X, double Y)> points) {
         Type = ApexChartType.Heatmap;
-        Labels.Add(name);
-        Series.Add(value);
+        var series = new ApexHeatmapSeries { Name = name };
+        foreach (var point in points) {
+            series.Data.Add(new ApexHeatmapData { X = point.X, Y = point.Y });
+        }
+        HeatmapSeries.Add(series);
         return this;
     }
 
@@ -149,7 +153,9 @@ public class ApexCharts : Element {
             options["subtitle"] = Subtitle;
         }
 
-        if (Series.Count > 0) {
+        if (Type == ApexChartType.Heatmap && HeatmapSeries.Count > 0) {
+            options["series"] = HeatmapSeries;
+        } else if (Series.Count > 0) {
             if (Type is ApexChartType.Pie or ApexChartType.Donut) {
                 options["series"] = Series;
             } else {

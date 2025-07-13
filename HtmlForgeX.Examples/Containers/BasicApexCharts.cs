@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace HtmlForgeX.Examples.Containers;
 
@@ -31,8 +32,12 @@ internal class BasicApexCharts {
                         card.ApexChart(chart => {
                             chart.Title.Text("Heatmap Chart");
                             var random = new Random(1);
-                            for (var i = 1; i <= 50; i++) {
-                                chart.AddHeatmap($"H{i}", random.Next(0, 10));
+                            for (var s = 1; s <= 5; s++) {
+                                var points = new List<(string X, double Y)>();
+                                for (var x = 1; x <= 10; x++) {
+                                    points.Add(($"W{x}", random.Next(0, 10)));
+                                }
+                                chart.AddHeatmap($"S{s}", points);
                             }
                             chart.PlotOptions(o => o.HeatmapOptions(h => h.RadiusValue(2)));
                         });

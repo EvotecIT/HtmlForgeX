@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace HtmlForgeX.Tests;
 
@@ -20,7 +21,7 @@ public class TestApexCharts {
         chart.AddArea("Area", 1)
             .AddTreemap("Tree", 2)
             .AddRadar("Radar", 3)
-            .AddHeatmap("Heat", 4)
+            .AddHeatmap("Heat", new[] { ("X1", 4.0) })
             .AddMixed("Mixed", 5);
         var html = chart.ToString();
         Assert.IsTrue(html.Contains("area") || html.Contains("treemap") || html.Contains("radar") || html.Contains("heatmap") || html.Contains("mixed"));
@@ -45,11 +46,15 @@ public class TestApexCharts {
     [TestMethod]
     public void ApexCharts_LargeHeatmapData() {
         var chart = new ApexCharts();
-        for (var i = 0; i < 50; i++) {
-            chart.AddHeatmap($"H{i}", i);
+        for (var s = 0; s < 5; s++) {
+            var points = new List<(string X, double Y)>();
+            for (var i = 0; i < 10; i++) {
+                points.Add(($"W{i}", i));
+            }
+            chart.AddHeatmap($"S{s}", points);
         }
 
-        Assert.AreEqual(50, chart.Series.Count);
+        Assert.AreEqual(5, chart.HeatmapSeries.Count);
         var html = chart.ToString();
         Assert.IsTrue(html.Contains("\"heatmap\""));
     }
