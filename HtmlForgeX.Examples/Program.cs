@@ -45,6 +45,10 @@ internal class Program {
         BasicHtmlBuilding.Demo2(openInBrowser);
         BasicHtmlBuilding.DemoAnalytics(openInBrowser);
 
+        // Toast examples
+        ExampleTablerToast.Create(openInBrowser);
+        ExampleTablerToastAdvanced.Create(openInBrowser);
+
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
         BasicHtmlContainer02.Demo02(openInBrowser);
