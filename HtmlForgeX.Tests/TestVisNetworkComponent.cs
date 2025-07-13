@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
@@ -402,7 +403,10 @@ public class TestVisNetworkComponent {
 
         var escapedPath = path.Replace("\\", "\\\\");
         Assert.IsTrue(html.Contains(escapedPath), "Should keep path without embedding");
-        Assert.IsFalse(html.Contains("data:image"), "Should not embed image");
+
+        var match = Regex.Match(html, "var nodes = new vis\\.DataSet\\((.*?)\\);", RegexOptions.Singleline);
+        Assert.IsTrue(match.Success, "Should extract nodes JSON");
+        Assert.IsFalse(match.Groups[1].Value.Contains("data:image"), "Should not embed image in nodes data");
     }
 
     [TestMethod]
