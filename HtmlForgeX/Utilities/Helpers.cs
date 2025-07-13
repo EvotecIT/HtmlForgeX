@@ -62,9 +62,8 @@ internal static class Helpers {
     /// <returns></returns>
     public static bool IsFileLocked(this FileInfo file) {
         try {
-            using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None)) {
-                stream.Close();
-            }
+            using var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            stream.Close();
         } catch (IOException) {
             //the file is unavailable because it is:
             //still being written to
@@ -91,9 +90,8 @@ internal static class Helpers {
     public static bool IsFileLocked(this string fileName) {
         try {
             var file = new FileInfo(fileName);
-            using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None)) {
-                stream.Close();
-            }
+            using var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            stream.Close();
         } catch (IOException) {
             //the file is unavailable because it is:
             //still being written to

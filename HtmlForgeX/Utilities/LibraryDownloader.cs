@@ -64,10 +64,9 @@ public class LibraryDownloader {
     public async Task<List<string>> GenerateTablerIconCodeAsync(string cssFilePath) {
         var icons = new List<string>();
         string cssText;
-        using (FileStream stream = File.OpenRead(cssFilePath))
-        using (StreamReader reader = new(stream)) {
-            cssText = await reader.ReadToEndAsync().ConfigureAwait(false);
-        }
+        await using FileStream stream = File.OpenRead(cssFilePath);
+        using var reader = new StreamReader(stream);
+        cssText = await reader.ReadToEndAsync().ConfigureAwait(false);
         var regex = new Regex(@"\.ti-(.*?):before", RegexOptions.Compiled);
         var matches = regex.Matches(cssText);
 
@@ -109,16 +108,15 @@ public class LibraryDownloader {
         } catch (Exception ex) {
             _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
         }
-        using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
-            using HttpResponseMessage response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            if (!response.IsSuccessStatusCode) {
-                _logger.WriteError($"Failed to download '{url}' - Status code: {(int)response.StatusCode}");
-                throw new HttpRequestException($"Request for '{url}' failed with status code {response.StatusCode}");
-            }
-
-            using Stream httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-            await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
+        await using FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None);
+        using HttpResponseMessage response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode) {
+            _logger.WriteError($"Failed to download '{url}' - Status code: {(int)response.StatusCode}");
+            throw new HttpRequestException($"Request for '{url}' failed with status code {response.StatusCode}");
         }
+
+        await using Stream httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+        await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
     }
 
 
