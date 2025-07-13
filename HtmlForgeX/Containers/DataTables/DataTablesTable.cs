@@ -18,6 +18,7 @@ public class DataTablesTable : Table {
     private readonly Dictionary<string, object> config = new Dictionary<string, object>();
 
     public DataTablesOptions Options { get; } = new();
+    public DataTablesRowGroup RowGroup { get; } = new();
 
     public bool EnablePaging {
         get => config.ContainsKey("paging") && (bool)config["paging"];
@@ -57,6 +58,18 @@ public class DataTablesTable : Table {
         return this;
     }
 
+    public DataTablesTable RowGrouping(Action<DataTablesRowGroup> configure) {
+        configure?.Invoke(RowGroup);
+        return this;
+    }
+
+    protected internal override void RegisterLibraries() {
+        base.RegisterLibraries();
+        if (RowGroup.Enable == true) {
+            Document?.Configuration.Libraries.TryAdd(Libraries.DataTablesRowGroup, 0);
+        }
+    }
+
     public override string BuildTable() {
         string tableInside = base.BuildTable();
         string classNames = StyleList.BuildTableStyles();
@@ -71,6 +84,17 @@ public class DataTablesTable : Table {
         var optionsDict = JsonSerializer.Deserialize<Dictionary<string, object>>(optionsJson) ?? new Dictionary<string, object>();
         foreach (var kv in optionsDict) {
             merged[kv.Key] = kv.Value;
+        }
+
+        if (RowGroup.Enable == true ||
+            !string.IsNullOrEmpty(RowGroup.DataSrc) ||
+            !string.IsNullOrEmpty(RowGroup.StartRender) ||
+            !string.IsNullOrEmpty(RowGroup.EndRender)) {
+            var rowGroupJson = JsonSerializer.Serialize(RowGroup, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+            var rowGroupDict = JsonSerializer.Deserialize<Dictionary<string, object>>(rowGroupJson);
+            if (rowGroupDict != null && rowGroupDict.Count > 0) {
+                merged["rowGroup"] = rowGroupDict;
+            }
         }
 
         var configuration = JsonSerializer.Serialize(merged, new JsonSerializerOptions { WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });

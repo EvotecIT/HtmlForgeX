@@ -13,6 +13,7 @@ public enum Libraries {
     JQuery,
     Bootstrap,
     DataTables,
+    DataTablesRowGroup,
     Tabler,
     TablerIcon,
     TablerFlags,
@@ -89,6 +90,8 @@ public class LibrariesConverter {
                 return new Bootstrap();
             case Libraries.DataTables:
                 return new DataTables();
+            case Libraries.DataTablesRowGroup:
+                return new DataTablesRowGroupLibrary();
             case Libraries.Tabler:
                 return new Tabler();
             case Libraries.TablerIcon:
