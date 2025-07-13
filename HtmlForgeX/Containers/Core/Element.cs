@@ -372,6 +372,13 @@ public abstract class Element {
         return toast;
     }
 
+    public TablerDropdown Dropdown(string label, Action<TablerDropdown> config) {
+        var dropdown = new TablerDropdown(label);
+        config(dropdown);
+        this.Add(dropdown);
+        return dropdown;
+    }
+
     // Email Extension Methods for Natural Builder Pattern
 
     /// <summary>
