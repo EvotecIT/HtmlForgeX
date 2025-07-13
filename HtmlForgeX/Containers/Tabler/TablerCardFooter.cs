@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerCardFooter : Element {
@@ -14,7 +17,7 @@ public class TablerCardFooter : Element {
             var footerDiv = new HtmlTag("div");
             footerDiv.Class("card-footer").Value(Content);
 
-            foreach (var child in Children) {
+            foreach (var child in Children.WhereNotNull()) {
                 footerDiv.Value(child);
             }
 

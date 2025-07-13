@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerTracking : Element {
@@ -16,7 +19,7 @@ public class TablerTracking : Element {
     public override string ToString() {
         var trackingContainerTag = new HtmlTag("div").Class("tracking");
 
-        foreach (var block in Blocks) {
+        foreach (var block in Blocks.WhereNotNull()) {
             trackingContainerTag.Value(block);
         }
 

@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerTabsPanel : ElementContainer {
@@ -48,7 +51,7 @@ public class TablerTabsPanel : ElementContainer {
             .Id(Id);
 
         // Convert child elements to string and add them to the panelDiv
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             panelDiv.Value(child);
         }
 

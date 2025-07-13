@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Collections.Concurrent;
 using System.Collections;
 using System.Text;
+using System.Linq;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -82,7 +84,7 @@ public class Table : Element {
 
         if (firstObject is IEnumerable enumerable && firstObject is not string && firstObject is not IDictionary) {
             var flattened = new List<object>();
-            foreach (var obj in objects) {
+            foreach (var obj in objects.WhereNotNull()) {
                 if (obj is IEnumerable inner && obj is not string && obj is not IDictionary) {
                     foreach (var innerItem in inner) {
                         flattened.Add(innerItem!);
@@ -126,7 +128,7 @@ public class Table : Element {
         }
 
         // Add the rows
-        foreach (var obj in objects) {
+        foreach (var obj in objects.WhereNotNull()) {
             var row = new List<string>();
             foreach (var property in properties) {
                 try {
@@ -196,7 +198,7 @@ public class Table : Element {
             }
 
             // Add the rows
-            foreach (var obj in objects) {
+            foreach (var obj in objects.WhereNotNull()) {
                 var row = new List<string>();
                 foreach (var property in GetPsObjectProperties(obj)) {
                     row.Add(property.Value?.ToString() ?? "");
@@ -222,7 +224,7 @@ public class Table : Element {
             var enumerable = propertiesValue as IEnumerable;
 
             if (enumerable != null) {
-                foreach (var item in enumerable) {
+                foreach (var item in enumerable.Cast<object?>().WhereNotNull()) {
                     var nameProperty = GetCachedProperty(item.GetType(), "Name");
                     var valueProperty = GetCachedProperty(item.GetType(), "Value");
 

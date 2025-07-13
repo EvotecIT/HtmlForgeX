@@ -1,4 +1,6 @@
 using System.Text;
+using System.Linq;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -103,7 +105,7 @@ public class EmailColumn : Element {
     /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailColumn"/> instance.</returns>
-    public EmailColumn SetAlignment(FontAlignment alignment) {
+    public EmailColumn SetAlignment(Alignment alignment) {
         alignment.ValidateEmailAlignment();
         TextAlign = alignment.ToCssValue();
         return this;
@@ -227,7 +229,7 @@ public class EmailColumn : Element {
 
         var content = StringBuilderCache.Acquire();
 
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             var childContent = child.ToString();
             if (!string.IsNullOrEmpty(childContent)) {
                 content.AppendLine(childContent);

@@ -3,6 +3,9 @@ using System.Text.Json;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Supported ApexChart chart types.
+/// </summary>
 [JsonConverter(typeof(ApexChartTypeConverter))]
 public enum ApexChartType {
     Pie,

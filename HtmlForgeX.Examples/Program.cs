@@ -43,6 +43,11 @@ internal class Program {
         // Manual HTML building examples
         BasicHtmlBuilding.Demo1(openInBrowser);
         BasicHtmlBuilding.Demo2(openInBrowser);
+        BasicHtmlBuilding.DemoAnalytics(openInBrowser);
+
+        // Toast examples
+        ExampleTablerToast.Create(openInBrowser);
+        ExampleTablerToastAdvanced.Create(openInBrowser);
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
@@ -54,6 +59,8 @@ internal class Program {
 
         // Table examples
         BasicHtmlTable01.Create(openInBrowser);
+        BasicHtmlTable02.Create(openInBrowser);
+        BasicHtmlTable03.Create(openInBrowser);
 
         // Email examples - showcasing the new Document-style configuration!
         Console.WriteLine("📧 Running Email Examples with Document-Style Configuration:");
@@ -121,5 +128,8 @@ internal class Program {
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
         BasicApexCharts.Demo(openInBrowser);
+
+        // Quill editor example
+        BasicQuillEditor.Demo(openInBrowser);
     }
 }

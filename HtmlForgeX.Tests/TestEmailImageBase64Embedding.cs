@@ -246,7 +246,7 @@ public class TestEmailImageBase64Embedding
         emailImage.EmbedFromFile(_testImagePath);
         emailImage.WithBorder("2px solid red");
         emailImage.WithBorderRadius("8px");
-        emailImage.WithAlignment(FontAlignment.Center);
+        emailImage.WithAlignment(Alignment.Center);
 
         // Act
         var html = emailImage.ToString();
@@ -269,7 +269,7 @@ public class TestEmailImageBase64Embedding
             .WithWidth("100px")
             .WithHeight("100px")
             .WithOptimization(200, 200, 80)
-            .WithAlignment(FontAlignment.Center)
+            .WithAlignment(Alignment.Center)
             .WithBorder("1px solid black")
             .WithBorderRadius("4px")
             .WithLink("https://example.com")

@@ -1,4 +1,6 @@
 using System.Reflection;
+using System.Linq;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -197,7 +199,7 @@ public class EmailTable : Element {
         AddHeader(properties);
 
         // Add rows from data
-        foreach (var item in dataList) {
+        foreach (var item in dataList.WhereNotNull()) {
             var values = new string[properties.Length];
             for (int i = 0; i < properties.Length; i++) {
                 var prop = typeof(T).GetProperty(properties[i]);
@@ -237,7 +239,7 @@ public class EmailTable : Element {
         AddHeader(properties);
 
         // Add rows from data
-        foreach (var item in dataList) {
+        foreach (var item in dataList.WhereNotNull()) {
             var values = new string[properties.Length];
             for (int i = 0; i < properties.Length; i++) {
                 var prop = item.GetType().GetProperty(properties[i]);

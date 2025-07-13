@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerPage : Element {
@@ -29,7 +32,7 @@ public class TablerPage : Element {
         pageWrapper.Value(pageBody);
 
         var container = new HtmlTag("div").Class("container-xl");
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             container.Value(child);
         }
         pageBody.Value(container);

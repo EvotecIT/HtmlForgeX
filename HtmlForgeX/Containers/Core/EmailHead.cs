@@ -1,5 +1,7 @@
 using System;
 using System.Text;
+using System.Linq;
+using HtmlForgeX.Extensions;
 using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
@@ -215,7 +217,7 @@ public class EmailHead : Element {
     /// <returns>A string that represents the head section of an email document.</returns>
     public override string ToString() {
         // Process any registered email libraries
-        foreach (var libraryEnum in _email.Configuration.Email.Libraries.Keys) {
+        foreach (var libraryEnum in _email.Configuration.Email.Libraries.Keys.WhereNotNull()) {
             var library = EmailLibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessEmailLibrary(library);
         }
@@ -249,7 +251,7 @@ public class EmailHead : Element {
         }
 
         // Additional meta tags
-        foreach (var metaTag in MetaTags) {
+        foreach (var metaTag in MetaTags.WhereNotNull()) {
             head.AppendLine($"\t{metaTag.ToString()}");
         }
 
@@ -306,7 +308,7 @@ public class EmailHead : Element {
         // Inline styles
         if (InlineStyles.Count > 0) {
             head.AppendLine("\t<style>");
-            foreach (var style in InlineStyles) {
+            foreach (var style in InlineStyles.WhereNotNull()) {
                 head.AppendLine(style);
             }
             head.AppendLine("\t</style>");
@@ -318,7 +320,7 @@ public class EmailHead : Element {
 
     private void ProcessEmailLibrary(EmailLibrary library) {
         // Add inline CSS from the library
-        foreach (var css in library.InlineCss) {
+        foreach (var css in library.InlineCss.WhereNotNull()) {
             AddCssInline(css);
         }
     }

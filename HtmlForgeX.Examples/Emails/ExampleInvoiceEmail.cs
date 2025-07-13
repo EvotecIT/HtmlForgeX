@@ -43,7 +43,7 @@ public static class ExampleInvoiceEmail
                 // Logo automatically embeds based on email configuration - no duplication!
                 content.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .WithWidth("150px")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithLink("https://evotec.xyz")
                     .WithAlternativeText("Evotec Logo")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Large, EmailSpacing.None);
@@ -52,7 +52,7 @@ public static class ExampleInvoiceEmail
                 content.EmailText("📄 Invoice #INV-2025-001")
                     .WithFontSize(EmailFontSize.Heading1)
                     .WithFontWeight(FontWeight.Bold)
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#111827");
 
                 // Invoice details section
@@ -86,7 +86,7 @@ public static class ExampleInvoiceEmail
 
                 // Right column - Invoice details
                 row.EmailColumn(col => {
-                    col.SetWidth("50%").SetPadding("0").SetAlignment(FontAlignment.Right); // Use EmailLayout system, align right
+                    col.SetWidth("50%").SetPadding("0").SetAlignment(Alignment.Right); // Use EmailLayout system, align right
                     col.EmailText("Invoice Date: January 6, 2025")
                         .WithFontSize(EmailFontSize.Regular)
                         .WithColor("#374151");
@@ -122,7 +122,7 @@ public static class ExampleInvoiceEmail
                 content.EmailText("Total: $697.00 USD")
                     .WithFontSize(EmailFontSize.Large)
                     .WithFontWeight(FontWeight.Bold)
-                    .WithAlignment(FontAlignment.Right)
+                    .WithAlignment(Alignment.Right)
                     .WithColor("#059669")
                     .WithMargin(EmailSpacing.Medium, EmailSpacing.None);
             });
@@ -148,14 +148,14 @@ public static class ExampleInvoiceEmail
                 content.EmailText("Questions about this invoice?")
                     .WithFontSize(EmailFontSize.Regular)
                     .WithColor("#6B7280")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Small, EmailSpacing.None);
 
                 // Use EmailLink instead of Span for better consistency
                 content.EmailLink("Contact us at contact@evotec.xyz", "mailto:contact@evotec.xyz")
                     .WithFontSize(EmailFontSize.Regular)
                     .WithColor("#066FD1")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
             });
         });
 

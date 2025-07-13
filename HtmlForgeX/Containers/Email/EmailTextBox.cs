@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -140,7 +143,7 @@ public class EmailTextBox : Element {
     /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailTextBox"/> instance.</returns>
-    public EmailTextBox WithAlignment(FontAlignment alignment) {
+    public EmailTextBox WithAlignment(Alignment alignment) {
         alignment.ValidateEmailAlignment();
         TextAlign = alignment.ToCssValue();
         return this;
@@ -192,6 +195,7 @@ public class EmailTextBox : Element {
     /// <param name="margin">The margin value.</param>
     /// <returns>The EmailTextBox object, allowing for method chaining.</returns>
     public EmailTextBox WithMargin(string margin) {
+        margin.ValidateMargin();
         Margin = margin;
         return this;
     }
@@ -247,7 +251,7 @@ public class EmailTextBox : Element {
         }
 
         // Render child elements (nested content)
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             html.AppendLine(child.ToString());
         }
 

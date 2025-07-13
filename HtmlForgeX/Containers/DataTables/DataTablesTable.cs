@@ -1,13 +1,23 @@
+using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Table integrated with the DataTables library.
+/// </summary>
 public class DataTablesTable : Table {
+    /// <summary>
+    /// Gets the table identifier.
+    /// </summary>
     public string Id;
     public List<BootStrapTableStyle> StyleList { get; set; } = new List<BootStrapTableStyle>();
     private readonly Dictionary<string, object> config = new Dictionary<string, object>();
+
+    public DataTablesOptions Options { get; } = new();
 
     public bool EnablePaging {
         get => config.ContainsKey("paging") && (bool)config["paging"];
@@ -42,6 +52,11 @@ public class DataTablesTable : Table {
         return this;
     }
 
+    public DataTablesTable Configure(Action<DataTablesOptions> configure) {
+        configure?.Invoke(Options);
+        return this;
+    }
+
     public override string BuildTable() {
         string tableInside = base.BuildTable();
         string classNames = StyleList.BuildTableStyles();
@@ -51,8 +66,14 @@ public class DataTablesTable : Table {
             .Value(tableInside)
             .Attribute("width", "100%");
 
-        //var configuration = System.Text.Json.JsonSerializer.Serialize(config);
-        var configuration = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+        var merged = new Dictionary<string, object>(config);
+        var optionsJson = JsonSerializer.Serialize(Options, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+        var optionsDict = JsonSerializer.Deserialize<Dictionary<string, object>>(optionsJson) ?? new Dictionary<string, object>();
+        foreach (var kv in optionsDict) {
+            merged[kv.Key] = kv.Value;
+        }
+
+        var configuration = JsonSerializer.Serialize(merged, new JsonSerializerOptions { WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
 
         var scriptTag = new HtmlTag("script").Value($@"
         $(document).ready(function() {{

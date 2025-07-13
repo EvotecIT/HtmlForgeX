@@ -28,7 +28,7 @@ namespace HtmlForgeX.Examples.ByHand
 
             // Add span 3 times in a single line, one after another
             document.Body.Span("Hello, world!")
-                .WithColor(RGBColor.Red).WithFontSize("20px").WithAlignment(FontAlignment.Left)
+                .WithColor(RGBColor.Red).WithFontSize("20px").WithAlignment(Alignment.Left)
                 .AppendContent(" Welcome to HTML by HtmlForgeX")
                 .WithColor(RGBColor.HarvestGold).WithBackgroundColor(RGBColor.AirForceBlue)
                 .AppendContent(" Hurray!");
@@ -46,7 +46,7 @@ namespace HtmlForgeX.Examples.ByHand
                .WithFontStyle(FontStyle.Italic)
                .WithFontVariant(FontVariant.SmallCaps)
                .WithFontFamily("Arial")
-               .WithAlignment(FontAlignment.Center)
+               .WithAlignment(Alignment.Center)
                .WithTextDecoration(TextDecoration.Underline)
                .WithTextTransform(TextTransform.Uppercase)
                .WithDirection(Direction.Rtl)
@@ -77,7 +77,7 @@ namespace HtmlForgeX.Examples.ByHand
             document.Body.Span("Hello, world!")
                .WithColor(RGBColor.Red)
                .WithFontSize("20px")
-               .WithAlignment(FontAlignment.Justify);
+               .WithAlignment(Alignment.Justify);
 
             document.Body.Span(" Welcome to HTML by HtmlForgeX")
                    .WithColor(RGBColor.HarvestGold)
@@ -137,7 +137,7 @@ namespace HtmlForgeX.Examples.ByHand
                 .WithFontStyle(FontStyle.Italic)
                 .WithFontVariant(FontVariant.SmallCaps)
                 .WithFontFamily("Arial")
-                .WithAlignment(FontAlignment.Center)
+                .WithAlignment(Alignment.Center)
                 .WithTextDecoration(TextDecoration.Underline)
                 .WithTextTransform(TextTransform.Uppercase)
                 .WithDirection(Direction.Rtl)
@@ -179,6 +179,19 @@ namespace HtmlForgeX.Examples.ByHand
 
             document.Save("BasicDemoDocument2.html", openInBrowser);
 
+        }
+
+        public static void DemoAnalytics(bool openInBrowser = false)
+        {
+            HelpersSpectre.PrintTitle("Analytics Example");
+
+            var document = new Document();
+            document.Head.AddTitle("Analytics Demo");
+            document.Head.AddAnalytics(AnalyticsProvider.GoogleAnalytics, "G-XXXXXXX");
+
+            document.Body.Span("Hello Analytics!");
+
+            document.Save("AnalyticsDemo.html", openInBrowser);
         }
     }
 }

@@ -95,7 +95,7 @@ internal class BasicHtmlContainer01 {
         document.Body.Page(page => {
             page.Column(column => {
                 column.Card(card => {
-                    card.Add(new Span().AddContent("This is table with DataTables").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed));
+                    card.Add(new Span().AddContent("This is table with DataTables").WithAlignment(Alignment.Center).WithColor(RGBColor.TractorRed));
                     card.Table(data1, TableType.DataTables);
                 });
                 column.Card(card => {
@@ -103,13 +103,13 @@ internal class BasicHtmlContainer01 {
                     card.Span("This is a table with ").Span("Tabler").WithColor(RGBColor.RedPurple);
                     card.Span(" Great?!");
                     card.LineBreak();
-                    card.Span("This is a table with ").WithAlignment(FontAlignment.Center)
+                    card.Span("This is a table with ").WithAlignment(Alignment.Center)
                         .WithColor(RGBColor.TractorRed)
                         .AppendContent("Tabler").WithBackgroundColor(RGBColor.RedPurple)
                         .AppendContent(" Great?!");
                     card.LineBreak();
 
-                    card.Add(new Span().AddContent("This is table with ").WithAlignment(FontAlignment.Center).WithColor(RGBColor.TractorRed)
+                    card.Add(new Span().AddContent("This is table with ").WithAlignment(Alignment.Center).WithColor(RGBColor.TractorRed)
                         .AppendContent("Tabler").WithColor(RGBColor.RedPurple));
                     card.Table(data2, TableType.Tabler);
                     card.Span("").WithBackgroundColor(RGBColor.BrickRed).Table(data2, TableType.DataTables);

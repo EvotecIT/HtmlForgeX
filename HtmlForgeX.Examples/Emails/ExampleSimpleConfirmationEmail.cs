@@ -24,7 +24,7 @@ public static class ExampleSimpleConfirmationEmail
                 // Header with logo (using correct asset path)
                 content.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .WithWidth("120px")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithLink("https://evotec.xyz")
                     .WithMargin(EmailSpacing.None, EmailSpacing.None, EmailSpacing.Large, EmailSpacing.None);
 
@@ -32,14 +32,14 @@ public static class ExampleSimpleConfirmationEmail
                 content.EmailText("✅ Email Confirmed!")
                     .WithFontSize(EmailFontSize.Heading1)
                     .WithFontWeight(FontWeight.Bold)
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#059669");
 
                 // Confirmation message
                 content.EmailText("Thank you for confirming your email address. Your account is now active and ready to use.")
                     .WithFontSize(EmailFontSize.Large)
                     .WithColor("#374151")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithLineHeight("1.6")
                     .WithMargin(EmailSpacing.Medium, EmailSpacing.None);
 
@@ -51,14 +51,14 @@ public static class ExampleSimpleConfirmationEmail
                 content.EmailText("Questions? Contact our support team or visit our help center.")
                     .WithFontSize(EmailFontSize.Regular)
                     .WithColor("#6B7280")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.None, EmailSpacing.None);
 
                 // Footer
                 content.EmailText("© 2025 Evotec - Simple email confirmation system")
                     .WithFontSize(EmailFontSize.Small)
                     .WithColor("#9CA3AF")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithMargin(EmailSpacing.Large, EmailSpacing.None, EmailSpacing.None, EmailSpacing.None);
             });
         });

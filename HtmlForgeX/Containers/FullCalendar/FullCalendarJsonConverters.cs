@@ -3,6 +3,9 @@ using System.Reflection;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Converts <see cref="DateTime"/> values to ISO-8601 date strings.
+/// </summary>
 public class Iso8601DateConverter : JsonConverter<DateTime> {
     public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         return DateTime.Parse(reader.GetString());
@@ -94,5 +97,15 @@ public class RGBColorConverter : JsonConverter<RGBColor> {
 
     public override void Write(Utf8JsonWriter writer, RGBColor value, JsonSerializerOptions options) {
         writer.WriteStringValue(value.ToHex());
+    }
+}
+
+public class JavaScriptFunctionConverter : JsonConverter<string> {
+    public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
+        return reader.GetString() ?? string.Empty;
+    }
+
+    public override void Write(Utf8JsonWriter writer, string value, JsonSerializerOptions options) {
+        writer.WriteRawValue(value, skipInputValidation: true);
     }
 }

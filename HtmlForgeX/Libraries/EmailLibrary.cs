@@ -48,7 +48,10 @@ public class EmailLibrary {
     /// <param name="css">The CSS content to add.</param>
     /// <returns>The EmailLibrary object, allowing for method chaining.</returns>
     public EmailLibrary AddCss(string css) {
-        InlineCss.Add(css);
+        if (!InlineCss.Contains(css)) {
+            InlineCss.Add(css);
+        }
+
         return this;
     }
 }

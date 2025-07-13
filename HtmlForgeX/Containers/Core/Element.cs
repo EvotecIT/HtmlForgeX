@@ -1,4 +1,6 @@
+using System.Linq;
 using HtmlForgeX.Tags;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -66,7 +68,7 @@ public abstract class Element {
     /// Recursively sets the document reference for all child elements.
     /// </summary>
     private void PropagateDocumentToChildren() {
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             child.Document = Document;
         }
     }
@@ -75,7 +77,7 @@ public abstract class Element {
     /// Recursively sets the email reference for all child elements.
     /// </summary>
     private void PropagateEmailToChildren() {
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             child.Email = Email;
         }
     }
@@ -178,6 +180,13 @@ public abstract class Element {
         var qrCode = new EasyQRCodeElement(text);
         this.Add(qrCode);
         return qrCode;
+    }
+
+    public QuillEditor QuillEditor(Action<QuillEditor>? config = null) {
+        var editor = new QuillEditor();
+        config?.Invoke(editor);
+        this.Add(editor);
+        return editor;
     }
 
     public TablerColumn Column(Action<TablerColumn> config) {
@@ -348,6 +357,19 @@ public abstract class Element {
         var unorderedList = new UnorderedList();
         this.Add(unorderedList);
         return unorderedList;
+    }
+
+    public TablerToast Toast(string title, string message, TablerToastType type = TablerToastType.Default) {
+        var toast = new TablerToast(title, message, type);
+        this.Add(toast);
+        return toast;
+    }
+
+    public TablerToast Toast(Action<TablerToast> config) {
+        var toast = new TablerToast();
+        config(toast);
+        this.Add(toast);
+        return toast;
     }
 
     // Email Extension Methods for Natural Builder Pattern

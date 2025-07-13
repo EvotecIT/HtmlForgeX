@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerDataGrid : Element {
@@ -30,7 +33,7 @@ public class TablerDataGrid : Element {
         var html = StringBuilderCache.Acquire();
         html.Append("<div class=\"datagrid\">");
 
-        foreach (var item in Items) {
+        foreach (var item in Items.WhereNotNull()) {
             html.Append(item.ToString());
         }
 

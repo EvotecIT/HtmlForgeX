@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -50,7 +53,7 @@ public class EmailHeader : Element {
         element.Email = email;
 
         // Recursively propagate to all children
-        foreach (var child in element.Children) {
+        foreach (var child in element.Children.WhereNotNull()) {
             PropagateEmailReference(child, email);
         }
     }
@@ -169,7 +172,7 @@ public class EmailHeader : Element {
         html.AppendLine($@"  <tr>");
         html.AppendLine($@"    <td style=""padding: {Padding};"">");
 
-        foreach (var child in base.Children) {
+        foreach (var child in base.Children.WhereNotNull()) {
             html.AppendLine(child.ToString());
         }
 

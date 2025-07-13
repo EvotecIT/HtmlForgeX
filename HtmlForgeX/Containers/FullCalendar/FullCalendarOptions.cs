@@ -1,9 +1,13 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Configuration options for the FullCalendar component.
+/// </summary>
 public class FullCalendarOptions {
     [JsonConverter(typeof(FullCalendarToolbarConverter))]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("headerToolbar")]
+    /// <summary>Toolbar displayed at the top.</summary>
     public FullCalendarToolbar HeaderToolbar { get; set; }
 
     [JsonConverter(typeof(FullCalendarToolbarConverter))]
@@ -55,13 +59,8 @@ public class FullCalendarOptions {
     [JsonPropertyName("slotLabelFormat")]
     public FullCalendarEventTimeFormat TimeFormat { get; set; } = new FullCalendarEventTimeFormat();
 
+    [JsonConverter(typeof(JavaScriptFunctionConverter))]
     [JsonPropertyName("eventDidMount")]
-    public string EventDidMountPlaceHolder { get; set; } = "__EVENT_DID_MOUNT__";
-
-    [JsonPropertyName("eventClick")]
-    public string EventClickPlaceHolder { get; set; } = "__EVENT_CLICK__";
-
-    [JsonIgnore()]
     public string EventDidMount { get; set; } = @"
         function (info) {
             var tooltip = new Tooltip(info.el, {
@@ -73,7 +72,8 @@ public class FullCalendarOptions {
         }
     ";
 
-    [JsonIgnore()]
+    [JsonConverter(typeof(JavaScriptFunctionConverter))]
+    [JsonPropertyName("eventClick")]
     public string EventClick { get; set; } = @"
         function (info) {
             var eventObj = info.event;

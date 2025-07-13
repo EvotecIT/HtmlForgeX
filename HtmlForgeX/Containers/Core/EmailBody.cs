@@ -1,5 +1,7 @@
 using System.Text;
+using System.Linq;
 using HtmlForgeX.Logging;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -156,7 +158,7 @@ public class EmailBody : Element {
         body.AppendLine("\t\t\t\t\t\t\t<td class=\"p-sm\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding: 8px;\">");
 
         // Render child elements
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             var childContent = child.ToString();
             if (!string.IsNullOrEmpty(childContent)) {
                 body.AppendLine(childContent);

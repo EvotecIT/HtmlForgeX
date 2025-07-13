@@ -258,7 +258,7 @@ public class EmailLink : Element {
     /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailLink"/> instance.</returns>
-    public EmailLink WithAlignment(FontAlignment alignment) {
+    public EmailLink WithAlignment(Alignment alignment) {
         alignment.ValidateEmailAlignment();
         TextAlign = alignment.ToCssValue();
         return this;
@@ -310,6 +310,7 @@ public class EmailLink : Element {
     /// <param name="margin">The margin value.</param>
     /// <returns>The EmailLink object, allowing for method chaining.</returns>
     public EmailLink WithMargin(string margin) {
+        margin.ValidateMargin();
         Margin = margin;
         return this;
     }

@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerSteps : Element {
@@ -40,7 +43,7 @@ public class TablerSteps : Element {
         }
         stepsUl.Class(PrivateStepsColor?.ToTablerSteps());
 
-        foreach (var stepItem in StepItems) {
+        foreach (var stepItem in StepItems.WhereNotNull()) {
             stepsUl.Value(stepItem.ToString(PrivateOrientation));
         }
 

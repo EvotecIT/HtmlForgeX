@@ -26,4 +26,21 @@ public class TestHelpers {
         Assert.IsFalse(lockedViaPath);
         File.Delete(path);
     }
+
+    [TestMethod]
+    public void IsFileLocked_ReturnsFalseForMissingFileInfo() {
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, Path.GetRandomFileName());
+        var fileInfo = new FileInfo(path);
+        var lockedViaInfo = fileInfo.IsFileLocked();
+        Assert.IsFalse(lockedViaInfo);
+    }
+
+    [TestMethod]
+    public void IsFileLocked_ReturnsFalseForMissingPath() {
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, Path.GetRandomFileName());
+        var lockedViaPath = path.IsFileLocked();
+        Assert.IsFalse(lockedViaPath);
+    }
 }

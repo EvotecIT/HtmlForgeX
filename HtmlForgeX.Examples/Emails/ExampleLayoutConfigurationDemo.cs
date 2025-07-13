@@ -25,23 +25,23 @@ public static class ExampleLayoutConfigurationDemo
                 content.EmailText("📐 Layout Configuration Demo #1")
                     .WithFontSize(EmailFontSize.Heading1)
                     .WithFontWeight(FontWeight.Bold)
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText($"Layout: {EmailLayoutSize.ExtraWide.GetDescription()}")
                     .WithFontSize(EmailFontSize.Large)
                     .WithColor("#059669")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 content.EmailText($"Container Padding: {EmailPaddingSize.Large.GetDescription()}")
                     .WithFontSize(EmailFontSize.Medium)
                     .WithColor("#374151")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 content.EmailText($"Content Padding: {EmailPaddingSize.Medium.GetDescription()}")
                     .WithFontSize(EmailFontSize.Medium)
                     .WithColor("#374151")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
             });
 
             emailBox.EmailRow(row => {
@@ -50,7 +50,7 @@ public static class ExampleLayoutConfigurationDemo
                     col.EmailText("Left Column")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithColor("#DC2626");
                     col.EmailText("This demonstrates the extra-wide layout with generous padding. Perfect for newsletters and content-heavy emails.")
                         .WithFontSize(EmailFontSize.Regular)
@@ -62,7 +62,7 @@ public static class ExampleLayoutConfigurationDemo
                     col.EmailText("Center Column")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithColor("#059669");
                     col.EmailText("Notice how the 1000px width gives us plenty of room for three columns without feeling cramped.")
                         .WithFontSize(EmailFontSize.Regular)
@@ -74,7 +74,7 @@ public static class ExampleLayoutConfigurationDemo
                     col.EmailText("Right Column")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
-                        .WithAlignment(FontAlignment.Center)
+                        .WithAlignment(Alignment.Center)
                         .WithColor("#7C3AED");
                     col.EmailText("The large container padding (16px) and medium content padding (12px) create a comfortable reading experience.")
                         .WithFontSize(EmailFontSize.Regular)
@@ -96,23 +96,23 @@ public static class ExampleLayoutConfigurationDemo
                 content.EmailText("⚙️ Layout Configuration Demo #2")
                     .WithFontSize(EmailFontSize.Heading1)
                     .WithFontWeight(FontWeight.Bold)
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("Custom Width: 750px (between Wide and ExtraWide)")
                     .WithFontSize(EmailFontSize.Large)
                     .WithColor("#059669")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 content.EmailText($"Container Padding: {EmailPaddingSize.Small.GetDescription()}")
                     .WithFontSize(EmailFontSize.Medium)
                     .WithColor("#374151")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
 
                 content.EmailText($"Content Padding: {EmailPaddingSize.ExtraSmall.GetDescription()}")
                     .WithFontSize(EmailFontSize.Medium)
                     .WithColor("#374151")
-                    .WithAlignment(FontAlignment.Center);
+                    .WithAlignment(Alignment.Center);
             });
 
             emailBox.EmailContent(content => {
@@ -141,13 +141,13 @@ public static class ExampleLayoutConfigurationDemo
                 content.EmailText("📏 All Layout Sizes Overview")
                     .WithFontSize(EmailFontSize.Heading1)
                     .WithFontWeight(FontWeight.Bold)
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("Choose the perfect size for your email's purpose")
                     .WithFontSize(EmailFontSize.Large)
                     .WithColor("#6B7280")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithLineHeight("1.6");
             });
 
@@ -226,13 +226,13 @@ public static class ExampleLayoutConfigurationDemo
                 content.EmailText("📐 All Padding Sizes Overview")
                     .WithFontSize(EmailFontSize.Heading1)
                     .WithFontWeight(FontWeight.Bold)
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithColor("#111827");
 
                 content.EmailText("From tight layouts to spacious designs")
                     .WithFontSize(EmailFontSize.Large)
                     .WithColor("#6B7280")
-                    .WithAlignment(FontAlignment.Center)
+                    .WithAlignment(Alignment.Center)
                     .WithLineHeight("1.6");
             });
 
@@ -244,7 +244,7 @@ public static class ExampleLayoutConfigurationDemo
                         .WithFontSize(EmailFontSize.Large)
                         .WithFontWeight(FontWeight.Bold)
                         .WithColor("#DC2626")
-                        .WithAlignment(FontAlignment.Center);
+                        .WithAlignment(Alignment.Center);
 
                     col.EmailText($"🚫 None: {EmailPaddingSize.None.GetDescription()}")
                         .WithFontSize(EmailFontSize.Small)
@@ -265,7 +265,7 @@ public static class ExampleLayoutConfigurationDemo
                         .WithFontSize(EmailFontSize.Large)
                         .WithFontWeight(FontWeight.Bold)
                         .WithColor("#059669")
-                        .WithAlignment(FontAlignment.Center);
+                        .WithAlignment(Alignment.Center);
 
                     col.EmailText($"⚖️ Medium: {EmailPaddingSize.Medium.GetDescription()}")
                         .WithFontSize(EmailFontSize.Small)

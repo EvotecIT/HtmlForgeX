@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerCard : Element {
@@ -57,7 +60,7 @@ public class TablerCard : Element {
         cardDiv.Value(cardBodyDiv);
 
         // Add any child elements to the card body
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             cardBodyDiv.Value(child);
         }
 
