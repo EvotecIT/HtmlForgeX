@@ -180,6 +180,13 @@ public abstract class Element {
         return qrCode;
     }
 
+    public QuillEditor QuillEditor(Action<QuillEditor>? config = null) {
+        var editor = new QuillEditor();
+        config?.Invoke(editor);
+        this.Add(editor);
+        return editor;
+    }
+
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);
