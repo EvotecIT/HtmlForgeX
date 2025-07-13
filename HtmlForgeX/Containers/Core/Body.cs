@@ -23,7 +23,7 @@ public class Body : Element {
     /// </summary>
     /// <param name="element">Element to add.</param>
     /// <returns>The current <see cref="Body"/> instance.</returns>
-    public new Body Add(Element element) {
+    public new Body Add(Element? element) {
         base.Add(element);
         return this;
     }

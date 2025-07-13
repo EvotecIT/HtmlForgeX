@@ -44,7 +44,11 @@ public abstract class Element {
     /// </summary>
     /// <param name="element">The element to add.</param>
     /// <returns>This element for method chaining.</returns>
-    public virtual Element Add(Element element) {
+    public virtual Element Add(Element? element) {
+        if (element is null) {
+            return this;
+        }
+
         element.Email = this.Email;
         element.Document = this.Document;
         Children.Add(element);
