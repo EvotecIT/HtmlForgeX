@@ -24,7 +24,7 @@ internal static class ExampleTablerTimeline {
                             });
                             timeline.Item(item => {
                                 item.Time(DateTime.Now)
-                                    .Icon(TablerIconType.TimelineEventCheck)
+                                    .Icon(TablerIconType.Check)
                                     .Color(TablerColor.Blue)
                                     .Title("Task Completed")
                                     .Description("The task finished successfully.");
