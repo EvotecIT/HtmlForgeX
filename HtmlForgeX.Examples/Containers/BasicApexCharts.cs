@@ -18,8 +18,10 @@ internal class BasicApexCharts {
                     col.Card(card => {
                         card.ApexChart(chart => {
                             chart.Title.Text("Area Chart");
-                            chart.AddArea("A", 10)
-                                 .AddArea("B", 5);
+                            var random = new Random(0);
+                            for (var i = 1; i <= 20; i++) {
+                                chart.AddArea($"A{i}", random.Next(1, 20));
+                            }
                             chart.Grid(g => g.PaddingOptions(p => p.All(4)));
                         });
                     });
@@ -28,8 +30,10 @@ internal class BasicApexCharts {
                     col.Card(card => {
                         card.ApexChart(chart => {
                             chart.Title.Text("Heatmap Chart");
-                            chart.AddHeatmap("H1", 5)
-                                 .AddHeatmap("H2", 7);
+                            var random = new Random(1);
+                            for (var i = 1; i <= 50; i++) {
+                                chart.AddHeatmap($"H{i}", random.Next(0, 10));
+                            }
                             chart.PlotOptions(o => o.HeatmapOptions(h => h.RadiusValue(2)));
                         });
                     });
@@ -40,8 +44,10 @@ internal class BasicApexCharts {
                     col.Card(card => {
                         card.ApexChart(chart => {
                             chart.Title.Text("Radar Chart");
-                            chart.AddRadar("R1", 3)
-                                 .AddRadar("R2", 4);
+                            var random = new Random(2);
+                            for (var i = 1; i <= 6; i++) {
+                                chart.AddRadar($"R{i}", random.Next(1, 10));
+                            }
                             chart.Legend(l => l.ShowLegend(true))
                                  .Theme(t => t.ModeValue(ApexThemeMode.Dark));
                         });

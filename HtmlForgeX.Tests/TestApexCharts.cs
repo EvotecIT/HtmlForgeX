@@ -41,4 +41,16 @@ public class TestApexCharts {
         Assert.IsTrue(html.Contains("\"radius\""));
         Assert.IsTrue(html.Contains("dark"));
     }
+
+    [TestMethod]
+    public void ApexCharts_LargeHeatmapData() {
+        var chart = new ApexCharts();
+        for (var i = 0; i < 50; i++) {
+            chart.AddHeatmap($"H{i}", i);
+        }
+
+        Assert.AreEqual(50, chart.Series.Count);
+        var html = chart.ToString();
+        Assert.IsTrue(html.Contains("\"heatmap\""));
+    }
 }
