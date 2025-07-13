@@ -307,6 +307,38 @@ public class Head : Element {
         }
     }
 
+    private void AddRawScript(string script) {
+        if (_jsInlineSet.Add(script)) {
+            Scripts.Add(script);
+        }
+    }
+
+    /// <summary>
+    /// Adds analytics tracking code based on the specified provider.
+    /// </summary>
+    /// <param name="provider">Analytics provider.</param>
+    /// <param name="identifier">Tracking or token identifier.</param>
+    /// <returns>The <see cref="Head"/> instance for chaining.</returns>
+    public Head AddAnalytics(AnalyticsProvider provider, string identifier) {
+        switch (provider) {
+            case AnalyticsProvider.GoogleAnalytics:
+                AddRawScript($"<script async src=\"https://www.googletagmanager.com/gtag/js?id={identifier}\"></script>");
+                AddRawScript($@"<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', '{identifier}');
+</script>");
+                break;
+            case AnalyticsProvider.CloudflareInsights:
+                AddRawScript($"<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon='{{\"token\": \"{identifier}\"}}'></script>");
+                break;
+            default:
+                break;
+        }
+        return this;
+    }
+
     public void AddCssStyle(Style style) {
         Styles.Add(style);
     }
