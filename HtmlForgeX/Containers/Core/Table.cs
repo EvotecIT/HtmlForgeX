@@ -10,7 +10,8 @@ using HtmlForgeX.Extensions;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Provides functionality for generating HTML tables.
+/// Provides functionality for generating HTML tables and populating them from
+/// model data.
 /// </summary>
 public class Table : Element {
     private readonly TableType? Library;

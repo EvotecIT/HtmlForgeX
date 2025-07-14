@@ -3,7 +3,8 @@ using System;
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Provides metadata and asset links for the Chart.js library.
+/// Provides metadata and asset links for the Chart.js library. Use this class
+/// when you want to include interactive charts and graphs in your document.
 /// </summary>
 public class ChartJsLibrary : Library {
     /// <summary>

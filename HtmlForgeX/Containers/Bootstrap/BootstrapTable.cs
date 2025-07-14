@@ -5,7 +5,8 @@ using System.Text;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Renders an HTML table styled using Bootstrap classes.
+/// Renders an HTML table styled using Bootstrap classes. Provides convenience
+/// properties for applying Bootstrap table utilities.
 /// </summary>
 public class BootstrapTable : Table {
     /// <summary>

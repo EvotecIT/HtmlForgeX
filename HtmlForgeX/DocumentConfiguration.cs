@@ -3,8 +3,9 @@ using System.Collections.Concurrent;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Configuration class for Document instances.
-/// Manages state, libraries, and settings for document generation.
+/// Configuration class for <see cref="Document"/> instances. It keeps track of
+/// library references, theme selection and output paths used when generating
+/// HTML documents.
 /// </summary>
 public class DocumentConfiguration {
     private readonly object _syncRoot = new();

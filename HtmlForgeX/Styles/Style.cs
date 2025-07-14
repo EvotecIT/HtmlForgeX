@@ -1,7 +1,8 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// Represents a simple CSS style definition.
+/// Represents a simple CSS style definition that can be attached to an element
+/// or output as part of a &lt;style&gt; block when rendering a document.
 /// </summary>
 /// <remarks>
 /// This type can be used to build inline style declarations or generate style

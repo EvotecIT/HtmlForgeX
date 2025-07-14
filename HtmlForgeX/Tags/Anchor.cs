@@ -1,7 +1,8 @@
 namespace HtmlForgeX.Tags;
 
 /// <summary>
-/// Represents an HTML <c>&lt;a&gt;</c> tag.
+/// Represents an HTML <c>&lt;a&gt;</c> tag. Use this class to create hyperlinks
+/// with optional target, relationship, and styling attributes.
 /// </summary>
 public class Anchor : HtmlTag {
     /// <summary>

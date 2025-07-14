@@ -5,7 +5,8 @@ using System.Text;
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Provides assets for the Vis Network loading bar plugin.
+/// Provides assets for the Vis Network loading bar plugin used to display a
+/// progress indicator while network graphs are loading.
 /// </summary>
 public class VisNetworkLoadingBarLibrary : Library {
     /// <summary>

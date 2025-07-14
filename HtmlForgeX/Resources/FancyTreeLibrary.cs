@@ -1,7 +1,9 @@
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Provides metadata and asset links for the FancyTree jQuery plugin.
+/// Provides metadata and asset links for the FancyTree jQuery plugin used for
+/// creating interactive tree views. This library encapsulates the required CSS
+/// and JavaScript references.
 /// </summary>
 public class FancyTreeLibrary : Library {
     /// <summary>

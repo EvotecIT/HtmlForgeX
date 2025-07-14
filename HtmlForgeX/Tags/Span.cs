@@ -5,6 +5,8 @@ namespace HtmlForgeX;
 
 /// <summary>
 /// Represents a <c>&lt;span&gt;</c> element with configurable styling options.
+/// The <see cref="Span"/> class exposes helper methods for applying common CSS
+/// attributes without manually managing the underlying style collection.
 /// </summary>
 public class Span : Element {
     /// <summary>Content of the span element.</summary>

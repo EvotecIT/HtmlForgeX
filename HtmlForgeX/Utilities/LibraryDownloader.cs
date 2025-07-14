@@ -7,7 +7,9 @@ using HtmlForgeX.Logging;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Support class to help building HTMLForgeX without huge effort on maintaining CSS and JS files.
+/// Support class to help building HtmlForgeX without the manual effort of
+/// maintaining CSS and JS files locally. It downloads the external resources
+/// referenced by available libraries.
 /// </summary>
 public class LibraryDownloader {
     private static readonly HttpClient _client = new();
