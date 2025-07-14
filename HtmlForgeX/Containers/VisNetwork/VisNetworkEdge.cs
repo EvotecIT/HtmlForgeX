@@ -6,18 +6,69 @@ namespace HtmlForgeX;
 /// Represents an edge in a Vis Network diagram.
 /// </summary>
 public class VisNetworkEdge {
+    /// <summary>
+    /// Gets or sets the unique identifier of the edge.
+    /// </summary>
     public object? Id { get; set; }
+
+    /// <summary>
+    /// Gets or sets the identifier of the source node.
+    /// </summary>
     public object? From { get; set; }
+
+    /// <summary>
+    /// Gets or sets the identifier of the destination node.
+    /// </summary>
     public object? To { get; set; }
+
+    /// <summary>
+    /// Gets or sets the text label shown on the edge.
+    /// </summary>
     public string? Label { get; set; }
+
+    /// <summary>
+    /// Gets or sets the tooltip title for the edge.
+    /// </summary>
     public string? Title { get; set; }
+
+    /// <summary>
+    /// Gets or sets the arrows configuration for the edge.
+    /// </summary>
     public VisNetworkArrows? Arrows { get; set; }
+
+    /// <summary>
+    /// Gets or sets the color of the edge line.
+    /// </summary>
     public string? Color { get; set; }
+
+    /// <summary>
+    /// Gets or sets the width of the edge line in pixels.
+    /// </summary>
     public double? Width { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the edge should be drawn with dashes.
+    /// </summary>
     public bool? Dashes { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the edge is hidden.
+    /// </summary>
     public bool? Hidden { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether physics calculations are enabled for the edge.
+    /// </summary>
     public bool? Physics { get; set; }
+
+    /// <summary>
+    /// Gets or sets the ideal length of the edge in pixels.
+    /// </summary>
     public double? Length { get; set; }
+
+    /// <summary>
+    /// Gets a dictionary of custom key/value pairs that will be serialized with the edge.
+    /// </summary>
     public Dictionary<string, object> Custom { get; } = new();
 
     /// <summary>

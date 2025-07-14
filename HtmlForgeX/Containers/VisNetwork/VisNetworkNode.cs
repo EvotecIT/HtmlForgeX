@@ -9,19 +9,80 @@ namespace HtmlForgeX;
 /// Represents a node in a Vis Network diagram.
 /// </summary>
 public class VisNetworkNode {
+    /// <summary>
+    /// Gets or sets the unique identifier of the node.
+    /// </summary>
     public object? Id { get; set; }
+
+    /// <summary>
+    /// Gets or sets the text label displayed inside the node.
+    /// </summary>
     public string? Label { get; set; }
+
+    /// <summary>
+    /// Gets or sets the tooltip title shown when hovering over the node.
+    /// </summary>
     public string? Title { get; set; }
+
+    /// <summary>
+    /// Gets or sets the image URL or data URI used when the <see cref="Shape"/>
+    /// is set to <see cref="VisNetworkNodeShape.Image"/>.
+    /// </summary>
     public string? Image { get; set; }
+
+    /// <summary>
+    /// Gets or sets the visual representation of the node.
+    /// </summary>
     public VisNetworkNodeShape? Shape { get; set; }
+
+    /// <summary>
+    /// Gets or sets the optional group name for the node.
+    /// </summary>
     public string? Group { get; set; }
+
+    /// <summary>
+    /// Gets or sets the color of the node using a CSS color string.
+    /// </summary>
     public string? Color { get; set; }
+
+    /// <summary>
+    /// Gets or sets the size of the node in pixels.
+    /// </summary>
     public double? Size { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the node should be hidden.
+    /// </summary>
     public bool? Hidden { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether physics calculations
+    /// are enabled for this node.
+    /// </summary>
     public bool? Physics { get; set; }
+
+    /// <summary>
+    /// Gets or sets the X coordinate used for the initial positioning
+    /// of the node.
+    /// </summary>
     public double? X { get; set; }
+
+    /// <summary>
+    /// Gets or sets the Y coordinate used for the initial positioning
+    /// of the node.
+    /// </summary>
     public double? Y { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether automatic image embedding
+    /// should be skipped when offline mode is active.
+    /// </summary>
     public bool SkipAutoEmbedding { get; set; }
+
+    /// <summary>
+    /// Gets a dictionary of custom key/value pairs that will be serialized
+    /// along with the node definition.
+    /// </summary>
     public Dictionary<string, object> Custom { get; } = new();
 
     /// <summary>
