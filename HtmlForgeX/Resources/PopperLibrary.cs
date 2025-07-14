@@ -1,5 +1,12 @@
 namespace HtmlForgeX.Resources;
+
+/// <summary>
+/// Provides links for Popper and Tooltip libraries.
+/// </summary>
 public class PopperLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PopperLibrary"/> class.
+    /// </summary>
     public PopperLibrary() {
         Header = new LibraryLinks {
             JsLink = [

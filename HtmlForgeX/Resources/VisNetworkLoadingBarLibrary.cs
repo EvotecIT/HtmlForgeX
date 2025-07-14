@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX.Resources;
+
+/// <summary>
+/// Provides assets for the Vis Network loading bar plugin.
+/// </summary>
 public class VisNetworkLoadingBarLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="VisNetworkLoadingBarLibrary"/> class.
+    /// </summary>
     public VisNetworkLoadingBarLibrary() {
         Header = new LibraryLinks {
             CssLink = [

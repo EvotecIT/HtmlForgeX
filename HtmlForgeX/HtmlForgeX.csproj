@@ -15,7 +15,7 @@
         <Authors>Przemyslaw Klys</Authors>
         <LangVersion>Latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
-        <!-- <Nullable>enable</Nullable> -->
+        <Nullable>enable</Nullable>
 
         <PackageId>HtmlForgeX</PackageId>
         <PackageIcon>HtmlForgeX1_128x128.png</PackageIcon>

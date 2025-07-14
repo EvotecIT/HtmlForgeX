@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX.Resources;
+
+/// <summary>
+/// Library descriptor for Vis Network diagrams.
+/// </summary>
 internal class VisNetworkLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="VisNetworkLibrary"/> class.
+    /// </summary>
     public VisNetworkLibrary() {
         Header = new LibraryLinks {
             CssLink = [

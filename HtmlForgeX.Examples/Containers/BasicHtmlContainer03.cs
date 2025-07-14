@@ -235,7 +235,7 @@ internal class BasicHtmlContainer03 {
                                 .Color(RGBColor.Yellow);
 
                             calendar.Options.EventClick = @"function(info) {
-                                alert('Clicked ' + info.event.title); 
+                                alert('Clicked ' + info.event.title);
                             }";
 
                             calendar.AddHeaderToolbar()

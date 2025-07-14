@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX.Resources;
+
+/// <summary>
+/// Provides metadata for the EasyQRCode library.
+/// </summary>
 public class EasyQRCode : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EasyQRCode"/> class.
+    /// </summary>
     public EasyQRCode() {
         // CSS styles and JS go in HEAD
         Header = new LibraryLinks {

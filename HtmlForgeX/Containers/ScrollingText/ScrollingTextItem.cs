@@ -26,8 +26,8 @@ public class ScrollingTextItem : Element {
     /// <summary>
     /// Constructor for the ScrollingTextItem.
     /// </summary>
-    /// <param name="title"></param>
-    /// <param name="content"></param>
+    /// <param name="title">Title of the new item.</param>
+    /// <param name="content">Optional HTML content.</param>
     internal ScrollingTextItem(string title, string content = "") {
         Id = $"scrolling-{Guid.NewGuid().ToString("N")}";
         Title = title;
@@ -39,9 +39,9 @@ public class ScrollingTextItem : Element {
     /// <summary>
     /// Allows you to add a child element to the ScrollingTextItem.
     /// </summary>
-    /// <param name="title"></param>
-    /// <param name="config"></param>
-    /// <returns></returns>
+    /// <param name="title">Title of the child item.</param>
+    /// <param name="config">Callback used to configure the item.</param>
+    /// <returns>The newly created item.</returns>
     public ScrollingTextItem AddItem(string title, Action<ScrollingTextItem> config) {
         var child = new ScrollingTextItem(title);
         config(child);

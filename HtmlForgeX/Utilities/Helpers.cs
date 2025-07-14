@@ -65,9 +65,8 @@ internal static class Helpers {
             return false;
         }
         try {
-            using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None)) {
-                stream.Close();
-            }
+            using var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            stream.Close();
         } catch (IOException) {
             //the file is unavailable because it is:
             //still being written to
@@ -97,9 +96,8 @@ internal static class Helpers {
         }
         try {
             var file = new FileInfo(fileName);
-            using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None)) {
-                stream.Close();
-            }
+            using var stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            stream.Close();
         } catch (IOException) {
             //the file is unavailable because it is:
             //still being written to

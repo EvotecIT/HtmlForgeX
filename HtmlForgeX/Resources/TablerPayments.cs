@@ -1,6 +1,12 @@
 namespace HtmlForgeX.Resources;
 
+/// <summary>
+/// Library descriptor for Tabler payment icon set.
+/// </summary>
 internal class TablerPayments : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TablerPayments"/> class.
+    /// </summary>
     public TablerPayments() {
         Header = new LibraryLinks {
             CssLink = ["https://cdn.jsdelivr.net/npm/@tabler/core@1.3.0/dist/css/tabler-payments.min.css"],
