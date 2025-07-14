@@ -70,6 +70,8 @@ public class TablerCardList : Element {
         
         // Add list items
         foreach (var item in Items) {
+            // Pass the list style to items so they can add appropriate classes
+            item.SetParentListStyle(ListStyle);
             listElement.Value(item.ToString());
         }
         
@@ -107,6 +109,7 @@ public class TablerCardListItem : Element {
     private bool IsActive { get; set; } = false;
     private bool IsDisabled { get; set; } = false;
     private string? ItemUrl { get; set; }
+    private TablerCardListStyle? ParentListStyle { get; set; }
     
     public TablerCardListItem Text(string text) {
         ItemText = text;
@@ -138,9 +141,18 @@ public class TablerCardListItem : Element {
         return this;
     }
     
+    internal void SetParentListStyle(TablerCardListStyle style) {
+        ParentListStyle = style;
+    }
+    
     public override string ToString() {
         var listItem = new HtmlTag("li");
         var classes = new List<string>();
+        
+        // Add list-group-item class if parent is a list-group
+        if (ParentListStyle == TablerCardListStyle.Group) {
+            classes.Add("list-group-item");
+        }
         
         if (IsActive) classes.Add("active");
         if (IsDisabled) classes.Add("disabled");

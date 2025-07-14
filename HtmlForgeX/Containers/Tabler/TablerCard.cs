@@ -53,11 +53,13 @@ public class TablerCard : Element {
     private int Number { get; set; }
 
     public TablerCard() {
-        CardOuterStyle = $"col";
+        // Cards should not have column classes - those belong on the column container
     }
 
     public TablerCard(int number) {
-        CardOuterStyle = $"col-{number}";
+        // Deprecated: column classes should not be on cards
+        // Keep for backward compatibility but don't set column classes
+        Number = number;
     }
 
     public TablerCard Content(string content) {

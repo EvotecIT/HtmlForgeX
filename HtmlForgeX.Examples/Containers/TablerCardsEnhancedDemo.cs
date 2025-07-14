@@ -269,9 +269,7 @@ internal class TablerCardsEnhancedDemo {
                         card.Progress(88, TablerColor.Success);
                         card.Header(header => {
                             header.Title("Dashboard");
-                            header.WithActions(actions => {
-                                actions.IconButton(TablerIconType.ExternalLink, btn => btn.AsActionButton());
-                            });
+                            // Note: Don't add action buttons to link cards - it creates invalid nested links
                         });
                         card.Body(body => {
                             body.AddText(text => {
