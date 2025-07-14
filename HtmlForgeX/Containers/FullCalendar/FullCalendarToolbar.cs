@@ -6,14 +6,14 @@ namespace HtmlForgeX;
 /// Toolbar configuration for FullCalendar.
 /// </summary>
 public class FullCalendarToolbar {
-    [JsonPropertyName("left")]
     /// <summary>Options on the left side.</summary>
+    [JsonPropertyName("left")]
     public List<FullCalendarToolbarOption> LeftOptions { get; set; } = new List<FullCalendarToolbarOption>();
-    [JsonPropertyName("center")]
     /// <summary>Options displayed in the center.</summary>
+    [JsonPropertyName("center")]
     public List<FullCalendarToolbarOption> CenterOptions { get; set; } = new List<FullCalendarToolbarOption>();
-    [JsonPropertyName("right")]
     /// <summary>Options on the right side.</summary>
+    [JsonPropertyName("right")]
     public List<FullCalendarToolbarOption> RightOptions { get; set; } = new List<FullCalendarToolbarOption>();
 
     /// <summary>

@@ -10,8 +10,8 @@ namespace HtmlForgeX;
 /// </summary>
 [JsonConverter(typeof(DescriptionEnumConverter<FullCalendarViewOption>))]
 public enum FullCalendarViewOption {
-    [Description("listWeek")]
     /// <summary>List events for a week.</summary>
+    [Description("listWeek")]
     ListWeek,
 
     [Description("listMonth")]
@@ -25,9 +25,9 @@ public enum FullCalendarViewOption {
 }
 
 public class FullCalendarView {
-    [JsonPropertyName("buttonText")]
     /// <summary>
     /// Gets or sets the text shown on the corresponding toolbar button.
     /// </summary>
+    [JsonPropertyName("buttonText")]
     public string ButtonText { get; set; }
 }

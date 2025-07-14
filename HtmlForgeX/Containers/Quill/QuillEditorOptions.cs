@@ -7,37 +7,37 @@ namespace HtmlForgeX;
 /// Configuration options for a <see cref="QuillEditor"/> instance.
 /// </summary>
 public class QuillEditorOptions {
-    [JsonPropertyName("theme")]
     /// <summary>
     /// Gets or sets the editor theme.
     /// </summary>
+    [JsonPropertyName("theme")]
     public QuillTheme Theme { get; set; } = QuillTheme.Snow;
 
-    [JsonPropertyName("readOnly")]
     /// <summary>
     /// Gets or sets a value indicating whether the editor is read only.
     /// </summary>
+    [JsonPropertyName("readOnly")]
     public bool ReadOnly { get; set; }
 
-    [JsonPropertyName("placeholder")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     /// <summary>
     /// Gets or sets placeholder text displayed when the editor is empty.
     /// </summary>
+    [JsonPropertyName("placeholder")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Placeholder { get; set; }
 
-    [JsonPropertyName("modules")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     /// <summary>
     /// Gets or sets module configuration.
     /// </summary>
+    [JsonPropertyName("modules")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public QuillModules? Modules { get; set; }
 
-    [JsonPropertyName("formats")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    [JsonConverter(typeof(EnumListDescriptionConverter<QuillFormat>))]
     /// <summary>
     /// Gets or sets the enabled formatting options.
     /// </summary>
+    [JsonPropertyName("formats")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonConverter(typeof(EnumListDescriptionConverter<QuillFormat>))]
     public List<QuillFormat>? Formats { get; set; }
 }

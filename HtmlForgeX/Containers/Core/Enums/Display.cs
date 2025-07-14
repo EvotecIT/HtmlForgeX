@@ -6,8 +6,8 @@ namespace HtmlForgeX;
 /// CSS <c>display</c> property values.
 /// </summary>
 public enum Display {
-    [Description("none")]
     /// <summary>Specifies <c>display: none</c>.</summary>
+    [Description("none")]
     None = 1,
 
     [Description("inline")]
