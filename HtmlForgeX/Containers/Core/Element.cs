@@ -4,7 +4,13 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Base class for all HTML elements in HtmlForgeX.
+/// </summary>
 public abstract class Element {
+    /// <summary>
+    /// Collection of child elements contained within this element.
+    /// </summary>
     public List<Element> Children { get; } = new List<Element>();
 
     private Document? _document;
@@ -93,6 +99,10 @@ public abstract class Element {
         // Base implementation does nothing - override in derived classes
     }
 
+    /// <summary>
+    /// Returns a string representation of the element.
+    /// </summary>
+    /// <returns>HTML output for this element.</returns>
     public abstract override string ToString();
 
     /// <summary>
