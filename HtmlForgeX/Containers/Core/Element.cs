@@ -316,6 +316,7 @@ public abstract class Element {
         return logs;
     }
 
+
     public TablerLogs Logs(List<string> code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
         if (backgroundClass != null && textClass != null) {
@@ -323,6 +324,24 @@ public abstract class Element {
         } else {
             logs.Theme(theme);
         }
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(string code, RGBColor backgroundColor, RGBColor textColor) {
+        var logs = new TablerLogs(code).CustomColors(backgroundColor, textColor);
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(string[] code, RGBColor backgroundColor, RGBColor textColor) {
+        var logs = new TablerLogs(code).CustomColors(backgroundColor, textColor);
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(List<string> code, RGBColor backgroundColor, RGBColor textColor) {
+        var logs = new TablerLogs(code).CustomColors(backgroundColor, textColor);
         this.Add(logs);
         return logs;
     }

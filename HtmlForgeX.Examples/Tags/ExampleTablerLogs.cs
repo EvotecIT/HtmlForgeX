@@ -19,8 +19,8 @@ internal static class ExampleTablerLogs {
                 });
                 row.Column(column => {
                     column.Card(card => {
-                        card.Logs(new[] { "Custom A", "Custom B" }, TablerLogsTheme.Dark, "bg-purple", "text-yellow")
-                            .Title(HeaderLevelTag.H4, "Custom Theme");
+                        card.Logs(new[] { "Custom A", "Custom B" }, new RGBColor("#6f42c1"), new RGBColor("#ffd43b"))
+                            .Title(HeaderLevelTag.H4, "Custom Colors");
                     });
                 });
             });

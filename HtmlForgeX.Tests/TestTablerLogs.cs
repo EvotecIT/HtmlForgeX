@@ -35,4 +35,12 @@ public class TestTablerLogs {
         Assert.IsTrue(html.Contains("bg-purple"));
         Assert.IsTrue(html.Contains("text-yellow"));
     }
+
+    [TestMethod]
+    public void TablerLogs_CustomColors() {
+        var logs = new TablerLogs("Test").CustomColors(new RGBColor("#6f42c1"), new RGBColor("#ffd43b"));
+        var html = logs.ToString();
+        Assert.IsTrue(html.Contains("background-color: #6F42C1"));
+        Assert.IsTrue(html.Contains("color: #FFD43B"));
+    }
 }

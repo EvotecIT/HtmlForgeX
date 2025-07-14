@@ -7,6 +7,8 @@ public class TablerLogs : Element {
     private TablerLogsTheme ThemeEntry { get; set; } = TablerLogsTheme.Dark;
     private string? CustomBackgroundClass { get; set; }
     private string? CustomTextClass { get; set; }
+    private RGBColor? CustomBackgroundColor { get; set; }
+    private RGBColor? CustomTextColor { get; set; }
     public TablerLogs(string code) {
         PrivateCode = code;
     }
@@ -36,6 +38,17 @@ public class TablerLogs : Element {
         return this;
     }
 
+    public TablerLogs CustomColors(RGBColor backgroundColor, RGBColor textColor) {
+        ThemeEntry = TablerLogsTheme.Custom;
+        CustomBackgroundColor = backgroundColor;
+        CustomTextColor = textColor;
+        return this;
+    }
+
+    public TablerLogs CustomColors(string backgroundColorHex, string textColorHex) {
+        return CustomColors(new RGBColor(backgroundColorHex), new RGBColor(textColorHex));
+    }
+
     public override string ToString() {
         HeaderLevel? header;
         if (PrivateLevelTitle != null && PrivateTitle != null) {
@@ -48,12 +61,19 @@ public class TablerLogs : Element {
 
         HtmlTag logsTag = new HtmlTag("div");
         string classes = ThemeEntry == TablerLogsTheme.Custom
-            ? $"{CustomBackgroundClass} {CustomTextClass}".Trim()
+            ? (CustomBackgroundClass is not null && CustomTextClass is not null
+                ? $"{CustomBackgroundClass} {CustomTextClass}".Trim()
+                : string.Empty)
             : ThemeEntry.ToClassString();
 
         HtmlTag preTag = new HtmlTag("pre")
             .Class(classes)
             .Value(PrivateCode);
+
+        if (CustomBackgroundColor is not null && CustomTextColor is not null) {
+            preTag.Style("background-color", CustomBackgroundColor.ToHex());
+            preTag.Style("color", CustomTextColor.ToHex());
+        }
         logsTag.Value(preTag);
 
         if (header != null) {
