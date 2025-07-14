@@ -27,10 +27,16 @@ public class ChartJs : Element {
     /// </summary>
     public List<double> Data { get; } = new();
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ChartJs"/> class.
+    /// </summary>
     public ChartJs() {
         Id = GlobalStorage.GenerateRandomId("chartjs");
     }
 
+    /// <summary>
+    /// Registers the Chart.js library with the current document.
+    /// </summary>
     protected internal override void RegisterLibraries() {
         Document?.Configuration.Libraries.TryAdd(Libraries.ChartJs, 0);
     }
@@ -58,19 +64,22 @@ public class ChartJs : Element {
     }
 
     /// <summary>
-    /// Shortcut for <see cref="SetType(ChartJsType.Line)"/>.
+    /// Shortcut for calling <see cref="SetType(ChartJsType)"/> with
+    /// <see cref="ChartJsType.Line"/>.
     /// </summary>
     /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs Line() => SetType(ChartJsType.Line);
 
     /// <summary>
-    /// Shortcut for <see cref="SetType(ChartJsType.Bar)"/>.
+    /// Shortcut for calling <see cref="SetType(ChartJsType)"/> with
+    /// <see cref="ChartJsType.Bar"/>.
     /// </summary>
     /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs Bar() => SetType(ChartJsType.Bar);
 
     /// <summary>
-    /// Shortcut for <see cref="SetType(ChartJsType.Pie)"/>.
+    /// Shortcut for calling <see cref="SetType(ChartJsType)"/> with
+    /// <see cref="ChartJsType.Pie"/>.
     /// </summary>
     /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs Pie() => SetType(ChartJsType.Pie);
