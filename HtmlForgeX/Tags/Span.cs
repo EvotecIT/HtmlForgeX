@@ -4,20 +4,35 @@ using HtmlForgeX.Extensions;
 namespace HtmlForgeX;
 
 public class Span : Element {
+    /// <summary>Content of the span element.</summary>
     public string? Content { get; set; }
+    /// <summary>Text color.</summary>
     public RGBColor? Color { get; set; }
+    /// <summary>Background color.</summary>
     public RGBColor? BackGroundColor { get; set; }
+    /// <summary>CSS font-size value.</summary>
     public string? FontSize { get; set; }
+    /// <summary>CSS line-height value.</summary>
     public string? LineHeight { get; set; }
+    /// <summary>Font weight.</summary>
     public FontWeight? FontWeight { get; set; }
+    /// <summary>Font style.</summary>
     public FontStyle? FontStyle { get; set; }
+    /// <summary>Font variant.</summary>
     public FontVariant? FontVariant { get; set; }
+    /// <summary>Font family name.</summary>
     public string? FontFamily { get; set; }
+    /// <summary>Text alignment.</summary>
     public Alignment? Alignment { get; set; }
+    /// <summary>Text decoration.</summary>
     public TextDecoration? TextDecoration { get; set; }
+    /// <summary>Text transform.</summary>
     public TextTransform? TextTransform { get; set; }
+    /// <summary>Text direction.</summary>
     public Direction? Direction { get; set; }
+    /// <summary>Display style.</summary>
     public Display? Display { get; set; }
+    /// <summary>Opacity value.</summary>
     public double? Opacity { get; set; }
 
     public List<Span> HtmlSpans { get; } = new List<Span>();
