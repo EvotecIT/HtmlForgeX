@@ -193,6 +193,13 @@ public abstract class Element {
         return editor;
     }
 
+    public TablerForm Form(Action<TablerForm> config) {
+        var form = new TablerForm();
+        config(form);
+        this.Add(form);
+        return form;
+    }
+
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);

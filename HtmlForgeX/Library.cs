@@ -28,7 +28,9 @@ public enum Libraries {
     FullCalendar,
     Popper,
     ScrollingText,
-    Quill
+    Quill,
+    TomSelect,
+    IMask
 }
 
 public class Library {
@@ -123,6 +125,10 @@ public class LibrariesConverter {
             return new ScrollingTextLibrary();
         case Libraries.Quill:
             return new Resources.QuillLibrary();
+        case Libraries.TomSelect:
+            return new Resources.TomSelectLibrary();
+        case Libraries.IMask:
+            return new Resources.IMaskLibrary();
         default:
             throw new ArgumentException($"Unsupported library: {libraries}");
         }
