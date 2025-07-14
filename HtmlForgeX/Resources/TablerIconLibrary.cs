@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX.Resources;
+
+/// <summary>
+/// Library descriptor for Tabler icon fonts.
+/// </summary>
 internal class TablerIconLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TablerIconLibrary"/> class.
+    /// </summary>
     public TablerIconLibrary() {
         Header = new LibraryLinks {
             CssLink = ["https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"],

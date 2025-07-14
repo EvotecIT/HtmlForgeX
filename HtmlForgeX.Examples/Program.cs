@@ -7,6 +7,7 @@ using HtmlForgeX.Examples.Tables;
 using HtmlForgeX.Examples.ByHand;
 using HtmlForgeX.Examples.Experimenting;
 using HtmlForgeX.Examples.Support;
+using HtmlForgeX.Examples.Forms;
 
 namespace HtmlForgeX.Examples;
 
@@ -32,9 +33,11 @@ internal class Program {
 
         // Tabler examples (console output)
         ExampleTablerIcon.Create();
-        ExampleTablerTag.Create();
-        ExampleTablerAlerts.Create();
         ExampleSvgIcons.Create();
+
+        // Tabler examples html output
+        ExampleTablerTag.Create(openInBrowser);
+        ExampleTablerAlerts.Create(openInBrowser);
 
         // Experimental examples (console output)
         Experiments01.Create();
@@ -48,6 +51,12 @@ internal class Program {
         // Toast examples
         ExampleTablerToast.Create(openInBrowser);
         ExampleTablerToastAdvanced.Create(openInBrowser);
+        ExampleTablerProgressBarShowcase.Create(openInBrowser);
+        ExampleTablerTimeline.Create(openInBrowser);
+        ExampleTablerLogs.Create(openInBrowser);
+
+        // Forms examples
+        ExampleTablerForm.Create(openInBrowser);
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
@@ -56,11 +65,18 @@ internal class Program {
         BasicHtmlContainer04.Demo01(openInBrowser);
         BasicScrollingText.Demo01(openInBrowser);
         DomainHealthCheck.Demo01(openInBrowser);
+        EnhancedDataGridDemo.Create(openInBrowser);
+
+        // Complete Tabler Cards demo - ALL features
+        TablerCardsCompleteDemo.Demo01(openInBrowser);
+        TablerCardsEnhancedDemo.Demo01(openInBrowser);
+        TablerCardsProperDemo.Demo01(openInBrowser);
 
         // Table examples
         BasicHtmlTable01.Create(openInBrowser);
         BasicHtmlTable02.Create(openInBrowser);
         BasicHtmlTable03.Create(openInBrowser);
+        BasicHtmlTable04.Create(openInBrowser);
 
         // Email examples - showcasing the new Document-style configuration!
         Console.WriteLine("📧 Running Email Examples with Document-Style Configuration:");
@@ -101,6 +117,9 @@ internal class Program {
         // Enhanced dark mode example (NEW - showcases all improvements)
         ExampleEnhancedDarkModeEmail.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
 
+        // Enhanced Accordion & Steps showcase
+        EnhancedAccordionStepsShowcase.Demo01(openInBrowser);  // 🎛️ ENHANCED ACCORDION & STEPS DEMO
+
         // Flexible header/footer example (NEW - demonstrates the flexible pattern)
         ExampleFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO
 
@@ -128,6 +147,9 @@ internal class Program {
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
         BasicApexCharts.Demo(openInBrowser);
+      
+        // VisNetwork images demo
+        BasicVisNetwork.Demo(openInBrowser);  
 
         // Quill editor example
         BasicQuillEditor.Demo(openInBrowser);

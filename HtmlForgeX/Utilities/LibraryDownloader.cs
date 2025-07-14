@@ -64,10 +64,13 @@ public class LibraryDownloader {
     public async Task<List<string>> GenerateTablerIconCodeAsync(string cssFilePath) {
         var icons = new List<string>();
         string cssText;
-        using (FileStream stream = File.OpenRead(cssFilePath))
-        using (StreamReader reader = new(stream)) {
-            cssText = await reader.ReadToEndAsync().ConfigureAwait(false);
-        }
+#if NET5_0_OR_GREATER || NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+        await using var stream = File.OpenRead(cssFilePath);
+#else
+        using var stream = File.OpenRead(cssFilePath);
+#endif
+        using var reader = new StreamReader(stream);
+        cssText = await reader.ReadToEndAsync().ConfigureAwait(false);
         var regex = new Regex(@"\.ti-(.*?):before", RegexOptions.Compiled);
         var matches = regex.Matches(cssText);
 
@@ -109,16 +112,23 @@ public class LibraryDownloader {
         } catch (Exception ex) {
             _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
         }
-        using (FileStream fileStream = new(localPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
-            using HttpResponseMessage response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-            if (!response.IsSuccessStatusCode) {
-                _logger.WriteError($"Failed to download '{url}' - Status code: {(int)response.StatusCode}");
-                throw new HttpRequestException($"Request for '{url}' failed with status code {response.StatusCode}");
-            }
-
-            using Stream httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-            await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
+#if NET5_0_OR_GREATER || NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+        await using var fileStream = new FileStream(localPath, FileMode.Create, FileAccess.Write, FileShare.None);
+#else
+        using var fileStream = new FileStream(localPath, FileMode.Create, FileAccess.Write, FileShare.None);
+#endif
+        using HttpResponseMessage response = await _client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+        if (!response.IsSuccessStatusCode) {
+            _logger.WriteError($"Failed to download '{url}' - Status code: {(int)response.StatusCode}");
+            throw new HttpRequestException($"Request for '{url}' failed with status code {response.StatusCode}");
         }
+
+#if NET5_0_OR_GREATER || NETCOREAPP3_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+        await using var httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+#else
+        using var httpStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+#endif
+        await httpStream.CopyToAsync(fileStream).ConfigureAwait(false);
     }
 
 

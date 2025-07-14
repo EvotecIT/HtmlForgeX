@@ -1,6 +1,12 @@
 namespace HtmlForgeX.Resources;
 
+/// <summary>
+/// Provides metadata and asset links for the FullCalendar library.
+/// </summary>
 public class FullCalendarLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FullCalendarLibrary"/> class.
+    /// </summary>
     public FullCalendarLibrary() {
         Header = new LibraryLinks {
             JsLink = ["https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/index.global.min.js"],

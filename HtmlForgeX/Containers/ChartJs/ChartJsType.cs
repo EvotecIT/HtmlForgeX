@@ -9,12 +9,25 @@ namespace HtmlForgeX;
 /// </summary>
 [JsonConverter(typeof(ChartJsTypeConverter))]
 public enum ChartJsType {
+    /// <summary>
+    /// Render a line chart.
+    /// </summary>
     Line,
+    /// <summary>
+    /// Render a bar chart.
+    /// </summary>
     Bar,
+    /// <summary>
+    /// Render a pie chart.
+    /// </summary>
     Pie
 }
 
+/// <summary>
+/// Converts <see cref="ChartJsType"/> values to and from JSON strings.
+/// </summary>
 public class ChartJsTypeConverter : JsonConverter<ChartJsType> {
+    /// <inheritdoc />
     public override ChartJsType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         var value = reader.GetString();
         return value switch {
@@ -25,6 +38,7 @@ public class ChartJsTypeConverter : JsonConverter<ChartJsType> {
         };
     }
 
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, ChartJsType value, JsonSerializerOptions options) {
         var stringValue = value switch {
             ChartJsType.Line => "line",

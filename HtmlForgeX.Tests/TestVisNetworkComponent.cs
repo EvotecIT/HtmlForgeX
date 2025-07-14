@@ -1,3 +1,5 @@
+using System.IO;
+using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
@@ -326,7 +328,110 @@ public class TestVisNetworkComponent {
         // Should register both VisNetwork and LoadingBar libraries
         Assert.IsTrue(doc.Configuration.Libraries.ContainsKey(Libraries.VisNetwork), 
             "VisNetwork library should be registered");
-        Assert.IsTrue(doc.Configuration.Libraries.ContainsKey(Libraries.VisNetworkLoadingBar), 
+        Assert.IsTrue(doc.Configuration.Libraries.ContainsKey(Libraries.VisNetworkLoadingBar),
             "VisNetworkLoadingBar library should be registered when enabled");
+    }
+
+    [TestMethod]
+    public void VisNetwork_NodeImages() {
+        var doc = new Document();
+
+        doc.Body.Add(element => {
+            element.DiagramNetwork(network => {
+                network.AddNode(new VisNetworkNode { Id = 1, Label = "Image Node", Image = "https://example.com/img.png" });
+            });
+        });
+
+        var html = doc.ToString();
+
+        Assert.IsTrue(html.Contains("img.png"), "Should include image url");
+        Assert.IsTrue(html.Contains("image"), "Should set shape to image");
+    }
+
+    [TestMethod]
+    public void VisNetwork_EmbeddedNodeImage() {
+        var imgData = new byte[] {
+            0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D,
+            0x49, 0x48, 0x44, 0x52, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
+            0x08, 0x06, 0x00, 0x00, 0x00, 0x1F, 0x15, 0xC4, 0x89, 0x00, 0x00, 0x00,
+            0x0A, 0x49, 0x44, 0x41, 0x54, 0x78, 0x9C, 0x63, 0x00, 0x01, 0x00, 0x00,
+            0x05, 0x00, 0x01, 0x0D, 0x0A, 0x2D, 0xB4, 0x00, 0x00, 0x00, 0x00, 0x49,
+            0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82
+        };
+        var path = Path.GetTempFileName();
+        File.WriteAllBytes(path, imgData);
+
+        var doc = new Document { LibraryMode = LibraryMode.Offline };
+
+        doc.Body.Add(element => {
+            element.DiagramNetwork(network => {
+                network.AddNode(new VisNetworkNode()
+                    .IdValue(1)
+                    .LabelText("Embedded")
+                    .UseImage(path));
+            });
+        });
+
+        var html = doc.ToString();
+
+        File.Delete(path);
+
+        Assert.IsTrue(html.Contains("data:image/png;base64,"));
+    }
+
+    [TestMethod]
+    public void VisNetwork_OfflineAutoEmbedding_Disabled() {
+        var imgData = new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A };
+        var path = Path.GetTempFileName();
+        File.WriteAllBytes(path, imgData);
+
+        var doc = new Document { LibraryMode = LibraryMode.Offline };
+
+        doc.Body.Add(el => {
+            el.DiagramNetwork(net => {
+                net.AddNode(new VisNetworkNode()
+                    .IdValue(1)
+                    .LabelText("NoEmbed")
+                    .UseImage(path)
+                    .WithoutAutoEmbedding());
+            });
+        });
+
+        var html = doc.ToString();
+
+        File.Delete(path);
+
+        var escapedPath = path.Replace("\\", "\\\\");
+        Assert.IsTrue(html.Contains(escapedPath), "Should keep path without embedding");
+
+        var match = Regex.Match(html, "var nodes = new vis\\.DataSet\\((.*?)\\);", RegexOptions.Singleline);
+        Assert.IsTrue(match.Success, "Should extract nodes JSON");
+        Assert.IsFalse(match.Groups[1].Value.Contains("data:image"), "Should not embed image in nodes data");
+    }
+
+    [TestMethod]
+    public void VisNetwork_FluentNodeCreation() {
+        var doc = new Document();
+
+        doc.Body.Add(element => {
+            element.DiagramNetwork(network => {
+                network.AddNode(new VisNetworkNode()
+                    .IdValue(1)
+                    .LabelText("Fluent")
+                    .NodeShape(VisNetworkNodeShape.Star)
+                    .NodeColor(RGBColor.Amber));
+
+                network.AddEdge(new VisNetworkEdge()
+                    .FromNode(1)
+                    .ToNode(1)
+                    .EdgeArrows(VisNetworkArrows.To | VisNetworkArrows.From));
+            });
+        });
+
+        var html = doc.ToString();
+
+        Assert.IsTrue(html.Contains("star"), "Should render star shape");
+        Assert.IsTrue(html.Contains("#FFBF00"), "Should render color");
+        Assert.IsTrue(html.Contains("to, from") || html.Contains("from, to"), "Should render arrows");
     }
 }

@@ -24,6 +24,10 @@
         <ProjectReference Include="..\HtmlForgeX\HtmlForgeX.csproj" />
     </ItemGroup>
 
+    <ItemGroup Condition="'$(TargetFramework)'=='net472' OR '$(TargetFramework)'=='net48'">
+        <Reference Include="System.Net.Http" />
+    </ItemGroup>
+
     <ItemGroup>
         <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
     </ItemGroup>

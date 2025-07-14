@@ -19,4 +19,15 @@ public class TestStringBuilderCache {
         var result = StringBuilderCache.GetStringAndRelease(sb2);
         Assert.AreEqual("abc", result);
     }
+
+    [TestMethod]
+    public void Release_DoesNotCacheWhenOverThreshold() {
+        var sb1 = StringBuilderCache.Acquire();
+        sb1.EnsureCapacity(StringBuilderCache.MaxBuilderSize + 1);
+        StringBuilderCache.Release(sb1);
+
+        var sb2 = StringBuilderCache.Acquire();
+        Assert.AreNotSame(sb1, sb2);
+        StringBuilderCache.Release(sb2);
+    }
 }

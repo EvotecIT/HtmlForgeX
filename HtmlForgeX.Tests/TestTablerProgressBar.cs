@@ -22,4 +22,14 @@ public class TestTablerProgressBar {
         Assert.IsTrue(html.Contains("progress-bar"));
         Assert.IsTrue(html.Contains("Done"));
     }
+
+    [TestMethod]
+    public void ProgressBar_WithSpacingClasses() {
+        var bar = new TablerProgressBar()
+            .Margin(TablerMargin.BottomNormal)
+            .Padding(TablerPadding.VerticalHalf);
+        var html = bar.ToString();
+        Assert.IsTrue(html.Contains("mb-3"));
+        Assert.IsTrue(html.Contains("py-2"));
+    }
 }

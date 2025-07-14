@@ -44,7 +44,11 @@ public abstract class Element {
     /// </summary>
     /// <param name="element">The element to add.</param>
     /// <returns>This element for method chaining.</returns>
-    public virtual Element Add(Element element) {
+    public virtual Element Add(Element? element) {
+        if (element is null) {
+            return this;
+        }
+
         element.Email = this.Email;
         element.Document = this.Document;
         Children.Add(element);
@@ -189,6 +193,13 @@ public abstract class Element {
         return editor;
     }
 
+    public TablerForm Form(Action<TablerForm> config) {
+        var form = new TablerForm();
+        config(form);
+        this.Add(form);
+        return form;
+    }
+
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);
@@ -290,20 +301,54 @@ public abstract class Element {
         return progressBar;
     }
 
-    public TablerLogs Logs(string code) {
+    public TablerLogs Logs(string code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
+        if (backgroundClass != null && textClass != null) {
+            logs.CustomTheme(backgroundClass, textClass);
+        } else {
+            logs.Theme(theme);
+        }
         this.Add(logs);
         return logs;
     }
 
-    public TablerLogs Logs(string[] code) {
+    public TablerLogs Logs(string[] code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
+        if (backgroundClass != null && textClass != null) {
+            logs.CustomTheme(backgroundClass, textClass);
+        } else {
+            logs.Theme(theme);
+        }
         this.Add(logs);
         return logs;
     }
 
-    public TablerLogs Logs(List<string> code) {
+
+    public TablerLogs Logs(List<string> code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
+        if (backgroundClass != null && textClass != null) {
+            logs.CustomTheme(backgroundClass, textClass);
+        } else {
+            logs.Theme(theme);
+        }
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(string code, RGBColor backgroundColor, RGBColor textColor) {
+        var logs = new TablerLogs(code).CustomColors(backgroundColor, textColor);
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(string[] code, RGBColor backgroundColor, RGBColor textColor) {
+        var logs = new TablerLogs(code).CustomColors(backgroundColor, textColor);
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(List<string> code, RGBColor backgroundColor, RGBColor textColor) {
+        var logs = new TablerLogs(code).CustomColors(backgroundColor, textColor);
         this.Add(logs);
         return logs;
     }
@@ -377,6 +422,13 @@ public abstract class Element {
         config(dropdown);
         this.Add(dropdown);
         return dropdown;
+    }  
+  
+    public TablerTimeline Timeline(Action<TablerTimeline> config) {
+        var timeline = new TablerTimeline();
+        config(timeline);
+        this.Add(timeline);
+        return timeline;
     }
 
     // Email Extension Methods for Natural Builder Pattern

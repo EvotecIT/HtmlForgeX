@@ -1,5 +1,8 @@
 namespace HtmlForgeX.Resources;
 
+/// <summary>
+/// Utility methods for embedding custom fonts.
+/// </summary>
 public static class FontLoader {
     /// <summary>
     /// Loads a font file and returns a <see cref="Style"/> object representing a CSS <c>@font-face</c> rule with the font embedded as Base64.
