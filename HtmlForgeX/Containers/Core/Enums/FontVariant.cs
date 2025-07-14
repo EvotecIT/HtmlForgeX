@@ -8,6 +8,9 @@ public enum FontVariant {
     SmallCaps
 }
 
+/// <summary>
+/// Extension methods for the <see cref="FontVariant"/> enum.
+/// </summary>
 public static class FontVariantExtensions {
     /// <summary>
     /// Converts the variant to its CSS string.

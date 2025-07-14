@@ -20,6 +20,9 @@ public enum TextDecoration {
     Underline
 }
 
+/// <summary>
+/// Extension methods for the <see cref="TextDecoration"/> enum.
+/// </summary>
 public static class TextDecorationExtensions {
     public static string EnumToString(this TextDecoration value) {
         return value switch {

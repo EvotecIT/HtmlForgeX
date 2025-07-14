@@ -13,6 +13,9 @@ public enum Alignment {
     Justify
 }
 
+/// <summary>
+/// Extension methods for the <see cref="Alignment"/> enum.
+/// </summary>
 public static class AlignmentExtensions {
     public static string ToCssValue(this Alignment alignment) => alignment switch
     {

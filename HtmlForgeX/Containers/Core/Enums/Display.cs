@@ -71,6 +71,9 @@ public enum Display {
     TableRow
 }
 
+/// <summary>
+/// Extension methods for the <see cref="Display"/> enum.
+/// </summary>
 public static class DisplayExtensions {
     public static string EnumToString(this Display value) {
         var fieldInfo = value.GetType().GetField(value.ToString());
