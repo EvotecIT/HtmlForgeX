@@ -1,7 +1,8 @@
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Metadata description for the jQuery library.
+/// Metadata description for the jQuery library. jQuery is used as a dependency
+/// by several other resources bundled with HtmlForgeX.
 /// </summary>
 public class Jquery : Library {
     /// <summary>

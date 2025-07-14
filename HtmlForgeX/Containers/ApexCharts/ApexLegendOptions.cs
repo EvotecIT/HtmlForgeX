@@ -3,7 +3,8 @@ using System.Text.Json.Serialization;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Options controlling the chart legend display.
+/// Options controlling the chart legend display when rendering ApexCharts
+/// graphs.
 /// </summary>
 public class ApexLegendOptions {
     /// <summary>

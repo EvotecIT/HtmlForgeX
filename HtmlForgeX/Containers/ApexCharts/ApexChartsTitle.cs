@@ -5,7 +5,8 @@ using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 /// <summary>
-/// Builder for configuring chart title appearance.
+/// Builder for configuring chart title appearance when using ApexCharts. Allows
+/// setting main titles and subtitles with styling.
 /// </summary>
 public class ApexChartsTitle {
     /// <summary>

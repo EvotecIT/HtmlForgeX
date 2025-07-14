@@ -7,7 +7,9 @@ using HtmlForgeX.Logging;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Represents the head section of an email document with email-specific meta tags and styling.
+/// Represents the head section of an email document with email-specific meta
+/// tags and styling. This includes embedded CSS and viewport configuration used
+/// by email clients.
 /// </summary>
 public class EmailHead : Element {
     private static readonly InternalLogger _logger = new();

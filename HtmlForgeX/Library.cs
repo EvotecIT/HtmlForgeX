@@ -3,9 +3,9 @@ using HtmlForgeX.Resources;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Enumeration of available libraries.
-/// Order is important, as it determines the order of the libraries in the HTML.
-/// Having JQuery first is important for other libraries that depend on it.
+/// Enumeration of available libraries that can be injected into generated
+/// documents. The order of values controls the default load order when
+/// rendering a page, so dependencies such as jQuery must appear first.
 /// </summary>
 public enum Libraries {
     /// <summary>No libraries.</summary>

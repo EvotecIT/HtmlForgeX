@@ -4,7 +4,8 @@ using HtmlForgeX.Extensions;
 namespace HtmlForgeX;
 
 /// <summary>
-/// A concrete implementation of Element for basic content containers.
+/// A concrete implementation of <see cref="Element"/> for basic content
+/// containers such as paragraphs or generic block containers.
 /// </summary>
 public class BasicElement : Element {
     /// <summary>

@@ -1,7 +1,8 @@
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Provides metadata and asset links for the Bootstrap framework.
+/// Provides metadata and asset links for the Bootstrap framework which supplies
+/// a wide variety of responsive layout and component utilities.
 /// </summary>
 public class Bootstrap : Library {
     /// <summary>

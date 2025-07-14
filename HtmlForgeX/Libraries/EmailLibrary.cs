@@ -1,8 +1,10 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// Represents an email library containing only inline CSS.
-/// Email libraries cannot contain external links or JavaScript for email client compatibility.
+/// Represents an email library containing only inline CSS. These
+/// libraries are tailored specifically for the restrictive environment
+/// of email clients and therefore do not include any external resources
+/// or JavaScript.
 /// </summary>
 public class EmailLibrary {
     /// <summary>

@@ -8,7 +8,8 @@ using System.Text.Json.Serialization;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Represents an ApexCharts component that can be embedded in the HTML output.
+/// Represents an ApexCharts component that can be embedded in the HTML output
+/// for displaying dynamic client-side charts.
 /// </summary>
 public class ApexCharts : Element {
     /// <summary>

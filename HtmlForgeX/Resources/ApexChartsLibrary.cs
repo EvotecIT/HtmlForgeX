@@ -5,7 +5,9 @@ using System.Text;
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Provides metadata and asset links for the ApexCharts library.
+/// Provides metadata and asset links for the ApexCharts library used for
+/// rendering rich interactive charts. Includes links for both JavaScript and
+/// style dependencies.
 /// </summary>
 public class ApexChartsLibrary : Library {
     /// <summary>

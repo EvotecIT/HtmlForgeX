@@ -1,7 +1,8 @@
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Provides metadata and asset links for the FullCalendar library.
+/// Provides metadata and asset links for the FullCalendar library which enables
+/// feature rich calendar interfaces.
 /// </summary>
 public class FullCalendarLibrary : Library {
     /// <summary>

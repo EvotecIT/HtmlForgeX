@@ -174,7 +174,8 @@ public static class ImageEmbeddingHelper {
 }
 
 /// <summary>
-/// Result of an image embedding operation
+/// Result of an image embedding operation providing metadata about the
+/// generated base64 payload.
 /// </summary>
 public class ImageEmbeddingResult {
     /// <summary>Indicates whether the embedding succeeded.</summary>

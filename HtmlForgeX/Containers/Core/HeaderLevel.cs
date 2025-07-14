@@ -1,7 +1,8 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// Represents an HTML header element (<c>h1</c> - <c>h6</c>).
+/// Represents an HTML header element (<c>h1</c> through <c>h6</c>) with helper
+/// methods for setting common header attributes.
 /// </summary>
 public class HeaderLevel : Element {
     private HeaderLevelTag PrivateTag { get; }

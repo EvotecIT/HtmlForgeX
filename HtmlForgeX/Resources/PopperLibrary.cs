@@ -1,7 +1,8 @@
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Provides links for Popper and Tooltip libraries.
+/// Provides links for Popper and Tooltip libraries. Popper is commonly used to
+/// position dropdowns and tooltips within web applications.
 /// </summary>
 public class PopperLibrary : Library {
     /// <summary>

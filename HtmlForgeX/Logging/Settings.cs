@@ -3,8 +3,9 @@ using System.Threading;
 namespace HtmlForgeX.Logging;
 
 /// <summary>
-/// Settings for the DnsClientX library.
-/// Provides interface for setting logging levels and number of threads to use.
+/// Configuration options for the logging subsystem.
+/// Allows callers to specify log verbosity and other diagnostics settings
+/// used throughout HtmlForgeX.
 /// </summary>
 public class Settings {
     /// <summary>

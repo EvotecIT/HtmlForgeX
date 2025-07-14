@@ -7,6 +7,8 @@ using HtmlForgeX.Extensions;
 namespace HtmlForgeX;
 /// <summary>
 /// Represents a generic HTML tag that can contain attributes and child elements.
+/// This is the fundamental building block used when manually composing DOM
+/// structures with HtmlForgeX.
 /// </summary>
 public class HtmlTag : Element {
     private string PrivateTag { get; set; }

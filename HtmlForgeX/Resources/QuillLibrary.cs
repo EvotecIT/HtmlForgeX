@@ -1,7 +1,8 @@
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Library definition providing Quill assets.
+/// Library definition providing Quill assets, enabling rich text editing within
+/// generated documents.
 /// </summary>
 public class QuillLibrary : Library {
     /// <summary>

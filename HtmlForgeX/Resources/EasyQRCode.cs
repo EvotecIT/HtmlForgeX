@@ -5,7 +5,9 @@ using System.Text;
 namespace HtmlForgeX.Resources;
 
 /// <summary>
-/// Provides metadata for the EasyQRCode library.
+/// Provides metadata for the EasyQRCode library used to generate QR codes on
+/// the client side. Embedding this library allows documents to display QR
+/// codes without additional services.
 /// </summary>
 public class EasyQRCode : Library {
     /// <summary>

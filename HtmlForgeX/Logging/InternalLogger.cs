@@ -3,7 +3,9 @@ using System.Globalization;
 namespace HtmlForgeX.Logging;
 
 /// <summary>
-/// Internal logger that allows to write to console, error or wherever else is needed
+/// Simple logging facility used internally by the library to capture verbose
+/// or warning messages. Consumers can subscribe to expose logging information
+/// to their own infrastructure.
 /// </summary>
 public class InternalLogger {
     private readonly object _lock = new object();
