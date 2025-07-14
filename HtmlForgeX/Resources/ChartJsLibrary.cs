@@ -1,7 +1,14 @@
 using System;
 
 namespace HtmlForgeX.Resources;
+
+/// <summary>
+/// Provides metadata and asset links for the Chart.js library.
+/// </summary>
 public class ChartJsLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ChartJsLibrary"/> class.
+    /// </summary>
     public ChartJsLibrary() {
         Header = new LibraryLinks {
             JsLink = [

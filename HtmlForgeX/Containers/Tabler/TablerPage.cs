@@ -18,6 +18,8 @@ public class TablerPage : Element {
 
     public new TablerRow Row(Action<TablerRow> config) {
         var row = new TablerRow(TablerRowType.Cards, TablerRowType.Deck);
+        // Automatically add bottom spacing to separate rows visually
+        row.WithBottomSpacing(TablerSpacing.Medium);
         config(row);
         this.Add(row);
         return row;
@@ -25,13 +27,15 @@ public class TablerPage : Element {
 
     public override string ToString() {
         //Console.WriteLine("Generating HtmlPage...");
-        var layoutClass = Layout != TablerLayout.Default ? $" layout-{Layout.ToString().ToLower()}" : "";
+        var layoutClass = GetLayoutClass();
         var pageWrapper = new HtmlTag("div").Class($"page-wrapper{layoutClass}");
 
         var pageBody = new HtmlTag("div").Class("page-body");
         pageWrapper.Value(pageBody);
 
-        var container = new HtmlTag("div").Class("container-xl");
+        // Choose container type based on layout
+        var containerClass = GetContainerClass();
+        var container = new HtmlTag("div").Class(containerClass);
         foreach (var child in Children.WhereNotNull()) {
             container.Value(child);
         }
@@ -39,6 +43,34 @@ public class TablerPage : Element {
 
         //Console.WriteLine("Generated HtmlPage: " + pageWrapper);
         return pageWrapper.ToString();
+    }
+    
+    private string GetLayoutClass() {
+        return Layout switch {
+            TablerLayout.Default => "",
+            TablerLayout.Fluid => " layout-fluid",
+            TablerLayout.Boxed => " layout-boxed",
+            TablerLayout.Horizontal => " layout-horizontal",
+            TablerLayout.Vertical => " layout-vertical",
+            TablerLayout.VerticalRight => " layout-vertical-right",
+            TablerLayout.VerticalTransparent => " layout-vertical-transparent",
+            TablerLayout.FluidVertical => " layout-fluid-vertical",
+            TablerLayout.Combo => " layout-combo",
+            TablerLayout.Condensed => " layout-condensed",
+            TablerLayout.RTL => " layout-rtl",
+            TablerLayout.NavbarDark => " layout-navbar-dark",
+            TablerLayout.NavbarOverlap => " layout-navbar-overlap",
+            TablerLayout.NavbarSticky => " layout-navbar-sticky",
+            _ => ""
+        };
+    }
+    
+    private string GetContainerClass() {
+        return Layout switch {
+            TablerLayout.Fluid or TablerLayout.FluidVertical => "container-fluid",
+            TablerLayout.Boxed => "container",
+            _ => "container-xl"
+        };
     }
 
     public TablerPage Add(Action<TablerPage> config) {

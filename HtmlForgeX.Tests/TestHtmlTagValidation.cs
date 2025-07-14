@@ -121,5 +121,10 @@ public class TestHtmlTagValidation {
         Assert.IsTrue(result.Contains("data-price=\"19.99\""));
     }
 
+    [TestMethod]
+    public void HtmlTag_NullConstructorValue_ShouldNotCreateTextNode() {
+        var tag = new HtmlTag("div", (string?)null);
+        Assert.AreEqual("<div></div>", tag.ToString());
+    }
 
 }
