@@ -24,6 +24,9 @@ public enum FontWeight {
     Black
 }
 
+/// <summary>
+/// Extension methods for the <see cref="FontWeight"/> enum.
+/// </summary>
 public static class FontWeightExtensions {
     public static string EnumToString(this FontWeight value) {
         return value switch {

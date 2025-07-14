@@ -13,6 +13,9 @@ public enum HeaderLevelTag {
     H6
 }
 
+/// <summary>
+/// Extension methods for the <see cref="HeaderLevelTag"/> enum.
+/// </summary>
 public static class HeaderLevelTagExtensions {
     public static string EnumToString(this HeaderLevelTag tag) {
         return tag.ToString().ToLower();
