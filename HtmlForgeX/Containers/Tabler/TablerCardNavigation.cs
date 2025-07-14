@@ -27,6 +27,9 @@ public class TablerCardNavigation : Element {
         return this;
     }
     
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var navList = new HtmlTag("ul");
         var classes = new List<string> { "nav" };
@@ -69,26 +72,41 @@ public class TablerCardNavItem : Element {
     private bool IsActive { get; set; } = false;
     private bool IsDisabled { get; set; } = false;
     
+/// <summary>
+/// Method Text.
+/// </summary>
     public TablerCardNavItem Text(string text) {
         ItemText = text;
         return this;
     }
     
+/// <summary>
+/// Method Url.
+/// </summary>
     public TablerCardNavItem Url(string url) {
         ItemUrl = url;
         return this;
     }
     
+/// <summary>
+/// Method Active.
+/// </summary>
     public TablerCardNavItem Active() {
         IsActive = true;
         return this;
     }
     
+/// <summary>
+/// Method Disabled.
+/// </summary>
     public TablerCardNavItem Disabled() {
         IsDisabled = true;
         return this;
     }
     
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var listItem = new HtmlTag("li").Class("nav-item");
         var linkItem = new HtmlTag("a");
@@ -112,6 +130,9 @@ public class TablerCardNavItem : Element {
 public class TablerCardNavBuilder {
     private List<TablerCardNavItem> items = new List<TablerCardNavItem>();
     
+/// <summary>
+/// Method Item.
+/// </summary>
     public TablerCardNavBuilder Item(string text, Action<TablerCardNavItem>? config = null) {
         var item = new TablerCardNavItem().Text(text);
         config?.Invoke(item);
@@ -119,5 +140,8 @@ public class TablerCardNavBuilder {
         return this;
     }
     
+/// <summary>
+/// Method GetItems.
+/// </summary>
     public List<TablerCardNavItem> GetItems() => items;
 }

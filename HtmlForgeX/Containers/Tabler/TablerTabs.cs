@@ -8,11 +8,17 @@ public class TablerTabs : Element {
     private string Id { get; } = GlobalStorage.GenerateRandomId("tabs");
     private TabNavigation? PrivateTabNavigation { get; set; }
 
+/// <summary>
+/// Method Navigation.
+/// </summary>
     public TablerTabs Navigation(TabNavigation navigation) {
         PrivateTabNavigation = navigation;
         return this;
     }
 
+/// <summary>
+/// Method AddTab.
+/// </summary>
     public TablerTabsPanel AddTab(string title, Element content) {
         var tabsPanel = new TablerTabsPanel().Title(title);
         tabsPanel.Add(content);
@@ -20,6 +26,9 @@ public class TablerTabs : Element {
         return tabsPanel;
     }
 
+/// <summary>
+/// Method AddTab.
+/// </summary>
     public TablerTabsPanel AddTab(string title, Action<TablerTabsPanel> panelAction) {
         var tabsPanel = new TablerTabsPanel().Title(title);
         panelAction(tabsPanel);
@@ -27,6 +36,9 @@ public class TablerTabs : Element {
         return tabsPanel;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var cardDiv = new HtmlTag("div").Class("card");
         var cardHeaderDiv = new HtmlTag("div").Class("card-header");
@@ -70,17 +82,26 @@ public class TablerTabs : Element {
     }
 }
 
+/// <summary>
+/// Enumeration TabState.
+/// </summary>
 public enum TabState {
     MoveStart,
     MoveEnd
 }
 
+/// <summary>
+/// Enumeration TabNavigation.
+/// </summary>
 public enum TabNavigation {
     Fill,
     Reverse
 }
 
 public static class TabStateExtensions {
+/// <summary>
+/// Method EnumToString.
+/// </summary>
     public static string EnumToString(this TabState state) {
         return state switch {
             TabState.MoveStart => "ms-auto",
@@ -91,6 +112,9 @@ public static class TabStateExtensions {
 }
 
 public static class NavigationExtensions {
+/// <summary>
+/// Method EnumToString.
+/// </summary>
     public static string EnumToString(this TabNavigation navigation) {
         return navigation switch {
             TabNavigation.Fill => "nav-fill",

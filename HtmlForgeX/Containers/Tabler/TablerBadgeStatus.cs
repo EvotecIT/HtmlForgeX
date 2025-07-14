@@ -7,6 +7,9 @@ public class TablerBadgeStatus(string status, TablerColor color = TablerColor.Az
     private string PrivateStatus { get; set; } = status;
     private TablerColor PrivateColor { get; set; } = color;
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var badgeStatusTag = new HtmlTag("span")
             .Class("status")

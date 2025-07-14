@@ -10,6 +10,9 @@ public enum TextAlignment {
 }
 
 public static class TextAlignmentExtensions {
+/// <summary>
+/// Method ToClassString.
+/// </summary>
     public static string ToClassString(this TextAlignment alignment) {
         return alignment switch {
             TextAlignment.Center => "text-center",

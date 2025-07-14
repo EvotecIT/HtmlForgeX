@@ -10,6 +10,9 @@ public class TablerTabsPanel : ElementContainer {
     internal bool IsDisabled { get; set; }
     internal TabState? PrivateTabState { get; set; }
 
+/// <summary>
+/// Method Title.
+/// </summary>
     public TablerTabsPanel Title(string title) {
         PrivateTitle = title;
         return this;
@@ -44,6 +47,9 @@ public class TablerTabsPanel : ElementContainer {
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var panelDiv = new HtmlTag("div")
             .Class("tab-pane")

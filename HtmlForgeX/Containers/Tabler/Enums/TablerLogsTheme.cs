@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Enumeration TablerLogsTheme.
+/// </summary>
 public enum TablerLogsTheme {
     Dark,
     Light,
@@ -25,6 +28,9 @@ public enum TablerLogsTheme {
 }
 
 public static class TablerLogsThemeExtensions {
+/// <summary>
+/// Method ToClassString.
+/// </summary>
     public static string ToClassString(this TablerLogsTheme theme) {
         return theme switch {
             TablerLogsTheme.Dark => "bg-dark text-white",

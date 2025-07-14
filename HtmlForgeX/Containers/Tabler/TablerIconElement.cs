@@ -82,6 +82,9 @@ public partial class TablerIconElement : Element {
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         return _svgIcon.ToString();
     }

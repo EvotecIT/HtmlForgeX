@@ -11,6 +11,9 @@ public class TablerBadgeButton : Element {
         BadgeColor = badgeColor;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var badgeTag = new HtmlTag("span")
             .Class("badge")

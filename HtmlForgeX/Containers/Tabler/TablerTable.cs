@@ -14,11 +14,17 @@ public class TablerTable : Table {
         StyleList.Add(BootStrapTableStyle.Responsive);
     }
 
+/// <summary>
+/// Method Style.
+/// </summary>
     public TablerTable Style(BootStrapTableStyle style) {
         StyleList.Add(style);
         return this;
     }
 
+/// <summary>
+/// Method BuildTable.
+/// </summary>
     public override string BuildTable() {
         string tableInside = base.BuildTable();
         string classNames = StyleList.BuildTableStyles();

@@ -77,6 +77,9 @@ public class TablerCardBody : Element {
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var bodyDiv = new HtmlTag("div");
         var classes = new List<string> { "card-body" };
@@ -138,46 +141,73 @@ public class TablerCardText : Element {
     private bool IsEmphasized { get; set; } = false;
     private string HtmlTag { get; set; } = "p";
 
+/// <summary>
+/// Method WithContent.
+/// </summary>
     public TablerCardText WithContent(string content) {
         Content = content;
         return this;
     }
 
+/// <summary>
+/// Method Style.
+/// </summary>
     public TablerCardText Style(TablerTextStyle style) {
         TextStyle = style;
         return this;
     }
 
+/// <summary>
+/// Method Weight.
+/// </summary>
     public TablerCardText Weight(TablerFontWeight weight) {
         FontWeight = weight;
         return this;
     }
 
+/// <summary>
+/// Method Color.
+/// </summary>
     public TablerCardText Color(TablerColor color) {
         TextColor = color;
         return this;
     }
 
+/// <summary>
+/// Method Align.
+/// </summary>
     public TablerCardText Align(TablerTextAlignment alignment) {
         TextAlignment = alignment;
         return this;
     }
 
+/// <summary>
+/// Method Strong.
+/// </summary>
     public TablerCardText Strong() {
         IsStrong = true;
         return this;
     }
 
+/// <summary>
+/// Method Emphasized.
+/// </summary>
     public TablerCardText Emphasized() {
         IsEmphasized = true;
         return this;
     }
 
+/// <summary>
+/// Method Tag.
+/// </summary>
     public TablerCardText Tag(string tag) {
         HtmlTag = tag;
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var textElement = new HtmlTag(HtmlTag);
         var classes = new List<string>();
@@ -244,6 +274,9 @@ public enum TablerTextAlignment {
 /// Extension methods for text alignment
 /// </summary>
 public static class TablerTextAlignmentExtensions {
+/// <summary>
+/// Method ToTablerTextAlignmentClass.
+/// </summary>
     public static string ToTablerTextAlignmentClass(this TablerTextAlignment alignment) {
         return alignment switch {
             TablerTextAlignment.Start => "text-start",

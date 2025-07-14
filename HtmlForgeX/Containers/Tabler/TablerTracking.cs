@@ -6,16 +6,25 @@ namespace HtmlForgeX;
 public class TablerTracking : Element {
     private List<TablerTrackingBlock> Blocks { get; set; } = new List<TablerTrackingBlock>();
 
+/// <summary>
+/// Method Block.
+/// </summary>
     public TablerTracking Block(TablerTrackingBlock block) {
         Blocks.Add(block);
         return this;
     }
 
+/// <summary>
+/// Method Block.
+/// </summary>
     public TablerTracking Block(string tooltipTitle, TablerColor trackingColor) {
         Blocks.Add(new TablerTrackingBlock(tooltipTitle, trackingColor));
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var trackingContainerTag = new HtmlTag("div").Class("tracking");
 

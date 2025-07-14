@@ -65,6 +65,9 @@ public class TablerCardHeader : Element {
         return this;
     }
     
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var headerDiv = new HtmlTag("div");
         var classes = new List<string> { "card-header" };
@@ -150,6 +153,9 @@ public class TablerCardHeader : Element {
 public class TablerCardActionBuilder {
     private List<TablerCardAction> actions = new List<TablerCardAction>();
     
+/// <summary>
+/// Method Button.
+/// </summary>
     public TablerCardActionBuilder Button(string text, Action<TablerCardButton>? config = null) {
         var button = new TablerCardButton().WithText(text);
         config?.Invoke(button);
@@ -157,6 +163,9 @@ public class TablerCardActionBuilder {
         return this;
     }
     
+/// <summary>
+/// Method IconButton.
+/// </summary>
     public TablerCardActionBuilder IconButton(TablerIconType icon, Action<TablerCardButton>? config = null) {
         var button = new TablerCardButton().Icon(icon);
         config?.Invoke(button);
@@ -164,5 +173,8 @@ public class TablerCardActionBuilder {
         return this;
     }
     
+/// <summary>
+/// Method GetActions.
+/// </summary>
     public List<TablerCardAction> GetActions() => actions;
 }

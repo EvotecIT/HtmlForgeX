@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Enumeration TablerToastPosition.
+/// </summary>
 public enum TablerToastPosition {
     TopLeft,
     TopCenter,

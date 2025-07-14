@@ -9,6 +9,9 @@ public class TablerTrackingBlock : Element {
         PrivateTrackingColor = trackingColor;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var trackingBlockTag = new HtmlTag("div")
             .Class("tracking-block")

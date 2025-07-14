@@ -84,6 +84,9 @@ public enum TablerColor {
 }
 
 public static class ColorExtensions {
+/// <summary>
+/// Method ToTablerString.
+/// </summary>
     public static string ToTablerString(this TablerColor color) {
         var colorString = color.ToString().ToLower();
         // if contais Light, replace with -lt
@@ -99,18 +102,30 @@ public static class ColorExtensions {
         return color.ToString().ToLower();
     }
 
+/// <summary>
+/// Method ToTablerText.
+/// </summary>
     public static string ToTablerText(this TablerColor color) {
         return "text-" + color.ToTablerString();
     }
 
+/// <summary>
+/// Method ToTablerBackground.
+/// </summary>
     public static string ToTablerBackground(this TablerColor color) {
         return "bg-" + color.ToTablerString();
     }
 
+/// <summary>
+/// Method ToTablerSteps.
+/// </summary>
     public static string ToTablerSteps(this TablerColor color) {
         return "steps-" + color.ToTablerString();
     }
 
+/// <summary>
+/// Method ToTablerStatus.
+/// </summary>
     public static string ToTablerStatus(this TablerColor color) {
         return "status-" + color.ToTablerString();
     }

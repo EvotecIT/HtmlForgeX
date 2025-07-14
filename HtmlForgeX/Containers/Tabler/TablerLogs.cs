@@ -20,17 +20,26 @@ public class TablerLogs : Element {
         PrivateCode = string.Join(Environment.NewLine, code);
     }
 
+/// <summary>
+/// Method Title.
+/// </summary>
     public TablerLogs Title(HeaderLevelTag level, string title) {
         PrivateLevelTitle = level;
         PrivateTitle = title;
         return this;
     }
 
+/// <summary>
+/// Method Theme.
+/// </summary>
     public TablerLogs Theme(TablerLogsTheme theme) {
         ThemeEntry = theme;
         return this;
     }
 
+/// <summary>
+/// Method CustomTheme.
+/// </summary>
     public TablerLogs CustomTheme(string backgroundClass, string textClass) {
         ThemeEntry = TablerLogsTheme.Custom;
         CustomBackgroundClass = backgroundClass;
@@ -38,6 +47,9 @@ public class TablerLogs : Element {
         return this;
     }
 
+/// <summary>
+/// Method CustomColors.
+/// </summary>
     public TablerLogs CustomColors(RGBColor backgroundColor, RGBColor textColor) {
         ThemeEntry = TablerLogsTheme.Custom;
         CustomBackgroundColor = backgroundColor;
@@ -45,10 +57,16 @@ public class TablerLogs : Element {
         return this;
     }
 
+/// <summary>
+/// Method CustomColors.
+/// </summary>
     public TablerLogs CustomColors(string backgroundColorHex, string textColorHex) {
         return CustomColors(new RGBColor(backgroundColorHex), new RGBColor(textColorHex));
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         HeaderLevel? header;
         if (PrivateLevelTitle != null && PrivateTitle != null) {

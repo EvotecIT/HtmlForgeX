@@ -112,11 +112,17 @@ public class TablerProgressBar : Element {
         }
     }
 
+/// <summary>
+/// Method Margin.
+/// </summary>
     public TablerProgressBar Margin(TablerMargin margin) {
         PrivateMargin = margin;
         return this;
     }
 
+/// <summary>
+/// Method Padding.
+/// </summary>
     public TablerProgressBar Padding(TablerPadding padding) {
         PrivatePadding = padding;
         return this;

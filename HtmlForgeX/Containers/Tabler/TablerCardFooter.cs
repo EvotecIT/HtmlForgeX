@@ -6,11 +6,17 @@ namespace HtmlForgeX;
 public class TablerCardFooter : Element {
     public string? Content { get; set; }
 
+/// <summary>
+/// Method SetContent.
+/// </summary>
     public TablerCardFooter SetContent(string content) {
         Content = content;
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         // We only want to render the footer if there are children
         if (Children.Count > 0) {

@@ -23,36 +23,57 @@ public class TablerCardImage : Element {
     private bool SkipEmbedding { get; set; } = false;
     private int EmbeddingTimeout { get; set; } = 30;
     
+/// <summary>
+/// Method Url.
+/// </summary>
     public TablerCardImage Url(string url) {
         ImageUrl = url;
         return this;
     }
     
+/// <summary>
+/// Method Alt.
+/// </summary>
     public TablerCardImage Alt(string altText) {
         AltText = altText;
         return this;
     }
     
+/// <summary>
+/// Method WithPosition.
+/// </summary>
     public TablerCardImage WithPosition(TablerCardImagePosition position) {
         Position = position;
         return this;
     }
     
+/// <summary>
+/// Method WithSize.
+/// </summary>
     public TablerCardImage WithSize(TablerCardImageSize size) {
         Size = size;
         return this;
     }
     
+/// <summary>
+/// Method Responsive.
+/// </summary>
     public TablerCardImage Responsive(bool responsive = true) {
         IsResponsive = responsive;
         return this;
     }
     
+/// <summary>
+/// Method WithEffect.
+/// </summary>
     public TablerCardImage WithEffect(TablerCardImageEffect effect) {
         Effect = effect;
         return this;
     }
     
+/// <summary>
+/// Method AsBackground.
+/// </summary>
     public TablerCardImage AsBackground() {
         Position = TablerCardImagePosition.Background;
         return this;
@@ -113,6 +134,9 @@ public class TablerCardImage : Element {
         return this;
     }
     
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         // Auto-embed based on LibraryMode unless explicitly overridden
         if (!SkipEmbedding && !EmbedAsBase64 && 
@@ -292,6 +316,9 @@ public enum TablerCardImageEffect {
 /// Extension methods for image styling
 /// </summary>
 public static class TablerCardImageExtensions {
+/// <summary>
+/// Method ToTablerImageSizeClass.
+/// </summary>
     public static string ToTablerImageSizeClass(this TablerCardImageSize size) {
         switch (size) {
             case TablerCardImageSize.Default:
@@ -309,6 +336,9 @@ public static class TablerCardImageExtensions {
         }
     }
     
+/// <summary>
+/// Method ToTablerImageEffectClass.
+/// </summary>
     public static string ToTablerImageEffectClass(this TablerCardImageEffect effect) {
         switch (effect) {
             case TablerCardImageEffect.Overlay:

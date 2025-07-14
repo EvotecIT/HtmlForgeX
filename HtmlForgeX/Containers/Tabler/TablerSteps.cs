@@ -10,31 +10,49 @@ public class TablerSteps : Element {
     private TablerMarginStyle? PrivateMargin { get; set; } = TablerMarginStyle.MY4; // Default margin like Tabler examples
     private List<TablerStepItem> StepItems { get; set; } = new List<TablerStepItem>();
 
+/// <summary>
+/// Method Orientation.
+/// </summary>
     public TablerSteps Orientation(StepsOrientation orientation) {
         PrivateOrientation = orientation;
         return this;
     }
 
+/// <summary>
+/// Method Color.
+/// </summary>
     public TablerSteps Color(TablerColor color) {
         PrivateStepsColor = color;
         return this;
     }
 
+/// <summary>
+/// Method StepCounting.
+/// </summary>
     public TablerSteps StepCounting() {
         PrivateStepCounting = true;
         return this;
     }
 
+/// <summary>
+/// Method Margin.
+/// </summary>
     public TablerSteps Margin(TablerMarginStyle margin) {
         PrivateMargin = margin;
         return this;
     }
 
+/// <summary>
+/// Method AddStep.
+/// </summary>
     public TablerSteps AddStep(string text, bool isActive = false) {
         StepItems.Add(new TablerStepItem(text, isActive));
         return this;
     }
 
+/// <summary>
+/// Method AddStep.
+/// </summary>
     public TablerSteps AddStep(string name, string text, bool isActive = false) {
         StepItems.Add(new TablerStepItem(name, text, isActive));
         return this;
@@ -72,6 +90,9 @@ public class TablerSteps : Element {
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var stepsUl = new HtmlTag("ul");
 
@@ -137,11 +158,17 @@ public class TablerStepItem : Element {
         IsActive = state == TablerStepState.Active;
     }
 
+/// <summary>
+/// Method TextStyle.
+/// </summary>
     public TablerStepItem TextStyle(TablerTextStyle textStyle) {
         PrivateTextStyle = textStyle;
         return this;
     }
 
+/// <summary>
+/// Method HeaderStyle.
+/// </summary>
     public TablerStepItem HeaderStyle(HeaderLevelTag headerStyle) {
         PrivateHeaderLevel = headerStyle;
         return this;
@@ -172,10 +199,16 @@ public class TablerStepItem : Element {
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         return ToString(StepsOrientation.Vertical);
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public string ToString(StepsOrientation orientation) {
         var stepItemLi = new HtmlTag("li");
         stepItemLi.Class("step-item");

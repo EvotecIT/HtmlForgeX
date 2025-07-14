@@ -77,6 +77,9 @@ public enum TablerCardSize {
 }
 
 public static class TablerCardStyleExtensions {
+/// <summary>
+/// Method ToTablerCardStateClass.
+/// </summary>
     public static string ToTablerCardStateClass(this TablerCardState state) {
         return state switch {
             TablerCardState.Active => "card-active",
@@ -87,6 +90,9 @@ public static class TablerCardStyleExtensions {
         };
     }
     
+/// <summary>
+/// Method ToTablerCardLayoutClass.
+/// </summary>
     public static string ToTablerCardLayoutClass(this TablerCardLayout layout) {
         return layout switch {
             TablerCardLayout.Stacked => "card-stacked",
@@ -97,6 +103,9 @@ public static class TablerCardStyleExtensions {
         };
     }
     
+/// <summary>
+/// Method ToTablerCardHeaderClass.
+/// </summary>
     public static string ToTablerCardHeaderClass(this TablerCardHeaderStyle style) {
         return style switch {
             TablerCardHeaderStyle.Light => "card-header-light",
@@ -107,6 +116,9 @@ public static class TablerCardStyleExtensions {
         };
     }
     
+/// <summary>
+/// Method ToTablerCardFooterClass.
+/// </summary>
     public static string ToTablerCardFooterClass(this TablerCardFooterStyle style) {
         return style switch {
             TablerCardFooterStyle.Transparent => "card-footer-transparent",
@@ -117,6 +129,9 @@ public static class TablerCardStyleExtensions {
         };
     }
     
+/// <summary>
+/// Method ToTablerCardImageClass.
+/// </summary>
     public static string ToTablerCardImageClass(this TablerCardImagePosition position) {
         return position switch {
             TablerCardImagePosition.Top => "card-img-top",
@@ -129,6 +144,9 @@ public static class TablerCardStyleExtensions {
         };
     }
     
+/// <summary>
+/// Method ToTablerCardAlignmentClass.
+/// </summary>
     public static string ToTablerCardAlignmentClass(this TablerCardAlignment alignment) {
         return alignment switch {
             TablerCardAlignment.Start => "text-start",
@@ -139,6 +157,9 @@ public static class TablerCardStyleExtensions {
         };
     }
     
+/// <summary>
+/// Method ToTablerCardSizeClass.
+/// </summary>
     public static string ToTablerCardSizeClass(this TablerCardSize size) {
         return size switch {
             TablerCardSize.Small => "card-sm",

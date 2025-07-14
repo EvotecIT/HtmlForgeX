@@ -45,6 +45,9 @@ public class TablerCardList : Element {
         return this;
     }
     
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var containerDiv = new HtmlTag("div");
         
@@ -111,31 +114,49 @@ public class TablerCardListItem : Element {
     private string? ItemUrl { get; set; }
     private TablerCardListStyle? ParentListStyle { get; set; }
     
+/// <summary>
+/// Method Text.
+/// </summary>
     public TablerCardListItem Text(string text) {
         ItemText = text;
         return this;
     }
     
+/// <summary>
+/// Method Icon.
+/// </summary>
     public TablerCardListItem Icon(TablerIconType icon) {
         ItemIcon = icon;
         return this;
     }
     
+/// <summary>
+/// Method Color.
+/// </summary>
     public TablerCardListItem Color(TablerColor color) {
         ItemColor = color;
         return this;
     }
     
+/// <summary>
+/// Method Active.
+/// </summary>
     public TablerCardListItem Active() {
         IsActive = true;
         return this;
     }
     
+/// <summary>
+/// Method Disabled.
+/// </summary>
     public TablerCardListItem Disabled() {
         IsDisabled = true;
         return this;
     }
     
+/// <summary>
+/// Method Url.
+/// </summary>
     public TablerCardListItem Url(string url) {
         ItemUrl = url;
         return this;
@@ -145,6 +166,9 @@ public class TablerCardListItem : Element {
         ParentListStyle = style;
     }
     
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var listItem = new HtmlTag("li");
         var classes = new List<string>();
@@ -196,6 +220,9 @@ public class TablerCardListItem : Element {
 public class TablerCardListBuilder {
     private List<TablerCardListItem> items = new List<TablerCardListItem>();
     
+/// <summary>
+/// Method Item.
+/// </summary>
     public TablerCardListBuilder Item(string text, Action<TablerCardListItem>? config = null) {
         var item = new TablerCardListItem().Text(text);
         config?.Invoke(item);
@@ -203,6 +230,9 @@ public class TablerCardListBuilder {
         return this;
     }
     
+/// <summary>
+/// Method CheckItem.
+/// </summary>
     public TablerCardListBuilder CheckItem(string text, bool isChecked = true) {
         var checkIcon = isChecked ? TablerIconType.Check : TablerIconType.X;
         var checkColor = isChecked ? TablerColor.Success : TablerColor.Danger;
@@ -216,6 +246,9 @@ public class TablerCardListBuilder {
         return this;
     }
     
+/// <summary>
+/// Method GetItems.
+/// </summary>
     public List<TablerCardListItem> GetItems() => items;
 }
 
@@ -223,6 +256,9 @@ public class TablerCardListBuilder {
 /// Extension methods for list styling
 /// </summary>
 public static class TablerCardListExtensions {
+/// <summary>
+/// Method ToTablerListStyleClass.
+/// </summary>
     public static string ToTablerListStyleClass(this TablerCardListStyle style) {
         return style switch {
             TablerCardListStyle.Unstyled => "list-unstyled",

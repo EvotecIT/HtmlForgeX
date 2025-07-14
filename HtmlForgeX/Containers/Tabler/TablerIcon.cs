@@ -15,6 +15,9 @@ internal class RawHtml {
         Content = content;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         return Content;
     }
@@ -195,6 +198,9 @@ public class TablerIcon : Element {
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var container = new HtmlTag("span");
 

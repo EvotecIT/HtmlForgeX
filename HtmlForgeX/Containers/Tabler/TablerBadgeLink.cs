@@ -23,6 +23,9 @@ public class TablerBadgeLink : Element {
         Style = style;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var badgeTag = new HtmlTag("a")
             .Attribute("href", Href)

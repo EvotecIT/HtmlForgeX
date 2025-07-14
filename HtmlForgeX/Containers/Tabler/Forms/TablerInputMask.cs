@@ -9,13 +9,22 @@ public class TablerInputMask : Element {
         _name = name;
     }
 
+/// <summary>
+/// Method Label.
+/// </summary>
     public TablerInputMask Label(string text) { _label = text; return this; }
+/// <summary>
+/// Method Pattern.
+/// </summary>
     public TablerInputMask Pattern(string pattern) { _pattern = pattern; return this; }
 
     protected internal override void RegisterLibraries() {
         Document?.Configuration.Libraries.TryAdd(Libraries.IMask, 0);
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("div").Class("mb-3");
         if (!string.IsNullOrEmpty(_label)) {

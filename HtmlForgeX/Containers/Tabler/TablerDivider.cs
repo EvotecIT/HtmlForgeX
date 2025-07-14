@@ -11,6 +11,9 @@ public class TablerDivider : Element {
         Color = color;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var alignmentClass = Alignment.ToClassString();
         var colorClass = Color.ToTablerText();

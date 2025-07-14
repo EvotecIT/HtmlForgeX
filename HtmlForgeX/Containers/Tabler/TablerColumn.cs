@@ -17,11 +17,17 @@ public class TablerColumn : Element {
         Class = columnNumber.EnumToString();
     }
 
+/// <summary>
+/// Method WithClass.
+/// </summary>
     public TablerColumn WithClass(string className) {
         Class = className;
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         //Console.WriteLine("Generating HtmlColumn...");
         var childrenHtml = string.Join("", Children.WhereNotNull().Select(child => child.ToString()));
@@ -30,11 +36,17 @@ public class TablerColumn : Element {
         return result;
     }
 
+/// <summary>
+/// Method Add.
+/// </summary>
     public TablerColumn Add(Action<TablerColumn> config) {
         config(this);
         return this;
     }
 
+/// <summary>
+/// Method Card.
+/// </summary>
     public TablerCard Card(Action<TablerCard> config) {
         var card = new TablerCard();
         config(card);
@@ -42,6 +54,9 @@ public class TablerColumn : Element {
         return card;
     }
 
+/// <summary>
+/// Method Card.
+/// </summary>
     public new TablerCard Card(int count, Action<TablerCard> config) {
         var card = new TablerCard(count);
         config(card);

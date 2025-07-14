@@ -40,6 +40,9 @@ public class TablerRow : Element {
         }
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         HtmlTag rowTag = new HtmlTag("div");
         
@@ -169,6 +172,9 @@ public class TablerRow : Element {
     
     #endregion
 
+/// <summary>
+/// Method Column.
+/// </summary>
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);
@@ -176,6 +182,9 @@ public class TablerRow : Element {
         return column;
     }
 
+/// <summary>
+/// Method Column.
+/// </summary>
     public TablerColumn Column(TablerColumnNumber number, Action<TablerColumn> config) {
         var column = new TablerColumn(number);
         config(column);

@@ -30,11 +30,17 @@ public class TablerButton : Element {
         Variant = variant;
     }
 
+/// <summary>
+/// Method WithIcon.
+/// </summary>
     public TablerButton WithIcon(TablerIconType iconType) {
         Icon = new TablerIconElement(iconType);
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var tag = !string.IsNullOrEmpty(Href) && Href != "#" ? new HtmlTag("a") : new HtmlTag("button");
         
@@ -109,6 +115,9 @@ public class TablerIconButton : Element {
         Href = href;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var tag = !string.IsNullOrEmpty(Href) && Href != "#" ? new HtmlTag("a") : new HtmlTag("button");
         tag.Class("btn-action");
@@ -139,6 +148,9 @@ public class TablerDropdown : Element {
         TriggerIcon = new TablerIconElement(TablerIconType.DotsVertical);
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var dropdownDiv = new HtmlTag("div").Class("dropdown");
         
@@ -184,7 +196,13 @@ public class TablerDropdownItem {
     public bool IsDivider { get; set; }
     public bool IsDanger { get; set; }
 
+/// <summary>
+/// Method Divider.
+/// </summary>
     public static TablerDropdownItem Divider() => new TablerDropdownItem { IsDivider = true };
+/// <summary>
+/// Method Item.
+/// </summary>
     public static TablerDropdownItem Item(string text, string href = "#", bool isDanger = false) => 
         new TablerDropdownItem { Text = text, Href = href, IsDanger = isDanger };
 }

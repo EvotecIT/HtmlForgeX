@@ -10,6 +10,9 @@ public enum TablerTextStyle {
 }
 
 public static class TextStyleExtensions {
+/// <summary>
+/// Method EnumToString.
+/// </summary>
     public static string EnumToString(this TablerTextStyle style) {
         return "text-" + style.ToString().ToLower();
     }

@@ -17,13 +17,34 @@ public class TablerInput : Element {
         _name = name;
     }
 
+/// <summary>
+/// Method Type.
+/// </summary>
     public TablerInput Type(InputType type) { _type = type; return this; }
+/// <summary>
+/// Method Label.
+/// </summary>
     public TablerInput Label(string text) { _label = text; return this; }
+/// <summary>
+/// Method Placeholder.
+/// </summary>
     public TablerInput Placeholder(string text) { _placeholder = text; return this; }
+/// <summary>
+/// Method Required.
+/// </summary>
     public TablerInput Required(bool required = true) { _required = required; return this; }
+/// <summary>
+/// Method Icon.
+/// </summary>
     public TablerInput Icon(TablerIconType icon) { _icon = icon; return this; }
+/// <summary>
+/// Method Validation.
+/// </summary>
     public TablerInput Validation(ValidationState state, string message) { _state = state; _message = message; return this; }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("div").Class("mb-3");
         if (!string.IsNullOrEmpty(_label)) {

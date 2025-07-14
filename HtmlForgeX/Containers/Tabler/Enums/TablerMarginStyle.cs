@@ -55,6 +55,9 @@ public enum TablerMarginStyle {
 }
 
 public static class MarginStyleExtensions {
+/// <summary>
+/// Method EnumToString.
+/// </summary>
     public static string EnumToString(this TablerMarginStyle style) {
         var styleString = style.ToString();
         

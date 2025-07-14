@@ -88,6 +88,9 @@ public enum TablerColumnNumber {
 }
 
 public static class ColumnNumberExtension {
+/// <summary>
+/// Method EnumToString.
+/// </summary>
     public static string EnumToString(this TablerColumnNumber numberOfColumns) {
         switch (numberOfColumns) {
             case TablerColumnNumber.None:

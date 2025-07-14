@@ -11,17 +11,26 @@ public class TablerAccordion : Element {
     private bool PrivateAlwaysOpen { get; set; } = false;
 
 
+/// <summary>
+/// Method AddItem.
+/// </summary>
     public TablerAccordion AddItem(TablerAccordionItem item) {
         Items.Add(item);
         return this;
     }
 
+/// <summary>
+/// Method AddItem.
+/// </summary>
     public TablerAccordionItem AddItem(string title) {
         var accordionItem = new TablerAccordionItem(Id).Title(title);
         Items.Add(accordionItem);
         return accordionItem;
     }
 
+/// <summary>
+/// Method AddItem.
+/// </summary>
     public TablerAccordionItem AddItem(string title, Action<TablerAccordionItem> item) {
         var accordionItem = new TablerAccordionItem(Id).Title(title);
         item(accordionItem);
@@ -29,6 +38,9 @@ public class TablerAccordion : Element {
         return accordionItem;
     }
 
+/// <summary>
+/// Method AddItem.
+/// </summary>
     public TablerAccordionItem AddItem(string title, Element content) {
         var accordionItem = new TablerAccordionItem(Id).Title(title).Content(content);
         Items.Add(accordionItem);
@@ -59,6 +71,9 @@ public class TablerAccordion : Element {
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var accordionDiv = new HtmlTag("div").Class("accordion").Id(Id);
         

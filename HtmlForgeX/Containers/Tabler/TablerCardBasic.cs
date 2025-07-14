@@ -14,27 +14,42 @@ public class TablerCardBasic : Element {
         H3Text = text;
     }
 
+/// <summary>
+/// Method Title.
+/// </summary>
     public TablerCardBasic Title(string title) {
         SubHeaderText = title;
         return this;
     }
 
+/// <summary>
+/// Method Text.
+/// </summary>
     public new TablerCardBasic Text(string text) {
         H3Text = text;
         return this;
     }
 
+/// <summary>
+/// Method Margin.
+/// </summary>
     public TablerCardBasic Margin(TablerMarginStyle margin) {
         PrivateMargin = margin;
         AutoMargin = false; // Disable auto margin when explicitly set
         return this;
     }
 
+/// <summary>
+/// Method DisableAutoMargin.
+/// </summary>
     public TablerCardBasic DisableAutoMargin() {
         AutoMargin = false;
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         // Create the outer div for the card
         var cardDiv = new HtmlTag("div");

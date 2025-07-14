@@ -58,6 +58,9 @@ public enum TablerBorderRadius {
 }
 
 public static class TablerBorderExtensions {
+/// <summary>
+/// Method ToTablerBorderClass.
+/// </summary>
     public static string ToTablerBorderClass(this TablerBorderStyle style, TablerBorderPosition position = TablerBorderPosition.All, TablerBorderWidth width = TablerBorderWidth.Default) {
         var classes = new List<string>();
         
@@ -102,6 +105,9 @@ public static class TablerBorderExtensions {
         return string.Join(" ", classes);
     }
     
+/// <summary>
+/// Method ToTablerShadowClass.
+/// </summary>
     public static string ToTablerShadowClass(this TablerShadow shadow) {
         return shadow switch {
             TablerShadow.Small => "shadow-sm",
@@ -112,6 +118,9 @@ public static class TablerBorderExtensions {
         };
     }
     
+/// <summary>
+/// Method ToTablerRadiusClass.
+/// </summary>
     public static string ToTablerRadiusClass(this TablerBorderRadius radius) {
         return radius switch {
             TablerBorderRadius.Small => "rounded-1",

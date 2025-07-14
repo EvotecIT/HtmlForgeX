@@ -19,37 +19,58 @@ public class TablerAlert : Element {
         AlertType = alertType;
     }
 
+/// <summary>
+/// Method Icon.
+/// </summary>
     public TablerAlert Icon(TablerIconType TablerIconType) {
         AlertIcon = new TablerIconElement(TablerIconType).FontSize(24);
         return this;
     }
 
+/// <summary>
+/// Method Color.
+/// </summary>
     public TablerAlert Color(TablerColor color) {
         AlertColor = color;
         return this;
     }
 
+/// <summary>
+/// Method Important.
+/// </summary>
     public TablerAlert Important() {
         AlertImportant = "alert-important";
         return this;
     }
 
+/// <summary>
+/// Method Minor.
+/// </summary>
     public TablerAlert Minor() {
         AlertMinor = "alert-minor";
         return this;
     }
 
+/// <summary>
+/// Method WithDescription.
+/// </summary>
     public TablerAlert WithDescription() {
         UseHeadingStyle = true;
         return this;
     }
 
+/// <summary>
+/// Method Action.
+/// </summary>
     public TablerAlert Action(string href, string text) {
         ActionHref = href;
         ActionText = text;
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var alertTypeClass = AlertType == TablerAlertType.Dismissible ? "alert-dismissible" : "";
         var alertTag = new HtmlTag("div")

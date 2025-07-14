@@ -36,21 +36,33 @@ public static class TablerIconMigrationHelper {
             _icon = icon;
         }
 
+/// <summary>
+/// Method Color.
+/// </summary>
         public TablerIconElement Color(RGBColor color) {
             _icon.StrokeColor(color);
             return this;
         }
 
+/// <summary>
+/// Method FontSize.
+/// </summary>
         public TablerIconElement FontSize(int size) {
             _icon.Size(size);
             return this;
         }
 
+/// <summary>
+/// Method StrokeWidth.
+/// </summary>
         public TablerIconElement StrokeWidth(double width) {
             _icon.StrokeWidth(width);
             return this;
         }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
         public override string ToString() {
             return _icon.ToString();
         }

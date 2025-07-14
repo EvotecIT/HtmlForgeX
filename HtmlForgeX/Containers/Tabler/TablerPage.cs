@@ -16,6 +16,9 @@ public class TablerPage : Element {
         Document?.Configuration.Libraries.TryAdd(Libraries.Tabler, 0);
     }
 
+/// <summary>
+/// Method Row.
+/// </summary>
     public new TablerRow Row(Action<TablerRow> config) {
         var row = new TablerRow(TablerRowType.Cards, TablerRowType.Deck);
         // Automatically add bottom spacing to separate rows visually
@@ -25,6 +28,9 @@ public class TablerPage : Element {
         return row;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         //Console.WriteLine("Generating HtmlPage...");
         var layoutClass = GetLayoutClass();
@@ -73,11 +79,17 @@ public class TablerPage : Element {
         };
     }
 
+/// <summary>
+/// Method Add.
+/// </summary>
     public TablerPage Add(Action<TablerPage> config) {
         config(this);
         return this;
     }
 
+/// <summary>
+/// Method Column.
+/// </summary>
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);

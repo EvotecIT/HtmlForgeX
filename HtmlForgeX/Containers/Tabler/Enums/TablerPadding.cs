@@ -58,6 +58,9 @@ public enum TablerPadding {
 
 
 public static class TablerPaddingExtensions {
+/// <summary>
+/// Method EnumToString.
+/// </summary>
     public static string EnumToString(this TablerPadding padding) {
         var paddingStr = padding.ToString();
         var property = "p";

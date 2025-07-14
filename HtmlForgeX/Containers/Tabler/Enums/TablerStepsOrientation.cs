@@ -14,6 +14,9 @@ public enum StepsOrientation {
 
 
 public static class StepsOrientationExtensions {
+/// <summary>
+/// Method EnumToString.
+/// </summary>
     public static string EnumToString(this StepsOrientation orientation) {
         return orientation switch {
             StepsOrientation.Horizontal => "steps-horizontal",

@@ -13,6 +13,9 @@ public class TablerLegendItem : Element {
         PaddingClass = paddingClass;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var legendTag = new HtmlTag("span")
             .Class("legend")

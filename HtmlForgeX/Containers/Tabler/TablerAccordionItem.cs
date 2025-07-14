@@ -15,16 +15,25 @@ public class TablerAccordionItem : Element {
         ParentId = parentId;
     }
 
+/// <summary>
+/// Method Title.
+/// </summary>
     public TablerAccordionItem Title(string title) {
         TitleElement = title;
         return this;
     }
 
+/// <summary>
+/// Method Content.
+/// </summary>
     public TablerAccordionItem Content(Element content) {
         ContentElement = content;
         return this;
     }
 
+/// <summary>
+/// Method Content.
+/// </summary>
     public TablerAccordionItem Content(Action<ElementContainer> content) {
         var contentElement = new ElementContainer();
         content(contentElement);
@@ -73,6 +82,9 @@ public class TablerAccordionItem : Element {
         AlwaysOpen = alwaysOpen;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var itemDiv = new HtmlTag("div").Class("accordion-item");
         

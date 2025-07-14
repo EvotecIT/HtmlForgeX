@@ -31,6 +31,9 @@ public enum TablerAccordionType {
 }
 
 public static class TablerAccordionTypeExtensions {
+/// <summary>
+/// Method EnumToString.
+/// </summary>
     public static string EnumToString(this TablerAccordionType type) {
         return type switch {
             TablerAccordionType.Default => "",

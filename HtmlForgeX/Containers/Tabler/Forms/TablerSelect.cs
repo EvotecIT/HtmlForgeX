@@ -14,10 +14,25 @@ public class TablerSelect : Element {
         _name = name;
     }
 
+/// <summary>
+/// Method Label.
+/// </summary>
     public TablerSelect Label(string text) { _label = text; return this; }
+/// <summary>
+/// Method Multiple.
+/// </summary>
     public TablerSelect Multiple(bool multiple = true) { _multiple = multiple; return this; }
+/// <summary>
+/// Method Searchable.
+/// </summary>
     public TablerSelect Searchable(bool enable = true) { _searchable = enable; return this; }
+/// <summary>
+/// Method Option.
+/// </summary>
     public TablerSelect Option(string text, string value) { _options.Add((value, text)); return this; }
+/// <summary>
+/// Method Options.
+/// </summary>
     public TablerSelect Options(IEnumerable<string> values) {
         foreach (var v in values) { _options.Add((v, v)); }
         return this;
@@ -29,6 +44,9 @@ public class TablerSelect : Element {
         }
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("div").Class("mb-3");
         if (!string.IsNullOrEmpty(_label)) {

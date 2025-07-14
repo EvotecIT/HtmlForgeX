@@ -62,22 +62,34 @@ public class TablerCard : Element {
         Number = number;
     }
 
+/// <summary>
+/// Method Content.
+/// </summary>
     public TablerCard Content(string content) {
         CardContent = content;
         return this;
     }
 
+/// <summary>
+/// Method Style.
+/// </summary>
     public TablerCard Style(string style) {
         CardInnerStyle = style;
         return this;
     }
 
+/// <summary>
+/// Method Footer.
+/// </summary>
     public TablerCardFooter Footer() {
         PrivateFooter = new TablerCardFooter();
         return PrivateFooter;
     }
 
 
+/// <summary>
+/// Method Footer.
+/// </summary>
     public TablerCard Footer(Action<TablerCardFooter> footer) {
         var footerElement = new TablerCardFooter();
         footer(footerElement);
@@ -113,6 +125,9 @@ public class TablerCard : Element {
         return this;
     }
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         // Create the outer card element (div or a for links)
         var cardTag = IsLink ? new HtmlTag("a") : new HtmlTag("div");
@@ -386,12 +401,18 @@ public class TablerCard : Element {
     }
 
 
+/// <summary>
+/// Method Add.
+/// </summary>
     public TablerCard Add(Action<TablerCard> config) {
         config(this);
         return this;
     }
 
     // Enhanced card methods following existing patterns
+/// <summary>
+/// Method AsLink.
+/// </summary>
     public TablerCard AsLink(string url, string? effect = null) {
         IsLink = true;
         LinkUrl = url;
@@ -399,37 +420,58 @@ public class TablerCard : Element {
         return this;
     }
 
+/// <summary>
+/// Method AsActive.
+/// </summary>
     public TablerCard AsActive() {
         IsActive = true;
         return this;
     }
 
+/// <summary>
+/// Method AsInactive.
+/// </summary>
     public TablerCard AsInactive() {
         IsInactive = true;
         return this;
     }
 
+/// <summary>
+/// Method AsStacked.
+/// </summary>
     public TablerCard AsStacked() {
         IsStacked = true;
         return this;
     }
 
+/// <summary>
+/// Method AsBorderless.
+/// </summary>
     public TablerCard AsBorderless() {
         IsBorderless = true;
         return this;
     }
 
+/// <summary>
+/// Method Rotate.
+/// </summary>
     public TablerCard Rotate(string direction) {
         CardRotation = direction; // "left" or "right"
         return this;
     }
 
+/// <summary>
+/// Method StatusIndicator.
+/// </summary>
     public TablerCard StatusIndicator(string position, TablerColor color) {
         StatusPosition = position; // "top", "bottom", "start", "end"
         StatusColor = color;
         return this;
     }
 
+/// <summary>
+/// Method Ribbon.
+/// </summary>
     public TablerCard Ribbon(string text, TablerColor? color = null, string position = "top") {
         RibbonText = text;
         RibbonColor = color ?? TablerColor.Red;
@@ -437,6 +479,9 @@ public class TablerCard : Element {
         return this;
     }
 
+/// <summary>
+/// Method Ribbon.
+/// </summary>
     public TablerCard Ribbon(TablerIconType icon, TablerColor? color = null, string position = "top") {
         RibbonIcon = icon;
         RibbonColor = color ?? TablerColor.Yellow;
@@ -444,6 +489,9 @@ public class TablerCard : Element {
         return this;
     }
 
+/// <summary>
+/// Method Stamp.
+/// </summary>
     public TablerCard Stamp(TablerIconType icon, TablerColor? backgroundColor = null, TablerColor? iconColor = null) {
         StampIcon = icon;
         StampIconBackgroundColor = backgroundColor ?? TablerColor.Yellow;
@@ -451,12 +499,18 @@ public class TablerCard : Element {
         return this;
     }
 
+/// <summary>
+/// Method Progress.
+/// </summary>
     public TablerCard Progress(double percentage, TablerColor? color = null) {
         ProgressValue = Math.Max(0, Math.Min(percentage, 100));
         ProgressColor = color;
         return this;
     }
 
+/// <summary>
+/// Method Background.
+/// </summary>
     public TablerCard Background(TablerColor color, bool isLight = false) {
         BackgroundColor = color;
         IsBackgroundLight = isLight;

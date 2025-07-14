@@ -12,6 +12,9 @@ public enum AvatarSize {
 }
 
 public static class AvatarSizeExtensions {
+/// <summary>
+/// Method EnumToString.
+/// </summary>
     public static string EnumToString(this AvatarSize size) {
         return "avatar-" + size.ToString().ToLower();
     }

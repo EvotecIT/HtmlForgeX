@@ -36,22 +36,34 @@ public class TablerCardEnhanced : TablerCard {
     public TablerCardEnhanced() : base() { }
 
     #region Header Methods
+/// <summary>
+/// Method WithHeader.
+/// </summary>
     public TablerCardEnhanced WithHeader(string title, string subtitle = "") {
         HeaderTitle = title;
         HeaderSubtitle = subtitle;
         return this;
     }
 
+/// <summary>
+/// Method WithHeaderAvatar.
+/// </summary>
     public TablerCardEnhanced WithHeaderAvatar(string imageUrl, string alt = "") {
         HeaderAvatar = new TablerAvatar().Image(imageUrl);
         return this;
     }
 
+/// <summary>
+/// Method WithHeaderAvatar.
+/// </summary>
     public TablerCardEnhanced WithHeaderAvatar(TablerIconType icon, TablerColor backgroundColor = TablerColor.Primary, TablerColor textColor = TablerColor.White) {
         HeaderAvatar = new TablerAvatar().Icon(icon).BackgroundColor(backgroundColor).TextColor(textColor);
         return this;
     }
 
+/// <summary>
+/// Method WithHeaderAction.
+/// </summary>
     public TablerCardEnhanced WithHeaderAction(string text, string href = "#", TablerIconType? icon = null, TablerButtonVariant variant = TablerButtonVariant.Primary) {
         var button = new TablerButton(text, href, variant);
         if (icon.HasValue) {
@@ -61,27 +73,42 @@ public class TablerCardEnhanced : TablerCard {
         return this;
     }
 
+/// <summary>
+/// Method WithHeaderIconAction.
+/// </summary>
     public TablerCardEnhanced WithHeaderIconAction(TablerIconType icon, string href = "#") {
         HeaderActions.Add(new TablerIconButton(icon, href));
         return this;
     }
 
+/// <summary>
+/// Method WithHeaderDropdown.
+/// </summary>
     public TablerCardEnhanced WithHeaderDropdown(List<TablerDropdownItem> items) {
         HeaderActions.Add(new TablerDropdown(items));
         return this;
     }
 
+/// <summary>
+/// Method WithHeaderLightBackground.
+/// </summary>
     public TablerCardEnhanced WithHeaderLightBackground() {
         HeaderLightBackground = true;
         return this;
     }
 
+/// <summary>
+/// Method WithHeaderTabs.
+/// </summary>
     public TablerCardEnhanced WithHeaderTabs(List<TablerNavItem> navItems) {
         HasHeaderTabs = true;
         HeaderNavItems = navItems;
         return this;
     }
 
+/// <summary>
+/// Method WithHeaderPills.
+/// </summary>
     public TablerCardEnhanced WithHeaderPills(List<TablerNavItem> navItems) {
         HasHeaderPills = true;
         HeaderNavItems = navItems;
@@ -90,6 +117,9 @@ public class TablerCardEnhanced : TablerCard {
     #endregion
 
     #region Image Methods  
+/// <summary>
+/// Method WithImage.
+/// </summary>
     public TablerCardEnhanced WithImage(string url, string position = "top", string alt = "") {
         ImageUrl = url;
         ImagePosition = position;
@@ -97,6 +127,9 @@ public class TablerCardEnhanced : TablerCard {
         return this;
     }
 
+/// <summary>
+/// Method WithImageSettings.
+/// </summary>
     public TablerCardEnhanced WithImageSettings(bool responsive = true, string aspectRatio = "21x9") {
         ImageResponsive = responsive;
         ImageAspectRatio = aspectRatio;
@@ -105,17 +138,26 @@ public class TablerCardEnhanced : TablerCard {
     #endregion
 
     #region Footer Methods
+/// <summary>
+/// Method WithFooter.
+/// </summary>
     public TablerCardEnhanced WithFooter(string text = "", bool transparent = false) {
         FooterText = text;
         FooterTransparent = transparent;
         return this;
     }
 
+/// <summary>
+/// Method WithFooterButton.
+/// </summary>
     public TablerCardEnhanced WithFooterButton(string text, string href = "#", TablerButtonVariant variant = TablerButtonVariant.Primary) {
         FooterActions.Add(new TablerButton(text, href, variant));
         return this;
     }
 
+/// <summary>
+/// Method WithFooterAvatars.
+/// </summary>
     public TablerCardEnhanced WithFooterAvatars(params string[] imageUrls) {
         foreach (var url in imageUrls) {
             FooterAvatars.Add(new TablerAvatar().Image(url).Size(AvatarSize.XS));
@@ -123,6 +165,9 @@ public class TablerCardEnhanced : TablerCard {
         return this;
     }
 
+/// <summary>
+/// Method WithFooterSwitch.
+/// </summary>
     public TablerCardEnhanced WithFooterSwitch(bool isChecked = false) {
         FooterHasSwitch = true;
         FooterSwitchChecked = isChecked;
@@ -130,6 +175,9 @@ public class TablerCardEnhanced : TablerCard {
     }
     #endregion
 
+/// <summary>
+/// Method ToString.
+/// </summary>
     public override string ToString() {
         // Get base card HTML
         var baseCardHtml = base.ToString();
