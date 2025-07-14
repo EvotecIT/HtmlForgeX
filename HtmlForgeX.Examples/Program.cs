@@ -49,6 +49,8 @@ internal class Program {
         // Toast examples
         ExampleTablerToast.Create(openInBrowser);
         ExampleTablerToastAdvanced.Create(openInBrowser);
+
+        // Forms examples
         ExampleTablerForm.Create(openInBrowser);
 
         // Container examples
