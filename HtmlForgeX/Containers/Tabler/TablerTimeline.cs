@@ -2,6 +2,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Container for displaying a sequence of events using Tabler styling.
+/// </summary>
 public class TablerTimeline : Element {
     private readonly List<TablerTimelineItem> _items = new();
 
@@ -27,6 +30,9 @@ public class TablerTimeline : Element {
     }
 }
 
+/// <summary>
+/// Represents a single item displayed within a <see cref="TablerTimeline"/>.
+/// </summary>
 public class TablerTimelineItem : Element {
     private string? _time;
     private TablerIconType? _icon;

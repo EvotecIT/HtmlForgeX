@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Base card component for presenting content within the Tabler UI framework.
+/// </summary>
 public class TablerCardBasic : Element {
     private string? PrivateCardStyle { get; set; }
     private string SubHeaderText { get; set; } = "";

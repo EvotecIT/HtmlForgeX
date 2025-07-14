@@ -4,6 +4,9 @@ using System.Text;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Renders an HTML table styled using Bootstrap classes.
+/// </summary>
 public class BootstrapTable : Table {
     /// <summary>
     /// Gets the unique identifier of the table element.

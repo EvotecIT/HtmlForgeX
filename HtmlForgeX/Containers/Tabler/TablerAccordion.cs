@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Accordion container composed of expandable TablerAccordionItem elements.
+/// </summary>
 public class TablerAccordion : Element {
     public List<TablerAccordionItem> Items { get; set; } = new List<TablerAccordionItem>();
     private string Id { get; } = GlobalStorage.GenerateRandomId("accordion");

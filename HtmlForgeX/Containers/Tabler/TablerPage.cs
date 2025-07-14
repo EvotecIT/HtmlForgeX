@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Root container for constructing a Tabler-based page layout.
+/// </summary>
 public class TablerPage : Element {
     /// <summary>
     /// Initializes or configures TablerPage.

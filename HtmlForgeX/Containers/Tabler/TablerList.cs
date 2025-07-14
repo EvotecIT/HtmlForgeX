@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Simple unordered list rendered with Tabler styles.
+/// </summary>
 public class UnorderedList : Element {
     private HtmlTag ulTag;
     private HtmlTag liTag;

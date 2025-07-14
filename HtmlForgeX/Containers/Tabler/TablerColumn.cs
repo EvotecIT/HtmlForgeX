@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Responsive column container for arranging <see cref="TablerCard"/> elements.
+/// </summary>
 public class TablerColumn : Element {
     public List<TablerCard> Cards { get; set; } = new List<TablerCard>();
     public string? Class { get; set; }

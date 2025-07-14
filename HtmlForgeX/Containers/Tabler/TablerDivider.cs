@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Horizontal divider with optional text using Tabler styling.
+/// </summary>
 public class TablerDivider : Element {
     private string Text { get; }
     private HrTextAlignment Alignment { get; }

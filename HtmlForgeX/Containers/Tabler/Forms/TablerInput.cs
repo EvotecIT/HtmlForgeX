@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Generic form input element styled with Tabler classes.
+/// </summary>
 public class TablerInput : Element {
     private readonly string _name;
     private InputType _type = InputType.Text;

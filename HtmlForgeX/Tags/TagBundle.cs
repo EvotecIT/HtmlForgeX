@@ -112,4 +112,7 @@ public class EmSpace : Element {
     }
 }
 
+/// <summary>
+/// Represents an HTML <c>&lt;strong&gt;</c> tag used for emphasizing text.
+/// </summary>
 public class Strong(string value) : HtmlTag("strong", value);

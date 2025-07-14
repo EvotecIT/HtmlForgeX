@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Visual representation of item progress using colored blocks.
+/// </summary>
 public class TablerTracking : Element {
     private List<TablerTrackingBlock> Blocks { get; set; } = new List<TablerTrackingBlock>();
 
