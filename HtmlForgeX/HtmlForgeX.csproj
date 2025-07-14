@@ -8,15 +8,14 @@
         <VersionPrefix>0.1.0</VersionPrefix>
         <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`Windows`))' ">
             netstandard2.0;net472;net8.0</TargetFrameworks>
-        <TargetFrameworks
-            Condition=" '$([MSBuild]::IsOsPlatform(`OSX`))'  Or '$([MSBuild]::IsOsPlatform(`Linux`))' ">
+        <TargetFrameworks Condition=" '$([MSBuild]::IsOsPlatform(`OSX`))'  Or '$([MSBuild]::IsOsPlatform(`Linux`))' ">
             net8.0</TargetFrameworks>
         <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <Company>Evotec</Company>
         <Authors>Przemyslaw Klys</Authors>
         <LangVersion>Latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
-        <!-- <Nullable>enable</Nullable> -->
+        <Nullable>enable</Nullable>
 
         <PackageId>HtmlForgeX</PackageId>
         <PackageIcon>HtmlForgeX1_128x128.png</PackageIcon>
@@ -37,7 +36,7 @@
         <PackageReadmeFile>README.MD</PackageReadmeFile>
         <RepositoryType>git</RepositoryType>
         <SignAssembly>False</SignAssembly>
-        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
 
@@ -71,8 +70,7 @@
     This only needs to be done when updating to newer tabler-icons versions.
     -->
 
-    <ItemGroup
-        Condition="'$(TargetFramework)'=='netstandard2.0' OR '$(TargetFramework)'=='netstandard2.1'">
+    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0' OR '$(TargetFramework)'=='netstandard2.1'">
         <PackageReference Include="System.Text.Json" Version="9.0.0" />
     </ItemGroup>
 
@@ -85,8 +83,14 @@
         <Folder Include="Containers\ScrollingText\" />
     </ItemGroup>
 
-    <PropertyGroup
-        Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netcoreapp3.0' OR '$(TargetFramework)' == 'netcoreapp3.1' OR '$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">
+    <!-- <ItemGroup>
+      <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PrivateAssets>all</PrivateAssets>
+      </PackageReference>
+    </ItemGroup> -->
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1' OR '$(TargetFramework)' == 'netcoreapp2.2' OR '$(TargetFramework)' == 'netcoreapp3.0' OR '$(TargetFramework)' == 'netcoreapp3.1' OR '$(TargetFramework)' == 'net5.0' OR '$(TargetFramework)' == 'net6.0'">
         <DefineConstants>NETCOREAPP2_1_OR_GREATER</DefineConstants>
     </PropertyGroup>
 

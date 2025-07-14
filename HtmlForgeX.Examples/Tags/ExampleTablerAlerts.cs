@@ -1,7 +1,7 @@
 namespace HtmlForgeX.Examples.Tags;
 
 internal static class ExampleTablerAlerts {
-    public static void Create() {
+    public static void Create(bool openInBrowser = false) {
         var document = new Document { Head = { Title = "Alerts Demo" } };
         document.Body.Page(page => {
             page.Row(row => {
@@ -92,6 +92,6 @@ internal static class ExampleTablerAlerts {
             });
         });
 
-        document.Save("TablerAlertsDemo.html", true);
+        document.Save("TablerAlertsDemo.html", openInBrowser);
     }
 }

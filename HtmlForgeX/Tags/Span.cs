@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class Span : Element {
@@ -10,7 +13,7 @@ public class Span : Element {
     public FontStyle? FontStyle { get; set; }
     public FontVariant? FontVariant { get; set; }
     public string? FontFamily { get; set; }
-    public FontAlignment? Alignment { get; set; }
+    public Alignment? Alignment { get; set; }
     public TextDecoration? TextDecoration { get; set; }
     public TextTransform? TextTransform { get; set; }
     public Direction? Direction { get; set; }
@@ -75,7 +78,7 @@ public class Span : Element {
             return _rootParent;
         }
         
-        public override Span WithAlignment(FontAlignment alignment) {
+        public override Span WithAlignment(Alignment alignment) {
             _currentSpan.Alignment = alignment;
             return _rootParent;
         }
@@ -166,7 +169,7 @@ public class Span : Element {
             return this;
         }
         
-        public override Span WithAlignment(FontAlignment alignment) {
+        public override Span WithAlignment(Alignment alignment) {
             _currentSpan.Alignment = alignment;
             return this;
         }
@@ -290,7 +293,7 @@ public class Span : Element {
         return this;
     }
 
-    public virtual Span WithAlignment(FontAlignment alignment) {
+    public virtual Span WithAlignment(Alignment alignment) {
         Alignment = alignment;
         return this;
     }
@@ -381,9 +384,9 @@ public class Span : Element {
         var styleString = GenerateStyle();
         styleString = !string.IsNullOrEmpty(styleString) ? $" style=\"{Helpers.HtmlEncode(styleString)}\"" : "";
 
-        var childrenHtml = string.Join("", Children.Select(child => child.ToString()));
+        var childrenHtml = string.Join("", Children.WhereNotNull().Select(child => child.ToString()));
 
-        var childrenParentHtml = string.Join("", this.Parent.HtmlSpans.Select(child => {
+        var childrenParentHtml = string.Join("", this.Parent.HtmlSpans.WhereNotNull().Select(child => {
             var childStyle = child.GenerateStyle();
             childStyle = !string.IsNullOrEmpty(childStyle) ? $" style=\"{Helpers.HtmlEncode(childStyle)}\"" : "";
             var content = Helpers.HtmlEncode(child.Content ?? string.Empty);

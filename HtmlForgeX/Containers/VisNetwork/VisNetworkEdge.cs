@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents an edge in a Vis Network diagram.
+/// </summary>
 public class VisNetworkEdge {
     public object? Id { get; set; }
     public object? From { get; set; }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Globalization;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 /// <summary>
@@ -25,9 +27,11 @@ public class HtmlTag : Element {
     /// </summary>
     /// <param name="tag">The name of the tag.</param>
     /// <param name="value">The inner value for the tag.</param>
-    public HtmlTag(string tag, string value) {
+    public HtmlTag(string tag, string? value) {
         PrivateTag = tag;
-        Children.Add(value);
+        if (value is not null) {
+            Children.Add(value);
+        }
     }
 
     /// <summary>
@@ -46,10 +50,12 @@ public class HtmlTag : Element {
     /// <param name="tag">The name of the tag.</param>
     /// <param name="value">The inner value for the tag.</param>
     /// <param name="tagMode">The <see cref="TagMode"/> indicating how the tag should be rendered.</param>
-    public HtmlTag(string tag, string value, TagMode tagMode) {
+    public HtmlTag(string tag, string? value, TagMode tagMode) {
         PrivateTag = tag;
         PrivateTagMode = tagMode;
-        Children.Add(value);
+        if (value is not null) {
+            Children.Add(value);
+        }
     }
 
     /// <summary>
@@ -59,9 +65,11 @@ public class HtmlTag : Element {
     /// <param name="value">The inner value for the tag.</param>
     /// <param name="attributes">Optional attributes to apply.</param>
     /// <param name="tagMode">The <see cref="TagMode"/> indicating how the tag should be rendered.</param>
-    public HtmlTag(string tag, string value, Dictionary<string, object>? attributes = null, TagMode tagMode = TagMode.Normal) {
+    public HtmlTag(string tag, string? value, Dictionary<string, object>? attributes = null, TagMode tagMode = TagMode.Normal) {
         PrivateTag = tag;
-        Children.Add(value);
+        if (value is not null) {
+            Children.Add(value);
+        }
         PrivateTagMode = tagMode;
 
         if (attributes != null) {
@@ -190,7 +198,7 @@ public class HtmlTag : Element {
         } else {
             // if the tag is normal we add the children
             html.Append(">");
-            foreach (var child in Children) {
+            foreach (var child in Children.WhereNotNull()) {
                 if (child is string str) {
                     //html.Append(Helpers.HtmlEncode(str));
                     html.Append(str);
@@ -222,8 +230,10 @@ public class HtmlTag : Element {
     /// </summary>
     /// <param name="child">The child tag to add.</param>
     /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
-    public HtmlTag Value(HtmlTag child) {
-        Children.Add(child);
+    public HtmlTag Value(HtmlTag? child) {
+        if (child is not null) {
+            Children.Add(child);
+        }
         return this;
     }
 
@@ -232,8 +242,10 @@ public class HtmlTag : Element {
     /// </summary>
     /// <param name="value">The child element.</param>
     /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
-    public HtmlTag Value(Element value) {
-        Children.Add(value);
+    public HtmlTag Value(Element? value) {
+        if (value is not null) {
+            Children.Add(value);
+        }
         return this;
     }
 
@@ -254,9 +266,11 @@ public class HtmlTag : Element {
     /// </summary>
     /// <param name="value">String values to append.</param>
     /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
-    public HtmlTag Value(params string[] value) {
+    public HtmlTag Value(params string?[] value) {
         foreach (var val in value) {
-            Children.Add(val);
+            if (val is not null) {
+                Children.Add(val);
+            }
         }
         return this;
     }
@@ -265,10 +279,12 @@ public class HtmlTag : Element {
     /// </summary>
     /// <param name="value">Objects to append.</param>
     /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
-    public HtmlTag Value(params object[] value) {
+    public HtmlTag Value(params object?[] value) {
         // this largely works because of ToString() on the object that we should make sure is there, implemented correctly
         foreach (var val in value) {
-            Children.Add(val);
+            if (val is not null) {
+                Children.Add(val);
+            }
         }
         return this;
     }

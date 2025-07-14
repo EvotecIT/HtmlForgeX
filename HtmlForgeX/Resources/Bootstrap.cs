@@ -1,6 +1,12 @@
 namespace HtmlForgeX.Resources;
 
+/// <summary>
+/// Provides metadata and asset links for the Bootstrap framework.
+/// </summary>
 public class Bootstrap : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Bootstrap"/> class.
+    /// </summary>
     public Bootstrap() {
         Header = new LibraryLinks {
             CssLink = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"],

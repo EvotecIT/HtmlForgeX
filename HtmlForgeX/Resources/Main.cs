@@ -1,6 +1,12 @@
 namespace HtmlForgeX.Resources;
 
+/// <summary>
+/// Base styling library used across documents.
+/// </summary>
 internal class Primary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Primary"/> class.
+    /// </summary>
     public Primary() {
         Header = new LibraryLinks {
             CssStyle = new List<Style> {

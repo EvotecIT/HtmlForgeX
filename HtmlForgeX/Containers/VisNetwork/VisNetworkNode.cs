@@ -5,6 +5,9 @@ using System.Net.Http;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents a node in a Vis Network diagram.
+/// </summary>
 public class VisNetworkNode {
     public object? Id { get; set; }
     public string? Label { get; set; }

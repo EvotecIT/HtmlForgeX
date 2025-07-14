@@ -229,6 +229,7 @@ public class EmailBox : Element {
     /// <param name="margin">The margin value (e.g., "0 auto 24px auto").</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
     public EmailBox SetOuterMargin(string margin) {
+        margin.ValidateMargin();
         OuterMargin = margin;
         return this;
     }
@@ -249,6 +250,7 @@ public class EmailBox : Element {
     /// <param name="verticalMargin">The vertical margin (top and bottom).</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
     public EmailBox CenterWithMargin(string verticalMargin = "24px") {
+        verticalMargin.ValidateMargin();
         OuterMargin = $"{verticalMargin} auto";
         return this;
     }

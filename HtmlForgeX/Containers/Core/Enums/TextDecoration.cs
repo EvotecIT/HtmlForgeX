@@ -2,8 +2,12 @@ using System.ComponentModel;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Text decoration values.
+/// </summary>
 public enum TextDecoration {
     [Description("none")]
+    /// <summary>No decoration.</summary>
     None = 1,
 
     [Description("line-through")]

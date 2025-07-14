@@ -1,6 +1,12 @@
 namespace HtmlForgeX.Resources;
 
+/// <summary>
+/// Library descriptor for DataTables integration.
+/// </summary>
 internal class DataTables : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DataTables"/> class.
+    /// </summary>
     public DataTables() {
         Header = new LibraryLinks {
             JsLink = [

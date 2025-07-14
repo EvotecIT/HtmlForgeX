@@ -261,4 +261,21 @@ public class TestFullCalendarComponent {
         Assert.IsTrue(html.Contains("Weekly Meeting"), "Should contain recurring event");
         Assert.IsTrue(html.Contains("Team standup"), "Should contain event description");
     }
+
+    [TestMethod]
+    public void FullCalendar_EventHandlersSerialized() {
+        var doc = new Document();
+
+        doc.Body.Add(element => {
+            element.FullCalendar(calendar => {
+                calendar.AddEvent("Test", DateTime.Today);
+            });
+        });
+
+        var html = doc.ToString();
+
+        Assert.IsTrue(html.Contains("\"eventDidMount\":") && html.Contains("function"), "eventDidMount should be serialized as function");
+        Assert.IsTrue(html.Contains("\"eventClick\":") && html.Contains("function"), "eventClick should be serialized as function");
+        Assert.IsFalse(html.Contains("__EVENT_DID_MOUNT__") || html.Contains("__EVENT_CLICK__"), "Placeholders should not appear");
+    }
 }

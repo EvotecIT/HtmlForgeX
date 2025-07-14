@@ -234,6 +234,10 @@ internal class BasicHtmlContainer03 {
                                 .AddEvent("Test Event 2", "Special event 2", DateTime.Today.AddDays(1).AddHours(13))
                                 .Color(RGBColor.Yellow);
 
+                            calendar.Options.EventClick = @"function(info) {
+                                alert('Clicked ' + info.event.title);
+                            }";
+
                             calendar.AddHeaderToolbar()
                                 .Left(FullCalendarToolbarOption.Prev, FullCalendarToolbarOption.Next,
                                     FullCalendarToolbarOption.Today)

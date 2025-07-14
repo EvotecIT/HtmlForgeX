@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerTabs : Element {
@@ -36,7 +39,7 @@ public class TablerTabs : Element {
 
         var cardBodyDiv = new HtmlTag("div").Class("card-body");
 
-        foreach (var panel in Panels) {
+        foreach (var panel in Panels.WhereNotNull()) {
             tabsDiv.Value(panel);
             var anchor = new Anchor()
                 .Class("nav-link")

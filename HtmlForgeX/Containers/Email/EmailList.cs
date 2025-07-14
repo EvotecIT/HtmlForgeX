@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -160,12 +163,12 @@ public class EmailList : Element {
 ");
 
         // Render items
-        foreach (var item in Items) {
+        foreach (var item in Items.WhereNotNull()) {
             html.AppendLine(item.ToString());
         }
 
         // Render child elements (nested lists, etc.)
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             html.AppendLine(child.ToString());
         }
 

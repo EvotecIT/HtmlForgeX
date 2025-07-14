@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -201,7 +203,7 @@ public class TablerIcon : Element {
             container.Class(ContainerClasses);
         }
 
-        foreach (var style in ContainerStyles) {
+        foreach (var style in ContainerStyles.WhereNotNull()) {
             container.Style(style.Key, style.Value);
         }
 
@@ -209,14 +211,14 @@ public class TablerIcon : Element {
         var svg = new HtmlTag("svg");
 
         // Add all SVG attributes
-        foreach (var attr in SvgAttributes) {
+        foreach (var attr in SvgAttributes.WhereNotNull()) {
             svg.Attribute(attr.Key, attr.Value);
         }
 
         // Add SVG styles
         if (SvgStyles.Count > 0) {
             var styleBuilder = new StringBuilder();
-            foreach (var style in SvgStyles) {
+            foreach (var style in SvgStyles.WhereNotNull()) {
                 styleBuilder.Append($"{style.Key}:{style.Value};");
             }
             svg.Attribute("style", styleBuilder.ToString());

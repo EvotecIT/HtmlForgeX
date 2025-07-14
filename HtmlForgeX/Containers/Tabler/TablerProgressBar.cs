@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -96,6 +99,8 @@ public class TablerProgressBarItem : Element {
 public class TablerProgressBar : Element {
     private HashSet<TablerProgressBarType> Types { get; } = new HashSet<TablerProgressBarType>();
     private List<TablerProgressBarItem> Items { get; } = new List<TablerProgressBarItem>();
+    private TablerMargin? PrivateMargin { get; set; }
+    private TablerPadding? PrivatePadding { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="TablerProgressBar"/> class with optional progress bar types.
@@ -105,6 +110,16 @@ public class TablerProgressBar : Element {
         foreach (var type in types) {
             Types.Add(type);
         }
+    }
+
+    public TablerProgressBar Margin(TablerMargin margin) {
+        PrivateMargin = margin;
+        return this;
+    }
+
+    public TablerProgressBar Padding(TablerPadding padding) {
+        PrivatePadding = padding;
+        return this;
     }
 
     /// <summary>
@@ -142,9 +157,10 @@ public class TablerProgressBar : Element {
         if (!string.IsNullOrEmpty(typeClass)) {
             progressBarTag.Class(typeClass);
         }
-        // TODO: We need to add handling for mb-3 and similar for margins and padding
+        progressBarTag.Class(PrivateMargin?.EnumToString());
+        progressBarTag.Class(PrivatePadding?.EnumToString());
 
-        foreach (var item in Items) {
+        foreach (var item in Items.WhereNotNull()) {
             progressBarTag.Value(item);
         }
 

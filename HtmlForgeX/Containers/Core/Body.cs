@@ -1,4 +1,6 @@
 using System.Text;
+using System.Linq;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -21,7 +23,7 @@ public class Body : Element {
     /// </summary>
     /// <param name="element">Element to add.</param>
     /// <returns>The current <see cref="Body"/> instance.</returns>
-    public new Body Add(Element element) {
+    public new Body Add(Element? element) {
         base.Add(element);
         return this;
     }
@@ -81,7 +83,7 @@ public class Body : Element {
         }
 
         // Add the HTML of the child elements
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             bodyBuilder.AppendLine(child.ToString());
         }
 

@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 public class TablerColumn : Element {
@@ -21,7 +24,7 @@ public class TablerColumn : Element {
 
     public override string ToString() {
         //Console.WriteLine("Generating HtmlColumn...");
-        var childrenHtml = string.Join("", Children.Select(child => child.ToString()));
+        var childrenHtml = string.Join("", Children.WhereNotNull().Select(child => child.ToString()));
         var result = $"<div class=\"{Class}\">{childrenHtml}</div>";
         //Console.WriteLine("Generated HtmlColumn: " + result);
         return result;
@@ -44,5 +47,15 @@ public class TablerColumn : Element {
         config(card);
         this.Add(card);
         return card;
+    }
+
+    /// <summary>
+    /// Add a DataGrid directly to the column using the enhanced TablerDataGrid component
+    /// </summary>
+    public TablerDataGrid DataGrid(Action<TablerDataGrid> dataGridConfig) {
+        var dataGrid = new TablerDataGrid();
+        dataGridConfig(dataGrid);
+        this.Add(dataGrid);
+        return dataGrid;
     }
 }

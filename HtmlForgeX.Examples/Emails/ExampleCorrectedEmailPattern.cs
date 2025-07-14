@@ -35,7 +35,7 @@ public static class ExampleCorrectedEmailPattern
             email.Header.SetPadding("20px");
             email.Header.EmailRow(row => {
                 row.EmailColumn(col => {
-                    col.SetAlignment(FontAlignment.Center);
+                    col.SetAlignment(Alignment.Center);
                     col.EmailImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                         .WithWidth("150px")
                         .WithHeight("42px")
@@ -47,13 +47,13 @@ public static class ExampleCorrectedEmailPattern
             emailBox.EmailText("🎉 Welcome to HtmlForgeX!")
                 .WithFontSize("32px")
                 .WithFontWeight("bold")
-                .WithAlignment(FontAlignment.Center)
+                .WithAlignment(Alignment.Center)
                 .WithColor("#111827");
 
             emailBox.EmailText("We're excited to have you join our community of developers.")
                 .WithFontSize("18px")
                 .WithColor("#374151")
-                .WithAlignment(FontAlignment.Center)
+                .WithAlignment(Alignment.Center)
                 .WithLineHeight("1.6");
         });
 
@@ -154,7 +154,7 @@ public static class ExampleCorrectedEmailPattern
             emailBox.EmailText("Ready to get started?")
                 .WithFontSize("24px")
                 .WithFontWeight("bold")
-                .WithAlignment(FontAlignment.Center)
+                .WithAlignment(Alignment.Center)
                 .WithColor("#111827");
 
             // Buttons with proper spacing
@@ -176,7 +176,7 @@ public static class ExampleCorrectedEmailPattern
             emailBox.EmailText("Questions? Reply to this email or visit our help center.")
                 .WithFontSize("14px")
                 .WithColor("#6B7280")
-                .WithAlignment(FontAlignment.Center);
+                .WithAlignment(Alignment.Center);
         });
 
         // Save email

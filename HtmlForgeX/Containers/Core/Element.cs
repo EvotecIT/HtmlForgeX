@@ -1,4 +1,6 @@
+using System.Linq;
 using HtmlForgeX.Tags;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -42,7 +44,11 @@ public abstract class Element {
     /// </summary>
     /// <param name="element">The element to add.</param>
     /// <returns>This element for method chaining.</returns>
-    public virtual Element Add(Element element) {
+    public virtual Element Add(Element? element) {
+        if (element is null) {
+            return this;
+        }
+
         element.Email = this.Email;
         element.Document = this.Document;
         Children.Add(element);
@@ -66,7 +72,7 @@ public abstract class Element {
     /// Recursively sets the document reference for all child elements.
     /// </summary>
     private void PropagateDocumentToChildren() {
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             child.Document = Document;
         }
     }
@@ -75,7 +81,7 @@ public abstract class Element {
     /// Recursively sets the email reference for all child elements.
     /// </summary>
     private void PropagateEmailToChildren() {
-        foreach (var child in Children) {
+        foreach (var child in Children.WhereNotNull()) {
             child.Email = Email;
         }
     }
@@ -180,6 +186,13 @@ public abstract class Element {
         return qrCode;
     }
 
+    public QuillEditor QuillEditor(Action<QuillEditor>? config = null) {
+        var editor = new QuillEditor();
+        config?.Invoke(editor);
+        this.Add(editor);
+        return editor;
+    }
+
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);
@@ -281,20 +294,54 @@ public abstract class Element {
         return progressBar;
     }
 
-    public TablerLogs Logs(string code) {
+    public TablerLogs Logs(string code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
+        if (backgroundClass != null && textClass != null) {
+            logs.CustomTheme(backgroundClass, textClass);
+        } else {
+            logs.Theme(theme);
+        }
         this.Add(logs);
         return logs;
     }
 
-    public TablerLogs Logs(string[] code) {
+    public TablerLogs Logs(string[] code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
+        if (backgroundClass != null && textClass != null) {
+            logs.CustomTheme(backgroundClass, textClass);
+        } else {
+            logs.Theme(theme);
+        }
         this.Add(logs);
         return logs;
     }
 
-    public TablerLogs Logs(List<string> code) {
+
+    public TablerLogs Logs(List<string> code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
+        if (backgroundClass != null && textClass != null) {
+            logs.CustomTheme(backgroundClass, textClass);
+        } else {
+            logs.Theme(theme);
+        }
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(string code, RGBColor backgroundColor, RGBColor textColor) {
+        var logs = new TablerLogs(code).CustomColors(backgroundColor, textColor);
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(string[] code, RGBColor backgroundColor, RGBColor textColor) {
+        var logs = new TablerLogs(code).CustomColors(backgroundColor, textColor);
+        this.Add(logs);
+        return logs;
+    }
+
+    public TablerLogs Logs(List<string> code, RGBColor backgroundColor, RGBColor textColor) {
+        var logs = new TablerLogs(code).CustomColors(backgroundColor, textColor);
         this.Add(logs);
         return logs;
     }
@@ -348,6 +395,26 @@ public abstract class Element {
         var unorderedList = new UnorderedList();
         this.Add(unorderedList);
         return unorderedList;
+    }
+
+    public TablerToast Toast(string title, string message, TablerToastType type = TablerToastType.Default) {
+        var toast = new TablerToast(title, message, type);
+        this.Add(toast);
+        return toast;
+    }
+
+    public TablerToast Toast(Action<TablerToast> config) {
+        var toast = new TablerToast();
+        config(toast);
+        this.Add(toast);
+        return toast;
+    }
+
+    public TablerTimeline Timeline(Action<TablerTimeline> config) {
+        var timeline = new TablerTimeline();
+        config(timeline);
+        this.Add(timeline);
+        return timeline;
     }
 
     // Email Extension Methods for Natural Builder Pattern
