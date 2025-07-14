@@ -12,6 +12,9 @@ public class TablerAlert : Element {
     private string? ActionHref { get; set; }
     private string? ActionText { get; set; }
 
+    /// <summary>
+    /// Initializes or configures TablerAlert.
+    /// </summary>
     public TablerAlert(string title, string message, TablerColor alertColor = TablerColor.Default, TablerAlertType alertType = TablerAlertType.Regular) {
         Title = title;
         Message = message;
@@ -19,37 +22,58 @@ public class TablerAlert : Element {
         AlertType = alertType;
     }
 
+    /// <summary>
+    /// Initializes or configures Icon.
+    /// </summary>
     public TablerAlert Icon(TablerIconType TablerIconType) {
         AlertIcon = new TablerIconElement(TablerIconType).FontSize(24);
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Color.
+    /// </summary>
     public TablerAlert Color(TablerColor color) {
         AlertColor = color;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Important.
+    /// </summary>
     public TablerAlert Important() {
         AlertImportant = "alert-important";
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Minor.
+    /// </summary>
     public TablerAlert Minor() {
         AlertMinor = "alert-minor";
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures WithDescription.
+    /// </summary>
     public TablerAlert WithDescription() {
         UseHeadingStyle = true;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Action.
+    /// </summary>
     public TablerAlert Action(string href, string text) {
         ActionHref = href;
         ActionText = text;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var alertTypeClass = AlertType == TablerAlertType.Dismissible ? "alert-dismissible" : "";
         var alertTag = new HtmlTag("div")

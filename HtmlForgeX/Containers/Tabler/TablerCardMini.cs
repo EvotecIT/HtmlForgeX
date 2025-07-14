@@ -8,31 +8,49 @@ public class TablerCardMini : TablerCard {
     private string TitleText { get; set; } = "";
     private string SubtitleText { get; set; } = "";
 
+    /// <summary>
+    /// Initializes or configures Avatar.
+    /// </summary>
     public TablerCardMini Avatar(TablerIconType TablerIconType) {
         AvatarIcon = TablerIconType;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures BackgroundColor.
+    /// </summary>
     public TablerCardMini BackgroundColor(TablerColor color) {
         AvatarBackgroundColor = color;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures TextColor.
+    /// </summary>
     public TablerCardMini TextColor(TablerColor color) {
         AvatarTextColor = color;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Title.
+    /// </summary>
     public TablerCardMini Title(string title) {
         TitleText = title;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Subtitle.
+    /// </summary>
     public TablerCardMini Subtitle(string subtitle) {
         SubtitleText = subtitle;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         //Console.WriteLine("Generating HtmlCard...");
 

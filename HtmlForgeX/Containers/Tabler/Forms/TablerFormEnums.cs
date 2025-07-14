@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// TablerFormEnums enumeration.
+/// </summary>
 public enum InputType {
     Text,
     Email,
@@ -12,6 +15,9 @@ public enum InputType {
     Url
 }
 
+/// <summary>
+/// TablerFormEnums enumeration.
+/// </summary>
 public enum ValidationState {
     Valid,
     Invalid,
@@ -19,6 +25,9 @@ public enum ValidationState {
 }
 
 public static class InputTypeExtensions {
+    /// <summary>
+    /// Initializes or configures ToInputString.
+    /// </summary>
     public static string ToInputString(this InputType type) => type switch {
         InputType.Text => "text",
         InputType.Email => "email",
@@ -34,6 +43,9 @@ public static class InputTypeExtensions {
 }
 
 public static class ValidationStateExtensions {
+    /// <summary>
+    /// Initializes or configures ToInputClass.
+    /// </summary>
     public static string ToInputClass(this ValidationState state) => state switch {
         ValidationState.Valid => "is-valid",
         ValidationState.Invalid => "is-invalid",
@@ -41,6 +53,9 @@ public static class ValidationStateExtensions {
         _ => string.Empty
     };
 
+    /// <summary>
+    /// Initializes or configures ToFeedbackClass.
+    /// </summary>
     public static string ToFeedbackClass(this ValidationState state) => state switch {
         ValidationState.Valid => "valid-feedback",
         ValidationState.Invalid => "invalid-feedback",

@@ -12,7 +12,7 @@ public class TablerCardHeader : Element {
     private TablerAvatar? HeaderAvatar { get; set; }
     private List<TablerCardAction> Actions { get; set; } = new List<TablerCardAction>();
     private TablerCardNavigation? Navigation { get; set; }
-    
+
     /// <summary>
     /// Set the card header title
     /// </summary>
@@ -20,7 +20,7 @@ public class TablerCardHeader : Element {
         TitleText = title;
         return this;
     }
-    
+
     /// <summary>
     /// Set the card header subtitle
     /// </summary>
@@ -28,7 +28,7 @@ public class TablerCardHeader : Element {
         SubtitleText = subtitle;
         return this;
     }
-    
+
     /// <summary>
     /// Set the header style (light, dark, transparent, etc.)
     /// </summary>
@@ -36,7 +36,7 @@ public class TablerCardHeader : Element {
         HeaderStyle = style;
         return this;
     }
-    
+
     /// <summary>
     /// Add an avatar to the header
     /// </summary>
@@ -45,7 +45,7 @@ public class TablerCardHeader : Element {
         avatarConfig(HeaderAvatar);
         return this;
     }
-    
+
     /// <summary>
     /// Add action buttons to the header
     /// </summary>
@@ -55,7 +55,7 @@ public class TablerCardHeader : Element {
         Actions = builder.GetActions();
         return this;
     }
-    
+
     /// <summary>
     /// Add navigation tabs or pills to the header
     /// </summary>
@@ -64,19 +64,22 @@ public class TablerCardHeader : Element {
         navConfig(Navigation);
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var headerDiv = new HtmlTag("div");
         var classes = new List<string> { "card-header" };
-        
+
         // Add header style classes
         var styleClass = HeaderStyle.ToTablerCardHeaderClass();
         if (!string.IsNullOrEmpty(styleClass)) {
             classes.Add(styleClass);
         }
-        
+
         headerDiv.Class(string.Join(" ", classes));
-        
+
         // Navigation goes first (tabs/pills)
         if (Navigation != null) {
             headerDiv.Value(Navigation.ToString());
@@ -84,37 +87,37 @@ public class TablerCardHeader : Element {
             // Regular header content
             if (HeaderAvatar != null || !string.IsNullOrEmpty(TitleText) || Actions.Count > 0) {
                 var rowDiv = new HtmlTag("div").Class("row align-items-center");
-                
+
                 // Avatar column
                 if (HeaderAvatar != null) {
                     var avatarCol = new HtmlTag("div").Class("col-auto");
                     avatarCol.Value(HeaderAvatar.ToString());
                     rowDiv.Value(avatarCol);
                 }
-                
+
                 // Title/subtitle column
                 if (!string.IsNullOrEmpty(TitleText)) {
                     var titleCol = new HtmlTag("div").Class("col");
-                    
+
                     var titleElement = new HtmlTag("h3").Class("card-title").Value(TitleText);
                     titleCol.Value(titleElement);
-                    
+
                     if (!string.IsNullOrEmpty(SubtitleText)) {
                         var subtitleElement = new HtmlTag("div").Class("card-subtitle").Value(SubtitleText);
                         titleCol.Value(subtitleElement);
                     }
-                    
+
                     rowDiv.Value(titleCol);
                 }
-                
+
                 // Actions column
                 if (Actions.Count > 0) {
                     var actionsCol = new HtmlTag("div").Class("col-auto");
                     var actionsDiv = new HtmlTag("div").Class("card-actions");
-                    
+
                     for (int i = 0; i < Actions.Count; i++) {
                         var action = Actions[i];
-                        
+
                         // Add spacing between buttons (except for the first one)
                         if (i > 0) {
                             // Create a wrapper div with margin for spacing
@@ -125,11 +128,11 @@ public class TablerCardHeader : Element {
                             actionsDiv.Value(action.ToString());
                         }
                     }
-                    
+
                     actionsCol.Value(actionsDiv);
                     rowDiv.Value(actionsCol);
                 }
-                
+
                 headerDiv.Value(rowDiv);
             } else {
                 // Simple title only
@@ -139,7 +142,7 @@ public class TablerCardHeader : Element {
                 }
             }
         }
-        
+
         return headerDiv.ToString();
     }
 }
@@ -149,20 +152,26 @@ public class TablerCardHeader : Element {
 /// </summary>
 public class TablerCardActionBuilder {
     private List<TablerCardAction> actions = new List<TablerCardAction>();
-    
+
+    /// <summary>
+    /// Initializes or configures Button.
+    /// </summary>
     public TablerCardActionBuilder Button(string text, Action<TablerCardButton>? config = null) {
         var button = new TablerCardButton().WithText(text);
         config?.Invoke(button);
         actions.Add(button);
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures IconButton.
+    /// </summary>
     public TablerCardActionBuilder IconButton(TablerIconType icon, Action<TablerCardButton>? config = null) {
         var button = new TablerCardButton().Icon(icon);
         config?.Invoke(button);
         actions.Add(button);
         return this;
     }
-    
+
     public List<TablerCardAction> GetActions() => actions;
 }

@@ -11,6 +11,9 @@ public enum TablerProgressBarType {
 
 
 public static class TablerProgressBarTypeExtensions {
+    /// <summary>
+    /// Initializes or configures ToClassString.
+    /// </summary>
     public static string ToClassString(this TablerProgressBarType type) {
         return type switch {
             TablerProgressBarType.Separated => "progress-separated",

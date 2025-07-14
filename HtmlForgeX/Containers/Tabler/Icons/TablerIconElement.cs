@@ -21,6 +21,9 @@ public partial class TablerIconElement : Element {
     public TablerIconType Icon { get; set; }
     private TablerIcon _svgIcon;
 
+    /// <summary>
+    /// Initializes or configures TablerIconElement.
+    /// </summary>
     public TablerIconElement(TablerIconType icon) {
         Icon = icon;
         _svgIcon = TablerIconLibrary.GetIcon(icon);
@@ -82,6 +85,9 @@ public partial class TablerIconElement : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         return _svgIcon.ToString();
     }

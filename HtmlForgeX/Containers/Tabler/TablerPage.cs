@@ -1,9 +1,13 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
 public class TablerPage : Element {
+    /// <summary>
+    /// Initializes or configures TablerPage.
+    /// </summary>
     public TablerPage() {
         // Libraries will be registered via RegisterLibraries method
     }
@@ -16,6 +20,9 @@ public class TablerPage : Element {
         Document?.Configuration.Libraries.TryAdd(Libraries.Tabler, 0);
     }
 
+    /// <summary>
+    /// Initializes or configures Row.
+    /// </summary>
     public new TablerRow Row(Action<TablerRow> config) {
         var row = new TablerRow(TablerRowType.Cards, TablerRowType.Deck);
         // Automatically add bottom spacing to separate rows visually
@@ -25,6 +32,9 @@ public class TablerPage : Element {
         return row;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         //Console.WriteLine("Generating HtmlPage...");
         var layoutClass = GetLayoutClass();
@@ -44,7 +54,7 @@ public class TablerPage : Element {
         //Console.WriteLine("Generated HtmlPage: " + pageWrapper);
         return pageWrapper.ToString();
     }
-    
+
     private string GetLayoutClass() {
         return Layout switch {
             TablerLayout.Default => "",
@@ -64,7 +74,7 @@ public class TablerPage : Element {
             _ => ""
         };
     }
-    
+
     private string GetContainerClass() {
         return Layout switch {
             TablerLayout.Fluid or TablerLayout.FluidVertical => "container-fluid",
@@ -73,11 +83,17 @@ public class TablerPage : Element {
         };
     }
 
+    /// <summary>
+    /// Initializes or configures Add.
+    /// </summary>
     public TablerPage Add(Action<TablerPage> config) {
         config(this);
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Column.
+    /// </summary>
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);

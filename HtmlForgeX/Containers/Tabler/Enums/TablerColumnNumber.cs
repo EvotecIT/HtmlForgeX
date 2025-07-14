@@ -37,37 +37,37 @@ public enum TablerColumnNumber {
     SmallSix,
     LargeSix,
     ExtraLargeSix,
-    
+
     // Small breakpoint combinations
     SmallOne, SmallTwo, SmallThree, SmallFour, SmallFive, SmallSeven, SmallEight, SmallNine, SmallTen, SmallEleven, SmallTwelve,
     SmallAuto,
-    
+
     // Medium breakpoint combinations  
     MediumOne, MediumTwo, MediumThree, MediumFour, MediumFive, MediumSeven, MediumEight, MediumNine, MediumTen, MediumEleven, MediumTwelve,
-    
+
     // Large breakpoint combinations
     LargeOne, LargeTwo, LargeThree, LargeFour, LargeFive, LargeSeven, LargeEight, LargeNine, LargeTen, LargeEleven, LargeTwelve,
     LargeAuto,
-    
+
     // Extra Large breakpoint combinations
     ExtraLargeOne, ExtraLargeTwo, ExtraLargeThree, ExtraLargeFour, ExtraLargeFive, ExtraLargeSeven, ExtraLargeEight, ExtraLargeNine, ExtraLargeTen, ExtraLargeEleven, ExtraLargeTwelve,
     ExtraLargeAuto,
-    
+
     // Two-breakpoint responsive combinations
     SmallSixMediumFour, SmallSixMediumThree, SmallSixMediumTwo, SmallSixMediumOne,
     SmallFourMediumSix, SmallFourMediumThree, SmallFourMediumTwo,
     SmallThreeMediumSix, SmallThreeMediumFour, SmallThreeMediumTwo,
     SmallTwoMediumSix, SmallTwoMediumFour, SmallTwoMediumThree,
-    
+
     SmallSixLargeThree, SmallSixLargeTwo, SmallSixLargeOne,
     SmallSixLargeFour,
     SmallFourLargeSix, SmallFourLargeThree, SmallFourLargeTwo,
     SmallThreeLargeSix, SmallThreeLargeFour, SmallThreeLargeTwo,
-    
+
     MediumSixLargeThree, MediumSixLargeFour, MediumSixLargeTwo, MediumSixLargeOne,
     MediumFourLargeSix, MediumFourLargeThree, MediumFourLargeTwo,
     MediumThreeLargeSix, MediumThreeLargeFour, MediumThreeLargeTwo,
-    
+
     // Three-breakpoint responsive combinations (most common Tabler patterns)
     SmallSixMediumSixLargeThree,
     SmallSixMediumSixLargeFour,
@@ -80,7 +80,7 @@ public enum TablerColumnNumber {
     SmallThreeMediumSixLargeFour,
     SmallThreeMediumFourLargeThree,
     SmallThreeMediumThreeLargeTwo,
-    
+
     // Extra Large combinations
     SmallSixMediumSixLargeThreeExtraLargeTwo,
     SmallSixMediumFourLargeThreeExtraLargeTwo,
@@ -88,6 +88,9 @@ public enum TablerColumnNumber {
 }
 
 public static class ColumnNumberExtension {
+    /// <summary>
+    /// Initializes or configures EnumToString.
+    /// </summary>
     public static string EnumToString(this TablerColumnNumber numberOfColumns) {
         switch (numberOfColumns) {
             case TablerColumnNumber.None:
@@ -114,7 +117,7 @@ public static class ColumnNumberExtension {
                 return "col-sm-6 col-md-6 col-lg-3";
             case TablerColumnNumber.SmallSixMediumSixLargeFour:
                 return "col-sm-6 col-md-6 col-lg-4";
-                
+
             // Small breakpoints
             case TablerColumnNumber.SmallOne: return "col-sm-1";
             case TablerColumnNumber.SmallTwo: return "col-sm-2";
@@ -128,7 +131,7 @@ public static class ColumnNumberExtension {
             case TablerColumnNumber.SmallEleven: return "col-sm-11";
             case TablerColumnNumber.SmallTwelve: return "col-sm-12";
             case TablerColumnNumber.SmallAuto: return "col-sm-auto";
-            
+
             // Medium breakpoints
             case TablerColumnNumber.MediumOne: return "col-md-1";
             case TablerColumnNumber.MediumTwo: return "col-md-2";
@@ -141,7 +144,7 @@ public static class ColumnNumberExtension {
             case TablerColumnNumber.MediumTen: return "col-md-10";
             case TablerColumnNumber.MediumEleven: return "col-md-11";
             case TablerColumnNumber.MediumTwelve: return "col-md-12";
-            
+
             // Large breakpoints
             case TablerColumnNumber.LargeOne: return "col-lg-1";
             case TablerColumnNumber.LargeTwo: return "col-lg-2";
@@ -155,7 +158,7 @@ public static class ColumnNumberExtension {
             case TablerColumnNumber.LargeEleven: return "col-lg-11";
             case TablerColumnNumber.LargeTwelve: return "col-lg-12";
             case TablerColumnNumber.LargeAuto: return "col-lg-auto";
-            
+
             // Extra Large breakpoints
             case TablerColumnNumber.ExtraLargeOne: return "col-xl-1";
             case TablerColumnNumber.ExtraLargeTwo: return "col-xl-2";
@@ -169,7 +172,7 @@ public static class ColumnNumberExtension {
             case TablerColumnNumber.ExtraLargeEleven: return "col-xl-11";
             case TablerColumnNumber.ExtraLargeTwelve: return "col-xl-12";
             case TablerColumnNumber.ExtraLargeAuto: return "col-xl-auto";
-            
+
             // Two-breakpoint combinations
             case TablerColumnNumber.SmallSixMediumFour: return "col-sm-6 col-md-4";
             case TablerColumnNumber.SmallSixMediumThree: return "col-sm-6 col-md-3";
@@ -184,7 +187,7 @@ public static class ColumnNumberExtension {
             case TablerColumnNumber.SmallTwoMediumSix: return "col-sm-2 col-md-6";
             case TablerColumnNumber.SmallTwoMediumFour: return "col-sm-2 col-md-4";
             case TablerColumnNumber.SmallTwoMediumThree: return "col-sm-2 col-md-3";
-            
+
             case TablerColumnNumber.SmallSixLargeThree: return "col-sm-6 col-lg-3";
             case TablerColumnNumber.SmallSixLargeTwo: return "col-sm-6 col-lg-2";
             case TablerColumnNumber.SmallSixLargeOne: return "col-sm-6 col-lg-1";
@@ -194,7 +197,7 @@ public static class ColumnNumberExtension {
             case TablerColumnNumber.SmallThreeLargeSix: return "col-sm-3 col-lg-6";
             case TablerColumnNumber.SmallThreeLargeFour: return "col-sm-3 col-lg-4";
             case TablerColumnNumber.SmallThreeLargeTwo: return "col-sm-3 col-lg-2";
-            
+
             case TablerColumnNumber.MediumSixLargeTwo: return "col-md-6 col-lg-2";
             case TablerColumnNumber.MediumSixLargeOne: return "col-md-6 col-lg-1";
             case TablerColumnNumber.MediumFourLargeSix: return "col-md-4 col-lg-6";
@@ -203,7 +206,7 @@ public static class ColumnNumberExtension {
             case TablerColumnNumber.MediumThreeLargeSix: return "col-md-3 col-lg-6";
             case TablerColumnNumber.MediumThreeLargeFour: return "col-md-3 col-lg-4";
             case TablerColumnNumber.MediumThreeLargeTwo: return "col-md-3 col-lg-2";
-            
+
             // Three-breakpoint combinations
             case TablerColumnNumber.SmallSixMediumFourLargeThree: return "col-sm-6 col-md-4 col-lg-3";
             case TablerColumnNumber.SmallSixMediumFourLargeTwo: return "col-sm-6 col-md-4 col-lg-2";
@@ -214,7 +217,7 @@ public static class ColumnNumberExtension {
             case TablerColumnNumber.SmallThreeMediumSixLargeFour: return "col-sm-3 col-md-6 col-lg-4";
             case TablerColumnNumber.SmallThreeMediumFourLargeThree: return "col-sm-3 col-md-4 col-lg-3";
             case TablerColumnNumber.SmallThreeMediumThreeLargeTwo: return "col-sm-3 col-md-3 col-lg-2";
-            
+
             // Four-breakpoint combinations
             case TablerColumnNumber.SmallSixMediumSixLargeThreeExtraLargeTwo: return "col-sm-6 col-md-6 col-lg-3 col-xl-2";
             case TablerColumnNumber.SmallSixMediumFourLargeThreeExtraLargeTwo: return "col-sm-6 col-md-4 col-lg-3 col-xl-2";

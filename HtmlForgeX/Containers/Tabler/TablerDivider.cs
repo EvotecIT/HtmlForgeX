@@ -5,12 +5,18 @@ public class TablerDivider : Element {
     private HrTextAlignment Alignment { get; }
     private TablerColor Color { get; }
 
+    /// <summary>
+    /// Initializes or configures TablerDivider.
+    /// </summary>
     public TablerDivider(string text, HrTextAlignment alignment = HrTextAlignment.Center, TablerColor color = TablerColor.Default) {
         Text = text;
         Alignment = alignment;
         Color = color;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var alignmentClass = Alignment.ToClassString();
         var colorClass = Color.ToTablerText();

@@ -4,21 +4,33 @@ public class TablerTable : Table {
     public string Id;
     public List<BootStrapTableStyle> StyleList { get; set; } = new List<BootStrapTableStyle>();
 
+    /// <summary>
+    /// Initializes or configures TablerTable.
+    /// </summary>
     public TablerTable() : base() {
         Id = GlobalStorage.GenerateRandomId("table");
         StyleList.Add(BootStrapTableStyle.Responsive);
     }
 
+    /// <summary>
+    /// Initializes or configures TablerTable.
+    /// </summary>
     public TablerTable(IEnumerable<object> objects, TableType library) : base(objects, library) {
         Id = GlobalStorage.GenerateRandomId("table");
         StyleList.Add(BootStrapTableStyle.Responsive);
     }
 
+    /// <summary>
+    /// Initializes or configures Style.
+    /// </summary>
     public TablerTable Style(BootStrapTableStyle style) {
         StyleList.Add(style);
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures BuildTable.
+    /// </summary>
     public override string BuildTable() {
         string tableInside = base.BuildTable();
         string classNames = StyleList.BuildTableStyles();

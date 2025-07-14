@@ -55,9 +55,12 @@ public enum TablerMarginStyle {
 }
 
 public static class MarginStyleExtensions {
+    /// <summary>
+    /// Initializes or configures EnumToString.
+    /// </summary>
     public static string EnumToString(this TablerMarginStyle style) {
         var styleString = style.ToString();
-        
+
         // Handle directional margins
         if (styleString.StartsWith("MT")) return "mt-" + styleString.Substring(2);
         if (styleString.StartsWith("MB")) return "mb-" + styleString.Substring(2);
@@ -65,7 +68,7 @@ public static class MarginStyleExtensions {
         if (styleString.StartsWith("ME")) return "me-" + styleString.Substring(2);
         if (styleString.StartsWith("MX")) return "mx-" + styleString.Substring(2);
         if (styleString.StartsWith("MY")) return "my-" + styleString.Substring(2);
-        
+
         // Handle regular margins
         return "m-" + styleString.Substring(1);
     }

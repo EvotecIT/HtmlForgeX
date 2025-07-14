@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -16,6 +17,9 @@ public class TablerIcon : Element {
     public Dictionary<string, string> ContainerStyles { get; set; } = new Dictionary<string, string>();
     public string ContainerClasses { get; set; } = "";
 
+    /// <summary>
+    /// Initializes or configures TablerIcon.
+    /// </summary>
     public TablerIcon(string svgContent) {
         SvgContent = svgContent;
         // Set default viewBox and size
@@ -181,6 +185,9 @@ public class TablerIcon : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var container = new HtmlTag("span");
 

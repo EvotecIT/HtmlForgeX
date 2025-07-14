@@ -10,6 +10,9 @@ public enum HrTextAlignment {
 }
 
 public static class HrTextAlignmentExtensions {
+    /// <summary>
+    /// Initializes or configures ToClassString.
+    /// </summary>
     public static string ToClassString(this HrTextAlignment alignment) {
         return alignment switch {
             HrTextAlignment.Center => "",

@@ -32,25 +32,40 @@ public static class TablerIconMigrationHelper {
     public class TablerIconElement : Element {
         private readonly TablerIcon _icon;
 
+        /// <summary>
+        /// Initializes or configures TablerIconElement.
+        /// </summary>
         public TablerIconElement(TablerIcon icon) {
             _icon = icon;
         }
 
+        /// <summary>
+        /// Initializes or configures Color.
+        /// </summary>
         public TablerIconElement Color(RGBColor color) {
             _icon.StrokeColor(color);
             return this;
         }
 
+        /// <summary>
+        /// Initializes or configures FontSize.
+        /// </summary>
         public TablerIconElement FontSize(int size) {
             _icon.Size(size);
             return this;
         }
 
+        /// <summary>
+        /// Initializes or configures StrokeWidth.
+        /// </summary>
         public TablerIconElement StrokeWidth(double width) {
             _icon.StrokeWidth(width);
             return this;
         }
 
+        /// <summary>
+        /// Initializes or configures ToString.
+        /// </summary>
         public override string ToString() {
             return _icon.ToString();
         }

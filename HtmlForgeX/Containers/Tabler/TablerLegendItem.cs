@@ -6,6 +6,9 @@ public class TablerLegendItem : Element {
     private TablerColor Color { get; set; }
     private string PaddingClass { get; set; }
 
+    /// <summary>
+    /// Initializes or configures TablerLegendItem.
+    /// </summary>
     public TablerLegendItem(string name, string value, TablerColor color, string paddingClass) {
         Name = name;
         Value = value;
@@ -13,6 +16,9 @@ public class TablerLegendItem : Element {
         PaddingClass = paddingClass;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var legendTag = new HtmlTag("span")
             .Class("legend")

@@ -19,67 +19,88 @@ public class TablerCardButton : TablerCardAction {
     private TablerButtonVariant Variant { get; set; } = TablerButtonVariant.Primary;
     private TablerButtonSize Size { get; set; } = TablerButtonSize.Default;
     private bool IsActionButton { get; set; } = false;
-    
+
+    /// <summary>
+    /// Initializes or configures WithText.
+    /// </summary>
     public TablerCardButton WithText(string text) {
         ButtonText = text;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures Icon.
+    /// </summary>
     public TablerCardButton Icon(TablerIconType icon) {
         ButtonIcon = icon;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures Url.
+    /// </summary>
     public TablerCardButton Url(string url) {
         ButtonUrl = url;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures Style.
+    /// </summary>
     public TablerCardButton Style(TablerButtonVariant variant) {
         Variant = variant;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures WithSize.
+    /// </summary>
     public TablerCardButton WithSize(TablerButtonSize size) {
         Size = size;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures AsActionButton.
+    /// </summary>
     public TablerCardButton AsActionButton() {
         IsActionButton = true;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var buttonTag = new HtmlTag("a");
         var classes = new List<string>();
-        
+
         if (IsActionButton) {
             classes.Add("btn-action");
         } else {
             classes.Add("btn");
-            
+
             // Add variant classes
             var variantClass = GetButtonVariantClass(Variant);
             if (!string.IsNullOrEmpty(variantClass)) {
                 classes.Add(variantClass);
             }
-            
+
             // Add size classes
             var sizeClass = GetButtonSizeClass(Size);
             if (!string.IsNullOrEmpty(sizeClass)) {
                 classes.Add(sizeClass);
             }
         }
-        
+
         buttonTag.Class(string.Join(" ", classes));
         buttonTag.Attribute("href", ButtonUrl);
-        
+
         // Add icon if specified
         if (ButtonIcon.HasValue) {
             buttonTag.Value(new TablerIconElement(ButtonIcon.Value).ToString());
         }
-        
+
         // Add text if specified
         if (!string.IsNullOrEmpty(ButtonText)) {
             if (ButtonIcon.HasValue) {
@@ -88,10 +109,10 @@ public class TablerCardButton : TablerCardAction {
                 buttonTag.Value(ButtonText);
             }
         }
-        
+
         return buttonTag.ToString();
     }
-    
+
     private static string GetButtonVariantClass(TablerButtonVariant variant) {
         return variant switch {
             TablerButtonVariant.Primary => "btn-primary",
@@ -105,7 +126,7 @@ public class TablerCardButton : TablerCardAction {
             _ => ""
         };
     }
-    
+
     private static string GetButtonSizeClass(TablerButtonSize size) {
         return size switch {
             TablerButtonSize.Small => "btn-sm",
@@ -114,4 +135,3 @@ public class TablerCardButton : TablerCardAction {
         };
     }
 }
-
