@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -6,11 +7,17 @@ namespace HtmlForgeX;
 public class TablerCardFooter : Element {
     public string? Content { get; set; }
 
+    /// <summary>
+    /// Initializes or configures SetContent.
+    /// </summary>
     public TablerCardFooter SetContent(string content) {
         Content = content;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         // We only want to render the footer if there are children
         if (Children.Count > 0) {

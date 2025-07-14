@@ -1,4 +1,5 @@
 using System;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -13,17 +14,41 @@ public class TablerInput : Element {
     private ValidationState? _state;
     private string? _message;
 
+    /// <summary>
+    /// Initializes or configures TablerInput.
+    /// </summary>
     public TablerInput(string name) {
         _name = name;
     }
 
+    /// <summary>
+    /// Initializes or configures Type.
+    /// </summary>
     public TablerInput Type(InputType type) { _type = type; return this; }
+    /// <summary>
+    /// Initializes or configures Label.
+    /// </summary>
     public TablerInput Label(string text) { _label = text; return this; }
+    /// <summary>
+    /// Initializes or configures Placeholder.
+    /// </summary>
     public TablerInput Placeholder(string text) { _placeholder = text; return this; }
+    /// <summary>
+    /// Initializes or configures Required.
+    /// </summary>
     public TablerInput Required(bool required = true) { _required = required; return this; }
+    /// <summary>
+    /// Initializes or configures Icon.
+    /// </summary>
     public TablerInput Icon(TablerIconType icon) { _icon = icon; return this; }
+    /// <summary>
+    /// Initializes or configures Validation.
+    /// </summary>
     public TablerInput Validation(ValidationState state, string message) { _state = state; _message = message; return this; }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("div").Class("mb-3");
         if (!string.IsNullOrEmpty(_label)) {

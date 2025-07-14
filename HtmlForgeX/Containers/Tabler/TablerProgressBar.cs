@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -112,11 +113,17 @@ public class TablerProgressBar : Element {
         }
     }
 
+    /// <summary>
+    /// Initializes or configures Margin.
+    /// </summary>
     public TablerProgressBar Margin(TablerMargin margin) {
         PrivateMargin = margin;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Padding.
+    /// </summary>
     public TablerProgressBar Padding(TablerPadding padding) {
         PrivatePadding = padding;
         return this;

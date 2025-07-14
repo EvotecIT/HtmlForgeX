@@ -8,35 +8,56 @@ public class TablerToast : Element {
     private TablerToastPosition ToastPosition { get; set; } = TablerToastPosition.BottomRight;
     private int AutoDismissDelay { get; set; }
 
+    /// <summary>
+    /// Initializes or configures TablerToast.
+    /// </summary>
     public TablerToast() {
     }
 
+    /// <summary>
+    /// Initializes or configures TablerToast.
+    /// </summary>
     public TablerToast(string title, string message, TablerToastType type = TablerToastType.Default) {
         PrivateTitle = title;
         PrivateMessage = message;
         ToastType = type;
     }
 
+    /// <summary>
+    /// Initializes or configures Title.
+    /// </summary>
     public TablerToast Title(string title) {
         PrivateTitle = title;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Message.
+    /// </summary>
     public TablerToast Message(string message) {
         PrivateMessage = message;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Type.
+    /// </summary>
     public TablerToast Type(TablerToastType type) {
         ToastType = type;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Position.
+    /// </summary>
     public TablerToast Position(TablerToastPosition position) {
         ToastPosition = position;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures AutoDismiss.
+    /// </summary>
     public TablerToast AutoDismiss(int milliseconds) {
         AutoDismissDelay = milliseconds;
         return this;
@@ -64,6 +85,9 @@ public class TablerToast : Element {
         };
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var container = new HtmlTag("div")
             .Class("toast-container position-fixed p-3")

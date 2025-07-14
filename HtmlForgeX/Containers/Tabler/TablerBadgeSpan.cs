@@ -6,6 +6,9 @@ public class TablerBadgeSpan : Element {
     public TablerColor? TextColor { get; set; }
     public TablerBadgeStyle Style { get; set; }
 
+    /// <summary>
+    /// Initializes or configures TablerBadgeSpan.
+    /// </summary>
     public TablerBadgeSpan(string text, TablerColor? color, TablerBadgeStyle style = TablerBadgeStyle.Normal, TablerColor? textColor = null) {
         Text = text;
         Color = color;
@@ -13,6 +16,9 @@ public class TablerBadgeSpan : Element {
         TextColor = textColor;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var badgeTag = new HtmlTag("span")
             .Class("badge")

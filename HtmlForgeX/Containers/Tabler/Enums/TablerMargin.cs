@@ -56,6 +56,9 @@ public enum TablerMargin {
 }
 
 public static class TablerMarginExtensions {
+    /// <summary>
+    /// Initializes or configures EnumToString.
+    /// </summary>
     public static string EnumToString(this TablerMargin margin) {
         var marginStr = margin.ToString();
         var property = "m";

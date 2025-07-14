@@ -10,6 +10,9 @@ public enum TablerRowType {
 }
 
 public static class TablerRowTypeExtensions {
+    /// <summary>
+    /// Initializes or configures EnumToString.
+    /// </summary>
     public static string EnumToString(this TablerRowType rowType) {
         return rowType switch {
             TablerRowType.Default => "row",

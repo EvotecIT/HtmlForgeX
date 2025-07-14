@@ -10,14 +10,32 @@ public class TablerSelect : Element {
     private bool _searchable;
     private readonly List<(string Value, string Text)> _options = new();
 
+    /// <summary>
+    /// Initializes or configures TablerSelect.
+    /// </summary>
     public TablerSelect(string name) {
         _name = name;
     }
 
+    /// <summary>
+    /// Initializes or configures Label.
+    /// </summary>
     public TablerSelect Label(string text) { _label = text; return this; }
+    /// <summary>
+    /// Initializes or configures Multiple.
+    /// </summary>
     public TablerSelect Multiple(bool multiple = true) { _multiple = multiple; return this; }
+    /// <summary>
+    /// Initializes or configures Searchable.
+    /// </summary>
     public TablerSelect Searchable(bool enable = true) { _searchable = enable; return this; }
+    /// <summary>
+    /// Initializes or configures Option.
+    /// </summary>
     public TablerSelect Option(string text, string value) { _options.Add((value, text)); return this; }
+    /// <summary>
+    /// Initializes or configures Options.
+    /// </summary>
     public TablerSelect Options(IEnumerable<string> values) {
         foreach (var v in values) { _options.Add((v, v)); }
         return this;
@@ -29,6 +47,9 @@ public class TablerSelect : Element {
         }
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("div").Class("mb-3");
         if (!string.IsNullOrEmpty(_label)) {

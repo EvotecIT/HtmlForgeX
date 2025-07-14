@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -8,11 +9,17 @@ public class TablerTabs : Element {
     private string Id { get; } = GlobalStorage.GenerateRandomId("tabs");
     private TabNavigation? PrivateTabNavigation { get; set; }
 
+    /// <summary>
+    /// Initializes or configures Navigation.
+    /// </summary>
     public TablerTabs Navigation(TabNavigation navigation) {
         PrivateTabNavigation = navigation;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures AddTab.
+    /// </summary>
     public TablerTabsPanel AddTab(string title, Element content) {
         var tabsPanel = new TablerTabsPanel().Title(title);
         tabsPanel.Add(content);
@@ -20,6 +27,9 @@ public class TablerTabs : Element {
         return tabsPanel;
     }
 
+    /// <summary>
+    /// Initializes or configures AddTab.
+    /// </summary>
     public TablerTabsPanel AddTab(string title, Action<TablerTabsPanel> panelAction) {
         var tabsPanel = new TablerTabsPanel().Title(title);
         panelAction(tabsPanel);
@@ -27,6 +37,9 @@ public class TablerTabs : Element {
         return tabsPanel;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var cardDiv = new HtmlTag("div").Class("card");
         var cardHeaderDiv = new HtmlTag("div").Class("card-header");
@@ -70,17 +83,26 @@ public class TablerTabs : Element {
     }
 }
 
+/// <summary>
+/// TablerTabs enumeration.
+/// </summary>
 public enum TabState {
     MoveStart,
     MoveEnd
 }
 
+/// <summary>
+/// TablerTabs enumeration.
+/// </summary>
 public enum TabNavigation {
     Fill,
     Reverse
 }
 
 public static class TabStateExtensions {
+    /// <summary>
+    /// Initializes or configures EnumToString.
+    /// </summary>
     public static string EnumToString(this TabState state) {
         return state switch {
             TabState.MoveStart => "ms-auto",
@@ -91,6 +113,9 @@ public static class TabStateExtensions {
 }
 
 public static class NavigationExtensions {
+    /// <summary>
+    /// Initializes or configures EnumToString.
+    /// </summary>
     public static string EnumToString(this TabNavigation navigation) {
         return navigation switch {
             TabNavigation.Fill => "nav-fill",

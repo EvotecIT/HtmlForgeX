@@ -58,50 +58,56 @@ public enum TablerBorderRadius {
 }
 
 public static class TablerBorderExtensions {
+    /// <summary>
+    /// Initializes or configures ToTablerBorderClass.
+    /// </summary>
     public static string ToTablerBorderClass(this TablerBorderStyle style, TablerBorderPosition position = TablerBorderPosition.All, TablerBorderWidth width = TablerBorderWidth.Default) {
         var classes = new List<string>();
-        
+
         // Position classes
         var positionClass = position switch {
             TablerBorderPosition.Top => "border-top",
-            TablerBorderPosition.Bottom => "border-bottom", 
+            TablerBorderPosition.Bottom => "border-bottom",
             TablerBorderPosition.Start => "border-start",
             TablerBorderPosition.End => "border-end",
             TablerBorderPosition.Horizontal => "border-top border-bottom",
             TablerBorderPosition.Vertical => "border-start border-end",
             _ => "border"
         };
-        
+
         if (style != TablerBorderStyle.None) {
             classes.Add(positionClass);
         }
-        
+
         // Width classes
         var widthClass = width switch {
             TablerBorderWidth.Thin => "border-1",
-            TablerBorderWidth.Thick => "border-3", 
+            TablerBorderWidth.Thick => "border-3",
             TablerBorderWidth.None => "border-0",
             _ => ""
         };
-        
+
         if (!string.IsNullOrEmpty(widthClass)) {
             classes.Add(widthClass);
         }
-        
+
         // Style classes
         var styleClass = style switch {
             TablerBorderStyle.Dashed => "border-dashed",
             TablerBorderStyle.Dotted => "border-dotted",
             _ => ""
         };
-        
+
         if (!string.IsNullOrEmpty(styleClass)) {
             classes.Add(styleClass);
         }
-        
+
         return string.Join(" ", classes);
     }
-    
+
+    /// <summary>
+    /// Initializes or configures ToTablerShadowClass.
+    /// </summary>
     public static string ToTablerShadowClass(this TablerShadow shadow) {
         return shadow switch {
             TablerShadow.Small => "shadow-sm",
@@ -111,7 +117,10 @@ public static class TablerBorderExtensions {
             _ => ""
         };
     }
-    
+
+    /// <summary>
+    /// Initializes or configures ToTablerRadiusClass.
+    /// </summary>
     public static string ToTablerRadiusClass(this TablerBorderRadius radius) {
         return radius switch {
             TablerBorderRadius.Small => "rounded-1",

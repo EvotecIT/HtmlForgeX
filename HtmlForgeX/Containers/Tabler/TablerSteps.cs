@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -10,31 +11,49 @@ public class TablerSteps : Element {
     private TablerMarginStyle? PrivateMargin { get; set; } = TablerMarginStyle.MY4; // Default margin like Tabler examples
     private List<TablerStepItem> StepItems { get; set; } = new List<TablerStepItem>();
 
+    /// <summary>
+    /// Initializes or configures Orientation.
+    /// </summary>
     public TablerSteps Orientation(StepsOrientation orientation) {
         PrivateOrientation = orientation;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Color.
+    /// </summary>
     public TablerSteps Color(TablerColor color) {
         PrivateStepsColor = color;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures StepCounting.
+    /// </summary>
     public TablerSteps StepCounting() {
         PrivateStepCounting = true;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Margin.
+    /// </summary>
     public TablerSteps Margin(TablerMarginStyle margin) {
         PrivateMargin = margin;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures AddStep.
+    /// </summary>
     public TablerSteps AddStep(string text, bool isActive = false) {
         StepItems.Add(new TablerStepItem(text, isActive));
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures AddStep.
+    /// </summary>
     public TablerSteps AddStep(string name, string text, bool isActive = false) {
         StepItems.Add(new TablerStepItem(name, text, isActive));
         return this;
@@ -72,6 +91,9 @@ public class TablerSteps : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var stepsUl = new HtmlTag("ul");
 
@@ -86,7 +108,7 @@ public class TablerSteps : Element {
 
         // Add custom styling to remove unwanted connecting lines between steps
         stepsUl.Style("--step-border-color", "transparent")
-               .Style("--step-border-width", "0")  
+               .Style("--step-border-width", "0")
                .Style("border", "none");
 
         foreach (var stepItem in StepItems.WhereNotNull()) {
@@ -111,12 +133,18 @@ public class TablerStepItem : Element {
     private string PrivateUrl { get; set; } = "";
     private string PrivateTooltip { get; set; } = "";
 
+    /// <summary>
+    /// Initializes or configures TablerStepItem.
+    /// </summary>
     public TablerStepItem(string name, bool isActive = false) {
         Name = name;
         IsActive = isActive;
         PrivateStepState = isActive ? TablerStepState.Active : TablerStepState.Pending;
     }
 
+    /// <summary>
+    /// Initializes or configures TablerStepItem.
+    /// </summary>
     public TablerStepItem(string name, string text, bool isActive = false) {
         Name = name;
         Text = text;
@@ -124,12 +152,18 @@ public class TablerStepItem : Element {
         PrivateStepState = isActive ? TablerStepState.Active : TablerStepState.Pending;
     }
 
+    /// <summary>
+    /// Initializes or configures TablerStepItem.
+    /// </summary>
     public TablerStepItem(string name, TablerStepState state) {
         Name = name;
         PrivateStepState = state;
         IsActive = state == TablerStepState.Active;
     }
 
+    /// <summary>
+    /// Initializes or configures TablerStepItem.
+    /// </summary>
     public TablerStepItem(string name, string text, TablerStepState state) {
         Name = name;
         Text = text;
@@ -137,11 +171,17 @@ public class TablerStepItem : Element {
         IsActive = state == TablerStepState.Active;
     }
 
+    /// <summary>
+    /// Initializes or configures TextStyle.
+    /// </summary>
     public TablerStepItem TextStyle(TablerTextStyle textStyle) {
         PrivateTextStyle = textStyle;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures HeaderStyle.
+    /// </summary>
     public TablerStepItem HeaderStyle(HeaderLevelTag headerStyle) {
         PrivateHeaderLevel = headerStyle;
         return this;
@@ -172,14 +212,20 @@ public class TablerStepItem : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         return ToString(StepsOrientation.Vertical);
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public string ToString(StepsOrientation orientation) {
         var stepItemLi = new HtmlTag("li");
         stepItemLi.Class("step-item");
-        
+
         // Apply state classes
         switch (PrivateStepState) {
             case TablerStepState.Active:
@@ -192,20 +238,20 @@ public class TablerStepItem : Element {
                 // No additional class needed for pending
                 break;
         }
-        
+
         // Add tooltip if specified
         if (!string.IsNullOrEmpty(PrivateTooltip)) {
             stepItemLi.Attribute("data-bs-toggle", "tooltip");
             stepItemLi.Attribute("title", PrivateTooltip);
         }
-        
+
         // Determine if this should be clickable
         bool isClickable = !string.IsNullOrEmpty(PrivateUrl);
-        
+
         if (isClickable) {
             // Create clickable step with <a> tag
             var linkTag = new HtmlTag("a").Attribute("href", PrivateUrl);
-            
+
             if (orientation == StepsOrientation.Vertical) {
                 var nameDiv = new HtmlTag("div").Class(PrivateHeaderLevel.EnumToString()).Class(MarginStyle.EnumToString()).Value(Name);
                 var textDiv = new HtmlTag("div").Class(PrivateTextStyle.EnumToString().ToLower()).Value(Text);
@@ -213,7 +259,7 @@ public class TablerStepItem : Element {
             } else {
                 linkTag.Value(Name);
             }
-            
+
             stepItemLi.Value(linkTag);
         } else {
             // Create non-clickable step with <span> or direct content

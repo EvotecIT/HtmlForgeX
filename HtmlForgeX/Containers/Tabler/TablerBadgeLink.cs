@@ -16,6 +16,9 @@ public class TablerBadgeLink : Element {
 
     private TablerBadgeStyle Style { get; set; }
 
+    /// <summary>
+    /// Initializes or configures TablerBadgeLink.
+    /// </summary>
     public TablerBadgeLink(string text, string href, TablerColor color, TablerBadgeStyle style = TablerBadgeStyle.Normal) {
         Text = text;
         Href = href;
@@ -23,6 +26,9 @@ public class TablerBadgeLink : Element {
         Style = style;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var badgeTag = new HtmlTag("a")
             .Attribute("href", Href)

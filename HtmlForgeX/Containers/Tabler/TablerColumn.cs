@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -9,19 +10,31 @@ public class TablerColumn : Element {
 
     public int Count { get; set; }
 
+    /// <summary>
+    /// Initializes or configures TablerColumn.
+    /// </summary>
     public TablerColumn() {
         Class = "col";
     }
 
+    /// <summary>
+    /// Initializes or configures TablerColumn.
+    /// </summary>
     public TablerColumn(TablerColumnNumber columnNumber) {
         Class = columnNumber.EnumToString();
     }
 
+    /// <summary>
+    /// Initializes or configures WithClass.
+    /// </summary>
     public TablerColumn WithClass(string className) {
         Class = className;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         //Console.WriteLine("Generating HtmlColumn...");
         var childrenHtml = string.Join("", Children.WhereNotNull().Select(child => child.ToString()));
@@ -30,11 +43,17 @@ public class TablerColumn : Element {
         return result;
     }
 
+    /// <summary>
+    /// Initializes or configures Add.
+    /// </summary>
     public TablerColumn Add(Action<TablerColumn> config) {
         config(this);
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Card.
+    /// </summary>
     public TablerCard Card(Action<TablerCard> config) {
         var card = new TablerCard();
         config(card);
@@ -42,6 +61,9 @@ public class TablerColumn : Element {
         return card;
     }
 
+    /// <summary>
+    /// Initializes or configures Card.
+    /// </summary>
     public new TablerCard Card(int count, Action<TablerCard> config) {
         var card = new TablerCard(count);
         config(card);

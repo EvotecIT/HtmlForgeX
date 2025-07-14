@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -11,17 +12,26 @@ public class TablerAccordion : Element {
     private bool PrivateAlwaysOpen { get; set; } = false;
 
 
+    /// <summary>
+    /// Initializes or configures AddItem.
+    /// </summary>
     public TablerAccordion AddItem(TablerAccordionItem item) {
         Items.Add(item);
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures AddItem.
+    /// </summary>
     public TablerAccordionItem AddItem(string title) {
         var accordionItem = new TablerAccordionItem(Id).Title(title);
         Items.Add(accordionItem);
         return accordionItem;
     }
 
+    /// <summary>
+    /// Initializes or configures AddItem.
+    /// </summary>
     public TablerAccordionItem AddItem(string title, Action<TablerAccordionItem> item) {
         var accordionItem = new TablerAccordionItem(Id).Title(title);
         item(accordionItem);
@@ -29,6 +39,9 @@ public class TablerAccordion : Element {
         return accordionItem;
     }
 
+    /// <summary>
+    /// Initializes or configures AddItem.
+    /// </summary>
     public TablerAccordionItem AddItem(string title, Element content) {
         var accordionItem = new TablerAccordionItem(Id).Title(title).Content(content);
         Items.Add(accordionItem);
@@ -59,15 +72,18 @@ public class TablerAccordion : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var accordionDiv = new HtmlTag("div").Class("accordion").Id(Id);
-        
+
         // Apply accordion type classes
         var typeClass = PrivateAccordionType.EnumToString();
         if (!string.IsNullOrEmpty(typeClass)) {
             accordionDiv.Class(typeClass);
         }
-        
+
         // Apply color theme if specified
         if (PrivateColor.HasValue) {
             accordionDiv.Class($"accordion-{PrivateColor.Value.ToTablerString()}");

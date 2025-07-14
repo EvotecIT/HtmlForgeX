@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -13,7 +14,7 @@ namespace HtmlForgeX;
 public class TablerRow : Element {
     private HashSet<TablerRowType> RowTypes { get; set; } = new HashSet<TablerRowType>();
     private List<string> AdditionalClasses { get; set; } = new List<string>();
-    
+
     // Spacing properties
     private TablerSpacing? MarginTop { get; set; }
     private TablerSpacing? MarginBottom { get; set; }
@@ -22,7 +23,7 @@ public class TablerRow : Element {
     private TablerSpacing? MarginHorizontal { get; set; }
     private TablerSpacing? MarginVertical { get; set; }
     private TablerSpacing? MarginAll { get; set; }
-    
+
     private TablerSpacing? PaddingTop { get; set; }
     private TablerSpacing? PaddingBottom { get; set; }
     private TablerSpacing? PaddingStart { get; set; }
@@ -30,9 +31,12 @@ public class TablerRow : Element {
     private TablerSpacing? PaddingHorizontal { get; set; }
     private TablerSpacing? PaddingVertical { get; set; }
     private TablerSpacing? PaddingAll { get; set; }
-    
+
     private TablerSpacing? GutterSpacing { get; set; }
 
+    /// <summary>
+    /// Initializes or configures TablerRow.
+    /// </summary>
     public TablerRow(params TablerRowType[] rowTypes) {
         RowTypes.Add(TablerRowType.Default);
         foreach (var rowType in rowTypes) {
@@ -40,28 +44,31 @@ public class TablerRow : Element {
         }
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         HtmlTag rowTag = new HtmlTag("div");
-        
+
         // Add row type classes
         foreach (var rowType in RowTypes) {
             rowTag.Class(rowType.EnumToString());
         }
-        
+
         // Add spacing classes
         AddSpacingClasses(rowTag);
-        
+
         // Add any additional classes
         foreach (var additionalClass in AdditionalClasses) {
             rowTag.Class(additionalClass);
         }
-        
+
         foreach (var child in Children.WhereNotNull()) {
             rowTag.Value(child);
         }
         return rowTag.ToString();
     }
-    
+
     private void AddSpacingClasses(HtmlTag tag) {
         // Margin classes (specific directions take precedence)
         if (MarginTop.HasValue) tag.Class(MarginTop.Value.ToMarginClass(TablerSpacingDirection.Top));
@@ -71,7 +78,7 @@ public class TablerRow : Element {
         if (MarginHorizontal.HasValue) tag.Class(MarginHorizontal.Value.ToMarginClass(TablerSpacingDirection.Horizontal));
         if (MarginVertical.HasValue) tag.Class(MarginVertical.Value.ToMarginClass(TablerSpacingDirection.Vertical));
         if (MarginAll.HasValue) tag.Class(MarginAll.Value.ToMarginClass(TablerSpacingDirection.All));
-        
+
         // Padding classes
         if (PaddingTop.HasValue) tag.Class(PaddingTop.Value.ToPaddingClass(TablerSpacingDirection.Top));
         if (PaddingBottom.HasValue) tag.Class(PaddingBottom.Value.ToPaddingClass(TablerSpacingDirection.Bottom));
@@ -80,13 +87,13 @@ public class TablerRow : Element {
         if (PaddingHorizontal.HasValue) tag.Class(PaddingHorizontal.Value.ToPaddingClass(TablerSpacingDirection.Horizontal));
         if (PaddingVertical.HasValue) tag.Class(PaddingVertical.Value.ToPaddingClass(TablerSpacingDirection.Vertical));
         if (PaddingAll.HasValue) tag.Class(PaddingAll.Value.ToPaddingClass(TablerSpacingDirection.All));
-        
+
         // Gutter spacing for columns
         if (GutterSpacing.HasValue) tag.Class(GutterSpacing.Value.ToGapClass());
     }
 
     #region Fluent API Methods for Spacing
-    
+
     /// <summary>
     /// Sets margin for all directions
     /// </summary>
@@ -94,7 +101,7 @@ public class TablerRow : Element {
         MarginAll = spacing;
         return this;
     }
-    
+
     /// <summary>
     /// Sets margin for specific direction
     /// </summary>
@@ -110,7 +117,7 @@ public class TablerRow : Element {
         }
         return this;
     }
-    
+
     /// <summary>
     /// Sets padding for all directions
     /// </summary>
@@ -118,7 +125,7 @@ public class TablerRow : Element {
         PaddingAll = spacing;
         return this;
     }
-    
+
     /// <summary>
     /// Sets padding for specific direction
     /// </summary>
@@ -134,7 +141,7 @@ public class TablerRow : Element {
         }
         return this;
     }
-    
+
     /// <summary>
     /// Sets gutter spacing between columns
     /// </summary>
@@ -142,7 +149,7 @@ public class TablerRow : Element {
         GutterSpacing = spacing;
         return this;
     }
-    
+
     /// <summary>
     /// Adds custom CSS class
     /// </summary>
@@ -152,23 +159,26 @@ public class TablerRow : Element {
         }
         return this;
     }
-    
+
     /// <summary>
     /// Convenient method to add vertical spacing (common use case)
     /// </summary>
     public TablerRow WithVerticalSpacing(TablerSpacing spacing = TablerSpacing.Medium) {
         return WithMargin(spacing, TablerSpacingDirection.Vertical);
     }
-    
+
     /// <summary>
     /// Convenient method to add bottom margin (common use case for separating rows)
     /// </summary>
     public TablerRow WithBottomSpacing(TablerSpacing spacing = TablerSpacing.Medium) {
         return WithMargin(spacing, TablerSpacingDirection.Bottom);
     }
-    
+
     #endregion
 
+    /// <summary>
+    /// Initializes or configures Column.
+    /// </summary>
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);
@@ -176,6 +186,9 @@ public class TablerRow : Element {
         return column;
     }
 
+    /// <summary>
+    /// Initializes or configures Column.
+    /// </summary>
     public TablerColumn Column(TablerColumnNumber number, Action<TablerColumn> config) {
         var column = new TablerColumn(number);
         config(column);

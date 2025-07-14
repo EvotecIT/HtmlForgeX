@@ -52,32 +52,50 @@ public class TablerCard : Element {
 
     private int Number { get; set; }
 
+    /// <summary>
+    /// Initializes or configures TablerCard.
+    /// </summary>
     public TablerCard() {
         // Cards should not have column classes - those belong on the column container
     }
 
+    /// <summary>
+    /// Initializes or configures TablerCard.
+    /// </summary>
     public TablerCard(int number) {
         // Deprecated: column classes should not be on cards
         // Keep for backward compatibility but don't set column classes
         Number = number;
     }
 
+    /// <summary>
+    /// Initializes or configures Content.
+    /// </summary>
     public TablerCard Content(string content) {
         CardContent = content;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Style.
+    /// </summary>
     public TablerCard Style(string style) {
         CardInnerStyle = style;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Footer.
+    /// </summary>
     public TablerCardFooter Footer() {
         PrivateFooter = new TablerCardFooter();
         return PrivateFooter;
     }
 
 
+    /// <summary>
+    /// Initializes or configures Footer.
+    /// </summary>
     public TablerCard Footer(Action<TablerCardFooter> footer) {
         var footerElement = new TablerCardFooter();
         footer(footerElement);
@@ -113,6 +131,9 @@ public class TablerCard : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         // Create the outer card element (div or a for links)
         var cardTag = IsLink ? new HtmlTag("a") : new HtmlTag("div");
@@ -301,34 +322,34 @@ public class TablerCard : Element {
             var pos = property?.GetValue(img)?.ToString();
             return pos == "Background";
         });
-        
+
         foreach (var image in backgroundImages) {
             // Get the image URL and apply it as background to the card
             var urlProperty = image.GetType().GetProperty("ImageUrl", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             var imageUrl = urlProperty?.GetValue(image)?.ToString();
-            
+
             if (!string.IsNullOrEmpty(imageUrl)) {
                 // Check if image is embedded as base64
                 var embedProperty = image.GetType().GetProperty("EmbedAsBase64", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 var isEmbedded = (bool)(embedProperty?.GetValue(image) ?? false);
-                
+
                 string finalUrl = imageUrl;
                 if (isEmbedded) {
                     var base64Property = image.GetType().GetProperty("Base64Data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                     var mimeProperty = image.GetType().GetProperty("MimeType", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                     var base64Data = base64Property?.GetValue(image)?.ToString();
                     var mimeType = mimeProperty?.GetValue(image)?.ToString();
-                    
+
                     if (!string.IsNullOrEmpty(base64Data) && !string.IsNullOrEmpty(mimeType)) {
                         finalUrl = "data:" + mimeType + ";base64," + base64Data;
                     }
                 }
-                
+
                 cardTag.Style("background-image", "url(" + finalUrl + ")");
                 cardTag.Style("background-size", "cover");
                 cardTag.Style("background-position", "center");
                 classes.Add("card-img-background");
-                
+
                 // Get effect class if any
                 var effectProperty = image.GetType().GetProperty("Effect", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 var effect = effectProperty?.GetValue(image);
@@ -386,12 +407,18 @@ public class TablerCard : Element {
     }
 
 
+    /// <summary>
+    /// Initializes or configures Add.
+    /// </summary>
     public TablerCard Add(Action<TablerCard> config) {
         config(this);
         return this;
     }
 
     // Enhanced card methods following existing patterns
+    /// <summary>
+    /// Initializes or configures AsLink.
+    /// </summary>
     public TablerCard AsLink(string url, string? effect = null) {
         IsLink = true;
         LinkUrl = url;
@@ -399,37 +426,58 @@ public class TablerCard : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures AsActive.
+    /// </summary>
     public TablerCard AsActive() {
         IsActive = true;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures AsInactive.
+    /// </summary>
     public TablerCard AsInactive() {
         IsInactive = true;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures AsStacked.
+    /// </summary>
     public TablerCard AsStacked() {
         IsStacked = true;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures AsBorderless.
+    /// </summary>
     public TablerCard AsBorderless() {
         IsBorderless = true;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Rotate.
+    /// </summary>
     public TablerCard Rotate(string direction) {
         CardRotation = direction; // "left" or "right"
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures StatusIndicator.
+    /// </summary>
     public TablerCard StatusIndicator(string position, TablerColor color) {
         StatusPosition = position; // "top", "bottom", "start", "end"
         StatusColor = color;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Ribbon.
+    /// </summary>
     public TablerCard Ribbon(string text, TablerColor? color = null, string position = "top") {
         RibbonText = text;
         RibbonColor = color ?? TablerColor.Red;
@@ -437,6 +485,9 @@ public class TablerCard : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Ribbon.
+    /// </summary>
     public TablerCard Ribbon(TablerIconType icon, TablerColor? color = null, string position = "top") {
         RibbonIcon = icon;
         RibbonColor = color ?? TablerColor.Yellow;
@@ -444,6 +495,9 @@ public class TablerCard : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Stamp.
+    /// </summary>
     public TablerCard Stamp(TablerIconType icon, TablerColor? backgroundColor = null, TablerColor? iconColor = null) {
         StampIcon = icon;
         StampIconBackgroundColor = backgroundColor ?? TablerColor.Yellow;
@@ -451,12 +505,18 @@ public class TablerCard : Element {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Progress.
+    /// </summary>
     public TablerCard Progress(double percentage, TablerColor? color = null) {
         ProgressValue = Math.Max(0, Math.Min(percentage, 100));
         ProgressColor = color;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Background.
+    /// </summary>
     public TablerCard Background(TablerColor color, bool isLight = false) {
         BackgroundColor = color;
         IsBackgroundLight = isLight;

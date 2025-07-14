@@ -5,12 +5,18 @@ public class TablerBadgeButton : Element {
     public string BadgeText { get; set; }
     public TablerColor BadgeColor { get; set; }
 
+    /// <summary>
+    /// Initializes or configures TablerBadgeButton.
+    /// </summary>
     public TablerBadgeButton(string text, string badgeText, TablerColor badgeColor) {
         Text = text;
         BadgeText = badgeText;
         BadgeColor = badgeColor;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var badgeTag = new HtmlTag("span")
             .Class("badge")

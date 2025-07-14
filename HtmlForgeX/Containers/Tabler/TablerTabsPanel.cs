@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -10,6 +11,9 @@ public class TablerTabsPanel : ElementContainer {
     internal bool IsDisabled { get; set; }
     internal TabState? PrivateTabState { get; set; }
 
+    /// <summary>
+    /// Initializes or configures Title.
+    /// </summary>
     public TablerTabsPanel Title(string title) {
         PrivateTitle = title;
         return this;
@@ -44,6 +48,9 @@ public class TablerTabsPanel : ElementContainer {
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var panelDiv = new HtmlTag("div")
             .Class("tab-pane")

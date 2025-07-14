@@ -8,7 +8,7 @@ namespace HtmlForgeX;
 public class TablerCardNavigation : Element {
     private TablerCardNavigationType NavType { get; set; } = TablerCardNavigationType.Tabs;
     private List<TablerCardNavItem> NavItems { get; set; } = new List<TablerCardNavItem>();
-    
+
     /// <summary>
     /// Set navigation type (tabs or pills)
     /// </summary>
@@ -16,7 +16,7 @@ public class TablerCardNavigation : Element {
         NavType = type;
         return this;
     }
-    
+
     /// <summary>
     /// Add navigation items
     /// </summary>
@@ -26,11 +26,14 @@ public class TablerCardNavigation : Element {
         NavItems = builder.GetItems();
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var navList = new HtmlTag("ul");
         var classes = new List<string> { "nav" };
-        
+
         switch (NavType) {
             case TablerCardNavigationType.Tabs:
                 classes.Add("nav-tabs");
@@ -41,13 +44,13 @@ public class TablerCardNavigation : Element {
                 classes.Add("card-header-pills");
                 break;
         }
-        
+
         navList.Class(string.Join(" ", classes));
-        
+
         foreach (var item in NavItems) {
             navList.Value(item.ToString());
         }
-        
+
         return navList.ToString();
     }
 }
@@ -68,39 +71,54 @@ public class TablerCardNavItem : Element {
     private string ItemUrl { get; set; } = "#";
     private bool IsActive { get; set; } = false;
     private bool IsDisabled { get; set; } = false;
-    
+
+    /// <summary>
+    /// Initializes or configures Text.
+    /// </summary>
     public TablerCardNavItem Text(string text) {
         ItemText = text;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures Url.
+    /// </summary>
     public TablerCardNavItem Url(string url) {
         ItemUrl = url;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures Active.
+    /// </summary>
     public TablerCardNavItem Active() {
         IsActive = true;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures Disabled.
+    /// </summary>
     public TablerCardNavItem Disabled() {
         IsDisabled = true;
         return this;
     }
-    
+
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         var listItem = new HtmlTag("li").Class("nav-item");
         var linkItem = new HtmlTag("a");
-        
+
         var linkClasses = new List<string> { "nav-link" };
         if (IsActive) linkClasses.Add("active");
         if (IsDisabled) linkClasses.Add("disabled");
-        
+
         linkItem.Class(string.Join(" ", linkClasses));
         linkItem.Attribute("href", ItemUrl);
         linkItem.Value(ItemText);
-        
+
         listItem.Value(linkItem);
         return listItem.ToString();
     }
@@ -111,13 +129,16 @@ public class TablerCardNavItem : Element {
 /// </summary>
 public class TablerCardNavBuilder {
     private List<TablerCardNavItem> items = new List<TablerCardNavItem>();
-    
+
+    /// <summary>
+    /// Initializes or configures Item.
+    /// </summary>
     public TablerCardNavBuilder Item(string text, Action<TablerCardNavItem>? config = null) {
         var item = new TablerCardNavItem().Text(text);
         config?.Invoke(item);
         items.Add(item);
         return this;
     }
-    
+
     public List<TablerCardNavItem> GetItems() => items;
 }

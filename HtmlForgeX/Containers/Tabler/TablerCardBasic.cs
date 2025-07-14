@@ -7,39 +7,60 @@ public class TablerCardBasic : Element {
     private TablerMarginStyle? PrivateMargin { get; set; }
     private bool AutoMargin { get; set; } = true; // Enable automatic margin detection by default
 
+    /// <summary>
+    /// Initializes or configures TablerCardBasic.
+    /// </summary>
     public TablerCardBasic() { }
 
+    /// <summary>
+    /// Initializes or configures TablerCardBasic.
+    /// </summary>
     public TablerCardBasic(string title, string text) {
         SubHeaderText = title;
         H3Text = text;
     }
 
+    /// <summary>
+    /// Initializes or configures Title.
+    /// </summary>
     public TablerCardBasic Title(string title) {
         SubHeaderText = title;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Text.
+    /// </summary>
     public new TablerCardBasic Text(string text) {
         H3Text = text;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures Margin.
+    /// </summary>
     public TablerCardBasic Margin(TablerMarginStyle margin) {
         PrivateMargin = margin;
         AutoMargin = false; // Disable auto margin when explicitly set
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures DisableAutoMargin.
+    /// </summary>
     public TablerCardBasic DisableAutoMargin() {
         AutoMargin = false;
         return this;
     }
 
+    /// <summary>
+    /// Initializes or configures ToString.
+    /// </summary>
     public override string ToString() {
         // Create the outer div for the card
         var cardDiv = new HtmlTag("div");
         cardDiv.Class("card").Class(PrivateCardStyle);
-        
+
         // Apply margin - either explicit or auto-detected
         var marginToApply = GetEffectiveMargin();
         if (marginToApply.HasValue) {
