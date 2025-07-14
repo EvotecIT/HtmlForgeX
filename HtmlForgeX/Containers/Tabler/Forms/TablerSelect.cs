@@ -18,29 +18,43 @@ public class TablerSelect : Element {
     }
 
     /// <summary>
-    /// Initializes or configures Label.
+    /// Sets the label text displayed above the select element.
     /// </summary>
+    /// <param name="text">The label text.</param>
+    /// <returns>The current <see cref="TablerSelect"/> instance.</returns>
     public TablerSelect Label(string text) { _label = text; return this; }
     /// <summary>
-    /// Initializes or configures Multiple.
+    /// Allows multiple items to be selected.
     /// </summary>
+    /// <param name="multiple">Whether multiple selection is enabled.</param>
+    /// <returns>The current <see cref="TablerSelect"/> instance.</returns>
     public TablerSelect Multiple(bool multiple = true) { _multiple = multiple; return this; }
     /// <summary>
-    /// Initializes or configures Searchable.
+    /// Enables client-side search functionality for the select element.
     /// </summary>
+    /// <param name="enable">Whether search should be enabled.</param>
+    /// <returns>The current <see cref="TablerSelect"/> instance.</returns>
     public TablerSelect Searchable(bool enable = true) { _searchable = enable; return this; }
     /// <summary>
-    /// Initializes or configures Option.
+    /// Adds a selectable option.
     /// </summary>
+    /// <param name="text">Display text for the option.</param>
+    /// <param name="value">Value submitted when the option is selected.</param>
+    /// <returns>The current <see cref="TablerSelect"/> instance.</returns>
     public TablerSelect Option(string text, string value) { _options.Add((value, text)); return this; }
     /// <summary>
-    /// Initializes or configures Options.
+    /// Adds multiple options based on the provided collection of values.
     /// </summary>
+    /// <param name="values">Values to use for both option text and value.</param>
+    /// <returns>The current <see cref="TablerSelect"/> instance.</returns>
     public TablerSelect Options(IEnumerable<string> values) {
         foreach (var v in values) { _options.Add((v, v)); }
         return this;
     }
 
+    /// <summary>
+    /// Registers any required JavaScript libraries for enhanced select controls.
+    /// </summary>
     protected internal override void RegisterLibraries() {
         if (_searchable) {
             Document?.Configuration.Libraries.TryAdd(Libraries.TomSelect, 0);
@@ -48,7 +62,7 @@ public class TablerSelect : Element {
     }
 
     /// <summary>
-    /// Initializes or configures ToString.
+    /// Generates the HTML markup for the select element and associated script.
     /// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("div").Class("mb-3");

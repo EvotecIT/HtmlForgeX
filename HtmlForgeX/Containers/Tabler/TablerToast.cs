@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Helper for rendering Tabler toast notifications.
+/// </summary>
 public class TablerToast : Element {
     private string Id { get; } = GlobalStorage.GenerateRandomId("toast");
     private string PrivateTitle { get; set; } = string.Empty;

@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Provides a tabbed card component containing multiple panels.
+/// </summary>
 public class TablerTabs : Element {
     public List<TablerTabsPanel> Panels { get; set; } = new List<TablerTabsPanel>();
     private string Id { get; } = GlobalStorage.GenerateRandomId("tabs");

@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents a single item within a Tabler accordion component.
+/// </summary>
 public class TablerAccordionItem : Element {
     private string TitleElement { get; set; }
     private Element ContentElement { get; set; }

@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Generates an anchor element styled as a badge.
+/// </summary>
 public class TablerBadgeLink : Element {
     private new string Text { get; set; }
     private string Href {

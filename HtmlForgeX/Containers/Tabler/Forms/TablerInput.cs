@@ -22,32 +22,45 @@ public class TablerInput : Element {
     }
 
     /// <summary>
-    /// Initializes or configures Type.
+    /// Sets the HTML <c>type</c> attribute for the input element.
     /// </summary>
+    /// <param name="type">The input type to use.</param>
+    /// <returns>The current <see cref="TablerInput"/> instance.</returns>
     public TablerInput Type(InputType type) { _type = type; return this; }
     /// <summary>
-    /// Initializes or configures Label.
+    /// Sets the label text displayed above the input.
     /// </summary>
+    /// <param name="text">The label text.</param>
+    /// <returns>The current <see cref="TablerInput"/> instance.</returns>
     public TablerInput Label(string text) { _label = text; return this; }
     /// <summary>
-    /// Initializes or configures Placeholder.
+    /// Sets the placeholder text for the input element.
     /// </summary>
+    /// <param name="text">The placeholder text.</param>
+    /// <returns>The current <see cref="TablerInput"/> instance.</returns>
     public TablerInput Placeholder(string text) { _placeholder = text; return this; }
     /// <summary>
-    /// Initializes or configures Required.
+    /// Marks the input as required.
     /// </summary>
+    /// <param name="required">Whether the input is required.</param>
+    /// <returns>The current <see cref="TablerInput"/> instance.</returns>
     public TablerInput Required(bool required = true) { _required = required; return this; }
     /// <summary>
-    /// Initializes or configures Icon.
+    /// Adds an icon to the input element.
     /// </summary>
+    /// <param name="icon">Icon to display inside the input.</param>
+    /// <returns>The current <see cref="TablerInput"/> instance.</returns>
     public TablerInput Icon(TablerIconType icon) { _icon = icon; return this; }
     /// <summary>
-    /// Initializes or configures Validation.
+    /// Sets validation state and message for the input element.
     /// </summary>
+    /// <param name="state">Validation state.</param>
+    /// <param name="message">Message shown below the input.</param>
+    /// <returns>The current <see cref="TablerInput"/> instance.</returns>
     public TablerInput Validation(ValidationState state, string message) { _state = state; _message = message; return this; }
 
     /// <summary>
-    /// Initializes or configures ToString.
+    /// Generates the HTML markup for the input element and its wrapper.
     /// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("div").Class("mb-3");

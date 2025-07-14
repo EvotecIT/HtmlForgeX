@@ -4,14 +4,23 @@ namespace HtmlForgeX;
 /// Specifies horizontal rule text alignment options.
 /// </summary>
 public enum HrTextAlignment {
+    /// <summary>
+    /// Center the text within the horizontal rule.
+    /// </summary>
     Center,
+    /// <summary>
+    /// Left-align the text within the horizontal rule.
+    /// </summary>
     Left,
+    /// <summary>
+    /// Right-align the text within the horizontal rule.
+    /// </summary>
     Right
 }
 
 public static class HrTextAlignmentExtensions {
     /// <summary>
-    /// Initializes or configures ToClassString.
+    /// Converts the <see cref="HrTextAlignment"/> value to a CSS class string.
     /// </summary>
     public static string ToClassString(this HrTextAlignment alignment) {
         return alignment switch {
