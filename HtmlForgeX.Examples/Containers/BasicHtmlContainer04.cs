@@ -118,8 +118,8 @@ internal class BasicHtmlContainer04 {
                 });
                 row.Column(TablerColumnNumber.Eight, column => {
                     column.Card(card => {
-                        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
-                        card.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
+                        card.Logs("HTTP/1.1 200 Connection established", TablerLogsTheme.Primary).Title(HeaderLevelTag.H4, "Connection");
+                        card.Logs(logs, TablerLogsTheme.Light).Title(HeaderLevelTag.H4, "Timings");
                     });
 
                 });
@@ -157,13 +157,13 @@ internal class BasicHtmlContainer04 {
                             // Enhanced accordion with new features
                             accordion.Type(TablerAccordionType.Flush)
                                     .Color(TablerColor.Primary);
-                            
+
                             accordion.AddItem("📊 Project Overview", item => {
                                 item.Icon(TablerIconType.FileDescription)
                                     .Expanded(true)
                                     .Content(new Span().AddContent("Enhanced accordion demonstration with icons and expanded state"));
                             });
-                            
+
                             accordion.AddItem("🔄 Order Processing", item => {
                                 item.Icon(TablerIconType.Package)
                                     .Content(content => {
@@ -186,7 +186,7 @@ internal class BasicHtmlContainer04 {
                                             .AddStep("Cache", "Performance optimized", TablerStepState.Active));
                                     });
                             });
-                            
+
                             accordion.AddItem("📋 Data Summary", item => {
                                 item.Icon(TablerIconType.Table)
                                     .Content(content => {
