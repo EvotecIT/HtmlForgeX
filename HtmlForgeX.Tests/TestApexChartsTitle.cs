@@ -3,6 +3,9 @@ using System.Text.Json;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Validates fluent configuration of the <see cref="ApexChartsTitle"/> component.
+/// </summary>
 [TestClass]
 public class TestApexChartsTitle {
     [TestMethod]

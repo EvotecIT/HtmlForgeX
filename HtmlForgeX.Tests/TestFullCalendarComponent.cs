@@ -3,6 +3,9 @@ using System;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Exercises usage of the <see cref="FullCalendar"/> component within a document.
+/// </summary>
 [TestClass]
 public class TestFullCalendarComponent {
 

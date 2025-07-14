@@ -2,6 +2,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests features of the <see cref="EmailLibrary"/> helper class.
+/// </summary>
 [TestClass]
 public class TestEmailLibrary {
     [TestMethod]

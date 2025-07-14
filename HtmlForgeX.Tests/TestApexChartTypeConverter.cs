@@ -3,6 +3,9 @@ using System.Text.Json;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Validates JSON conversion for the <see cref="ApexChartType"/> enumeration.
+/// </summary>
 [TestClass]
 public class TestApexChartTypeConverter {
     [TestMethod]

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Ensures that using multiple components results in correct library inclusion.
+/// </summary>
 [TestClass]
 public class TestComponentInteractions {
 

@@ -2,6 +2,9 @@ using HtmlForgeX.Tags;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests additional extension methods for HTML tag generation.
+/// </summary>
 [TestClass]
 public class TestHtmlAdditional {
     [TestMethod]

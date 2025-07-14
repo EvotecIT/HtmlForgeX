@@ -1,6 +1,8 @@
 namespace HtmlForgeX.Tests;
 
-
+/// <summary>
+/// Covers <see cref="Span"/> tag helpers and chaining scenarios.
+/// </summary>
 [TestClass]
 public class TestHtmlSpan {
     [TestMethod]

@@ -6,6 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Validates that the built-in style helpers inject expected CSS rules.
+/// </summary>
 [TestClass]
 public class TestDefaultStyles {
     [TestMethod]

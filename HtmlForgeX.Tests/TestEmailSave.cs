@@ -6,6 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Ensures that saving an <see cref="Email"/> writes UTF-8 content properly.
+/// </summary>
 [TestClass]
 public class TestEmailSave {
     [TestMethod]

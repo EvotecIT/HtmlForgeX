@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Exercises core functionality of the <see cref="ApexCharts"/> container.
+/// </summary>
 [TestClass]
 public class TestApexCharts {
     [TestMethod]

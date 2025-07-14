@@ -6,6 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests validation of error logging when library files fail to load.
+/// </summary>
 [TestClass]
 public class TestAddLibraryErrors {
     private static InternalLogger GetLogger() {

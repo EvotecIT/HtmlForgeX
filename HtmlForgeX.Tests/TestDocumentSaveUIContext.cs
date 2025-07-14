@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests document saving when a synchronization context is present.
+/// </summary>
 [TestClass]
 public class TestDocumentSaveUIContext {
     private sealed class NoOpSynchronizationContext : SynchronizationContext {

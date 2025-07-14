@@ -4,6 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests adding libraries from relative file paths in both online and offline modes.
+/// </summary>
 [TestClass]
 public class TestAddLibraryRelativePaths {
     [TestMethod]

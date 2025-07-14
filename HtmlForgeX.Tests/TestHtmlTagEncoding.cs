@@ -2,6 +2,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests encoding behavior when building nested HTML tags.
+/// </summary>
 [TestClass]
 public class TestHtmlTagEncoding {
     [TestMethod]

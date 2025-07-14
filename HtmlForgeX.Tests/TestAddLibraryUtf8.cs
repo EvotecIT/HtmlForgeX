@@ -4,6 +4,9 @@ using System.Text;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Ensures that library files encoded with UTF-8 characters load correctly.
+/// </summary>
 [TestClass]
 public class TestAddLibraryUtf8 {
     [TestMethod]

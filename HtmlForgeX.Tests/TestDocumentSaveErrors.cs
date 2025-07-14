@@ -8,6 +8,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests error handling when saving documents fails.
+/// </summary>
 [TestClass]
 public class TestDocumentSaveErrors {
     private static InternalLogger GetLogger() {

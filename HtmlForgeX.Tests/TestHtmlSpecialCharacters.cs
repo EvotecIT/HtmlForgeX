@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Ensures special characters inside tags are handled as expected.
+/// </summary>
 [TestClass]
 public class TestHtmlSpecialCharacters {
     [TestMethod]

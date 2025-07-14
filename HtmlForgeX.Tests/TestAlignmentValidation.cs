@@ -2,6 +2,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Verifies that alignment helper methods correctly assign CSS alignment values.
+/// </summary>
 [TestClass]
 public class TestAlignmentValidation
 {
