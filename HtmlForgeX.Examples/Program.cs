@@ -140,10 +140,12 @@ internal class Program {
         // Layout configuration demonstration - NEW enum-based configuration system!
         ExampleLayoutConfigurationDemo.Create(openInBrowser);
 
-
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
         BasicApexCharts.Demo(openInBrowser);
+      
+        // VisNetwork images demo
+        BasicVisNetwork.Demo(openInBrowser);  
 
         // Quill editor example
         BasicQuillEditor.Demo(openInBrowser);
