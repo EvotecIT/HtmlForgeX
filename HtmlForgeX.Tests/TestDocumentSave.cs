@@ -6,6 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Verifies document saving, including file creation and UTF-8 handling.
+/// </summary>
 [TestClass]
 public class TestDocumentSave {
 

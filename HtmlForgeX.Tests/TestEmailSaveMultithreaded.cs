@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Ensures multithreaded email saves do not generate conflicts.
+/// </summary>
 [TestClass]
 public class TestEmailSaveMultithreaded {
     [TestMethod]

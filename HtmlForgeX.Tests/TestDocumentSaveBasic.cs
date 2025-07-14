@@ -3,6 +3,9 @@ using System.IO;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Confirms that a simple document can be saved to disk successfully.
+/// </summary>
 [TestClass]
 public class TestDocumentSaveBasic {
     [TestMethod]

@@ -5,6 +5,9 @@ using HtmlForgeX.Logging;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Verifies encoding helper methods to ensure HTML output is safe.
+/// </summary>
 [TestClass]
 public class TestHelpersEncoding {
     [TestMethod]

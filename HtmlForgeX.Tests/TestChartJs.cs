@@ -3,6 +3,9 @@ using System.Text.Json;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests creation and rendering of Chart.js based components.
+/// </summary>
 [TestClass]
 public class TestChartJs {
     [TestMethod]

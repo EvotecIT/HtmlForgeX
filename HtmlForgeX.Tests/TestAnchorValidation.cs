@@ -3,6 +3,9 @@ using HtmlForgeX.Tags;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Checks that the <see cref="Anchor"/> tag enforces valid <c>href</c> values.
+/// </summary>
 [TestClass]
 public class TestAnchorValidation {
     [TestMethod]

@@ -5,6 +5,9 @@ using System.Threading;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Verifies email saving when a synchronization context is captured.
+/// </summary>
 [TestClass]
 public class TestEmailSaveUIContext {
     private sealed class NoOpSynchronizationContext : SynchronizationContext {

@@ -2,6 +2,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Ensures that nested elements keep a reference to the parent document.
+/// </summary>
 [TestClass]
 public class TestDocumentReferencePropagation
 {

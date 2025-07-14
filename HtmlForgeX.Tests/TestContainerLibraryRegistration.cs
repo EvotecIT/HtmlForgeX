@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests that container helpers automatically register required libraries.
+/// </summary>
 [TestClass]
 public class TestContainerLibraryRegistration
 {

@@ -3,6 +3,9 @@ using HtmlForgeX;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests utility helper methods used within the library.
+/// </summary>
 [TestClass]
 public class TestHelpers {
     [TestMethod]

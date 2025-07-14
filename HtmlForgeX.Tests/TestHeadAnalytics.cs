@@ -2,6 +2,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests adding analytics scripts to the document head.
+/// </summary>
 [TestClass]
 public class TestHeadAnalytics
 {

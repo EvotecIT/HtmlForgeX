@@ -3,6 +3,9 @@ using System.IO;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Confirms that a simple email can be saved to disk.
+/// </summary>
 [TestClass]
 public class TestEmailSaveBasic {
     [TestMethod]

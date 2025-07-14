@@ -4,6 +4,9 @@ using System.Collections.Concurrent;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests the default and custom values of <see cref="DocumentConfiguration"/>.
+/// </summary>
 [TestClass]
 public class TestDocumentConfiguration {
 

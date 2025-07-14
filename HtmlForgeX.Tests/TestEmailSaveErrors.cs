@@ -7,6 +7,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Checks that errors encountered during email saving are logged.
+/// </summary>
 [TestClass]
 public class TestEmailSaveErrors {
     private static InternalLogger GetLogger() {

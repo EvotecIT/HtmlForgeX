@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Ensures concurrent saves do not produce conflicting output files.
+/// </summary>
 [TestClass]
 public class TestDocumentSaveMultithreaded {
     [TestMethod]

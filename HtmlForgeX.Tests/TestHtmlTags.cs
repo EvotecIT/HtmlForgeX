@@ -2,6 +2,9 @@ using HtmlForgeX.Tags;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Covers additional scenarios when building <see cref="HtmlTag"/> instances.
+/// </summary>
 [TestClass]
 public class TestHtmlTags {
 

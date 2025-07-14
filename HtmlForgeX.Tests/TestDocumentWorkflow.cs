@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Covers a full document creation workflow from setup to rendering.
+/// </summary>
 [TestClass]
 public class TestDocumentWorkflow {
 

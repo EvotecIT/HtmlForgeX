@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Validates tag helper methods produce well-formed markup.
+/// </summary>
 [TestClass]
 public class TestHtmlTagValidation {
 

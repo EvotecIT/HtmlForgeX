@@ -5,6 +5,9 @@ using HtmlForgeX.Resources;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Tests helper methods for loading and embedding custom fonts.
+/// </summary>
 [TestClass]
 public class TestFontLoader {
 

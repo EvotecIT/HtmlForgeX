@@ -2,6 +2,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
+/// <summary>
+/// Checks that DataTables configuration options serialize to JavaScript correctly.
+/// </summary>
 [TestClass]
 public class TestDataTablesOptions
 {
