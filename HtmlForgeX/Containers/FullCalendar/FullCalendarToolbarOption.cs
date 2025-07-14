@@ -7,8 +7,8 @@ namespace HtmlForgeX;
 /// </summary>
 [JsonConverter(typeof(DescriptionEnumConverter<FullCalendarToolbarOption>))]
 public enum FullCalendarToolbarOption {
-    [Description("title")]
     /// <summary>Displays the current view title.</summary>
+    [Description("title")]
     Title,
 
     [Description("prev")]

@@ -6,8 +6,8 @@ namespace HtmlForgeX;
 /// Text decoration values.
 /// </summary>
 public enum TextDecoration {
-    [Description("none")]
     /// <summary>No decoration.</summary>
+    [Description("none")]
     None = 1,
 
     [Description("line-through")]

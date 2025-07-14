@@ -6,31 +6,31 @@ namespace HtmlForgeX;
 /// Represents a single node within a <see cref="FancyTree"/> control.
 /// </summary>
 public class FancyTreeNode {
-    [JsonPropertyName("title")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     /// <summary>
     /// Display text for the node.
     /// </summary>
+    [JsonPropertyName("title")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? NodeTitle { get; set; }
 
-    [JsonPropertyName("icon")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     /// <summary>
     /// Name of the icon used for the node.
     /// </summary>
+    [JsonPropertyName("icon")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? NodeIcon { get; set; }
 
-    [JsonPropertyName("folder")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     /// <summary>
     /// Gets or sets whether the node represents a folder.
     /// </summary>
+    [JsonPropertyName("folder")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? NodeFolder { get; set; }
 
-    [JsonPropertyName("children")]
     /// <summary>
     /// Child nodes contained under this node.
     /// </summary>
+    [JsonPropertyName("children")]
     public List<FancyTreeNode> Nodes { get; set; } = new List<FancyTreeNode>();
 
     /// <summary>
