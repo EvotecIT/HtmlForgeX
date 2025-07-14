@@ -84,6 +84,11 @@ public class TablerSteps : Element {
             stepsUl.Class(PrivateMargin.Value.EnumToString());
         }
 
+        // Add custom styling to remove unwanted connecting lines between steps
+        stepsUl.Style("--step-border-color", "transparent")
+               .Style("--step-border-width", "0")  
+               .Style("border", "none");
+
         foreach (var stepItem in StepItems.WhereNotNull()) {
             stepsUl.Value(stepItem.ToString(PrivateOrientation));
         }

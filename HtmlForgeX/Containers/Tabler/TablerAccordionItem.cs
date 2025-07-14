@@ -33,6 +33,15 @@ public class TablerAccordionItem : Element {
     }
 
     /// <summary>
+    /// Returns a fluent container for building content using method chaining
+    /// </summary>
+    public ElementContainer Content() {
+        var contentElement = new ElementContainer();
+        ContentElement = contentElement;
+        return contentElement;
+    }
+
+    /// <summary>
     /// Sets an icon to display before the accordion item title
     /// </summary>
     public TablerAccordionItem Icon(TablerIconType icon) {
@@ -116,7 +125,7 @@ public class TablerAccordionItem : Element {
             collapseDiv.Attribute("data-bs-parent", "#" + ParentId);
         }
             
-        var bodyDiv = new HtmlTag("div").Class("accordion-body").Value(ContentElement);
+        var bodyDiv = new HtmlTag("div").Class("accordion-body").Style("padding", "1rem 1.25rem").Value(ContentElement);
         collapseDiv.Value(bodyDiv);
         
         itemDiv.Value(collapseDiv);
