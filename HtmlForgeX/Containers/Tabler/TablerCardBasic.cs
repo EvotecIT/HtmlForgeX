@@ -4,6 +4,8 @@ public class TablerCardBasic : Element {
     private string? PrivateCardStyle { get; set; }
     private string SubHeaderText { get; set; } = "";
     private string H3Text { get; set; } = "";
+    private TablerMarginStyle? PrivateMargin { get; set; }
+    private bool AutoMargin { get; set; } = true; // Enable automatic margin detection by default
 
     public TablerCardBasic() { }
 
@@ -22,10 +24,27 @@ public class TablerCardBasic : Element {
         return this;
     }
 
+    public TablerCardBasic Margin(TablerMarginStyle margin) {
+        PrivateMargin = margin;
+        AutoMargin = false; // Disable auto margin when explicitly set
+        return this;
+    }
+
+    public TablerCardBasic DisableAutoMargin() {
+        AutoMargin = false;
+        return this;
+    }
+
     public override string ToString() {
         // Create the outer div for the card
         var cardDiv = new HtmlTag("div");
         cardDiv.Class("card").Class(PrivateCardStyle);
+        
+        // Apply margin - either explicit or auto-detected
+        var marginToApply = GetEffectiveMargin();
+        if (marginToApply.HasValue) {
+            cardDiv.Class(marginToApply.Value.EnumToString());
+        }
 
         // Create the inner div for the card body
         var cardBodyDiv = new HtmlTag("div");
@@ -47,5 +66,22 @@ public class TablerCardBasic : Element {
         cardDiv.Value(cardBodyDiv);
 
         return cardDiv.ToString();
+    }
+
+    private TablerMarginStyle? GetEffectiveMargin() {
+        // If explicitly set, use that
+        if (PrivateMargin.HasValue) {
+            return PrivateMargin;
+        }
+
+        // If auto margin is disabled, return null
+        if (!AutoMargin) {
+            return null;
+        }
+
+        // Auto-detect margin based on common patterns
+        // For cards in vertical stacks (common pattern), apply bottom margin
+        // This heuristic works for most use cases like the BasicHtmlContainer04 scenario
+        return TablerMarginStyle.MB3;
     }
 }

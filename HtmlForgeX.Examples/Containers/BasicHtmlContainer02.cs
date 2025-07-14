@@ -45,6 +45,7 @@ internal class BasicHtmlContainer02 {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
+                        card.LineBreak();
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
                         table1.EnableOrdering = false;
                         table1.EnableSearching = false;
@@ -52,20 +53,22 @@ internal class BasicHtmlContainer02 {
                 });
                 row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
-                        card.Content("Card 1").Style("background-color: red;");
+                        card.Content("Card 1").Style("background-color: red; margin-bottom: 1rem;");
                     });
                     column.Card(card => {
-                        card.Content("Card 2").Style("background-color: blue;");
+                        card.Content("Card 2").Style("background-color: blue; margin-bottom: 1rem;");
                     });
                 });
                 row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(4, card => {
-                        card.Content("Card 3").Style("background-color: green;");
+                        card.Content("Card 3").Style("background-color: green; margin-bottom: 1rem;");
                     });
                     column.Card(4, card => {
+                        card.LineBreak();
                         card.Table(data1, TableType.DataTables);
                     });
                     column.Card(4, card => {
+                        card.LineBreak();
                         card.Table(data2, TableType.Tabler);
                     });
                 });
@@ -80,6 +83,7 @@ internal class BasicHtmlContainer02 {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
+                        card.LineBreak();
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
                         table1.EnableOrdering = false;
                         table1.EnableSearching = false;
@@ -87,12 +91,12 @@ internal class BasicHtmlContainer02 {
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
-                        card.Content("Card 1").Style("background-color: red;");
+                        card.Content("Card 1").Style("background-color: red; margin-bottom: 1rem;");
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(4, card => {
-                        card.Content("Card 3").Style("background-color: green;");
+                        card.Content("Card 3").Style("background-color: green; margin-bottom: 1rem;");
                     });
                 });
                 // this will add a new row and push it all wide
@@ -101,6 +105,7 @@ internal class BasicHtmlContainer02 {
                         card.Span("This is inside card").AddContent(" with some color").WithColor(RGBColor.Amber);
                         card.LineBreak();
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
+                        card.LineBreak();
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
                         table1.EnableOrdering = false;
                         table1.EnableSearching = false;

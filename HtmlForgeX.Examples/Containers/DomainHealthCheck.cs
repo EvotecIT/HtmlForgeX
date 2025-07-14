@@ -9,9 +9,9 @@ using HtmlForgeX.Tags;
 namespace HtmlForgeX.Examples.Containers;
 internal class DomainHealthCheck {
     public static void Demo01(bool openInBrowser = false) {
-        HelpersSpectre.PrintTitle("Domain Health Check Idea");
+        HelpersSpectre.PrintTitle("Enhanced Domain Health Check with Advanced DataGrid Features");
 
-        // Create a list of simple objects
+        // Create sample data for enhanced demonstration
         var data = new List<dynamic> {
             new { Name = "John", Age = 30, Occupation = "Engineer" },
             new { Name = "Jane", Age = 28, Occupation = "Doctor" },
@@ -35,339 +35,262 @@ internal class DomainHealthCheck {
 
         var document = new Document {
             Head = {
-                Title = "Domain Health Check Idea", Author = "Przemysław Kłys", Revised = DateTime.Now
+                Title = "Enhanced Domain Health Check",
+                Author = "Przemysław Kłys",
+                Revised = DateTime.Now
             },
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
+
         document.Body.Page(page => {
             page.Layout = TablerLayout.Boxed;
-            page.Row(row => {
 
+            // Main Security Rating Card with Enhanced DataGrid
+            page.Row(row => {
                 row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
                         card.Row(cardTitle => {
                             cardTitle.HeaderLevel(HeaderLevelTag.H4, "Security Rating").Class("card-title");
                         });
+
                         card.Row(cardRow => {
-                            //cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                            //    avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Gray300).TextColor(TablerColor.Pink);
-                            //});
+                            // Security Icon Column
                             cardRow.Column(TablerColumnNumber.Three, textColumn => {
-                                textColumn.Add(new TablerIconElement(TablerIconType.BasketCheck).FontSize(115).Color(RGBColor.LightGreen));
+                                textColumn.Add(new TablerIconElement(TablerIconType.BasketCheck)
+                                    .FontSize(115)
+                                    .Color(RGBColor.LightGreen));
                             });
+
+                            // Enhanced OUTBOUND EMAIL Section
                             cardRow.Column(TablerColumnNumber.Three, textColumn => {
                                 textColumn.HeaderLevel(HeaderLevelTag.H4, "OUTBOUND EMAIL").Class("card-title");
                                 textColumn.DataGrid(dataGrid => {
-                                    dataGrid.AddItem("SPF", new TablerBadgeSpan("soft fail", TablerColor.Green, TablerBadgeStyle.Normal, TablerColor.White));
-                                    dataGrid.AddItem("DKIM", new TablerBadgeSpan("yes, 2 selectors known", TablerColor.GreenLight));
-                                    dataGrid.AddItem("DMARC", new TablerBadgeSpan("reject", TablerColor.GreenLight));
-                                    dataGrid.AddItem("BIMI", new TablerBadgeSpan("yes, 1 selector is known", TablerColor.GreenLight));
+                                    dataGrid.WithLayout(TablerDataGridLayout.Compact)
+                                           .WithSpacing(TablerDataGridSpacing.Small)
+                                           .WithNarrowTitles();
+
+                                    // SPF with badge
+                                    dataGrid.AddBadgeItem("SPF", "soft fail", TablerColor.Green);
+
+                                    // DKIM with status
+                                    dataGrid.AddStatusItem("DKIM", "yes, 2 selectors known", TablerColor.Success);
+
+                                    // DMARC with badge
+                                    dataGrid.AddBadgeItem("DMARC", "reject", TablerColor.GreenLight);
+
+                                    // BIMI with status
+                                    dataGrid.AddStatusItem("BIMI", "yes, 1 selector is known", TablerColor.Success);
                                 });
                             });
 
+                            // Enhanced INBOUND EMAIL Section
                             cardRow.Column(TablerColumnNumber.Three, textColumn => {
                                 textColumn.HeaderLevel(HeaderLevelTag.H4, "INBOUND EMAIL").Class("card-title");
                                 textColumn.DataGrid(dataGrid => {
-                                    dataGrid.AddItem("TLS (STARTTLS)", new TablerBadgeSpan("supported by all MX", TablerColor.Green, TablerBadgeStyle.Normal, TablerColor.White));
+                                    dataGrid.WithLayout(TablerDataGridLayout.Compact)
+                                           .WithSpacing(TablerDataGridSpacing.Small)
+                                           .WithNarrowTitles();
+
+                                    // TLS with badge
+                                    dataGrid.AddBadgeItem("TLS (STARTTLS)", "supported by all MX", TablerColor.Green, TablerBadgeStyle.Normal);
+
+                                    // MTA-STS with simple text
                                     dataGrid.AddItem("MTA-STS", "enforce");
-                                    dataGrid.AddItem("TLSA (DANE)", new TablerBadgeSpan("no", TablerColor.RedLight));
-                                    dataGrid.AddItem("TLS reporting", new TablerBadgeSpan("yes", TablerColor.GreenLight));
+
+                                    // TLSA with icon and color
+                                    dataGrid.AddIconItem("TLSA (DANE)", TablerIconType.X, "no", TablerColor.Red);
+
+                                    // TLS reporting with status
+                                    dataGrid.AddStatusItem("TLS REPORTING", "yes", TablerColor.Success);
                                 });
                             });
 
+                            // Enhanced DOMAIN Section with Advanced Features
                             cardRow.Column(TablerColumnNumber.Three, textColumn => {
                                 textColumn.HeaderLevel(HeaderLevelTag.H4, "DOMAIN").Class("card-title");
                                 textColumn.DataGrid(dataGrid => {
-                                    dataGrid.AddItem("Name", "evotec.xyz");
-                                    dataGrid.AddItem("DNSSEC", new TablerBadgeSpan("yes", TablerColor.GreenLight));
-                                    dataGrid.AddItem("Monitoring", new TablerBadgeSpan("yes", TablerColor.GreenLight));
-                                    dataGrid.AddItem("Status", new TablerTag("Active", TablerColor.Lime).Dismissable());
+                                    dataGrid.WithLayout(TablerDataGridLayout.Default)
+                                           .WithSpacing(TablerDataGridSpacing.Medium)
+                                           .AsMobileResponsive();
 
+                                    // Domain name with simple text
+                                    dataGrid.AddItem("NAME", "evotec.xyz");
+
+                                    // DNSSEC with icon
+                                    dataGrid.AddIconItem("DNSSEC", TablerIconType.Check, "yes", TablerColor.Green);
+
+                                    // Monitoring with badge
+                                    dataGrid.AddBadgeItem("MONITORING", "yes", TablerColor.GreenLight);
+
+                                    // Status with dismissible tag (using HTML content for advanced feature)
+                                    dataGrid.Title("STATUS").HtmlContent(@"<span class=""badge bg-lime text-lime-fg"">Active</span>");
                                 });
                             });
                         });
+                    });
+                });
+            });
 
+            // Advanced DataGrid Features Demonstration
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
+                            header.Title("Advanced DataGrid Features");
+                        });
+                        card.Body(body => {
+                            body.DataGrid(dataGrid => {
+                                dataGrid.AsSpacious()
+                                       .WithWideTitles()
+                                       .AsFullyResponsive()
+                                       .WithMargin(TablerMargin.AllNormal);
+
+                                // Avatar with user info
+                                dataGrid.AddAvatarItem("Creator", "Paweł Kuna", avatar => {
+                                    avatar.Image("https://picsum.photos/100/100?random=100");
+                                });
+
+                                // Checkbox example
+                                dataGrid.AddCheckboxItem("Enable Alerts", true, "Send notifications");
+
+                                // Form control example
+                                dataGrid.AddFormControlItem("Port Number", "number", "Enter port", "3306");
+
+                                // Avatar list example
+                                dataGrid.AddAvatarListItem("Team Members",
+                                    avatar => avatar.Image("https://picsum.photos/100/100?random=101"),
+                                    avatar => avatar.Image("https://picsum.photos/100/100?random=102"),
+                                    avatar => avatar.Image("https://picsum.photos/100/100?random=103")
+                                );
+
+                                // Complex configuration example
+                                dataGrid.AddItem(item => {
+                                    item.Title("Custom Configured Item")
+                                        .IconContent(TablerIconType.Settings, "Advanced Settings", TablerColor.Blue)
+                                        .WithSpacing(TablerDataGridSpacing.Large)
+                                        .WithContentAlignment(TablerDataGridContentAlignment.Center)
+                                        .WithTitleWidth(TablerDataGridTitleWidth.Wide);
+                                });
+                            });
+                        });
                     });
                 });
 
-                // first line of 4 cards
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerColor.Facebook)
-                //        .TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerColor.Twitter)
-                //        .TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerColor.Gray200)
-                //        .TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerColor.CyanLight)
-                //        .TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
-                //});
-                // second line of 3 cards
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    // let's build a card with an avatar manually
-                //    column.Card(card => {
-                //        card.Row(cardTitle => {
-                //            cardTitle.HeaderLevel(HeaderLevelTag.H4, "Title").Class("card-title");
-                //        });
-                //        card.Row(cardRow => {
-                //            cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                //                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Cyan)
-                //                    .TextColor(TablerColor.Blue);
-                //            });
-                //            cardRow.Column(textColumn => {
-                //                textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
-                //                textColumn.Text("12 waiting payments").Style(TablerTextStyle.Muted);
-                //            });
-                //        });
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Cyan)
-                //            .TextColor(TablerColor.Blue));
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.ProgressBar(TablerProgressBarType.Small)
-                //            .Item(TablerColor.Primary, 44, "")
-                //            .Item(TablerColor.Info, 23, "")
-                //            .Item(TablerColor.Success, 33, "");
-                //        card.LineBreak();
-                //        card.ProgressBar(TablerProgressBarType.Small)
-                //            .Item(TablerColor.Primary, 44, "Test");
-                //        card.LineBreak();
-                //        card.ProgressBar(TablerProgressBarType.Separated)
-                //            .Item(TablerColor.Primary, 44, "Test")
-                //            .Item(TablerColor.Info, 23, "Test")
-                //            .Item(TablerColor.Success, 33, "Test");
-                //        card.LineBreak();
-                //        card.ProgressBar(TablerProgressBarType.Small, 50, TablerColor.Facebook);
-                //        card.LineBreak();
-                //        card.ProgressBar(TablerProgressBarType.Indeterminate, 100, TablerColor.Facebook);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Row(rowNested => {
-                //        rowNested.Column(TablerColumnNumber.Twelve, column => {
-                //            column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
-                //        });
-                //        rowNested.Column(TablerColumnNumber.Twelve, column => {
-                //            column.CardBasic().Title("Last checked at").Text("27 seconds ago");
-                //        });
-                //        rowNested.Column(TablerColumnNumber.Twelve, column => {
-                //            column.CardBasic("Incidents", "3");
-                //        });
-                //        rowNested.Column(TablerColumnNumber.Twelve, column => {
-                //            column.CardBasic().Title("Uptime").Text("99.98%");
-                //        });
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Eight, column => {
-                //    column.Card(card => {
-                //        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
-                //        card.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
-                //    });
+                // Compact DataGrid Example
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
+                            header.Title("Compact System Status");
+                        });
+                        card.Body(body => {
+                            body.DataGrid(dataGrid => {
+                                dataGrid.AsCompact()
+                                       .WithCustomSpacing("4px")
+                                       .WithDefaultTitleWidth(TablerDataGridTitleWidth.Narrow);
 
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.Steps().Color(TablerColor.AzureLight)
-                //            .AddStep("Order received", false)
-                //            .AddStep("Processing", true)
-                //            .AddStep("Shipped", false)
-                //            .AddStep("Delivered", false);
+                                // System metrics with various content types
+                                dataGrid.AddStatusItem("CPU Usage", "45%", TablerColor.Warning);
+                                dataGrid.AddStatusItem("Memory", "78%", TablerColor.Danger);
+                                dataGrid.AddStatusItem("Disk Space", "34%", TablerColor.Success);
+                                dataGrid.AddIconItem("Network", TablerIconType.Wifi, "Connected", TablerColor.Green);
+                                dataGrid.AddBadgeItem("Uptime", "15 days", TablerColor.Blue);
 
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.Steps().Orientation(StepsOrientation.Vertical).Color(TablerColor.Facebook)
-                //            .AddStep("Order received", "text", false)
-                //            .AddStep("Processing", "more text", true)
-                //            .AddStep("Shipped", "oops", false)
-                //            .AddStep("Delivered", "opps", false);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.Steps().StepCounting().Color(TablerColor.Red)
-                //            .AddStep("Order received", false)
-                //            .AddStep("Processing", true)
-                //            .AddStep("Shipped", false)
-                //            .AddStep("Delivered", false);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Twelve, column => {
-                //    column.Card(card => {
-                //        card.Accordion(accordion => {
-                //            // works
-                //            accordion.AddItem("John", new Span().AddContent("Test1"));
-                //            // works
-                //            accordion.AddItem("Jane", new Span().AddContent("Test2"));
-                //            // works
-                //            accordion.AddItem("Johny", item => {
-                //                item.Content(new Span().AddContent("Test2"));
-                //                item.Content(new TablerSteps().StepCounting().Color(TablerColor.Red)
-                //                    .AddStep("Order received", false)
-                //                    .AddStep("Processing", true)
-                //                    .AddStep("Shipped", false)
-                //                    .AddStep("Delivered", false));
-                //            });
-                //            accordion.AddItem("Johny 2").Content(item => {
-                //                item.Steps().StepCounting().Color(TablerColor.Red)
-                //                    .AddStep("Order received", false)
-                //                    .AddStep("Processing", true)
-                //                    .AddStep("Shipped", false)
-                //                    .AddStep("Delivered", false);
-                //            });
-
-                //            accordion.AddItem("Johny 2").Content(item => {
-                //                item.DataGrid(grid => {
-                //                    grid.AddItem("Test", "Ok");
-                //                    grid.AddItem("Test2", "Ok2");
-                //                });
-                //            });
-                //        });
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Six, column => {
-                //    column.Card(card => {
-                //        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
-                //        card.Footer().Logs(logs).Title(HeaderLevelTag.H4, "Timings");
-
-                //    });
-                //});
-
-                //row.Column(TablerColumnNumber.Six, column => {
-                //    column.Card(card => {
-                //        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
-
-                //        card.Footer(cardFooter => {
-                //            cardFooter.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
-                //            cardFooter.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
-                //        });
-
-                //    });
-                //});
-
-                //row.Column(TablerColumnNumber.Six, column => {
-                //    column.Card(card => {
-                //        card.Row(rowWithinCard => {
-                //            rowWithinCard.Column(TablerColumnNumber.Twelve, column => {
-                //                column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
-                //            });
-                //            rowWithinCard.Column(TablerColumnNumber.Twelve, column => {
-                //                column.CardBasic().Title("Last checked at").Text("27 seconds ago");
-                //            });
-                //        });
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Six, column => {
-                //    column.Card(card => {
-                //        card.Row(rowWithinCard => {
-                //            rowWithinCard.Column(TablerColumnNumber.MediumAuto, column => {
-                //                column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
-                //            });
-                //            rowWithinCard.Column(TablerColumnNumber.MediumAuto, column => {
-                //                column.CardBasic().Title("Last checked at").Text("27 seconds ago");
-                //            });
-                //        });
-                //    });
-                //});
-
-                //row.Column(TablerColumnNumber.Six, column => {
-                //    column.Tabs(tabs => {
-                //        //tabs.Navigation(TabNavigation.Fill);
-                //        tabs.AddTab("Tab 1", new Strong("Content 1")).Active();
-                //        tabs.AddTab("Tab 2", new Strong("Content 2")).Disabled();
-                //        tabs.AddTab("Tab 3", new Strong("Content 3")).MoveTabs(TabState.MoveStart);
-                //    });
-                //});
-
-
+                                // Interactive elements
+                                dataGrid.AddCheckboxItem("Auto Backup", false, "Enable automatic backups");
+                                dataGrid.AddFormControlItem("Refresh Rate", "number", "Seconds", "30");
+                            });
+                        });
+                    });
+                });
             });
 
-            page.Divider("Test2");
-
+            // Responsive and Layout Demonstrations
             page.Row(row => {
-                // first line of 4 cards
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.Card(card => {
-                //        card.Alert("Wow! Everything worked!", "Your account has been created!")
-                //            .Icon(TablerIcon.BrandTwitter).Color(TablerColor.Danger);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.Card(card => {
-                //        card.Alert("Wow! Everything worked!", "Your account has been created!")
-                //            .Color(TablerColor.Facebook);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.Card(card => {
-                //        card.Alert("Did you know?", "Here is something that you might like to know.", TablerColor.Green,
-                //            TablerAlertType.Dismissible).Icon(TablerIcon.InfoCircle);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.Card(card => {
-                //        card.Alert("Wow! Everything worked!", "Your account has been created!")
-                //            .Icon(TablerIcon.ExclamationCircle).Color(TablerColor.Twitter);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.Card(card => {
-                //        card.Alert("I'm so sorry…", "Your account has been deleted and can't be restored.")
-                //            .Icon(TablerIcon.FaceIdError).Color(TablerColor.Warning);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.Card(card => {
-                //        card.Tracking()
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("No data", TablerColor.Failed)
-                //            .Block("No data", TablerColor.Failed)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Downtime", TablerColor.Danger)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success)
-                //            .Block("Operational", TablerColor.Success);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.Card(card => {
-                //        card.Avatar().Icon(TablerIcon.BrandTwitter).Margin(TablerMarginStyle.M2);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.Card(card => {
-                //        card.Avatar()
-                //            .Image(
-                //                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1920px-HTML5_logo_and_wordmark.svg.png")
-                //            .Size(AvatarSize.MD)
-                //            .Margin(TablerMarginStyle.M2);
-                //    });
-                //});
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Header(header => {
+                            header.Title("Horizontal Layout");
+                        });
+                        card.Body(body => {
+                            body.DataGrid(dataGrid => {
+                                dataGrid.WithLayout(TablerDataGridLayout.Horizontal)
+                                       .WithPadding(TablerPadding.AllNormal);
+
+                                dataGrid.AddBadgeItem("Version", "v2.1.3", TablerColor.Primary);
+                                dataGrid.AddStatusItem("Build", "Stable", TablerColor.Success);
+                                dataGrid.AddIconItem("License", TablerIconType.Certificate, "MIT", TablerColor.Blue);
+                            });
+                        });
+                    });
+                });
+
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Header(header => {
+                            header.Title("Custom Styled");
+                        });
+                        card.Body(body => {
+                            body.DataGrid(dataGrid => {
+                                dataGrid.WithCustomStyle("border: 2px solid #e9ecef; border-radius: 8px; padding: 16px;")
+                                       .WithSpacing(TablerDataGridSpacing.ExtraLarge);
+
+                                dataGrid.AddItem("Environment", "Production")
+                                       .WithCustomStyle("font-weight: bold; color: #d63384;");
+                                dataGrid.AddItem("Region", "US-East-1")
+                                       .WithContentAlignment(TablerDataGridContentAlignment.Right);
+                                dataGrid.AddBadgeItem("Health", "Excellent", TablerColor.Success);
+                            });
+                        });
+                    });
+                });
+
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Header(header => {
+                            header.Title("Mixed Content Types");
+                        });
+                        card.Body(body => {
+                            body.DataGrid(dataGrid => {
+                                dataGrid.WithMargin(TablerMargin.VerticalNormal);
+
+                                // Mix different content types
+                                dataGrid.AddAvatarItem("Administrator", "Admin User", avatar => {
+                                    avatar.BackgroundColor(TablerColor.Blue).TextColor(TablerColor.White);
+                                });
+
+                                dataGrid.AddIconItem("Last Updated", TablerIconType.Clock, "2 hours ago", TablerColor.Gray500);
+
+                                dataGrid.AddItem(item => {
+                                    item.Title("Configuration")
+                                        .CheckboxContent(true, "Production Mode")
+                                        .WithTitleWidth(TablerDataGridTitleWidth.Medium);
+                                });
+
+                                dataGrid.AddFormControlItem("API Key", "password", "Enter your API key");
+                            });
+                        });
+                    });
+                });
             });
         });
-        document.Save("DomainHealthCheck.html", openInBrowser);
+
+        document.Save("EnhancedDomainHealthCheck.html", openInBrowser);
+
+        Console.WriteLine("🎉 Enhanced Domain Health Check created with advanced DataGrid features!");
+        Console.WriteLine("📋 Features demonstrated:");
+        Console.WriteLine("   ✅ Badge content with various colors and styles");
+        Console.WriteLine("   ✅ Status indicators with semantic colors");
+        Console.WriteLine("   ✅ Avatar integration with user information");
+        Console.WriteLine("   ✅ Icon content with text and colors");
+        Console.WriteLine("   ✅ Checkbox and form control elements");
+        Console.WriteLine("   ✅ Configurable spacing and layout options");
+        Console.WriteLine("   ✅ Responsive behavior for mobile devices");
+        Console.WriteLine("   ✅ Title width customization");
+        Console.WriteLine("   ✅ Margin and padding utilities");
+        Console.WriteLine("   ✅ Custom styling and alignment options");
+        Console.WriteLine("   ✅ Compact and spacious layout presets");
+        Console.WriteLine("   ✅ Mixed content types in single DataGrid");
+        Console.WriteLine("   ✅ Zero HTML knowledge required - Pure C# fluent API!");
     }
 }
