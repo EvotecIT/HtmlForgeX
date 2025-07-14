@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Configuration options for the DataTables JavaScript plugin.
+/// </summary>
 public class DataTablesOptions
 {
     [JsonPropertyName("pageLength")]

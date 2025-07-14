@@ -3,6 +3,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents a <c>&lt;span&gt;</c> element with configurable styling options.
+/// </summary>
 public class Span : Element {
     /// <summary>Content of the span element.</summary>
     public string? Content { get; set; }

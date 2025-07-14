@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Text for pagination navigation in DataTables.
+/// </summary>
 public class DataTablesPaginate
 {
     [JsonPropertyName("first")]

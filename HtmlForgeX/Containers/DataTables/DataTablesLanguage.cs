@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Localization strings for DataTables user interface elements.
+/// </summary>
 public class DataTablesLanguage
 {
     [JsonPropertyName("search")]

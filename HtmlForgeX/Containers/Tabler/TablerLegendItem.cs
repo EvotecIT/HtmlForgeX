@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents a legend entry consisting of a colored indicator and label.
+/// </summary>
 public class TablerLegendItem : Element {
     private string Name { get; set; }
     private string Value { get; set; }

@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Form container that provides fluent APIs for building Tabler forms.
+/// </summary>
 public class TablerForm : Element {
     /// <summary>
     /// Adds a standard input element to the form.

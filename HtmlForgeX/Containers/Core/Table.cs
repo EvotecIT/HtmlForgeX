@@ -9,6 +9,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Provides functionality for generating HTML tables.
+/// </summary>
 public class Table : Element {
     private readonly TableType? Library;
     private static readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyCache = new();

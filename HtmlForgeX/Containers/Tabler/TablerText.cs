@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents a text element styled using Tabler CSS classes.
+/// </summary>
 public class TablerText : Element {
     /// <summary>
     /// Initializes or configures TablerText.

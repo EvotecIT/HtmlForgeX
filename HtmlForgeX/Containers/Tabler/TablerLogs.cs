@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Displays code or log snippets with optional themed styling.
+/// </summary>
 public class TablerLogs : Element {
     private HeaderLevelTag? PrivateLevelTitle { get; set; }
     private string? PrivateTitle { get; set; }

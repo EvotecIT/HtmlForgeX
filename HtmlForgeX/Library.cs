@@ -56,6 +56,9 @@ public enum Libraries {
     IMask
 }
 
+/// <summary>
+/// Represents metadata describing an external library or resource set.
+/// </summary>
 public class Library {
     /// <summary>Descriptive comment for the library.</summary>
     public string Comment { get; set; } = string.Empty;
@@ -79,6 +82,9 @@ public class Library {
     public bool Email { get; set; } = false;
 }
 
+/// <summary>
+/// Holds links and resources associated with a library.
+/// </summary>
 public class LibraryLinks {
     /// <summary>
     /// Link to styles hosted on CDN
@@ -118,6 +124,9 @@ public class LibraryLinks {
 
 }
 
+/// <summary>
+/// Utility methods for translating <see cref="Libraries"/> enum values into library objects.
+/// </summary>
 public class LibrariesConverter {
     public static Library MapLibraryEnumToLibraryObject(Libraries libraries) {
         switch (libraries) {

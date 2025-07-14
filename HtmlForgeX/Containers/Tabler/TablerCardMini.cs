@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Compact version of <see cref="TablerCard"/> typically used for dashboard widgets.
+/// </summary>
 public class TablerCardMini : TablerCard {
     private string? PrivateCardStyle { get; set; }
     private TablerIconType AvatarIcon { get; set; } = TablerIconType.Badge;

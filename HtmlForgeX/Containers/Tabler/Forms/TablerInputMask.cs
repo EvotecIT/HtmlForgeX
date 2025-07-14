@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Input element that uses IMask for client-side input masking.
+/// </summary>
 public class TablerInputMask : Element {
     private readonly string _name;
     private string? _label;

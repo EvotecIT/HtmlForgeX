@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Common font-weight values mapped to numeric CSS representations.
+/// </summary>
 public enum FontWeight {
     /// <summary>Thin text (100)</summary>
     Thin,

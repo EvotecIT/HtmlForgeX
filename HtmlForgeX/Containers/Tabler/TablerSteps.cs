@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Step indicator component for progressive workflows.
+/// </summary>
 public class TablerSteps : Element {
     private StepsOrientation PrivateOrientation { get; set; } = StepsOrientation.Horizontal;
     private bool PrivateStepCounting { get; set; } = false;
@@ -120,6 +123,9 @@ public class TablerSteps : Element {
 }
 
 
+/// <summary>
+/// Represents a single step within a <see cref="TablerSteps"/> component.
+/// </summary>
 public class TablerStepItem : Element {
     private string Name { get; set; } = "";
     private new string Text { get; set; } = "";

@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Dropdown/select element styled for the Tabler framework.
+/// </summary>
 public class TablerSelect : Element {
     private readonly string _name;
     private string? _label;

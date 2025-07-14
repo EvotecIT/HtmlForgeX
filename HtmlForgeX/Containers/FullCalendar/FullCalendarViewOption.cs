@@ -24,6 +24,9 @@ public enum FullCalendarViewOption {
     ListDay
 }
 
+/// <summary>
+/// Defines settings for how a view is presented within FullCalendar.
+/// </summary>
 public class FullCalendarView {
     /// <summary>
     /// Gets or sets the text shown on the corresponding toolbar button.

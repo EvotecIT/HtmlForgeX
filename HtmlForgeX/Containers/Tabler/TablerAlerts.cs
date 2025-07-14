@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Component for displaying alert messages in Tabler style.
+/// </summary>
 public class TablerAlert : Element {
     private string Title { get; }
     private string Message { get; }
