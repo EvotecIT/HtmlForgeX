@@ -12,6 +12,10 @@ public class HtmlTag : Element {
     private string PrivateTag { get; set; }
     private TagMode PrivateTagMode { get; set; } = TagMode.Normal;
     private new List<object> Children { get; set; } = new List<object>();
+
+    /// <summary>
+    /// Gets the collection of attributes applied to this tag.
+    /// </summary>
     public Dictionary<string, object> Attributes { get; set; } = new Dictionary<string, object>();
 
     /// <summary>

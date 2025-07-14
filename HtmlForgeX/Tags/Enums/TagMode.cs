@@ -4,10 +4,16 @@ namespace HtmlForgeX;
 /// The mode of the tag for rendering
 /// </summary>
 public enum TagMode {
-    // Normal tag with opening and closing tags
+    /// <summary>
+    /// Normal tag with opening and closing elements.
+    /// </summary>
     Normal,
-    // Tag with no closing tag (e.g. <br>)
+    /// <summary>
+    /// Tag without a closing element, for example &lt;br&gt;.
+    /// </summary>
     NoClosing,
-    // Self-closing tag (e.g. <img />)
+    /// <summary>
+    /// Self-closing tag, for example &lt;img /&gt;.
+    /// </summary>
     SelfClosing
 }

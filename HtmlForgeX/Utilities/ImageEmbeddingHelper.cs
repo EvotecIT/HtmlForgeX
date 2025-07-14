@@ -177,13 +177,23 @@ public static class ImageEmbeddingHelper {
 /// Result of an image embedding operation
 /// </summary>
 public class ImageEmbeddingResult {
+    /// <summary>Indicates whether the embedding succeeded.</summary>
     public bool Success { get; private set; }
-    public string Base64Data { get; private set; } = "";
-    public string MimeType { get; private set; } = "";
-    public string ErrorMessage { get; private set; } = "";
+    /// <summary>Base64 encoded image data.</summary>
+    public string Base64Data { get; private set; } = string.Empty;
+    /// <summary>Embedded image MIME type.</summary>
+    public string MimeType { get; private set; } = string.Empty;
+    /// <summary>Error message if the embedding failed.</summary>
+    public string ErrorMessage { get; private set; } = string.Empty;
 
     private ImageEmbeddingResult() { }
 
+    /// <summary>
+    /// Creates a successful embedding result.
+    /// </summary>
+    /// <param name="base64Data">Encoded image data.</param>
+    /// <param name="mimeType">MIME type of the image.</param>
+    /// <returns>A successful <see cref="ImageEmbeddingResult"/> instance.</returns>
     public static ImageEmbeddingResult CreateSuccess(string base64Data, string mimeType) {
         return new ImageEmbeddingResult {
             Success = true,
@@ -192,6 +202,11 @@ public class ImageEmbeddingResult {
         };
     }
 
+    /// <summary>
+    /// Creates a failed embedding result.
+    /// </summary>
+    /// <param name="errorMessage">Description of the failure.</param>
+    /// <returns>A failed <see cref="ImageEmbeddingResult"/> instance.</returns>
     public static ImageEmbeddingResult CreateFailure(string errorMessage) {
         return new ImageEmbeddingResult {
             Success = false,

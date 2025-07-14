@@ -8,41 +8,74 @@ namespace HtmlForgeX;
 /// Having JQuery first is important for other libraries that depend on it.
 /// </summary>
 public enum Libraries {
+    /// <summary>No libraries.</summary>
     None,
+    /// <summary>HtmlForgeX primary library.</summary>
     Primary,
+    /// <summary>jQuery library.</summary>
     JQuery,
+    /// <summary>Bootstrap framework.</summary>
     Bootstrap,
+    /// <summary>DataTables plugin.</summary>
     DataTables,
+    /// <summary>Tabler UI library.</summary>
     Tabler,
+    /// <summary>Tabler icon set.</summary>
     TablerIcon,
+    /// <summary>Tabler flag icons.</summary>
     TablerFlags,
+    /// <summary>Tabler social icons.</summary>
     TablerSocials,
+    /// <summary>Tabler payment icons.</summary>
     TablerPayments,
+    /// <summary>Tabler themes.</summary>
     TablerThemes,
+    /// <summary>FancyTree plugin.</summary>
     FancyTree,
+    /// <summary>ApexCharts library.</summary>
     ApexCharts,
+    /// <summary>Chart.js library.</summary>
     ChartJs,
+    /// <summary>vis-network library.</summary>
     VisNetwork,
+    /// <summary>vis-network loading bar extension.</summary>
     VisNetworkLoadingBar,
+    /// <summary>EasyQRCode library.</summary>
     EasyQRCode,
+    /// <summary>FullCalendar library.</summary>
     FullCalendar,
+    /// <summary>Popper library.</summary>
     Popper,
+    /// <summary>ScrollingText plugin.</summary>
     ScrollingText,
+    /// <summary>Quill editor library.</summary>
     Quill,
+    /// <summary>TomSelect component.</summary>
     TomSelect,
+    /// <summary>IMask input masking library.</summary>
     IMask
 }
 
 public class Library {
-    public string Comment { get; set; } = "";
+    /// <summary>Descriptive comment for the library.</summary>
+    public string Comment { get; set; } = string.Empty;
+    /// <summary>Resources that should be placed in the document head.</summary>
     public LibraryLinks Header { get; set; } = new LibraryLinks();
+    /// <summary>Resources that should be placed at the end of the body.</summary>
     public LibraryLinks Footer { get; set; } = new LibraryLinks();
+    /// <summary>Resources that should be placed inside the body.</summary>
     public LibraryLinks Body { get; set; } = new LibraryLinks();
-    public string LicenseLink { get; set; } = "";
-    public string License { get; set; } = "";
-    public string SourceCodes { get; set; } = "";
-    public string Website { get; set; } = "";
+    /// <summary>Link to the library license.</summary>
+    public string LicenseLink { get; set; } = string.Empty;
+    /// <summary>License text for the library.</summary>
+    public string License { get; set; } = string.Empty;
+    /// <summary>URL to the source code of the library.</summary>
+    public string SourceCodes { get; set; } = string.Empty;
+    /// <summary>Library web site.</summary>
+    public string Website { get; set; } = string.Empty;
+    /// <summary>Whether this library is enabled by default.</summary>
     public bool Default { get; set; } = false;
+    /// <summary>Indicates the library is for email usage only.</summary>
     public bool Email { get; set; } = false;
 }
 
@@ -76,8 +109,11 @@ public class LibraryLinks {
     /// </value>
     public List<string> Css { get; set; } = new List<string>();
     //public List<string> JsLinkOriginal { get; set; } = new List<string>();
+    /// <summary>Links to JavaScript files hosted on a CDN.</summary>
     public List<string> JsLink { get; set; } = new List<string>();
+    /// <summary>Embedded JavaScript file names.</summary>
     public List<string> Js { get; set; } = new List<string>();
+    /// <summary>Inline JavaScript blocks.</summary>
     public List<string> JsScript = new List<string>();
 
 }
