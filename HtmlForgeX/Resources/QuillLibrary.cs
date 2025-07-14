@@ -1,5 +1,12 @@
 namespace HtmlForgeX.Resources;
+
+/// <summary>
+/// Library definition providing Quill assets.
+/// </summary>
 public class QuillLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="QuillLibrary"/> class.
+    /// </summary>
     public QuillLibrary() {
         Header = new LibraryLinks {
             CssLink = [

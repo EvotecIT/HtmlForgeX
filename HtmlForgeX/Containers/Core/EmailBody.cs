@@ -79,7 +79,11 @@ public class EmailBody : Element {
     /// </summary>
     /// <param name="element">The element to add.</param>
     /// <returns>The EmailBody object, allowing for method chaining.</returns>
-    public EmailBody Add(Element element) {
+    public EmailBody Add(Element? element) {
+        if (element is null) {
+            return this;
+        }
+
         element.Email = _email;
         Children.Add(element);
         return this;

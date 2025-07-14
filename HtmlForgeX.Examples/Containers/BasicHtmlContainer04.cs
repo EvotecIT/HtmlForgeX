@@ -13,7 +13,7 @@ internal class BasicHtmlContainer04 {
         };
 
         var logs =
-            """
+             """
             Effective URL            https://evotec.xyz
             Redirect count           0
             Name lookup time         3.4e-05
@@ -39,195 +39,211 @@ internal class BasicHtmlContainer04 {
             page.Layout = TablerLayout.Fluid;
             page.Row(row => {
                 // first line of 4 cards
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.CardMini().Avatar(TablerIcon.BrandFacebook).BackgroundColor(TablerColor.Facebook)
-                //        .TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.CardMini().Avatar(TablerIcon.BrandTwitter).BackgroundColor(TablerColor.Twitter)
-                //        .TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.CardMini().Avatar(TablerIcon.ShoppingCart).BackgroundColor(TablerColor.Gray200)
-                //        .TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
-                //});
-                //row.Column(TablerColumnNumber.Three, column => {
-                //    column.CardMini().Avatar(TablerIcon.CurrencyDollar).BackgroundColor(TablerColor.CyanLight)
-                //        .TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
-                //});
-                //// second line of 3 cards
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    // let's build a card with an avatar manually
-                //    column.Card(card => {
-                //        card.Row(cardTitle => {
-                //            cardTitle.HeaderLevel(HeaderLevelTag.H4, "Title").Class("card-title");
-                //        });
-                //        card.Row(cardRow => {
-                //            cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                //                avatarColumn.Avatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Cyan)
-                //                    .TextColor(TablerColor.Blue);
-                //            });
-                //            cardRow.Column(textColumn => {
-                //                textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
-                //                textColumn.Text("12 waiting payments").Style(TablerTextStyle.Muted);
-                //            });
-                //        });
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.Add(new TablerAvatar().Icon(TablerIcon.License).BackgroundColor(TablerColor.Cyan)
-                //            .TextColor(TablerColor.Blue));
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.ProgressBar(TablerProgressBarType.Small)
-                //            .Item(TablerColor.Primary, 44, "")
-                //            .Item(TablerColor.Info, 23, "")
-                //            .Item(TablerColor.Success, 33, "");
-                //        card.LineBreak();
-                //        card.ProgressBar(TablerProgressBarType.Small)
-                //            .Item(TablerColor.Primary, 44, "Test");
-                //        card.LineBreak();
-                //        card.ProgressBar(TablerProgressBarType.Separated)
-                //            .Item(TablerColor.Primary, 44, "Test")
-                //            .Item(TablerColor.Info, 23, "Test")
-                //            .Item(TablerColor.Success, 33, "Test");
-                //        card.LineBreak();
-                //        card.ProgressBar(TablerProgressBarType.Small, 50, TablerColor.Facebook);
-                //        card.LineBreak();
-                //        card.ProgressBar(TablerProgressBarType.Indeterminate, 100, TablerColor.Facebook);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Row(rowNested => {
-                //        rowNested.Column(TablerColumnNumber.Twelve, column => {
-                //            column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
-                //        });
-                //        rowNested.Column(TablerColumnNumber.Twelve, column => {
-                //            column.CardBasic().Title("Last checked at").Text("27 seconds ago");
-                //        });
-                //        rowNested.Column(TablerColumnNumber.Twelve, column => {
-                //            column.CardBasic("Incidents", "3");
-                //        });
-                //        rowNested.Column(TablerColumnNumber.Twelve, column => {
-                //            column.CardBasic().Title("Uptime").Text("99.98%");
-                //        });
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Eight, column => {
-                //    column.Card(card => {
-                //        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
-                //        card.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
-                //    });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.CardMini().Avatar(TablerIconType.BrandFacebook).BackgroundColor(TablerColor.Facebook)
+                        .TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.CardMini().Avatar(TablerIconType.BrandTwitter).BackgroundColor(TablerColor.Twitter)
+                        .TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.CardMini().Avatar(TablerIconType.ShoppingCart).BackgroundColor(TablerColor.Gray200)
+                        .TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.CardMini().Avatar(TablerIconType.CurrencyDollar).BackgroundColor(TablerColor.CyanLight)
+                        .TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
+                });
+                // second line of 3 cards
+                row.Column(TablerColumnNumber.Four, column => {
+                    // let's build a card with an avatar manually
+                    column.Card(card => {
+                        card.Row(cardTitle => {
+                            cardTitle.HeaderLevel(HeaderLevelTag.H4, "Title").Class("card-title");
+                        });
+                        card.Row(cardRow => {
+                            cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
+                                avatarColumn.Avatar().Icon(TablerIconType.License).BackgroundColor(TablerColor.Cyan)
+                                    .TextColor(TablerColor.Blue);
+                            });
+                            cardRow.Column(textColumn => {
+                                textColumn.Text("132 sales").Weight(TablerFontWeight.Medium);
+                                textColumn.Text("12 waiting payments").Style(TablerTextStyle.Muted);
+                            });
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Add(new TablerAvatar().Icon(TablerIconType.License).BackgroundColor(TablerColor.Cyan)
+                            .TextColor(TablerColor.Blue));
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.ProgressBar(TablerProgressBarType.Small)
+                            .Item(TablerColor.Primary, 44, "")
+                            .Item(TablerColor.Info, 23, "")
+                            .Item(TablerColor.Success, 33, "");
+                        card.LineBreak();
+                        card.ProgressBar(TablerProgressBarType.Small)
+                            .Item(TablerColor.Primary, 44, "Test");
+                        card.LineBreak();
+                        card.ProgressBar(TablerProgressBarType.Separated)
+                            .Item(TablerColor.Primary, 44, "Test")
+                            .Item(TablerColor.Info, 23, "Test")
+                            .Item(TablerColor.Success, 33, "Test");
+                        card.LineBreak();
+                        card.ProgressBar(TablerProgressBarType.Small, 50, TablerColor.Facebook);
+                        card.LineBreak();
+                        card.ProgressBar(TablerProgressBarType.Indeterminate, 100, TablerColor.Facebook);
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Row(rowNested => {
+                        rowNested.Column(TablerColumnNumber.Twelve, column => {
+                            column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
+                        });
+                        rowNested.Column(TablerColumnNumber.Twelve, column => {
+                            column.CardBasic().Title("Last checked at").Text("27 seconds ago");
+                        });
+                        rowNested.Column(TablerColumnNumber.Twelve, column => {
+                            column.CardBasic("Incidents", "3");
+                        });
+                        rowNested.Column(TablerColumnNumber.Twelve, column => {
+                            column.CardBasic().Title("Uptime").Text("99.98%");
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Eight, column => {
+                    column.Card(card => {
+                        card.Logs("HTTP/1.1 200 Connection established", TablerLogsTheme.Primary).Title(HeaderLevelTag.H4, "Connection");
+                        card.Logs(logs, TablerLogsTheme.Light).Title(HeaderLevelTag.H4, "Timings");
+                    });
 
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.Steps().Color(TablerColor.AzureLight)
-                //            .AddStep("Order received", false)
-                //            .AddStep("Processing", true)
-                //            .AddStep("Shipped", false)
-                //            .AddStep("Delivered", false);
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Steps().Color(TablerColor.AzureLight)
+                            .AddStep("Order received", TablerStepState.Completed)
+                            .AddStep("Processing", TablerStepState.Active)
+                            .AddStep("Shipped", TablerStepState.Pending)
+                            .AddStep("Delivered", TablerStepState.Pending);
 
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.Steps().Orientation(StepsOrientation.Vertical).Color(TablerColor.Facebook)
-                //            .AddStep("Order received", "text", false)
-                //            .AddStep("Processing", "more text", true)
-                //            .AddStep("Shipped", "oops", false)
-                //            .AddStep("Delivered", "opps", false);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Four, column => {
-                //    column.Card(card => {
-                //        card.Steps().StepCounting().Color(TablerColor.Red)
-                //            .AddStep("Order received", false)
-                //            .AddStep("Processing", true)
-                //            .AddStep("Shipped", false)
-                //            .AddStep("Delivered", false);
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Twelve, column => {
-                //    column.Card(card => {
-                //        card.Accordion(accordion => {
-                //            // works
-                //            accordion.AddItem("John", new Span().AddContent("Test1"));
-                //            // works
-                //            accordion.AddItem("Jane", new Span().AddContent("Test2"));
-                //            // works 
-                //            accordion.AddItem("Johny", item => {
-                //                item.Content(new Span().AddContent("Test2"));
-                //                item.Content(new TablerSteps().StepCounting().Color(TablerColor.Red)
-                //                    .AddStep("Order received", false)
-                //                    .AddStep("Processing", true)
-                //                    .AddStep("Shipped", false)
-                //                    .AddStep("Delivered", false));
-                //            });
-                //            accordion.AddItem("Johny 2").Content(item => {
-                //                item.Steps().StepCounting().Color(TablerColor.Red)
-                //                    .AddStep("Order received", false)
-                //                    .AddStep("Processing", true)
-                //                    .AddStep("Shipped", false)
-                //                    .AddStep("Delivered", false);
-                //            });
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Steps().Orientation(StepsOrientation.Vertical).Color(TablerColor.Facebook)
+                            .AddStep("Order received", "Order confirmed and payment processed", TablerStepState.Completed)
+                            .AddStep("Processing", "Items being prepared for shipment", TablerStepState.Active)
+                            .AddStep("Shipped", "Package in transit", TablerStepState.Pending)
+                            .AddStep("Delivered", "Package delivered to customer", TablerStepState.Pending);
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, column => {
+                    column.Card(card => {
+                        card.Steps().StepCounting().Color(TablerColor.Red)
+                            .AddStep("Order received", TablerStepState.Completed)
+                            .AddStep("Processing", TablerStepState.Active)
+                            .AddStep("Shipped", TablerStepState.Pending)
+                            .AddStep("Delivered", TablerStepState.Pending);
+                    });
+                });
+                row.Column(TablerColumnNumber.Twelve, column => {
+                    column.Card(card => {
+                        card.Accordion(accordion => {
+                            // Enhanced accordion with new features
+                            accordion.Type(TablerAccordionType.Flush)
+                                    .Color(TablerColor.Primary);
 
-                //            accordion.AddItem("Johny 2").Content(item => {
-                //                item.DataGrid(grid => {
-                //                    grid.AddItem("Test", "Ok");
-                //                    grid.AddItem("Test2", "Ok2");
-                //                });
-                //            });
-                //        });
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Six, column => {
-                //    column.Card(card => {
-                //        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
-                //        card.Footer().Logs(logs).Title(HeaderLevelTag.H4, "Timings");
+                            accordion.AddItem("📊 Project Overview", item => {
+                                item.Icon(TablerIconType.FileDescription)
+                                    .Expanded(true)
+                                    .Content(new Span().AddContent("Enhanced accordion demonstration with icons and expanded state"));
+                            });
 
-                //    });
-                //});
+                            accordion.AddItem("🔄 Order Processing", item => {
+                                item.Icon(TablerIconType.Package)
+                                    .Content(content => {
+                                        content.Add(new Span().AddContent("Order tracking with enhanced steps:"));
+                                        content.Add(new TablerSteps().StepCounting().Color(TablerColor.Success)
+                                            .AddStep("Order received", TablerStepState.Completed)
+                                            .AddStep("Processing", TablerStepState.Active)
+                                            .AddStep("Shipped", TablerStepState.Pending)
+                                            .AddStep("Delivered", TablerStepState.Pending));
+                                    });
+                            });
 
-                //row.Column(TablerColumnNumber.Six, column => {
-                //    column.Card(card => {
-                //        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
+                            accordion.AddItem("⚙️ System Status", item => {
+                                item.Icon(TablerIconType.Settings)
+                                    .Content(content => {
+                                        content.Add(new Span().AddContent("Service monitoring dashboard:"));
+                                        content.Add(new TablerSteps().Orientation(StepsOrientation.Vertical).Color(TablerColor.Info)
+                                            .AddStep("Web Server", "Running normally", TablerStepState.Completed)
+                                            .AddStep("Database", "Connection healthy", TablerStepState.Completed)
+                                            .AddStep("Cache", "Performance optimized", TablerStepState.Active));
+                                    });
+                            });
 
-                //        card.Footer(cardFooter => {
-                //            cardFooter.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
-                //            cardFooter.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
-                //        });
+                            accordion.AddItem("📋 Data Summary", item => {
+                                item.Icon(TablerIconType.Table)
+                                    .Content(content => {
+                                        content.DataGrid(grid => {
+                                            grid.AddItem("Total Orders", "1,247");
+                                            grid.AddItem("Active Users", "892");
+                                            grid.AddItem("Revenue", "$45,234");
+                                        });
+                                    });
+                            });
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
+                        card.Footer().Logs(logs).Title(HeaderLevelTag.H4, "Timings");
 
-                //    });
-                //});
+                    });
+                });
 
-                //row.Column(TablerColumnNumber.Six, column => {
-                //    column.Card(card => {
-                //        card.Row(rowWithinCard => {
-                //            rowWithinCard.Column(TablerColumnNumber.Twelve, column => {
-                //                column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
-                //            });
-                //            rowWithinCard.Column(TablerColumnNumber.Twelve, column => {
-                //                column.CardBasic().Title("Last checked at").Text("27 seconds ago");
-                //            });
-                //        });
-                //    });
-                //});
-                //row.Column(TablerColumnNumber.Six, column => {
-                //    column.Card(card => {
-                //        card.Row(rowWithinCard => {
-                //            rowWithinCard.Column(TablerColumnNumber.MediumAuto, column => {
-                //                column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
-                //            });
-                //            rowWithinCard.Column(TablerColumnNumber.MediumAuto, column => {
-                //                column.CardBasic().Title("Last checked at").Text("27 seconds ago");
-                //            });
-                //        });
-                //    });
-                //});
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Logs("HTTP/1.1 200 Connection established").Title(HeaderLevelTag.H4, "Connection");
+
+                        card.Footer(cardFooter => {
+                            cardFooter.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
+                            cardFooter.Logs(logs).Title(HeaderLevelTag.H4, "Timings");
+                        });
+
+                    });
+                });
+
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Row(rowWithinCard => {
+                            rowWithinCard.Column(TablerColumnNumber.Twelve, column => {
+                                column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
+                            });
+                            rowWithinCard.Column(TablerColumnNumber.Twelve, column => {
+                                column.CardBasic().Title("Last checked at").Text("27 seconds ago");
+                            });
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Row(rowWithinCard => {
+                            rowWithinCard.Column(TablerColumnNumber.MediumAuto, column => {
+                                column.CardBasic("Currently Up for", "14 days 2 hours 54 minutes 32 seconds");
+                            });
+                            rowWithinCard.Column(TablerColumnNumber.MediumAuto, column => {
+                                column.CardBasic().Title("Last checked at").Text("27 seconds ago");
+                            });
+                        });
+                    });
+                });
 
                 row.Column(TablerColumnNumber.Six, column => {
                     column.Tabs(tabs => {
@@ -271,79 +287,79 @@ internal class BasicHtmlContainer04 {
 
             });
 
-            //page.Divider("Test2");
+            page.Divider("Test2");
 
-            //page.Row(row => {
-            //    // first line of 4 cards
-            //    row.Column(TablerColumnNumber.Three, column => {
-            //        column.Card(card => {
-            //            card.Alert("Wow! Everything worked!", "Your account has been created!")
-            //                .Icon(TablerIcon.BrandTwitter).Color(TablerColor.Danger);
-            //        });
-            //    });
-            //    row.Column(TablerColumnNumber.Three, column => {
-            //        column.Card(card => {
-            //            card.Alert("Wow! Everything worked!", "Your account has been created!")
-            //                .Color(TablerColor.Facebook);
-            //        });
-            //    });
-            //    row.Column(TablerColumnNumber.Three, column => {
-            //        column.Card(card => {
-            //            card.Alert("Did you know?", "Here is something that you might like to know.", TablerColor.Green,
-            //                TablerAlertType.Dismissible).Icon(TablerIcon.InfoCircle);
-            //        });
-            //    });
-            //    row.Column(TablerColumnNumber.Three, column => {
-            //        column.Card(card => {
-            //            card.Alert("Wow! Everything worked!", "Your account has been created!")
-            //                .Icon(TablerIcon.ExclamationCircle).Color(TablerColor.Twitter);
-            //        });
-            //    });
-            //    row.Column(TablerColumnNumber.Three, column => {
-            //        column.Card(card => {
-            //            card.Alert("I'm so sorry…", "Your account has been deleted and can't be restored.")
-            //                .Icon(TablerIcon.FaceIdError).Color(TablerColor.Warning);
-            //        });
-            //    });
-            //    row.Column(TablerColumnNumber.Three, column => {
-            //        column.Card(card => {
-            //            card.Tracking()
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("No data", TablerColor.Failed)
-            //                .Block("No data", TablerColor.Failed)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Downtime", TablerColor.Danger)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success)
-            //                .Block("Operational", TablerColor.Success);
-            //        });
-            //    });
-            //    row.Column(TablerColumnNumber.Three, column => {
-            //        column.Card(card => {
-            //            card.Avatar().Icon(TablerIcon.BrandTwitter).Margin(TablerMarginStyle.M2);
-            //        });
-            //    });
-            //    row.Column(TablerColumnNumber.Three, column => {
-            //        column.Card(card => {
-            //            card.Avatar()
-            //                .Image(
-            //                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1920px-HTML5_logo_and_wordmark.svg.png")
-            //                .Size(AvatarSize.MD)
-            //                .Margin(TablerMarginStyle.M2);
-            //        });
-            //    });
-            //});
+            page.Row(row => {
+                // first line of 4 cards
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.Card(card => {
+                        card.Alert("Wow! Everything worked!", "Your account has been created!")
+                            .Icon(TablerIconType.BrandTwitter).Color(TablerColor.Danger);
+                    });
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.Card(card => {
+                        card.Alert("Wow! Everything worked!", "Your account has been created!")
+                            .Color(TablerColor.Facebook);
+                    });
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.Card(card => {
+                        card.Alert("Did you know?", "Here is something that you might like to know.", TablerColor.Green,
+                            TablerAlertType.Dismissible).Icon(TablerIconType.InfoCircle);
+                    });
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.Card(card => {
+                        card.Alert("Wow! Everything worked!", "Your account has been created!")
+                            .Icon(TablerIconType.ExclamationCircle).Color(TablerColor.Twitter);
+                    });
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.Card(card => {
+                        card.Alert("I'm so sorry…", "Your account has been deleted and can't be restored.")
+                            .Icon(TablerIconType.FaceIdError).Color(TablerColor.Warning);
+                    });
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.Card(card => {
+                        card.Tracking()
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("No data", TablerColor.Failed)
+                            .Block("No data", TablerColor.Failed)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Downtime", TablerColor.Danger)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success)
+                            .Block("Operational", TablerColor.Success);
+                    });
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.Card(card => {
+                        card.Avatar().Icon(TablerIconType.BrandTwitter).Margin(TablerMarginStyle.M2);
+                    });
+                });
+                row.Column(TablerColumnNumber.Three, column => {
+                    column.Card(card => {
+                        card.Avatar()
+                            .Image(
+                                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1920px-HTML5_logo_and_wordmark.svg.png")
+                            .Size(AvatarSize.MD)
+                            .Margin(TablerMarginStyle.M2);
+                    });
+                });
+            });
         });
         document.Save("BasicDemoDocumentContainer04.html", openInBrowser);
     }

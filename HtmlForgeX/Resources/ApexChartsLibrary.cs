@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace HtmlForgeX.Resources;
+
+/// <summary>
+/// Provides metadata and asset links for the ApexCharts library.
+/// </summary>
 public class ApexChartsLibrary : Library {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ApexChartsLibrary"/> class.
+    /// </summary>
     public ApexChartsLibrary() {
         Header = new LibraryLinks {
             JsLink = [

@@ -48,4 +48,14 @@ public class TablerColumn : Element {
         this.Add(card);
         return card;
     }
+
+    /// <summary>
+    /// Add a DataGrid directly to the column using the enhanced TablerDataGrid component
+    /// </summary>
+    public TablerDataGrid DataGrid(Action<TablerDataGrid> dataGridConfig) {
+        var dataGrid = new TablerDataGrid();
+        dataGridConfig(dataGrid);
+        this.Add(dataGrid);
+        return dataGrid;
+    }
 }
