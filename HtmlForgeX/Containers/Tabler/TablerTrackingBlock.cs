@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Small colored block used for visual tracking indicators.
+/// </summary>
 public class TablerTrackingBlock : Element {
     private string TooltipTitle { get; set; }
     private TablerColor PrivateTrackingColor { get; set; }

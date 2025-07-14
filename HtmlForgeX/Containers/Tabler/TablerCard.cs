@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Provides a fluent API for building Tabler-styled card components.
+/// </summary>
 public class TablerCard : Element {
     private TablerCardFooter PrivateFooter { get; set; } = new TablerCardFooter();
     private TablerCardHeader? PrivateHeader { get; set; }

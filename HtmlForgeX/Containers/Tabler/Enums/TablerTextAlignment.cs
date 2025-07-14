@@ -4,14 +4,23 @@ namespace HtmlForgeX;
 /// Describes text alignment classes.
 /// </summary>
 public enum TextAlignment {
+    /// <summary>
+    /// Aligns text to the center.
+    /// </summary>
     Center,
+    /// <summary>
+    /// Aligns text to the left.
+    /// </summary>
     Left,
+    /// <summary>
+    /// Aligns text to the right.
+    /// </summary>
     Right
 }
 
 public static class TextAlignmentExtensions {
     /// <summary>
-    /// Initializes or configures ToClassString.
+    /// Converts the <see cref="TextAlignment"/> value to a CSS class string.
     /// </summary>
     public static string ToClassString(this TextAlignment alignment) {
         return alignment switch {

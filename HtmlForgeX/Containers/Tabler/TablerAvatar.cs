@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Displays an avatar image or icon with optional styling.
+/// </summary>
 public class TablerAvatar : Element {
     private string ValueEntry { get; set; } = "";
     private string ImageUrl { get; set; } = "";

@@ -4,7 +4,13 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents the footer section of a Tabler card.
+/// </summary>
 public class TablerCardFooter : Element {
+    /// <summary>
+    /// Gets or sets optional footer text content.
+    /// </summary>
     public string? Content { get; set; }
 
     /// <summary>

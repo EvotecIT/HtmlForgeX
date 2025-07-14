@@ -1,5 +1,8 @@
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents a badge styled <c>span</c> element.
+/// </summary>
 public class TablerBadgeSpan : Element {
     public new string Text { get; set; }
     public TablerColor? Color { get; set; }

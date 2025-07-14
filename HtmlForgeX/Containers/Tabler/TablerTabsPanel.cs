@@ -4,6 +4,9 @@ using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Represents a single panel within a <see cref="TablerTabs"/> component.
+/// </summary>
 public class TablerTabsPanel : ElementContainer {
     internal string Id { get; } = GlobalStorage.GenerateRandomId("tabsPanel");
     internal string PrivateTitle { get; set; }

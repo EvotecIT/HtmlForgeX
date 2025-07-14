@@ -6,8 +6,11 @@ namespace HtmlForgeX;
 
 public class TablerForm : Element {
     /// <summary>
-    /// Initializes or configures Input.
+    /// Adds a standard input element to the form.
     /// </summary>
+    /// <param name="name">Name and identifier of the input.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerInput"/>.</returns>
     public TablerInput Input(string name, Action<TablerInput>? config = null) {
         var input = new TablerInput(name);
         config?.Invoke(input);
@@ -16,8 +19,11 @@ public class TablerForm : Element {
     }
 
     /// <summary>
-    /// Initializes or configures Select.
+    /// Adds a select element to the form.
     /// </summary>
+    /// <param name="name">Name and identifier of the select.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerSelect"/>.</returns>
     public TablerSelect Select(string name, Action<TablerSelect>? config = null) {
         var select = new TablerSelect(name);
         config?.Invoke(select);
@@ -26,8 +32,11 @@ public class TablerForm : Element {
     }
 
     /// <summary>
-    /// Initializes or configures InputMask.
+    /// Adds an input mask element to the form.
     /// </summary>
+    /// <param name="name">Name and identifier of the mask.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerInputMask"/>.</returns>
     public TablerInputMask InputMask(string name, Action<TablerInputMask>? config = null) {
         var mask = new TablerInputMask(name);
         config?.Invoke(mask);
@@ -36,7 +45,7 @@ public class TablerForm : Element {
     }
 
     /// <summary>
-    /// Initializes or configures ToString.
+    /// Generates the HTML markup for the form and its child elements.
     /// </summary>
     public override string ToString() {
         var form = new HtmlTag("form").Class("card");
