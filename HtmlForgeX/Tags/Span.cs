@@ -40,15 +40,27 @@ public class Span : Element {
     /// <summary>Opacity value.</summary>
     public double? Opacity { get; set; }
 
+    /// <summary>
+    /// Collection of child <see cref="Span"/> elements created through content operations.
+    /// </summary>
     public List<Span> HtmlSpans { get; } = new List<Span>();
     private Span Parent { get; set; }
     private Span _rootParent; // Track the root parent for AppendContent chains
     
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Span"/> class.
+    /// </summary>
+    /// <param name="parent">Optional parent span used when building chained content.</param>
     public Span(Span? parent = null) {
         this.Parent = parent ?? this;  // If no parent is provided, assume this is the root.
         this._rootParent = this.Parent;
     }
 
+    /// <summary>
+    /// Appends new content to the current span while keeping styling in the parent chain.
+    /// </summary>
+    /// <param name="content">Text or HTML to append.</param>
+    /// <returns>Wrapper span allowing further configuration.</returns>
     public virtual Span AppendContent(string content) {
         var newSpan = new Span(this) {
             Content = content
@@ -257,87 +269,167 @@ public class Span : Element {
         }
     }
 
+    /// <summary>
+    /// Adds content as a child of the current span and returns a wrapper for styling.
+    /// </summary>
+    /// <param name="content">The text to add as a new <see cref="Span"/>.</param>
+    /// <returns>A wrapper span used for method chaining.</returns>
     public virtual Span AddContent(string content) {
         var newSpan = new Span { Content = content };
         this.Add(newSpan);  // Add to children of this HtmlElement
-        
+
         // Create a wrapper that represents the chain but applies styling to the new span
         var chainWrapper = new AddContentChain(this, newSpan);
         return chainWrapper;
     }
 
+    /// <summary>
+    /// Adds a new child <see cref="Span"/> with the specified content.
+    /// </summary>
+    /// <param name="content">The text content for the new span.</param>
+    /// <returns>The created child <see cref="Span"/>.</returns>
     public Span Add(string content) {
         var newSpan = new Span { Content = content };
         this.Add(newSpan);  // Add to children of this HtmlElement
         return newSpan;  // Return new span for modification
     }
 
+    /// <summary>
+    /// Sets the text color for the span.
+    /// </summary>
+    /// <param name="color">Color to assign.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithColor(RGBColor color) {
         this.Color = color;
         return this;
     }
 
+    /// <summary>
+    /// Sets the background color for the span.
+    /// </summary>
+    /// <param name="backgroundColor">Color to assign.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithBackgroundColor(RGBColor backgroundColor) {
         BackGroundColor = backgroundColor;
         return this;
     }
 
 
+    /// <summary>
+    /// Sets the CSS font-size value.
+    /// </summary>
+    /// <param name="fontSize">Font size string.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithFontSize(string fontSize) {
         FontSize = fontSize;
         return this;
     }
 
+    /// <summary>
+    /// Sets the CSS line-height value.
+    /// </summary>
+    /// <param name="lineHeight">Line height string.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithLineHeight(string lineHeight) {
         LineHeight = lineHeight;
         return this;
     }
 
+    /// <summary>
+    /// Sets the font weight.
+    /// </summary>
+    /// <param name="fontWeight">Weight value.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithFontWeight(FontWeight fontWeight) {
         FontWeight = fontWeight;
         return this;
     }
 
+    /// <summary>
+    /// Sets the font style.
+    /// </summary>
+    /// <param name="fontStyle">Style value.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithFontStyle(FontStyle fontStyle) {
         FontStyle = fontStyle;
         return this;
     }
 
+    /// <summary>
+    /// Sets the font variant.
+    /// </summary>
+    /// <param name="fontVariant">Variant value.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithFontVariant(FontVariant fontVariant) {
         FontVariant = fontVariant;
         return this;
     }
 
+    /// <summary>
+    /// Sets the font family.
+    /// </summary>
+    /// <param name="fontFamily">Font family name.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithFontFamily(string fontFamily) {
         FontFamily = fontFamily;
         return this;
     }
 
+    /// <summary>
+    /// Sets the text alignment.
+    /// </summary>
+    /// <param name="alignment">Alignment value.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithAlignment(Alignment alignment) {
         Alignment = alignment;
         return this;
     }
 
+    /// <summary>
+    /// Sets the text decoration.
+    /// </summary>
+    /// <param name="textDecoration">Decoration value.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithTextDecoration(TextDecoration textDecoration) {
         TextDecoration = textDecoration;
         return this;
     }
 
+    /// <summary>
+    /// Sets the text transform property.
+    /// </summary>
+    /// <param name="textTransform">Transform value.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithTextTransform(TextTransform textTransform) {
         TextTransform = textTransform;
         return this;
     }
 
+    /// <summary>
+    /// Sets the text direction.
+    /// </summary>
+    /// <param name="direction">Direction value.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithDirection(Direction direction) {
         Direction = direction;
         return this;
     }
 
+    /// <summary>
+    /// Sets the display style of the span.
+    /// </summary>
+    /// <param name="display">Display value.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithDisplay(Display display) {
         Display = display;
         return this;
     }
 
+    /// <summary>
+    /// Sets the opacity of the span.
+    /// </summary>
+    /// <param name="opacity">Opacity value.</param>
+    /// <returns>The current span instance.</returns>
     public virtual Span WithOpacity(double? opacity) {
         Opacity = opacity;
         return this;
@@ -378,6 +470,10 @@ public class Span : Element {
         return this.Parent; // Return parent for chaining
     }
 
+    /// <summary>
+    /// Builds the style attribute string based on assigned properties.
+    /// </summary>
+    /// <returns>Combined CSS style string.</returns>
     public string GenerateStyle() {
         var style = new List<string>();
 
@@ -400,6 +496,10 @@ public class Span : Element {
         return styleString;
     }
 
+    /// <summary>
+    /// Renders the span as an HTML string including any chained spans.
+    /// </summary>
+    /// <returns>HTML markup representing the span.</returns>
     public override string ToString() {
         var styleString = GenerateStyle();
         styleString = !string.IsNullOrEmpty(styleString) ? $" style=\"{Helpers.HtmlEncode(styleString)}\"" : "";

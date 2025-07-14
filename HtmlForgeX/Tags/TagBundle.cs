@@ -85,6 +85,10 @@ public class H6(string value) : HtmlTag("h6", value);
 /// </summary>
 /// <seealso cref="HtmlForgeX.Element" />
 public class NonBreakingSpace : Element {
+    /// <summary>
+    /// Returns the HTML representation of the non-breaking space entity.
+    /// </summary>
+    /// <returns>The <c>&amp;nbsp;</c> entity string.</returns>
     public override string ToString() {
         return "&nbsp;";
     }
@@ -96,6 +100,10 @@ public class NonBreakingSpace : Element {
 /// </summary>
 /// <seealso cref="HtmlForgeX.Element" />
 public class EnSpace : Element {
+    /// <summary>
+    /// Returns the HTML representation of the en space entity.
+    /// </summary>
+    /// <returns>The <c>&amp;ensp;</c> entity string.</returns>
     public override string ToString() {
         return "&ensp;";
     }
@@ -107,6 +115,10 @@ public class EnSpace : Element {
 /// </summary>
 /// <seealso cref="HtmlForgeX.Element" />
 public class EmSpace : Element {
+    /// <summary>
+    /// Returns the HTML representation of the em space entity.
+    /// </summary>
+    /// <returns>The <c>&amp;emsp;</c> entity string.</returns>
     public override string ToString() {
         return "&emsp;";
     }
