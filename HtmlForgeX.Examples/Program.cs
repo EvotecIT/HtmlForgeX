@@ -50,21 +50,22 @@ internal class Program {
         // Toast examples
         ExampleTablerToast.Create(openInBrowser);
         ExampleTablerToastAdvanced.Create(openInBrowser);
+        ExampleTablerTimeline.Create(openInBrowser);
         ExampleTablerLogs.Create(openInBrowser);
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
-        BasicHtmlContainer02.Demo02(true);
-        BasicHtmlContainer03.Demo03(true);
-        BasicHtmlContainer04.Demo01(true);
-        BasicScrollingText.Demo01(true);
-        DomainHealthCheck.Demo01(true);
-        EnhancedDataGridDemo.Create(true);
+        BasicHtmlContainer02.Demo02(openInBrowser);
+        BasicHtmlContainer03.Demo03(openInBrowser);
+        BasicHtmlContainer04.Demo01(openInBrowser);
+        BasicScrollingText.Demo01(openInBrowser);
+        DomainHealthCheck.Demo01(openInBrowser);
+        EnhancedDataGridDemo.Create(openInBrowser);
 
         // Complete Tabler Cards demo - ALL features
-        TablerCardsCompleteDemo.Demo01(true);
-        TablerCardsEnhancedDemo.Demo01(true);
-        TablerCardsProperDemo.Demo01(true);
+        TablerCardsCompleteDemo.Demo01(openInBrowser);
+        TablerCardsEnhancedDemo.Demo01(openInBrowser);
+        TablerCardsProperDemo.Demo01(openInBrowser);
 
         // Table examples
         BasicHtmlTable01.Create(openInBrowser);
@@ -86,10 +87,10 @@ internal class Program {
         ExampleTextWrappingDemo.Create(openInBrowser);
 
         // Direct email pattern
-        ExampleDirectEmailPattern.Create(true);
+        ExampleDirectEmailPattern.Create(openInBrowser);
 
         // Corrected email pattern
-        ExampleCorrectedEmailPattern.Create(true);
+        ExampleCorrectedEmailPattern.Create(openInBrowser);
 
         // Layout email pattern
         ExampleLayoutEmailPattern.Create(openInBrowser);
@@ -98,7 +99,7 @@ internal class Program {
         ExampleInvoiceEmail.Create(openInBrowser);
 
         // Newsletter email
-        ExampleNewsletterEmail.Create(true);
+        ExampleNewsletterEmail.Create(openInBrowser);
 
         // Account verification email
         ExampleAccountVerificationEmail.Create(openInBrowser);
@@ -112,7 +113,7 @@ internal class Program {
         ExampleEnhancedDarkModeEmail.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
 
         // Enhanced Accordion & Steps showcase
-        EnhancedAccordionStepsShowcase.Demo01(true);  // 🎛️ ENHANCED ACCORDION & STEPS DEMO
+        EnhancedAccordionStepsShowcase.Demo01(openInBrowser);  // 🎛️ ENHANCED ACCORDION & STEPS DEMO
 
         // Flexible header/footer example (NEW - demonstrates the flexible pattern)
         ExampleFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO

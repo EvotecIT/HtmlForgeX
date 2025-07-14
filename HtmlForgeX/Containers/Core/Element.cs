@@ -410,6 +410,13 @@ public abstract class Element {
         return toast;
     }
 
+    public TablerTimeline Timeline(Action<TablerTimeline> config) {
+        var timeline = new TablerTimeline();
+        config(timeline);
+        this.Add(timeline);
+        return timeline;
+    }
+
     // Email Extension Methods for Natural Builder Pattern
 
     /// <summary>
