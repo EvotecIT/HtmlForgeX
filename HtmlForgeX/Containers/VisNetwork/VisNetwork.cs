@@ -3,14 +3,38 @@ using System.Linq;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Container for building interactive diagrams using the Vis Network library.
+/// </summary>
 public class VisNetwork : Element {
+    /// <summary>
+    /// Gets or sets the unique identifier of the diagram container element.
+    /// </summary>
     public string Id { get; set; }
+
+    /// <summary>
+    /// Gets the collection of nodes to render.
+    /// </summary>
     public List<object> Nodes { get; set; } = new List<object>();
+
+    /// <summary>
+    /// Gets the collection of edges connecting nodes.
+    /// </summary>
     public List<object> Edges { get; set; } = new List<object>();
+
+    /// <summary>
+    /// Gets a dictionary of additional options passed directly to Vis Network.
+    /// </summary>
     public Dictionary<string, object> Options { get; set; } = new Dictionary<string, object>();
 
+    /// <summary>
+    /// Gets or sets a value indicating whether the loading bar should be displayed.
+    /// </summary>
     public bool EnableLoadingBar { get; set; }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="VisNetwork"/> class.
+    /// </summary>
     public VisNetwork() {
         // Libraries will be registered via RegisterLibraries method
         Id = GlobalStorage.GenerateRandomId("Diagram");
@@ -24,6 +48,10 @@ public class VisNetwork : Element {
         Document?.Configuration.Libraries.TryAdd(Libraries.VisNetworkLoadingBar, 0);
     }
 
+    /// <summary>
+    /// Called when the element is added to a <see cref="Document"/>.
+    /// Ensures that offline embedding rules are applied to all nodes.
+    /// </summary>
     protected override void OnAddedToDocument() {
         foreach (var nodeObj in Nodes) {
             if (nodeObj is VisNetworkNode node) {
@@ -32,11 +60,21 @@ public class VisNetwork : Element {
         }
     }
 
+    /// <summary>
+    /// Adds a raw node object to the diagram.
+    /// </summary>
+    /// <param name="node">Object containing node definition.</param>
+    /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork AddNode(object node) {
         Nodes.Add(node);
         return this;
     }
 
+    /// <summary>
+    /// Adds a strongly typed <see cref="VisNetworkNode"/> to the diagram.
+    /// </summary>
+    /// <param name="node">Node to add.</param>
+    /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork AddNode(VisNetworkNode node) {
         if (Document != null) {
             node.ApplyDocumentConfiguration(Document);
@@ -45,21 +83,41 @@ public class VisNetwork : Element {
         return this;
     }
 
+    /// <summary>
+    /// Adds a raw edge object to the diagram.
+    /// </summary>
+    /// <param name="edge">Object containing edge definition.</param>
+    /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork AddEdge(object edge) {
         Edges.Add(edge);
         return this;
     }
 
+    /// <summary>
+    /// Adds a <see cref="VisNetworkEdge"/> to the diagram.
+    /// </summary>
+    /// <param name="edge">Edge to add.</param>
+    /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork AddEdge(VisNetworkEdge edge) {
         Edges.Add(edge);
         return this;
     }
 
+    /// <summary>
+    /// Sets an option that will be passed to the underlying Vis Network instance.
+    /// </summary>
+    /// <param name="key">Option name.</param>
+    /// <param name="value">Option value.</param>
+    /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork SetOption(string key, object value) {
         Options[key] = value;
         return this;
     }
 
+    /// <summary>
+    /// Generates the HTML and JavaScript required to render the diagram.
+    /// </summary>
+    /// <returns>HTML string representing the network diagram.</returns>
     public override string ToString() {
         HtmlTag divTag;
         if (EnableLoadingBar) {

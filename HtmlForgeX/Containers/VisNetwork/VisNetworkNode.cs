@@ -24,78 +24,155 @@ public class VisNetworkNode {
     public bool SkipAutoEmbedding { get; set; }
     public Dictionary<string, object> Custom { get; } = new();
 
+    /// <summary>
+    /// Adds a custom property that will be serialized with the node.
+    /// </summary>
+    /// <param name="key">Property name.</param>
+    /// <param name="value">Property value.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode SetCustom(string key, object value) {
         Custom[key] = value;
         return this;
     }
 
+    /// <summary>
+    /// Sets the node identifier.
+    /// </summary>
+    /// <param name="id">Identifier value.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode IdValue(object id) {
         Id = id;
         return this;
     }
 
+    /// <summary>
+    /// Sets the text label shown on the node.
+    /// </summary>
+    /// <param name="label">Label text.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode LabelText(string label) {
         Label = label;
         return this;
     }
 
+    /// <summary>
+    /// Sets the tooltip title for the node.
+    /// </summary>
+    /// <param name="title">Title text.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode TitleText(string title) {
         Title = title;
         return this;
     }
 
+    /// <summary>
+    /// Uses an external image for the node.
+    /// </summary>
+    /// <param name="url">URL of the image.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode UseImage(string url) {
         Image = url;
         Shape ??= VisNetworkNodeShape.Image;
         return this;
     }
 
+    /// <summary>
+    /// Embeds an image from a file or URL into the document.
+    /// </summary>
+    /// <param name="source">Local path or URL of the image.</param>
+    /// <param name="timeoutSeconds">Download timeout in seconds.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode UseImageOffline(string source, int timeoutSeconds = 30) {
         Image = EmbedImage(source, timeoutSeconds);
         Shape ??= VisNetworkNodeShape.Image;
         return this;
     }
 
+    /// <summary>
+    /// Sets the visual shape of the node.
+    /// </summary>
+    /// <param name="shape">Shape type.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode NodeShape(VisNetworkNodeShape shape) {
         Shape = shape;
         return this;
     }
 
+    /// <summary>
+    /// Assigns the node to a group.
+    /// </summary>
+    /// <param name="group">Group name.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode NodeGroup(string group) {
         Group = group;
         return this;
     }
 
+    /// <summary>
+    /// Sets the node color using a CSS color string.
+    /// </summary>
+    /// <param name="color">Color value.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode NodeColor(string color) {
         Color = color;
         return this;
     }
 
+    /// <summary>
+    /// Sets the node color using an <see cref="RGBColor"/> object.
+    /// </summary>
+    /// <param name="color">Color instance.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode NodeColor(RGBColor color) {
         Color = color.ToHex();
         return this;
     }
 
+    /// <summary>
+    /// Sets the size of the node.
+    /// </summary>
+    /// <param name="size">Size value.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode NodeSize(double size) {
         Size = size;
         return this;
     }
 
+    /// <summary>
+    /// Determines whether the node should be hidden.
+    /// </summary>
+    /// <param name="hidden">True to hide the node.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode NodeHidden(bool hidden = true) {
         Hidden = hidden;
         return this;
     }
 
+    /// <summary>
+    /// Enables or disables physics calculations for the node.
+    /// </summary>
+    /// <param name="physics">True to enable physics.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode NodePhysics(bool physics = true) {
         Physics = physics;
         return this;
     }
 
+    /// <summary>
+    /// Prevents the library from automatically embedding the image when offline mode is active.
+    /// </summary>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode WithoutAutoEmbedding() {
         SkipAutoEmbedding = true;
         return this;
     }
 
+    /// <summary>
+    /// Sets the initial position of the node.
+    /// </summary>
+    /// <param name="x">X coordinate.</param>
+    /// <param name="y">Y coordinate.</param>
+    /// <returns>The current <see cref="VisNetworkNode"/> instance.</returns>
     public VisNetworkNode Position(double x, double y) {
         X = x;
         Y = y;
