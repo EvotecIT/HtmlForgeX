@@ -294,20 +294,35 @@ public abstract class Element {
         return progressBar;
     }
 
-    public TablerLogs Logs(string code) {
+    public TablerLogs Logs(string code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
+        if (backgroundClass != null && textClass != null) {
+            logs.CustomTheme(backgroundClass, textClass);
+        } else {
+            logs.Theme(theme);
+        }
         this.Add(logs);
         return logs;
     }
 
-    public TablerLogs Logs(string[] code) {
+    public TablerLogs Logs(string[] code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
+        if (backgroundClass != null && textClass != null) {
+            logs.CustomTheme(backgroundClass, textClass);
+        } else {
+            logs.Theme(theme);
+        }
         this.Add(logs);
         return logs;
     }
 
-    public TablerLogs Logs(List<string> code) {
+    public TablerLogs Logs(List<string> code, TablerLogsTheme theme = TablerLogsTheme.Dark, string? backgroundClass = null, string? textClass = null) {
         var logs = new TablerLogs(code);
+        if (backgroundClass != null && textClass != null) {
+            logs.CustomTheme(backgroundClass, textClass);
+        } else {
+            logs.Theme(theme);
+        }
         this.Add(logs);
         return logs;
     }
