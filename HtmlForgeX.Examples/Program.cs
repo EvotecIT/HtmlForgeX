@@ -50,6 +50,7 @@ internal class Program {
         // Toast examples
         ExampleTablerToast.Create(openInBrowser);
         ExampleTablerToastAdvanced.Create(openInBrowser);
+        ExampleTablerProgressBarShowcase.Create(openInBrowser);
         ExampleTablerTimeline.Create(openInBrowser);
         ExampleTablerLogs.Create(openInBrowser);
 
