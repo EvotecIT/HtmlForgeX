@@ -8,18 +8,31 @@ namespace HtmlForgeX;
 /// </summary>
 [JsonConverter(typeof(ApexChartTypeConverter))]
 public enum ApexChartType {
+    /// <summary>Pie chart.</summary>
     Pie,
+    /// <summary>Donut chart.</summary>
     Donut,
+    /// <summary>Bar chart.</summary>
     Bar,
+    /// <summary>Radial bar chart.</summary>
     RadialBar,
+    /// <summary>Area chart.</summary>
     Area,
+    /// <summary>Treemap chart.</summary>
     Treemap,
+    /// <summary>Heatmap chart.</summary>
     Heatmap,
+    /// <summary>Radar chart.</summary>
     Radar,
+    /// <summary>Mixed chart.</summary>
     Mixed
 }
 
+/// <summary>
+/// JSON converter used to serialize <see cref="ApexChartType"/> values.
+/// </summary>
 public class ApexChartTypeConverter : JsonConverter<ApexChartType> {
+    /// <inheritdoc />
     public override ApexChartType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         var value = reader.GetString();
 
@@ -37,6 +50,7 @@ public class ApexChartTypeConverter : JsonConverter<ApexChartType> {
         };
     }
 
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, ApexChartType value, JsonSerializerOptions options) {
         var stringValue = value switch {
             ApexChartType.Pie => "pie",
