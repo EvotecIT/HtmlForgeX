@@ -16,29 +16,51 @@ public partial class Document : Element {
     /// </summary>
     public DocumentConfiguration Configuration { get; } = new();
 
+    /// <summary>
+    /// Gets the <see cref="Head"/> element of this document.
+    /// </summary>
     public Head Head { get; }
+
+    /// <summary>
+    /// Gets the <see cref="Body"/> element of this document.
+    /// </summary>
     public Body Body { get; }
 
+    /// <summary>
+    /// Gets or sets how external libraries are loaded.
+    /// </summary>
     public LibraryMode LibraryMode {
         get => Configuration.LibraryMode;
         set => Configuration.LibraryMode = value;
     }
 
+    /// <summary>
+    /// Gets or sets the initial theme mode.
+    /// </summary>
     public ThemeMode ThemeMode {
         get => Configuration.ThemeMode;
         set => Configuration.ThemeMode = value;
     }
 
+    /// <summary>
+    /// Gets or sets the output path used when saving the document.
+    /// </summary>
     public string Path {
         get => Configuration.Path;
         set => Configuration.Path = value;
     }
 
+    /// <summary>
+    /// Gets or sets the default style output path.
+    /// </summary>
     public string StylePath {
         get => Configuration.StylePath;
         set => Configuration.StylePath = value;
     }
 
+    /// <summary>
+    /// Gets or sets the default script output path.
+    /// </summary>
     public string ScriptPath {
         get => Configuration.ScriptPath;
         set => Configuration.ScriptPath = value;
