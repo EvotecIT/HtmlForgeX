@@ -63,6 +63,21 @@ internal static class ExampleTablerProgressBarShowcase {
                     });
                 });
             });
+            page.Row(row => {
+                row.Column(column => {
+                    column.Card(card => {
+                        card.ProgressBar(TablerProgressBarType.Small)
+                            .Item(TablerColor.Primary, 40, "Upload")
+                            .Item(TablerColor.Success, 60, "Process")
+                            .Margin(TablerMargin.BottomNormal);
+                        card.ProgressBar(TablerProgressBarType.Separated)
+                            .Item(TablerColor.Green, 25, "A")
+                            .Item(TablerColor.Red, 75, "B")
+                            .Margin(TablerMargin.BottomAuto)
+                            .Padding(TablerPadding.HorizontalQuarter);
+                    });
+                });
+            });
         });
 
         document.Save("ProgressBarShowcase.html", openInBrowser);
