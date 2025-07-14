@@ -10,6 +10,9 @@ public enum TablerProgressBarType {
 }
 
 
+/// <summary>
+/// Extension helpers for <see cref="TablerProgressBarType"/> values.
+/// </summary>
 public static class TablerProgressBarTypeExtensions {
     /// <summary>
     /// Initializes or configures ToClassString.

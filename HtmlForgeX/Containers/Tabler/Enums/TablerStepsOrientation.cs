@@ -13,6 +13,9 @@ public enum StepsOrientation {
 }
 
 
+/// <summary>
+/// Extension helpers for <see cref="StepsOrientation"/> values.
+/// </summary>
 public static class StepsOrientationExtensions {
     /// <summary>
     /// Initializes or configures EnumToString.

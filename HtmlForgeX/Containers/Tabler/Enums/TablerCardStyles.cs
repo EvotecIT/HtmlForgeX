@@ -76,6 +76,9 @@ public enum TablerCardSize {
     Large
 }
 
+/// <summary>
+/// Extension methods for card style enums.
+/// </summary>
 public static class TablerCardStyleExtensions {
     /// <summary>
     /// Initializes or configures ToTablerCardStateClass.

@@ -87,6 +87,9 @@ public enum TablerColumnNumber {
     SmallFourMediumFourLargeThreeExtraLargeTwo
 }
 
+/// <summary>
+/// Extension methods for <see cref="TablerColumnNumber"/> values.
+/// </summary>
 public static class ColumnNumberExtension {
     /// <summary>
     /// Initializes or configures EnumToString.

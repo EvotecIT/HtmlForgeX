@@ -18,6 +18,9 @@ public enum HrTextAlignment {
     Right
 }
 
+/// <summary>
+/// Extension methods for <see cref="HrTextAlignment"/> values.
+/// </summary>
 public static class HrTextAlignmentExtensions {
     /// <summary>
     /// Converts the <see cref="HrTextAlignment"/> value to a CSS class string.

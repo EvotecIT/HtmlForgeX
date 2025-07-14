@@ -57,6 +57,9 @@ public enum TablerPadding {
 
 
 
+/// <summary>
+/// Extension helpers for <see cref="TablerPadding"/> values.
+/// </summary>
 public static class TablerPaddingExtensions {
     /// <summary>
     /// Initializes or configures EnumToString.

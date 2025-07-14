@@ -55,6 +55,9 @@ public enum TablerMargin {
     AllTriple
 }
 
+/// <summary>
+/// Extension helpers for <see cref="TablerMargin"/> values.
+/// </summary>
 public static class TablerMarginExtensions {
     /// <summary>
     /// Initializes or configures EnumToString.
