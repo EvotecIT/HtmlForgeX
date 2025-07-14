@@ -57,6 +57,9 @@ public enum TablerBorderRadius {
     Pill
 }
 
+/// <summary>
+/// Extension methods for Tabler border-related enums.
+/// </summary>
 public static class TablerBorderExtensions {
     /// <summary>
     /// Initializes or configures ToTablerBorderClass.

@@ -11,6 +11,9 @@ public enum AvatarSize {
     XL
 }
 
+/// <summary>
+/// Extension helpers for <see cref="AvatarSize"/> values.
+/// </summary>
 public static class AvatarSizeExtensions {
     /// <summary>
     /// Initializes or configures EnumToString.

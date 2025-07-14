@@ -20,6 +20,9 @@ public enum TablerDataGridSpacing {
     Custom
 }
 
+/// <summary>
+/// Extension helpers for <see cref="TablerDataGridSpacing"/> values.
+/// </summary>
 public static class TablerDataGridSpacingExtensions {
     /// <summary>
     /// Converts TablerDataGridSpacing to CSS value.

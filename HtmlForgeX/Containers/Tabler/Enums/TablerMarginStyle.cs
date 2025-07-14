@@ -54,6 +54,9 @@ public enum TablerMarginStyle {
     MY5
 }
 
+/// <summary>
+/// Extension helpers for <see cref="TablerMarginStyle"/> values.
+/// </summary>
 public static class MarginStyleExtensions {
     /// <summary>
     /// Initializes or configures EnumToString.

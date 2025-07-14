@@ -18,6 +18,9 @@ public enum TextAlignment {
     Right
 }
 
+/// <summary>
+/// Extension helpers for <see cref="TextAlignment"/> values.
+/// </summary>
 public static class TextAlignmentExtensions {
     /// <summary>
     /// Converts the <see cref="TextAlignment"/> value to a CSS class string.

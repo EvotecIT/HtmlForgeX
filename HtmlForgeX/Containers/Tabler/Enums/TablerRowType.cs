@@ -9,6 +9,9 @@ public enum TablerRowType {
     Cards
 }
 
+/// <summary>
+/// Extension helpers for <see cref="TablerRowType"/> values.
+/// </summary>
 public static class TablerRowTypeExtensions {
     /// <summary>
     /// Initializes or configures EnumToString.

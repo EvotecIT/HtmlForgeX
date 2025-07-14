@@ -27,6 +27,9 @@ public enum TablerLogsTheme {
     Custom
 }
 
+/// <summary>
+/// Extension methods for <see cref="TablerLogsTheme"/> values.
+/// </summary>
 public static class TablerLogsThemeExtensions {
     /// <summary>
     /// Initializes or configures ToClassString.

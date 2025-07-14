@@ -15,6 +15,9 @@ public enum TablerTextStyle {
     // Add more options here as needed
 }
 
+/// <summary>
+/// Extension methods for <see cref="TablerTextStyle"/> values.
+/// </summary>
 public static class TextStyleExtensions {
     /// <summary>
     /// Converts the style enum value to the corresponding CSS class.

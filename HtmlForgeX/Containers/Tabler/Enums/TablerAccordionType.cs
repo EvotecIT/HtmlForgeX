@@ -30,6 +30,9 @@ public enum TablerAccordionType {
     Plus
 }
 
+/// <summary>
+/// Extension methods for <see cref="TablerAccordionType"/> values.
+/// </summary>
 public static class TablerAccordionTypeExtensions {
     /// <summary>
     /// Initializes or configures EnumToString.

@@ -64,6 +64,9 @@ public enum TablerDataGridTitleWidth {
     Custom
 }
 
+/// <summary>
+/// Extension helpers for Tabler DataGrid layout enums.
+/// </summary>
 public static class TablerDataGridLayoutExtensions {
     /// <summary>
     /// Gets the CSS classes for the specified layout.

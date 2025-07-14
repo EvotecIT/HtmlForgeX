@@ -83,6 +83,9 @@ public enum TablerColor {
     Transparent
 }
 
+/// <summary>
+/// Helper methods for working with <see cref="TablerColor"/> values.
+/// </summary>
 public static class ColorExtensions {
     /// <summary>
     /// Initializes or configures ToTablerString.
