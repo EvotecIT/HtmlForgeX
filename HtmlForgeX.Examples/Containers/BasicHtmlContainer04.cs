@@ -126,60 +126,76 @@ internal class BasicHtmlContainer04 {
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
                         card.Steps().Color(TablerColor.AzureLight)
-                            .AddStep("Order received", false)
-                            .AddStep("Processing", true)
-                            .AddStep("Shipped", false)
-                            .AddStep("Delivered", false);
+                            .AddStep("Order received", TablerStepState.Completed)
+                            .AddStep("Processing", TablerStepState.Active)
+                            .AddStep("Shipped", TablerStepState.Pending)
+                            .AddStep("Delivered", TablerStepState.Pending);
 
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
                         card.Steps().Orientation(StepsOrientation.Vertical).Color(TablerColor.Facebook)
-                            .AddStep("Order received", "text", false)
-                            .AddStep("Processing", "more text", true)
-                            .AddStep("Shipped", "oops", false)
-                            .AddStep("Delivered", "opps", false);
+                            .AddStep("Order received", "Order confirmed and payment processed", TablerStepState.Completed)
+                            .AddStep("Processing", "Items being prepared for shipment", TablerStepState.Active)
+                            .AddStep("Shipped", "Package in transit", TablerStepState.Pending)
+                            .AddStep("Delivered", "Package delivered to customer", TablerStepState.Pending);
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
                     column.Card(card => {
                         card.Steps().StepCounting().Color(TablerColor.Red)
-                            .AddStep("Order received", false)
-                            .AddStep("Processing", true)
-                            .AddStep("Shipped", false)
-                            .AddStep("Delivered", false);
+                            .AddStep("Order received", TablerStepState.Completed)
+                            .AddStep("Processing", TablerStepState.Active)
+                            .AddStep("Shipped", TablerStepState.Pending)
+                            .AddStep("Delivered", TablerStepState.Pending);
                     });
                 });
                 row.Column(TablerColumnNumber.Twelve, column => {
                     column.Card(card => {
                         card.Accordion(accordion => {
-                            // works
-                            accordion.AddItem("John", new Span().AddContent("Test1"));
-                            // works
-                            accordion.AddItem("Jane", new Span().AddContent("Test2"));
-                            // works
-                            accordion.AddItem("Johny", item => {
-                                item.Content(new Span().AddContent("Test2"));
-                                item.Content(new TablerSteps().StepCounting().Color(TablerColor.Red)
-                                    .AddStep("Order received", false)
-                                    .AddStep("Processing", true)
-                                    .AddStep("Shipped", false)
-                                    .AddStep("Delivered", false));
+                            // Enhanced accordion with new features
+                            accordion.Type(TablerAccordionType.Flush)
+                                    .Color(TablerColor.Primary);
+                            
+                            accordion.AddItem("📊 Project Overview", item => {
+                                item.Icon(TablerIconType.FileDescription)
+                                    .Expanded(true)
+                                    .Content(new Span().AddContent("Enhanced accordion demonstration with icons and expanded state"));
                             });
-                            accordion.AddItem("Johny 2").Content(item => {
-                                item.Steps().StepCounting().Color(TablerColor.Red)
-                                    .AddStep("Order received", false)
-                                    .AddStep("Processing", true)
-                                    .AddStep("Shipped", false)
-                                    .AddStep("Delivered", false);
+                            
+                            accordion.AddItem("🔄 Order Processing", item => {
+                                item.Icon(TablerIconType.Package)
+                                    .Content(content => {
+                                        content.Add(new Span().AddContent("Order tracking with enhanced steps:"));
+                                        content.Add(new TablerSteps().StepCounting().Color(TablerColor.Success)
+                                            .AddStep("Order received", TablerStepState.Completed)
+                                            .AddStep("Processing", TablerStepState.Active)
+                                            .AddStep("Shipped", TablerStepState.Pending)
+                                            .AddStep("Delivered", TablerStepState.Pending));
+                                    });
                             });
 
-                            accordion.AddItem("Johny 2").Content(item => {
-                                item.DataGrid(grid => {
-                                    grid.AddItem("Test", "Ok");
-                                    grid.AddItem("Test2", "Ok2");
-                                });
+                            accordion.AddItem("⚙️ System Status", item => {
+                                item.Icon(TablerIconType.Settings)
+                                    .Content(content => {
+                                        content.Add(new Span().AddContent("Service monitoring dashboard:"));
+                                        content.Add(new TablerSteps().Orientation(StepsOrientation.Vertical).Color(TablerColor.Info)
+                                            .AddStep("Web Server", "Running normally", TablerStepState.Completed)
+                                            .AddStep("Database", "Connection healthy", TablerStepState.Completed)
+                                            .AddStep("Cache", "Performance optimized", TablerStepState.Active));
+                                    });
+                            });
+                            
+                            accordion.AddItem("📋 Data Summary", item => {
+                                item.Icon(TablerIconType.Table)
+                                    .Content(content => {
+                                        content.DataGrid(grid => {
+                                            grid.AddItem("Total Orders", "1,247");
+                                            grid.AddItem("Active Users", "892");
+                                            grid.AddItem("Revenue", "$45,234");
+                                        });
+                                    });
                             });
                         });
                     });

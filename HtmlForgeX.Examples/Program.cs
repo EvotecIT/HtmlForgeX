@@ -109,6 +109,9 @@ internal class Program {
         // Enhanced dark mode example (NEW - showcases all improvements)
         ExampleEnhancedDarkModeEmail.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
 
+        // Enhanced Accordion & Steps showcase
+        EnhancedAccordionStepsShowcase.Demo01(true);  // 🎛️ ENHANCED ACCORDION & STEPS DEMO
+
         // Flexible header/footer example (NEW - demonstrates the flexible pattern)
         ExampleFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO
 
@@ -132,6 +135,7 @@ internal class Program {
 
         // Layout configuration demonstration - NEW enum-based configuration system!
         ExampleLayoutConfigurationDemo.Create(openInBrowser);
+
 
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
