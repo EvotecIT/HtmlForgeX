@@ -54,7 +54,7 @@ internal class AdvancedDataTablesDemo
                 // Styling
                 .Style(BootStrapTableStyle.Striped)
                 .Style(BootStrapTableStyle.Hover)
-                .Style(BootStrapTableStyle.Bordered)
+                .Style(BootStrapTableStyle.Borders)
 
                 // Basic Features
                 .EnablePaging(pageLength: 5, lengthMenu: new[] { 5, 10, 25, 50, 100 })
@@ -84,13 +84,13 @@ internal class AdvancedDataTablesDemo
                 // Column Configuration
                 .ConfigureColumns(columns =>
                 {
-                    columns.Column(0).Target(0).Title("ID").Width("60px").Type(DataTablesColumnType.Numeric).ClassName("text-center");
-                    columns.Column(1).Target(1).Title("Employee Name").Width("150px").Type(DataTablesColumnType.String);
-                    columns.Column(2).Target(2).Title("Department").Width("120px").Type(DataTablesColumnType.String);
-                    columns.Column(3).Target(3).Title("Salary").Width("100px").Type(DataTablesColumnType.Currency).ClassName("text-end");
-                    columns.Column(4).Target(4).Title("Hire Date").Width("120px").Type(DataTablesColumnType.Date);
-                    columns.Column(5).Target(5).Title("Email").Width("200px").Type(DataTablesColumnType.String);
-                    columns.Column(6).Target(6).Title("Status").Width("80px").ClassName("text-center");
+                    columns.Column(col => col.Target(0).Title("ID").Width("60px").Type(DataTablesColumnType.Numeric).ClassName("text-center"));
+                    columns.Column(col => col.Target(1).Title("Employee Name").Width("150px").Type(DataTablesColumnType.String));
+                    columns.Column(col => col.Target(2).Title("Department").Width("120px").Type(DataTablesColumnType.String));
+                    columns.Column(col => col.Target(3).Title("Salary").Width("100px").Type(DataTablesColumnType.Currency).ClassName("text-end"));
+                    columns.Column(col => col.Target(4).Title("Hire Date").Width("120px").Type(DataTablesColumnType.Date));
+                    columns.Column(col => col.Target(5).Title("Email").Width("200px").Type(DataTablesColumnType.String));
+                    columns.Column(col => col.Target(6).Title("Status").Width("80px").ClassName("text-center"));
 
                     // Make ID column non-orderable and non-searchable for demo
                     columns.DisableOrdering(0);
@@ -200,7 +200,7 @@ internal class AdvancedDataTablesDemo
 
             var searchTable = (DataTablesTable)document.Body.Table(employees, TableType.DataTables);
             searchTable
-                .Style(BootStrapTableStyle.Bordered)
+                .Style(BootStrapTableStyle.Borders)
                 .EnablePaging(8)
                 .EnableSearchBuilder(builder =>
                 {

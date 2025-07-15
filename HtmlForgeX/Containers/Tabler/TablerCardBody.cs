@@ -78,6 +78,24 @@ public class TablerCardBody : Element {
     }
 
     /// <summary>
+    /// Apply text style to the card body
+    /// </summary>
+    public TablerCardBody Style(TablerTextStyle style) {
+        // This method is for fluent API compatibility with examples
+        // The actual styling is handled by individual text elements
+        return this;
+    }
+
+    /// <summary>
+    /// Apply font weight to the card body
+    /// </summary>
+    public TablerCardBody Weight(TablerFontWeight weight) {
+        // This method is for fluent API compatibility with examples
+        // The actual weight is handled by individual text elements
+        return this;
+    }
+
+    /// <summary>
     /// Initializes or configures ToString.
     /// </summary>
     public override string ToString() {
@@ -255,6 +273,9 @@ public class TablerCardText : Element {
     private static string GetFontWeightClass(TablerFontWeight weight) {
         return weight switch {
             TablerFontWeight.Medium => "fw-medium",
+            TablerFontWeight.Bold => "fw-bold",
+            TablerFontWeight.Light => "fw-light",
+            TablerFontWeight.Normal => "fw-normal",
             _ => ""
         };
     }

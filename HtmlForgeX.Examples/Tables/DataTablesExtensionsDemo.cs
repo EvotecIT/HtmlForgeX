@@ -37,50 +37,71 @@ internal class DataTablesExtensionsDemo
             page.Divider("1. Quick Setup - Perfect for Simple Tables");
             page.Text("One-liner setup with sensible defaults:");
 
-            var quickTable = (DataTablesTable)document.Body.Table(salesData.Take(10), TableType.DataTables);
-            quickTable.QuickSetup(pageLength: 5, enableExports: true, enableSearch: true, responsive: true);
+            page.Table(salesData.Take(10), TableType.DataTables, table =>
+            {
+                var dataTable = (DataTablesTable)table;
+                dataTable.QuickSetup(pageLength: 5, enableExports: true, enableSearch: true, responsive: true);
+            });
 
             // Enterprise Setup Example
             page.Divider("2. Enterprise Setup - Full-Featured Business Tables");
             page.Text("Complete enterprise configuration with all advanced features:");
 
-            var enterpriseTable = (DataTablesTable)document.Body.Table(salesData, TableType.DataTables);
-            enterpriseTable.EnterpriseSetup(pageLength: 15, enableRowGrouping: true, groupByColumn: 2); // Group by Region
+            page.Table(salesData, TableType.DataTables, table =>
+            {
+                var dataTable = (DataTablesTable)table;
+                dataTable.EnterpriseSetup(pageLength: 15, enableRowGrouping: true, groupByColumn: 2); // Group by Region
+            });
 
             // Mobile Optimized Example
             page.Divider("3. Mobile Optimized - Perfect for Mobile Devices");
             page.Text("Optimized for mobile viewing with simplified controls:");
 
-            var mobileTable = (DataTablesTable)document.Body.Table(salesData.Take(8), TableType.DataTables);
-            mobileTable.MobileOptimized(pageLength: 4);
+            page.Table(salesData.Take(8), TableType.DataTables, table =>
+            {
+                var dataTable = (DataTablesTable)table;
+                dataTable.MobileOptimized(pageLength: 4);
+            });
 
             // Dashboard Setup Example
             page.Divider("4. Dashboard Setup - Great for Summary Views");
             page.Text("Clean dashboard layout with controlled height:");
 
-            var dashboardTable = (DataTablesTable)document.Body.Table(salesData.Take(12), TableType.DataTables);
-            dashboardTable.DashboardSetup(enableExports: true, scrollHeight: "250px");
+            page.Table(salesData.Take(12), TableType.DataTables, table =>
+            {
+                var dataTable = (DataTablesTable)table;
+                dataTable.DashboardSetup(enableExports: true, scrollHeight: "250px");
+            });
 
             // Report Setup Example
             page.Divider("5. Report Setup - Comprehensive Reporting");
             page.Text("Full reporting capabilities with extensive export options:");
 
-            var reportTable = (DataTablesTable)document.Body.Table(salesData, TableType.DataTables);
-            reportTable.ReportSetup(reportTitle: "Sales Performance Report", filename: "sales_report_2024");
+            page.Table(salesData, TableType.DataTables, table =>
+            {
+                var dataTable = (DataTablesTable)table;
+                dataTable.ReportSetup(reportTitle: "Sales Performance Report", filename: "sales_report_2024");
+            });
 
             // Analytics Setup Example
             page.Divider("6. Analytics Setup - Advanced Data Analysis");
             page.Text("Analytics-focused with search panes and advanced filtering:");
 
-            var analyticsTable = (DataTablesTable)document.Body.Table(salesData, TableType.DataTables);
-            analyticsTable.AnalyticsSetup(groupByColumn: 2, searchPanesLayout: "columns-2"); // Group by Region
+            page.Table(salesData, TableType.DataTables, table =>
+            {
+                var dataTable = (DataTablesTable)table;
+                dataTable.AnalyticsSetup(groupByColumn: 2, searchPanesLayout: "columns-2"); // Group by Region
+            });
 
             // Performance Setup Example
             page.Divider("7. Performance Setup - Optimized for Large Datasets");
             page.Text("High-performance configuration for handling large amounts of data:");
 
-            var performanceTable = (DataTablesTable)document.Body.Table(salesData, TableType.DataTables);
-            performanceTable.PerformanceSetup(scrollHeight: "350px", serverSide: false);
+            page.Table(salesData, TableType.DataTables, table =>
+            {
+                var dataTable = (DataTablesTable)table;
+                dataTable.PerformanceSetup(scrollHeight: "350px", serverSide: false);
+            });
 
             // Code Examples
             page.Divider("💻 Extension Method Examples");

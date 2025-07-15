@@ -6,5 +6,10 @@ namespace HtmlForgeX;
 public enum TablerFontWeight {
     /// <summary>Default medium weight.</summary>
     Medium,
-    // Add more options here as needed
+    /// <summary>Bold font weight.</summary>
+    Bold,
+    /// <summary>Light font weight.</summary>
+    Light,
+    /// <summary>Normal font weight.</summary>
+    Normal
 }

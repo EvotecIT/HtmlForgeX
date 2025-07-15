@@ -47,7 +47,7 @@ internal class DataTablesQuickStart
             page.Divider("1. Basic Enhanced Table");
             page.Text("Simple table with export functionality and responsive design:");
 
-            var basicTable = (DataTablesTable)document.Body.Table(products, TableType.DataTables);
+            var basicTable = (DataTablesTable)page.Table(products, TableType.DataTables);
             basicTable
                 .Style(BootStrapTableStyle.Striped)
                 .Style(BootStrapTableStyle.Hover)
@@ -59,105 +59,109 @@ internal class DataTablesQuickStart
             page.Divider("2. Column Configuration");
             page.Text("Table with custom column types, widths, and formatting:");
 
-            var columnTable = (DataTablesTable)document.Body.Table(products, TableType.DataTables);
-            columnTable
-                .Style(BootStrapTableStyle.Bordered)
-                .EnablePaging(4)
-                .ConfigureColumns(columns =>
-                {
-                    columns.Column(0).Target(0).Title("Product ID").Width("80px").Type(DataTablesColumnType.Numeric).ClassName("text-center");
-                    columns.Column(1).Target(1).Title("Product Name").Width("200px");
-                    columns.Column(2).Target(2).Title("Category").Width("120px");
-                    columns.Column(3).Target(3).Title("Price").Width("100px").Type(DataTablesColumnType.Currency).ClassName("text-end fw-bold");
-                    columns.Column(4).Target(4).Title("Stock").Width("80px").Type(DataTablesColumnType.Numeric).ClassName("text-center");
-                    columns.Column(5).Target(5).Title("Rating").Width("80px").Type(DataTablesColumnType.Numeric).ClassName("text-center");
-                })
-                .DefaultOrder(3, "desc") // Order by price descending
-                .EnableExport(DataTablesExportFormat.PDF);
+            page.DataTable(products, table =>
+            {
+                table
+                    .Style(BootStrapTableStyle.Borders)
+                    .EnablePaging(4)
+                    .ConfigureColumns(columns =>
+                    {
+                        columns.Column(col => col.Target(0).Title("Product ID").Width("80px").Type(DataTablesColumnType.Numeric).Centered());
+                        columns.Column(col => col.Target(1).Title("Product Name").Width("200px"));
+                        columns.Column(col => col.Target(2).Title("Category").Width("120px"));
+                        columns.Column(col => col.Target(3).Title("Price").Width("100px").Type(DataTablesColumnType.Currency).CurrencyStyle());
+                        columns.Column(col => col.Target(4).Title("Stock").Width("80px").Type(DataTablesColumnType.Numeric).Centered());
+                        columns.Column(col => col.Target(5).Title("Rating").Width("80px").Type(DataTablesColumnType.Numeric).Centered());
+                    })
+                    .DefaultOrder(3, "desc") // Order by price descending
+                    .EnableExport(DataTablesExportFormat.PDF);
+            });
 
             // Example 3: Search and Filter Features
             page.Divider("3. Advanced Search Features");
             page.Text("Table with search builder and search panes:");
 
-            var searchTable = (DataTablesTable)document.Body.Table(products, TableType.DataTables);
-            searchTable
-                .Style(BootStrapTableStyle.Hover)
-                .EnablePaging(6)
-                .EnableSearchBuilder(builder =>
-                {
-                    builder.Enable = true;
-                    builder.Logic = "AND";
-                    builder.Conditions = 2;
-                })
-                .EnableSearchPanes(panes =>
-                {
-                    panes.Enable = true;
-                    panes.Layout = "columns-2";
-                    panes.ViewTotal = true;
-                })
-                .DomLayout("QSfrtip"); // Include SearchBuilder (Q) and SearchPanes (S)
+            page.DataTable(products, table =>
+            {
+                table
+                    .Style(BootStrapTableStyle.Hover)
+                    .EnablePaging(6)
+                    .EnableSearchBuilder(builder =>
+                    {
+                        builder.Enable = true;
+                        builder.Logic = "AND";
+                        builder.Conditions = 2;
+                    })
+                    .DomLayout("Qfrtip"); // Simplified - just SearchBuilder (Q), no SearchPanes for now
+            });
 
             // Example 4: Export Configuration
             page.Divider("4. Custom Export Configuration");
             page.Text("Table with detailed export options:");
 
-            var exportTable = (DataTablesTable)document.Body.Table(products, TableType.DataTables);
-            exportTable
-                .Style(BootStrapTableStyle.Striped)
-                .EnablePaging(5)
-                .ConfigureExport(export =>
-                {
-                    export.Excel("📊 Export Excel", "products_report", "Product Inventory Report")
-                          .CSV("📄 Export CSV", "products_data")
-                          .PDF("📋 Export PDF", "products_list", "Product Catalog")
-                          .Copy("📋 Copy Data")
-                          .Print("🖨️ Print Table")
-                          .ColumnVisibility("👁️ Show/Hide Columns")
-                          .ExcludeColumns(0); // Exclude ID column from exports
-                });
+            page.DataTable(products, table =>
+            {
+                table
+                    .Style(BootStrapTableStyle.Striped)
+                    .EnablePaging(5)
+                    .ConfigureExport(export =>
+                    {
+                        export.Excel("📊 Export Excel", "products_report", "Product Inventory Report")
+                              .CSV("📄 Export CSV", "products_data")
+                              .PDF("� Expoort PDF", "products_list", "Product Catalog")
+                              .Copy("📋 Copy Data")
+                              .Print("🖨️ Print Table")
+                              .ColumnVisibility("👁️ Show/Hide Columns")
+                              .ExcludeColumns(0); // Exclude ID column from exports
+                    });
+            });
 
             // Example 5: Localization
             page.Divider("5. Localization Example");
             page.Text("Table with custom text and localization:");
 
-            var localizedTable = (DataTablesTable)document.Body.Table(products.Take(6), TableType.DataTables);
-            localizedTable
-                .Style(BootStrapTableStyle.Bordered)
-                .EnablePaging(3)
-                .Localize(lang =>
-                {
-                    lang.Search = "🔍 Search products:";
-                    lang.LengthMenu = "Display _MENU_ products";
-                    lang.Info = "Showing _START_ to _END_ of _TOTAL_ products";
-                    lang.InfoEmpty = "No products available";
-                    lang.ZeroRecords = "No matching products found";
-                    lang.Processing = "Loading products...";
-                    lang.Paginate = new DataTablesPaginate
+            page.DataTable(products.Take(6), table =>
+            {
+                table
+                    .Style(BootStrapTableStyle.Borders)
+                    .EnablePaging(3)
+                    .Localize(lang =>
                     {
-                        First = "⏮️ First",
-                        Last = "⏭️ Last",
-                        Next = "▶️ Next",
-                        Previous = "◀️ Previous"
-                    };
-                })
-                .EnableExport(DataTablesExportFormat.Excel, DataTablesExportFormat.Copy);
+                        lang.Search = "🔍 Search products:";
+                        lang.LengthMenu = "Display _MENU_ products";
+                        lang.Info = "Showing _START_ to _END_ of _TOTAL_ products";
+                        lang.InfoEmpty = "No products available";
+                        lang.ZeroRecords = "No matching products found";
+                        lang.Processing = "Loading products...";
+                        lang.Paginate = new DataTablesPaginate
+                        {
+                            First = "⏮️ First",
+                            Last = "⏭️ Last",
+                            Next = "▶️ Next",
+                            Previous = "◀️ Previous"
+                        };
+                    })
+                    .EnableExport(DataTablesExportFormat.Excel, DataTablesExportFormat.Copy);
+            });
 
             // Example 6: Performance Features
             page.Divider("6. Performance Optimizations");
             page.Text("Table with state saving, fixed header, and scrolling:");
 
-            var performanceTable = (DataTablesTable)document.Body.Table(products, TableType.DataTables);
-            performanceTable
-                .Style(BootStrapTableStyle.Hover)
-                .EnablePaging(4)
-                .EnableStateSaving() // Remember user preferences
-                .EnableFixedHeader() // Keep header visible while scrolling
-                .Scrolling(scrollY: "300px", scrollCollapse: true) // Vertical scrolling
-                .Configure(options =>
-                {
-                    options.Processing = true; // Show loading indicator
-                    options.DeferRender = true; // Improve performance with large datasets
-                });
+            page.DataTable(products, table =>
+            {
+                table
+                    .Style(BootStrapTableStyle.Hover)
+                    .EnablePaging(4)
+                    .EnableStateSaving() // Remember user preferences
+                    .EnableFixedHeader() // Keep header visible while scrolling
+                    .Scrolling(scrollY: "300px", scrollCollapse: true) // Vertical scrolling
+                    .Configure(options =>
+                    {
+                        options.Processing = true; // Show loading indicator
+                        options.DeferRender = true; // Improve performance with large datasets
+                    });
+            });
 
             // Code examples section
             page.Divider("💻 Code Examples");
@@ -174,14 +178,17 @@ internal class DataTablesQuickStart
                         });
                         card.Body(body =>
                         {
-                            body.Text("var table = (DataTablesTable)document.Body.Table(data, TableType.DataTables);")
+                            body.Text("document.Body.DataTable(data, table =>")
                                 .Style(TablerTextStyle.Monospace);
-                            body.LineBreak();
-                            body.Text("table.Style(BootStrapTableStyle.Striped)")
+                            body.Text("{")
                                 .Style(TablerTextStyle.Monospace);
-                            body.Text("     .EnablePaging(10)")
+                            body.Text("    table.Style(BootStrapTableStyle.Striped)")
                                 .Style(TablerTextStyle.Monospace);
-                            body.Text("     .EnableExport(Excel, CSV);")
+                            body.Text("         .EnablePaging(10)")
+                                .Style(TablerTextStyle.Monospace);
+                            body.Text("         .EnableExport(Excel, CSV);")
+                                .Style(TablerTextStyle.Monospace);
+                            body.Text("});")
                                 .Style(TablerTextStyle.Monospace);
                         });
                     });
@@ -201,11 +208,13 @@ internal class DataTablesQuickStart
                                 .Style(TablerTextStyle.Monospace);
                             body.Text("{")
                                 .Style(TablerTextStyle.Monospace);
-                            body.Text("    columns.Column(0).Width(\"80px\")")
+                            body.Text("    columns.Column(col => col.Target(0)")
                                 .Style(TablerTextStyle.Monospace);
-                            body.Text("           .Type(Numeric);")
+                            body.Text("           .Width(\"80px\").Centered());")
                                 .Style(TablerTextStyle.Monospace);
-                            body.Text("    columns.SetType(3, Currency);")
+                            body.Text("    columns.Column(col => col.Target(3)")
+                                .Style(TablerTextStyle.Monospace);
+                            body.Text("           .Type(Currency).CurrencyStyle());")
                                 .Style(TablerTextStyle.Monospace);
                             body.Text("})")
                                 .Style(TablerTextStyle.Monospace);
