@@ -375,3 +375,4 @@ packages-microsoft-prod.deb
 HtmlForgeX.Examples/*.html
 HtmlForgeX/*.html
 *.html
+HtmlForgeX.Tests/Baselines/*.png
