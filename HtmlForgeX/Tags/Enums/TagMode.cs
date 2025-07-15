@@ -1,19 +1,15 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// The mode of the tag for rendering
+/// Defines how an HTML tag should be rendered.
 /// </summary>
 public enum TagMode {
-    /// <summary>
-    /// Normal tag with opening and closing elements.
-    /// </summary>
+    /// <summary>Tag with a separate opening and closing element, for example <c>&lt;div&gt;</c>.</summary>
     Normal,
-    /// <summary>
-    /// Tag without a closing element, for example &lt;br&gt;.
-    /// </summary>
+
+    /// <summary>Tag that does not include a closing element, such as <c>&lt;br&gt;</c>.</summary>
     NoClosing,
-    /// <summary>
-    /// Self-closing tag, for example &lt;img /&gt;.
-    /// </summary>
+
+    /// <summary>Tag that self-closes within a single element, for example <c>&lt;img /&gt;</c>.</summary>
     SelfClosing
 }
