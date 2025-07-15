@@ -323,30 +323,18 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedFromFile_WithOptimization_ShouldLogOptimizationNote()
+    public void EmailImage_EmbedFromFile_WithOptimization_ShouldEmbedAsBase64()
     {
         // Arrange
         var emailImage = new EmailImage();
         emailImage.WithOptimization(100, 100, 80);
 
-        // Capture console output
-        var originalOut = Console.Out;
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
+        // Act
+        emailImage.EmbedFromFile(_testImagePath);
 
-        try
-        {
-            // Act
-            emailImage.EmbedFromFile(_testImagePath);
-
-            // Assert
-            var output = stringWriter.ToString();
-            Assert.IsTrue(output.Contains("Note: Image optimization is enabled but not yet implemented"));
-        }
-        finally
-        {
-            Console.SetOut(originalOut);
-        }
+        // Assert
+        Assert.IsTrue(emailImage.EmbedAsBase64);
+        Assert.IsTrue(!string.IsNullOrEmpty(emailImage.Base64Data));
     }
 
     [TestMethod]
