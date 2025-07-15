@@ -58,6 +58,8 @@ jobs:
               uses: codecov/codecov-action@v3
               with:
                   files: '**/coverage.cobertura.xml'
+                  fail_ci_if_error: false
+                  verbose: true
 
     test-ubuntu:
         name: 'Ubuntu'
@@ -90,6 +92,8 @@ jobs:
               uses: codecov/codecov-action@v3
               with:
                   files: '**/coverage.cobertura.xml'
+                  fail_ci_if_error: false
+                  verbose: true
 
     test-macos:
         name: 'macOS'
@@ -122,3 +126,5 @@ jobs:
               uses: codecov/codecov-action@v3
               with:
                   files: '**/coverage.cobertura.xml'
+                  fail_ci_if_error: false
+                  verbose: true
