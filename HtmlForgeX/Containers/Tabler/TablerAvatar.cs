@@ -10,6 +10,8 @@ public class TablerAvatar : Element {
     private string ImageUrl { get; set; } = "";
     private TablerColor? ClassBackgroundColor { get; set; }
     private TablerColor? ClassTextColor { get; set; }
+    private RGBColor? CustomBackgroundColor { get; set; }
+    private RGBColor? CustomTextColor { get; set; }
     private AvatarSize? PrivateAvatarSize { get; set; }
     private TablerMarginStyle? PrivateAvatarMargin { get; set; }
 
@@ -62,6 +64,26 @@ public class TablerAvatar : Element {
     }
 
     /// <summary>
+    /// Set custom background color using RGBColor for precise color control
+    /// </summary>
+    public TablerAvatar BackgroundColor(RGBColor backgroundColor, RGBColor? textColor = null) {
+        CustomBackgroundColor = backgroundColor;
+        CustomTextColor = textColor;
+        return this;
+    }
+
+    /// <summary>
+    /// Set custom background color using hex string for precise color control
+    /// </summary>
+    public TablerAvatar BackgroundColor(string hexBackgroundColor, string? hexTextColor = null) {
+        CustomBackgroundColor = new RGBColor(hexBackgroundColor);
+        if (!string.IsNullOrEmpty(hexTextColor)) {
+            CustomTextColor = new RGBColor(hexTextColor);
+        }
+        return this;
+    }
+
+    /// <summary>
     /// Initializes or configures ToString.
     /// </summary>
     public override string ToString() {
@@ -81,6 +103,14 @@ public class TablerAvatar : Element {
 
         foreach (var className in classes) {
             avatarTag.Class(className);
+        }
+
+        // Apply custom RGB colors if set
+        if (CustomBackgroundColor != null) {
+            avatarTag.Style("background-color", CustomBackgroundColor.ToString());
+            if (CustomTextColor != null) {
+                avatarTag.Style("color", CustomTextColor.ToString());
+            }
         }
 
         if (!string.IsNullOrEmpty(ImageUrl)) {

@@ -33,11 +33,11 @@ Both files are **committed to git** so other developers don't need to regenerate
 
 ## Script Parameters
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `IconSet` | Choose 'outline', 'filled', or 'both' | `both` |
-| `MaxIcons` | Limit icons for testing (0 = no limit) | `0` |
-| `Force` | Force regeneration even if files exist | `false` |
+| Parameter  | Description                            | Default |
+| ---------- | -------------------------------------- | ------- |
+| `IconSet`  | Choose 'outline', 'filled', or 'both'  | `both`  |
+| `MaxIcons` | Limit icons for testing (0 = no limit) | `0`     |
+| `Force`    | Force regeneration even if files exist | `false` |
 
 ## Performance
 

@@ -38,22 +38,22 @@ internal class BasicHtmlContainer04 {
         document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
             page.Row(row => {
-                // first line of 4 cards
+                // first line of 4 cards - now with custom RGBColor backgrounds!
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIconType.BrandFacebook).BackgroundColor(TablerColor.Facebook)
-                        .TextColor(TablerColor.White).Title("172 likes").Subtitle("2 today");
+                    column.CardMini().Avatar(TablerIconType.BrandFacebook).BackgroundColor("#1877F2", "#FFFFFF") // Facebook blue
+                        .Title("172 likes").Subtitle("2 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIconType.BrandTwitter).BackgroundColor(TablerColor.Twitter)
-                        .TextColor(TablerColor.White).Title("600 shares").Subtitle("16 today");
+                    column.CardMini().Avatar(TablerIconType.BrandTwitter).BackgroundColor("#1DA1F2", "#FFFFFF") // Twitter blue
+                        .Title("600 shares").Subtitle("16 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIconType.ShoppingCart).BackgroundColor(TablerColor.Gray200)
-                        .TextColor(TablerColor.Orange).Title("100 orders").Subtitle("0 today");
+                    column.CardMini().Avatar(TablerIconType.ShoppingCart).BackgroundColor("#FF6B35", "#FFFFFF") // Custom orange
+                        .Title("100 orders").Subtitle("0 today");
                 });
                 row.Column(TablerColumnNumber.Three, column => {
-                    column.CardMini().Avatar(TablerIconType.CurrencyDollar).BackgroundColor(TablerColor.CyanLight)
-                        .TextColor(TablerColor.White).Title("5 sales").Subtitle("3 waiting");
+                    column.CardMini().Avatar(TablerIconType.CurrencyDollar).BackgroundColor("#10B981", "#FFFFFF") // Custom green
+                        .Title("5 sales").Subtitle("3 waiting");
                 });
                 // second line of 3 cards
                 row.Column(TablerColumnNumber.Four, column => {

@@ -8,6 +8,8 @@ public class TablerCardMini : TablerCard {
     private TablerIconType AvatarIcon { get; set; } = TablerIconType.Badge;
     private TablerColor AvatarBackgroundColor { get; set; } = TablerColor.Blue;
     private TablerColor AvatarTextColor { get; set; } = TablerColor.White;
+    private RGBColor? CustomAvatarBackgroundColor { get; set; }
+    private RGBColor? CustomAvatarTextColor { get; set; }
     private string TitleText { get; set; } = "";
     private string SubtitleText { get; set; } = "";
 
@@ -52,6 +54,26 @@ public class TablerCardMini : TablerCard {
     }
 
     /// <summary>
+    /// Set custom avatar background color using RGBColor for precise color control
+    /// </summary>
+    public TablerCardMini BackgroundColor(RGBColor backgroundColor, RGBColor? textColor = null) {
+        CustomAvatarBackgroundColor = backgroundColor;
+        CustomAvatarTextColor = textColor;
+        return this;
+    }
+
+    /// <summary>
+    /// Set custom avatar background color using hex string for precise color control
+    /// </summary>
+    public TablerCardMini BackgroundColor(string hexBackgroundColor, string? hexTextColor = null) {
+        CustomAvatarBackgroundColor = new RGBColor(hexBackgroundColor);
+        if (!string.IsNullOrEmpty(hexTextColor)) {
+            CustomAvatarTextColor = new RGBColor(hexTextColor);
+        }
+        return this;
+    }
+
+    /// <summary>
     /// Initializes or configures ToString.
     /// </summary>
     public override string ToString() {
@@ -68,9 +90,14 @@ public class TablerCardMini : TablerCard {
 
         var cardInside = cardBodyDiv.Row(cardRow => {
             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
-                avatarColumn.Avatar().Icon(AvatarIcon).BackgroundColor(AvatarBackgroundColor)
-                    .TextColor(AvatarTextColor);
+                var avatar = avatarColumn.Avatar().Icon(AvatarIcon);
 
+                // Use custom RGBColor if set, otherwise use TablerColor
+                if (CustomAvatarBackgroundColor != null) {
+                    avatar.BackgroundColor(CustomAvatarBackgroundColor, CustomAvatarTextColor);
+                } else {
+                    avatar.BackgroundColor(AvatarBackgroundColor).TextColor(AvatarTextColor);
+                }
             });
             cardRow.Column(textColumn => {
                 textColumn.Text(TitleText).Weight(TablerFontWeight.Medium);

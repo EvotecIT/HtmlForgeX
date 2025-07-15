@@ -63,6 +63,10 @@ internal class Program {
         BasicHtmlContainer02.Demo02(openInBrowser);
         BasicHtmlContainer03.Demo03(openInBrowser);
         BasicHtmlContainer04.Demo01(openInBrowser);
+
+        // Infocards
+        InfocardsDemo.Demo01(openInBrowser);
+        InfocardsCleanDemo.Demo01(openInBrowser);
         BasicScrollingText.Demo01(openInBrowser);
         DomainHealthCheck.Demo01(openInBrowser);
         EnhancedDataGridDemo.Create(openInBrowser);
@@ -147,9 +151,9 @@ internal class Program {
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
         BasicApexCharts.Demo(openInBrowser);
-      
+
         // VisNetwork images demo
-        BasicVisNetwork.Demo(openInBrowser);  
+        BasicVisNetwork.Demo(openInBrowser);
 
         // Quill editor example
         BasicQuillEditor.Demo(openInBrowser);

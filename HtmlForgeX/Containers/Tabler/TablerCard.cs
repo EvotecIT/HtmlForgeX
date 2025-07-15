@@ -52,6 +52,8 @@ public class TablerCard : Element {
     // Background
     public TablerColor? BackgroundColor { get; set; }
     public bool IsBackgroundLight { get; set; }
+    public RGBColor? CustomBackgroundColor { get; set; }
+    public RGBColor? CustomTextColor { get; set; }
 
     private int Number { get; set; }
 
@@ -173,6 +175,14 @@ public class TablerCard : Element {
             } else {
                 classes.Add(BackgroundColor.Value.ToTablerBackground());
                 classes.Add($"text-{BackgroundColor.Value.ToTablerString()}-fg");
+            }
+        }
+
+        // Custom RGB background colors
+        if (CustomBackgroundColor != null) {
+            cardTag.Style("background-color", CustomBackgroundColor.ToString());
+            if (CustomTextColor != null) {
+                cardTag.Style("color", CustomTextColor.ToString());
             }
         }
 
@@ -523,6 +533,26 @@ public class TablerCard : Element {
     public TablerCard Background(TablerColor color, bool isLight = false) {
         BackgroundColor = color;
         IsBackgroundLight = isLight;
+        return this;
+    }
+
+    /// <summary>
+    /// Set custom background color using RGBColor for precise color control
+    /// </summary>
+    public TablerCard Background(RGBColor backgroundColor, RGBColor? textColor = null) {
+        CustomBackgroundColor = backgroundColor;
+        CustomTextColor = textColor;
+        return this;
+    }
+
+    /// <summary>
+    /// Set custom background color using hex string for precise color control
+    /// </summary>
+    public TablerCard Background(string hexBackgroundColor, string? hexTextColor = null) {
+        CustomBackgroundColor = new RGBColor(hexBackgroundColor);
+        if (!string.IsNullOrEmpty(hexTextColor)) {
+            CustomTextColor = new RGBColor(hexTextColor);
+        }
         return this;
     }
 }
