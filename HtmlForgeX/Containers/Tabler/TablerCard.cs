@@ -103,6 +103,9 @@ public class TablerCard : Element {
     /// </summary>
     public TablerCard Footer(Action<TablerCardFooter> footer) {
         var footerElement = new TablerCardFooter();
+        // Ensure Document and Email references are properly set
+        footerElement.Document = this.Document;
+        footerElement.Email = this.Email;
         footer(footerElement);
         PrivateFooter = footerElement;
         return this;
@@ -113,6 +116,9 @@ public class TablerCard : Element {
     /// </summary>
     public TablerCard Header(Action<TablerCardHeader> header) {
         PrivateHeader = new TablerCardHeader();
+        // Ensure Document and Email references are properly set
+        PrivateHeader.Document = this.Document;
+        PrivateHeader.Email = this.Email;
         header(PrivateHeader);
         return this;
     }
@@ -122,6 +128,9 @@ public class TablerCard : Element {
     /// </summary>
     public TablerCard Body(Action<TablerCardBody> body) {
         PrivateBody = new TablerCardBody();
+        // Ensure Document and Email references are properly set
+        PrivateBody.Document = this.Document;
+        PrivateBody.Email = this.Email;
         body(PrivateBody);
         return this;
     }
@@ -134,6 +143,47 @@ public class TablerCard : Element {
         image(cardImage);
         CardImages.Add(cardImage);
         return this;
+    }
+
+    /// <summary>
+    /// Called when this card is added to a document - ensures all child components have Document reference
+    /// </summary>
+    protected override void OnAddedToDocument() {
+        // Ensure Document and Email references are propagated to all child components FIRST
+        if (PrivateHeader != null) {
+            PrivateHeader.Document = this.Document;
+            PrivateHeader.Email = this.Email;
+        }
+        if (PrivateBody != null) {
+            PrivateBody.Document = this.Document;
+            PrivateBody.Email = this.Email;
+        }
+        if (PrivateFooter != null) {
+            PrivateFooter.Document = this.Document;
+            PrivateFooter.Email = this.Email;
+        }
+        
+        // Now call base implementation to register libraries
+        base.OnAddedToDocument();
+    }
+    
+    /// <summary>
+    /// Override to ensure child components register their libraries after Document reference is set
+    /// </summary>
+    protected internal override void RegisterLibraries() {
+        // Register libraries for child components that have Document references
+        if (PrivateHeader != null && PrivateHeader.Document != null) {
+            PrivateHeader.RegisterLibraries();
+        }
+        if (PrivateBody != null && PrivateBody.Document != null) {
+            PrivateBody.RegisterLibraries();
+        }
+        if (PrivateFooter != null && PrivateFooter.Document != null) {
+            PrivateFooter.RegisterLibraries();
+        }
+        
+        // Call base implementation
+        base.RegisterLibraries();
     }
 
     /// <summary>

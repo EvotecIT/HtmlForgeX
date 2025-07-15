@@ -22,6 +22,9 @@ internal class Program {
         // Configuration for opening files in browser (set to true to open automatically)
         bool openInBrowser = false;
 
+        // DEBUG: PrismJS test
+        TestPrismJsDebug.RunDebugTest();
+
         // Not real examples, but useful for development
         // Support.DownloadLibrariesAsync();
         //Support.GenerateTableIconsAsync();
@@ -159,10 +162,10 @@ internal class Program {
         BasicQuillEditor.Demo(openInBrowser);
 
         // Table examples
-        DataTablesQuickStart.Create(true);
-        AdvancedDataTablesDemo.Create(true);
-        DataTablesExtensionsDemo.Create(true);
-        DataTablesFeatureTest.RunAllTests(true);
-        DataTablesRenderingDemo.Create(true);
+        DataTablesQuickStart.Create(openInBrowser);
+        AdvancedDataTablesDemo.Create(openInBrowser);
+        DataTablesExtensionsDemo.Create(openInBrowser);
+        DataTablesFeatureTest.RunAllTests(openInBrowser);
+        DataTablesRenderingDemo.Create(openInBrowser);
     }
 }

@@ -67,6 +67,20 @@ public class TablerCardHeader : Element {
     }
 
     /// <summary>
+    /// Hide inherited Document property to ensure proper propagation to children
+    /// </summary>
+    public new Document? Document {
+        get => base.Document;
+        set {
+            base.Document = value;
+            // Ensure all existing children get the Document reference
+            foreach (var child in Children.WhereNotNull()) {
+                child.Document = value;
+            }
+        }
+    }
+
+    /// <summary>
     /// Initializes or configures ToString.
     /// </summary>
     public override string ToString() {
@@ -150,6 +164,24 @@ public class TablerCardHeader : Element {
         }
 
         return headerDiv.ToString();
+    }
+    
+    /// <summary>
+    /// Override to ensure child elements have Document reference
+    /// </summary>
+    protected override void OnAddedToDocument() {
+        // Propagate Document reference to all child elements
+        foreach (var child in Children) {
+            if (child != null) {
+                child.Document = this.Document;
+                child.Email = this.Email;
+                // Register libraries for child elements that need them
+                child.RegisterLibraries();
+            }
+        }
+        
+        // Call base implementation
+        base.OnAddedToDocument();
     }
 }
 

@@ -206,6 +206,16 @@ public class PrismJsCodeBlock : Element
         {
             RegisterThemeLibrary();
         }
+        
+        // Debug output
+        if (Document == null)
+        {
+            Console.WriteLine("ERROR: PrismJS element has no Document reference!");
+        }
+        else
+        {
+            Console.WriteLine($"SUCCESS: PrismJS registered: Base={Document.Configuration.Libraries.ContainsKey(Libraries.PrismJs)}, Theme={Theme}");
+        }
     }
 
     /// <summary>Registers theme-specific library resources</summary>
@@ -282,6 +292,11 @@ public class PrismJsCodeBlock : Element
         if (ShowLineNumbers && StartLineNumber != 1)
         {
             dataAttributes.Add($"data-start=\"{StartLineNumber}\"");
+        }
+
+        if (ShowCopyButton)
+        {
+            dataAttributes.Add("data-prismjs-copy=\"Copy\"");
         }
 
         var dataAttributeString = dataAttributes.Any() ? " " + string.Join(" ", dataAttributes) : "";

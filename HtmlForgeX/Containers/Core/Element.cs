@@ -60,7 +60,10 @@ public abstract partial class Element {
         Children.Add(element);
 
         // Notify the element that it has been added to a document
-        element.OnAddedToDocument();
+        // Only call OnAddedToDocument if the element actually has a Document reference
+        if (element.Document != null) {
+            element.OnAddedToDocument();
+        }
 
         return this;
     }
