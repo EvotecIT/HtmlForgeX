@@ -30,8 +30,8 @@ public class TablerPage : Element {
         var row = new TablerRow(TablerRowType.Cards, TablerRowType.Deck);
         // Automatically add bottom spacing to separate rows visually
         row.WithBottomSpacing(TablerSpacing.Medium);
-        config(row);
         this.Add(row);
+        config(row);
         return row;
     }
 

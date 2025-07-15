@@ -367,6 +367,8 @@ public class DataTablesTable : Table {
 
     /// <summary>Registers the required libraries for DataTables based on features used.</summary>
     protected internal override void RegisterLibraries() {
+        base.RegisterLibraries();
+
         // Always register base DataTables and jQuery
         Document?.Configuration.Libraries.TryAdd(Libraries.JQuery, 0);
         Document?.Configuration.Libraries.TryAdd(Libraries.DataTables, 0);

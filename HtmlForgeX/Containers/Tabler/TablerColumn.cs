@@ -69,8 +69,8 @@ public class TablerColumn : Element {
     /// </summary>
     public TablerCard Card(Action<TablerCard> config) {
         var card = new TablerCard();
-        config(card);
         this.Add(card);
+        config(card);
         return card;
     }
 
@@ -79,8 +79,8 @@ public class TablerColumn : Element {
     /// </summary>
     public new TablerCard Card(int count, Action<TablerCard> config) {
         var card = new TablerCard(count);
-        config(card);
         this.Add(card);
+        config(card);
         return card;
     }
 
