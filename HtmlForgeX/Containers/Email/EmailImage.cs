@@ -424,8 +424,9 @@ public class EmailImage : Element {
                 // Check file size against configuration limit
                 var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
                 if (fileInfo.Length > maxSize) {
-                    if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                        // Warning: File size exceeds maximum embed size.
+                    if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
+                        Email.Configuration.Errors.Add("Warning: File size exceeds maximum embed size.");
+                        Email.IncrementEmbeddingWarning();
                     }
                     Source = filePath;
                     return this;
@@ -454,8 +455,9 @@ public class EmailImage : Element {
         } catch (Exception ex) {
             // Fallback to file path if embedding fails
             Source = filePath;
-            if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                // Warning: Failed to embed image.
+            if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
+                Email.Configuration.Errors.Add("Warning: Failed to embed image.");
+                Email.IncrementEmbeddingWarning();
             }
         }
         return this;
@@ -479,8 +481,9 @@ public class EmailImage : Element {
                 // Check file size against configuration limit
                 var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
                 if (bytes.Length > maxSize) {
-                if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                    // Warning: URL content exceeds maximum embed size.
+                if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
+                    Email.Configuration.Errors.Add("Warning: URL content exceeds maximum embed size.");
+                    Email.IncrementEmbeddingWarning();
                 }
                     Source = url;
                     return this;
@@ -505,8 +508,9 @@ public class EmailImage : Element {
         } catch (Exception ex) {
             // Fallback to URL if embedding fails
             Source = url;
-            if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                // Warning: Failed to embed image from URL.
+            if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
+                Email.Configuration.Errors.Add("Warning: Failed to embed image from URL.");
+                Email.IncrementEmbeddingWarning();
             }
         }
         return this;
@@ -535,8 +539,9 @@ public class EmailImage : Element {
 
         // If neither works, use as-is
         Source = source;
-        if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-            // Warning: Could not embed source - using direct source.
+        if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
+            Email.Configuration.Errors.Add("Warning: Could not embed source - using direct source.");
+            Email.IncrementEmbeddingWarning();
         }
         return this;
     }
@@ -609,8 +614,9 @@ public class EmailImage : Element {
             // Check file size against configuration limit
             var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
             if (bytes.Length > maxSize) {
-                if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                    // Warning: Dark mode image exceeds maximum embed size.
+                if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
+                    Email.Configuration.Errors.Add("Warning: Dark mode image exceeds maximum embed size.");
+                    Email.IncrementEmbeddingWarning();
                 }
                 return this;
             }
@@ -631,8 +637,9 @@ public class EmailImage : Element {
 
         } catch (Exception ex) {
             // Fallback to original source if embedding fails
-            if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                // Warning: Failed to embed dark mode image.
+            if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
+                Email.Configuration.Errors.Add("Warning: Failed to embed dark mode image.");
+                Email.IncrementEmbeddingWarning();
             }
         }
 
