@@ -59,7 +59,9 @@ public class TablerCardNavigation : Element {
 /// Navigation types for card headers
 /// </summary>
 public enum TablerCardNavigationType {
+    /// <summary>Render navigation as tabs.</summary>
     Tabs,
+    /// <summary>Render navigation as pill style.</summary>
     Pills
 }
 

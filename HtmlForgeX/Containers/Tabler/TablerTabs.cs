@@ -8,6 +8,9 @@ namespace HtmlForgeX;
 /// Provides a tabbed card component containing multiple panels.
 /// </summary>
 public class TablerTabs : Element {
+    /// <summary>
+    /// Collection of tab panels contained within this component.
+    /// </summary>
     public List<TablerTabsPanel> Panels { get; set; } = new List<TablerTabsPanel>();
     private string Id { get; } = GlobalStorage.GenerateRandomId("tabs");
     private TabNavigation? PrivateTabNavigation { get; set; }
@@ -90,7 +93,9 @@ public class TablerTabs : Element {
 /// TablerTabs enumeration.
 /// </summary>
 public enum TabState {
+    /// <summary>Move navigation to the start.</summary>
     MoveStart,
+    /// <summary>Move navigation to the end.</summary>
     MoveEnd
 }
 
@@ -98,7 +103,9 @@ public enum TabState {
 /// TablerTabs enumeration.
 /// </summary>
 public enum TabNavigation {
+    /// <summary>Fill the available width.</summary>
     Fill,
+    /// <summary>Reverse the order of tabs.</summary>
     Reverse
 }
 

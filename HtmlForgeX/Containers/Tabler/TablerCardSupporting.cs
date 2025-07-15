@@ -4,10 +4,15 @@ namespace HtmlForgeX;
 /// Navigation item for card headers
 /// </summary>
 public class TablerNavItem {
+    /// <summary>Navigation item caption.</summary>
     public string Text { get; set; } = string.Empty;
+    /// <summary>Destination for the navigation link.</summary>
     public string Href { get; set; } = "#";
+    /// <summary>Whether the item is active.</summary>
     public bool IsActive { get; set; }
+    /// <summary>Disables the navigation item.</summary>
     public bool IsDisabled { get; set; }
+    /// <summary>Optional icon associated with the item.</summary>
     public TablerIconElement Icon { get; set; }
 }
 
@@ -15,11 +20,17 @@ public class TablerNavItem {
 /// Button component for Tabler
 /// </summary>
 public class TablerButton : Element {
+    /// <summary>Button label text.</summary>
     public new string Text { get; set; } = string.Empty;
+    /// <summary>Hyperlink reference for the button.</summary>
     public string Href { get; set; } = "#";
+    /// <summary>Visual variant of the button.</summary>
     public TablerButtonVariant Variant { get; set; } = TablerButtonVariant.Primary;
+    /// <summary>Button size.</summary>
     public TablerButtonSize Size { get; set; } = TablerButtonSize.Default;
+    /// <summary>Optional icon displayed within the button.</summary>
     public TablerIconElement Icon { get; set; }
+    /// <summary>Indicates whether the button is disabled.</summary>
     public bool IsDisabled { get; set; }
 
     /// <summary>
@@ -112,8 +123,11 @@ public class TablerButton : Element {
 /// Icon button component
 /// </summary>
 public class TablerIconButton : Element {
+    /// <summary>Icon displayed inside the button.</summary>
     public TablerIconElement Icon { get; set; }
+    /// <summary>Destination URL for the button.</summary>
     public string Href { get; set; } = "#";
+    /// <summary>Tooltip shown on hover.</summary>
     public string Tooltip { get; set; } = string.Empty;
 
     /// <summary>
@@ -149,7 +163,9 @@ public class TablerIconButton : Element {
 /// Dropdown component
 /// </summary>
 public class TablerDropdown : Element {
+    /// <summary>List of dropdown menu items.</summary>
     public List<TablerDropdownItem> Items { get; set; } = new List<TablerDropdownItem>();
+    /// <summary>Icon used as the dropdown trigger.</summary>
     public TablerIconElement TriggerIcon { get; set; }
 
     /// <summary>
@@ -203,15 +219,29 @@ public class TablerDropdown : Element {
 /// Dropdown item
 /// </summary>
 public class TablerDropdownItem {
+    /// <summary>Displayed text for the item.</summary>
     public string Text { get; set; } = string.Empty;
+    /// <summary>Destination link for the item.</summary>
     public string Href { get; set; } = "#";
+    /// <summary>Indicates whether this item is a divider.</summary>
     public bool IsDivider { get; set; }
+    /// <summary>Marks the item as dangerous.</summary>
     public bool IsDanger { get; set; }
 
+    /// <summary>
+    /// Creates a menu item acting as a divider.
+    /// </summary>
     public static TablerDropdownItem Divider() => new TablerDropdownItem { IsDivider = true };
     /// <summary>
     /// Initializes or configures Item.
     /// </summary>
+    /// <summary>
+    /// Creates a standard dropdown item.
+    /// </summary>
+    /// <param name="text">Display text.</param>
+    /// <param name="href">Navigation link.</param>
+    /// <param name="isDanger">Marks the item as dangerous.</param>
+    /// <returns>Configured <see cref="TablerDropdownItem"/> instance.</returns>
     public static TablerDropdownItem Item(string text, string href = "#", bool isDanger = false) =>
         new TablerDropdownItem { Text = text, Href = href, IsDanger = isDanger };
 }
@@ -220,15 +250,25 @@ public class TablerDropdownItem {
 /// Button variants for Tabler
 /// </summary>
 public enum TablerButtonVariant {
+    /// <summary>Primary button style.</summary>
     Primary,
+    /// <summary>Secondary button style.</summary>
     Secondary,
+    /// <summary>Success button style.</summary>
     Success,
+    /// <summary>Warning button style.</summary>
     Warning,
+    /// <summary>Danger button style.</summary>
     Danger,
+    /// <summary>Informational button style.</summary>
     Info,
+    /// <summary>Light themed button.</summary>
     Light,
+    /// <summary>Dark themed button.</summary>
     Dark,
+    /// <summary>Link styled button.</summary>
     Link,
+    /// <summary>Outline variant.</summary>
     Outline
 }
 
@@ -236,8 +276,12 @@ public enum TablerButtonVariant {
 /// Button sizes for Tabler  
 /// </summary>
 public enum TablerButtonSize {
+    /// <summary>Default size.</summary>
     Default,
+    /// <summary>Extra small button.</summary>
     ExtraSmall,
+    /// <summary>Small button.</summary>
     Small,
+    /// <summary>Large button.</summary>
     Large
 }

@@ -4,9 +4,24 @@ namespace HtmlForgeX;
 /// Represents a badge styled <c>span</c> element.
 /// </summary>
 public class TablerBadgeSpan : Element {
+    /// <summary>
+    /// Badge text to display.
+    /// </summary>
     public new string Text { get; set; }
+
+    /// <summary>
+    /// Background color of the badge.
+    /// </summary>
     public TablerColor? Color { get; set; }
+
+    /// <summary>
+    /// Foreground color of the badge text.
+    /// </summary>
     public TablerColor? TextColor { get; set; }
+
+    /// <summary>
+    /// Visual style of the badge element.
+    /// </summary>
     public TablerBadgeStyle Style { get; set; }
 
     /// <summary>

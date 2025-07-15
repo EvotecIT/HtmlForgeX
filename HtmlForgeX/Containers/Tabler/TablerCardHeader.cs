@@ -173,5 +173,8 @@ public class TablerCardActionBuilder {
         return this;
     }
 
+    /// <summary>
+    /// Returns the list of actions added to this header.
+    /// </summary>
     public List<TablerCardAction> GetActions() => actions;
 }

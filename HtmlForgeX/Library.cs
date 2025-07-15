@@ -128,6 +128,9 @@ public class LibraryLinks {
 /// Utility methods for translating <see cref="Libraries"/> enum values into library objects.
 /// </summary>
 public class LibrariesConverter {
+    /// <summary>
+    /// Maps a <see cref="Libraries"/> value to its corresponding library object instance.
+    /// </summary>
     public static Library MapLibraryEnumToLibraryObject(Libraries libraries) {
         switch (libraries) {
             case Libraries.Primary:

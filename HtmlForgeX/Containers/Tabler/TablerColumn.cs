@@ -8,9 +8,19 @@ namespace HtmlForgeX;
 /// Responsive column container for arranging <see cref="TablerCard"/> elements.
 /// </summary>
 public class TablerColumn : Element {
+    /// <summary>
+    /// Collection of cards contained in this column.
+    /// </summary>
     public List<TablerCard> Cards { get; set; } = new List<TablerCard>();
+
+    /// <summary>
+    /// CSS class applied to the column div.
+    /// </summary>
     public string? Class { get; set; }
 
+    /// <summary>
+    /// Number of columns for legacy compatibility.
+    /// </summary>
     public int Count { get; set; }
 
     /// <summary>

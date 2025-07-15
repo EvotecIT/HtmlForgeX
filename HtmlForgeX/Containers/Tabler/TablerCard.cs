@@ -13,44 +13,86 @@ public class TablerCard : Element {
     private TablerCardBody? PrivateBody { get; set; }
     private List<TablerCardImage> CardImages { get; set; } = new List<TablerCardImage>();
 
+    /// <summary>
+    /// Raw HTML content of the card body.
+    /// </summary>
     public string? CardContent { get; set; }
+
+    /// <summary>
+    /// Additional CSS classes applied to the inner card container.
+    /// </summary>
     public string? CardInnerStyle { get; set; }
 
     private string? CardOuterStyle { get; set; }
 
     // Enhanced card properties following existing patterns
+    /// <summary>
+    /// When set, renders the card as a hyperlink.
+    /// </summary>
     public bool IsLink { get; set; }
+
+    /// <summary>
+    /// URL to navigate to when the card is clicked.
+    /// </summary>
     public string? LinkUrl { get; set; }
+
+    /// <summary>
+    /// Optional visual effect applied to link cards.
+    /// </summary>
     public string? LinkEffect { get; set; } // "rotate", "pop", or null for default
 
+    /// <summary>Mark the card as active.</summary>
     public bool IsActive { get; set; }
+    /// <summary>Mark the card as inactive.</summary>
     public bool IsInactive { get; set; }
+    /// <summary>Stack multiple cards vertically.</summary>
     public bool IsStacked { get; set; }
+    /// <summary>Render the card without border.</summary>
     public bool IsBorderless { get; set; }
 
+    /// <summary>
+    /// Apply rotation effect: "left", "right", or <c>null</c>.
+    /// </summary>
     public string? CardRotation { get; set; } // "left", "right", or null
 
     // Status indicators
-    public string? StatusPosition { get; set; } // "top", "bottom", "start", "end"
+    /// <summary>
+    /// Position of the status indicator ("top", "bottom", "start", "end").
+    /// </summary>
+    public string? StatusPosition { get; set; }
+    /// <summary>
+    /// Color of the status indicator.
+    /// </summary>
     public TablerColor? StatusColor { get; set; }
 
     // Ribbon
+    /// <summary>Text displayed on the ribbon.</summary>
     public string? RibbonText { get; set; }
+    /// <summary>Icon displayed on the ribbon.</summary>
     public TablerIconType? RibbonIcon { get; set; }
-    public string? RibbonPosition { get; set; } // "top", "bottom", etc
+    /// <summary>Ribbon position, e.g. "top" or "bottom".</summary>
+    public string? RibbonPosition { get; set; }
+    /// <summary>Color theme of the ribbon.</summary>
     public TablerColor? RibbonColor { get; set; }
 
     // Stamp
+    /// <summary>Icon rendered as a stamp.</summary>
     public TablerIconType? StampIcon { get; set; }
+    /// <summary>Background color for the stamp icon.</summary>
     public TablerColor? StampIconBackgroundColor { get; set; }
+    /// <summary>Color of the stamp icon.</summary>
     public TablerColor? StampIconColor { get; set; }
 
     // Progress
+    /// <summary>Numeric value for progress bar (0-100).</summary>
     public double? ProgressValue { get; set; }
+    /// <summary>Color of the progress bar.</summary>
     public TablerColor? ProgressColor { get; set; }
 
     // Background
+    /// <summary>Background color of the card.</summary>
     public TablerColor? BackgroundColor { get; set; }
+    /// <summary>Use light text color when background is dark.</summary>
     public bool IsBackgroundLight { get; set; }
 
     private int Number { get; set; }

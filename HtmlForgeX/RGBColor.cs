@@ -118,6 +118,9 @@ public partial class RGBColor {
         return $"#{R:X2}{G:X2}{B:X2}";
     }
 
+    /// <summary>
+    /// Returns the color in HTML hexadecimal notation.
+    /// </summary>
     public override string ToString() {
         return $"#{R:X2}{G:X2}{B:X2}";
         // return $"RGBColor [A={A}, R={R}, G={G}, B={B}]";

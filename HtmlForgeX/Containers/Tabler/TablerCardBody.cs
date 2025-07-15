@@ -264,9 +264,13 @@ public class TablerCardText : Element {
 /// Text alignment options
 /// </summary>
 public enum TablerTextAlignment {
+    /// <summary>Align text at the start.</summary>
     Start,
+    /// <summary>Align text in the center.</summary>
     Center,
+    /// <summary>Align text at the end.</summary>
     End,
+    /// <summary>Justify text.</summary>
     Justify
 }
 

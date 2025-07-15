@@ -41,6 +41,14 @@ public static class FontLoader {
         return new Style("@font-face", properties);
     }
 
+    /// <summary>
+    /// Loads a font from a stream and returns a CSS <c>@font-face</c> rule.
+    /// </summary>
+    /// <param name="fontFamily">Font family name.</param>
+    /// <param name="fontStream">Stream containing the font.</param>
+    /// <param name="extension">File extension identifying the font format.</param>
+    /// <returns>A <see cref="Style"/> object with embedded font data.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="fontStream"/> is null.</exception>
     public static Style LoadFontAsStyle(string fontFamily, Stream fontStream, string extension) {
         if (fontStream is null) {
             throw new ArgumentNullException(nameof(fontStream));

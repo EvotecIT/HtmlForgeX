@@ -4,7 +4,14 @@ namespace HtmlForgeX;
 /// Specialized table control using Tabler and Bootstrap styles.
 /// </summary>
 public class TablerTable : Table {
+    /// <summary>
+    /// Unique identifier of the table element.
+    /// </summary>
     public string Id;
+
+    /// <summary>
+    /// Collection of Bootstrap style flags applied to the table.
+    /// </summary>
     public List<BootStrapTableStyle> StyleList { get; set; } = new List<BootStrapTableStyle>();
 
     /// <summary>

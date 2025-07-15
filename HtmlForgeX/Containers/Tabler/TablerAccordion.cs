@@ -8,6 +8,9 @@ namespace HtmlForgeX;
 /// Accordion container composed of expandable TablerAccordionItem elements.
 /// </summary>
 public class TablerAccordion : Element {
+    /// <summary>
+    /// Collection of accordion items to render.
+    /// </summary>
     public List<TablerAccordionItem> Items { get; set; } = new List<TablerAccordionItem>();
     private string Id { get; } = GlobalStorage.GenerateRandomId("accordion");
     private TablerAccordionType PrivateAccordionType { get; set; } = TablerAccordionType.Default;
