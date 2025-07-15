@@ -170,7 +170,8 @@ public class HtmlTag : Element {
     /// </summary>
     /// <returns>A string containing the rendered HTML.</returns>
     public override string ToString() {
-        StringBuilder html = new StringBuilder($"<{PrivateTag}");
+        var html = StringBuilderCache.Acquire();
+        html.Append($"<{PrivateTag}");
 
         foreach (var attribute in Attributes) {
             if (attribute.Value != null && !string.IsNullOrEmpty(attribute.Value.ToString())) {
@@ -216,7 +217,9 @@ public class HtmlTag : Element {
             }
             html.Append($"</{PrivateTag}>");
         }
-        return html.ToString();
+        html.Append(Environment.NewLine);
+        var result = StringBuilderCache.GetStringAndRelease(html);
+        return result.TrimEnd('\r', '\n');
     }
 
     /// <summary>
