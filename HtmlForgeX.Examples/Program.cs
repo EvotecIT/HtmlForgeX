@@ -163,5 +163,6 @@ internal class Program {
         AdvancedDataTablesDemo.Create(true);
         DataTablesExtensionsDemo.Create(true);
         DataTablesFeatureTest.RunAllTests(true);
+        DataTablesRenderingDemo.Create(true);
     }
 }

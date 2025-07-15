@@ -27,6 +27,12 @@ public class DataTablesTable : Table {
     /// <summary>Export button configurations.</summary>
     private readonly List<DataTablesExport> _exportButtons = new List<DataTablesExport>();
 
+    /// <summary>Rendering mode for this table (overrides global setting if set)</summary>
+    public DataTablesRenderMode? RenderMode { get; set; }
+
+    /// <summary>Data source for JavaScript rendering</summary>
+    private object[]? _dataSource;
+
     /// <summary>Initializes a new instance of the <see cref="DataTablesTable"/> class.</summary>
     public DataTablesTable() {
         Id = GlobalStorage.GenerateRandomId("table");
@@ -252,6 +258,82 @@ public class DataTablesTable : Table {
 
     #endregion
 
+    #region Rendering Mode Methods
+
+    /// <summary>Set the rendering mode for this table.</summary>
+    public DataTablesTable SetRenderMode(DataTablesRenderMode mode) {
+        RenderMode = mode;
+        return this;
+    }
+
+    /// <summary>Enable JavaScript rendering for better performance.</summary>
+    public DataTablesTable EnableJavaScriptRendering() {
+        RenderMode = DataTablesRenderMode.JavaScript;
+        return this;
+    }
+
+    /// <summary>Enable HTML rendering (traditional mode).</summary>
+    public DataTablesTable EnableHtmlRendering() {
+        RenderMode = DataTablesRenderMode.Html;
+        return this;
+    }
+
+    /// <summary>Enable automatic rendering mode selection based on data size.</summary>
+    public DataTablesTable EnableAutoRendering() {
+        RenderMode = DataTablesRenderMode.Auto;
+        return this;
+    }
+
+    /// <summary>Determines the effective rendering mode for this table.</summary>
+    private DataTablesRenderMode GetEffectiveRenderMode() {
+        // Use table-specific setting if available
+        if (RenderMode.HasValue) {
+            if (RenderMode.Value == DataTablesRenderMode.Auto) {
+                return DetermineAutoRenderMode();
+            }
+            return RenderMode.Value;
+        }
+
+        // Fall back to global document setting
+        var globalConfig = Document?.Configuration.DataTables;
+        if (globalConfig != null) {
+            if (globalConfig.DefaultRenderMode == DataTablesRenderMode.Auto) {
+                return DetermineAutoRenderMode();
+            }
+            return globalConfig.DefaultRenderMode;
+        }
+
+        // Default to HTML rendering
+        return DataTablesRenderMode.Html;
+    }
+
+    /// <summary>Determines render mode automatically based on data size.</summary>
+    private DataTablesRenderMode DetermineAutoRenderMode() {
+        var threshold = Document?.Configuration.DataTables?.AutoModeThreshold ?? 1000;
+        var rowCount = TableRows.Count;
+
+        return rowCount > threshold ? DataTablesRenderMode.JavaScript : DataTablesRenderMode.Html;
+    }
+
+    /// <summary>Prepares data source for JavaScript rendering.</summary>
+    private void PrepareDataSource() {
+        if (TableRows.Count == 0) return;
+
+        var data = new List<object>();
+
+        foreach (var row in TableRows) {
+            var rowData = new List<object>();
+            foreach (var cell in row) {
+                rowData.Add(cell);
+            }
+            data.Add(rowData.ToArray());
+        }
+
+        _dataSource = data.ToArray();
+    }
+
+    #endregion
+
     #region Configuration Methods
 
     /// <summary>Apply comprehensive DataTables configuration.</summary>
@@ -345,6 +427,151 @@ public class DataTablesTable : Table {
         // Register libraries before building
         RegisterLibraries();
 
+        // Determine effective rendering mode
+        var renderMode = GetEffectiveRenderMode();
+
+        // Apply global configuration defaults
+        ApplyGlobalConfiguration();
+
+        // Build table based on rendering mode
+        return renderMode switch {
+            DataTablesRenderMode.JavaScript => BuildJavaScriptTable(),
+            DataTablesRenderMode.Html => BuildHtmlTable(),
+            _ => BuildHtmlTable() // Default fallback
+        };
+    }
+
+    /// <summary>Applies global configuration settings to this table.</summary>
+    private void ApplyGlobalConfiguration() {
+        var globalConfig = Document?.Configuration.DataTables;
+        if (globalConfig == null) return;
+
+        // Apply global defaults if not already set
+        if (!_features.ContainsKey("deferRender") && globalConfig.EnableDeferredRendering) {
+            _features["deferRender"] = true;
+        }
+
+        if (!_features.ContainsKey("processing") && globalConfig.EnableProcessingIndicator) {
+            _features["processing"] = true;
+        }
+
+        if (!_features.ContainsKey("serverSide") && globalConfig.EnableServerSideProcessing) {
+            _features["serverSide"] = true;
+        }
+
+        // Set default page length if not already configured
+        if (Options.PageLength == null) {
+            Options.PageLength = globalConfig.DefaultPageLength;
+        }
+
+        // Apply global column defaults to all columns
+        ApplyGlobalColumnDefaults(globalConfig);
+    }
+
+    /// <summary>Applies global column defaults to all columns in the table.</summary>
+    private void ApplyGlobalColumnDefaults(DataTablesGlobalConfig globalConfig) {
+        // If no columns are explicitly configured, create default column configurations
+        if (!_columns.Any() && TableHeaders.Count > 0) {
+            for (int i = 0; i < TableHeaders.Count; i++) {
+                var column = new DataTablesColumn {
+                    Targets = i,
+                    Title = TableHeaders[i]
+                };
+                ApplyGlobalDefaultsToColumn(column, globalConfig);
+                _columns.Add(column);
+            }
+        } else {
+            // Apply global defaults to existing columns where not already set
+            foreach (var column in _columns) {
+                ApplyGlobalDefaultsToColumn(column, globalConfig);
+            }
+        }
+    }
+
+    /// <summary>Applies global defaults to a single column configuration.</summary>
+    private void ApplyGlobalDefaultsToColumn(DataTablesColumn column, DataTablesGlobalConfig globalConfig) {
+        // Apply default width if not set
+        if (string.IsNullOrEmpty(column.Width) && !string.IsNullOrEmpty(globalConfig.DefaultColumnWidth)) {
+            column.Width = globalConfig.DefaultColumnWidth;
+        }
+
+        // Apply default type if not set
+        if (string.IsNullOrEmpty(column.Type) && globalConfig.DefaultColumnType.HasValue) {
+            column.Type = globalConfig.DefaultColumnType.Value.ToString().ToLowerInvariant();
+        }
+
+        // Build CSS class string from global defaults
+        var cssClasses = new List<string>();
+
+        // Add existing classes if any
+        if (!string.IsNullOrEmpty(column.ClassName)) {
+            cssClasses.AddRange(column.ClassName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+        }
+
+        // Apply default alignment if not already in CSS classes
+        if (globalConfig.DefaultColumnAlignment.HasValue &&
+            !cssClasses.Any(c => c.Contains("text-") || c.Contains("align-"))) {
+            var alignmentClass = globalConfig.DefaultColumnAlignment.Value switch {
+                DataTablesTextAlign.Left => "text-start",
+                DataTablesTextAlign.Center => "text-center",
+                DataTablesTextAlign.Right => "text-end",
+                DataTablesTextAlign.Justify => "text-justify",
+                DataTablesTextAlign.Start => "text-start",
+                DataTablesTextAlign.End => "text-end",
+                _ => null
+            };
+            if (alignmentClass != null) {
+                cssClasses.Add(alignmentClass);
+            }
+        }
+
+        // Apply default font weight if not already in CSS classes
+        if (globalConfig.DefaultColumnFontWeight.HasValue &&
+            !cssClasses.Any(c => c.Contains("fw-") || c.Contains("font-weight-"))) {
+            var fontWeightClass = globalConfig.DefaultColumnFontWeight.Value switch {
+                DataTablesFontWeight.Normal => "fw-normal",
+                DataTablesFontWeight.Bold => "fw-bold",
+                DataTablesFontWeight.Light => "fw-light",
+                DataTablesFontWeight.SemiBold => "fw-semibold",
+                DataTablesFontWeight.ExtraBold => "fw-bolder",
+                DataTablesFontWeight.Lighter => "fw-lighter",
+                DataTablesFontWeight.Bolder => "fw-bolder",
+                _ => null
+            };
+            if (fontWeightClass != null) {
+                cssClasses.Add(fontWeightClass);
+            }
+        }
+
+        // Apply default column style if not already in CSS classes
+        if (globalConfig.DefaultColumnStyle.HasValue &&
+            !cssClasses.Any(c => c.Contains("text-") || c.Contains("bg-"))) {
+            var styleClass = globalConfig.DefaultColumnStyle.Value switch {
+                DataTablesColumnStyle.Highlight => "table-warning",
+                DataTablesColumnStyle.Muted => "text-muted",
+                DataTablesColumnStyle.Success => "text-success",
+                DataTablesColumnStyle.Warning => "text-warning",
+                DataTablesColumnStyle.Danger => "text-danger",
+                DataTablesColumnStyle.Info => "text-info",
+                DataTablesColumnStyle.Primary => "text-primary",
+                DataTablesColumnStyle.Secondary => "text-secondary",
+                DataTablesColumnStyle.Dark => "text-dark",
+                DataTablesColumnStyle.Light => "text-light",
+                _ => null
+            };
+            if (styleClass != null) {
+                cssClasses.Add(styleClass);
+            }
+        }
+
+        // Update column className if we have classes to apply
+        if (cssClasses.Any()) {
+            column.ClassName = string.Join(" ", cssClasses.Distinct());
+        }
+    }
+
+    /// <summary>Builds traditional HTML table with DataTables initialization.</summary>
+    private string BuildHtmlTable() {
         string tableInside = base.BuildTable();
         string classNames = StyleList.BuildTableStyles();
 
@@ -354,7 +581,84 @@ public class DataTablesTable : Table {
             .Value(tableInside)
             .Attribute("width", "100%");
 
-        // Merge all configurations
+        var scriptTag = BuildInitializationScript();
+        return tableTag + scriptTag.ToString();
+    }
+
+    /// <summary>Builds JavaScript-rendered table for better performance.</summary>
+    private string BuildJavaScriptTable() {
+        // Prepare data source for JavaScript rendering
+        PrepareDataSource();
+
+        string classNames = StyleList.BuildTableStyles();
+
+        // Create empty table structure - DataTables will populate it
+        var tableTag = new HtmlTag("table")
+            .Id(Id)
+            .Class(classNames)
+            .Attribute("width", "100%");
+
+        // Add headers if available
+        if (TableHeaders.Count > 0) {
+            var thead = "<thead><tr>";
+            foreach (var header in TableHeaders) {
+                thead += $"<th>{header}</th>";
+            }
+            thead += "</tr></thead>";
+            tableTag.Value(thead);
+        }
+
+        var scriptTag = BuildJavaScriptInitializationScript();
+        return tableTag + scriptTag.ToString();
+    }
+
+    /// <summary>Builds the DataTables initialization script.</summary>
+    private HtmlTag BuildInitializationScript() {
+        var merged = PrepareConfiguration();
+
+        var configuration = JsonSerializer.Serialize(merged, new JsonSerializerOptions {
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        });
+
+        return new HtmlTag("script").Value($@"
+        $(document).ready(function() {{
+            $('#{Id}').DataTable({configuration});
+        }});
+        ");
+    }
+
+    /// <summary>Builds the JavaScript initialization script with data source.</summary>
+    private HtmlTag BuildJavaScriptInitializationScript() {
+        var merged = PrepareConfiguration();
+
+        // Add data source for JavaScript rendering
+        if (_dataSource != null) {
+            merged["data"] = _dataSource;
+        }
+
+        // Enable deferred rendering for better performance
+        merged["deferRender"] = true;
+
+        var configuration = JsonSerializer.Serialize(merged, new JsonSerializerOptions {
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        });
+
+        var debugComment = Document?.Configuration.DataTables?.DebugMode == true
+            ? $"/* DataTables JavaScript Rendering Mode - {TableRows.Count} rows */"
+            : "";
+
+        return new HtmlTag("script").Value($@"
+        {debugComment}
+        $(document).ready(function() {{
+            $('#{Id}').DataTable({configuration});
+        }});
+        ");
+    }
+
+    /// <summary>Prepares the configuration object for DataTables initialization.</summary>
+    private Dictionary<string, object> PrepareConfiguration() {
         var merged = new Dictionary<string, object>(_features);
 
         // Add column configurations
@@ -383,18 +687,7 @@ public class DataTablesTable : Table {
             merged[kv.Key] = kv.Value;
         }
 
-        var configuration = JsonSerializer.Serialize(merged, new JsonSerializerOptions {
-            WriteIndented = true,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        });
-
-        var scriptTag = new HtmlTag("script").Value($@"
-        $(document).ready(function() {{
-            $('#{Id}').DataTable({configuration});
-        }});
-        ");
-
-        return tableTag + scriptTag.ToString();
+        return merged;
     }
 
     #endregion
