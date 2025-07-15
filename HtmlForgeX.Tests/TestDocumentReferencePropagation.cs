@@ -70,6 +70,34 @@ public class TestDocumentReferencePropagation
     }
 
     [TestMethod]
+    public void ConfigDelegate_ShouldHave_DocumentReference()
+    {
+        // Arrange
+        var document = new Document(LibraryMode.Online);
+
+        // Act
+        document.Body.Page(page =>
+        {
+            Assert.AreSame(document, page.Document, "Page config should have Document reference");
+
+            page.Row(row =>
+            {
+                Assert.AreSame(document, row.Document, "Row config should have Document reference");
+
+                row.Column(TablerColumnNumber.Twelve, column =>
+                {
+                    Assert.AreSame(document, column.Document, "Column config should have Document reference");
+
+                    column.Card(card =>
+                    {
+                        Assert.AreSame(document, card.Document, "Card config should have Document reference");
+                    });
+                });
+            });
+        });
+    }
+
+    [TestMethod]
     public void FluentAPI_ShouldPropagate_DocumentReference()
     {
         // Arrange

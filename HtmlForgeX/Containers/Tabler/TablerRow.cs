@@ -181,8 +181,8 @@ public class TablerRow : Element {
     /// </summary>
     public TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
-        config(column);
         this.Add(column);
+        config(column);
         return column;
     }
 
@@ -191,8 +191,8 @@ public class TablerRow : Element {
     /// </summary>
     public TablerColumn Column(TablerColumnNumber number, Action<TablerColumn> config) {
         var column = new TablerColumn(number);
-        config(column);
         this.Add(column);
+        config(column);
         return column;
     }
 }

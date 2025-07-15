@@ -18,8 +18,8 @@ public partial class Body : Element {
     /// <returns>The created <see cref="TablerPage"/>.</returns>
     public TablerPage Page(Action<TablerPage> config) {
         var page = new TablerPage();
-        config(page);
         this.Add(page);
+        config(page);
         return page;
     }
 }
