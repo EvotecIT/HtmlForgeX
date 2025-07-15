@@ -32,7 +32,10 @@ public static class FontLoader {
             _ => "truetype"
         };
 
-        var fontData = Convert.ToBase64String(File.ReadAllBytes(fontFilePath));
+        using var fileStream = File.OpenRead(fontFilePath);
+        using var memoryStream = new MemoryStream();
+        fileStream.CopyTo(memoryStream);
+        var fontData = Convert.ToBase64String(memoryStream.ToArray());
         var escapedFontFamily = fontFamily.Replace("\"", "\\\"");
         var properties = new Dictionary<string, string> {
             { "font-family", $"\"{escapedFontFamily}\"" },
