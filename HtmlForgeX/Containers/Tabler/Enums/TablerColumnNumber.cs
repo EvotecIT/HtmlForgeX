@@ -4,7 +4,13 @@ namespace HtmlForgeX;
 /// Link: https://getbootstrap.com/docs/4.0/layout/grid/
 /// </summary>
 public enum TablerColumnNumber {
+    /// <summary>
+    /// Auto.
+    /// </summary>
     Auto,
+    /// <summary>
+    /// None.
+    /// </summary>
     None,
     /// <summary>
     /// The zero 'col-0' column
@@ -14,16 +20,49 @@ public enum TablerColumnNumber {
     /// The one 'col-1' column
     /// </summary>
     One = 1,
+    /// <summary>
+    /// Two.
+    /// </summary>
     Two = 2,
+    /// <summary>
+    /// Three.
+    /// </summary>
     Three = 3,
+    /// <summary>
+    /// Four.
+    /// </summary>
     Four = 4,
+    /// <summary>
+    /// Five.
+    /// </summary>
     Five = 5,
+    /// <summary>
+    /// Six.
+    /// </summary>
     Six,
+    /// <summary>
+    /// Seven.
+    /// </summary>
     Seven,
+    /// <summary>
+    /// Eight.
+    /// </summary>
     Eight,
+    /// <summary>
+    /// Nine.
+    /// </summary>
     Nine,
+    /// <summary>
+    /// Ten.
+    /// </summary>
     Ten,
+    /// <summary>
+    /// Eleven.
+    /// </summary>
     Eleven,
+    /// <summary>
+    /// Twelve.
+    /// </summary>
     Twelve,
 
     /// <summary>
@@ -34,56 +73,409 @@ public enum TablerColumnNumber {
     /// The medium six 'col-md-6' column
     /// </summary>
     MediumSix,
+    /// <summary>
+    /// Small six.
+    /// </summary>
     SmallSix,
+    /// <summary>
+    /// Large six.
+    /// </summary>
     LargeSix,
+    /// <summary>
+    /// Extra large six.
+    /// </summary>
     ExtraLargeSix,
 
     // Small breakpoint combinations
-    SmallOne, SmallTwo, SmallThree, SmallFour, SmallFive, SmallSeven, SmallEight, SmallNine, SmallTen, SmallEleven, SmallTwelve,
+    /// <summary>
+    /// Small one.
+    /// </summary>
+    SmallOne,
+    /// <summary>
+    /// Small two.
+    /// </summary>
+    SmallTwo,
+    /// <summary>
+    /// Small three.
+    /// </summary>
+    SmallThree,
+    /// <summary>
+    /// Small four.
+    /// </summary>
+    SmallFour,
+    /// <summary>
+    /// Small five.
+    /// </summary>
+    SmallFive,
+    /// <summary>
+    /// Small seven.
+    /// </summary>
+    SmallSeven,
+    /// <summary>
+    /// Small eight.
+    /// </summary>
+    SmallEight,
+    /// <summary>
+    /// Small nine.
+    /// </summary>
+    SmallNine,
+    /// <summary>
+    /// Small ten.
+    /// </summary>
+    SmallTen,
+    /// <summary>
+    /// Small eleven.
+    /// </summary>
+    SmallEleven,
+    /// <summary>
+    /// Small twelve.
+    /// </summary>
+    SmallTwelve,
+    /// <summary>
+    /// Small auto.
+    /// </summary>
     SmallAuto,
 
     // Medium breakpoint combinations  
-    MediumOne, MediumTwo, MediumThree, MediumFour, MediumFive, MediumSeven, MediumEight, MediumNine, MediumTen, MediumEleven, MediumTwelve,
+    /// <summary>
+    /// Medium one.
+    /// </summary>
+    MediumOne,
+    /// <summary>
+    /// Medium two.
+    /// </summary>
+    MediumTwo,
+    /// <summary>
+    /// Medium three.
+    /// </summary>
+    MediumThree,
+    /// <summary>
+    /// Medium four.
+    /// </summary>
+    MediumFour,
+    /// <summary>
+    /// Medium five.
+    /// </summary>
+    MediumFive,
+    /// <summary>
+    /// Medium seven.
+    /// </summary>
+    MediumSeven,
+    /// <summary>
+    /// Medium eight.
+    /// </summary>
+    MediumEight,
+    /// <summary>
+    /// Medium nine.
+    /// </summary>
+    MediumNine,
+    /// <summary>
+    /// Medium ten.
+    /// </summary>
+    MediumTen,
+    /// <summary>
+    /// Medium eleven.
+    /// </summary>
+    MediumEleven,
+    /// <summary>
+    /// Medium twelve.
+    /// </summary>
+    MediumTwelve,
 
     // Large breakpoint combinations
-    LargeOne, LargeTwo, LargeThree, LargeFour, LargeFive, LargeSeven, LargeEight, LargeNine, LargeTen, LargeEleven, LargeTwelve,
+    /// <summary>
+    /// Large one.
+    /// </summary>
+    LargeOne,
+    /// <summary>
+    /// Large two.
+    /// </summary>
+    LargeTwo,
+    /// <summary>
+    /// Large three.
+    /// </summary>
+    LargeThree,
+    /// <summary>
+    /// Large four.
+    /// </summary>
+    LargeFour,
+    /// <summary>
+    /// Large five.
+    /// </summary>
+    LargeFive,
+    /// <summary>
+    /// Large seven.
+    /// </summary>
+    LargeSeven,
+    /// <summary>
+    /// Large eight.
+    /// </summary>
+    LargeEight,
+    /// <summary>
+    /// Large nine.
+    /// </summary>
+    LargeNine,
+    /// <summary>
+    /// Large ten.
+    /// </summary>
+    LargeTen,
+    /// <summary>
+    /// Large eleven.
+    /// </summary>
+    LargeEleven,
+    /// <summary>
+    /// Large twelve.
+    /// </summary>
+    LargeTwelve,
+    /// <summary>
+    /// Large auto.
+    /// </summary>
     LargeAuto,
 
     // Extra Large breakpoint combinations
-    ExtraLargeOne, ExtraLargeTwo, ExtraLargeThree, ExtraLargeFour, ExtraLargeFive, ExtraLargeSeven, ExtraLargeEight, ExtraLargeNine, ExtraLargeTen, ExtraLargeEleven, ExtraLargeTwelve,
+    /// <summary>
+    /// Extra large one.
+    /// </summary>
+    ExtraLargeOne,
+    /// <summary>
+    /// Extra large two.
+    /// </summary>
+    ExtraLargeTwo,
+    /// <summary>
+    /// Extra large three.
+    /// </summary>
+    ExtraLargeThree,
+    /// <summary>
+    /// Extra large four.
+    /// </summary>
+    ExtraLargeFour,
+    /// <summary>
+    /// Extra large five.
+    /// </summary>
+    ExtraLargeFive,
+    /// <summary>
+    /// Extra large seven.
+    /// </summary>
+    ExtraLargeSeven,
+    /// <summary>
+    /// Extra large eight.
+    /// </summary>
+    ExtraLargeEight,
+    /// <summary>
+    /// Extra large nine.
+    /// </summary>
+    ExtraLargeNine,
+    /// <summary>
+    /// Extra large ten.
+    /// </summary>
+    ExtraLargeTen,
+    /// <summary>
+    /// Extra large eleven.
+    /// </summary>
+    ExtraLargeEleven,
+    /// <summary>
+    /// Extra large twelve.
+    /// </summary>
+    ExtraLargeTwelve,
+    /// <summary>
+    /// Extra large auto.
+    /// </summary>
     ExtraLargeAuto,
 
     // Two-breakpoint responsive combinations
-    SmallSixMediumFour, SmallSixMediumThree, SmallSixMediumTwo, SmallSixMediumOne,
-    SmallFourMediumSix, SmallFourMediumThree, SmallFourMediumTwo,
-    SmallThreeMediumSix, SmallThreeMediumFour, SmallThreeMediumTwo,
-    SmallTwoMediumSix, SmallTwoMediumFour, SmallTwoMediumThree,
+    /// <summary>
+    /// Small six medium four.
+    /// </summary>
+    SmallSixMediumFour,
+    /// <summary>
+    /// Small six medium three.
+    /// </summary>
+    SmallSixMediumThree,
+    /// <summary>
+    /// Small six medium two.
+    /// </summary>
+    SmallSixMediumTwo,
+    /// <summary>
+    /// Small six medium one.
+    /// </summary>
+    SmallSixMediumOne,
+    /// <summary>
+    /// Small four medium six.
+    /// </summary>
+    SmallFourMediumSix,
+    /// <summary>
+    /// Small four medium three.
+    /// </summary>
+    SmallFourMediumThree,
+    /// <summary>
+    /// Small four medium two.
+    /// </summary>
+    SmallFourMediumTwo,
+    /// <summary>
+    /// Small three medium six.
+    /// </summary>
+    SmallThreeMediumSix,
+    /// <summary>
+    /// Small three medium four.
+    /// </summary>
+    SmallThreeMediumFour,
+    /// <summary>
+    /// Small three medium two.
+    /// </summary>
+    SmallThreeMediumTwo,
+    /// <summary>
+    /// Small two medium six.
+    /// </summary>
+    SmallTwoMediumSix,
+    /// <summary>
+    /// Small two medium four.
+    /// </summary>
+    SmallTwoMediumFour,
+    /// <summary>
+    /// Small two medium three.
+    /// </summary>
+    SmallTwoMediumThree,
 
-    SmallSixLargeThree, SmallSixLargeTwo, SmallSixLargeOne,
+    /// <summary>
+    /// Small six large three.
+    /// </summary>
+    SmallSixLargeThree,
+    /// <summary>
+    /// Small six large two.
+    /// </summary>
+    SmallSixLargeTwo,
+    /// <summary>
+    /// Small six large one.
+    /// </summary>
+    SmallSixLargeOne,
+    /// <summary>
+    /// Small six large four.
+    /// </summary>
     SmallSixLargeFour,
-    SmallFourLargeSix, SmallFourLargeThree, SmallFourLargeTwo,
-    SmallThreeLargeSix, SmallThreeLargeFour, SmallThreeLargeTwo,
+    /// <summary>
+    /// Small four large six.
+    /// </summary>
+    SmallFourLargeSix,
+    /// <summary>
+    /// Small four large three.
+    /// </summary>
+    SmallFourLargeThree,
+    /// <summary>
+    /// Small four large two.
+    /// </summary>
+    SmallFourLargeTwo,
+    /// <summary>
+    /// Small three large six.
+    /// </summary>
+    SmallThreeLargeSix,
+    /// <summary>
+    /// Small three large four.
+    /// </summary>
+    SmallThreeLargeFour,
+    /// <summary>
+    /// Small three large two.
+    /// </summary>
+    SmallThreeLargeTwo,
 
-    MediumSixLargeThree, MediumSixLargeFour, MediumSixLargeTwo, MediumSixLargeOne,
-    MediumFourLargeSix, MediumFourLargeThree, MediumFourLargeTwo,
-    MediumThreeLargeSix, MediumThreeLargeFour, MediumThreeLargeTwo,
+    /// <summary>
+    /// Medium six large three.
+    /// </summary>
+    MediumSixLargeThree,
+    /// <summary>
+    /// Medium six large four.
+    /// </summary>
+    MediumSixLargeFour,
+    /// <summary>
+    /// Medium six large two.
+    /// </summary>
+    MediumSixLargeTwo,
+    /// <summary>
+    /// Medium six large one.
+    /// </summary>
+    MediumSixLargeOne,
+    /// <summary>
+    /// Medium four large six.
+    /// </summary>
+    MediumFourLargeSix,
+    /// <summary>
+    /// Medium four large three.
+    /// </summary>
+    MediumFourLargeThree,
+    /// <summary>
+    /// Medium four large two.
+    /// </summary>
+    MediumFourLargeTwo,
+    /// <summary>
+    /// Medium three large six.
+    /// </summary>
+    MediumThreeLargeSix,
+    /// <summary>
+    /// Medium three large four.
+    /// </summary>
+    MediumThreeLargeFour,
+    /// <summary>
+    /// Medium three large two.
+    /// </summary>
+    MediumThreeLargeTwo,
 
     // Three-breakpoint responsive combinations (most common Tabler patterns)
+    /// <summary>
+    /// Small six medium six large three.
+    /// </summary>
     SmallSixMediumSixLargeThree,
+    /// <summary>
+    /// Small six medium six large four.
+    /// </summary>
     SmallSixMediumSixLargeFour,
+    /// <summary>
+    /// Small six medium four large three.
+    /// </summary>
     SmallSixMediumFourLargeThree,
+    /// <summary>
+    /// Small six medium four large two.
+    /// </summary>
     SmallSixMediumFourLargeTwo,
+    /// <summary>
+    /// Small six medium three large two.
+    /// </summary>
     SmallSixMediumThreeLargeTwo,
+    /// <summary>
+    /// Small four medium six large three.
+    /// </summary>
     SmallFourMediumSixLargeThree,
+    /// <summary>
+    /// Small four medium four large three.
+    /// </summary>
     SmallFourMediumFourLargeThree,
+    /// <summary>
+    /// Small four medium three large two.
+    /// </summary>
     SmallFourMediumThreeLargeTwo,
+    /// <summary>
+    /// Small three medium six large four.
+    /// </summary>
     SmallThreeMediumSixLargeFour,
+    /// <summary>
+    /// Small three medium four large three.
+    /// </summary>
     SmallThreeMediumFourLargeThree,
+    /// <summary>
+    /// Small three medium three large two.
+    /// </summary>
     SmallThreeMediumThreeLargeTwo,
 
     // Extra Large combinations
+    /// <summary>
+    /// Small six medium six large three extra large two.
+    /// </summary>
     SmallSixMediumSixLargeThreeExtraLargeTwo,
+    /// <summary>
+    /// Small six medium four large three extra large two.
+    /// </summary>
     SmallSixMediumFourLargeThreeExtraLargeTwo,
+    /// <summary>
+    /// Small four medium four large three extra large two.
+    /// </summary>
     SmallFourMediumFourLargeThreeExtraLargeTwo
 }
 
