@@ -167,5 +167,6 @@ internal class Program {
         DataTablesExtensionsDemo.Create(openInBrowser);
         DataTablesFeatureTest.RunAllTests(openInBrowser);
         DataTablesRenderingDemo.Create(openInBrowser);
+        DataTablesInteractiveFilteringDemo.Create(openInBrowser);
     }
 }

@@ -218,6 +218,14 @@ public class DataTablesTable : Table {
         return this;
     }
 
+    /// <summary>Configure SearchBuilder using a fluent builder.</summary>
+    public DataTablesTable ConfigureSearchBuilder(Action<DataTablesSearchBuilderBuilder> configure) {
+        var builder = new DataTablesSearchBuilderBuilder();
+        configure(builder);
+        Options.SearchBuilder = builder.Build();
+        return this;
+    }
+
     /// <summary>Enable search panes.</summary>
     public DataTablesTable EnableSearchPanes(Action<DataTablesSearchPanes>? configure = null) {
         Options.SearchPanes = new DataTablesSearchPanes { Enable = true };
