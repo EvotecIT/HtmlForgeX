@@ -11,7 +11,7 @@ public class TablerCardHeader : Element {
     private string? SubtitleText { get; set; }
     private TablerCardHeaderStyle HeaderStyle { get; set; } = TablerCardHeaderStyle.Default;
     private TablerAvatar? HeaderAvatar { get; set; }
-    private List<TablerCardAction> Actions { get; set; } = new List<TablerCardAction>();
+    private IReadOnlyList<TablerCardAction> Actions { get; set; } = new List<TablerCardAction>();
     private TablerCardNavigation? Navigation { get; set; }
 
     /// <summary>
@@ -270,5 +270,5 @@ public class TablerCardActionBuilder {
     /// <summary>
     /// Retrieves the collection of actions configured for the header.
     /// </summary>
-    public List<TablerCardAction> GetActions() => actions;
+    public IReadOnlyList<TablerCardAction> GetActions() => actions;
 }
