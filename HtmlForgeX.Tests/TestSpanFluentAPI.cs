@@ -18,8 +18,7 @@ public class TestSpanFluentAPI {
         document.Body.Add(span4);
 
         var html = document.ToString();
-        Console.WriteLine("Original broken approach:");
-        Console.WriteLine(html);
+        _ = html;
 
         // This approach is broken but let's test what it produces
         Assert.IsTrue(html.Contains("Should be RED") || html.Contains("Should be BLUE") || html.Contains("Should be GREEN"),
@@ -36,8 +35,7 @@ public class TestSpanFluentAPI {
         document2.Body.Add(span5);
 
         var html2 = document2.ToString();
-        Console.WriteLine("\nNew working approach:");
-        Console.WriteLine(html2);
+        _ = html2;
 
         // Check if all colors are applied correctly
         Assert.IsTrue(html2.Contains("Should be RED"), "Should contain red text");
@@ -62,8 +60,7 @@ public class TestSpanFluentAPI {
         document.Body.Span("Hello World").WithColor(RGBColor.Red).WithFontSize("20px");
 
         var html = document.ToString();
-        Console.WriteLine("Body.Span() HTML:");
-        Console.WriteLine(html);
+        _ = html;
 
         // Check if styling is applied
         Assert.IsTrue(html.Contains("Hello World"), "Should contain the text");
@@ -81,8 +78,7 @@ public class TestSpanFluentAPI {
         document.Body.Add(span);
 
         var html = document.ToString();
-        Console.WriteLine("Direct Span HTML:");
-        Console.WriteLine(html);
+        _ = html;
 
         // Check if styling is applied
         Assert.IsTrue(html.Contains("Direct span"), "Should contain the text");
@@ -97,8 +93,7 @@ public class TestSpanFluentAPI {
         span.AppendContent("Second").WithColor(RGBColor.Blue);
 
         var html = span.ToString();
-        Console.WriteLine("AppendContent behavior:");
-        Console.WriteLine(html);
+        _ = html;
 
         // Analyze the structure
         Assert.IsTrue(html.Contains("First"), "Should contain first text");
@@ -116,8 +111,7 @@ public class TestSpanFluentAPI {
         document.Body.Text("Normal Text", null, null); // Explicitly call the Span version
 
         var html = document.ToString();
-        Console.WriteLine("Simple Text API:");
-        Console.WriteLine(html);
+        _ = html;
 
         // Verify content and styling
         Assert.IsTrue(html.Contains("Red Text"), "Should contain red text");
@@ -141,8 +135,7 @@ public class TestSpanFluentAPI {
         document.Body.Add(span);
 
         var html = document.ToString();
-        Console.WriteLine("AddStyledText API:");
-        Console.WriteLine(html);
+        _ = html;
 
         // Verify all text is present
         Assert.IsTrue(html.Contains("Bold Red"), "Should contain bold red text");

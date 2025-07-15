@@ -425,7 +425,7 @@ public class EmailImage : Element {
                 var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
                 if (fileInfo.Length > maxSize) {
                     if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                        Console.WriteLine($"Warning: File {filePath} ({fileInfo.Length} bytes) exceeds maximum embed size ({maxSize} bytes). Using direct path.");
+                        // Warning: File size exceeds maximum embed size.
                     }
                     Source = filePath;
                     return this;
@@ -451,7 +451,7 @@ public class EmailImage : Element {
             // Fallback to file path if embedding fails
             Source = filePath;
             if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                Console.WriteLine($"Warning: Failed to embed image {filePath}: {ex.Message}");
+                // Warning: Failed to embed image.
             }
         }
         return this;
@@ -475,9 +475,9 @@ public class EmailImage : Element {
                 // Check file size against configuration limit
                 var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
                 if (bytes.Length > maxSize) {
-                    if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                        Console.WriteLine($"Warning: URL {url} content ({bytes.Length} bytes) exceeds maximum embed size ({maxSize} bytes). Using direct URL.");
-                    }
+                if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
+                    // Warning: URL content exceeds maximum embed size.
+                }
                     Source = url;
                     return this;
                 }
@@ -502,7 +502,7 @@ public class EmailImage : Element {
             // Fallback to URL if embedding fails
             Source = url;
             if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                Console.WriteLine($"Warning: Failed to embed image from URL {url}: {ex.Message}");
+                // Warning: Failed to embed image from URL.
             }
         }
         return this;
@@ -532,7 +532,7 @@ public class EmailImage : Element {
         // If neither works, use as-is
         Source = source;
         if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-            Console.WriteLine($"Warning: Could not embed {source} - using as direct source");
+            // Warning: Could not embed source - using direct source.
         }
         return this;
     }
@@ -600,7 +600,7 @@ public class EmailImage : Element {
             var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
             if (bytes.Length > maxSize) {
                 if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                    Console.WriteLine($"Warning: Dark mode image {source} ({bytes.Length} bytes) exceeds maximum embed size ({maxSize} bytes). Using direct path.");
+                    // Warning: Dark mode image exceeds maximum embed size.
                 }
                 return this;
             }
@@ -622,7 +622,7 @@ public class EmailImage : Element {
         } catch (Exception ex) {
             // Fallback to original source if embedding fails
             if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true) {
-                Console.WriteLine($"Warning: Failed to embed dark mode image {source}: {ex.Message}");
+                // Warning: Failed to embed dark mode image.
             }
         }
 
@@ -794,7 +794,7 @@ public class EmailImage : Element {
         // - Converting to more efficient formats if needed
 
         // Always log optimization note when optimization is enabled
-        Console.WriteLine($"Note: Image optimization is enabled but not yet implemented. Using original image.");
+        // Note: Image optimization is enabled but not yet implemented. Using original image.
         return bytes;
     }
 
