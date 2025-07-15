@@ -91,8 +91,7 @@ internal class BasicHtmlContainer03 {
                 row.Column(TablerColumnNumber.Eight, column => {
                     column.Card(card => {
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
-                        table1.EnableOrdering = false;
-                        table1.EnableSearching = false;
+                        table1.EnableOrdering(false).EnableSearching(false);
                     });
                 });
                 row.Column(TablerColumnNumber.Eight, column => {

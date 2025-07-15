@@ -157,5 +157,11 @@ internal class Program {
 
         // Quill editor example
         BasicQuillEditor.Demo(openInBrowser);
+
+        // Table examples
+        DataTablesQuickStart.Create(openInBrowser);
+        AdvancedDataTablesDemo.Create(openInBrowser);
+        DataTablesExtensionsDemo.Create(openInBrowser);
+        DataTablesFeatureTest.RunAllTests(openInBrowser);
     }
 }

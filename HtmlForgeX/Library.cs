@@ -18,6 +18,22 @@ public enum Libraries {
     Bootstrap,
     /// <summary>DataTables plugin.</summary>
     DataTables,
+    /// <summary>DataTables Buttons extension.</summary>
+    DataTablesButtons,
+    /// <summary>DataTables Responsive extension.</summary>
+    DataTablesResponsive,
+    /// <summary>DataTables FixedHeader extension.</summary>
+    DataTablesFixedHeader,
+    /// <summary>DataTables FixedColumns extension.</summary>
+    DataTablesFixedColumns,
+    /// <summary>DataTables RowGroup extension.</summary>
+    DataTablesRowGroup,
+    /// <summary>DataTables SearchBuilder extension.</summary>
+    DataTablesSearchBuilder,
+    /// <summary>DataTables SearchPanes extension.</summary>
+    DataTablesSearchPanes,
+    /// <summary>DataTables Select extension.</summary>
+    DataTablesSelect,
     /// <summary>Tabler UI library.</summary>
     Tabler,
     /// <summary>Tabler icon set.</summary>
@@ -136,6 +152,22 @@ public class LibrariesConverter {
                 return new Bootstrap();
             case Libraries.DataTables:
                 return new DataTables();
+            case Libraries.DataTablesButtons:
+                return new Resources.DataTablesButtons();
+            case Libraries.DataTablesResponsive:
+                return new Resources.DataTablesResponsive();
+            case Libraries.DataTablesFixedHeader:
+                return new Resources.DataTablesFixedHeader();
+            case Libraries.DataTablesFixedColumns:
+                return new Resources.DataTablesFixedColumns();
+            case Libraries.DataTablesRowGroup:
+                return new Resources.DataTablesRowGroup();
+            case Libraries.DataTablesSearchBuilder:
+                return new Resources.DataTablesSearchBuilder();
+            case Libraries.DataTablesSearchPanes:
+                return new Resources.DataTablesSearchPanes();
+            case Libraries.DataTablesSelect:
+                return new Resources.DataTablesSelect();
             case Libraries.Tabler:
                 return new Tabler();
             case Libraries.TablerIcon:

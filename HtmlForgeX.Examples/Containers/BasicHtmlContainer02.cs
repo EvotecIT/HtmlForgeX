@@ -47,8 +47,8 @@ internal class BasicHtmlContainer02 {
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
                         card.LineBreak();
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
-                        table1.EnableOrdering = false;
-                        table1.EnableSearching = false;
+                        table1.EnableOrdering(false)
+                        .EnableSearching(false);
                     });
                 });
                 row.Column(TablerColumnNumber.Twelve, column => {
@@ -85,8 +85,8 @@ internal class BasicHtmlContainer02 {
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
                         card.LineBreak();
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
-                        table1.EnableOrdering = false;
-                        table1.EnableSearching = false;
+                        table1.EnableOrdering(false)
+                        .EnableSearching(false);
                     });
                 });
                 row.Column(TablerColumnNumber.Four, column => {
@@ -107,8 +107,8 @@ internal class BasicHtmlContainer02 {
                         card.Span("This is continuing after").AppendContent(" linebreak ").WithColor(RGBColor.RedDevil).AppendContent(" cool?");
                         card.LineBreak();
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
-                        table1.EnableOrdering = false;
-                        table1.EnableSearching = false;
+                        table1.EnableOrdering(false)
+                        .EnableSearching(false);
                     });
                 });
             });
