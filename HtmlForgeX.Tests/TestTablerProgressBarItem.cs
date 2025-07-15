@@ -5,12 +5,14 @@ namespace HtmlForgeX.Tests;
 [TestClass]
 public class TestTablerProgressBarItem {
     [TestMethod]
-    public void ConstructorThrowsWhenProgressBelowZero() {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new TablerProgressBarItem(TablerColor.Primary, -1));
+    public void ProgressBelowZero_IsClampedToZero() {
+        var item = new TablerProgressBarItem(TablerColor.Primary, -1);
+        StringAssert.Contains(item.ToString(), "width: 0%");
     }
 
     [TestMethod]
-    public void ConstructorThrowsWhenProgressAboveHundred() {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new TablerProgressBarItem(TablerColor.Primary, 101));
+    public void ProgressAboveHundred_IsClampedToHundred() {
+        var item = new TablerProgressBarItem(TablerColor.Primary, 101);
+        StringAssert.Contains(item.ToString(), "width: 100%");
     }
 }
