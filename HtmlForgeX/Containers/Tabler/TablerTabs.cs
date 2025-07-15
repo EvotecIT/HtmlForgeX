@@ -8,6 +8,9 @@ namespace HtmlForgeX;
 /// Provides a tabbed card component containing multiple panels.
 /// </summary>
 public class TablerTabs : Element {
+    /// <summary>
+    /// Gets the collection of tab panels contained within this component.
+    /// </summary>
     public List<TablerTabsPanel> Panels { get; set; } = new List<TablerTabsPanel>();
     private string Id { get; } = GlobalStorage.GenerateRandomId("tabs");
     private TabNavigation? PrivateTabNavigation { get; set; }
@@ -90,7 +93,9 @@ public class TablerTabs : Element {
 /// TablerTabs enumeration.
 /// </summary>
 public enum TabState {
+    /// <summary>Align tabs to the start of the container.</summary>
     MoveStart,
+    /// <summary>Align tabs to the end of the container.</summary>
     MoveEnd
 }
 
@@ -98,10 +103,15 @@ public enum TabState {
 /// TablerTabs enumeration.
 /// </summary>
 public enum TabNavigation {
+    /// <summary>Distribute tabs to fill available width.</summary>
     Fill,
+    /// <summary>Reverse the tab order.</summary>
     Reverse
 }
 
+/// <summary>
+/// Extension methods for the <see cref="TabState"/> enumeration.
+/// </summary>
 public static class TabStateExtensions {
     /// <summary>
     /// Initializes or configures EnumToString.
@@ -115,6 +125,9 @@ public static class TabStateExtensions {
     }
 }
 
+/// <summary>
+/// Extension methods for the <see cref="TabNavigation"/> enumeration.
+/// </summary>
 public static class NavigationExtensions {
     /// <summary>
     /// Initializes or configures EnumToString.

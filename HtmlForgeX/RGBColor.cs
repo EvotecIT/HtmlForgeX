@@ -111,13 +111,16 @@ public partial class RGBColor {
     }
 
     /// <summary>
-    /// Converts given RGBColor to Hexadecimal string for use in HTML
+    /// Converts this color to a hexadecimal string suitable for HTML use.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The hex representation beginning with <c>#</c>.</returns>
     public string ToHex() {
         return $"#{R:X2}{G:X2}{B:X2}";
     }
 
+    /// <summary>
+    /// Returns the hexadecimal string representation of this color.
+    /// </summary>
     public override string ToString() {
         return $"#{R:X2}{G:X2}{B:X2}";
         // return $"RGBColor [A={A}, R={R}, G={G}, B={B}]";

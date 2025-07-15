@@ -59,7 +59,9 @@ public class TablerCardNavigation : Element {
 /// Navigation types for card headers
 /// </summary>
 public enum TablerCardNavigationType {
+    /// <summary>Use tabbed navigation.</summary>
     Tabs,
+    /// <summary>Use pill style navigation.</summary>
     Pills
 }
 
@@ -140,5 +142,8 @@ public class TablerCardNavBuilder {
         return this;
     }
 
+    /// <summary>
+    /// Gets the collection of navigation items configured by the builder.
+    /// </summary>
     public List<TablerCardNavItem> GetItems() => items;
 }
