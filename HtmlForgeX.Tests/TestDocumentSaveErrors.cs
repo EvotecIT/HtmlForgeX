@@ -76,6 +76,19 @@ public class TestDocumentSaveErrors {
         StringAssert.Contains(received!, path);
     }
 
+#if NETFRAMEWORK
+    [TestMethod]
+    public void SaveAsync_WriteFailure_PropagatesException() {
+        var doc = new Document();
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, $"file_{Guid.NewGuid():N}.html");
+        using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
+            Assert.ThrowsException<AggregateException>(() => doc.SaveAsync(path).Wait());
+        }
+        File.Delete(path);
+    }
+#endif
+
     [TestMethod]
     public void Save_DirectoryCreationFails_LogsError() {
         var logger = GetLogger();
