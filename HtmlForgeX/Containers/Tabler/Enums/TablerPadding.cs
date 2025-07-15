@@ -4,54 +4,201 @@ namespace HtmlForgeX;
 /// Defines padding utility classes.
 /// </summary>
 public enum TablerPadding {
+    /// <summary>
+    /// Top auto.
+    /// </summary>
     TopAuto,
+    /// <summary>
+    /// Top zero.
+    /// </summary>
     TopZero,
+    /// <summary>
+    /// Top quarter.
+    /// </summary>
     TopQuarter,
+    /// <summary>
+    /// Top half.
+    /// </summary>
     TopHalf,
+    /// <summary>
+    /// Top normal.
+    /// </summary>
     TopNormal,
+    /// <summary>
+    /// Top one and half.
+    /// </summary>
     TopOneAndHalf,
+    /// <summary>
+    /// Top triple.
+    /// </summary>
     TopTriple,
+    /// <summary>
+    /// Bottom auto.
+    /// </summary>
     BottomAuto,
+    /// <summary>
+    /// Bottom zero.
+    /// </summary>
     BottomZero,
+    /// <summary>
+    /// Bottom quarter.
+    /// </summary>
     BottomQuarter,
+    /// <summary>
+    /// Bottom half.
+    /// </summary>
     BottomHalf,
+    /// <summary>
+    /// Bottom normal.
+    /// </summary>
     BottomNormal,
+    /// <summary>
+    /// Bottom one and half.
+    /// </summary>
     BottomOneAndHalf,
+    /// <summary>
+    /// Bottom triple.
+    /// </summary>
     BottomTriple,
+    /// <summary>
+    /// Start auto.
+    /// </summary>
     StartAuto,
+    /// <summary>
+    /// Start zero.
+    /// </summary>
     StartZero,
+    /// <summary>
+    /// Start quarter.
+    /// </summary>
     StartQuarter,
+    /// <summary>
+    /// Start half.
+    /// </summary>
     StartHalf,
+    /// <summary>
+    /// Start normal.
+    /// </summary>
     StartNormal,
+    /// <summary>
+    /// Start one and half.
+    /// </summary>
     StartOneAndHalf,
+    /// <summary>
+    /// Start triple.
+    /// </summary>
     StartTriple,
+    /// <summary>
+    /// End auto.
+    /// </summary>
     EndAuto,
+    /// <summary>
+    /// End zero.
+    /// </summary>
     EndZero,
+    /// <summary>
+    /// End quarter.
+    /// </summary>
     EndQuarter,
+    /// <summary>
+    /// End half.
+    /// </summary>
     EndHalf,
+    /// <summary>
+    /// End normal.
+    /// </summary>
     EndNormal,
+    /// <summary>
+    /// End one and half.
+    /// </summary>
     EndOneAndHalf,
+    /// <summary>
+    /// End triple.
+    /// </summary>
     EndTriple,
+    /// <summary>
+    /// Horizontal auto.
+    /// </summary>
     HorizontalAuto,
+    /// <summary>
+    /// Horizontal zero.
+    /// </summary>
     HorizontalZero,
+    /// <summary>
+    /// Horizontal quarter.
+    /// </summary>
     HorizontalQuarter,
+    /// <summary>
+    /// Horizontal half.
+    /// </summary>
     HorizontalHalf,
+    /// <summary>
+    /// Horizontal normal.
+    /// </summary>
     HorizontalNormal,
+    /// <summary>
+    /// Horizontal one and half.
+    /// </summary>
     HorizontalOneAndHalf,
+    /// <summary>
+    /// Horizontal triple.
+    /// </summary>
     HorizontalTriple,
+    /// <summary>
+    /// Vertical auto.
+    /// </summary>
     VerticalAuto,
+    /// <summary>
+    /// Vertical zero.
+    /// </summary>
     VerticalZero,
+    /// <summary>
+    /// Vertical quarter.
+    /// </summary>
     VerticalQuarter,
+    /// <summary>
+    /// Vertical half.
+    /// </summary>
     VerticalHalf,
+    /// <summary>
+    /// Vertical normal.
+    /// </summary>
     VerticalNormal,
+    /// <summary>
+    /// Vertical one and half.
+    /// </summary>
     VerticalOneAndHalf,
+    /// <summary>
+    /// Vertical triple.
+    /// </summary>
     VerticalTriple,
+    /// <summary>
+    /// All auto.
+    /// </summary>
     AllAuto,
+    /// <summary>
+    /// All zero.
+    /// </summary>
     AllZero,
+    /// <summary>
+    /// All quarter.
+    /// </summary>
     AllQuarter,
+    /// <summary>
+    /// All half.
+    /// </summary>
     AllHalf,
+    /// <summary>
+    /// All normal.
+    /// </summary>
     AllNormal,
+    /// <summary>
+    /// All one and half.
+    /// </summary>
     AllOneAndHalf,
+    /// <summary>
+    /// All triple.
+    /// </summary>
     AllTriple
 }
 

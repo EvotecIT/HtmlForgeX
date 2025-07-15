@@ -4,9 +4,21 @@ namespace HtmlForgeX;
 /// Border styles for Tabler cards and components
 /// </summary>
 public enum TablerBorderStyle {
+    /// <summary>
+    /// None.
+    /// </summary>
     None,
+    /// <summary>
+    /// Solid.
+    /// </summary>
     Solid,
+    /// <summary>
+    /// Dashed.
+    /// </summary>
     Dashed,
+    /// <summary>
+    /// Dotted.
+    /// </summary>
     Dotted
 }
 
@@ -14,12 +26,33 @@ public enum TablerBorderStyle {
 /// Border positions for Tabler cards
 /// </summary>
 public enum TablerBorderPosition {
+    /// <summary>
+    /// All.
+    /// </summary>
     All,
+    /// <summary>
+    /// Top.
+    /// </summary>
     Top,
+    /// <summary>
+    /// Bottom.
+    /// </summary>
     Bottom,
+    /// <summary>
+    /// Start.
+    /// </summary>
     Start,
+    /// <summary>
+    /// End.
+    /// </summary>
     End,
+    /// <summary>
+    /// Horizontal.
+    /// </summary>
     Horizontal,
+    /// <summary>
+    /// Vertical.
+    /// </summary>
     Vertical
 }
 
@@ -27,9 +60,21 @@ public enum TablerBorderPosition {
 /// Border widths for Tabler cards
 /// </summary>
 public enum TablerBorderWidth {
+    /// <summary>
+    /// Default.
+    /// </summary>
     Default,
+    /// <summary>
+    /// Thin.
+    /// </summary>
     Thin,
+    /// <summary>
+    /// Thick.
+    /// </summary>
     Thick,
+    /// <summary>
+    /// None.
+    /// </summary>
     None
 }
 
@@ -37,10 +82,25 @@ public enum TablerBorderWidth {
 /// Shadow intensities for Tabler cards
 /// </summary>
 public enum TablerShadow {
+    /// <summary>
+    /// None.
+    /// </summary>
     None,
+    /// <summary>
+    /// Small.
+    /// </summary>
     Small,
+    /// <summary>
+    /// Medium.
+    /// </summary>
     Medium,
+    /// <summary>
+    /// Large.
+    /// </summary>
     Large,
+    /// <summary>
+    /// Extra large.
+    /// </summary>
     ExtraLarge
 }
 
@@ -48,12 +108,33 @@ public enum TablerShadow {
 /// Border radius options for Tabler cards
 /// </summary>
 public enum TablerBorderRadius {
+    /// <summary>
+    /// None.
+    /// </summary>
     None,
+    /// <summary>
+    /// Small.
+    /// </summary>
     Small,
+    /// <summary>
+    /// Medium.
+    /// </summary>
     Medium,
+    /// <summary>
+    /// Large.
+    /// </summary>
     Large,
+    /// <summary>
+    /// Extra large.
+    /// </summary>
     ExtraLarge,
+    /// <summary>
+    /// Round.
+    /// </summary>
     Round,
+    /// <summary>
+    /// Pill.
+    /// </summary>
     Pill
 }
 

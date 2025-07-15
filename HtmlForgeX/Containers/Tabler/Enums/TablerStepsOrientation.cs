@@ -8,7 +8,13 @@ namespace HtmlForgeX;
 /// Defines orientation for a steps component.
 /// </summary>
 public enum StepsOrientation {
+    /// <summary>
+    /// Horizontal.
+    /// </summary>
     Horizontal,
+    /// <summary>
+    /// Vertical.
+    /// </summary>
     Vertical
 }
 

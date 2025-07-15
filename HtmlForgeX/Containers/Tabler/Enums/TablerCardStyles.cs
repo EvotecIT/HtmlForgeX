@@ -4,11 +4,29 @@ namespace HtmlForgeX;
 /// Card states for interactive behavior
 /// </summary>
 public enum TablerCardState {
+    /// <summary>
+    /// Default.
+    /// </summary>
     Default,
+    /// <summary>
+    /// Active.
+    /// </summary>
     Active,
+    /// <summary>
+    /// Inactive.
+    /// </summary>
     Inactive,
+    /// <summary>
+    /// Hover.
+    /// </summary>
     Hover,
+    /// <summary>
+    /// Disabled.
+    /// </summary>
     Disabled,
+    /// <summary>
+    /// Loading.
+    /// </summary>
     Loading
 }
 
@@ -16,10 +34,25 @@ public enum TablerCardState {
 /// Card layout styles
 /// </summary>
 public enum TablerCardLayout {
+    /// <summary>
+    /// Default.
+    /// </summary>
     Default,
+    /// <summary>
+    /// Stacked.
+    /// </summary>
     Stacked,
+    /// <summary>
+    /// Borderless.
+    /// </summary>
     Borderless,
+    /// <summary>
+    /// Flush.
+    /// </summary>
     Flush,
+    /// <summary>
+    /// Overlay.
+    /// </summary>
     Overlay
 }
 
@@ -27,10 +60,25 @@ public enum TablerCardLayout {
 /// Card header styles
 /// </summary>
 public enum TablerCardHeaderStyle {
+    /// <summary>
+    /// Default.
+    /// </summary>
     Default,
+    /// <summary>
+    /// Light.
+    /// </summary>
     Light,
+    /// <summary>
+    /// Dark.
+    /// </summary>
     Dark,
+    /// <summary>
+    /// Transparent.
+    /// </summary>
     Transparent,
+    /// <summary>
+    /// Borderless.
+    /// </summary>
     Borderless
 }
 
@@ -38,10 +86,25 @@ public enum TablerCardHeaderStyle {
 /// Card footer styles
 /// </summary>
 public enum TablerCardFooterStyle {
+    /// <summary>
+    /// Default.
+    /// </summary>
     Default,
+    /// <summary>
+    /// Transparent.
+    /// </summary>
     Transparent,
+    /// <summary>
+    /// Borderless.
+    /// </summary>
     Borderless,
+    /// <summary>
+    /// Light.
+    /// </summary>
     Light,
+    /// <summary>
+    /// Dark.
+    /// </summary>
     Dark
 }
 
@@ -49,11 +112,29 @@ public enum TablerCardFooterStyle {
 /// Image positions for cards
 /// </summary>
 public enum TablerCardImagePosition {
+    /// <summary>
+    /// Top.
+    /// </summary>
     Top,
+    /// <summary>
+    /// Bottom.
+    /// </summary>
     Bottom,
+    /// <summary>
+    /// Left.
+    /// </summary>
     Left,
+    /// <summary>
+    /// Right.
+    /// </summary>
     Right,
+    /// <summary>
+    /// Background.
+    /// </summary>
     Background,
+    /// <summary>
+    /// Overlay.
+    /// </summary>
     Overlay
 }
 
@@ -61,9 +142,21 @@ public enum TablerCardImagePosition {
 /// Card content alignment
 /// </summary>
 public enum TablerCardAlignment {
+    /// <summary>
+    /// Start.
+    /// </summary>
     Start,
+    /// <summary>
+    /// Center.
+    /// </summary>
     Center,
+    /// <summary>
+    /// End.
+    /// </summary>
     End,
+    /// <summary>
+    /// Stretch.
+    /// </summary>
     Stretch
 }
 
@@ -71,8 +164,17 @@ public enum TablerCardAlignment {
 /// Card sizes
 /// </summary>
 public enum TablerCardSize {
+    /// <summary>
+    /// Small.
+    /// </summary>
     Small,
+    /// <summary>
+    /// Default.
+    /// </summary>
     Default,
+    /// <summary>
+    /// Large.
+    /// </summary>
     Large
 }
 

@@ -4,26 +4,89 @@ namespace HtmlForgeX;
 /// TablerLogsTheme enumeration.
 /// </summary>
 public enum TablerLogsTheme {
+    /// <summary>
+    /// Dark.
+    /// </summary>
     Dark,
+    /// <summary>
+    /// Light.
+    /// </summary>
     Light,
+    /// <summary>
+    /// Primary.
+    /// </summary>
     Primary,
+    /// <summary>
+    /// Secondary.
+    /// </summary>
     Secondary,
+    /// <summary>
+    /// Success.
+    /// </summary>
     Success,
+    /// <summary>
+    /// Danger.
+    /// </summary>
     Danger,
+    /// <summary>
+    /// Warning.
+    /// </summary>
     Warning,
+    /// <summary>
+    /// Info.
+    /// </summary>
     Info,
+    /// <summary>
+    /// Azure.
+    /// </summary>
     Azure,
+    /// <summary>
+    /// Indigo.
+    /// </summary>
     Indigo,
+    /// <summary>
+    /// Purple.
+    /// </summary>
     Purple,
+    /// <summary>
+    /// Pink.
+    /// </summary>
     Pink,
+    /// <summary>
+    /// Red.
+    /// </summary>
     Red,
+    /// <summary>
+    /// Orange.
+    /// </summary>
     Orange,
+    /// <summary>
+    /// Yellow.
+    /// </summary>
     Yellow,
+    /// <summary>
+    /// Lime.
+    /// </summary>
     Lime,
+    /// <summary>
+    /// Green.
+    /// </summary>
     Green,
+    /// <summary>
+    /// Teal.
+    /// </summary>
     Teal,
+    /// <summary>
+    /// Blue.
+    /// </summary>
     Blue,
+    /// <summary>
+    /// Gray.
+    /// </summary>
     Gray,
+    /// <summary>
+    /// Custom.
+    /// </summary>
     Custom
 }
 

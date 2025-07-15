@@ -4,8 +4,17 @@ namespace HtmlForgeX;
 /// Defines the type of row in a Tabler Page Layout.
 /// </summary>
 public enum TablerRowType {
+    /// <summary>
+    /// Default.
+    /// </summary>
     Default,
+    /// <summary>
+    /// Deck.
+    /// </summary>
     Deck,
+    /// <summary>
+    /// Cards.
+    /// </summary>
     Cards
 }
 
