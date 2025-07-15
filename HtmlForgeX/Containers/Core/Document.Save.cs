@@ -17,6 +17,7 @@ public partial class Document
     public void Save(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "")
     {
         PathUtilities.Validate(path);
+        path = System.IO.Path.GetFullPath(path);
         Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath))
         {
@@ -39,7 +40,10 @@ public partial class Document
         {
             try
             {
-                System.IO.Directory.CreateDirectory(directory);
+                if (!IsUncRoot(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
             }
             catch (Exception ex)
             {
@@ -75,6 +79,7 @@ public partial class Document
     public async Task SaveAsync(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "")
     {
         PathUtilities.Validate(path);
+        path = System.IO.Path.GetFullPath(path);
         Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath))
         {
@@ -97,7 +102,10 @@ public partial class Document
         {
             try
             {
-                System.IO.Directory.CreateDirectory(directory);
+                if (!IsUncRoot(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
             }
             catch (Exception ex)
             {
@@ -126,6 +134,22 @@ public partial class Document
         {
             _logger.WriteError($"Failed to open file '{path}' using the default application.");
         }
+    }
+
+    private static bool IsUncRoot(string directory)
+    {
+        if (string.IsNullOrEmpty(directory))
+        {
+            return false;
+        }
+
+        if (!(directory.StartsWith("\\") || directory.StartsWith("//")))
+        {
+            return false;
+        }
+
+        var unc = directory.TrimStart(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar);
+        return unc.Split(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar).Length == 2;
     }
 }
 
