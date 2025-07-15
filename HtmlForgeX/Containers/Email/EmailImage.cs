@@ -765,7 +765,7 @@ public class EmailImage : Element {
     /// <returns>The file extension.</returns>
     private static string GetExtensionFromMimeType(string mimeType) {
         return mimeType.ToLower() switch {
-            "image/jpeg" => ".jpg",
+            "image/jpeg" or "image/jpg" => ".jpg",
             "image/png" => ".png",
             "image/gif" => ".gif",
             "image/svg+xml" => ".svg",
