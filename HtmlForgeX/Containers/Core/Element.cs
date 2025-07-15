@@ -72,7 +72,7 @@ public abstract partial class Element {
     /// Called when this element is added to a document.
     /// Override this method to apply document-specific configuration.
     /// </summary>
-    protected virtual void OnAddedToDocument() {
+    protected internal virtual void OnAddedToDocument() {
         // Register libraries when added to document
         RegisterLibraries();
 

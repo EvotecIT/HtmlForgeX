@@ -7,10 +7,10 @@ namespace HtmlForgeX.Examples;
 /// </summary>
 public class TestPrismJsDebug
 {
-    public static void RunDebugTest()
+    public static void RunDebugTest(bool openInBrowser = false)
     {
         Console.WriteLine("=== PrismJS Debug Test ===");
-        
+
         var document = new Document
         {
             Head = {
@@ -21,7 +21,7 @@ public class TestPrismJsDebug
         document.Body.Page(page =>
         {
             page.Layout = TablerLayout.Fluid;
-            
+
             // Test 1: Direct page-level PrismJS (this should work)
             page.Text("Test 1: Direct page-level PrismJS");
             page.CSharpCode(@"
@@ -30,7 +30,7 @@ console.log('Hello World');", config => config
                 .EnableLineNumbers()
                 .EnableCopyButton()
                 .GitHubTheme());
-            
+
             // Test 2: Card body PrismJS (this is failing)
             page.Text("Test 2: Card body PrismJS");
             page.Row(row =>
@@ -64,7 +64,7 @@ console.log('Card Test');", config => config
             Console.WriteLine($"Library: {lib.Key} (Order: {lib.Value})");
         }
 
-        document.Save("PrismJsDebugTest.html", true);
+        document.Save("PrismJsDebugTest.html", openInBrowser);
         Console.WriteLine("Debug test saved to PrismJsDebugTest.html");
     }
 }

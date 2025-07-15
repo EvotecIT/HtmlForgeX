@@ -148,7 +148,7 @@ public class TablerCard : Element {
     /// <summary>
     /// Called when this card is added to a document - ensures all child components have Document reference
     /// </summary>
-    protected override void OnAddedToDocument() {
+    protected internal override void OnAddedToDocument() {
         // Ensure Document and Email references are propagated to all child components FIRST
         if (PrivateHeader != null) {
             PrivateHeader.Document = this.Document;
@@ -162,11 +162,11 @@ public class TablerCard : Element {
             PrivateFooter.Document = this.Document;
             PrivateFooter.Email = this.Email;
         }
-        
+
         // Now call base implementation to register libraries
         base.OnAddedToDocument();
     }
-    
+
     /// <summary>
     /// Override to ensure child components register their libraries after Document reference is set
     /// </summary>
@@ -181,7 +181,7 @@ public class TablerCard : Element {
         if (PrivateFooter != null && PrivateFooter.Document != null) {
             PrivateFooter.RegisterLibraries();
         }
-        
+
         // Call base implementation
         base.RegisterLibraries();
     }

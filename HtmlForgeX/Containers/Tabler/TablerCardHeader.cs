@@ -84,6 +84,16 @@ public class TablerCardHeader : Element {
     /// Initializes or configures ToString.
     /// </summary>
     public override string ToString() {
+        // CRITICAL FIX: Ensure all children have proper Document references before rendering
+        EnsureChildrenHaveDocumentReference();
+
+        // ADDITIONAL FIX: Force library registration for any children that may have missed it
+        foreach (var child in Children.WhereNotNull()) {
+            if (child.Document != null) {
+                child.RegisterLibraries();
+            }
+        }
+
         var headerDiv = new HtmlTag("div");
         var classes = new List<string> { "card-header" };
 
@@ -97,6 +107,11 @@ public class TablerCardHeader : Element {
 
         // Navigation goes first (tabs/pills)
         if (Navigation != null) {
+            // Ensure Document reference for internal elements
+            if (Navigation.Document == null && this.Document != null) {
+                Navigation.Document = this.Document;
+                Navigation.Email = this.Email;
+            }
             headerDiv.Value(Navigation.ToString());
         } else {
             // Regular header content
@@ -105,6 +120,11 @@ public class TablerCardHeader : Element {
 
                 // Avatar column
                 if (HeaderAvatar != null) {
+                    // Ensure Document reference for internal elements
+                    if (HeaderAvatar.Document == null && this.Document != null) {
+                        HeaderAvatar.Document = this.Document;
+                        HeaderAvatar.Email = this.Email;
+                    }
                     var avatarCol = new HtmlTag("div").Class("col-auto");
                     avatarCol.Value(HeaderAvatar.ToString());
                     rowDiv.Value(avatarCol);
@@ -132,6 +152,12 @@ public class TablerCardHeader : Element {
 
                     for (int i = 0; i < Actions.Count; i++) {
                         var action = Actions[i];
+
+                        // Ensure Document reference for action elements
+                        if (action.Document == null && this.Document != null) {
+                            action.Document = this.Document;
+                            action.Email = this.Email;
+                        }
 
                         // Add spacing between buttons (except for the first one)
                         if (i > 0) {
@@ -165,22 +191,52 @@ public class TablerCardHeader : Element {
 
         return headerDiv.ToString();
     }
-    
+
     /// <summary>
-    /// Override to ensure child elements have Document reference
+    /// Ensures all children have proper Document and Email references for library registration
     /// </summary>
-    protected override void OnAddedToDocument() {
-        // Propagate Document reference to all child elements
-        foreach (var child in Children) {
-            if (child != null) {
+    private void EnsureChildrenHaveDocumentReference() {
+        if (this.Document == null) return;
+
+        foreach (var child in Children.WhereNotNull()) {
+            if (child.Document == null) {
                 child.Document = this.Document;
                 child.Email = this.Email;
-                // Register libraries for child elements that need them
-                child.RegisterLibraries();
+                // Call OnAddedToDocument to trigger library registration
+                child.OnAddedToDocument();
             }
         }
-        
-        // Call base implementation
+    }
+
+    /// <summary>
+    /// Override to ensure child elements have Document reference when initially added to document
+    /// </summary>
+    protected internal override void OnAddedToDocument() {
+        // Propagate Document reference to all child elements and internal elements
+        EnsureChildrenHaveDocumentReference();
+
+        // Also propagate to internal element collections
+        if (Navigation != null && Navigation.Document == null && this.Document != null) {
+            Navigation.Document = this.Document;
+            Navigation.Email = this.Email;
+            Navigation.OnAddedToDocument();
+        }
+
+        if (HeaderAvatar != null && HeaderAvatar.Document == null && this.Document != null) {
+            HeaderAvatar.Document = this.Document;
+            HeaderAvatar.Email = this.Email;
+            HeaderAvatar.OnAddedToDocument();
+        }
+
+        foreach (var action in Actions) {
+            if (action.Document == null && this.Document != null) {
+                action.Document = this.Document;
+                action.Email = this.Email;
+                action.OnAddedToDocument();
+            }
+        }
+
+        // Call base implementation to register our own libraries
         base.OnAddedToDocument();
     }
 }

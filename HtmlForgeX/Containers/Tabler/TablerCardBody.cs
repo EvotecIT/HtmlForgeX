@@ -116,6 +116,16 @@ public class TablerCardBody : Element {
     /// Initializes or configures ToString.
     /// </summary>
     public override string ToString() {
+        // CRITICAL FIX: Ensure all children have proper Document references before rendering
+        EnsureChildrenHaveDocumentReference();
+
+        // ADDITIONAL FIX: Force library registration for any children that may have missed it
+        foreach (var child in Children.WhereNotNull()) {
+            if (child.Document != null) {
+                child.RegisterLibraries();
+            }
+        }
+
         var bodyDiv = new HtmlTag("div");
         var classes = new List<string> { "card-body" };
 
@@ -141,21 +151,41 @@ public class TablerCardBody : Element {
 
         // Add formatted text elements
         foreach (var textElement in TextElements) {
+            // Ensure Document reference for internal elements
+            if (textElement.Document == null && this.Document != null) {
+                textElement.Document = this.Document;
+                textElement.Email = this.Email;
+            }
             bodyDiv.Value(textElement.ToString());
         }
 
         // Add lists
         foreach (var list in Lists) {
+            // Ensure Document reference for internal elements
+            if (list.Document == null && this.Document != null) {
+                list.Document = this.Document;
+                list.Email = this.Email;
+            }
             bodyDiv.Value(list.ToString());
         }
 
         // Add DataGrids
         foreach (var dataGrid in DataGrids) {
+            // Ensure Document reference for internal elements
+            if (dataGrid.Document == null && this.Document != null) {
+                dataGrid.Document = this.Document;
+                dataGrid.Email = this.Email;
+            }
             bodyDiv.Value(dataGrid.ToString());
         }
 
         // Add image if specified
         if (BodyImage != null) {
+            // Ensure Document reference for internal elements
+            if (BodyImage.Document == null && this.Document != null) {
+                BodyImage.Document = this.Document;
+                BodyImage.Email = this.Email;
+            }
             bodyDiv.Value(BodyImage.ToString());
         }
 
@@ -166,22 +196,62 @@ public class TablerCardBody : Element {
 
         return bodyDiv.ToString();
     }
-    
+
     /// <summary>
-    /// Override to ensure child elements have Document reference
+    /// Ensures all children have proper Document and Email references for library registration
     /// </summary>
-    protected override void OnAddedToDocument() {
-        // Propagate Document reference to all child elements
-        foreach (var child in Children) {
-            if (child != null) {
+    private void EnsureChildrenHaveDocumentReference() {
+        if (this.Document == null) return;
+
+        foreach (var child in Children.WhereNotNull()) {
+            if (child.Document == null) {
                 child.Document = this.Document;
                 child.Email = this.Email;
-                // Register libraries for child elements that need them
-                child.RegisterLibraries();
+                // Call OnAddedToDocument to trigger library registration
+                child.OnAddedToDocument();
             }
         }
-        
-        // Call base implementation
+    }
+
+    /// <summary>
+    /// Override to ensure child elements have Document reference when initially added to document
+    /// </summary>
+    protected internal override void OnAddedToDocument() {
+        // Propagate Document reference to all child elements and internal collections
+        EnsureChildrenHaveDocumentReference();
+
+        // Also propagate to internal element collections
+        foreach (var textElement in TextElements) {
+            if (textElement.Document == null && this.Document != null) {
+                textElement.Document = this.Document;
+                textElement.Email = this.Email;
+                textElement.OnAddedToDocument();
+            }
+        }
+
+        foreach (var list in Lists) {
+            if (list.Document == null && this.Document != null) {
+                list.Document = this.Document;
+                list.Email = this.Email;
+                list.OnAddedToDocument();
+            }
+        }
+
+        foreach (var dataGrid in DataGrids) {
+            if (dataGrid.Document == null && this.Document != null) {
+                dataGrid.Document = this.Document;
+                dataGrid.Email = this.Email;
+                dataGrid.OnAddedToDocument();
+            }
+        }
+
+        if (BodyImage != null && BodyImage.Document == null && this.Document != null) {
+            BodyImage.Document = this.Document;
+            BodyImage.Email = this.Email;
+            BodyImage.OnAddedToDocument();
+        }
+
+        // Call base implementation to register our own libraries
         base.OnAddedToDocument();
     }
 }
