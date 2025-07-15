@@ -52,7 +52,7 @@ public class VisNetwork : Element {
     /// Called when the element is added to a <see cref="Document"/>.
     /// Ensures that offline embedding rules are applied to all nodes.
     /// </summary>
-    protected override void OnAddedToDocument() {
+    protected internal override void OnAddedToDocument() {
         foreach (var nodeObj in Nodes) {
             if (nodeObj is VisNetworkNode node) {
                 node.ApplyDocumentConfiguration(Document!);

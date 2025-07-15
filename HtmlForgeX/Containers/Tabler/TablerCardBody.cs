@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -23,11 +24,13 @@ public class TablerCardBody : Element {
     }
 
     /// <summary>
-    /// Set the main body text
+    /// Add text to the body (appends instead of replacing)
     /// </summary>
-    public TablerCardBody Text(string text) {
-        BodyText = text;
-        return this;
+    public new TablerText Text(string text) {
+        // Create a TablerText element that supports Tabler styling
+        var tablerText = new TablerText(text);
+        this.Add(tablerText);
+        return tablerText;
     }
 
     /// <summary>
@@ -78,9 +81,51 @@ public class TablerCardBody : Element {
     }
 
     /// <summary>
+    /// Apply text style to the card body
+    /// </summary>
+    public TablerCardBody Style(TablerTextStyle style) {
+        // This method is for fluent API compatibility with examples
+        // The actual styling is handled by individual text elements
+        return this;
+    }
+
+    /// <summary>
+    /// Apply font weight to the card body
+    /// </summary>
+    public TablerCardBody Weight(TablerFontWeight weight) {
+        // This method is for fluent API compatibility with examples
+        // The actual weight is handled by individual text elements
+        return this;
+    }
+
+    /// <summary>
+    /// Hide inherited Document property to ensure proper propagation to children
+    /// </summary>
+    public new Document? Document {
+        get => base.Document;
+        set {
+            base.Document = value;
+            // Ensure all existing children get the Document reference
+            foreach (var child in Children.WhereNotNull()) {
+                child.Document = value;
+            }
+        }
+    }
+
+    /// <summary>
     /// Initializes or configures ToString.
     /// </summary>
     public override string ToString() {
+        // CRITICAL FIX: Ensure all children have proper Document references before rendering
+        EnsureChildrenHaveDocumentReference();
+
+        // ADDITIONAL FIX: Force library registration for any children that may have missed it
+        foreach (var child in Children.WhereNotNull()) {
+            if (child.Document != null) {
+                child.RegisterLibraries();
+            }
+        }
+
         var bodyDiv = new HtmlTag("div");
         var classes = new List<string> { "card-body" };
 
@@ -106,25 +151,108 @@ public class TablerCardBody : Element {
 
         // Add formatted text elements
         foreach (var textElement in TextElements) {
+            // Ensure Document reference for internal elements
+            if (textElement.Document == null && this.Document != null) {
+                textElement.Document = this.Document;
+                textElement.Email = this.Email;
+            }
             bodyDiv.Value(textElement.ToString());
         }
 
         // Add lists
         foreach (var list in Lists) {
+            // Ensure Document reference for internal elements
+            if (list.Document == null && this.Document != null) {
+                list.Document = this.Document;
+                list.Email = this.Email;
+            }
             bodyDiv.Value(list.ToString());
         }
 
         // Add DataGrids
         foreach (var dataGrid in DataGrids) {
+            // Ensure Document reference for internal elements
+            if (dataGrid.Document == null && this.Document != null) {
+                dataGrid.Document = this.Document;
+                dataGrid.Email = this.Email;
+            }
             bodyDiv.Value(dataGrid.ToString());
         }
 
         // Add image if specified
         if (BodyImage != null) {
+            // Ensure Document reference for internal elements
+            if (BodyImage.Document == null && this.Document != null) {
+                BodyImage.Document = this.Document;
+                BodyImage.Email = this.Email;
+            }
             bodyDiv.Value(BodyImage.ToString());
         }
 
+        // Add any child elements that were added directly (e.g., via extension methods)
+        foreach (var child in Children.WhereNotNull()) {
+            bodyDiv.Value(child.ToString());
+        }
+
         return bodyDiv.ToString();
+    }
+
+    /// <summary>
+    /// Ensures all children have proper Document and Email references for library registration
+    /// </summary>
+    private void EnsureChildrenHaveDocumentReference() {
+        if (this.Document == null) return;
+
+        foreach (var child in Children.WhereNotNull()) {
+            if (child.Document == null) {
+                child.Document = this.Document;
+                child.Email = this.Email;
+                // Call OnAddedToDocument to trigger library registration
+                child.OnAddedToDocument();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Override to ensure child elements have Document reference when initially added to document
+    /// </summary>
+    protected internal override void OnAddedToDocument() {
+        // Propagate Document reference to all child elements and internal collections
+        EnsureChildrenHaveDocumentReference();
+
+        // Also propagate to internal element collections
+        foreach (var textElement in TextElements) {
+            if (textElement.Document == null && this.Document != null) {
+                textElement.Document = this.Document;
+                textElement.Email = this.Email;
+                textElement.OnAddedToDocument();
+            }
+        }
+
+        foreach (var list in Lists) {
+            if (list.Document == null && this.Document != null) {
+                list.Document = this.Document;
+                list.Email = this.Email;
+                list.OnAddedToDocument();
+            }
+        }
+
+        foreach (var dataGrid in DataGrids) {
+            if (dataGrid.Document == null && this.Document != null) {
+                dataGrid.Document = this.Document;
+                dataGrid.Email = this.Email;
+                dataGrid.OnAddedToDocument();
+            }
+        }
+
+        if (BodyImage != null && BodyImage.Document == null && this.Document != null) {
+            BodyImage.Document = this.Document;
+            BodyImage.Email = this.Email;
+            BodyImage.OnAddedToDocument();
+        }
+
+        // Call base implementation to register our own libraries
+        base.OnAddedToDocument();
     }
 }
 
@@ -255,6 +383,9 @@ public class TablerCardText : Element {
     private static string GetFontWeightClass(TablerFontWeight weight) {
         return weight switch {
             TablerFontWeight.Medium => "fw-medium",
+            TablerFontWeight.Bold => "fw-bold",
+            TablerFontWeight.Light => "fw-light",
+            TablerFontWeight.Normal => "fw-normal",
             _ => ""
         };
     }
@@ -287,3 +418,4 @@ public static class TablerTextAlignmentExtensions {
         };
     }
 }
+

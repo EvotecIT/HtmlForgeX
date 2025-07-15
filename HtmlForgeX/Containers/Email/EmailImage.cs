@@ -719,7 +719,7 @@ public class EmailImage : Element {
     /// Called when this element is added to a document.
     /// Applies document configuration settings automatically.
     /// </summary>
-    protected override void OnAddedToDocument() {
+    protected internal override void OnAddedToDocument() {
         base.OnAddedToDocument();
         ApplyDocumentConfiguration();
     }

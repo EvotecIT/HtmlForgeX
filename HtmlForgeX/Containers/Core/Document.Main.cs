@@ -93,6 +93,9 @@ public partial class Document : Element {
         // Pre-register libraries from all elements before rendering the head
         RegisterAllLibraries();
 
+        // CRITICAL FIX: Force one final registration pass to catch any missed elements
+        FinalRegistrationPass();
+
         var html = StringBuilderCache.Acquire();
         html.AppendLine("<!DOCTYPE html>");
         html.AppendLine("<html>");
@@ -123,8 +126,37 @@ public partial class Document : Element {
     /// <param name="element">The element to process.</param>
     private void RegisterLibrariesFromElement(Element element) {
         foreach (var child in element.Children.WhereNotNull()) {
-            child.RegisterLibraries();
+            // CRITICAL FIX: Ensure child has Document reference before registering libraries
+            if (child.Document == null) {
+                child.Document = this;
+                child.OnAddedToDocument(); // This will call RegisterLibraries()
+            } else {
+                child.RegisterLibraries();
+            }
             RegisterLibrariesFromElement(child);
+        }
+    }
+
+    /// <summary>
+    /// Final registration pass to ensure all elements with Document references register their libraries
+    /// </summary>
+    private void FinalRegistrationPass() {
+        FinalRegistrationPassForElement(Body);
+    }
+
+    /// <summary>
+    /// Recursively forces library registration for all elements in the tree
+    /// </summary>
+    /// <param name="element">The element to process.</param>
+    private void FinalRegistrationPassForElement(Element element) {
+        // Force registration on this element if it has a Document reference
+        if (element.Document != null) {
+            element.RegisterLibraries();
+        }
+
+        // Recursively process all children
+        foreach (var child in element.Children.WhereNotNull()) {
+            FinalRegistrationPassForElement(child);
         }
     }
 }

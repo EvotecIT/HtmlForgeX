@@ -91,8 +91,7 @@ internal class BasicHtmlContainer03 {
                 row.Column(TablerColumnNumber.Eight, column => {
                     column.Card(card => {
                         var table1 = (DataTablesTable)card.Table(data, TableType.DataTables);
-                        table1.EnableOrdering = false;
-                        table1.EnableSearching = false;
+                        table1.EnableOrdering(false).EnableSearching(false);
                     });
                 });
                 row.Column(TablerColumnNumber.Eight, column => {
@@ -219,9 +218,9 @@ internal class BasicHtmlContainer03 {
                         var table1 =
                             ((DataTablesTable)card.Table(data, TableType.DataTables))
                             .Style(BootStrapTableStyle.Striped);
-                        table1.EnableOrdering = true;
-                        table1.EnableSearching = true;
-                        table1.EnableScrollX = true;
+                        table1.EnableOrdering();
+                        table1.EnableSearching();
+                        table1.Scrolling(scrollX: true);
                     });
                 });
                 row.Column(TablerColumnNumber.Eight, column => {

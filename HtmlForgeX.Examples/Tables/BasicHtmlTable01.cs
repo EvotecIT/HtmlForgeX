@@ -45,10 +45,10 @@ internal class BasicHtmlTable01 {
         // Add the drive information to the document again using DataTables
         var table4 = (DataTablesTable)document.Body.Table(drives, TableType.DataTables);
         table4.Style(BootStrapTableStyle.Hover).Style(BootStrapTableStyle.Striped);
-        table4.EnablePaging = true;
-        table4.EnableSearching = false;
-        table4.EnableOrdering = true;
-        table4.EnableScrollX = true;
+        table4.EnablePaging()
+              .DisableSearching()
+              .EnableOrdering()
+              .Scrolling(scrollX: true);
         table4.Configure(o =>
         {
             o.PageLength = 25;

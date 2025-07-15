@@ -60,7 +60,10 @@ public abstract partial class Element {
         Children.Add(element);
 
         // Notify the element that it has been added to a document
-        element.OnAddedToDocument();
+        // Only call OnAddedToDocument if the element actually has a Document reference
+        if (element.Document != null) {
+            element.OnAddedToDocument();
+        }
 
         return this;
     }
@@ -69,9 +72,12 @@ public abstract partial class Element {
     /// Called when this element is added to a document.
     /// Override this method to apply document-specific configuration.
     /// </summary>
-    protected virtual void OnAddedToDocument() {
-        // Base implementation does nothing
-        // Derived classes can override to apply configuration
+    protected internal virtual void OnAddedToDocument() {
+        // Register libraries when added to document
+        RegisterLibraries();
+
+        // Base implementation does nothing else
+        // Derived classes can override to apply additional configuration
     }
 
     /// <summary>

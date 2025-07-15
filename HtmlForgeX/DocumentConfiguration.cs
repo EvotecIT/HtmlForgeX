@@ -91,7 +91,12 @@ public class DocumentConfiguration {
     /// Layout-specific configuration.
     /// </summary>
     public LayoutConfiguration Layout { get; } = new();
-    
+
+    /// <summary>
+    /// DataTables-specific global configuration.
+    /// </summary>
+    public DataTablesGlobalConfig DataTables { get; } = new();
+
     /// <summary>
     /// Generates a random ID with the specified prefix.
     /// </summary>

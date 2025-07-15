@@ -19,8 +19,11 @@ internal class Program {
 
         HelpersSpectre.PrintTitle("HtmlForgeX Examples - Document-Style Configuration");
 
-        // Configuration for opening files in browser (set to true to open automatically)
+        // Configuration for opening files in browser (set to openInBrowser to open automatically)
         bool openInBrowser = false;
+
+        // DEBUG: PrismJS test
+        TestPrismJsDebug.RunDebugTest(openInBrowser);
 
         // Not real examples, but useful for development
         // Support.DownloadLibrariesAsync();
@@ -157,5 +160,12 @@ internal class Program {
 
         // Quill editor example
         BasicQuillEditor.Demo(openInBrowser);
+
+        // Table examples
+        DataTablesQuickStart.Create(openInBrowser);
+        AdvancedDataTablesDemo.Create(openInBrowser);
+        DataTablesExtensionsDemo.Create(openInBrowser);
+        DataTablesFeatureTest.RunAllTests(openInBrowser);
+        DataTablesRenderingDemo.Create(openInBrowser);
     }
 }
