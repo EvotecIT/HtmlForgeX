@@ -36,6 +36,9 @@ public enum ValidationState {
     Warning
 }
 
+/// <summary>
+/// Extension methods for the <see cref="InputType"/> enum.
+/// </summary>
 public static class InputTypeExtensions {
     /// <summary>
     /// Converts the <see cref="InputType"/> value to its HTML <c>type</c> attribute value.
@@ -54,6 +57,9 @@ public static class InputTypeExtensions {
     };
 }
 
+/// <summary>
+/// Extension methods for the <see cref="ValidationState"/> enum.
+/// </summary>
 public static class ValidationStateExtensions {
     /// <summary>
     /// Returns the CSS class name that represents the validation state for an input element.

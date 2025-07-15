@@ -18,8 +18,10 @@ public enum StepsOrientation {
 /// </summary>
 public static class StepsOrientationExtensions {
     /// <summary>
-    /// Initializes or configures EnumToString.
+    /// Converts the orientation to the corresponding Tabler class.
     /// </summary>
+    /// <param name="orientation">Steps orientation.</param>
+    /// <returns>CSS class string.</returns>
     public static string EnumToString(this StepsOrientation orientation) {
         return orientation switch {
             StepsOrientation.Horizontal => "steps-horizontal",

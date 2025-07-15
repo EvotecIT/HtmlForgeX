@@ -28,6 +28,11 @@ public enum FontWeight {
 /// Extension methods for the <see cref="FontWeight"/> enum.
 /// </summary>
 public static class FontWeightExtensions {
+    /// <summary>
+    /// Converts the enum value to the numeric CSS weight string.
+    /// </summary>
+    /// <param name="value">Font weight value.</param>
+    /// <returns>Numeric CSS representation of the weight.</returns>
     public static string EnumToString(this FontWeight value) {
         return value switch {
             FontWeight.Thin => "100",

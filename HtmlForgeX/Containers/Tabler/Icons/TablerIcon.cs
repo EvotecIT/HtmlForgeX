@@ -11,10 +11,15 @@ namespace HtmlForgeX;
 /// Represents an SVG icon with full styling and positioning flexibility
 /// </summary>
 public class TablerIcon : Element {
+    /// <summary>Raw SVG markup for the icon.</summary>
     public string SvgContent { get; set; }
+    /// <summary>HTML attributes applied to the SVG element.</summary>
     public Dictionary<string, string> SvgAttributes { get; set; } = new Dictionary<string, string>();
+    /// <summary>CSS style properties applied directly to the SVG element.</summary>
     public Dictionary<string, string> SvgStyles { get; set; } = new Dictionary<string, string>();
+    /// <summary>Inline styles applied to the container element.</summary>
     public Dictionary<string, string> ContainerStyles { get; set; } = new Dictionary<string, string>();
+    /// <summary>Additional CSS classes applied to the container element.</summary>
     public string ContainerClasses { get; set; } = "";
 
     /// <summary>

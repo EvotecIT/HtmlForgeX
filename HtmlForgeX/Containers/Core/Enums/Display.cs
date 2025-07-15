@@ -95,6 +95,11 @@ public enum Display {
 /// Extension methods for the <see cref="Display"/> enum.
 /// </summary>
 public static class DisplayExtensions {
+    /// <summary>
+    /// Converts the enum value to its lowercase CSS string representation.
+    /// </summary>
+    /// <param name="value">Display enumeration value.</param>
+    /// <returns>The CSS text for the display value.</returns>
     public static string EnumToString(this Display value) {
         var fieldInfo = value.GetType().GetField(value.ToString());
         var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);

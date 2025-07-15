@@ -20,16 +20,37 @@ public class Email : Element {
     /// </summary>
     public DocumentConfiguration Configuration { get; } = new();
 
+    /// <summary>
+    /// Gets the <see cref="EmailHead"/> section where metadata and styles are defined.
+    /// </summary>
     public EmailHead Head { get; }
+
+    /// <summary>
+    /// Gets the <see cref="EmailBody"/> containing the main message content.
+    /// </summary>
     public EmailBody Body { get; }
+
+    /// <summary>
+    /// Gets the header area rendered at the top of the email.
+    /// </summary>
     public EmailHeader Header { get; }
+
+    /// <summary>
+    /// Gets the footer area rendered at the bottom of the email.
+    /// </summary>
     public EmailFooter Footer { get; }
 
+    /// <summary>
+    /// Gets or sets the library mode for the email. Only inline mode is supported.
+    /// </summary>
     public EmailLibraryMode LibraryMode {
         get => Configuration.Email.AutoEmbedImages ? EmailLibraryMode.InlineOnly : EmailLibraryMode.InlineOnly; // Email only supports inline
         set { /* Email only supports inline mode */ }
     }
 
+    /// <summary>
+    /// Gets or sets the file system path where the email will be saved.
+    /// </summary>
     public string Path {
         get => Configuration.Email.DefaultPadding; // Reuse for path storage
         set => Configuration.Email.DefaultPadding = value;
