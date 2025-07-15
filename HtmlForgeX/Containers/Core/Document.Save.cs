@@ -114,15 +114,12 @@ public partial class Document
             await writer.WriteAsync(ToString()).ConfigureAwait(false);
 #endif
         }
-#if !NET5_0_OR_GREATER
-        catch (AggregateException)
-        {
-            throw;
-        }
-#endif
         catch (Exception ex)
         {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
+#if !NET5_0_OR_GREATER
+            throw;
+#endif
         }
         finally
         {
@@ -134,4 +131,3 @@ public partial class Document
         }
     }
 }
-
