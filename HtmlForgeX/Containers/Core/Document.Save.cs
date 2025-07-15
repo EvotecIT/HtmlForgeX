@@ -17,7 +17,7 @@ public partial class Document
     public void Save(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "")
     {
         PathUtilities.Validate(path);
-        path = Path.GetFullPath(path);
+        path = System.IO.Path.GetFullPath(path);
         Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath))
         {
@@ -79,7 +79,7 @@ public partial class Document
     public async Task SaveAsync(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "")
     {
         PathUtilities.Validate(path);
-        path = Path.GetFullPath(path);
+        path = System.IO.Path.GetFullPath(path);
         Configuration.Path = path;
         if (!string.IsNullOrEmpty(scriptPath))
         {
@@ -148,8 +148,8 @@ public partial class Document
             return false;
         }
 
-        var unc = directory.TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-        return unc.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).Length == 2;
+        var unc = directory.TrimStart(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar);
+        return unc.Split(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar).Length == 2;
     }
 }
 
