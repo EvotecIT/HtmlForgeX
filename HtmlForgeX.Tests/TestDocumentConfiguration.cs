@@ -17,7 +17,7 @@ public class TestDocumentConfiguration {
         Assert.AreEqual(ThemeMode.System, config.ThemeMode);
         Assert.AreEqual(LibraryMode.Online, config.LibraryMode);
         Assert.AreEqual(false, config.EnableDeferredScripts);
-        Assert.AreEqual(System.IO.Path.GetTempPath(), config.Path);
+        Assert.AreEqual(TempPath.Get(), config.Path);
         Assert.AreEqual("", config.StylePath);
         Assert.AreEqual("", config.ScriptPath);
         Assert.IsNotNull(config.Libraries);
