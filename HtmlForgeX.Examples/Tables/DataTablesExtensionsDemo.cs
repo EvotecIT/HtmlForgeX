@@ -1,3 +1,5 @@
+using HtmlForgeX;
+
 namespace HtmlForgeX.Examples.Tables;
 
 /// <summary>
@@ -118,14 +120,20 @@ internal class DataTablesExtensionsDemo
                         });
                         card.Body(body =>
                         {
-                            body.Text("// Simple one-liner setup")
-                                .Style(TablerTextStyle.Monospace).Style(TablerTextStyle.Muted);
-                            body.Text("var table = (DataTablesTable)document.Body")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("    .Table(data, TableType.DataTables);")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("table.QuickSetup();")
-                                .Style(TablerTextStyle.Monospace).Weight(TablerFontWeight.Bold);
+                            body.CSharpCode(@"
+// Simple one-liner setup
+page.Table(data, TableType.DataTables, table => {
+    var dataTable = (DataTablesTable)table;
+    dataTable.QuickSetup(
+        pageLength: 10,
+        enableExports: true,
+        enableSearch: true,
+        responsive: true
+    );
+});", config => config
+                                .EnableLineNumbers()
+                                .EnableCopyButton()
+                                .GitHubTheme());
                         });
                     });
                 });
@@ -140,16 +148,19 @@ internal class DataTablesExtensionsDemo
                         });
                         card.Body(body =>
                         {
-                            body.Text("// Enterprise-grade setup")
-                                .Style(TablerTextStyle.Monospace).Style(TablerTextStyle.Muted);
-                            body.Text("table.EnterpriseSetup(")
-                                .Style(TablerTextStyle.Monospace).Weight(TablerFontWeight.Bold);
-                            body.Text("    pageLength: 25,")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("    enableRowGrouping: true,")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("    groupByColumn: 2);")
-                                .Style(TablerTextStyle.Monospace);
+                            body.CSharpCode(@"
+// Enterprise-grade setup
+page.Table(data, TableType.DataTables, table => {
+    var dataTable = (DataTablesTable)table;
+    dataTable.EnterpriseSetup(
+        pageLength: 25,
+        enableRowGrouping: true,
+        groupByColumn: 2  // Group by Region
+    );
+});", config => config
+                                .EnableLineNumbers()
+                                .EnableCopyButton()
+                                .OkaidiaTheme());
                         });
                     });
                 });
@@ -167,17 +178,21 @@ internal class DataTablesExtensionsDemo
                         });
                         card.Body(body =>
                         {
-                            body.Text("// Mobile-friendly setup")
-                                .Style(TablerTextStyle.Monospace).Style(TablerTextStyle.Muted);
-                            body.Text("table.MobileOptimized(pageLength: 5);")
-                                .Style(TablerTextStyle.Monospace).Weight(TablerFontWeight.Bold);
-                            body.LineBreak();
-                            body.Text("✓ Simple pagination")
-                                .Style(TablerTextStyle.Success);
-                            body.Text("✓ Horizontal scrolling")
-                                .Style(TablerTextStyle.Success);
-                            body.Text("✓ Responsive design")
-                                .Style(TablerTextStyle.Success);
+                            body.CSharpCode(@"
+// Mobile-friendly setup
+page.Table(data, TableType.DataTables, table => {
+    var dataTable = (DataTablesTable)table;
+    dataTable.MobileOptimized(pageLength: 5);
+});
+
+// Features included:
+// ✓ Simple pagination
+// ✓ Horizontal scrolling
+// ✓ Responsive design
+// ✓ Touch-friendly controls", config => config
+                                .EnableLineNumbers()
+                                .EnableCopyButton()
+                                .TomorrowNightTheme());
                         });
                     });
                 });
@@ -192,17 +207,20 @@ internal class DataTablesExtensionsDemo
                         });
                         card.Body(body =>
                         {
-                            body.Text("// Full reporting capabilities")
-                                .Style(TablerTextStyle.Monospace).Style(TablerTextStyle.Muted);
-                            body.Text("table.ReportSetup(")
-                                .Style(TablerTextStyle.Monospace).Weight(TablerFontWeight.Bold);
-                            body.Text("    reportTitle: \"Sales Report\",")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("    filename: \"sales_2024\");")
-                                .Style(TablerTextStyle.Monospace);
-                            body.LineBreak();
-                            body.Text("✓ Excel, CSV, PDF exports")
-                                .Style(TablerTextStyle.Success);
+                            body.CSharpCode(@"
+// Full reporting capabilities
+page.Table(data, TableType.DataTables, table => {
+    var dataTable = (DataTablesTable)table;
+    dataTable.ReportSetup(
+        reportTitle: ""Sales Performance Report"",
+        filename: ""sales_report_2024""
+    );
+});
+
+// Includes: Excel, CSV, PDF exports", config => config
+                                .EnableLineNumbers()
+                                .EnableCopyButton()
+                                .VsTheme());
                         });
                     });
                 });

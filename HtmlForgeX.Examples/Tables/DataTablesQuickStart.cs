@@ -1,3 +1,5 @@
+using HtmlForgeX;
+
 namespace HtmlForgeX.Examples.Tables;
 
 /// <summary>
@@ -178,18 +180,16 @@ internal class DataTablesQuickStart
                         });
                         card.Body(body =>
                         {
-                            body.Text("document.Body.DataTable(data, table =>")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("{")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("    table.Style(BootStrapTableStyle.Striped)")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("         .EnablePaging(10)")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("         .EnableExport(Excel, CSV);")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("});")
-                                .Style(TablerTextStyle.Monospace);
+                            body.CSharpCode(@"
+document.Body.DataTable(data, table =>
+{
+    table.Style(BootStrapTableStyle.Striped)
+         .EnablePaging(10)
+         .EnableExport(Excel, CSV);
+});", config => config
+                                .EnableLineNumbers()
+                                .EnableCopyButton()
+                                .GitHubTheme());
                         });
                     });
                 });
@@ -204,20 +204,17 @@ internal class DataTablesQuickStart
                         });
                         card.Body(body =>
                         {
-                            body.Text(".ConfigureColumns(columns =>")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("{")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("    columns.Column(col => col.Target(0)")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("           .Width(\"80px\").Centered());")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("    columns.Column(col => col.Target(3)")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("           .Type(Currency).CurrencyStyle());")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("})")
-                                .Style(TablerTextStyle.Monospace);
+                            body.CSharpCode(@"
+.ConfigureColumns(columns =>
+{
+    columns.Column(col => col.Target(0)
+           .Width(""80px"").Centered());
+    columns.Column(col => col.Target(3)
+           .Type(Currency).CurrencyStyle());
+})", config => config
+                                .EnableLineNumbers()
+                                .EnableCopyButton()
+                                .GitHubTheme());
                         });
                     });
                 });

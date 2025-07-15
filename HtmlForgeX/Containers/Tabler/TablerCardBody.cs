@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -23,11 +24,13 @@ public class TablerCardBody : Element {
     }
 
     /// <summary>
-    /// Set the main body text
+    /// Add text to the body (appends instead of replacing)
     /// </summary>
-    public TablerCardBody Text(string text) {
-        BodyText = text;
-        return this;
+    public new TablerText Text(string text) {
+        // Create a TablerText element that supports Tabler styling
+        var tablerText = new TablerText(text);
+        this.Add(tablerText);
+        return tablerText;
     }
 
     /// <summary>
@@ -140,6 +143,11 @@ public class TablerCardBody : Element {
         // Add image if specified
         if (BodyImage != null) {
             bodyDiv.Value(BodyImage.ToString());
+        }
+
+        // Add any child elements that were added directly (e.g., via extension methods)
+        foreach (var child in Children.WhereNotNull()) {
+            bodyDiv.Value(child.ToString());
         }
 
         return bodyDiv.ToString();
@@ -308,3 +316,4 @@ public static class TablerTextAlignmentExtensions {
         };
     }
 }
+

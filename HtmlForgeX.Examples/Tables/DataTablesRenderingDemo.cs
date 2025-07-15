@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HtmlForgeX;
 
 namespace HtmlForgeX.Examples.Tables;
 
@@ -35,6 +36,9 @@ internal class DataTablesRenderingDemo
         document.Configuration.DataTables.EnableProcessingIndicator = true;
         document.Configuration.DataTables.DefaultPageLength = 25;
         document.Configuration.DataTables.DebugMode = true;
+
+        // TEMPORARY: Manual PrismJS registration for debugging
+        document.Configuration.Libraries.TryAdd(Libraries.PrismJs, 0);
 
         document.Body.Page(page =>
         {
@@ -204,14 +208,15 @@ internal class DataTablesRenderingDemo
                         });
                         card.Body(body =>
                         {
-                            body.Text("// Configure global DataTables settings")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("document.Configuration.DataTables.DefaultRenderMode = Auto;")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("document.Configuration.DataTables.AutoModeThreshold = 1000;")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("document.Configuration.DataTables.EnableDeferredRendering = true;")
-                                .Style(TablerTextStyle.Monospace);
+                            body.CSharpCode(@"
+// Configure global DataTables settings
+document.Configuration.DataTables.DefaultRenderMode = DataTablesRenderMode.Auto;
+document.Configuration.DataTables.AutoModeThreshold = 1000;
+document.Configuration.DataTables.EnableDeferredRendering = true;
+document.Configuration.DataTables.DefaultPageLength = 25;", config => config
+                                .EnableLineNumbers()
+                                .EnableCopyButton()
+                                .GitHubTheme());
                         });
                     });
                 });
@@ -226,18 +231,17 @@ internal class DataTablesRenderingDemo
                         });
                         card.Body(body =>
                         {
-                            body.Text("page.DataTable(data, table =>")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("{")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("    table.EnableJavaScriptRendering() // Override global")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("         .EnablePaging(50)")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("         .EnableResponsive();")
-                                .Style(TablerTextStyle.Monospace);
-                            body.Text("});")
-                                .Style(TablerTextStyle.Monospace);
+                            body.CSharpCode(@"
+page.DataTable(data, table => {
+    table.EnableJavaScriptRendering() // Override global
+         .EnablePaging(50)
+         .EnableResponsive()
+         .EnableFixedHeader()
+         .Scrolling(scrollY: ""400px"");
+});", config => config
+                                .EnableLineNumbers()
+                                .EnableCopyButton()
+                                .OkaidiaTheme());
                         });
                     });
                 });

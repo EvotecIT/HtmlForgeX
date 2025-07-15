@@ -70,8 +70,11 @@ public abstract partial class Element {
     /// Override this method to apply document-specific configuration.
     /// </summary>
     protected virtual void OnAddedToDocument() {
-        // Base implementation does nothing
-        // Derived classes can override to apply configuration
+        // Register libraries when added to document
+        RegisterLibraries();
+
+        // Base implementation does nothing else
+        // Derived classes can override to apply additional configuration
     }
 
     /// <summary>

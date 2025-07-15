@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -141,6 +142,11 @@ public class TablerCardHeader : Element {
                     headerDiv.Value(titleElement);
                 }
             }
+        }
+
+        // Add any child elements that were added directly (e.g., via extension methods)
+        foreach (var child in Children.WhereNotNull()) {
+            headerDiv.Value(child.ToString());
         }
 
         return headerDiv.ToString();

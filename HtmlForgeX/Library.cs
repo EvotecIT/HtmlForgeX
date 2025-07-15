@@ -69,7 +69,19 @@ public enum Libraries {
     /// <summary>TomSelect component.</summary>
     TomSelect,
     /// <summary>IMask input masking library.</summary>
-    IMask
+    IMask,
+    /// <summary>PrismJS syntax highlighting library.</summary>
+    PrismJs,
+    /// <summary>PrismJS Dark theme.</summary>
+    PrismJsDarkTheme,
+    /// <summary>PrismJS Okaidia theme.</summary>
+    PrismJsOkaidiaTheme,
+    /// <summary>PrismJS GitHub theme.</summary>
+    PrismJsGitHubTheme,
+    /// <summary>PrismJS Tomorrow Night theme.</summary>
+    PrismJsTomorrowNightTheme,
+    /// <summary>PrismJS VS theme.</summary>
+    PrismJsVsTheme
 }
 
 /// <summary>
@@ -206,6 +218,18 @@ public class LibrariesConverter {
             return new Resources.TomSelectLibrary();
         case Libraries.IMask:
             return new Resources.IMaskLibrary();
+        case Libraries.PrismJs:
+            return new Resources.PrismJsLibrary();
+        case Libraries.PrismJsDarkTheme:
+            return new Resources.PrismJsDarkTheme();
+        case Libraries.PrismJsOkaidiaTheme:
+            return new Resources.PrismJsOkaidiaTheme();
+        case Libraries.PrismJsGitHubTheme:
+            return new Resources.PrismJsGitHubTheme();
+        case Libraries.PrismJsTomorrowNightTheme:
+            return new Resources.PrismJsTomorrowNightTheme();
+        case Libraries.PrismJsVsTheme:
+            return new Resources.PrismJsVsTheme();
         default:
             throw new ArgumentException($"Unsupported library: {libraries}");
         }
