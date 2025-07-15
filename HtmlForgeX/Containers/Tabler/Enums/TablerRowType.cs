@@ -14,8 +14,10 @@ public enum TablerRowType {
 /// </summary>
 public static class TablerRowTypeExtensions {
     /// <summary>
-    /// Initializes or configures EnumToString.
+    /// Converts the row type value to its Tabler CSS class.
     /// </summary>
+    /// <param name="rowType">Row layout option.</param>
+    /// <returns>CSS class string.</returns>
     public static string EnumToString(this TablerRowType rowType) {
         return rowType switch {
             TablerRowType.Default => "row",

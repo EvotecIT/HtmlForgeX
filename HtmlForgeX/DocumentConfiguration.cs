@@ -12,10 +12,11 @@ public class DocumentConfiguration {
     private string _path = System.IO.Path.GetTempPath();
     private string _stylePath = string.Empty;
     private string _scriptPath = string.Empty;
+    private LibraryMode _libraryMode = LibraryMode.Online;
+
     /// <summary>
     /// Gets or sets the library mode for this document.
     /// </summary>
-    private LibraryMode _libraryMode = LibraryMode.Online;
     public LibraryMode LibraryMode {
         get => _libraryMode;
         set {

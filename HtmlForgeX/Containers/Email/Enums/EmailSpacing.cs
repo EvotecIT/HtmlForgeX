@@ -24,6 +24,11 @@ public enum EmailSpacing {
 /// Extension methods for <see cref="EmailSpacing"/> values.
 /// </summary>
 public static class EmailSpacingExtensions {
+    /// <summary>
+    /// Converts the spacing value to a CSS <c>px</c> value.
+    /// </summary>
+    /// <param name="spacing">Spacing option.</param>
+    /// <returns>Pixel string representation.</returns>
     public static string ToCssValue(this EmailSpacing spacing) {
         return spacing switch {
             EmailSpacing.None => "0",

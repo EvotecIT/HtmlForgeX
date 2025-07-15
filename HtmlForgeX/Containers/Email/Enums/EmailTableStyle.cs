@@ -30,6 +30,11 @@ public enum EmailTableStyle {
 /// Extension helpers for <see cref="EmailTableStyle"/>.
 /// </summary>
 public static class EmailTableStyleExtensions {
+    /// <summary>
+    /// Retrieves layout information associated with a predefined table style.
+    /// </summary>
+    /// <param name="style">The table style to evaluate.</param>
+    /// <returns>Tuple containing class name and additional style metadata.</returns>
     public static (string cssClass, bool striped, bool bordered, string headerStyle, string cellStyle, string borderColor, string stripeColor) GetStyle(this EmailTableStyle style) {
         return style switch {
             EmailTableStyle.Simple => (

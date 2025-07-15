@@ -14,12 +14,15 @@ public enum FullCalendarViewOption {
     [Description("listWeek")]
     ListWeek,
 
+    /// <summary>List events for a month.</summary>
     [Description("listMonth")]
     ListMonth,
 
+    /// <summary>List events for an entire year.</summary>
     [Description("listYear")]
     ListYear,
 
+    /// <summary>List events for a single day.</summary>
     [Description("listDay")]
     ListDay
 }

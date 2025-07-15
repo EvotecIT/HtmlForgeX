@@ -26,7 +26,10 @@ public enum HeaderLevelTag {
 /// Extension methods for the <see cref="HeaderLevelTag"/> enum.
 /// </summary>
 public static class HeaderLevelTagExtensions {
-    public static string EnumToString(this HeaderLevelTag tag) {
-        return tag.ToString().ToLower();
-    }
+    /// <summary>
+    /// Converts the heading level to the lowercase HTML tag name.
+    /// </summary>
+    /// <param name="tag">Heading level value.</param>
+    /// <returns>String such as <c>h1</c> or <c>h2</c>.</returns>
+    public static string EnumToString(this HeaderLevelTag tag) => tag.ToString().ToLower();
 }

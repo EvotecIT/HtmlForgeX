@@ -33,11 +33,20 @@ public class Table : Element {
         return Array.Find(GetCachedProperties(type), p => p.Name == name);
     }
 
+    /// <summary>
+    /// Initializes a new empty table instance.
+    /// </summary>
+    /// <param name="library">Optional table style library.</param>
     public Table(TableType? library = null) {
         Library = library;
         // Libraries will be registered via RegisterLibraries method
     }
 
+    /// <summary>
+    /// Initializes a table from the provided objects.
+    /// </summary>
+    /// <param name="objects">Objects representing each row.</param>
+    /// <param name="library">Optional table style library.</param>
     public Table(IEnumerable<object> objects, TableType? library = null) {
         Library = library;
         // Libraries will be registered via RegisterLibraries method
@@ -101,6 +110,12 @@ public class Table : Element {
         return this;
     }
 
+    /// <summary>
+    /// Adds rows to the table using public properties of the supplied objects.
+    /// </summary>
+    /// <param name="objects">Collection of objects to read values from.</param>
+    /// <param name="addFooter">When true, footer cells are generated from property names.</param>
+    /// <returns>The current table instance.</returns>
     public Table AddObjects(IEnumerable<object> objects, bool addFooter = false) {
         if (objects == null || !objects.Any()) return this;
 
@@ -275,10 +290,18 @@ public class Table : Element {
 
 
 
+    /// <summary>
+    /// Returns the generated HTML table markup.
+    /// </summary>
+    /// <returns>HTML markup for the table.</returns>
     public override string ToString() {
         return BuildTable();
     }
 
+    /// <summary>
+    /// Builds the table markup using the configured headers, rows and footers.
+    /// </summary>
+    /// <returns>HTML markup for the table.</returns>
     public virtual string BuildTable() {
         var html = StringBuilderCache.Acquire();
         // Add table headers
@@ -315,6 +338,12 @@ public class Table : Element {
         return StringBuilderCache.GetStringAndRelease(html);
     }
 
+    /// <summary>
+    /// Creates a table instance using the specified objects and table type.
+    /// </summary>
+    /// <param name="objects">Source objects to populate the table.</param>
+    /// <param name="tableType">Desired table style.</param>
+    /// <returns>Concrete <see cref="Table"/> implementation.</returns>
     public static Table Create(IEnumerable<object> objects, TableType tableType) {
         Table table;
         switch (tableType) {
@@ -333,6 +362,12 @@ public class Table : Element {
         return table;
     }
 
+    /// <summary>
+    /// Creates a table from a single object or collection.
+    /// </summary>
+    /// <param name="obj">Object or collection to convert.</param>
+    /// <param name="tableType">Desired table style.</param>
+    /// <returns>Concrete <see cref="Table"/> implementation.</returns>
     public static Table Create(object obj, TableType tableType) {
         if (obj is IEnumerable enumerable && obj is not string && obj is not IDictionary) {
             return Create(enumerable.Cast<object>(), tableType);

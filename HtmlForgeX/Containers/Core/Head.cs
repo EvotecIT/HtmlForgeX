@@ -321,6 +321,10 @@ public class Head : Element {
         return StringBuilderCache.GetStringAndRelease(head);
     }
 
+    /// <summary>
+    /// Adds a set of minimal default styles used by many generated documents.
+    /// </summary>
+    /// <returns>The current <see cref="Head"/> instance.</returns>
     public Head AddDefaultStyles() {
         Styles.Add(
             """
@@ -341,24 +345,40 @@ public class Head : Element {
         return this;
     }
 
+    /// <summary>
+    /// Registers an external CSS link if it has not already been added.
+    /// </summary>
+    /// <param name="link">URL to the stylesheet.</param>
     public void AddCssLink(string link) {
         if (_cssLinkSet.Add(link)) {
             CssLinks.Add($"<link rel=\"stylesheet\" href=\"{link}\">");
         }
     }
 
+    /// <summary>
+    /// Registers an external JavaScript link if it has not already been added.
+    /// </summary>
+    /// <param name="link">URL to the script.</param>
     public void AddJsLink(string link) {
         if (_jsLinkSet.Add(link)) {
             JsLinks.Add($"<script src=\"{link}\"></script>");
         }
     }
 
+    /// <summary>
+    /// Adds inline CSS content to the document head.
+    /// </summary>
+    /// <param name="css">CSS rules to embed.</param>
     public void AddCssInline(string css) {
         if (_cssInlineSet.Add(css)) {
             Styles.Add($"<style>{css}</style>");
         }
     }
 
+    /// <summary>
+    /// Adds inline JavaScript to the document head.
+    /// </summary>
+    /// <param name="js">JavaScript code to embed.</param>
     public void AddJsInline(string js) {
         if (_jsInlineSet.Add(js)) {
             Scripts.Add($"<script>{js}</script>");
@@ -397,6 +417,10 @@ gtag('config', '{identifier}');
         return this;
     }
 
+    /// <summary>
+    /// Adds a <see cref="Style"/> object to the list of styles.
+    /// </summary>
+    /// <param name="style">Style instance to include.</param>
     public void AddCssStyle(Style style) {
         Styles.Add(style);
     }

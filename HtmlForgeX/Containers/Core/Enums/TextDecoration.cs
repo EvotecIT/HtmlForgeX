@@ -27,6 +27,11 @@ public enum TextDecoration {
 /// Extension methods for the <see cref="TextDecoration"/> enum.
 /// </summary>
 public static class TextDecorationExtensions {
+    /// <summary>
+    /// Converts the text decoration to its CSS string value.
+    /// </summary>
+    /// <param name="value">Decoration value.</param>
+    /// <returns>CSS representation of the decoration.</returns>
     public static string EnumToString(this TextDecoration value) {
         return value switch {
             TextDecoration.None => "none",

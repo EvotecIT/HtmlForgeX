@@ -26,6 +26,11 @@ public enum EmailFontSize {
 /// Helper methods for <see cref="EmailFontSize"/> values.
 /// </summary>
 public static class EmailFontSizeExtensions {
+    /// <summary>
+    /// Converts the enum to an absolute CSS <c>px</c> value.
+    /// </summary>
+    /// <param name="fontSize">Font size value.</param>
+    /// <returns>Pixel size string.</returns>
     public static string ToCssValue(this EmailFontSize fontSize) {
         return fontSize switch {
             EmailFontSize.Small => "12px",

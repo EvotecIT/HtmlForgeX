@@ -18,6 +18,9 @@ namespace HtmlForgeX;
 /// Replaces the old CSS-based TablerIcon system with native SVG rendering.
 /// </summary>
 public partial class TablerIconElement : Element {
+    /// <summary>
+    /// Identifier of the icon to display.
+    /// </summary>
     public TablerIconType Icon { get; set; }
     private TablerIcon _svgIcon;
 

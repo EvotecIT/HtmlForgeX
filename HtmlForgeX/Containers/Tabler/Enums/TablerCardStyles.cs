@@ -81,7 +81,7 @@ public enum TablerCardSize {
 /// </summary>
 public static class TablerCardStyleExtensions {
     /// <summary>
-    /// Initializes or configures ToTablerCardStateClass.
+    /// Converts a card state to its corresponding CSS class.
     /// </summary>
     public static string ToTablerCardStateClass(this TablerCardState state) {
         return state switch {
@@ -94,7 +94,7 @@ public static class TablerCardStyleExtensions {
     }
 
     /// <summary>
-    /// Initializes or configures ToTablerCardLayoutClass.
+    /// Converts a card layout option to its CSS class.
     /// </summary>
     public static string ToTablerCardLayoutClass(this TablerCardLayout layout) {
         return layout switch {
@@ -107,7 +107,7 @@ public static class TablerCardStyleExtensions {
     }
 
     /// <summary>
-    /// Initializes or configures ToTablerCardHeaderClass.
+    /// Converts a header style value to its Tabler CSS class.
     /// </summary>
     public static string ToTablerCardHeaderClass(this TablerCardHeaderStyle style) {
         return style switch {
@@ -120,7 +120,7 @@ public static class TablerCardStyleExtensions {
     }
 
     /// <summary>
-    /// Initializes or configures ToTablerCardFooterClass.
+    /// Converts a footer style value to its Tabler CSS class.
     /// </summary>
     public static string ToTablerCardFooterClass(this TablerCardFooterStyle style) {
         return style switch {
@@ -133,7 +133,7 @@ public static class TablerCardStyleExtensions {
     }
 
     /// <summary>
-    /// Initializes or configures ToTablerCardImageClass.
+    /// Gets the CSS class for positioning a card image.
     /// </summary>
     public static string ToTablerCardImageClass(this TablerCardImagePosition position) {
         return position switch {
@@ -148,7 +148,7 @@ public static class TablerCardStyleExtensions {
     }
 
     /// <summary>
-    /// Initializes or configures ToTablerCardAlignmentClass.
+    /// Converts an alignment option to the respective text or layout class.
     /// </summary>
     public static string ToTablerCardAlignmentClass(this TablerCardAlignment alignment) {
         return alignment switch {
@@ -161,7 +161,7 @@ public static class TablerCardStyleExtensions {
     }
 
     /// <summary>
-    /// Initializes or configures ToTablerCardSizeClass.
+    /// Converts a card size value to its Tabler CSS class.
     /// </summary>
     public static string ToTablerCardSizeClass(this TablerCardSize size) {
         return size switch {
