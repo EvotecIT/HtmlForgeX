@@ -10,12 +10,15 @@ public enum TextDecoration {
     [Description("none")]
     None = 1,
 
+    /// <summary>Specifies <c>line-through</c>.</summary>
     [Description("line-through")]
     LineThrough,
 
+    /// <summary>Specifies <c>overline</c>.</summary>
     [Description("overline")]
     Overline,
 
+    /// <summary>Specifies <c>underline</c>.</summary>
     [Description("underline")]
     Underline
 }

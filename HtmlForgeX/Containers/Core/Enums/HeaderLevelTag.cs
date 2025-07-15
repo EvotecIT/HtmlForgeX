@@ -6,10 +6,19 @@ namespace HtmlForgeX;
 public enum HeaderLevelTag {
     /// <summary>&lt;h1&gt; element.</summary>
     H1,
+    /// <summary>&lt;h2&gt; element.</summary>
     H2,
+
+    /// <summary>&lt;h3&gt; element.</summary>
     H3,
+
+    /// <summary>&lt;h4&gt; element.</summary>
     H4,
+
+    /// <summary>&lt;h5&gt; element.</summary>
     H5,
+
+    /// <summary>&lt;h6&gt; element.</summary>
     H6
 }
 

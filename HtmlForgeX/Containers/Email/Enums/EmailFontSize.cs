@@ -22,6 +22,9 @@ public enum EmailFontSize {
     Heading3
 }
 
+/// <summary>
+/// Helper methods for <see cref="EmailFontSize"/> values.
+/// </summary>
 public static class EmailFontSizeExtensions {
     public static string ToCssValue(this EmailFontSize fontSize) {
         return fontSize switch {

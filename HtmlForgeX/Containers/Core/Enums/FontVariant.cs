@@ -4,7 +4,10 @@ namespace HtmlForgeX;
 /// CSS font-variant values.
 /// </summary>
 public enum FontVariant {
+    /// <summary>Normal variant.</summary>
     Normal = 1,
+
+    /// <summary>Small caps variant.</summary>
     SmallCaps
 }
 

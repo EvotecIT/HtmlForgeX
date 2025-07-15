@@ -137,24 +137,45 @@ public abstract partial class Element {
     /// <param name="objects">The objects.</param>
     /// <param name="tableType">Type of the table.</param>
     /// <returns></returns>
+    /// <summary>
+    /// Creates a table from a collection of objects.
+    /// </summary>
+    /// <param name="objects">Data source.</param>
+    /// <param name="tableType">Table library type.</param>
+    /// <returns>The created table element.</returns>
     public Table Table(IEnumerable<object> objects, TableType tableType) {
         var table = HtmlForgeX.Table.Create(objects, tableType);
         this.Add(table);
         return table;
     }
 
-    public Table Table(Object objects, TableType tableType) {
+    /// <summary>
+    /// Creates a table from a single object instance.
+    /// </summary>
+    /// <param name="objects">Object containing data.</param>
+    /// <param name="tableType">Table library type.</param>
+    /// <returns>The created table element.</returns>
+    public Table Table(object objects, TableType tableType) {
         var table = HtmlForgeX.Table.Create(objects, tableType);
         this.Add(table);
         return table;
     }
 
+    /// <summary>
+    /// Adds a line break element.
+    /// </summary>
+    /// <returns>The created line break.</returns>
     public LineBreak LineBreak() {
         var lineBreak = new LineBreak();
         this.Add(lineBreak);
         return lineBreak;
     }
 
+    /// <summary>
+    /// Adds and configures a fancy tree widget.
+    /// </summary>
+    /// <param name="config">Configuration action.</param>
+    /// <returns>The created tree element.</returns>
     public FancyTree FancyTree(Action<FancyTree> config) {
         var fancyTree = new FancyTree();
         config(fancyTree);
@@ -162,12 +183,22 @@ public abstract partial class Element {
         return fancyTree;
     }
 
+    /// <summary>
+    /// Adds a QR code element with specified text.
+    /// </summary>
+    /// <param name="text">Text to encode.</param>
+    /// <returns>The created QR code element.</returns>
     public EasyQRCodeElement QRCode(string text) {
         var qrCode = new EasyQRCodeElement(text);
         this.Add(qrCode);
         return qrCode;
     }
 
+    /// <summary>
+    /// Adds a Quill editor component.
+    /// </summary>
+    /// <param name="config">Optional configuration.</param>
+    /// <returns>The created editor element.</returns>
     public QuillEditor QuillEditor(Action<QuillEditor>? config = null) {
         var editor = new QuillEditor();
         config?.Invoke(editor);
@@ -175,6 +206,11 @@ public abstract partial class Element {
         return editor;
     }
 
+    /// <summary>
+    /// Adds a scrolling text component.
+    /// </summary>
+    /// <param name="config">Configuration action.</param>
+    /// <returns>The created component.</returns>
     public ScrollingText ScrollingText(Action<ScrollingText> config) {
         var scrollingText = new ScrollingText();
         config(scrollingText);

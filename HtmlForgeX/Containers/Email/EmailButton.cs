@@ -240,14 +240,31 @@ public class EmailButton : Element {
 /// Enum for email button styles.
 /// </summary>
 public enum EmailButtonStyle {
+    /// <summary>Primary action button.</summary>
     Primary,
+
+    /// <summary>Secondary action button.</summary>
     Secondary,
+
+    /// <summary>Success indication button.</summary>
     Success,
+
+    /// <summary>Danger or error button.</summary>
     Danger,
+
+    /// <summary>Warning indication button.</summary>
     Warning,
+
+    /// <summary>Informational button.</summary>
     Info,
+
+    /// <summary>Light themed button.</summary>
     Light,
+
+    /// <summary>Dark themed button.</summary>
     Dark,
+
+    /// <summary>Button with custom colors.</summary>
     Custom
 }
 
@@ -255,7 +272,12 @@ public enum EmailButtonStyle {
 /// Enum for email button sizes.
 /// </summary>
 public enum EmailButtonSize {
+    /// <summary>Small size button.</summary>
     Small,
+
+    /// <summary>Medium size button.</summary>
     Medium,
+
+    /// <summary>Large size button.</summary>
     Large
 }

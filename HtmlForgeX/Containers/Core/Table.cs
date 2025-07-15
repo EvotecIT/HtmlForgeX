@@ -16,8 +16,13 @@ namespace HtmlForgeX;
 public class Table : Element {
     private readonly TableType? Library;
     private static readonly ConcurrentDictionary<Type, PropertyInfo[]> PropertyCache = new();
+    /// <summary>Collection of table headers.</summary>
     public List<string> TableHeaders { get; set; } = new List<string>();
+
+    /// <summary>Collection of table footers.</summary>
     public List<string> TableFooters { get; set; } = new List<string>();
+
+    /// <summary>Collection of table rows.</summary>
     public List<List<string>> TableRows { get; set; } = new List<List<string>>();
 
     private static PropertyInfo[] GetCachedProperties(Type type) {
@@ -47,30 +52,50 @@ public class Table : Element {
         AddLibrariesBasedOnTableType();
     }
 
+    /// <summary>
+    /// Adds a table header cell.
+    /// </summary>
+    /// <param name="header">Header text.</param>
+    /// <returns>The current table.</returns>
     public Table AddHeader(string header) {
         TableHeaders.Add(header);
         return this;
     }
+    /// <summary>
+    /// Adds multiple header cells.
+    /// </summary>
     public Table AddHeaders(params string[] headers) {
         TableHeaders.AddRange(headers);
         return this;
     }
 
+    /// <summary>
+    /// Adds a table footer cell.
+    /// </summary>
     public Table AddFooter(string footer) {
         TableFooters.Add(footer);
         return this;
     }
 
+    /// <summary>
+    /// Adds multiple footer cells.
+    /// </summary>
     public Table AddFooters(params string[] footers) {
         TableFooters.AddRange(footers);
         return this;
     }
 
+    /// <summary>
+    /// Adds a row consisting of cell strings.
+    /// </summary>
     public Table AddRow(List<string> row) {
         TableRows.Add(row);
         return this;
     }
 
+    /// <summary>
+    /// Adds multiple table rows.
+    /// </summary>
     public Table AddRows(params List<string>[] rows) {
         TableRows.AddRange(rows);
         return this;

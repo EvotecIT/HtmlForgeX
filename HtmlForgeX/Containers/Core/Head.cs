@@ -77,8 +77,14 @@ public class Head : Element {
     /// </value>
     public DateTime? Revised { get; set; }
 
+    /// <summary>
+    /// Gets or sets the page description meta tag.
+    /// </summary>
     public string? Description { get; set; }
 
+    /// <summary>
+    /// Gets or sets the keywords meta tag.
+    /// </summary>
     public string? Keywords { get; set; }
 
     /// <summary>
@@ -88,9 +94,25 @@ public class Head : Element {
     /// The meta tags.
     /// </value>
     public List<HtmlTag> MetaTags { get; set; } = new List<HtmlTag>();
+
+    /// <summary>
+    /// Collection of inline &lt;style&gt; definitions or CSS strings.
+    /// </summary>
     public List<object> Styles { get; set; } = new List<object>();
+
+    /// <summary>
+    /// Collection of inline scripts.
+    /// </summary>
     public List<string> Scripts { get; set; } = new List<string>();
+
+    /// <summary>
+    /// External CSS links to include in the head.
+    /// </summary>
     public List<string> CssLinks { get; set; } = new List<string>();
+
+    /// <summary>
+    /// External JavaScript links to include in the head.
+    /// </summary>
     public List<string> JsLinks { get; set; } = new List<string>();
     private readonly HashSet<string> _cssLinkSet = new();
     private readonly HashSet<string> _jsLinkSet = new();
@@ -149,37 +171,73 @@ public class Head : Element {
         return this;
     }
 
+    /// <summary>
+    /// Adds or replaces the charset meta tag.
+    /// </summary>
+    /// <param name="charset">Character set to use.</param>
+    /// <returns>The current <see cref="Head"/> instance.</returns>
     public Head AddCharsetMeta(string charset) {
         Charset = charset;
         return this;
     }
 
+    /// <summary>
+    /// Adds an HTTP-equiv meta tag.
+    /// </summary>
+    /// <param name="httpEquiv">HTTP-equivalent header name.</param>
+    /// <param name="content">Content value.</param>
+    /// <returns>The current <see cref="Head"/> instance.</returns>
     public Head AddHttpEquivMeta(string httpEquiv, string content) {
         HttpEquiv = httpEquiv;
         Content = content;
         return this;
     }
 
+    /// <summary>
+    /// Adds a viewport meta tag.
+    /// </summary>
+    /// <param name="content">Viewport value.</param>
+    /// <returns>The current <see cref="Head"/> instance.</returns>
     public Head AddViewportMeta(string content) {
         Viewport = content;
         return this;
     }
 
+    /// <summary>
+    /// Adds an author meta tag.
+    /// </summary>
+    /// <param name="author">Author name.</param>
+    /// <returns>The current <see cref="Head"/> instance.</returns>
     public Head AddAuthorMeta(string author) {
         Author = author;
         return this;
     }
 
+    /// <summary>
+    /// Adds a revised date meta tag.
+    /// </summary>
+    /// <param name="date">Revision date.</param>
+    /// <returns>The current <see cref="Head"/> instance.</returns>
     public Head AddRevisedMeta(DateTime date) {
         Revised = date;
         return this;
     }
 
+    /// <summary>
+    /// Adds a strongly typed style element.
+    /// </summary>
+    /// <param name="style">Style to add.</param>
+    /// <returns>The current <see cref="Head"/> instance.</returns>
     public Head AddStyle(Style style) {
         Styles.Add(style);
         return this;
     }
 
+    /// <summary>
+    /// Adds a raw CSS style string.
+    /// </summary>
+    /// <param name="style">Style markup.</param>
+    /// <returns>The current <see cref="Head"/> instance.</returns>
     public Head AddStyle(string style) {
         Styles.Add(style);
         return this;
