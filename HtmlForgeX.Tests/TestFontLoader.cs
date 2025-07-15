@@ -25,4 +25,17 @@ public class TestFontLoader {
         Assert.AreEqual(expected.Properties["font-family"], actual.Properties["font-family"]);
         Assert.AreEqual(expected.Properties["src"], actual.Properties["src"]);
     }
+
+    [TestMethod]
+    public void LoadFontFromFileReleasesHandle() {
+        var fontFamily = "Test Font";
+        var bytes = new byte[] { 1, 2, 3, 4 };
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, $"{Guid.NewGuid():N}.ttf");
+        File.WriteAllBytes(path, bytes);
+        FontLoader.LoadFontAsStyle(fontFamily, path);
+        using (new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) {
+        }
+        File.Delete(path);
+    }
 }
