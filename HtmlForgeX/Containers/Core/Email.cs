@@ -15,6 +15,15 @@ namespace HtmlForgeX;
 public class Email : Element {
     private static readonly InternalLogger _logger = new();
 
+    private int _embeddingWarningCount;
+
+    /// <summary>
+    /// Gets the number of embedding warnings collected during generation.
+    /// </summary>
+    public int EmbeddingWarningCount => _embeddingWarningCount;
+
+    internal void IncrementEmbeddingWarning() => _embeddingWarningCount++;
+
     /// <summary>
     /// Configuration and state for this email document instance.
     /// </summary>
@@ -272,7 +281,7 @@ public class Email : Element {
         PathUtilities.Validate(path);
         Configuration.Email.DefaultPadding = path; // Store path in configuration
 
-        var countErrors = Configuration.Email.LogEmbeddingWarnings ? 0 : 0; // TODO: Implement error counting
+        var countErrors = Configuration.Email.LogEmbeddingWarnings ? EmbeddingWarningCount : 0;
         if (countErrors > 0) {
             Console.WriteLine($"There were {countErrors} found during generation of HTML.");
         }
@@ -307,7 +316,7 @@ public class Email : Element {
         PathUtilities.Validate(path);
         Configuration.Email.DefaultPadding = path; // Store path in configuration
 
-        var countErrors = Configuration.Email.LogEmbeddingWarnings ? 0 : 0; // TODO: Implement error counting
+        var countErrors = Configuration.Email.LogEmbeddingWarnings ? EmbeddingWarningCount : 0;
         if (countErrors > 0) {
             Console.WriteLine($"There were {countErrors} found during generation of HTML.");
         }
