@@ -344,8 +344,13 @@ public class EmailTable : Element {
 /// Represents a table header in an email table.
 /// </summary>
 public class EmailTableHeader {
+    /// <summary>Header text.</summary>
     public string Text { get; set; } = "";
+
+    /// <summary>Text alignment.</summary>
     public string Align { get; set; } = "left";
+
+    /// <summary>Column span.</summary>
     public int ColSpan { get; set; } = 1;
 }
 
@@ -353,6 +358,7 @@ public class EmailTableHeader {
 /// Represents a table row in an email table.
 /// </summary>
 public class EmailTableRow {
+    /// <summary>Cells contained in this row.</summary>
     public List<EmailTableCell> Cells { get; set; } = new();
 
     /// <summary>
@@ -402,22 +408,40 @@ public class EmailTableRow {
 /// Represents a table cell in an email table.
 /// </summary>
 public class EmailTableCell {
+    /// <summary>Cell text.</summary>
     public string Text { get; set; } = "";
+
+    /// <summary>Text alignment.</summary>
     public string Align { get; set; } = "left";
+
+    /// <summary>Column span.</summary>
     public int ColSpan { get; set; } = 1;
+
+    /// <summary>Width of the cell.</summary>
     public string Width { get; set; } = "";
+
+    /// <summary>Additional CSS class.</summary>
     public string CssClass { get; set; } = "";
+
+    /// <summary>Inline style string.</summary>
     public string InlineStyle { get; set; } = "";
+    /// <summary>Whether to include a top border for this cell.</summary>
     public bool IncludeTopBorder { get; set; } = false;
 
     // Image properties
+    /// <summary>Image source URL.</summary>
     public string ImageSrc { get; set; } = "";
+    /// <summary>Image width in pixels.</summary>
     public int ImageWidth { get; set; } = 0;
+    /// <summary>Image height in pixels.</summary>
     public int ImageHeight { get; set; } = 0;
+    /// <summary>Alternative text for the image.</summary>
     public string ImageAlt { get; set; } = "";
+    /// <summary>Optional hyperlink for the image.</summary>
     public string ImageLink { get; set; } = "";
 
     // Rich content
+    /// <summary>Raw HTML content for the cell.</summary>
     public string HtmlContent { get; set; } = "";
 
     /// <summary>

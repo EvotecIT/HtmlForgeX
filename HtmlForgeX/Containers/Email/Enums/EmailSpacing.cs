@@ -20,6 +20,9 @@ public enum EmailSpacing {
     DoubleExtraLarge
 }
 
+/// <summary>
+/// Extension methods for <see cref="EmailSpacing"/> values.
+/// </summary>
 public static class EmailSpacingExtensions {
     public static string ToCssValue(this EmailSpacing spacing) {
         return spacing switch {

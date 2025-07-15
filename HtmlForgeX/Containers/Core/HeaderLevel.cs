@@ -26,12 +26,16 @@ public class HeaderLevel : Element {
     /// For example: <h1 class="card-title"></h1>
     /// </summary>
     /// <param name="className">Name of the class.</param>
-    /// <returns></returns>
+    /// <returns>The current <see cref="HeaderLevel"/> instance.</returns>
     public HeaderLevel Class(string className) {
         PrivateClass += className;
         return this;
     }
 
+    /// <summary>
+    /// Converts the header element to its HTML representation.
+    /// </summary>
+    /// <returns>HTML string representing the header.</returns>
     public override string ToString() {
         var tag = new HtmlTag(PrivateTag.ToString()).Value(PrivateText);
         if (!string.IsNullOrEmpty(PrivateClass)) {

@@ -9,7 +9,7 @@ using HtmlForgeX.Extensions;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Represents an email document with XHTML&nbsp;1.0 Strict compliance for email
+/// Represents an email document with XHTML&#160;1.0 Strict compliance for email
 /// clients. Provides a simplified object model for generating HTML emails.
 /// </summary>
 public class Email : Element {
