@@ -6,6 +6,10 @@ namespace HtmlForgeX;
 /// Base class for card actions (buttons, links, etc.)
 /// </summary>
 public abstract class TablerCardAction : Element {
+    /// <summary>
+    /// Generates the HTML representation of the action.
+    /// </summary>
+    /// <returns>The rendered HTML string.</returns>
     public abstract override string ToString();
 }
 

@@ -104,5 +104,8 @@ public class TablerPage : Element {
         return column;
     }
 
+    /// <summary>
+    /// Gets or sets the overall layout configuration for the page.
+    /// </summary>
     public TablerLayout Layout { get; set; }
 }

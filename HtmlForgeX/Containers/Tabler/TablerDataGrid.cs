@@ -11,6 +11,9 @@ namespace HtmlForgeX;
 /// without exposing HTML/CSS/JS knowledge requirements to users.
 /// </summary>
 public class TablerDataGrid : Element {
+    /// <summary>
+    /// Gets the collection of items displayed within the grid.
+    /// </summary>
     public List<TablerDataGridItem> Items { get; set; } = new List<TablerDataGridItem>();
 
     // Configuration properties

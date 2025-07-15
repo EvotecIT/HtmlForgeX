@@ -8,6 +8,9 @@ namespace HtmlForgeX;
 /// Accordion container composed of expandable TablerAccordionItem elements.
 /// </summary>
 public class TablerAccordion : Element {
+    /// <summary>
+    /// Gets the accordion items that will be rendered.
+    /// </summary>
     public List<TablerAccordionItem> Items { get; set; } = new List<TablerAccordionItem>();
     private string Id { get; } = GlobalStorage.GenerateRandomId("accordion");
     private TablerAccordionType PrivateAccordionType { get; set; } = TablerAccordionType.Default;
@@ -16,16 +19,20 @@ public class TablerAccordion : Element {
 
 
     /// <summary>
-    /// Initializes or configures AddItem.
+    /// Adds a fully configured accordion item to the container.
     /// </summary>
+    /// <param name="item">The item to add.</param>
+    /// <returns>The current <see cref="TablerAccordion"/> instance.</returns>
     public TablerAccordion AddItem(TablerAccordionItem item) {
         Items.Add(item);
         return this;
     }
 
     /// <summary>
-    /// Initializes or configures AddItem.
+    /// Creates a new accordion item with the specified title.
     /// </summary>
+    /// <param name="title">The accordion item title.</param>
+    /// <returns>The created <see cref="TablerAccordionItem"/> for further configuration.</returns>
     public TablerAccordionItem AddItem(string title) {
         var accordionItem = new TablerAccordionItem(Id).Title(title);
         Items.Add(accordionItem);
@@ -33,8 +40,11 @@ public class TablerAccordion : Element {
     }
 
     /// <summary>
-    /// Initializes or configures AddItem.
+    /// Adds a new item and allows further configuration via an action.
     /// </summary>
+    /// <param name="title">The accordion item title.</param>
+    /// <param name="item">Callback used to configure the new item.</param>
+    /// <returns>The configured <see cref="TablerAccordionItem"/>.</returns>
     public TablerAccordionItem AddItem(string title, Action<TablerAccordionItem> item) {
         var accordionItem = new TablerAccordionItem(Id).Title(title);
         item(accordionItem);
@@ -43,8 +53,11 @@ public class TablerAccordion : Element {
     }
 
     /// <summary>
-    /// Initializes or configures AddItem.
+    /// Adds a new item using the specified title and content element.
     /// </summary>
+    /// <param name="title">The accordion item title.</param>
+    /// <param name="content">Content to display when the item is expanded.</param>
+    /// <returns>The created <see cref="TablerAccordionItem"/>.</returns>
     public TablerAccordionItem AddItem(string title, Element content) {
         var accordionItem = new TablerAccordionItem(Id).Title(title).Content(content);
         Items.Add(accordionItem);

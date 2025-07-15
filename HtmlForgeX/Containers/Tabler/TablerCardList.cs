@@ -87,7 +87,9 @@ public class TablerCardList : Element {
 /// List types
 /// </summary>
 public enum TablerCardListType {
+    /// <summary>Standard unordered list.</summary>
     Unordered,
+    /// <summary>Ordered (numbered) list.</summary>
     Ordered
 }
 
@@ -95,10 +97,15 @@ public enum TablerCardListType {
 /// List styles for proper Tabler styling
 /// </summary>
 public enum TablerCardListStyle {
+    /// <summary>Default bootstrap list style.</summary>
     Default,
+    /// <summary>Removes list styling.</summary>
     Unstyled,
+    /// <summary>Displays items inline.</summary>
     Inline,
+    /// <summary>Flush list group style.</summary>
     Flush,
+    /// <summary>List group style.</summary>
     Group
 }
 
@@ -246,6 +253,9 @@ public class TablerCardListBuilder {
         return this;
     }
 
+    /// <summary>
+    /// Returns the configured list items.
+    /// </summary>
     public List<TablerCardListItem> GetItems() => items;
 }
 

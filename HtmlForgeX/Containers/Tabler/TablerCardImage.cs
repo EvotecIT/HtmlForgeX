@@ -294,21 +294,31 @@ public class TablerCardImage : Element {
 /// Image sizes for responsive images
 /// </summary>
 public enum TablerCardImageSize {
-    Default,     // 21x9 aspect ratio
-    Square,      // 1x1 aspect ratio
-    Portrait,    // 4x3 aspect ratio
-    Landscape,   // 16x9 aspect ratio
-    Wide         // 21x9 aspect ratio
+    /// <summary>21x9 aspect ratio.</summary>
+    Default,
+    /// <summary>1x1 aspect ratio.</summary>
+    Square,
+    /// <summary>4x3 aspect ratio.</summary>
+    Portrait,
+    /// <summary>16x9 aspect ratio.</summary>
+    Landscape,
+    /// <summary>21x9 aspect ratio.</summary>
+    Wide
 }
 
 /// <summary>
 /// Image effects for visual enhancement
 /// </summary>
 public enum TablerCardImageEffect {
+    /// <summary>No additional effect applied.</summary>
     None,
+    /// <summary>Applies an overlay effect.</summary>
     Overlay,
+    /// <summary>Applies a gradient overlay.</summary>
     Gradient,
+    /// <summary>Applies a blur effect.</summary>
     Blur,
+    /// <summary>Displays the image in grayscale.</summary>
     Grayscale
 }
 
