@@ -5,7 +5,7 @@ namespace HtmlForgeX;
 /// </summary>
 public static class EmailMarginExtensions {
     private static readonly System.Text.RegularExpressions.Regex MarginRegex = new(
-        "^(0|auto|[0-9]+(px|em|%))( (0|auto|[0-9]+(px|em|%))){0,3}$",
+        "^(0|auto|[0-9]+(\\.[0-9]+)?(px|em|%))( (0|auto|[0-9]+(\\.[0-9]+)?(px|em|%))){0,3}$",
         System.Text.RegularExpressions.RegexOptions.Compiled);
 
     /// <summary>

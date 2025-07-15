@@ -12,4 +12,16 @@ public class TestMarginValidation {
         Assert.ThrowsException<ArgumentException>(() => new EmailBox().CenterWithMargin("invalid"));
         Assert.ThrowsException<ArgumentException>(() => new EmailBox().SetOuterMargin("invalid"));
     }
+
+    [TestMethod]
+    public void WithMargin_DecimalValue_Accepts() {
+        var text = new EmailText().WithMargin("1.5em");
+        Assert.AreEqual("1.5em", text.Margin);
+
+        var link = new EmailLink("demo", "#").WithMargin("0 1.5em");
+        Assert.AreEqual("0 1.5em", link.Margin);
+
+        var box = new EmailBox().SetOuterMargin("0 auto 1.5em auto");
+        Assert.AreEqual("0 auto 1.5em auto", box.OuterMargin);
+    }
 }

@@ -148,6 +148,9 @@ internal class Program {
         // Base64 embedding examples (if they exist)
         ExampleBase64EmbeddingEmail.Create(openInBrowser);
 
+        // Decimal margin demonstration
+        ExampleDecimalMarginEmail.Create(openInBrowser);
+
         // Layout configuration demonstration - NEW enum-based configuration system!
         ExampleLayoutConfigurationDemo.Create(openInBrowser);
 
