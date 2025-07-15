@@ -202,14 +202,17 @@ public class TablerCard : Element {
         if (PrivateHeader != null) {
             PrivateHeader.Document = this.Document;
             PrivateHeader.Email = this.Email;
+            PrivateHeader.OnAddedToDocument();
         }
         if (PrivateBody != null) {
             PrivateBody.Document = this.Document;
             PrivateBody.Email = this.Email;
+            PrivateBody.OnAddedToDocument();
         }
         if (PrivateFooter != null) {
             PrivateFooter.Document = this.Document;
             PrivateFooter.Email = this.Email;
+            PrivateFooter.OnAddedToDocument();
         }
 
         // Now call base implementation to register libraries
