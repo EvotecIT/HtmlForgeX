@@ -10,7 +10,7 @@ namespace HtmlForgeX;
 public class TablerProgressBarItem : Element {
     private TablerColor Background { get; }
     private int Progress { get; }
-    private string PrivateLabel { get; set; }
+    private string PrivateLabel { get; set; } = string.Empty;
     private int? AriaValueNow { get; }
     private int? AriaValueMin { get; }
     private int? AriaValueMax { get; }

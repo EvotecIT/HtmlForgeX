@@ -15,7 +15,7 @@ public partial class TablerCardEnhanced : TablerCard {
     /// <summary>Secondary title displayed beneath the header title.</summary>
     public string HeaderSubtitle { get; set; } = string.Empty;
     /// <summary>Optional avatar shown in the header.</summary>
-    public TablerAvatar HeaderAvatar { get; set; }
+    public TablerAvatar? HeaderAvatar { get; set; }
     /// <summary>Action elements such as buttons shown in the header.</summary>
     public List<Element> HeaderActions { get; set; } = new List<Element>();
     /// <summary>Whether the header uses a light background color.</summary>

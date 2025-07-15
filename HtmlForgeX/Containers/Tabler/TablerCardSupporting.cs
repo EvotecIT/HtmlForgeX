@@ -8,7 +8,7 @@ public class TablerNavItem {
     public string Href { get; set; } = "#";
     public bool IsActive { get; set; }
     public bool IsDisabled { get; set; }
-    public TablerIconElement Icon { get; set; }
+    public TablerIconElement? Icon { get; set; }
 }
 
 /// <summary>
@@ -19,7 +19,7 @@ public class TablerButton : Element {
     public string Href { get; set; } = "#";
     public TablerButtonVariant Variant { get; set; } = TablerButtonVariant.Primary;
     public TablerButtonSize Size { get; set; } = TablerButtonSize.Default;
-    public TablerIconElement Icon { get; set; }
+    public TablerIconElement? Icon { get; set; }
     public bool IsDisabled { get; set; }
 
     /// <summary>

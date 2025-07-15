@@ -9,8 +9,8 @@ public class TablerAlert : Element {
     private TablerColor AlertColor { get; set; }
     private TablerAlertType AlertType { get; }
     private TablerIconElement? AlertIcon { get; set; }
-    private string AlertImportant { get; set; }
-    private string AlertMinor { get; set; }
+    private string AlertImportant { get; set; } = string.Empty;
+    private string AlertMinor { get; set; } = string.Empty;
     private bool UseHeadingStyle { get; set; }
     private string? ActionHref { get; set; }
     private string? ActionText { get; set; }

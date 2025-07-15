@@ -26,7 +26,7 @@ public class FullCalendarEventTimeFormat {
     /// </summary>
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("second")]
-    public string Second { get; set; }
+    public string? Second { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether minutes should be omitted when zero.

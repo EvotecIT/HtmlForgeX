@@ -18,7 +18,7 @@ public class ScrollingTextItem : Element {
     /// <summary>
     /// Storage for the content of the ScrollingTextItem.
     /// </summary>
-    private string Content { get; set; }
+    private string Content { get; set; } = string.Empty;
     /// <summary>
     /// Items/Children of the ScrollingTextItem.
     /// </summary>

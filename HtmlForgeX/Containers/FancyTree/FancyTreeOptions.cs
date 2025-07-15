@@ -33,5 +33,5 @@ public class FancyTreeOptions {
     /// Gets or sets the node data used to build the tree.
     /// </summary>
     [JsonPropertyName("source")]
-    public List<FancyTreeNode> Source { get; set; }
+    public List<FancyTreeNode> Source { get; set; } = new();
 }

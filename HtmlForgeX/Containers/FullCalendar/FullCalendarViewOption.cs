@@ -35,5 +35,5 @@ public class FullCalendarView {
     /// Gets or sets the text shown on the corresponding toolbar button.
     /// </summary>
     [JsonPropertyName("buttonText")]
-    public string ButtonText { get; set; }
+    public string ButtonText { get; set; } = string.Empty;
 }
