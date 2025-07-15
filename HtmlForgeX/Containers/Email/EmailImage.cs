@@ -431,7 +431,11 @@ public class EmailImage : Element {
                     return this;
                 }
 
-                var bytes = System.IO.File.ReadAllBytes(filePath);
+                byte[] bytes;
+                using var fileStream = System.IO.File.OpenRead(filePath);
+                using var memoryStream = new System.IO.MemoryStream();
+                fileStream.CopyTo(memoryStream);
+                bytes = memoryStream.ToArray();
                 var extension = System.IO.Path.GetExtension(filePath).ToLower();
 
                 MimeType = GetMimeTypeFromExtension(extension);
@@ -468,7 +472,7 @@ public class EmailImage : Element {
             using var httpClient = new System.Net.Http.HttpClient();
             httpClient.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
 
-            var response = httpClient.GetAsync(url).Result;
+            using var response = httpClient.GetAsync(url).Result;
             if (response.IsSuccessStatusCode) {
                 var bytes = response.Content.ReadAsByteArrayAsync().Result;
 
@@ -573,7 +577,7 @@ public class EmailImage : Element {
                     // Download from URL
                     using var httpClient = new System.Net.Http.HttpClient();
                     httpClient.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
-                    var response = httpClient.GetAsync(source).Result;
+                    using var response = httpClient.GetAsync(source).Result;
 
                     if (response.IsSuccessStatusCode) {
                         bytes = response.Content.ReadAsByteArrayAsync().Result;
@@ -583,7 +587,10 @@ public class EmailImage : Element {
                     }
                 } else if (System.IO.File.Exists(source)) {
                     // Load from file
-                    bytes = System.IO.File.ReadAllBytes(source);
+                    using var fileStream = System.IO.File.OpenRead(source);
+                    using var memoryStream = new System.IO.MemoryStream();
+                    fileStream.CopyTo(memoryStream);
+                    bytes = memoryStream.ToArray();
                     var extension = System.IO.Path.GetExtension(source).ToLower();
                     mimeType = GetMimeTypeFromExtension(extension);
                 } else {
@@ -591,7 +598,10 @@ public class EmailImage : Element {
                 }
             } else {
                 // Assume file path
-                bytes = System.IO.File.ReadAllBytes(source);
+                using var fileStream = System.IO.File.OpenRead(source);
+                using var memoryStream = new System.IO.MemoryStream();
+                fileStream.CopyTo(memoryStream);
+                bytes = memoryStream.ToArray();
                 var extension = System.IO.Path.GetExtension(source).ToLower();
                 mimeType = GetMimeTypeFromExtension(extension);
             }

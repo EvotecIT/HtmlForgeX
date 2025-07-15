@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HtmlForgeX;
 
 namespace HtmlForgeX.Tests;
 
@@ -46,6 +47,21 @@ public class TestEmailImageBase64Embedding
         Assert.AreEqual("image/png", emailImage.MimeType);
         Assert.IsFalse(string.IsNullOrEmpty(emailImage.Base64Data));
         Assert.IsTrue(emailImage.Source.StartsWith("data:image/png;base64,"));
+    }
+
+    [TestMethod]
+    public void EmailImage_EmbedFromFile_ShouldNotLockFile()
+    {
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var filePath = Path.Combine(tempDir, Path.GetRandomFileName() + ".png");
+        File.WriteAllBytes(filePath, _testImageData);
+
+        var emailImage = new EmailImage();
+        emailImage.EmbedFromFile(filePath);
+
+        Assert.IsFalse(filePath.IsFileLocked());
+
+        File.Delete(filePath);
     }
 
     [TestMethod]
