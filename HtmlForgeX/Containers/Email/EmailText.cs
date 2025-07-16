@@ -77,6 +77,11 @@ public class EmailText : Element {
     public bool LineBreak { get; set; } = false;
 
     /// <summary>
+    /// Gets or sets additional inline styles.
+    /// </summary>
+    public string InlineStyle { get; set; } = "";
+
+    /// <summary>
     /// Gets or sets the text wrapping mode for controlling how text breaks and wraps.
     /// </summary>
     public EmailTextWrapMode WrapMode { get; set; } = EmailTextWrapMode.Default;
@@ -157,12 +162,26 @@ public class EmailText : Element {
     }
 
     /// <summary>
+    /// Adds custom inline styles.
+    /// </summary>
+    /// <param name="style">Style string to append.</param>
+    /// <returns>The <see cref="EmailText"/> instance.</returns>
+    public EmailText WithInlineStyle(string style) {
+        if (!string.IsNullOrEmpty(InlineStyle)) {
+            InlineStyle += " ";
+        }
+        InlineStyle += style;
+        return this;
+    }
+
+    /// <summary>
     /// Sets the text color.
     /// </summary>
     /// <param name="color">The text color.</param>
     /// <returns>The EmailText object, allowing for method chaining.</returns>
     public EmailText WithColor(string color) {
         Color = color;
+        WithInlineStyle($"color: {color}");
         return this;
     }
 
@@ -173,6 +192,7 @@ public class EmailText : Element {
     /// <returns>The EmailText object, allowing for method chaining.</returns>
     public EmailText WithColor(RGBColor color) {
         Color = color.ToString();
+        WithInlineStyle($"color: {color.ToString()}");
         return this;
     }
 
@@ -378,12 +398,18 @@ public class EmailText : Element {
         style.Add($"font-family: {FontFamily}");
         style.Add($"font-size: {FontSize}");
         style.Add($"line-height: {LineHeight}");
-        style.Add($"color: {actualColor}");
+        if (string.IsNullOrEmpty(InlineStyle) || !InlineStyle.Contains("color:", StringComparison.OrdinalIgnoreCase)) {
+            style.Add($"color: {actualColor}");
+        }
         style.Add($"text-align: {TextAlign}");
         style.Add($"font-weight: {FontWeight}");
         style.Add($"text-decoration: {TextDecoration}");
         style.Add($"margin: {Margin}");
         style.Add($"padding: {Padding}");
+
+        if (!string.IsNullOrEmpty(InlineStyle)) {
+            style.Add(InlineStyle);
+        }
 
         // Add configurable wrapping behavior
         var wrapCssProperties = WrapMode.ToCssProperties();
@@ -405,10 +431,26 @@ public class EmailText : Element {
 
             // Build style with configurable wrapping behavior
             var wrapCss = WrapMode.ToCssProperties();
-            var columnStyle = $@"font-family: {FontFamily}; font-size: {FontSize}; line-height: {LineHeight};
-                color: {actualColor}; text-align: {effectiveAlignment}; font-weight: {FontWeight};
-                text-decoration: {TextDecoration}; margin: {Margin}; padding: {Padding};
-                {wrapCss}; max-width: 100%;";
+            var columnStyleParts = new List<string> {
+                $"font-family: {FontFamily}",
+                $"font-size: {FontSize}",
+                $"line-height: {LineHeight}",
+                $"text-align: {effectiveAlignment}",
+                $"font-weight: {FontWeight}",
+                $"text-decoration: {TextDecoration}",
+                $"margin: {Margin}",
+                $"padding: {Padding}",
+                wrapCss,
+                "max-width: 100%"
+            };
+
+            if (string.IsNullOrEmpty(InlineStyle) || !InlineStyle.Contains("color:", StringComparison.OrdinalIgnoreCase)) {
+                columnStyleParts.Insert(3, $"color: {actualColor}");
+            } else {
+                columnStyleParts.Insert(0, InlineStyle);
+            }
+
+            var columnStyle = string.Join("; ", columnStyleParts);
 
             // First HTML encode the content, then process for soft line breaks
             var content = Helpers.HtmlEncode(Content);
