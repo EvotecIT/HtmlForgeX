@@ -1,4 +1,5 @@
 using System.Linq;
+using HtmlForgeX.Extensions;
 namespace HtmlForgeX;
 
 public partial class TablerCardEnhanced {
@@ -84,6 +85,12 @@ public partial class TablerCardEnhanced {
     #endregion
 
     private HtmlTag BuildCardHeader() {
+        // Ensure all actions have the current Document and Email references
+        foreach (var action in HeaderActions.WhereNotNull()) {
+            action.Document = Document;
+            action.Email = Email;
+        }
+
         var headerDiv = new HtmlTag("div");
         var headerClasses = new List<string> { "card-header" };
 
