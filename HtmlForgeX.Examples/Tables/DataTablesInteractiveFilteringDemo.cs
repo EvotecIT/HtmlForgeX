@@ -34,10 +34,10 @@ internal class DataTablesInteractiveFilteringDemo {
             page.DataTable(sales, table => {
                 table.ConfigureSearchBuilder(sb => sb
                     .Group(g => g
-                        .Logic("OR")
-                        .Criterion("Region", "equals", "Europe")
-                        .Criterion("Amount", ">", 1000))
-                    .CustomOperator("startsWith", "function(value, input){ return value.startsWith(input); }")
+                        .Logic(DataTablesSearchLogic.Or)
+                        .Criterion("Region", DataTablesSearchCondition.Equals, "Europe")
+                        .Criterion("Amount", DataTablesSearchCondition.GreaterThan, 1000))
+                    .CustomOperator(DataTablesBuiltInOperator.StartsWith)
                 );
             });
         });

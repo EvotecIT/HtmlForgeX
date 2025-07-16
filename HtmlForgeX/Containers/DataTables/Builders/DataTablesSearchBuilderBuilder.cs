@@ -8,6 +8,13 @@ public class DataTablesSearchBuilderBuilder
     private readonly DataTablesSearchBuilder _searchBuilder = new();
     private readonly List<DataTablesSearchGroup> _groups = new();
     private readonly Dictionary<string, string> _operators = new();
+    private static readonly Dictionary<DataTablesBuiltInOperator, (string name, string script)> _builtIns = new()
+    {
+        [DataTablesBuiltInOperator.StartsWith] = ("startsWith", "function(value,input){ return value.startsWith(input); }"),
+        [DataTablesBuiltInOperator.EndsWith] = ("endsWith", "function(value,input){ return value.endsWith(input); }"),
+        [DataTablesBuiltInOperator.ContainsCaseInsensitive] = ("containsCI", "function(value,input){ return value.toLowerCase().includes(input.toLowerCase()); }"),
+        [DataTablesBuiltInOperator.Regex] = ("regex", "function(value,input){ var r=new RegExp(input); return r.test(value); }")
+    };
 
     /// <summary>Enable or disable SearchBuilder.</summary>
     public DataTablesSearchBuilderBuilder Enable(bool enable = true)
@@ -22,6 +29,9 @@ public class DataTablesSearchBuilderBuilder
         _searchBuilder.Logic = logic;
         return this;
     }
+
+    /// <summary>Set group logic for top level using enum.</summary>
+    public DataTablesSearchBuilderBuilder Logic(DataTablesSearchLogic logic) => Logic(logic.ToLogicString());
 
     /// <summary>Set default number of conditions.</summary>
     public DataTablesSearchBuilderBuilder Conditions(int count)
@@ -60,6 +70,13 @@ public class DataTablesSearchBuilderBuilder
         return this;
     }
 
+    /// <summary>Add a built in custom operator.</summary>
+    public DataTablesSearchBuilderBuilder CustomOperator(DataTablesBuiltInOperator op)
+    {
+        var (name, script) = _builtIns[op];
+        return CustomOperator(name, script);
+    }
+
     internal DataTablesSearchBuilder Build()
     {
         if (_groups.Count > 0)
@@ -95,6 +112,9 @@ public class DataTablesSearchGroupBuilder
         return this;
     }
 
+    /// <summary>Set logic using enum.</summary>
+    public DataTablesSearchGroupBuilder Logic(DataTablesSearchLogic logic) => Logic(logic.ToLogicString());
+
     /// <summary>Add a criterion to the group.</summary>
     public DataTablesSearchGroupBuilder Criterion(string data, string condition, params object[] values)
     {
@@ -107,6 +127,9 @@ public class DataTablesSearchGroupBuilder
         });
         return this;
     }
+
+    /// <summary>Add a criterion using enum.</summary>
+    public DataTablesSearchGroupBuilder Criterion(string data, DataTablesSearchCondition condition, params object[] values) => Criterion(data, condition.ToConditionString(), values);
 
     internal DataTablesSearchGroup Build() => _group;
 }
