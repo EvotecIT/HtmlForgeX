@@ -44,7 +44,7 @@ public class TestAlignmentValidation
     [TestMethod]
     public void WithVerticalAlign_ShouldSetAlignment()
     {
-        var column = new EmailColumn().WithVerticalAlign(EmailVerticalAlignment.Middle);
+        var column = new EmailColumn().WithVerticalAlign(VerticalAlignment.Middle);
         StringAssert.Contains(column.ToString(), "valign=\"middle\"");
     }
 }

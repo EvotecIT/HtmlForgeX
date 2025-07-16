@@ -3,7 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Vertical alignment options for table cells in email layouts.
 /// </summary>
-public enum EmailVerticalAlignment
+public enum VerticalAlignment
 {
     /// <summary>Align content to the top.</summary>
     Top,
@@ -16,20 +16,20 @@ public enum EmailVerticalAlignment
 }
 
 /// <summary>
-/// Extension methods for <see cref="EmailVerticalAlignment"/>.
+/// Extension methods for <see cref="VerticalAlignment"/>.
 /// </summary>
-public static class EmailVerticalAlignmentExtensions
+public static class VerticalAlignmentExtensions
 {
     /// <summary>
     /// Converts the alignment value to its CSS representation.
     /// </summary>
     /// <param name="alignment">Alignment option.</param>
     /// <returns>CSS vertical-align value.</returns>
-    public static string ToCssValue(this EmailVerticalAlignment alignment) => alignment switch
+    public static string ToCssValue(this VerticalAlignment alignment) => alignment switch
     {
-        EmailVerticalAlignment.Top => "top",
-        EmailVerticalAlignment.Middle => "middle",
-        EmailVerticalAlignment.Bottom => "bottom",
+        VerticalAlignment.Top => "top",
+        VerticalAlignment.Middle => "middle",
+        VerticalAlignment.Bottom => "bottom",
         _ => "top"
     };
 }

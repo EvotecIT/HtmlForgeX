@@ -22,7 +22,7 @@ public class EmailColumn : Element {
     /// <summary>
     /// Gets or sets the vertical alignment of the column content.
     /// </summary>
-    public EmailVerticalAlignment VerticalAlign { get; set; } = EmailVerticalAlignment.Top;
+    public VerticalAlignment VerticalAlign { get; set; } = VerticalAlignment.Top;
 
     /// <summary>
     /// Gets or sets the text alignment of the column content.
@@ -67,7 +67,7 @@ public class EmailColumn : Element {
     /// </summary>
     /// <param name="alignment">The vertical alignment option.</param>
     /// <returns>The <see cref="EmailColumn"/> instance.</returns>
-    public EmailColumn WithVerticalAlign(EmailVerticalAlignment alignment) {
+    public EmailColumn WithVerticalAlign(VerticalAlignment alignment) {
         VerticalAlign = alignment;
         return this;
     }
