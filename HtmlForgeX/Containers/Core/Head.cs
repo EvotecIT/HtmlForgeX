@@ -114,8 +114,13 @@ public class Head : Element {
     /// External JavaScript links to include in the head.
     /// </summary>
     public List<string> JsLinks { get; set; } = new List<string>();
+    /// <summary>
+    /// External font links to include in the head.
+    /// </summary>
+    public List<string> FontLinks { get; set; } = new List<string>();
     private readonly HashSet<string> _cssLinkSet = new();
     private readonly HashSet<string> _jsLinkSet = new();
+    private readonly HashSet<string> _fontLinkSet = new();
     private readonly HashSet<string> _cssInlineSet = new();
     private readonly HashSet<string> _jsInlineSet = new();
     /// <summary>
@@ -283,6 +288,10 @@ public class Head : Element {
             head.AppendLine($"\t{metaTag.ToString()}");
         }
 
+        foreach (var link in FontLinks) {
+            head.AppendLine($"\t{link}");
+        }
+
         foreach (var link in CssLinks) {
             head.AppendLine($"\t{link}");
         }
@@ -363,6 +372,55 @@ public class Head : Element {
         if (_jsLinkSet.Add(link)) {
             JsLinks.Add($"<script src=\"{link}\"></script>");
         }
+    }
+
+    /// <summary>
+    /// Registers an external font link if it has not already been added.
+    /// </summary>
+    /// <param name="link">URL to the font stylesheet.</param>
+    public void AddFontLink(string link) {
+        if (_fontLinkSet.Add(link)) {
+            FontLinks.Add($"<link href=\"{link}\" rel=\"stylesheet\">");
+        }
+    }
+
+    /// <summary>
+    /// Sets the font-family for the specified CSS selector.
+    /// </summary>
+    /// <param name="selector">CSS selector to apply the font to.</param>
+    /// <param name="fonts">Font families in preferred order.</param>
+    public void SetFontFamily(string selector, params string[] fonts) {
+        if (fonts == null || fonts.Length == 0) {
+            return;
+        }
+        var formatted = FormatFonts(fonts);
+        AddCssInline($"{selector} {{ font-family: {formatted}; }}");
+    }
+
+    /// <summary>
+    /// Sets the font-family for the document body.
+    /// </summary>
+    /// <param name="fonts">Font families in preferred order.</param>
+    public void SetBodyFontFamily(params string[] fonts) {
+        SetFontFamily("body", fonts);
+    }
+
+    private static string FormatFonts(IEnumerable<string> fonts) {
+        return string.Join(", ", fonts.Select(QuoteFontIfNeeded));
+    }
+
+    private static string QuoteFontIfNeeded(string font) {
+        if (string.IsNullOrWhiteSpace(font)) {
+            return font;
+        }
+
+        var trimmed = font.Trim();
+
+        if (trimmed.Contains(' ') && !(trimmed.StartsWith("\"") || trimmed.StartsWith("'"))) {
+            return $"'{trimmed}'";
+        }
+
+        return trimmed;
     }
 
     /// <summary>
