@@ -9,7 +9,10 @@ public class PrismJsOkaidiaTheme : Library
     {
         Header = new LibraryLinks {
             CssLink = [
-                "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css"
+                "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css"
+            ],
+            Css = [
+                "prism-okaidia.min.css"
             ]
         };
 

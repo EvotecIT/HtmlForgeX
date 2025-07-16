@@ -1,0 +1,8 @@
+/**
+ * Minified by jsDelivr using clean-css v5.3.3.
+ * Original file: /gh/evotecit/cdn@0.0.27/CSS/sectionScrolling.css
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+html{scroll-behavior:smooth}div>nav{position:sticky;top:2rem;align-self:start}.section-nav li.active>a{color:#333;font-weight:500}.section-nav{padding-left:0;border-left:1px solid #efefef}.section-nav a{text-decoration:none;display:block;padding:.125rem 0;color:#ccc;transition:all 50ms ease-in-out}.section-nav a:focus,.section-nav a:hover{color:#666}*{box-sizing:border-box}ol,ul{list-style:none;margin:0;padding:0}li{margin-left:1rem}h1{font-weight:300}div.sectionScrolling{display:grid;grid-template-columns:1fr 15em;max-width:100em;width:90%;margin:0 auto}section{padding-bottom:20rem}
+/*# sourceMappingURL=/sm/a4bfb4c95d16a4315ad62556d482fdb95c4147cb549b60fbd7dd466bb7d9de11.map */
