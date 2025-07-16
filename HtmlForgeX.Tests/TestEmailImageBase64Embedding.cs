@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HtmlForgeX;
 
@@ -364,6 +365,18 @@ public class TestEmailImageBase64Embedding
         emailImage.EmbedFromUrl(invalidUrl, 1); // 1 second timeout
 
         // Assert
+        Assert.IsFalse(emailImage.EmbedAsBase64);
+        Assert.AreEqual(invalidUrl, emailImage.Source);
+    }
+
+    [TestMethod]
+    public async Task EmailImage_EmbedFromUrlAsync_WithInvalidUrl_ShouldFallbackToUrl()
+    {
+        var emailImage = new EmailImage();
+        var invalidUrl = "https://invalid-url-that-does-not-exist.com/image.png";
+
+        await emailImage.EmbedFromUrlAsync(invalidUrl, 1);
+
         Assert.IsFalse(emailImage.EmbedAsBase64);
         Assert.AreEqual(invalidUrl, emailImage.Source);
     }

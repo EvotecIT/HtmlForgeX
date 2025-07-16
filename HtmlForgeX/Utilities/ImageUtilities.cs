@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HtmlForgeX;
 
@@ -72,14 +73,20 @@ public static class ImageUtilities {
     /// <summary>
     /// Downloads image bytes from a URL.
     /// </summary>
-    public static (byte[] Bytes, string MimeType)? DownloadImage(string url, int timeoutSeconds) {
+    public static (byte[] Bytes, string MimeType)? DownloadImage(string url, int timeoutSeconds) =>
+        DownloadImageAsync(url, timeoutSeconds).GetAwaiter().GetResult();
+
+    /// <summary>
+    /// Asynchronously downloads image bytes from a URL.
+    /// </summary>
+    public static async Task<(byte[] Bytes, string MimeType)?> DownloadImageAsync(string url, int timeoutSeconds) {
         using var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(timeoutSeconds) };
-        using var response = httpClient.GetAsync(url).Result;
+        using var response = await httpClient.GetAsync(url).ConfigureAwait(false);
         if (!response.IsSuccessStatusCode) {
             return null;
         }
 
-        var bytes = response.Content.ReadAsByteArrayAsync().Result;
+        var bytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
         var contentType = response.Content.Headers.ContentType?.MediaType ?? string.Empty;
         var mimeType = !string.IsNullOrEmpty(contentType) ? contentType : GetMimeTypeFromUrl(url);
         return (bytes, mimeType);
