@@ -3,11 +3,16 @@ using System.Collections.Generic;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Provides JavaScript implementations for built-in SearchBuilder operators.
+/// Provides JavaScript implementations for a set of common operators that can
+/// be plugged into DataTables SearchBuilder.  Each entry exposes the name used
+/// in JavaScript as well as the implementation of the operator.
 /// </summary>
 public static class DataTablesSearchBuiltIns
 {
-    /// <summary>Mapping of built-in operator to name and script.</summary>
+    /// <summary>
+    /// Mapping of <see cref="DataTablesBuiltInOperator"/> values to the
+    /// JavaScript name and function body that implements the operator.
+    /// </summary>
     public static readonly Dictionary<DataTablesBuiltInOperator, (string Name, string Script)> Scripts = new()
     {
         [DataTablesBuiltInOperator.StartsWith] = ("startsWith", "function(value,input){ return value.startsWith(input); }"),

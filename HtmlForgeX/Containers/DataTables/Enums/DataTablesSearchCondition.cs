@@ -1,7 +1,9 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// Comparison conditions for SearchBuilder criteria.
+/// Enumeration describing the available comparison operations that can be used
+/// when building SearchBuilder criteria.  The enum values are converted to the
+/// strings required by DataTables through <see cref="DataTablesSearchEnumExtensions"/>.
 /// </summary>
 public enum DataTablesSearchCondition
 {

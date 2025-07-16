@@ -4,7 +4,10 @@ using System.Collections.Generic;
 namespace HtmlForgeX;
 
 /// <summary>
-/// Search Builder configuration for DataTables
+/// Represents the configuration object passed to the DataTables
+/// <c>SearchBuilder</c> extension.  It controls global behaviour such as
+/// whether the feature is enabled, predefined conditions and any additional
+/// custom operators.
 /// </summary>
 public class DataTablesSearchBuilder
 {
@@ -45,7 +48,8 @@ public class DataTablesSearchBuilder
 }
 
 /// <summary>
-/// Represents a group of conditions in SearchBuilder.
+/// Represents a collection of filtering criteria that should be evaluated
+/// together using a specific logical operator.
 /// </summary>
 public class DataTablesSearchGroup
 {
@@ -61,7 +65,8 @@ public class DataTablesSearchGroup
 }
 
 /// <summary>
-/// Represents single filtering criterion.
+/// Describes a single filtering rule applied to a column when using
+/// SearchBuilder.
 /// </summary>
 public class DataTablesSearchCriterion
 {

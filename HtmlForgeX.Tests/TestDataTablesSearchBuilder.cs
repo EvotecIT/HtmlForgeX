@@ -8,6 +8,10 @@ namespace HtmlForgeX.Tests;
 /// </summary>
 [TestClass]
 public class TestDataTablesSearchBuilder {
+    /// <summary>
+    /// Ensures that complex groups and custom operators are correctly
+    /// serialized into the generated HTML.
+    /// </summary>
     [TestMethod]
     public void SearchBuilder_SerializesConditionGroupsAndCustomOperators() {
         var table = new DataTablesTable();

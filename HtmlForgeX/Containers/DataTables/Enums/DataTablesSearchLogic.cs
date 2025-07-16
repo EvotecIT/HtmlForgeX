@@ -1,7 +1,7 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// Logical operators for SearchBuilder groups.
+/// Logical operators defining how criteria within a group should be combined.
 /// </summary>
 public enum DataTablesSearchLogic
 {

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 namespace HtmlForgeX.Examples.Tables;
 
 /// <summary>
-/// Demonstrates complex condition groups and custom operators in SearchBuilder.
+/// Example showcasing how complex condition groups and custom operators can be
+/// declared using the fluent SearchBuilder builder.
 /// </summary>
 internal class DataTablesInteractiveFilteringDemo {
     public static void Create(bool openInBrowser = false) {

@@ -1,7 +1,10 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// Built in custom operators for SearchBuilder.
+/// List of built in filtering operators that can be added to the
+/// DataTables SearchBuilder plugin.  The operators are implemented in
+/// <see cref="DataTablesSearchBuiltIns"/> and exposed here as a strongly
+/// typed list for convenience.
 /// </summary>
 public enum DataTablesBuiltInOperator
 {

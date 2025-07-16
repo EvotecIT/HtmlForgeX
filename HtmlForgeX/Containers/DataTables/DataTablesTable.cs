@@ -218,7 +218,11 @@ public class DataTablesTable : Table {
         return this;
     }
 
-    /// <summary>Configure SearchBuilder using a fluent builder.</summary>
+    /// <summary>
+    /// Configures the SearchBuilder extension using the fluent builder API.
+    /// </summary>
+    /// <param name="configure">Delegate that defines SearchBuilder options.</param>
+    /// <returns>The table instance for chaining.</returns>
     public DataTablesTable ConfigureSearchBuilder(Action<DataTablesSearchBuilderBuilder> configure) {
         var builder = new DataTablesSearchBuilderBuilder();
         configure(builder);

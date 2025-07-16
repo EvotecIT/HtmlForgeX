@@ -1,7 +1,8 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// Extension helpers for SearchBuilder enums.
+/// Helper methods that convert the strongly typed enumeration values used for
+/// SearchBuilder into the string representations expected by DataTables.
 /// </summary>
 public static class DataTablesSearchEnumExtensions
 {
