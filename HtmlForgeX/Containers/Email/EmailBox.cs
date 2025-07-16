@@ -152,7 +152,7 @@ public class EmailBox : Element {
     /// </summary>
     /// <param name="color">The background color.</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
-    public EmailBox SetBackgroundColor(string color) {
+    public EmailBox WithBackground(string color) {
         BackgroundColor = color;
         return this;
     }
@@ -162,7 +162,7 @@ public class EmailBox : Element {
     /// </summary>
     /// <param name="color">The background color.</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
-    public EmailBox SetBackgroundColor(RGBColor color) {
+    public EmailBox WithBackground(RGBColor color) {
         BackgroundColor = color.ToString();
         return this;
     }
@@ -172,7 +172,7 @@ public class EmailBox : Element {
     /// </summary>
     /// <param name="padding">The padding value.</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
-    public EmailBox SetPadding(string padding) {
+    public EmailBox WithPadding(string padding) {
         Padding = padding;
         return this;
     }
@@ -182,7 +182,7 @@ public class EmailBox : Element {
     /// </summary>
     /// <param name="radius">The border radius value.</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
-    public EmailBox SetBorderRadius(string radius) {
+    public EmailBox WithBorderRadius(string radius) {
         BorderRadius = radius;
         return this;
     }
@@ -192,7 +192,7 @@ public class EmailBox : Element {
     /// </summary>
     /// <param name="color">The border color.</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
-    public EmailBox SetBorderColor(string color) {
+    public EmailBox WithBorderColor(string color) {
         BorderColor = color;
         return this;
     }
@@ -211,7 +211,7 @@ public class EmailBox : Element {
     /// </summary>
     /// <param name="spacing">The spacing value.</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
-    public EmailBox SetChildSpacing(string spacing) {
+    public EmailBox WithChildSpacing(string spacing) {
         ChildSpacing = spacing;
         UseConsistentSpacing = true;
         return this;
@@ -231,7 +231,7 @@ public class EmailBox : Element {
     /// </summary>
     /// <param name="margin">The margin value (e.g., "0 auto 24px auto").</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
-    public EmailBox SetOuterMargin(string margin) {
+    public EmailBox WithOuterMargin(string margin) {
         margin.ValidateMargin();
         OuterMargin = margin;
         return this;
@@ -242,7 +242,7 @@ public class EmailBox : Element {
     /// </summary>
     /// <param name="maxWidth">The maximum width value.</param>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
-    public EmailBox SetMaxWidth(string maxWidth) {
+    public EmailBox WithMaxWidth(string maxWidth) {
         MaxWidth = maxWidth;
         return this;
     }

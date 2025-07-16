@@ -102,6 +102,20 @@ public abstract partial class Element {
     }
 
     /// <summary>
+    /// Adds and configures an <see cref="EmailBox"/> element using a fluent builder.
+    /// </summary>
+    /// <param name="config">Builder configuration action.</param>
+    /// <returns>The current element for chaining.</returns>
+    public Element EmailBox(Action<EmailBoxBuilder> config) {
+        var builder = new EmailBoxBuilder();
+        config(builder);
+        var emailBox = builder.Build();
+        emailBox.Email = this.Email;
+        this.Add(emailBox);
+        return this;
+    }
+
+    /// <summary>
     /// Adds and configures an <see cref="EmailTextBox"/> element.
     /// </summary>
     /// <param name="config">Configuration action.</param>

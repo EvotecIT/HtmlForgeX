@@ -15,7 +15,7 @@ public static class ExampleDecimalMarginEmail {
                   .AddEmailCoreStyles();
 
         email.Body.EmailBox(box => {
-            box.SetOuterMargin("0 auto 1.5em auto").SetMaxWidth("600px");
+            box.WithOuterMargin("0 auto 1.5em auto").WithMaxWidth("600px");
             box.EmailContent(content => {
                 content.EmailText("This paragraph uses decimal margin values.")
                     .WithMargin("1.5em 0");

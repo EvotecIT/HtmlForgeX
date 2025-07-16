@@ -63,6 +63,29 @@ Please support their creators by checking them out and starring their projects.
 - `HtmlForgeX.Examples` - demo project
 
 
+### Configuring EmailBox
+
+Use the fluent `With` methods on `EmailBox` when the instance is available:
+
+```csharp
+var box = new EmailBox()
+    .WithPadding("16px")
+    .WithBackground("#f8f9fa");
+```
+
+`EmailBoxBuilder` exposes the same methods for lambda-based configuration:
+
+```csharp
+email.Body.EmailBox(b => b
+    .WithPadding("16px")
+    .WithBackground("#f8f9fa")
+    .WithOuterMargin("0 auto")
+    .WithMaxWidth("600px"));
+```
+
+Choose the builder when you need to reuse a configuration or build the box inside a delegate.
+
+
 ## Examples
 
 ### Example - Create a simple dashboard with different components

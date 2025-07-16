@@ -6,7 +6,7 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example of creating a welcome email using HtmlForgeX email components.
 /// Demonstrates user-friendly email building with no HTML/CSS knowledge required.
 /// </summary>
-public static class ExampleWelcomeEmail
+public static class ExampleWelcomeEmailBuilder
 {
     public static void Create(bool openInBrowser = false)
     {
@@ -31,8 +31,11 @@ public static class ExampleWelcomeEmail
             });
         });
 
-        // Main content container
-        var content = new EmailBox();
+        // Main content container built with EmailBoxBuilder
+        var content = new EmailBoxBuilder()
+            .WithPadding("24px")
+            .WithBackground("#ffffff")
+            .Build();
 
         // Welcome heading - using Span for full control
         var welcomeHeading = new Span()
@@ -110,7 +113,10 @@ public static class ExampleWelcomeEmail
         content.Add(new BasicElement().Add(listItem4));
 
         // Footer with flexible components
-        var footer = new EmailBox();
+        var footer = new EmailBoxBuilder()
+            .WithPadding("24px")
+            .WithBackground("#f8f9fa")
+            .Build();
 
         // Contact information using flexible Span building
         var contactInfo = new Span()

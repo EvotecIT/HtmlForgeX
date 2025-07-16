@@ -155,7 +155,7 @@ public class EmailRow : Element {
                 var cellStyle = string.Join("; ", cellStyles);
                 var alignAttr = !string.IsNullOrEmpty(column.TextAlign) && column.TextAlign != "left" ? $@" align=""{column.TextAlign}""" : "";
 
-                html.AppendLine($@"<td class=""{column.CssClass}"" style=""{cellStyle}"" valign=""{column.VerticalAlign}""{alignAttr}>");
+                html.AppendLine($@"<td class=""{column.CssClass}"" style=""{cellStyle}"" valign=""{column.VerticalAlign.ToCssValue()}""{alignAttr}>");
 
                 // Render column content
                 var columnContent = column.GetContentString();

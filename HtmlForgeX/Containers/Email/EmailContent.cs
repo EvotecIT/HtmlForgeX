@@ -18,7 +18,7 @@ public class EmailContent : Element {
     /// </summary>
     /// <param name="padding">The padding value (e.g., "8px", "16px")</param>
     /// <returns>The EmailContent object, allowing for method chaining.</returns>
-    public EmailContent SetPadding(string padding) {
+    public EmailContent WithPadding(string padding) {
         _padding = padding;
         return this;
     }
@@ -33,7 +33,7 @@ public class EmailContent : Element {
     /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailContent"/> instance.</returns>
-    public EmailContent SetAlignment(Alignment alignment) {
+    public EmailContent WithAlignment(Alignment alignment) {
         alignment.ValidateEmailAlignment();
         _alignment = alignment.ToCssValue();
         return this;

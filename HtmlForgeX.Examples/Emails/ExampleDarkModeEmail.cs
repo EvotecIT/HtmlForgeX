@@ -26,7 +26,7 @@ public static class ExampleDarkModeEmail
         email.Body.EmailBox(emailBox => {
             // Header using flexible pattern
             var header = new EmailHeader()
-                .SetPadding("20px");
+                .WithPadding("20px");
 
             header.EmailBox(headerBox => {
                 headerBox.EmailRow(row => {
@@ -526,7 +526,7 @@ public static class ExampleEnhancedDarkModeEmail
         email.Body.EmailBox(emailBox => {
             // Header with dark mode logo using flexible pattern
             var header = new EmailHeader()
-                .SetPadding("20px");
+                .WithPadding("20px");
 
             header.EmailBox(headerBox => {
                 headerBox.EmailRow(row => {
@@ -814,7 +814,7 @@ public static class ExampleEnhancedDarkModeEmail
 
             // Footer using flexible pattern
             var footer = new EmailFooter()
-                .SetPadding("24px");
+                .WithPadding("24px");
 
             footer.EmailBox(footerBox => {
                 // Social links

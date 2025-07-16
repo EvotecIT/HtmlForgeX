@@ -29,10 +29,10 @@ public static class ExampleCorrectedEmailPattern
 
         // Header box - contains logo and main welcome message
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 24px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 24px auto").WithMaxWidth("600px");
 
                         // Header with logo using new direct pattern
-            email.Header.SetPadding("20px");
+            email.Header.WithPadding("20px");
             email.Header.EmailRow(row => {
                 row.EmailColumn(col => {
                     col.SetAlignment(Alignment.Center);
@@ -59,7 +59,7 @@ public static class ExampleCorrectedEmailPattern
 
         // Getting started section - separate box for better spacing
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 24px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 24px auto").WithMaxWidth("600px");
 
             emailBox.EmailText("Getting Started")
                 .WithFontSize("24px")
@@ -90,7 +90,7 @@ public static class ExampleCorrectedEmailPattern
 
         // Features section - demonstrates consistent text positioning
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 24px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 24px auto").WithMaxWidth("600px");
 
             emailBox.EmailText("📦 Features")
                 .WithFontSize("20px")
@@ -117,7 +117,7 @@ public static class ExampleCorrectedEmailPattern
 
         // Feature comparison table - proper styling applied
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 24px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 24px auto").WithMaxWidth("600px");
 
             emailBox.EmailTable(table => {
                 table.SetStyle(EmailTableStyle.FeatureComparison);
@@ -131,7 +131,7 @@ public static class ExampleCorrectedEmailPattern
 
         // Team members section - demonstrates proper table styling
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 24px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 24px auto").WithMaxWidth("600px");
 
             emailBox.EmailText("Team Members")
                 .WithFontSize("20px")
@@ -149,7 +149,7 @@ public static class ExampleCorrectedEmailPattern
 
         // Call to action - demonstrates button spacing in rows
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 0 auto").SetMaxWidth("600px"); // No bottom margin for last box
+            emailBox.WithOuterMargin("0 auto 0 auto").WithMaxWidth("600px"); // No bottom margin for last box
 
             emailBox.EmailText("Ready to get started?")
                 .WithFontSize("24px")
