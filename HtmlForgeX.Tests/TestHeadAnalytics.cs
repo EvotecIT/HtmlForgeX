@@ -46,4 +46,12 @@ public class TestHeadAnalytics
         var html = doc.Head.ToString();
         StringAssert.Contains(html, "tok&#39;en&quot;&lt;&gt;");
     }
+
+    [TestMethod]
+    public void AddAnalytics_InvalidProvider_ShouldThrow()
+    {
+        using var doc = new Document();
+        Assert.ThrowsException<ArgumentOutOfRangeException>(
+            () => doc.Head.AddAnalytics((AnalyticsProvider)int.MaxValue, "id"));
+    }
 }
