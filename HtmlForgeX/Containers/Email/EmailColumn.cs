@@ -90,7 +90,7 @@ public class EmailColumn : Element {
     /// </summary>
     /// <param name="padding">The padding value (e.g., "10px", "5px 10px").</param>
     /// <returns>The EmailColumn object, allowing for method chaining.</returns>
-    public EmailColumn SetPadding(string padding) {
+    public EmailColumn WithPadding(string padding) {
         AddStyle($"padding: {padding};");
         return this;
     }
