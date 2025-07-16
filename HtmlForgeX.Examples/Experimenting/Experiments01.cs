@@ -28,14 +28,14 @@ internal class Experiments01 {
 
         Console.WriteLine("----");
 
-        using var value3 = new Document().Body.Span("This is table with DataTables").WithAlignment(Alignment.Center)
+        var value3 = new Document().Body.Span("This is table with DataTables").WithAlignment(Alignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
 
         Console.WriteLine(value3);
 
         Console.WriteLine("----");
 
-        using var span = new Document().Body.Span("This is table with DataTables").WithAlignment(Alignment.Center)
+        var span = new Document().Body.Span("This is table with DataTables").WithAlignment(Alignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
         var value4 = span;
         Console.WriteLine(value4);
