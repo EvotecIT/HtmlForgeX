@@ -50,6 +50,7 @@ internal class Program {
         BasicHtmlBuilding.Demo1(openInBrowser);
         BasicHtmlBuilding.Demo2(openInBrowser);
         BasicHtmlBuilding.DemoAnalytics(openInBrowser);
+        GoogleFontExample.Demo(openInBrowser);
 
         // Toast examples
         ExampleTablerToast.Create(openInBrowser);
