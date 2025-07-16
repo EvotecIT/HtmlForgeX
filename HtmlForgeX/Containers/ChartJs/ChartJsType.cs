@@ -20,7 +20,19 @@ public enum ChartJsType {
     /// <summary>
     /// Render a pie chart.
     /// </summary>
-    Pie
+    Pie,
+    /// <summary>
+    /// Render a radar chart.
+    /// </summary>
+    Radar,
+    /// <summary>
+    /// Render a scatter chart.
+    /// </summary>
+    Scatter,
+    /// <summary>
+    /// Render a bubble chart.
+    /// </summary>
+    Bubble
 }
 
 /// <summary>
@@ -34,6 +46,9 @@ public class ChartJsTypeConverter : JsonConverter<ChartJsType> {
             "line" => ChartJsType.Line,
             "bar" => ChartJsType.Bar,
             "pie" => ChartJsType.Pie,
+            "radar" => ChartJsType.Radar,
+            "scatter" => ChartJsType.Scatter,
+            "bubble" => ChartJsType.Bubble,
             _ => throw new JsonException()
         };
     }
@@ -44,6 +59,9 @@ public class ChartJsTypeConverter : JsonConverter<ChartJsType> {
             ChartJsType.Line => "line",
             ChartJsType.Bar => "bar",
             ChartJsType.Pie => "pie",
+            ChartJsType.Radar => "radar",
+            ChartJsType.Scatter => "scatter",
+            ChartJsType.Bubble => "bubble",
             _ => throw new JsonException()
         };
         writer.WriteStringValue(stringValue);

@@ -36,4 +36,27 @@ public class TestChartJs {
         var back = JsonSerializer.Deserialize<ChartJsType>(json);
         Assert.AreEqual(type, back);
     }
+
+    [TestMethod]
+    public void ChartJsType_NewValuesSerializeDeserialize() {
+        foreach (var pair in new[] {
+            (ChartJsType.Radar, "\"radar\""),
+            (ChartJsType.Scatter, "\"scatter\""),
+            (ChartJsType.Bubble, "\"bubble\"") }) {
+            var json = JsonSerializer.Serialize(pair.Item1);
+            Assert.AreEqual(pair.Item2, json);
+            var back = JsonSerializer.Deserialize<ChartJsType>(json);
+            Assert.AreEqual(pair.Item1, back);
+        }
+    }
+
+    [TestMethod]
+    public void ChartJs_BuilderMethodsSetType() {
+        var radar = new ChartJs().Radar();
+        Assert.AreEqual(ChartJsType.Radar, radar.Type);
+        var scatter = new ChartJs().Scatter();
+        Assert.AreEqual(ChartJsType.Scatter, scatter.Type);
+        var bubble = new ChartJs().Bubble();
+        Assert.AreEqual(ChartJsType.Bubble, bubble.Type);
+    }
 }

@@ -33,6 +33,39 @@ internal class BasicChartJs {
                     });
                 });
             });
+
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Four, col => {
+                    col.Card(card => {
+                        card.ChartJs(c => {
+                            c.Radar()
+                             .AddData("A", 5)
+                             .AddData("B", 3)
+                             .AddData("C", 8);
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, col => {
+                    col.Card(card => {
+                        card.ChartJs(c => {
+                            c.Scatter()
+                             .AddData("Jan", 1)
+                             .AddData("Feb", 4)
+                             .AddData("Mar", 2);
+                        });
+                    });
+                });
+                row.Column(TablerColumnNumber.Four, col => {
+                    col.Card(card => {
+                        card.ChartJs(c => {
+                            c.Bubble()
+                             .AddData("X", 3)
+                             .AddData("Y", 6)
+                             .AddData("Z", 2);
+                        });
+                    });
+                });
+            });
         });
 
         document.Save("ChartJsDemo.html", openInBrowser);

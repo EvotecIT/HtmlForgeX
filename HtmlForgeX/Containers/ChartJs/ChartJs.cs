@@ -85,6 +85,27 @@ public class ChartJs : Element {
     public ChartJs Pie() => SetType(ChartJsType.Pie);
 
     /// <summary>
+    /// Shortcut for calling <see cref="SetType(ChartJsType)"/> with
+    /// <see cref="ChartJsType.Radar"/>.
+    /// </summary>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
+    public ChartJs Radar() => SetType(ChartJsType.Radar);
+
+    /// <summary>
+    /// Shortcut for calling <see cref="SetType(ChartJsType)"/> with
+    /// <see cref="ChartJsType.Scatter"/>.
+    /// </summary>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
+    public ChartJs Scatter() => SetType(ChartJsType.Scatter);
+
+    /// <summary>
+    /// Shortcut for calling <see cref="SetType(ChartJsType)"/> with
+    /// <see cref="ChartJsType.Bubble"/>.
+    /// </summary>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
+    public ChartJs Bubble() => SetType(ChartJsType.Bubble);
+
+    /// <summary>
     /// Generates the HTML required to render the chart.
     /// </summary>
     /// <returns>The HTML markup.</returns>
