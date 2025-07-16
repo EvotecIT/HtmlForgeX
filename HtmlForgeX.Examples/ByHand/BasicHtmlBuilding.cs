@@ -193,5 +193,20 @@ namespace HtmlForgeX.Examples.ByHand
 
             document.Save("AnalyticsDemo.html", openInBrowser);
         }
+
+        public static void DemoSanitizedRawHtml(bool openInBrowser = false)
+        {
+            HelpersSpectre.PrintTitle("Sanitized RawHtml Example");
+
+            var document = new Document();
+            document.Head.AddTitle("Sanitized RawHtml Demo");
+
+            var div = new HtmlTag("div")
+                .ValueRaw("<script>alert('x')</script><span>Safe</span>", true);
+
+            document.Body.Add(div);
+
+            document.Save("SanitizedRawHtml.html", openInBrowser);
+        }
     }
 }

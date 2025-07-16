@@ -271,6 +271,19 @@ public class HtmlTag : Element {
     }
 
     /// <summary>
+    /// Appends raw HTML content to the tag with optional sanitization.
+    /// </summary>
+    /// <param name="value">Raw HTML string.</param>
+    /// <param name="sanitize">Whether to sanitize the HTML.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
+    public HtmlTag ValueRaw(string? value, bool sanitize = false) {
+        if (value is not null) {
+            Children.Add(new RawHtml(value, sanitize));
+        }
+        return this;
+    }
+
+    /// <summary>
     /// Appends multiple string values to the tag.
     /// </summary>
     /// <param name="value">String values to append.</param>
