@@ -42,4 +42,10 @@ public class TestDocumentSave {
         using var doc = new Document();
         await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await doc.SaveAsync("invalid\0path.html"));
     }
+
+    [TestMethod]
+    public void Save_InvalidPath_ThrowsArgumentException() {
+        using var doc = new Document();
+        Assert.ThrowsException<ArgumentException>(() => doc.Save("invalid\0path.html"));
+    }
 }
