@@ -58,6 +58,7 @@ public class TestDocumentSaveErrors {
         StringAssert.Contains(received!, path);
     }
 
+#if !NETFRAMEWORK
     [TestMethod]
     public async Task SaveAsync_UnwritableLocation_LogsError() {
         var logger = GetLogger();
@@ -75,6 +76,7 @@ public class TestDocumentSaveErrors {
         Assert.IsNotNull(received);
         StringAssert.Contains(received!, path);
     }
+#endif
 
 #if NETFRAMEWORK
     [TestMethod]

@@ -118,7 +118,10 @@ public partial class Document
         {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
 #if !NET5_0_OR_GREATER
-            throw;
+            if (ex is AggregateException)
+            {
+                throw;
+            }
 #endif
         }
         finally
