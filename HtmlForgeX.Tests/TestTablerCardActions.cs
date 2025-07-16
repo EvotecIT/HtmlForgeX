@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
@@ -32,5 +33,17 @@ public class TestTablerCardActions {
 
         var valueAfter = prop.GetValue(header);
         Assert.IsNotNull(valueAfter);
+    }
+
+    [TestMethod]
+    public void TablerCardButtonUrl_ThrowsOnNull() {
+        var button = new TablerCardButton();
+        Assert.ThrowsException<ArgumentException>(() => button.Url(null!));
+    }
+
+    [TestMethod]
+    public void TablerCardButtonUrl_ThrowsOnWhitespace() {
+        var button = new TablerCardButton();
+        Assert.ThrowsException<ArgumentException>(() => button.Url(" "));
     }
 }

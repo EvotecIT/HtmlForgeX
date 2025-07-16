@@ -44,6 +44,10 @@ public class TablerCardButton : TablerCardAction {
     /// Initializes or configures Url.
     /// </summary>
     public TablerCardButton Url(string url) {
+        if (string.IsNullOrWhiteSpace(url)) {
+            throw new ArgumentException("URL cannot be null or whitespace.", nameof(url));
+        }
+
         ButtonUrl = url;
         return this;
     }

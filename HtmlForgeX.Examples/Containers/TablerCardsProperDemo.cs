@@ -75,7 +75,9 @@ internal class TablerCardsProperDemo {
                         card.Header(header => {
                             header.Title("Card with Actions");
                             header.WithActions(actions => {
-                                actions.Button("Add New", btn => btn.Style(TablerButtonVariant.Primary));
+                                actions.Button("Add New", btn => btn
+                                    .Style(TablerButtonVariant.Primary)
+                                    .Url("https://example.com"));
                                 actions.IconButton(TablerIconType.Phone, btn => btn.AsActionButton());
                                 actions.IconButton(TablerIconType.Mail, btn => btn.AsActionButton());
                             });
