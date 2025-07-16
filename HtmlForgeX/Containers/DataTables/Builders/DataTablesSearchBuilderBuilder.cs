@@ -8,13 +8,6 @@ public class DataTablesSearchBuilderBuilder
     private readonly DataTablesSearchBuilder _searchBuilder = new();
     private readonly List<DataTablesSearchGroup> _groups = new();
     private readonly Dictionary<string, string> _operators = new();
-    private static readonly Dictionary<DataTablesBuiltInOperator, (string name, string script)> _builtIns = new()
-    {
-        [DataTablesBuiltInOperator.StartsWith] = ("startsWith", "function(value,input){ return value.startsWith(input); }"),
-        [DataTablesBuiltInOperator.EndsWith] = ("endsWith", "function(value,input){ return value.endsWith(input); }"),
-        [DataTablesBuiltInOperator.ContainsCaseInsensitive] = ("containsCI", "function(value,input){ return value.toLowerCase().includes(input.toLowerCase()); }"),
-        [DataTablesBuiltInOperator.Regex] = ("regex", "function(value,input){ var r=new RegExp(input); return r.test(value); }")
-    };
 
     /// <summary>Enable or disable SearchBuilder.</summary>
     public DataTablesSearchBuilderBuilder Enable(bool enable = true)
@@ -73,7 +66,7 @@ public class DataTablesSearchBuilderBuilder
     /// <summary>Add a built in custom operator.</summary>
     public DataTablesSearchBuilderBuilder CustomOperator(DataTablesBuiltInOperator op)
     {
-        var (name, script) = _builtIns[op];
+        var (name, script) = DataTablesSearchBuiltIns.Scripts[op];
         return CustomOperator(name, script);
     }
 
