@@ -17,7 +17,7 @@ public class TestHeadlessRendering {
         Directory.CreateDirectory(tempDir);
         string htmlPath = Path.Combine(tempDir, "index.html");
 
-        var doc = new Document();
+        using var doc = new Document();
         doc.Head.Title = "Integration Test";
         doc.Body.Add(new HtmlTag("h1", "Hello world!"));
         doc.Save(htmlPath);

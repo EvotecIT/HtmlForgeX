@@ -14,7 +14,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_BasicCreation() {
-        var doc = new Document();
+        using var doc = new Document();
         
         Assert.IsNotNull(doc.Head);
         Assert.IsNotNull(doc.Body);
@@ -25,7 +25,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_ConfigurationProperties() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.LibraryMode = LibraryMode.Offline;
         doc.ThemeMode = ThemeMode.Dark;
@@ -42,7 +42,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_AddLibrary() {
-        var doc = new Document();
+        using var doc = new Document();
         var customLibrary = new Library {
             Header = new LibraryLinks {
                 CssLink = ["https://example.com/custom.css"],
@@ -59,7 +59,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_ToStringContainsBasicStructure() {
-        var doc = new Document();
+        using var doc = new Document();
         var html = doc.ToString();
         
         Assert.IsTrue(html.Contains("<!DOCTYPE html>"));
@@ -73,7 +73,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_WithContentInBody() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Body.Add(new HtmlTag("p", "Hello World"));
         
         var html = doc.ToString();
@@ -82,7 +82,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_WithHeadTitle() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Head.AddTitle("Test Page");
 
         var html = doc.ToString();
@@ -91,7 +91,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_AddTitle_EncodesInput() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Head.AddTitle("<b>Title & Test</b>");
 
         Assert.AreEqual("&lt;b&gt;Title &amp; Test&lt;/b&gt;", doc.Head.Title);
@@ -99,7 +99,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_SaveToFile() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Body.Add(new HtmlTag("p", "Test content"));
         
         var tempFile = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"test_{System.Guid.NewGuid()}.html");
@@ -115,7 +115,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public async Task Document_SaveAsyncToFile() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Body.Add(new HtmlTag("p", "Async test content"));
         
         var tempFile = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"async_test_{System.Guid.NewGuid()}.html");
@@ -131,7 +131,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_MultipleLibraries() {
-        var doc = new Document();
+        using var doc = new Document();
         
         var lib1 = new Library {
             Header = new LibraryLinks {
@@ -155,7 +155,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_DuplicateCustomLibrariesSkipped() {
-        var doc = new Document();
+        using var doc = new Document();
 
         var customLibrary = new Library {
             Header = new LibraryLinks {
@@ -178,7 +178,7 @@ public class TestDocumentWorkflow {
 
     [TestMethod]
     public void Document_ErrorHandling() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Configuration.Errors.Add("Test error");
         

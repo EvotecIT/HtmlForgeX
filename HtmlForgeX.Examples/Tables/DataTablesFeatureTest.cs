@@ -9,7 +9,7 @@ internal class DataTablesFeatureTest
     {
         HelpersSpectre.PrintTitle("🧪 DataTables Feature Test Suite");
 
-        var document = new Document
+        using var document = new Document
         {
             Head = {
                 Title = "DataTables Feature Test Suite",

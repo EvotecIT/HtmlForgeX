@@ -13,7 +13,7 @@ public class TestContainerLibraryRegistration
     public void TablerPage_ShouldRegisterBootstrapAndTablerLibraries()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
 
         // Act
@@ -37,7 +37,7 @@ public class TestContainerLibraryRegistration
     public void DataTablesTable_ShouldRegisterRequiredLibraries()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var data = new[] {
             new { Name = "John", Age = 30 },
             new { Name = "Jane", Age = 28 }
@@ -66,7 +66,7 @@ public class TestContainerLibraryRegistration
     public void TablerTable_ShouldRegisterBootstrapAndTablerLibraries()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var data = new[] {
             new { Name = "John", Age = 30 },
             new { Name = "Jane", Age = 28 }
@@ -93,7 +93,7 @@ public class TestContainerLibraryRegistration
     public void DocumentReference_ShouldPropagate_ToChildElements()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
         var card = new TablerCard();
 
@@ -112,7 +112,7 @@ public class TestContainerLibraryRegistration
     public void NestedComponents_ShouldAllRegisterLibraries()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var data = new[] {
             new { Name = "John", Age = 30 },
             new { Name = "Jane", Age = 28 }
@@ -160,7 +160,7 @@ public class TestContainerLibraryRegistration
     public void LibraryMode_Offline_ShouldIncludeInlineStyles()
     {
         // Arrange
-        var document = new Document(LibraryMode.Offline);
+        using var document = new Document(LibraryMode.Offline);
         var page = new TablerPage();
 
         // Act
@@ -178,7 +178,7 @@ public class TestContainerLibraryRegistration
     public void LibraryMode_Online_ShouldIncludeCDNLinks()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
 
         // Act
@@ -198,7 +198,7 @@ public class TestContainerLibraryRegistration
     public void Document_WithOfflineLibraryMode_ShouldNotIncludeLibraries()
     {
         // Arrange
-        var document = new Document();
+        using var document = new Document();
         document.LibraryMode = LibraryMode.Offline; // Explicitly set offline mode
         var page = new TablerPage();
 
@@ -220,7 +220,7 @@ public class TestContainerLibraryRegistration
     public void ComplexContainerExample_ShouldWorkCorrectly()
     {
         // Arrange
-        var document = new Document {
+        using var document = new Document {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };

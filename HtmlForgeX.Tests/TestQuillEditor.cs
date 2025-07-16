@@ -39,7 +39,7 @@ public class TestQuillEditor {
 
     [TestMethod]
     public void QuillEditor_RegistersLibrary() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Body.Add(el => {
             el.QuillEditor();
         });

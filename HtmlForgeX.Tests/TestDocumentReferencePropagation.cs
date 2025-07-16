@@ -12,7 +12,7 @@ public class TestDocumentReferencePropagation
     public void Element_Add_ShouldPropagate_DocumentReference()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var parentElement = new TablerPage();
         var childElement = new TablerCard();
 
@@ -50,7 +50,7 @@ public class TestDocumentReferencePropagation
     public void DeepNesting_ShouldPropagate_DocumentReference()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
         var row = new TablerRow();
         var column = new TablerColumn();
@@ -73,7 +73,7 @@ public class TestDocumentReferencePropagation
     public void ConfigDelegate_ShouldHave_DocumentReference()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
 
         // Act
         document.Body.Page(page =>
@@ -101,7 +101,7 @@ public class TestDocumentReferencePropagation
     public void FluentAPI_ShouldPropagate_DocumentReference()
     {
         // Arrange
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var data = new[] { new { Name = "Test", Value = 123 } };
 
         // Act - Use fluent API like in examples
@@ -147,7 +147,7 @@ public class TestDocumentReferencePropagation
         Assert.IsNull(card.Document, "Card should not have Document reference");
 
         // Create a document separately to test
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
 
         // Libraries should not be registered in this document
         Assert.IsFalse(document.Configuration.Libraries.ContainsKey(Libraries.Bootstrap),
@@ -160,7 +160,7 @@ public class TestDocumentReferencePropagation
     public void RegressionTest_BasicHtmlContainer01_ShouldWork()
     {
         // Arrange - Simulate the exact scenario from BasicHtmlContainer01
-        var document = new Document {
+        using var document = new Document {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };

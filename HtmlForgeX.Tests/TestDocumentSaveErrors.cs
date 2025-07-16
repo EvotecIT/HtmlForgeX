@@ -25,7 +25,7 @@ public class TestDocumentSaveErrors {
         string? received = null;
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
-        var doc = new Document();
+        using var doc = new Document();
         var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
         var dir = Path.Combine(tempDir, Guid.NewGuid().ToString());
         try {
@@ -46,7 +46,7 @@ public class TestDocumentSaveErrors {
         string? received = null;
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
-        var doc = new Document();
+        using var doc = new Document();
         var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
         var path = Path.Combine(tempDir, $"file_{Guid.NewGuid()}.html");
         using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
@@ -64,7 +64,7 @@ public class TestDocumentSaveErrors {
         string? received = null;
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
-        var doc = new Document();
+        using var doc = new Document();
         var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
         var path = Path.Combine(tempDir, $"file_{Guid.NewGuid():N}.html");
         using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
@@ -82,7 +82,7 @@ public class TestDocumentSaveErrors {
         string? received = null;
         EventHandler<LogEventArgs> handler = (_, e) => received ??= e.FullMessage;
         logger.OnErrorMessage += handler;
-        var doc = new Document();
+        using var doc = new Document();
         var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
         var dirPath = Path.Combine(tempDir, $"dir_{Guid.NewGuid()}");
         File.WriteAllText(dirPath, string.Empty);
@@ -96,7 +96,7 @@ public class TestDocumentSaveErrors {
 
     [TestMethod]
     public void Save_UnwritableLocation_ReleasesSemaphore() {
-        var doc = new Document();
+        using var doc = new Document();
         var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
         var path = Path.Combine(tempDir, $"file_{Guid.NewGuid():N}.html");
         using var stream = File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None);

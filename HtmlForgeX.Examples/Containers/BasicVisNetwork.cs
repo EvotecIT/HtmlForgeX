@@ -4,7 +4,7 @@ internal class BasicVisNetwork {
     public static void Demo(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("VisNetwork Image Demo");
 
-        var document = new Document {
+        using var document = new Document {
             Head = { Title = "VisNetwork Image Demo", Author = "HtmlForgeX" },
             LibraryMode = LibraryMode.Offline,
             ThemeMode = ThemeMode.Light

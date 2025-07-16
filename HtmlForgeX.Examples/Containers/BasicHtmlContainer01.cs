@@ -23,7 +23,7 @@ internal class BasicHtmlContainer01 {
             new { Name = "Jane", Age = 28, Occupation = "Doctor" },
         };
 
-        Document document = new Document {
+        using Document document = new Document {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };

@@ -10,7 +10,7 @@ internal class InfocardsCleanDemo {
     public static void Demo01(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Clean Infocards Demo - Predefined RGBColor Constants");
 
-        var document = new Document {
+        using var document = new Document {
             Head = {
                 Title = "Clean Infocards Demo - RGBColor Constants",
                 Author = "HtmlForgeX",

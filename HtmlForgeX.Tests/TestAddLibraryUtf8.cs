@@ -25,7 +25,7 @@ public class TestAddLibraryUtf8 {
                 Js = [jsPath]
             }
         };
-        var doc = new Document { LibraryMode = LibraryMode.Offline };
+        using var doc = new Document { LibraryMode = LibraryMode.Offline };
         doc.AddLibrary(lib);
         var headHtml = doc.Head.ToString();
 

@@ -9,7 +9,7 @@ public class PrismJsDemo
 {
     public static void RunDemo()
     {
-        var document = new Document
+        using var document = new Document
         {
             Head = {
                 Title = "PrismJS Syntax Highlighting Demo",

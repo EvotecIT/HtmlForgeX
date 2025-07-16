@@ -11,7 +11,7 @@ public class TestComponentInteractions {
 
     [TestMethod]
     public void MultipleComponents_AllLibrariesIncluded() {
-        var doc = new Document();
+        using var doc = new Document();
         
         // Add multiple different components
         doc.Body.Add(element => {
@@ -50,7 +50,7 @@ public class TestComponentInteractions {
 
     [TestMethod]
     public void ComponentsWithTabler_Integration() {
-        var doc = new Document();
+        using var doc = new Document();
         
         // Combine components with Tabler UI
         var card = new TablerCard();
@@ -81,7 +81,7 @@ public class TestComponentInteractions {
 
     [TestMethod]
     public void NestedComponents_WithVisNetwork() {
-        var doc = new Document();
+        using var doc = new Document();
         
         // Create a complex layout with nested components
         var row = new TablerRow();
@@ -172,7 +172,7 @@ public class TestComponentInteractions {
 
     [TestMethod]
     public void ComponentLibraryConflicts_Prevention() {
-        var doc = new Document();
+        using var doc = new Document();
         
         // Add the same component type multiple times
         doc.Body.Add(element => {
@@ -211,7 +211,7 @@ public class TestComponentInteractions {
 
     [TestMethod]
     public void ComplexDashboard_AllComponents() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Head.AddTitle("Complex Dashboard");
         
         // Create a complex dashboard with all components
@@ -284,7 +284,7 @@ public class TestComponentInteractions {
 
     [TestMethod]
     public void ComponentEventHandling_Integration() {
-        var doc = new Document();
+        using var doc = new Document();
         
         // Test components that might have JavaScript interactions
         doc.Body.Add(element => {

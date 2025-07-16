@@ -34,7 +34,7 @@ public static class TestContainerFix
     {
         Console.WriteLine("🔗 Test 1: Document Reference Propagation");
 
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
         var card = new TablerCard();
 
@@ -53,7 +53,7 @@ public static class TestContainerFix
     {
         Console.WriteLine("🔧 Test 2: Library Registration");
 
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var data = new[] {
             new { Name = "John", Age = 30 },
             new { Name = "Jane", Age = 28 }
@@ -90,7 +90,7 @@ public static class TestContainerFix
     {
         Console.WriteLine("🌐 Test 3: HTML Output Validation");
 
-        var document = new Document(LibraryMode.Online);
+        using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
 
         document.Body.Add(page);
@@ -116,7 +116,7 @@ public static class TestContainerFix
         Console.WriteLine("🔄 Test 4: Regression Test (BasicHtmlContainer01 scenario)");
 
         // Recreate the exact scenario that was failing
-        var document = new Document {
+        using var document = new Document {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };

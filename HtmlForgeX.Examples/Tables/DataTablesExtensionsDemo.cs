@@ -11,7 +11,7 @@ internal class DataTablesExtensionsDemo
     {
         HelpersSpectre.PrintTitle("🚀 DataTables Extensions Demo");
 
-        var document = new Document
+        using var document = new Document
         {
             Head = {
                 Title = "DataTables Extensions Demo",

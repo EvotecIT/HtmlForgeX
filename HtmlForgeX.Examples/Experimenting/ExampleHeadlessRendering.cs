@@ -7,7 +7,7 @@ namespace HtmlForgeX.Examples.Experimenting;
 
 internal class ExampleHeadlessRendering {
     public static async Task CreateAsync(bool openInBrowser = false) {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Head.Title = "Headless Rendering Example";
         doc.Body.Add(new HtmlTag("h1", "Hello from Headless Browser"));
         var path = Path.Combine(Path.GetTempPath(), "headless_example.html");

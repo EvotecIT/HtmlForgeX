@@ -9,7 +9,7 @@ public class DataTablesDocumentationDemo
 {
     public static void RunDemo()
     {
-        var document = new Document
+        using var document = new Document
         {
             Head = {
                 Title = "DataTables API Documentation",
@@ -213,7 +213,7 @@ document.Configuration.DataTables.EnableDeferredRendering = true;", PrismJsLangu
             page.Text("Putting it all together:");
 
             page.CSharpCode(@"
-var document = new Document {
+using var document = new Document {
     Head = { Title = ""Product Catalog"" }
 };
 

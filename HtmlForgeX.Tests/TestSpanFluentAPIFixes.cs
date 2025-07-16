@@ -48,7 +48,7 @@ public class TestSpanFluentAPIFixes {
         var span2 = span1.AddContent(" Content2").WithColor(RGBColor.Blue);
         var span3 = span2.AddContent(" Content3").WithColor(RGBColor.Green);
 
-        var document = new Document();
+        using var document = new Document();
 
         // Act - Add same reference multiple times (user might do this accidentally)
         document.Body.Add(span1);
@@ -105,7 +105,7 @@ public class TestSpanFluentAPIFixes {
         var span2 = span1.AppendContent(" Content2").WithColor(RGBColor.Blue);
         var span3 = span2.AppendContent(" Content3").WithColor(RGBColor.Green);
 
-        var document = new Document();
+        using var document = new Document();
 
         // Act
         document.Body.Add(span1);

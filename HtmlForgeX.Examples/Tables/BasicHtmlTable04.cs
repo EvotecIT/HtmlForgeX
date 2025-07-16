@@ -6,7 +6,7 @@ internal class BasicHtmlTable04 {
         HelpersSpectre.PrintTitle("Tabler Table Styling Demo");
 
         // Create a new document with the title and author
-        Document document = new Document {
+        using Document document = new Document {
             Head = {
                 Title = "Tabler Table Styling Demo",
                 Author = "Przemysław Kłys",

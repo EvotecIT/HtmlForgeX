@@ -8,7 +8,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Represents an HTML document.
 /// </summary>
-public partial class Document : Element {
+public partial class Document : Element, System.IDisposable {
     internal static readonly InternalLogger _logger = new();
 
     /// <summary>

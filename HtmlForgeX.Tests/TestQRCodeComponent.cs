@@ -9,7 +9,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_BasicCreation() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.QRCode("https://evotec.xyz");
@@ -25,7 +25,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_MultipleInstances() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.QRCode("https://example1.com");
@@ -48,7 +48,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_OnlineMode_UsesCDN() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.LibraryMode = LibraryMode.Online;
         
         doc.Body.Add(element => {
@@ -64,7 +64,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_OfflineMode_EmbedLibrary() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.LibraryMode = LibraryMode.Offline;
         
         doc.Body.Add(element => {
@@ -81,7 +81,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_WithSpecialCharacters() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.QRCode("Hello, World! 特殊字符 🎉");
@@ -96,7 +96,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_EmptyString() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.QRCode("");
@@ -111,7 +111,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_LongURL() {
-        var doc = new Document();
+        using var doc = new Document();
         var longUrl = "https://example.com/very/long/path/with/many/parameters?param1=value1&param2=value2&param3=value3&param4=value4&param5=value5&param6=value6";
         
         doc.Body.Add(element => {
@@ -127,7 +127,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_UniqueIDs() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.QRCode("QR1");
@@ -151,7 +151,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_TextWithQuotesAndNewlines() {
-        var doc = new Document();
+        using var doc = new Document();
 
         doc.Body.Add(element => {
             element.QRCode("Line1\n\"Quoted\"");
@@ -167,7 +167,7 @@ public class TestQRCodeComponent {
 
     [TestMethod]
     public void QRCode_LibraryRegistration() {
-        var doc = new Document();
+        using var doc = new Document();
         
         // Before adding QR code
         Assert.IsFalse(doc.Configuration.Libraries.ContainsKey(Libraries.EasyQRCode), 

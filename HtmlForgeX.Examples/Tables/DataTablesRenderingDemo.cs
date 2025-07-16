@@ -19,7 +19,7 @@ internal class DataTablesRenderingDemo
         var mediumDataset = GenerateProducts(500);
         var largeDataset = GenerateProducts(2000);
 
-        var document = new Document
+        using var document = new Document
         {
             Head = {
                 Title = "DataTables Rendering Modes Demo",

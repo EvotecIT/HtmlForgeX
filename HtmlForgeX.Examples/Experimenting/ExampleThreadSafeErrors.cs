@@ -6,7 +6,7 @@ namespace HtmlForgeX.Examples.Experimenting;
 
 internal static class ExampleThreadSafeErrors {
     public static void Create() {
-        var document = new Document();
+        using var document = new Document();
         var tasks = new List<Task>();
         for (int i = 0; i < 5; i++) {
             int copy = i;

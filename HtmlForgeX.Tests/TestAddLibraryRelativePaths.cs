@@ -25,7 +25,7 @@ public class TestAddLibraryRelativePaths {
             }
         };
 
-        var doc = new Document { LibraryMode = LibraryMode.Offline, Path = baseDir };
+        using var doc = new Document { LibraryMode = LibraryMode.Offline, Path = baseDir };
         doc.AddLibrary(lib);
         var html = doc.ToString();
 

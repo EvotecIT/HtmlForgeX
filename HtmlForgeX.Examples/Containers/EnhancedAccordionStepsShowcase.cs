@@ -4,7 +4,7 @@ internal class EnhancedAccordionStepsShowcase {
     public static void Demo01(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Enhanced Accordion & Steps Showcase - Complete Feature Demo");
 
-        var document = new Document {
+        using var document = new Document {
             Head = {
                 Title = "Enhanced Accordion & Steps - Complete Feature Showcase",
                 Author = "HtmlForgeX",
