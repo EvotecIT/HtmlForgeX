@@ -11,7 +11,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_BasicCreation() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.FullCalendar(calendar => {
@@ -31,7 +31,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_WithEvents() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.FullCalendar(calendar => {
@@ -61,7 +61,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_EventWithTimeRange() {
-        var doc = new Document();
+        using var doc = new Document();
         var startTime = DateTime.Today.AddHours(14);
         var endTime = DateTime.Today.AddHours(16);
         
@@ -83,7 +83,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_Configuration() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.FullCalendar(calendar => {
@@ -106,7 +106,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_Toolbar() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.FullCalendar(calendar => {
@@ -131,7 +131,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_MultipleEvents() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.FullCalendar(calendar => {
@@ -151,7 +151,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_EventWithColor() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.FullCalendar(calendar => {
@@ -169,7 +169,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_OnlineMode_LibraryInclusion() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.LibraryMode = LibraryMode.Online;
         
         doc.Body.Add(element => {
@@ -187,7 +187,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_OfflineMode_NoExternalCDN() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.LibraryMode = LibraryMode.Offline;
         
         try {
@@ -210,7 +210,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_LibraryRegistration() {
-        var doc = new Document();
+        using var doc = new Document();
         
         // Before adding calendar
         Assert.IsFalse(doc.Configuration.Libraries.ContainsKey(Libraries.FullCalendar), 
@@ -232,7 +232,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_AllDayEvent() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.FullCalendar(calendar => {
@@ -249,7 +249,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_RecurringEvent() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.FullCalendar(calendar => {
@@ -267,7 +267,7 @@ public class TestFullCalendarComponent {
 
     [TestMethod]
     public void FullCalendar_EventHandlersSerialized() {
-        var doc = new Document();
+        using var doc = new Document();
 
         doc.Body.Add(element => {
             element.FullCalendar(calendar => {

@@ -17,7 +17,7 @@ public class TestParallelDocuments {
         
         // Create multiple documents in parallel with different configurations
         var tasks = Enumerable.Range(0, documentCount).Select(async i => {
-            var doc = new Document();
+            using var doc = new Document();
             doc.LibraryMode = i % 2 == 0 ? LibraryMode.Online : LibraryMode.Offline;
             doc.ThemeMode = i % 3 == 0 ? ThemeMode.Light : ThemeMode.Dark;
             
@@ -65,7 +65,7 @@ public class TestParallelDocuments {
         var results = new ConcurrentBag<(string id, int errorCount, int libraryCount, LibraryMode mode)>();
         
         var tasks = Enumerable.Range(0, documentCount).Select(async i => {
-            var doc = new Document();
+            using var doc = new Document();
             var randomId = doc.Configuration.GenerateRandomId($"test{i}");
             
             // Configure each document differently
@@ -129,7 +129,7 @@ public class TestParallelDocuments {
         var memoryBefore = GC.GetTotalMemory(true);
         
         var tasks = Enumerable.Range(0, documentCount).Select(async i => {
-            var doc = new Document();
+            using var doc = new Document();
             doc.LibraryMode = LibraryMode.Online; // Use online mode for memory efficiency
             
             // Add a moderate amount of content
@@ -171,7 +171,7 @@ public class TestParallelDocuments {
         var tasks = Enumerable.Range(0, threadCount).Select(async threadId => {
             try {
                 for (int docId = 0; docId < documentsPerThread; docId++) {
-                    var doc = new Document();
+                    using var doc = new Document();
                     var uniqueId = $"thread{threadId}_doc{docId}";
                     
                     doc.Head.AddTitle($"Thread {threadId} Document {docId}");

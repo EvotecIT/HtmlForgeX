@@ -27,7 +27,7 @@ internal class BasicHtmlContainer04 {
             Return keyword           operation_timedout
             """;
 
-        var document = new Document {
+        using var document = new Document {
             Head = {
                 Title = "Basic Demo Document Container 4", Author = "Przemysław Kłys", Revised = DateTime.Now,
                 AutoRefresh = 30

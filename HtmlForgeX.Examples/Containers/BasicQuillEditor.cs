@@ -4,7 +4,7 @@ internal class BasicQuillEditor {
     public static void Demo(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Quill Editor Demo");
 
-        var document = new Document {
+        using var document = new Document {
             Head = { Title = "Quill Demo", Author = "HtmlForgeX" },
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light

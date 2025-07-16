@@ -13,7 +13,7 @@ namespace HtmlForgeX.Tests;
 public class TestDefaultStyles {
     [TestMethod]
     public void DefaultStyles_ShouldParseCss() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Head.AddDefaultStyles();
         string headHtml = doc.Head.ToString();
         var match = Regex.Match(headHtml, "<style.*?>(.*?)</style>", RegexOptions.Singleline);

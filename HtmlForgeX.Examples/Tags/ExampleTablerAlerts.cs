@@ -2,7 +2,7 @@ namespace HtmlForgeX.Examples.Tags;
 
 internal static class ExampleTablerAlerts {
     public static void Create(bool openInBrowser = false) {
-        var document = new Document { Head = { Title = "Alerts Demo" } };
+        using var document = new Document { Head = { Title = "Alerts Demo" } };
         document.Body.Page(page => {
             page.Row(row => {
                 row.Column(column => {

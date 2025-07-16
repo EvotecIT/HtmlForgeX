@@ -2,7 +2,7 @@ namespace HtmlForgeX.Examples.Forms;
 
 internal static class ExampleTablerForm {
     public static void Create(bool openInBrowser = false) {
-        var document = new Document { Head = { Title = "Form Demo" } };
+        using var document = new Document { Head = { Title = "Form Demo" } };
         document.Body.Page(page => {
             page.Row(row => {
                 row.Column(column => {

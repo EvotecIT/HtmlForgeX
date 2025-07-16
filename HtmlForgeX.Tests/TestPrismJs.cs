@@ -8,7 +8,7 @@ public class TestPrismJs
     [TestMethod]
     public void PrismJs_CodeBlock_GeneratesExpectedHtml()
     {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Body.Add(element =>
         {
             element.CSharpCode("Console.WriteLine(\"Hi\");", config => config

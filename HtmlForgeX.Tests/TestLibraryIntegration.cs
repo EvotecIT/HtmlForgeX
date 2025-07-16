@@ -14,7 +14,7 @@ public class TestLibraryIntegration {
         };
 
         GlobalStorage.LibraryMode = LibraryMode.Online;
-        var doc = new Document();
+        using var doc = new Document();
         doc.AddLibrary(customLibrary);
         var html = doc.ToString();
 

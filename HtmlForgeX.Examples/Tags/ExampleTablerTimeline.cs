@@ -2,7 +2,7 @@ namespace HtmlForgeX.Examples.Tags;
 
 internal static class ExampleTablerTimeline {
     public static void Create(bool openInBrowser = false) {
-        var document = new Document { Head = { Title = "Timeline Demo" } };
+        using var document = new Document { Head = { Title = "Timeline Demo" } };
         document.Body.Page(page => {
             page.Row(row => {
                 row.Column(column => {

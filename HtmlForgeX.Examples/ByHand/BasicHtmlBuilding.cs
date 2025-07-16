@@ -14,7 +14,7 @@ namespace HtmlForgeX.Examples.ByHand
         {
             HelpersSpectre.PrintTitle("Basic Html Building 1");
 
-            Document document = new Document();
+            using Document document = new Document();
             document.Head.Title = "Basic Html Building 1";
             document.Head.Author = "Przemysław Kłys";
             document.Head.Revised = DateTime.Now;
@@ -95,7 +95,7 @@ namespace HtmlForgeX.Examples.ByHand
         {
             HelpersSpectre.PrintTitle("Basic Html Building 2");
 
-            Document document = new Document();
+            using Document document = new Document();
 
             document.AddLibrary(new Bootstrap());
 
@@ -185,7 +185,7 @@ namespace HtmlForgeX.Examples.ByHand
         {
             HelpersSpectre.PrintTitle("Analytics Example");
 
-            var document = new Document();
+            using var document = new Document();
             document.Head.AddTitle("Analytics Demo");
             document.Head.AddAnalytics(AnalyticsProvider.GoogleAnalytics, "G-XXXXXXX");
 

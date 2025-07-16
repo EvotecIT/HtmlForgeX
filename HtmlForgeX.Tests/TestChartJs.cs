@@ -20,7 +20,7 @@ public class TestChartJs {
 
     [TestMethod]
     public void ChartJs_RegistersLibrary() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Body.Add(element => {
             element.ChartJs(c => c.AddData("A", 1));
         });

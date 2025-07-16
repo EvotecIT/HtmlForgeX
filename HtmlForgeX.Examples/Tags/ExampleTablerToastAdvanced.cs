@@ -7,7 +7,7 @@ internal static class ExampleTablerToastAdvanced {
             new { Name = "Bob", Age = 25 }
         };
 
-        var document = new Document { Head = { Title = "Advanced Toast Demo" } };
+        using var document = new Document { Head = { Title = "Advanced Toast Demo" } };
         document.Body.Page(page => {
             page.Row(row => {
                 row.Column(column => {

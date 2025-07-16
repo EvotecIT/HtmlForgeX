@@ -9,7 +9,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_BasicCreation() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -30,7 +30,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_WithOptions() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -58,7 +58,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_LoadingBar() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -76,7 +76,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_MultipleNodes() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -101,7 +101,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_HierarchicalLayout() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -134,7 +134,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_NodeGroups() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -165,7 +165,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_InteractiveOptions() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -200,7 +200,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_OnlineMode_LibraryInclusion() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.LibraryMode = LibraryMode.Online;
         
         doc.Body.Add(element => {
@@ -218,7 +218,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_OfflineMode_EmbeddedLibrary() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.LibraryMode = LibraryMode.Offline;
         
         doc.Body.Add(element => {
@@ -236,7 +236,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_LibraryRegistration() {
-        var doc = new Document();
+        using var doc = new Document();
         
         // Before adding network
         Assert.IsFalse(doc.Configuration.Libraries.ContainsKey(Libraries.VisNetwork), 
@@ -258,7 +258,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_ComplexEdges() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -297,7 +297,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_EmptyNetwork() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -313,7 +313,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_LoadingBarRegistration() {
-        var doc = new Document();
+        using var doc = new Document();
         
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -334,7 +334,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_NodeImages() {
-        var doc = new Document();
+        using var doc = new Document();
 
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -361,7 +361,7 @@ public class TestVisNetworkComponent {
         var path = Path.GetTempFileName();
         File.WriteAllBytes(path, imgData);
 
-        var doc = new Document { LibraryMode = LibraryMode.Offline };
+        using var doc = new Document { LibraryMode = LibraryMode.Offline };
 
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {
@@ -385,7 +385,7 @@ public class TestVisNetworkComponent {
         var path = Path.GetTempFileName();
         File.WriteAllBytes(path, imgData);
 
-        var doc = new Document { LibraryMode = LibraryMode.Offline };
+        using var doc = new Document { LibraryMode = LibraryMode.Offline };
 
         doc.Body.Add(el => {
             el.DiagramNetwork(net => {
@@ -411,7 +411,7 @@ public class TestVisNetworkComponent {
 
     [TestMethod]
     public void VisNetwork_FluentNodeCreation() {
-        var doc = new Document();
+        using var doc = new Document();
 
         doc.Body.Add(element => {
             element.DiagramNetwork(network => {

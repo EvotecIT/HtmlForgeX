@@ -11,7 +11,7 @@ internal class BasicScrollingText {
     public static void Demo01(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Basic Demo Scrolling Text");
 
-        var document = new Document {
+        using var document = new Document {
             Head = { Title = "Basic Demo Scrolling Text", Author = "Przemysław Kłys", Revised = DateTime.Now },
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light

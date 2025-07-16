@@ -8,7 +8,7 @@ public class TestSpanFluentAPI {
     [TestMethod]
     public void SpanFluentAPI_UserExample_AppendContentWithColors() {
         // Test case from user's example - this should show the issue
-        var document = new Document();
+        using var document = new Document();
 
         var span4 = new Span()
             .AppendContent("Should be RED").WithColor(RGBColor.Red)
@@ -55,7 +55,7 @@ public class TestSpanFluentAPI {
     [TestMethod]
     public void SpanFluentAPI_BodySpan_WithColor() {
         // Test Body.Span() method
-        var document = new Document();
+        using var document = new Document();
 
         document.Body.Span("Hello World").WithColor(RGBColor.Red).WithFontSize("20px");
 
@@ -71,7 +71,7 @@ public class TestSpanFluentAPI {
     [TestMethod]
     public void SpanFluentAPI_DirectSpan_WithColor() {
         // Test direct span creation
-        var document = new Document();
+        using var document = new Document();
 
         var span = new Span { Content = "Direct span" };
         span.WithColor(RGBColor.Blue);
@@ -103,7 +103,7 @@ public class TestSpanFluentAPI {
     [TestMethod]
     public void Element_Text_SimpleAPI() {
         // Test the new simplified Text API
-        var document = new Document();
+        using var document = new Document();
 
         // Test simple text with color
         document.Body.Text("Red Text", RGBColor.Red);
@@ -125,7 +125,7 @@ public class TestSpanFluentAPI {
     [TestMethod]
     public void SpanFluentAPI_AddStyledText() {
         // Test the new AddStyledText method
-        var document = new Document();
+        using var document = new Document();
 
         var span = new Span()
             .AddStyledText("Bold Red", RGBColor.Red, "16px", FontWeight.Bold)

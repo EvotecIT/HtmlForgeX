@@ -29,7 +29,7 @@ public class TestAddLibraryErrors {
         File.WriteAllText(cssPath, "body {}", System.Text.Encoding.UTF8);
         using (File.Open(cssPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) {
             var lib = new Library { Header = new LibraryLinks { Css = [cssPath] } };
-            var doc = new Document { LibraryMode = LibraryMode.Offline };
+            using var doc = new Document { LibraryMode = LibraryMode.Offline };
             doc.AddLibrary(lib);
         }
 
@@ -51,7 +51,7 @@ public class TestAddLibraryErrors {
         File.WriteAllText(jsPath, "console.log('hi');", System.Text.Encoding.UTF8);
         using (File.Open(jsPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) {
             var lib = new Library { Header = new LibraryLinks { Js = [jsPath] } };
-            var doc = new Document { LibraryMode = LibraryMode.Offline };
+            using var doc = new Document { LibraryMode = LibraryMode.Offline };
             doc.AddLibrary(lib);
         }
 

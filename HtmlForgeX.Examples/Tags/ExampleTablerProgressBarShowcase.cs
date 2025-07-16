@@ -2,7 +2,7 @@ namespace HtmlForgeX.Examples.Tags;
 
 internal static class ExampleTablerProgressBarShowcase {
     public static void Create(bool openInBrowser = false) {
-        var document = new Document { Head = { Title = "Progress Bar Showcase" } };
+        using var document = new Document { Head = { Title = "Progress Bar Showcase" } };
         document.Body.Page(page => {
             page.Row(row => {
                 row.Column(column => {

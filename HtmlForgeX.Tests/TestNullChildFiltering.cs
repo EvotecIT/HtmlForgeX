@@ -6,7 +6,7 @@ namespace HtmlForgeX.Tests;
 public class TestNullChildFiltering {
     [TestMethod]
     public void DocumentToString_IgnoresNullChildren() {
-        var document = new Document();
+        using var document = new Document();
         document.Body.Children.Add(null);
         document.Body.Children.Add(new Span().AddContent("Test"));
 

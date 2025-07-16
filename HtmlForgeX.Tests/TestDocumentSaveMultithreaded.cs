@@ -13,7 +13,7 @@ namespace HtmlForgeX.Tests;
 public class TestDocumentSaveMultithreaded {
     [TestMethod]
     public void Save_MultipleThreads_OneFileProduced() {
-        var doc = new Document();
+        using var doc = new Document();
         var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
 
         var tasks = Enumerable.Range(0, 5).Select(_ => Task.Run(() => doc.Save(path)));
@@ -29,7 +29,7 @@ public class TestDocumentSaveMultithreaded {
 
     [TestMethod]
     public async Task SaveAsync_MultipleThreads_OneFileProduced() {
-        var doc = new Document();
+        using var doc = new Document();
         var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
 
         var tasks = Enumerable.Range(0, 5).Select(_ => Task.Run(() => doc.SaveAsync(path)));

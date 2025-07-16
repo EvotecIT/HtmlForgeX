@@ -9,7 +9,7 @@ internal class AdvancedDataTablesDemo
     {
         HelpersSpectre.PrintTitle("🚀 Advanced DataTables Features Demo");
 
-        var document = new Document
+        using var document = new Document
         {
             Head = {
                 Title = "Advanced DataTables Features Demo",
