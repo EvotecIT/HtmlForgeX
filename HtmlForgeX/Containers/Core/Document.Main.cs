@@ -86,9 +86,9 @@ public partial class Document : Element {
 
 
     /// <summary>
-    /// Converts the Document to its HTML string representation.
+    /// Returns the complete HTML representation of this document.
     /// </summary>
-    /// <returns>Complete HTML document as string.</returns>
+    /// <returns>Complete HTML document as a string.</returns>
     public override string ToString() {
         // Pre-register libraries from all elements before rendering the head
         RegisterAllLibraries();
