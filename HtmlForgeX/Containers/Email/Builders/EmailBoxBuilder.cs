@@ -1,12 +1,12 @@
 namespace HtmlForgeX;
 
 /// <summary>
-/// Fluent builder for configuring <see cref="EmailBox"/> instances.
-/// The builder mirrors the fluent setters on <see cref="EmailBox"/>, but allows
-/// configuration to happen separately from the object itself. This can be
-/// useful when constructing boxes via lambdas using <c>Element.EmailBox</c> or
-/// when you want to pass configuration around without exposing the underlying
-/// element instance.
+    /// Fluent builder for configuring <see cref="EmailBox"/> instances.
+    /// Use the builder when you want to configure a box separately from where it
+    /// is created, e.g. inside lambdas passed to <c>Element.EmailBox</c>, or when
+    /// you need to reuse a configuration in multiple places. For immediate
+    /// inline configuration you can call the <see cref="EmailBox"/> methods
+    /// directly.
 /// </summary>
 public class EmailBoxBuilder
 {
@@ -17,7 +17,7 @@ public class EmailBoxBuilder
     /// </summary>
     public EmailBoxBuilder WithPadding(string padding)
     {
-        _box.SetPadding(padding);
+        _box.WithPadding(padding);
         return this;
     }
 
@@ -26,7 +26,7 @@ public class EmailBoxBuilder
     /// </summary>
     public EmailBoxBuilder WithBackground(string color)
     {
-        _box.SetBackgroundColor(color);
+        _box.WithBackground(color);
         return this;
     }
 
@@ -35,7 +35,7 @@ public class EmailBoxBuilder
     /// </summary>
     public EmailBoxBuilder WithBackground(RGBColor color)
     {
-        _box.SetBackgroundColor(color);
+        _box.WithBackground(color);
         return this;
     }
 
@@ -44,7 +44,7 @@ public class EmailBoxBuilder
     /// </summary>
     public EmailBoxBuilder WithBorderRadius(string radius)
     {
-        _box.SetBorderRadius(radius);
+        _box.WithBorderRadius(radius);
         return this;
     }
 
@@ -53,7 +53,7 @@ public class EmailBoxBuilder
     /// </summary>
     public EmailBoxBuilder WithBorderColor(string color)
     {
-        _box.SetBorderColor(color);
+        _box.WithBorderColor(color);
         return this;
     }
 

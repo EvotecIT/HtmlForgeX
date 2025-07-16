@@ -158,6 +158,13 @@ public class EmailBox : Element {
     }
 
     /// <summary>
+    /// Sets the background color of the box using fluent <c>With</c> style.
+    /// </summary>
+    /// <param name="color">The background color.</param>
+    /// <returns>The <see cref="EmailBox"/> instance.</returns>
+    public EmailBox WithBackground(string color) => SetBackgroundColor(color);
+
+    /// <summary>
     /// Sets the background color of the box.
     /// </summary>
     /// <param name="color">The background color.</param>
@@ -166,6 +173,13 @@ public class EmailBox : Element {
         BackgroundColor = color.ToString();
         return this;
     }
+
+    /// <summary>
+    /// Sets the background color of the box using fluent <c>With</c> style.
+    /// </summary>
+    /// <param name="color">The background color.</param>
+    /// <returns>The <see cref="EmailBox"/> instance.</returns>
+    public EmailBox WithBackground(RGBColor color) => SetBackgroundColor(color);
 
     /// <summary>
     /// Sets the padding of the box.
@@ -178,6 +192,13 @@ public class EmailBox : Element {
     }
 
     /// <summary>
+    /// Sets the padding of the box using fluent <c>With</c> style.
+    /// </summary>
+    /// <param name="padding">The padding value.</param>
+    /// <returns>The <see cref="EmailBox"/> instance.</returns>
+    public EmailBox WithPadding(string padding) => SetPadding(padding);
+
+    /// <summary>
     /// Sets the border radius of the box.
     /// </summary>
     /// <param name="radius">The border radius value.</param>
@@ -188,6 +209,13 @@ public class EmailBox : Element {
     }
 
     /// <summary>
+    /// Sets the border radius of the box using fluent <c>With</c> style.
+    /// </summary>
+    /// <param name="radius">The border radius value.</param>
+    /// <returns>The <see cref="EmailBox"/> instance.</returns>
+    public EmailBox WithBorderRadius(string radius) => SetBorderRadius(radius);
+
+    /// <summary>
     /// Sets the border color of the box.
     /// </summary>
     /// <param name="color">The border color.</param>
@@ -196,6 +224,13 @@ public class EmailBox : Element {
         BorderColor = color;
         return this;
     }
+
+    /// <summary>
+    /// Sets the border color of the box using fluent <c>With</c> style.
+    /// </summary>
+    /// <param name="color">The border color.</param>
+    /// <returns>The <see cref="EmailBox"/> instance.</returns>
+    public EmailBox WithBorderColor(string color) => SetBorderColor(color);
 
     /// <summary>
     /// Disables the box shadow.
@@ -218,6 +253,13 @@ public class EmailBox : Element {
     }
 
     /// <summary>
+    /// Sets the consistent spacing between child elements using fluent <c>With</c> style.
+    /// </summary>
+    /// <param name="spacing">The spacing value.</param>
+    /// <returns>The <see cref="EmailBox"/> instance.</returns>
+    public EmailBox WithChildSpacing(string spacing) => SetChildSpacing(spacing);
+
+    /// <summary>
     /// Disables consistent spacing between child elements.
     /// </summary>
     /// <returns>The EmailBox object, allowing for method chaining.</returns>
@@ -238,6 +280,13 @@ public class EmailBox : Element {
     }
 
     /// <summary>
+    /// Sets the outer margin around the box using fluent <c>With</c> style.
+    /// </summary>
+    /// <param name="margin">The margin value (e.g., "0 auto 24px auto").</param>
+    /// <returns>The <see cref="EmailBox"/> instance.</returns>
+    public EmailBox WithOuterMargin(string margin) => SetOuterMargin(margin);
+
+    /// <summary>
     /// Sets the maximum width of the box.
     /// </summary>
     /// <param name="maxWidth">The maximum width value.</param>
@@ -246,6 +295,13 @@ public class EmailBox : Element {
         MaxWidth = maxWidth;
         return this;
     }
+
+    /// <summary>
+    /// Sets the maximum width of the box using fluent <c>With</c> style.
+    /// </summary>
+    /// <param name="maxWidth">The maximum width value.</param>
+    /// <returns>The <see cref="EmailBox"/> instance.</returns>
+    public EmailBox WithMaxWidth(string maxWidth) => SetMaxWidth(maxWidth);
 
     /// <summary>
     /// Centers the box with specific horizontal margins.

@@ -9,8 +9,8 @@ public class TestEmailBoxBuilder
     public void BuilderProducesSameOutputAsDirectConstruction()
     {
         var direct = new EmailBox();
-        direct.SetPadding("20px");
-        direct.SetBackgroundColor("#ffffff");
+        direct.WithPadding("20px");
+        direct.WithBackground("#ffffff");
         direct.Add(new BasicElement("Inner"));
 
         var built = new EmailBoxBuilder()
