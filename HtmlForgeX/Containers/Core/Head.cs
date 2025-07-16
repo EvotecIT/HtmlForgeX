@@ -410,7 +410,9 @@ public class Head : Element {
     }
 
     private static string FormatFonts(IEnumerable<string> fonts) {
-        return string.Join(", ", fonts.Select(QuoteFontIfNeeded));
+        return string.Join(", ",
+            fonts.Where(font => !string.IsNullOrWhiteSpace(font))
+                 .Select(QuoteFontIfNeeded));
     }
 
     private static string QuoteFontIfNeeded(string font) {
