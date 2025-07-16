@@ -86,6 +86,7 @@ public class TablerCardHeader : Element {
     public override string ToString() {
         // CRITICAL FIX: Ensure all children have proper Document references before rendering
         EnsureChildrenHaveDocumentReference();
+        Actions ??= new List<TablerCardAction>();
 
         // ADDITIONAL FIX: Force library registration for any children that may have missed it
         foreach (var child in Children.WhereNotNull()) {
@@ -236,6 +237,7 @@ public class TablerCardHeader : Element {
     protected internal override void OnAddedToDocument() {
         // Propagate Document reference to all child elements and internal elements
         EnsureChildrenHaveDocumentReference();
+        Actions ??= new List<TablerCardAction>();
 
         // Also propagate to internal element collections
         if (Navigation != null && Navigation.Document == null && this.Document != null) {
