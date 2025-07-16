@@ -1,4 +1,5 @@
 using System.Linq;
+using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
 
@@ -42,6 +43,12 @@ public partial class TablerCardEnhanced {
     #endregion
 
     private HtmlTag BuildCardFooter() {
+        // Ensure all actions have the current Document and Email references
+        foreach (var action in FooterActions.WhereNotNull()) {
+            action.Document = Document;
+            action.Email = Email;
+        }
+
         var footerDiv = new HtmlTag("div");
         var footerClasses = new List<string> { "card-footer" };
 
