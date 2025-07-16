@@ -175,6 +175,7 @@ internal class Program {
         DataTablesExtensionsDemo.Create(openInBrowser);
         DataTablesFeatureTest.RunAllTests(openInBrowser);
         DataTablesRenderingDemo.Create(openInBrowser);
+        DataTablesInteractiveFilteringDemo.Create(openInBrowser);
 
         // Demonstrates rendering HTML in a headless browser
         ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
