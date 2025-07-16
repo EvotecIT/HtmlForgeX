@@ -650,9 +650,11 @@ public class ApexCharts : Element {
         var optionsJson = JsonSerializer.Serialize(options, new JsonSerializerOptions { WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
 
         var scriptTag = new HtmlTag("script").Value($@"
-        var options = {optionsJson};
-        var chart = new ApexCharts(document.querySelector('#{Id}'), options);
-        chart.render();
+        document.addEventListener('DOMContentLoaded', function() {{
+            var options = {optionsJson};
+            var chart = new ApexCharts(document.querySelector('#{Id}'), options);
+            chart.render();
+        }});
     ");
 
         return divTag + scriptTag.ToString();

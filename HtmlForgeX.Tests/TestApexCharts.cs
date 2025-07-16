@@ -61,4 +61,12 @@ public class TestApexCharts {
         var html = chart.ToString();
         Assert.IsTrue(html.Contains("\"heatmap\""));
     }
+
+    [TestMethod]
+    public void ApexCharts_WrapsScriptInDomContentLoaded() {
+        var chart = new ApexCharts();
+        chart.AddPie("A", 5);
+        var html = chart.ToString();
+        Assert.IsTrue(html.Contains("DOMContentLoaded"));
+    }
 }
