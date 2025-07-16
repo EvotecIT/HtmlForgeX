@@ -48,6 +48,19 @@ public class TablerForm : Element {
     }
 
     /// <summary>
+    /// Adds a textarea element to the form.
+    /// </summary>
+    /// <param name="name">Name and identifier of the textarea.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerTextarea"/>.</returns>
+    public TablerTextarea Textarea(string name, Action<TablerTextarea>? config = null) {
+        var textarea = new TablerTextarea(name);
+        config?.Invoke(textarea);
+        this.Add(textarea);
+        return textarea;
+    }
+
+    /// <summary>
     /// Generates the HTML markup for the form and its child elements.
     /// </summary>
     public override string ToString() {

@@ -181,5 +181,12 @@ internal class Program {
 
         // Show basic usage of ImageUtilities
         ExampleImageUtilities.Demonstrate();
+
+        // SmartTab & SmartWizard examples
+        SmartWizardBasicDemo.Demo01(true);
+        SmartTabBasicDemo.Demo01(true);
+        SmartTabWizardCompleteDemo.Demo01(true);
+        SmartTabWizardSimpleDemo.Demo01(true);
+        SmartTabWizardInteroperabilityDemo.Demo01(true);
     }
 }
