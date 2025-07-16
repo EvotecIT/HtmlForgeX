@@ -370,6 +370,7 @@ public class Head : Element {
     /// </summary>
     /// <param name="css">CSS rules to embed.</param>
     public void AddCssInline(string css) {
+        css = css.Trim();
         if (_cssInlineSet.Add(css)) {
             Styles.Add($"<style>{css}</style>");
         }
@@ -380,12 +381,14 @@ public class Head : Element {
     /// </summary>
     /// <param name="js">JavaScript code to embed.</param>
     public void AddJsInline(string js) {
+        js = js.Trim();
         if (_jsInlineSet.Add(js)) {
             Scripts.Add($"<script>{js}</script>");
         }
     }
 
     private void AddRawScript(string script) {
+        script = script.Trim();
         if (_jsInlineSet.Add(script)) {
             Scripts.Add(script);
         }
