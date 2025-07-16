@@ -29,4 +29,17 @@ public class TestTablerCardFooter {
 
         Assert.AreEqual(1, dummy.AddedCount, "OnAddedToDocument should be called once");
     }
+
+    [TestMethod]
+    public void EmptyFooter_SuppressesRendering_ChildProducesFooterHtml() {
+        var footer = new TablerCardFooter();
+
+        var html = footer.ToString();
+        Assert.AreEqual(string.Empty, html, "Empty footer should not render");
+
+        footer.Add(new Span { Content = "child" });
+        var htmlWithChild = footer.ToString();
+
+        Assert.AreEqual("<div class=\"card-footer\"><span>child</span></div>", htmlWithChild);
+    }
 }
