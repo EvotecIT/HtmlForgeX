@@ -94,13 +94,14 @@ public static class ExampleFlexibleHeaderFooter
                     .WithFontSize(EmailFontSize.Regular);
             });
 
-            // Example of visual mode EmailBox
-            var visualBox = new EmailBox()
-                .EnableVisualMode()
-                .SetPadding("20px")
-                .SetBackgroundColor("#f8f9fa")
-                .SetBorderColor("#e9ecef")
-                .SetBorderRadius("8px");
+            // Example of visual mode EmailBox built with the builder
+            var visualBox = new EmailBoxBuilder()
+                .WithPadding("20px")
+                .WithBackground("#f8f9fa")
+                .WithBorderColor("#e9ecef")
+                .WithBorderRadius("8px")
+                .Build()
+                .EnableVisualMode();
 
             visualBox.EmailText("📦 This is a Visual Mode EmailBox")
                 .WithFontSize(EmailFontSize.Medium)
@@ -113,10 +114,11 @@ public static class ExampleFlexibleHeaderFooter
 
             emailBox.Add(visualBox);
 
-            // Example of structural mode EmailBox
-            var structuralBox = new EmailBox()
-                .EnableStructuralMode()
-                .SetPadding("20px");
+            // Example of structural mode EmailBox built with the builder
+            var structuralBox = new EmailBoxBuilder()
+                .WithPadding("20px")
+                .Build()
+                .EnableStructuralMode();
 
             structuralBox.EmailText("🏗️ This is a Structural Mode EmailBox")
                 .WithFontSize(EmailFontSize.Medium)

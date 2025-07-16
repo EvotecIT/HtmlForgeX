@@ -31,8 +31,10 @@ public static class ExamplePasswordResetEmail
             });
         });
 
-        // Main content
-        var content = new EmailBox();
+        // Main content using the EmailBoxBuilder
+        var content = new EmailBoxBuilder()
+            .WithPadding("24px")
+            .Build();
 
         // Security-focused heading
         var heading = new Span()
@@ -59,8 +61,11 @@ public static class ExamplePasswordResetEmail
         var resetButton = new EmailButton("Reset My Password", "https://htmlforgex.com/reset-password?token=abc123");
         content.Add(new BasicElement().Add(resetButton));
 
-        // Security information box using Span styling
-        var securityBox = new EmailBox();
+        // Security information box using the builder
+        var securityBox = new EmailBoxBuilder()
+            .WithPadding("16px")
+            .WithBackground("#fff7ed")
+            .Build();
 
         // Warning heading
         var warningHeading = new Span()
@@ -140,7 +145,10 @@ public static class ExamplePasswordResetEmail
         content.Add(new BasicElement().Add(alternativeRow));
 
         // Footer with security notice
-        var footer = new EmailBox();
+        var footer = new EmailBoxBuilder()
+            .WithPadding("24px")
+            .WithBackground("#f8f9fa")
+            .Build();
 
         var securityNotice = new Span()
             .AppendContent("🛡️ For your security, this email was sent from a secure server.")
