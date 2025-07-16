@@ -36,8 +36,13 @@ public class TestHeadlessRendering {
         if (!File.Exists(baselinePath) || updateBaselines) {
             File.Copy(screenshotPath, baselinePath, true);
         } else {
+#if NET472
+            byte[] baselineBytes = File.ReadAllBytes(baselinePath);
+            byte[] screenshotBytes = File.ReadAllBytes(screenshotPath);
+#else
             byte[] baselineBytes = await File.ReadAllBytesAsync(baselinePath);
             byte[] screenshotBytes = await File.ReadAllBytesAsync(screenshotPath);
+#endif
             CollectionAssert.AreEqual(baselineBytes, screenshotBytes, "Rendered layout does not match baseline screenshot.");
         }
     }

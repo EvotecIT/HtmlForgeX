@@ -9,7 +9,7 @@ public static class TestPlaywrightSetup {
     [AssemblyInitialize]
     public static void AssemblyInit(TestContext context) {
         try {
-            Program.Main(new[] { "install" });
+            Microsoft.Playwright.Program.Main(new[] { "install" });
         } catch (Exception ex) {
             Assert.Inconclusive($"Playwright browser install failed: {ex.Message}");
         }
