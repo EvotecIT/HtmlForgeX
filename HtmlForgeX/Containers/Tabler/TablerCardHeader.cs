@@ -196,14 +196,36 @@ public class TablerCardHeader : Element {
     /// Ensures all children have proper Document and Email references for library registration
     /// </summary>
     private void EnsureChildrenHaveDocumentReference() {
-        if (this.Document == null) return;
+        if (Document == null) {
+            return;
+        }
 
         foreach (var child in Children.WhereNotNull()) {
             if (child.Document == null) {
-                child.Document = this.Document;
-                child.Email = this.Email;
+                child.Document = Document;
+                child.Email = Email;
                 // Call OnAddedToDocument to trigger library registration
                 child.OnAddedToDocument();
+            }
+        }
+
+        if (Navigation != null && Navigation.Document == null) {
+            Navigation.Document = Document;
+            Navigation.Email = Email;
+            Navigation.OnAddedToDocument();
+        }
+
+        if (HeaderAvatar != null && HeaderAvatar.Document == null) {
+            HeaderAvatar.Document = Document;
+            HeaderAvatar.Email = Email;
+            HeaderAvatar.OnAddedToDocument();
+        }
+
+        foreach (var action in Actions) {
+            if (action.Document == null) {
+                action.Document = Document;
+                action.Email = Email;
+                action.OnAddedToDocument();
             }
         }
     }
