@@ -283,18 +283,13 @@ public class VisNetworkNode {
             string mimeType;
 
             if (Uri.TryCreate(source, UriKind.Absolute, out var uri) && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)) {
-                using var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(timeoutSeconds) };
-                var response = httpClient.GetAsync(source).Result;
-                if (!response.IsSuccessStatusCode) {
+                var download = ImageUtilities.DownloadImage(source, timeoutSeconds);
+                if (download is null) {
                     return source;
                 }
-
-                bytes = response.Content.ReadAsByteArrayAsync().Result;
-                mimeType = response.Content.Headers.ContentType?.MediaType ?? GetMimeTypeFromUrl(source);
+                (bytes, mimeType) = download.Value;
             } else if (File.Exists(source)) {
-                bytes = File.ReadAllBytes(source);
-                var extension = Path.GetExtension(source).ToLowerInvariant();
-                mimeType = GetMimeTypeFromExtension(extension);
+                (bytes, mimeType) = ImageUtilities.LoadImageFromFile(source);
             } else {
                 return source;
             }
@@ -306,25 +301,9 @@ public class VisNetworkNode {
         }
     }
 
-    private static string GetMimeTypeFromExtension(string extension) => extension switch {
-        ".jpg" or ".jpeg" => "image/jpeg",
-        ".png" => "image/png",
-        ".gif" => "image/gif",
-        ".svg" => "image/svg+xml",
-        ".webp" => "image/webp",
-        ".bmp" => "image/bmp",
-        ".tiff" or ".tif" => "image/tiff",
-        ".ico" => "image/x-icon",
-        _ => "image/png"
-    };
+    private static string GetMimeTypeFromExtension(string extension) =>
+        ImageUtilities.GetMimeTypeFromExtension(extension);
 
-    private static string GetMimeTypeFromUrl(string url) {
-        try {
-            var uri = new Uri(url);
-            var extension = Path.GetExtension(uri.LocalPath);
-            return GetMimeTypeFromExtension(extension);
-        } catch {
-            return "image/png";
-        }
-    }
+    private static string GetMimeTypeFromUrl(string url) =>
+        ImageUtilities.GetMimeTypeFromUrl(url);
 }

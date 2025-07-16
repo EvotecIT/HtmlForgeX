@@ -178,5 +178,8 @@ internal class Program {
 
         // Demonstrates rendering HTML in a headless browser
         ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
+
+        // Show basic usage of ImageUtilities
+        ExampleImageUtilities.Demonstrate();
     }
 }

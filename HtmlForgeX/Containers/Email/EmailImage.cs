@@ -432,18 +432,9 @@ public class EmailImage : Element {
                     return this;
                 }
 
-                byte[] bytes;
-                using var fileStream = System.IO.File.OpenRead(filePath);
-                using var memoryStream = new System.IO.MemoryStream();
-                fileStream.CopyTo(memoryStream);
-                bytes = memoryStream.ToArray();
-                var extension = System.IO.Path.GetExtension(filePath).ToLower();
-
-                MimeType = GetMimeTypeFromExtension(extension);
-
-                if (OptimizeImage) {
-                    bytes = OptimizeImageBytes(bytes, extension);
-                }
+                var result = ImageUtilities.LoadImageFromFile(filePath, OptimizeImage, MaxWidth, MaxHeight, Quality);
+                var bytes = result.Bytes;
+                MimeType = result.MimeType;
 
                 Base64Data = Convert.ToBase64String(bytes);
                 EmbedAsBase64 = true;
@@ -471,12 +462,9 @@ public class EmailImage : Element {
     /// <returns>The EmailImage object, allowing for method chaining.</returns>
     public EmailImage EmbedFromUrl(string url, int timeoutSeconds = 30) {
         try {
-            using var httpClient = new System.Net.Http.HttpClient();
-            httpClient.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
-
-            using var response = httpClient.GetAsync(url).Result;
-            if (response.IsSuccessStatusCode) {
-                var bytes = response.Content.ReadAsByteArrayAsync().Result;
+            var download = ImageUtilities.DownloadImage(url, timeoutSeconds);
+            if (download is not null) {
+                var (bytes, mimeType) = download.Value;
 
                 // Check file size against configuration limit
                 var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
@@ -489,21 +477,18 @@ public class EmailImage : Element {
                     return this;
                 }
 
-                var contentType = response.Content.Headers.ContentType?.MediaType ?? "";
-
-                // Try to determine MIME type from content type or URL extension
-                MimeType = !string.IsNullOrEmpty(contentType) ? contentType : GetMimeTypeFromUrl(url);
+                MimeType = mimeType;
 
                 if (OptimizeImage) {
-                    var extension = GetExtensionFromMimeType(MimeType);
-                    bytes = OptimizeImageBytes(bytes, extension);
+                    var extension = ImageUtilities.GetExtensionFromMimeType(MimeType);
+                    bytes = ImageUtilities.OptimizeImageBytes(bytes, extension, MaxWidth, MaxHeight, Quality);
                 }
 
                 Base64Data = Convert.ToBase64String(bytes);
                 EmbedAsBase64 = true;
                 Source = $"data:{MimeType};base64,{Base64Data}";
             } else {
-                throw new Exception($"HTTP {response.StatusCode}: {response.ReasonPhrase}");
+                throw new Exception("Download failed");
             }
         } catch (Exception ex) {
             // Fallback to URL if embedding fails
@@ -579,36 +564,19 @@ public class EmailImage : Element {
             if (useSmartDetection) {
                 // Use smart detection similar to main image
                 if (Uri.TryCreate(source, UriKind.Absolute, out Uri? uri) && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)) {
-                    // Download from URL
-                    using var httpClient = new System.Net.Http.HttpClient();
-                    httpClient.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
-                    using var response = httpClient.GetAsync(source).Result;
-
-                    if (response.IsSuccessStatusCode) {
-                        bytes = response.Content.ReadAsByteArrayAsync().Result;
-                        mimeType = response.Content.Headers.ContentType?.MediaType ?? GetMimeTypeFromUrl(source);
-                    } else {
-                        throw new Exception($"HTTP {response.StatusCode}: {response.ReasonPhrase}");
+                    var download = ImageUtilities.DownloadImage(source, timeoutSeconds);
+                    if (download is null) {
+                        throw new Exception("Download failed");
                     }
+                    (bytes, mimeType) = download.Value;
                 } else if (System.IO.File.Exists(source)) {
-                    // Load from file
-                    using var fileStream = System.IO.File.OpenRead(source);
-                    using var memoryStream = new System.IO.MemoryStream();
-                    fileStream.CopyTo(memoryStream);
-                    bytes = memoryStream.ToArray();
-                    var extension = System.IO.Path.GetExtension(source).ToLower();
-                    mimeType = GetMimeTypeFromExtension(extension);
+                    (bytes, mimeType) = ImageUtilities.LoadImageFromFile(source, OptimizeImage, MaxWidth, MaxHeight, Quality);
                 } else {
                     throw new Exception("Source is neither a valid URL nor an existing file");
                 }
             } else {
                 // Assume file path
-                using var fileStream = System.IO.File.OpenRead(source);
-                using var memoryStream = new System.IO.MemoryStream();
-                fileStream.CopyTo(memoryStream);
-                bytes = memoryStream.ToArray();
-                var extension = System.IO.Path.GetExtension(source).ToLower();
-                mimeType = GetMimeTypeFromExtension(extension);
+                (bytes, mimeType) = ImageUtilities.LoadImageFromFile(source, OptimizeImage, MaxWidth, MaxHeight, Quality);
             }
 
             // Check file size against configuration limit
@@ -619,12 +587,6 @@ public class EmailImage : Element {
                     Email.IncrementEmbeddingWarning();
                 }
                 return this;
-            }
-
-            // Apply optimization if enabled
-            if (OptimizeImage) {
-                var extension = GetExtensionFromMimeType(mimeType);
-                bytes = OptimizeImageBytes(bytes, extension);
             }
 
             // Set dark mode image data
@@ -746,53 +708,24 @@ public class EmailImage : Element {
     /// </summary>
     /// <param name="extension">The file extension.</param>
     /// <returns>The MIME type.</returns>
-    private static string GetMimeTypeFromExtension(string extension) {
-        return extension.ToLower() switch {
-            ".jpg" or ".jpeg" => "image/jpeg",
-            ".png" => "image/png",
-            ".gif" => "image/gif",
-            ".svg" => "image/svg+xml",
-            ".webp" => "image/webp",
-            ".bmp" => "image/bmp",
-            ".tiff" or ".tif" => "image/tiff",
-            ".ico" => "image/x-icon",
-            _ => "image/png"
-        };
-    }
+    private static string GetMimeTypeFromExtension(string extension) =>
+        ImageUtilities.GetMimeTypeFromExtension(extension);
 
     /// <summary>
     /// Gets the MIME type from URL extension.
     /// </summary>
     /// <param name="url">The URL.</param>
     /// <returns>The MIME type.</returns>
-    private static string GetMimeTypeFromUrl(string url) {
-        try {
-            var uri = new Uri(url);
-            var extension = System.IO.Path.GetExtension(uri.LocalPath);
-            return GetMimeTypeFromExtension(extension);
-        } catch {
-            return "image/png";
-        }
-    }
+    private static string GetMimeTypeFromUrl(string url) =>
+        ImageUtilities.GetMimeTypeFromUrl(url);
 
     /// <summary>
     /// Gets the file extension from MIME type.
     /// </summary>
     /// <param name="mimeType">The MIME type.</param>
     /// <returns>The file extension.</returns>
-    private static string GetExtensionFromMimeType(string mimeType) {
-        return mimeType.ToLower() switch {
-            "image/jpeg" or "image/jpg" => ".jpg",
-            "image/png" => ".png",
-            "image/gif" => ".gif",
-            "image/svg+xml" => ".svg",
-            "image/webp" => ".webp",
-            "image/bmp" => ".bmp",
-            "image/tiff" => ".tiff",
-            "image/x-icon" => ".ico",
-            _ => ".png"
-        };
-    }
+    private static string GetExtensionFromMimeType(string mimeType) =>
+        ImageUtilities.GetExtensionFromMimeType(mimeType);
 
     /// <summary>
     /// Optimizes image bytes if optimization is enabled.
@@ -802,18 +735,8 @@ public class EmailImage : Element {
     /// <param name="bytes">The original image bytes.</param>
     /// <param name="extension">The file extension.</param>
     /// <returns>The optimized image bytes.</returns>
-    private byte[] OptimizeImageBytes(byte[] bytes, string extension) {
-        // For now, return original bytes
-        // TODO: Implement actual image optimization using ImageSharp or similar library
-        // This would include:
-        // - Resizing if MaxWidth/MaxHeight is set
-        // - Compressing JPEG images based on Quality setting
-        // - Converting to more efficient formats if needed
-
-        // Always log optimization note when optimization is enabled
-        // Note: Image optimization is enabled but not yet implemented. Using original image.
-        return bytes;
-    }
+    private byte[] OptimizeImageBytes(byte[] bytes, string extension) =>
+        ImageUtilities.OptimizeImageBytes(bytes, extension, MaxWidth, MaxHeight, Quality);
 
     /// <summary>
     /// Sets the margin using predefined spacing values.
