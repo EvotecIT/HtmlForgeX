@@ -28,7 +28,15 @@ internal static class ExampleTablerForm {
                             form.Wysiwyg("notes", editor => {
                                 editor.Label("Notes")
                                       .Placeholder("Write something...")
-                                      .Toolbar(new() { QuillFormat.Bold, QuillFormat.Italic });
+                                      .Toolbar(new() { QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Link });
+                            });
+
+                            form.Wysiwyg("comments", editor => {
+                                editor.Label("Additional Comments")
+                                      .Placeholder("Share your thoughts")
+                                      .Theme(QuillTheme.Bubble)
+                                      .Height("150px")
+                                      .Toolbar(new() { QuillFormat.Bold, QuillFormat.Underline, QuillFormat.List });
                             });
                         });
                     });

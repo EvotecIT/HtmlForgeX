@@ -11,11 +11,11 @@ public class QuillLibrary : Library {
     public QuillLibrary() {
         Header = new LibraryLinks {
             CssLink = [
-                "https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css"
+                "https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css"
             ],
             Css = ["quill.snow.css"],
             JsLink = [
-                "https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"
+                "https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.min.js"
             ],
             Js = ["quill.min.js"]
         };

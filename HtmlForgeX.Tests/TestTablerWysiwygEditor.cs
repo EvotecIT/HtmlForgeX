@@ -28,4 +28,15 @@ public class TestTablerWysiwygEditor {
         var html = editor.ToString();
         Assert.IsTrue(html.Contains("toolbar"));
     }
+
+    [TestMethod]
+    public void WysiwygEditor_MultipleInstances() {
+        var form = new TablerForm();
+        form.Wysiwyg("first");
+        form.Wysiwyg("second");
+        var html = form.ToString();
+        Assert.IsTrue(html.Contains("first"));
+        Assert.IsTrue(html.Contains("second"));
+        Assert.IsTrue(html.Contains("new Quill"));
+    }
 }
