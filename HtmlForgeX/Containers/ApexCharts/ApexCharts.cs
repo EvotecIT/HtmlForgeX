@@ -536,8 +536,8 @@ public class ApexCharts : Element {
         var divTag = new HtmlTag("div").Attribute("id", Id);
 
         var chartType = Type;
-        // Funnel chart is actually a bar chart with special options
-        if (Type == ApexChartType.Funnel) {
+        // Funnel and column charts are rendered as bar charts
+        if (Type is ApexChartType.Funnel or ApexChartType.Column) {
             chartType = ApexChartType.Bar;
         }
         
@@ -650,9 +650,11 @@ public class ApexCharts : Element {
         var optionsJson = JsonSerializer.Serialize(options, new JsonSerializerOptions { WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
 
         var scriptTag = new HtmlTag("script").Value($@"
-        var options = {optionsJson};
-        var chart = new ApexCharts(document.querySelector('#{Id}'), options);
-        chart.render();
+        document.addEventListener('DOMContentLoaded', function() {{
+            var options = {optionsJson};
+            var chart = new ApexCharts(document.querySelector('#{Id}'), options);
+            chart.render();
+        }});
     ");
 
         return divTag + scriptTag.ToString();
