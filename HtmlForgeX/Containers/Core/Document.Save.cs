@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace HtmlForgeX;
@@ -138,6 +139,11 @@ public partial class Document
 
     private static bool IsUncRoot(string directory)
     {
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            return false;
+        }
+
         if (string.IsNullOrEmpty(directory))
         {
             return false;
