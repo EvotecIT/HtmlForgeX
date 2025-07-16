@@ -56,9 +56,20 @@ public static class ImageEmbeddingHelper {
     /// <param name="maxFileSize">Maximum file size allowed for embedding (0 = no limit)</param>
     /// <param name="logWarnings">Whether to log warnings to console</param>
     /// <returns>ImageEmbeddingResult containing the embedding data or error info</returns>
-    public static ImageEmbeddingResult EmbedFromUrl(string url, int timeoutSeconds = 30, long maxFileSize = 0, bool logWarnings = false) {
+    public static ImageEmbeddingResult EmbedFromUrl(string url, int timeoutSeconds = 30, long maxFileSize = 0, bool logWarnings = false) =>
+        EmbedFromUrlAsync(url, timeoutSeconds, maxFileSize, logWarnings).GetAwaiter().GetResult();
+
+    /// <summary>
+    /// Asynchronously embeds an image from a URL as base64
+    /// </summary>
+    /// <param name="url">URL to download and embed</param>
+    /// <param name="timeoutSeconds">Timeout for the download</param>
+    /// <param name="maxFileSize">Maximum file size allowed for embedding (0 = no limit)</param>
+    /// <param name="logWarnings">Whether to log warnings to console</param>
+    /// <returns>ImageEmbeddingResult containing the embedding data or error info</returns>
+    public static async Task<ImageEmbeddingResult> EmbedFromUrlAsync(string url, int timeoutSeconds = 30, long maxFileSize = 0, bool logWarnings = false) {
         try {
-            var download = ImageUtilities.DownloadImage(url, timeoutSeconds);
+            var download = await ImageUtilities.DownloadImageAsync(url, timeoutSeconds).ConfigureAwait(false);
             if (download is null) {
                 return ImageEmbeddingResult.CreateFailure("HTTP error while downloading " + url);
             }

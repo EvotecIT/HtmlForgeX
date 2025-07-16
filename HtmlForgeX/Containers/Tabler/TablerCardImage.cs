@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HtmlForgeX;
 
@@ -111,8 +112,11 @@ public class TablerCardImage : Element {
     /// <summary>
     /// Embed image from URL
     /// </summary>
-    public TablerCardImage EmbedFromUrl(string url, int timeoutSeconds = 30) {
-        var result = ImageEmbeddingHelper.EmbedFromUrl(url, timeoutSeconds, 0, true);
+    public TablerCardImage EmbedFromUrl(string url, int timeoutSeconds = 30) =>
+        EmbedFromUrlAsync(url, timeoutSeconds).GetAwaiter().GetResult();
+
+    public async Task<TablerCardImage> EmbedFromUrlAsync(string url, int timeoutSeconds = 30) {
+        var result = await ImageEmbeddingHelper.EmbedFromUrlAsync(url, timeoutSeconds, 0, true).ConfigureAwait(false);
         if (result.Success) {
             Base64Data = result.Base64Data;
             MimeType = result.MimeType;

@@ -155,7 +155,7 @@ public static class ExampleBase64EmbeddingEmail
                         .WithAlignment(Alignment.Center);
 
                     col.EmailText($@"emailImage
-.EmbedFromUrl(""https://example.com/image.png"")")
+.EmbedFromUrlAsync(""https://example.com/image.png"")")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
                         .WithAlignment(Alignment.Center);
@@ -174,7 +174,7 @@ public static class ExampleBase64EmbeddingEmail
                         .WithAlignment(Alignment.Center);
 
                     col.EmailText($@"emailImage
-.EmbedFromUrl(""https://example.com/image.png"", 60)")
+.EmbedFromUrlAsync(""https://example.com/image.png"", 60)")
                         .WithFontSize(EmailFontSize.Small)
                         .WithColor("#6B7280")
                         .WithAlignment(Alignment.Center);
@@ -373,7 +373,7 @@ public static class ExampleBase64EmbeddingEmail
         Console.WriteLine($@"📧 Demonstrates: All base64 embedding methods and best practices
 🔧 Features Shown:
   📁 .EmbedFromFile() - Local file embedding
-  🌐 .EmbedFromUrl() - Remote URL embedding
+  🌐 .EmbedFromUrlAsync() - Remote URL embedding
   🧠 .EmbedSmart() - Auto-detection embedding
   📋 .EmbedFromBase64() - Direct base64 embedding
   ⚡ .WithOptimization() - Image optimization

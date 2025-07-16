@@ -460,9 +460,12 @@ public class EmailImage : Element {
     /// <param name="url">The URL to download and embed.</param>
     /// <param name="timeoutSeconds">Timeout in seconds for the download (default: 30).</param>
     /// <returns>The EmailImage object, allowing for method chaining.</returns>
-    public EmailImage EmbedFromUrl(string url, int timeoutSeconds = 30) {
+    public EmailImage EmbedFromUrl(string url, int timeoutSeconds = 30) =>
+        EmbedFromUrlAsync(url, timeoutSeconds).GetAwaiter().GetResult();
+
+    public async Task<EmailImage> EmbedFromUrlAsync(string url, int timeoutSeconds = 30) {
         try {
-            var download = ImageUtilities.DownloadImage(url, timeoutSeconds);
+            var download = await ImageUtilities.DownloadImageAsync(url, timeoutSeconds).ConfigureAwait(false);
             if (download is not null) {
                 var (bytes, mimeType) = download.Value;
 
