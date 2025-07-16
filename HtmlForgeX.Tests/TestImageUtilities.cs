@@ -52,4 +52,22 @@ public class TestImageUtilities {
         CollectionAssert.AreEqual(_testImageData, result.Bytes);
         Assert.AreEqual("image/png", result.MimeType);
     }
+
+    [TestMethod]
+    public void GetMimeTypeFromExtension_JpegAlias() {
+        var mime = ImageUtilities.GetMimeTypeFromExtension("jpeg");
+        Assert.AreEqual("image/jpeg", mime);
+    }
+
+    [TestMethod]
+    public void GetExtensionFromMimeType_Jpeg() {
+        var ext = ImageUtilities.GetExtensionFromMimeType("image/jpeg");
+        Assert.AreEqual(".jpg", ext);
+    }
+
+    [TestMethod]
+    public void UnknownTypes_ReturnDefaults() {
+        Assert.AreEqual("image/png", ImageUtilities.GetMimeTypeFromExtension(".unknown"));
+        Assert.AreEqual(".png", ImageUtilities.GetExtensionFromMimeType("application/unknown"));
+    }
 }

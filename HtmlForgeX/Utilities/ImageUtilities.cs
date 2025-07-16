@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Collections.Generic;
 
 namespace HtmlForgeX;
 
@@ -8,6 +9,30 @@ namespace HtmlForgeX;
 /// Common image helper utilities for loading and basic metadata detection.
 /// </summary>
 internal static class ImageUtilities {
+    private static readonly Dictionary<string, string> ExtensionToMime = new(StringComparer.OrdinalIgnoreCase) {
+        [".jpg"] = "image/jpeg",
+        [".jpeg"] = "image/jpeg",
+        [".png"] = "image/png",
+        [".gif"] = "image/gif",
+        [".svg"] = "image/svg+xml",
+        [".webp"] = "image/webp",
+        [".bmp"] = "image/bmp",
+        [".tiff"] = "image/tiff",
+        [".tif"] = "image/tiff",
+        [".ico"] = "image/x-icon",
+    };
+
+    private static readonly Dictionary<string, string> MimeToExtension;
+
+    static ImageUtilities() {
+        MimeToExtension = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var kv in ExtensionToMime) {
+            if (!MimeToExtension.ContainsKey(kv.Value)) {
+                MimeToExtension[kv.Value] = kv.Key;
+            }
+        }
+        MimeToExtension["image/jpg"] = ".jpg";
+    }
     /// <summary>
     /// Loads image bytes from disk without locking the file.
     /// </summary>
@@ -63,17 +88,14 @@ internal static class ImageUtilities {
     /// <summary>
     /// Determines MIME type from file extension.
     /// </summary>
-    public static string GetMimeTypeFromExtension(string extension) => (extension.StartsWith(".") ? extension : "." + extension).ToLowerInvariant() switch {
-        ".jpg" or ".jpeg" => "image/jpeg",
-        ".png" => "image/png",
-        ".gif" => "image/gif",
-        ".svg" => "image/svg+xml",
-        ".webp" => "image/webp",
-        ".bmp" => "image/bmp",
-        ".tiff" or ".tif" => "image/tiff",
-        ".ico" => "image/x-icon",
-        _ => "image/png"
-    };
+    public static string GetMimeTypeFromExtension(string extension) {
+        if (string.IsNullOrEmpty(extension)) {
+            return "image/png";
+        }
+
+        var ext = extension.StartsWith(".") ? extension : "." + extension;
+        return ExtensionToMime.TryGetValue(ext, out var mime) ? mime : "image/png";
+    }
 
     /// <summary>
     /// Determines MIME type based on URL extension.
@@ -91,17 +113,13 @@ internal static class ImageUtilities {
     /// <summary>
     /// Returns common file extension for a MIME type.
     /// </summary>
-    public static string GetExtensionFromMimeType(string mimeType) => mimeType.ToLowerInvariant() switch {
-        "image/jpeg" or "image/jpg" => ".jpg",
-        "image/png" => ".png",
-        "image/gif" => ".gif",
-        "image/svg+xml" => ".svg",
-        "image/webp" => ".webp",
-        "image/bmp" => ".bmp",
-        "image/tiff" => ".tiff",
-        "image/x-icon" => ".ico",
-        _ => ".png"
-    };
+    public static string GetExtensionFromMimeType(string mimeType) {
+        if (string.IsNullOrEmpty(mimeType)) {
+            return ".png";
+        }
+
+        return MimeToExtension.TryGetValue(mimeType, out var ext) ? ext : ".png";
+    }
 
     /// <summary>
     /// Placeholder for future image optimization/resizing.
