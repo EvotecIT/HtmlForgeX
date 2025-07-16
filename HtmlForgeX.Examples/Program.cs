@@ -184,10 +184,10 @@ internal class Program {
         ExampleImageUtilities.Demonstrate();
 
         // SmartTab & SmartWizard examples
-        SmartWizardBasicDemo.Demo01(true);
-        SmartTabBasicDemo.Demo01(true);
-        SmartTabWizardCompleteDemo.Demo01(true);
-        SmartTabWizardSimpleDemo.Demo01(true);
-        SmartTabWizardInteroperabilityDemo.Demo01(true);
+        SmartWizardBasicDemo.Demo01(openInBrowser);
+        SmartTabBasicDemo.Demo01(openInBrowser);
+        SmartTabWizardCompleteDemo.Demo01(openInBrowser);
+        SmartTabWizardSimpleDemo.Demo01(openInBrowser);
+        SmartTabWizardInteroperabilityDemo.Demo01(openInBrowser);
     }
 }
