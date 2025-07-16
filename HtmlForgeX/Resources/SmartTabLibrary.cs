@@ -10,8 +10,8 @@ public class SmartTabLibrary : Library {
     /// </summary>
     public SmartTabLibrary() {
         Header = new LibraryLinks {
-            CssLink = ["https://cdn.jsdelivr.net/npm/smarttab@4.0.0/dist/css/smart_tab_all.min.css"],
-            JsLink = ["https://cdn.jsdelivr.net/npm/smarttab@4.0.0/dist/js/jquery.smartTab.min.js"]
+            CssLink = ["https://cdn.jsdelivr.net/npm/jquery-smarttab@4/dist/css/smart_tab_all.min.css"],
+            JsLink = ["https://cdn.jsdelivr.net/npm/jquery-smarttab@4/dist/js/jquery.smartTab.min.js"]
         };
         Comment = "SmartTab jQuery plugin for responsive tabbed interfaces";
         LicenseLink = "https://github.com/techlab/jquery-smarttab/blob/master/LICENSE";

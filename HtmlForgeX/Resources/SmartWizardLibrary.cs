@@ -10,8 +10,8 @@ public class SmartWizardLibrary : Library {
     /// </summary>
     public SmartWizardLibrary() {
         Header = new LibraryLinks {
-            CssLink = ["https://cdn.jsdelivr.net/npm/smartwizard@6.0.0/dist/css/smart_wizard_all.min.css"],
-            JsLink = ["https://cdn.jsdelivr.net/npm/smartwizard@6.0.0/dist/js/jquery.smartWizard.min.js"]
+            CssLink = ["https://cdn.jsdelivr.net/npm/smartwizard@6/dist/css/smart_wizard_all.min.css"],
+            JsLink = ["https://cdn.jsdelivr.net/npm/smartwizard@6/dist/js/jquery.smartWizard.min.js"]
         };
         Comment = "SmartWizard jQuery plugin for step-by-step wizards";
         LicenseLink = "https://github.com/techlab/jquery-smartwizard/blob/master/LICENSE";
