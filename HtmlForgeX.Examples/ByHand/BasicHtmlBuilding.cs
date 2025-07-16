@@ -193,5 +193,33 @@ namespace HtmlForgeX.Examples.ByHand
 
             document.Save("AnalyticsDemo.html", openInBrowser);
         }
+
+        public static void DemoAnalyticsSpecialChars(bool openInBrowser = false)
+        {
+            HelpersSpectre.PrintTitle("Analytics Special Characters Example");
+
+            var document = new Document();
+            document.Head.AddTitle("Analytics Special Characters Demo");
+            document.Head.AddAnalytics(AnalyticsProvider.GoogleAnalytics, "G-\"A&B<C>'");
+
+            document.Body.Span("Hello Analytics Special Characters!");
+
+            document.Save("AnalyticsDemoSpecialChars.html", openInBrowser);
+        }
+
+        public static void DemoSanitizedRawHtml(bool openInBrowser = false)
+        {
+            HelpersSpectre.PrintTitle("Sanitized RawHtml Example");
+
+            var document = new Document();
+            document.Head.AddTitle("Sanitized RawHtml Demo");
+
+            var div = new HtmlTag("div")
+                .ValueRaw("<script>alert('x')</script><span>Safe</span>", true);
+
+            document.Body.Add(div);
+
+            document.Save("SanitizedRawHtml.html", openInBrowser);
+        }
     }
 }

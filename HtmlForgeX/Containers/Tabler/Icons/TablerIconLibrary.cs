@@ -5020,18 +5020,6 @@ public static class TablerIconLibrary {
         return _iconContent.Keys;
     }
 
-    // Common icons as static properties
-    public static TablerIcon Home => GetIcon(TablerIconType.Home);
-    public static TablerIcon User => GetIcon(TablerIconType.User);
-    public static TablerIcon Settings => GetIcon(TablerIconType.Settings);
-    public static TablerIcon Search => GetIcon(TablerIconType.Search);
-    public static TablerIcon Heart => GetIcon(TablerIconType.Heart);
-    public static TablerIcon Star => GetIcon(TablerIconType.Star);
-    public static TablerIcon Check => GetIcon(TablerIconType.Check);
-    public static TablerIcon X => GetIcon(TablerIconType.X);
-    public static TablerIcon Plus => GetIcon(TablerIconType.Plus);
-    public static TablerIcon Minus => GetIcon(TablerIconType.Minus);
-
     /// <summary>
     /// Gets the total count of available icons in the library
     /// </summary>

@@ -31,6 +31,13 @@ public class TestQuillEditor {
     }
 
     [TestMethod]
+    public void QuillEditor_DefaultModulesIncluded() {
+        var editor = new QuillEditor();
+        var html = editor.ToString();
+        Assert.IsTrue(html.Contains("\"modules\""));
+    }
+
+    [TestMethod]
     public void QuillEditor_RegistersLibrary() {
         var doc = new Document();
         doc.Body.Add(el => {

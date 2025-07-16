@@ -51,6 +51,7 @@ internal class Program {
         BasicHtmlBuilding.Demo2(openInBrowser);
         BasicHtmlBuilding.DemoAnalytics(openInBrowser);
         GoogleFontExample.Demo(openInBrowser);
+        BasicHtmlBuilding.DemoSanitizedRawHtml(openInBrowser);
 
         // Toast examples
         ExampleTablerToast.Create(openInBrowser);
@@ -174,5 +175,8 @@ internal class Program {
         DataTablesExtensionsDemo.Create(openInBrowser);
         DataTablesFeatureTest.RunAllTests(openInBrowser);
         DataTablesRenderingDemo.Create(openInBrowser);
+
+        // Demonstrates rendering HTML in a headless browser
+        ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
     }
 }
