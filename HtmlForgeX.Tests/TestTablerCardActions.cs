@@ -16,4 +16,21 @@ public class TestTablerCardActions {
         Assert.AreEqual(2, actions1.Count);
         Assert.AreSame(actions1, actions2);
     }
+
+    [TestMethod]
+    public void TablerCardHeader_NullActions_DoesNotThrow() {
+        var header = new TablerCardHeader().Title("Title");
+        var prop = typeof(TablerCardHeader).GetProperty("Actions", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        prop!.SetValue(header, null);
+
+        try {
+            var html = header.ToString();
+            StringAssert.Contains(html, "card-header");
+        } catch (Exception ex) {
+            Assert.Fail($"Exception was thrown: {ex.Message}");
+        }
+
+        var valueAfter = prop.GetValue(header);
+        Assert.IsNotNull(valueAfter);
+    }
 }

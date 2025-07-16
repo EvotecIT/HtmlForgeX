@@ -429,7 +429,8 @@ public class EmailLink : Element {
 
         // Build link attributes
         var linkAttributes = new List<string>();
-        linkAttributes.Add($"href=\"{Helpers.HtmlEncode(Href)}\"");
+        var encodedHref = Helpers.UrlEncode(Href);
+        linkAttributes.Add($"href=\"{Helpers.HtmlEncode(encodedHref)}\"");
 
         if (OpenInNewWindow) {
             linkAttributes.Add("target=\"_blank\"");

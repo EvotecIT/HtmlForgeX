@@ -145,8 +145,14 @@ internal class Program {
         // Welcome email
         ExampleWelcomeEmail.Create(openInBrowser);
 
+        // Link encoding demonstration
+        ExampleLinkEncodingEmail.Create(openInBrowser);
+
         // Base64 embedding examples (if they exist)
         ExampleBase64EmbeddingEmail.Create(openInBrowser);
+
+        // Decimal margin demonstration
+        ExampleDecimalMarginEmail.Create(openInBrowser);
 
         // Layout configuration demonstration - NEW enum-based configuration system!
         ExampleLayoutConfigurationDemo.Create(openInBrowser);
@@ -167,5 +173,8 @@ internal class Program {
         DataTablesExtensionsDemo.Create(openInBrowser);
         DataTablesFeatureTest.RunAllTests(openInBrowser);
         DataTablesRenderingDemo.Create(openInBrowser);
+
+        // Demonstrates rendering HTML in a headless browser
+        ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
     }
 }

@@ -53,6 +53,10 @@ internal static class ExampleTablerProgressBarShowcase {
                         card.LineBreak();
                         card.Add(new TablerProgressBar().Item(TablerColor.Black, 100, "Complete"));
                         card.LineBreak();
+                        card.Add(new TablerProgressBar().Item(TablerColor.Primary, -20, "Negative clamped"));
+                        card.LineBreak();
+                        card.Add(new TablerProgressBar().Item(TablerColor.Success, 120, "Over 100% clamped"));
+                        card.LineBreak();
                         card.ProgressBar(TablerProgressBarType.Separated)
                             .Item(TablerColor.Green, 25, "A")
                             .Item(TablerColor.Red, 75, "B");

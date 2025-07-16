@@ -14,6 +14,7 @@ namespace HtmlForgeX;
 public class LibraryDownloader {
     private static readonly HttpClient _client = new();
     private static readonly InternalLogger _logger = new();
+    private static readonly Regex IconRegex = new("\\.ti-(.*?):before", RegexOptions.Compiled);
     /// <summary>
     /// Downloads all CSS and JS files for all libraries into given folder for easy inclusion in project
     /// </summary>
@@ -73,8 +74,7 @@ public class LibraryDownloader {
 #endif
         using var reader = new StreamReader(stream);
         cssText = await reader.ReadToEndAsync().ConfigureAwait(false);
-        var regex = new Regex(@"\.ti-(.*?):before", RegexOptions.Compiled);
-        var matches = regex.Matches(cssText);
+        var matches = IconRegex.Matches(cssText);
 
         foreach (Match match in matches) {
             var iconName = match.Groups[1].Value;

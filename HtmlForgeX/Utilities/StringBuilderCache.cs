@@ -4,15 +4,19 @@ internal static class StringBuilderCache {
     [ThreadStatic]
     private static StringBuilder? _cachedInstance;
 
-    internal const int MaxBuilderSize = 1024;
+    internal const int DefaultCapacity = 256;
+    internal const int MaxBuilderSize = 4096;
 
     public static StringBuilder Acquire() {
         var sb = _cachedInstance;
         if (sb == null) {
-            return new StringBuilder();
+            return new StringBuilder(DefaultCapacity);
         }
         _cachedInstance = null;
         sb.Clear();
+        if (sb.Capacity < DefaultCapacity) {
+            sb.EnsureCapacity(DefaultCapacity);
+        }
         return sb;
     }
 

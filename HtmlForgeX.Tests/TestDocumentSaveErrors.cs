@@ -93,4 +93,16 @@ public class TestDocumentSaveErrors {
         Assert.IsNotNull(received);
         StringAssert.Contains(received!, dirPath);
     }
+
+    [TestMethod]
+    public void Save_UnwritableLocation_ReleasesSemaphore() {
+        var doc = new Document();
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, $"file_{Guid.NewGuid():N}.html");
+        using var stream = File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
+        doc.Save(path);
+        Assert.AreEqual(1, FileWriteLock.Semaphore.CurrentCount);
+        stream.Dispose();
+        File.Delete(path);
+    }
 }

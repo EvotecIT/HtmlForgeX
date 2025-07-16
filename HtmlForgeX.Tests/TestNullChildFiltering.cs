@@ -25,4 +25,15 @@ public class TestNullChildFiltering {
 
         Assert.IsTrue(html.Contains("Inner"));
     }
+
+    [TestMethod]
+    public void EmailBoxToString_IgnoresNullChildren() {
+        var box = new EmailBox();
+        box.Children.Add(null);
+        box.Add(new BasicElement("Inner"));
+
+        var html = box.ToString();
+
+        Assert.IsTrue(html.Contains("Inner"));
+    }
 }
