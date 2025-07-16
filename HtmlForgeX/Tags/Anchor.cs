@@ -1,3 +1,5 @@
+using HtmlForgeX.Logging;
+
 namespace HtmlForgeX.Tags;
 
 /// <summary>
@@ -5,6 +7,7 @@ namespace HtmlForgeX.Tags;
 /// with optional target, relationship, and styling attributes.
 /// </summary>
 public class Anchor : HtmlTag {
+    private static readonly InternalLogger _logger = new();
     /// <summary>
     /// Initializes a new instance of the <see cref="Anchor"/> class.
     /// </summary>
@@ -17,13 +20,13 @@ public class Anchor : HtmlTag {
     /// <param name="text">Optional inner text.</param>
     public Anchor(string hrefLink, string text = "") : base("a") {
         if (string.IsNullOrWhiteSpace(hrefLink)) {
-            throw new ArgumentException("hrefLink cannot be null or empty");
-        }
-        if (!Uri.IsWellFormedUriString(hrefLink, UriKind.RelativeOrAbsolute)) {
-            throw new ArgumentException($"Invalid href value: {hrefLink}");
+            _logger.WriteError("hrefLink cannot be null or empty");
+        } else if (Uri.TryCreate(hrefLink, UriKind.RelativeOrAbsolute, out _)) {
+            Attributes["href"] = hrefLink;
+        } else {
+            _logger.WriteError($"Invalid href value: {hrefLink}");
         }
 
-        Attributes["href"] = hrefLink;
         Value(text);
     }
 
@@ -86,12 +89,14 @@ public class Anchor : HtmlTag {
     /// <returns>The current <see cref="Anchor"/> instance.</returns>
     public Anchor HrefLink(string hrefLink) {
         if (string.IsNullOrWhiteSpace(hrefLink)) {
-            throw new ArgumentException("hrefLink cannot be null or empty");
+            _logger.WriteError("hrefLink cannot be null or empty");
+            return this;
         }
-        if (!Uri.IsWellFormedUriString(hrefLink, UriKind.RelativeOrAbsolute)) {
-            throw new ArgumentException($"Invalid href value: {hrefLink}");
+        if (Uri.TryCreate(hrefLink, UriKind.RelativeOrAbsolute, out _)) {
+            Attributes["href"] = hrefLink;
+        } else {
+            _logger.WriteError($"Invalid href value: {hrefLink}");
         }
-        Attributes["href"] = hrefLink;
         return this;
     }
 
