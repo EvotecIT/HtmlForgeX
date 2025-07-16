@@ -38,7 +38,7 @@ internal class DataTablesRenderingDemo
         document.Configuration.DataTables.DebugMode = true;
 
         // TEMPORARY: Manual PrismJS registration for debugging
-        document.Configuration.Libraries.TryAdd(Libraries.PrismJs, 0);
+        document.AddLibrary(Libraries.PrismJs);
 
         document.Body.Page(page =>
         {

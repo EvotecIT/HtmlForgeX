@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Linq;
 
 using HtmlForgeX.Logging;
 
@@ -254,7 +255,10 @@ public class Head : Element {
     /// </summary>
     /// <returns>A string that represents the head section of an HTML document.</returns>
     public override string ToString() {
-        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
+        foreach (var libraryEnum in _document.Configuration.Libraries
+            .OrderBy(l => l.Value)
+            .ThenBy(l => (int)l.Key)
+            .Select(l => l.Key)) {
             var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessLibrary(library);
         }
@@ -626,7 +630,10 @@ gtag('config', '{encodedIdentifier}');
     public string GenerateFooterScripts() {
         var footer = StringBuilderCache.Acquire();
 
-        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
+        foreach (var libraryEnum in _document.Configuration.Libraries
+            .OrderBy(l => l.Value)
+            .ThenBy(l => (int)l.Key)
+            .Select(l => l.Key)) {
             var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessLibrarySectionLinks(library.Footer, footer);
         }
@@ -670,7 +677,10 @@ gtag('config', '{encodedIdentifier}');
 	</script>");
         }
 
-        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
+        foreach (var libraryEnum in _document.Configuration.Libraries
+            .OrderBy(l => l.Value)
+            .ThenBy(l => (int)l.Key)
+            .Select(l => l.Key)) {
             var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessLibrarySectionLinks(library.Body, body);
         }

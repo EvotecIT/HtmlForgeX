@@ -19,8 +19,8 @@ public class TablerPage : Element {
     /// Registers the required libraries for TablerPage.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.Bootstrap, 0);
-        Document?.Configuration.Libraries.TryAdd(Libraries.Tabler, 0);
+        Document?.AddLibrary(Libraries.Bootstrap);
+        Document?.AddLibrary(Libraries.Tabler);
     }
 
     /// <summary>

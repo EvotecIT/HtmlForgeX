@@ -62,12 +62,15 @@ public class TablerCardFooter : Element {
 
         foreach (var child in Children.WhereNotNull()) {
             if (!_processedChildren.Contains(child)) {
-                if (child.Document == null) {
+                bool wasNull = child.Document == null;
+                if (wasNull) {
                     child.Document = Document;
                     child.Email = Email;
                 }
 
-                child.OnAddedToDocument();
+                if (wasNull) {
+                    child.OnAddedToDocument();
+                }
                 _processedChildren.Add(child);
             } else if (child.Document == null) {
                 child.Document = Document;

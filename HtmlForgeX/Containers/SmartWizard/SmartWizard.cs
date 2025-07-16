@@ -81,6 +81,7 @@ public class SmartWizard : Element {
         var step = new SmartWizardStep(title);
         configure?.Invoke(step);
         Steps.Add(step);
+        this.Add(step); // ensure document propagation for library registration
         return this;
     }
 
@@ -97,6 +98,7 @@ public class SmartWizard : Element {
         if (!string.IsNullOrEmpty(subtitle)) step.WithSubtitle(subtitle);
         configure?.Invoke(step);
         Steps.Add(step);
+        this.Add(step); // ensure document propagation for library registration
         return this;
     }
 
@@ -111,6 +113,7 @@ public class SmartWizard : Element {
         var step = new SmartWizardStep(title).WithIcon(icon);
         configure.Invoke(step);
         Steps.Add(step);
+        this.Add(step); // ensure document propagation for library registration
         return this;
     }
 
@@ -526,8 +529,8 @@ public class SmartWizard : Element {
     /// </summary>
     protected internal override void RegisterLibraries() {
         base.RegisterLibraries();
-        Document?.Configuration.Libraries.TryAdd(Libraries.JQuery, 0);
-        Document?.Configuration.Libraries.TryAdd(Libraries.SmartWizard, 10);
+        Document?.AddLibrary(Libraries.JQuery);
+        Document?.AddLibrary(Libraries.SmartWizard, 10);
     }
 
     /// <summary>

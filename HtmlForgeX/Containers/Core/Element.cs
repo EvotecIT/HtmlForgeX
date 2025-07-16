@@ -27,9 +27,18 @@ public abstract partial class Element {
     public Document? Document {
         get => _document;
         set {
+            if (_document == value) {
+                return;
+            }
+
+            bool firstAssign = _document == null && value != null;
             _document = value;
             // Propagate the document reference to all child elements
             PropagateDocumentToChildren();
+
+            if (firstAssign) {
+                OnAddedToDocument();
+            }
         }
     }
 

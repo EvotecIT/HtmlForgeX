@@ -55,6 +55,7 @@ public class SmartTab : Element {
         var panel = new SmartTabPanel(label);
         configure?.Invoke(panel);
         Panels.Add(panel);
+        this.Add(panel); // ensure document propagation for library registration
         return this;
     }
 
@@ -69,6 +70,7 @@ public class SmartTab : Element {
         var panel = new SmartTabPanel(label).WithIcon(icon);
         configure?.Invoke(panel);
         Panels.Add(panel);
+        this.Add(panel); // ensure document propagation for library registration
         return this;
     }
 
@@ -372,8 +374,8 @@ public class SmartTab : Element {
     /// </summary>
     protected internal override void RegisterLibraries() {
         base.RegisterLibraries();
-        Document?.Configuration.Libraries.TryAdd(Libraries.JQuery, 0);
-        Document?.Configuration.Libraries.TryAdd(Libraries.SmartTab, 10);
+        Document?.AddLibrary(Libraries.JQuery);
+        Document?.AddLibrary(Libraries.SmartTab, 10);
     }
 
     /// <summary>
