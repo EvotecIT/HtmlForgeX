@@ -159,6 +159,7 @@ internal class Program {
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
         BasicApexCharts.Demo(openInBrowser);
+        ApexChartsComprehensive.Demo(true);
 
         // VisNetwork images demo
         BasicVisNetwork.Demo(openInBrowser);

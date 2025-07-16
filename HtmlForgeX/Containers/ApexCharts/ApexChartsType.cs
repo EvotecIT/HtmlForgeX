@@ -25,7 +25,27 @@ public enum ApexChartType {
     /// <summary>Radar chart.</summary>
     Radar,
     /// <summary>Mixed chart.</summary>
-    Mixed
+    Mixed,
+    /// <summary>Line chart.</summary>
+    Line,
+    /// <summary>Column chart.</summary>
+    Column,
+    /// <summary>Scatter chart.</summary>
+    Scatter,
+    /// <summary>Bubble chart.</summary>
+    Bubble,
+    /// <summary>Candlestick chart.</summary>
+    Candlestick,
+    /// <summary>BoxPlot chart.</summary>
+    BoxPlot,
+    /// <summary>Range bar chart.</summary>
+    RangeBar,
+    /// <summary>Range area chart.</summary>
+    RangeArea,
+    /// <summary>Funnel chart.</summary>
+    Funnel,
+    /// <summary>Polar area chart.</summary>
+    PolarArea
 }
 
 /// <summary>
@@ -46,6 +66,16 @@ public class ApexChartTypeConverter : JsonConverter<ApexChartType> {
             "heatmap" => ApexChartType.Heatmap,
             "radar" => ApexChartType.Radar,
             "mixed" => ApexChartType.Mixed,
+            "line" => ApexChartType.Line,
+            "column" => ApexChartType.Column,
+            "scatter" => ApexChartType.Scatter,
+            "bubble" => ApexChartType.Bubble,
+            "candlestick" => ApexChartType.Candlestick,
+            "boxPlot" => ApexChartType.BoxPlot,
+            "rangeBar" => ApexChartType.RangeBar,
+            "rangeArea" => ApexChartType.RangeArea,
+            "funnel" => ApexChartType.Funnel,
+            "polarArea" => ApexChartType.PolarArea,
             _ => throw new JsonException()
         };
     }
@@ -62,6 +92,16 @@ public class ApexChartTypeConverter : JsonConverter<ApexChartType> {
             ApexChartType.Heatmap => "heatmap",
             ApexChartType.Radar => "radar",
             ApexChartType.Mixed => "mixed",
+            ApexChartType.Line => "line",
+            ApexChartType.Column => "column",
+            ApexChartType.Scatter => "scatter",
+            ApexChartType.Bubble => "bubble",
+            ApexChartType.Candlestick => "candlestick",
+            ApexChartType.BoxPlot => "boxPlot",
+            ApexChartType.RangeBar => "rangeBar",
+            ApexChartType.RangeArea => "rangeArea",
+            ApexChartType.Funnel => "funnel",
+            ApexChartType.PolarArea => "polarArea",
             _ => throw new JsonException()
         };
 
