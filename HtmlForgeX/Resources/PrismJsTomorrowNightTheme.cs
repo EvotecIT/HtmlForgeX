@@ -9,7 +9,10 @@ public class PrismJsTomorrowNightTheme : Library
     {
         Header = new LibraryLinks {
             CssLink = [
-                "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow-night.min.css"
+                "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+            ],
+            Css = [
+                "prism-tomorrow-night.min.css"
             ]
         };
 
