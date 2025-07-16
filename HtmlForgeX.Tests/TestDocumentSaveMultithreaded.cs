@@ -16,7 +16,8 @@ public class TestDocumentSaveMultithreaded {
         using var doc = new Document();
         var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
 
-        var tasks = Enumerable.Range(0, 5).Select(_ => Task.Run(() => doc.Save(path)));
+        const int taskCount = 20;
+        var tasks = Enumerable.Range(0, taskCount).Select(_ => Task.Run(() => doc.Save(path)));
         Task.WaitAll(tasks.ToArray());
 
         Assert.IsTrue(File.Exists(path));
@@ -24,6 +25,7 @@ public class TestDocumentSaveMultithreaded {
         Assert.AreEqual(1, files.Length);
         var content = File.ReadAllText(path, Encoding.UTF8);
         Assert.AreEqual(doc.ToString(), content);
+        Assert.AreEqual(1, FileWriteLock.Semaphore.CurrentCount);
         File.Delete(path);
     }
 
@@ -32,7 +34,8 @@ public class TestDocumentSaveMultithreaded {
         using var doc = new Document();
         var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
 
-        var tasks = Enumerable.Range(0, 5).Select(_ => Task.Run(() => doc.SaveAsync(path)));
+        const int taskCount = 20;
+        var tasks = Enumerable.Range(0, taskCount).Select(_ => Task.Run(() => doc.SaveAsync(path)));
         await Task.WhenAll(tasks);
 
         Assert.IsTrue(File.Exists(path));
@@ -40,6 +43,7 @@ public class TestDocumentSaveMultithreaded {
         Assert.AreEqual(1, files.Length);
         var content = File.ReadAllText(path, Encoding.UTF8);
         Assert.AreEqual(doc.ToString(), content);
+        Assert.AreEqual(1, FileWriteLock.Semaphore.CurrentCount);
         File.Delete(path);
     }
 }
