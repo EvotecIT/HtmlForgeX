@@ -39,6 +39,10 @@ public class Span : Element {
     public Display? Display { get; set; }
     /// <summary>Opacity value.</summary>
     public double? Opacity { get; set; }
+    /// <summary>Tabler color class.</summary>
+    public TablerColor? TablerColor { get; set; }
+    /// <summary>Tabler font weight.</summary>
+    public TablerFontWeight? TablerFontWeight { get; set; }
 
     /// <summary>
     /// Collection of child <see cref="Span"/> elements created through content operations.
@@ -117,6 +121,16 @@ public class Span : Element {
         
         public override Span WithOpacity(double? opacity) {
             _currentSpan.Opacity = opacity;
+            return _rootParent;
+        }
+
+        public override Span WithColor(TablerColor color) {
+            _currentSpan.TablerColor = color;
+            return _rootParent;
+        }
+
+        public override Span WithFontWeight(TablerFontWeight weight) {
+            _currentSpan.TablerFontWeight = weight;
             return _rootParent;
         }
         
@@ -208,6 +222,16 @@ public class Span : Element {
         
         public override Span WithOpacity(double? opacity) {
             _currentSpan.Opacity = opacity;
+            return this;
+        }
+
+        public override Span WithColor(TablerColor color) {
+            _currentSpan.TablerColor = color;
+            return this;
+        }
+
+        public override Span WithFontWeight(TablerFontWeight weight) {
+            _currentSpan.TablerFontWeight = weight;
             return this;
         }
         
@@ -436,6 +460,26 @@ public class Span : Element {
     }
 
     /// <summary>
+    /// Sets the Tabler color class for the span.
+    /// </summary>
+    /// <param name="color">Tabler color value.</param>
+    /// <returns>The current span instance.</returns>
+    public virtual Span WithColor(TablerColor color) {
+        TablerColor = color;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the Tabler font weight for the span.
+    /// </summary>
+    /// <param name="weight">Tabler font weight value.</param>
+    /// <returns>The current span instance.</returns>
+    public virtual Span WithFontWeight(TablerFontWeight weight) {
+        TablerFontWeight = weight;
+        return this;
+    }
+
+    /// <summary>
     /// Adds colored text to the parent. This creates a new span for the text and returns the parent span for chaining.
     /// </summary>
     /// <param name="text">The text content.</param>
@@ -502,15 +546,19 @@ public class Span : Element {
     /// <returns>HTML markup representing the span.</returns>
     public override string ToString() {
         var styleString = GenerateStyle();
+        var classString = GenerateClasses();
         styleString = !string.IsNullOrEmpty(styleString) ? $" style=\"{Helpers.HtmlEncode(styleString)}\"" : "";
+        classString = !string.IsNullOrEmpty(classString) ? $" class=\"{Helpers.HtmlEncode(classString)}\"" : "";
 
         var childrenHtml = string.Join("", Children.WhereNotNull().Select(child => child.ToString()));
 
         var childrenParentHtml = string.Join("", this.Parent.HtmlSpans.WhereNotNull().Select(child => {
             var childStyle = child.GenerateStyle();
+            var childClass = child.GenerateClasses();
             childStyle = !string.IsNullOrEmpty(childStyle) ? $" style=\"{Helpers.HtmlEncode(childStyle)}\"" : "";
+            childClass = !string.IsNullOrEmpty(childClass) ? $" class=\"{Helpers.HtmlEncode(childClass)}\"" : "";
             var content = Helpers.HtmlEncode(child.Content ?? string.Empty);
-            return $"<span{childStyle}>{content}</span>";
+            return $"<span{childStyle}{childClass}>{content}</span>";
         }));
 
         var mainContent = Helpers.HtmlEncode(Content ?? string.Empty);
@@ -520,12 +568,31 @@ public class Span : Element {
         if (this.Parent != this && this.Parent.HtmlSpans.Count > 0) {
             // This span is part of an AppendContent chain
             var parentStyleString = this.Parent.GenerateStyle();
+            var parentClassString = this.Parent.GenerateClasses();
             parentStyleString = !string.IsNullOrEmpty(parentStyleString) ? $" style=\"{Helpers.HtmlEncode(parentStyleString)}\"" : "";
+            parentClassString = !string.IsNullOrEmpty(parentClassString) ? $" class=\"{Helpers.HtmlEncode(parentClassString)}\"" : "";
             var parentContent = Helpers.HtmlEncode(this.Parent.Content ?? string.Empty);
             
-            return $"<span{parentStyleString}>{parentContent}</span>{childrenParentHtml}";
+            return $"<span{parentStyleString}{parentClassString}>{parentContent}</span>{childrenParentHtml}";
         }
         
-        return $"<span{styleString}>{mainContent}{childrenHtml}</span>{childrenParentHtml}";
+        return $"<span{styleString}{classString}>{mainContent}{childrenHtml}</span>{childrenParentHtml}";
+    }
+
+    /// <summary>
+    /// Builds the CSS class string based on assigned Tabler properties.
+    /// </summary>
+    /// <returns>Combined CSS class string.</returns>
+    public string GenerateClasses() {
+        var classes = new List<string>();
+
+        if (TablerColor.HasValue) {
+            classes.Add(TablerColor.Value.ToTablerText());
+        }
+        if (TablerFontWeight.HasValue) {
+            classes.Add($"fw-{TablerFontWeight.Value.ToString().ToLower()}");
+        }
+
+        return string.Join(" ", classes);
     }
 }

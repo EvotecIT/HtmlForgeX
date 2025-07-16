@@ -11,7 +11,7 @@ internal class EnhancedDataGridDemo {
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Enhanced DataGrid - Complete Feature Demonstration");
 
-        var document = new Document {
+        using var document = new Document {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };

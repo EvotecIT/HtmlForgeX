@@ -15,6 +15,16 @@ public partial class Document
     }
 
     /// <summary>
+    /// Adds a predefined library with a custom load order weight.
+    /// </summary>
+    /// <param name="library">Library identifier.</param>
+    /// <param name="weight">Ordering weight. Lower values load first.</param>
+    public void AddLibrary(Libraries library, byte weight)
+    {
+        Configuration.Libraries.TryAdd(library, weight);
+    }
+
+    /// <summary>
     /// Adds a custom library definition.
     /// </summary>
     /// <param name="library">Library to add.</param>

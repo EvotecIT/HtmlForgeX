@@ -50,6 +50,8 @@ internal class Program {
         BasicHtmlBuilding.Demo1(openInBrowser);
         BasicHtmlBuilding.Demo2(openInBrowser);
         BasicHtmlBuilding.DemoAnalytics(openInBrowser);
+        GoogleFontExample.Demo(openInBrowser);
+        BasicHtmlBuilding.DemoSanitizedRawHtml(openInBrowser);
 
         // Toast examples
         ExampleTablerToast.Create(openInBrowser);
@@ -145,8 +147,14 @@ internal class Program {
         // Welcome email
         ExampleWelcomeEmail.Create(openInBrowser);
 
+        // Link encoding demonstration
+        ExampleLinkEncodingEmail.Create(openInBrowser);
+
         // Base64 embedding examples (if they exist)
         ExampleBase64EmbeddingEmail.Create(openInBrowser);
+
+        // Decimal margin demonstration
+        ExampleDecimalMarginEmail.Create(openInBrowser);
 
         // Layout configuration demonstration - NEW enum-based configuration system!
         ExampleLayoutConfigurationDemo.Create(openInBrowser);
@@ -168,5 +176,18 @@ internal class Program {
         DataTablesFeatureTest.RunAllTests(openInBrowser);
         DataTablesRenderingDemo.Create(openInBrowser);
         DataTablesInteractiveFilteringDemo.Create(openInBrowser);
+
+        // Demonstrates rendering HTML in a headless browser
+        ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
+
+        // Show basic usage of ImageUtilities
+        ExampleImageUtilities.Demonstrate();
+
+        // SmartTab & SmartWizard examples
+        SmartWizardBasicDemo.Demo01(true);
+        SmartTabBasicDemo.Demo01(true);
+        SmartTabWizardCompleteDemo.Demo01(true);
+        SmartTabWizardSimpleDemo.Demo01(true);
+        SmartTabWizardInteroperabilityDemo.Demo01(true);
     }
 }

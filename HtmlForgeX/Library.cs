@@ -81,7 +81,11 @@ public enum Libraries {
     /// <summary>PrismJS Tomorrow Night theme.</summary>
     PrismJsTomorrowNightTheme,
     /// <summary>PrismJS VS theme.</summary>
-    PrismJsVsTheme
+    PrismJsVsTheme,
+    /// <summary>SmartTab jQuery plugin for responsive tabs.</summary>
+    SmartTab,
+    /// <summary>SmartWizard jQuery plugin for step wizards.</summary>
+    SmartWizard
 }
 
 /// <summary>
@@ -235,6 +239,10 @@ public class LibrariesConverter {
             return new Resources.PrismJsTomorrowNightTheme();
         case Libraries.PrismJsVsTheme:
             return new Resources.PrismJsVsTheme();
+        case Libraries.SmartTab:
+            return new Resources.SmartTabLibrary();
+        case Libraries.SmartWizard:
+            return new Resources.SmartWizardLibrary();
         default:
             throw new ArgumentException($"Unsupported library: {libraries}");
         }

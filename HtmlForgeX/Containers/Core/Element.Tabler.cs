@@ -374,4 +374,67 @@ public abstract partial class Element {
         this.Add(timeline);
         return timeline;
     }
+
+    /// <summary>
+    /// Adds a TablerInput form element.
+    /// </summary>
+    /// <param name="name">Input name and identifier.</param>
+    /// <param name="config">Optional configuration action.</param>
+    /// <returns>The created TablerInput.</returns>
+    public TablerInput TablerInput(string name, Action<TablerInput>? config = null) {
+        var input = new TablerInput(name);
+        config?.Invoke(input);
+        this.Add(input);
+        return input;
+    }
+
+    /// <summary>
+    /// Adds a TablerSelect form element.
+    /// </summary>
+    /// <param name="name">Select name and identifier.</param>
+    /// <param name="config">Optional configuration action.</param>
+    /// <returns>The created TablerSelect.</returns>
+    public TablerSelect TablerSelect(string name, Action<TablerSelect>? config = null) {
+        var select = new TablerSelect(name);
+        config?.Invoke(select);
+        this.Add(select);
+        return select;
+    }
+
+    /// <summary>
+    /// Adds a TablerTextarea form element.
+    /// </summary>
+    /// <param name="name">Textarea name and identifier.</param>
+    /// <param name="config">Optional configuration action.</param>
+    /// <returns>The created TablerTextarea.</returns>
+    public TablerTextarea TablerTextarea(string name, Action<TablerTextarea>? config = null) {
+        var textarea = new TablerTextarea(name);
+        config?.Invoke(textarea);
+        this.Add(textarea);
+        return textarea;
+    }
+
+    /// <summary>
+    /// Adds and configures a SmartTab component.
+    /// </summary>
+    /// <param name="config">Configuration action.</param>
+    /// <returns>The created SmartTab.</returns>
+    public SmartTab SmartTab(Action<SmartTab> config) {
+        var smartTab = new SmartTab();
+        config(smartTab);
+        this.Add(smartTab);
+        return smartTab;
+    }
+
+    /// <summary>
+    /// Adds and configures a SmartWizard component.
+    /// </summary>
+    /// <param name="config">Configuration action.</param>
+    /// <returns>The created SmartWizard.</returns>
+    public SmartWizard SmartWizard(Action<SmartWizard> config) {
+        var smartWizard = new SmartWizard();
+        config(smartWizard);
+        this.Add(smartWizard);
+        return smartWizard;
+    }
 }

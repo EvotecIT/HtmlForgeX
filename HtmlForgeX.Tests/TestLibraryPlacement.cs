@@ -8,7 +8,7 @@ public class TestLibraryPlacement {
 
     [TestMethod]
     public void Document_OnlineMode_ContainsCdnLinks() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.LibraryMode = LibraryMode.Online;
         
         // Add a component that requires libraries
@@ -25,7 +25,7 @@ public class TestLibraryPlacement {
 
     [TestMethod]
     public void Document_OfflineMode_ContainsEmbeddedResources() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.LibraryMode = LibraryMode.Offline;
         
         // Add a component that requires libraries
@@ -43,7 +43,7 @@ public class TestLibraryPlacement {
 
     [TestMethod]
     public void Document_MultipleLibraries_PlacedInCorrectSections() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.LibraryMode = LibraryMode.Online;
         
         // Add multiple components requiring different libraries
@@ -75,7 +75,7 @@ public class TestLibraryPlacement {
 
     [TestMethod]
     public void Document_CustomLibrary_PlacedCorrectly() {
-        var doc = new Document();
+        using var doc = new Document();
         
         var customLibrary = new Library {
             Header = new LibraryLinks {
@@ -102,7 +102,7 @@ public class TestLibraryPlacement {
 
     [TestMethod]
     public void Document_DeferredScripts_EnabledCorrectly() {
-        var doc = new Document();
+        using var doc = new Document();
         doc.Configuration.EnableDeferredScripts = true;
         
         doc.Body.Add(element => {
@@ -118,11 +118,11 @@ public class TestLibraryPlacement {
 
     [TestMethod]
     public void Document_ThemeMode_AffectsOutput() {
-        var doc1 = new Document();
+        using var doc1 = new Document();
         doc1.ThemeMode = ThemeMode.Light;
         var html1 = doc1.ToString();
         
-        var doc2 = new Document();
+        using var doc2 = new Document();
         doc2.ThemeMode = ThemeMode.Dark;
         var html2 = doc2.ToString();
         
@@ -134,7 +134,7 @@ public class TestLibraryPlacement {
 
     [TestMethod]
     public void Document_LibraryRegistration_IsIdempotent() {
-        var doc = new Document();
+        using var doc = new Document();
         
         // Add the same component type multiple times
         doc.Body.Add(element => {

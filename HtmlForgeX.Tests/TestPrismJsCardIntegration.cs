@@ -6,7 +6,7 @@ namespace HtmlForgeX.Tests;
 public class TestPrismJsCardIntegration {
     [TestMethod]
     public void PrismCodeBlockInsideCard_ShouldRegisterLibraries() {
-        var doc = new Document(LibraryMode.Online);
+        using var doc = new Document(LibraryMode.Online);
         var card = new TablerCard();
         card.Body(body => {
             body.CSharpCode("Console.WriteLine(\"Hello\");");

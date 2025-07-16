@@ -37,7 +37,7 @@ internal class DocumentState {
     /// <summary>
     /// Gets or sets the path for saving documents and related files.
     /// </summary>
-    public string Path { get; set; } = System.IO.Path.GetTempPath();
+    public string Path { get; set; } = TempPath.Get();
 
     /// <summary>Location for CSS resources.</summary>
     public string StylePath { get; set; } = "";

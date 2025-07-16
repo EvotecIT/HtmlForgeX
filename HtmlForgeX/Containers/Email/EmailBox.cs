@@ -1,3 +1,6 @@
+using System.Linq;
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -308,9 +311,10 @@ public class EmailBox : Element {
 ");
 
             // Add content rows
-            for (int i = 0; i < Children.Count; i++) {
-                var child = Children[i];
-                var isLastChild = i == Children.Count - 1;
+            var nonNullChildren = Children.WhereNotNull().ToList();
+            for (int i = 0; i < nonNullChildren.Count; i++) {
+                var child = nonNullChildren[i];
+                var isLastChild = i == nonNullChildren.Count - 1;
 
                 // Apply consistent spacing or use default padding
                 var cellPadding = UseConsistentSpacing && !isLastChild
@@ -367,9 +371,10 @@ public class EmailBox : Element {
 ");
 
             // Add content rows
-            for (int i = 0; i < Children.Count; i++) {
-                var child = Children[i];
-                var isLastChild = i == Children.Count - 1;
+            var nonNullChildrenVisual = Children.WhereNotNull().ToList();
+            for (int i = 0; i < nonNullChildrenVisual.Count; i++) {
+                var child = nonNullChildrenVisual[i];
+                var isLastChild = i == nonNullChildrenVisual.Count - 1;
 
                 // Apply consistent spacing or use default padding
                 var cellPadding = UseConsistentSpacing && !isLastChild

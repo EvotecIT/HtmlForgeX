@@ -7,9 +7,9 @@ internal class RawHtml
 {
     public string Content { get; }
 
-    public RawHtml(string content)
+    public RawHtml(string content, bool sanitize = false)
     {
-        Content = content;
+        Content = sanitize ? HtmlSanitizer.Sanitize(content) : content;
     }
 
     public override string ToString()

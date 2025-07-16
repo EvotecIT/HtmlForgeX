@@ -27,7 +27,7 @@ public class EasyQRCodeElement : Element {
     /// Registers the required libraries for EasyQRCodeElement.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.EasyQRCode, 0);
+        Document?.AddLibrary(Libraries.EasyQRCode);
     }
 
     /// <summary>

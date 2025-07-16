@@ -319,18 +319,6 @@ $libraryContent += @'
     }
 '@
 
-# Add common icon static properties
-$commonIcons = @('Home', 'User', 'Settings', 'Search', 'Heart', 'Star', 'Check', 'X', 'Plus', 'Minus')
-$libraryContent += "`n`n    // Common icons as static properties`n"
-
-foreach ($iconName in $commonIcons) {
-    if ($downloadedIcons.ContainsKey($iconName)) {
-        $libraryContent += "    public static TablerIcon $iconName => GetIcon(TablerIcon.$iconName);`n"
-    }
-}
-
-$libraryContent += "}"
-
 # Replace placeholders in library content
 $libraryContent = $libraryContent -replace '\{ICON_COUNT\}', $downloadedIcons.Count
 $libraryContent = $libraryContent -replace '\{GENERATION_DATE\}', (Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC")

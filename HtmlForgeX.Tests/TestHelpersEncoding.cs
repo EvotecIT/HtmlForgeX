@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using HtmlForgeX.Logging;
@@ -44,5 +45,37 @@ public class TestHelpersEncoding {
         File.Delete(path);
         Assert.IsFalse(result);
         Assert.IsNotNull(message);
+    }
+
+    [TestMethod]
+    public void Open_ReturnsFalseForFailedProcess() {
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) {
+            Assert.Inconclusive("Test requires Linux");
+            return;
+        }
+
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var path = Path.Combine(tempDir, Path.GetRandomFileName());
+        File.WriteAllText(path, "test");
+
+        var scriptDir = Path.Combine(tempDir, "script_" + Path.GetRandomFileName());
+        Directory.CreateDirectory(scriptDir);
+        var scriptPath = Path.Combine(scriptDir, "xdg-open");
+        File.WriteAllText(scriptPath, "#!/bin/sh\nexit 1");
+        Process.Start("chmod", $"+x {scriptPath}")?.WaitForExit();
+
+        var originalPath = Environment.GetEnvironmentVariable("PATH");
+        Environment.SetEnvironmentVariable("PATH", scriptDir + Path.PathSeparator + originalPath);
+
+        Helpers.PlatformOverride = OSPlatform.Linux;
+        var result = Helpers.Open(path, true);
+        Helpers.PlatformOverride = null;
+
+        Environment.SetEnvironmentVariable("PATH", originalPath);
+
+        File.Delete(path);
+        Directory.Delete(scriptDir, true);
+
+        Assert.IsFalse(result);
     }
 }

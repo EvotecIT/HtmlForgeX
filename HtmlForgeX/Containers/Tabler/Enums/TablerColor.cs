@@ -270,6 +270,7 @@ public enum TablerColor {
 /// Helper methods for working with <see cref="TablerColor"/> values.
 /// </summary>
 public static class ColorExtensions {
+    private static readonly Regex NumberRegex = new(@"(\d+)", RegexOptions.Compiled);
     /// <summary>
     /// Initializes or configures ToTablerString.
     /// </summary>
@@ -280,9 +281,8 @@ public static class ColorExtensions {
             return colorString.Replace("light", "-lt");
         }
         // if contains numbers add - between colorString and number
-        var regex = new Regex(@"(\d+)");
-        if (regex.IsMatch(colorString)) {
-            return regex.Replace(colorString, "-$1");
+        if (NumberRegex.IsMatch(colorString)) {
+            return NumberRegex.Replace(colorString, "-$1");
         }
 
         return color.ToString().ToLower();

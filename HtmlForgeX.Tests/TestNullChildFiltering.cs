@@ -6,7 +6,7 @@ namespace HtmlForgeX.Tests;
 public class TestNullChildFiltering {
     [TestMethod]
     public void DocumentToString_IgnoresNullChildren() {
-        var document = new Document();
+        using var document = new Document();
         document.Body.Children.Add(null);
         document.Body.Children.Add(new Span().AddContent("Test"));
 
@@ -22,6 +22,17 @@ public class TestNullChildFiltering {
         span.Children.Add(new Span { Content = "Inner" });
 
         var html = span.ToString();
+
+        Assert.IsTrue(html.Contains("Inner"));
+    }
+
+    [TestMethod]
+    public void EmailBoxToString_IgnoresNullChildren() {
+        var box = new EmailBox();
+        box.Children.Add(null);
+        box.Add(new BasicElement("Inner"));
+
+        var html = box.ToString();
 
         Assert.IsTrue(html.Contains("Inner"));
     }

@@ -170,7 +170,8 @@ public class HtmlTag : Element {
     /// </summary>
     /// <returns>A string containing the rendered HTML.</returns>
     public override string ToString() {
-        StringBuilder html = new StringBuilder($"<{PrivateTag}");
+        var html = StringBuilderCache.Acquire();
+        html.Append($"<{PrivateTag}");
 
         foreach (var attribute in Attributes) {
             if (attribute.Value != null && !string.IsNullOrEmpty(attribute.Value.ToString())) {
@@ -216,7 +217,9 @@ public class HtmlTag : Element {
             }
             html.Append($"</{PrivateTag}>");
         }
-        return html.ToString();
+        html.Append(Environment.NewLine);
+        var result = StringBuilderCache.GetStringAndRelease(html);
+        return result.TrimEnd('\r', '\n');
     }
 
     /// <summary>
@@ -263,6 +266,19 @@ public class HtmlTag : Element {
     public HtmlTag Value(string? value) {
         if (value != null) {
             Children.Add(value);
+        }
+        return this;
+    }
+
+    /// <summary>
+    /// Appends raw HTML content to the tag with optional sanitization.
+    /// </summary>
+    /// <param name="value">Raw HTML string.</param>
+    /// <param name="sanitize">Whether to sanitize the HTML.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
+    public HtmlTag ValueRaw(string? value, bool sanitize = false) {
+        if (value is not null) {
+            Children.Add(new RawHtml(value, sanitize));
         }
         return this;
     }

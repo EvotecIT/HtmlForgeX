@@ -21,7 +21,11 @@ public enum InputType {
     /// <summary>Telephone number input.</summary>
     Tel,
     /// <summary>URL input field.</summary>
-    Url
+    Url,
+    /// <summary>Checkbox input field.</summary>
+    Checkbox,
+    /// <summary>Multi-line text area field.</summary>
+    TextArea
 }
 
 /// <summary>
@@ -53,6 +57,8 @@ public static class InputTypeExtensions {
         InputType.File => "file",
         InputType.Tel => "tel",
         InputType.Url => "url",
+        InputType.Checkbox => "checkbox",
+        InputType.TextArea => "textarea",
         _ => "text"
     };
 }

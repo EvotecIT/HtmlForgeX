@@ -4,7 +4,7 @@ internal class BasicChartJs {
     public static void Demo(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("ChartJs Demo");
 
-        var document = new Document {
+        using var document = new Document {
             Head = { Title = "ChartJs Demo", Author = "HtmlForgeX" },
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light

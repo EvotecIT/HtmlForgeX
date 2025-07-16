@@ -17,6 +17,7 @@ public class TablerText : Element {
     private string ValueEntry { get; set; } = "";
     private TablerTextStyle? ClassTextStyle { get; set; }
     private TablerFontWeight? ClassWeight { get; set; }
+    private TablerColor? ClassColor { get; set; }
 
     /// <summary>
     /// Initializes or configures Value.
@@ -43,6 +44,14 @@ public class TablerText : Element {
     }
 
     /// <summary>
+    /// Initializes or configures Color.
+    /// </summary>
+    public TablerText Color(TablerColor color) {
+        ClassColor = color;
+        return this;
+    }
+
+    /// <summary>
     /// Initializes or configures Text.
     /// </summary>
     public TablerText Text(string text) {
@@ -60,6 +69,9 @@ public class TablerText : Element {
         }
         if (ClassTextStyle.HasValue) {
             textTag.Class($"text-{ClassTextStyle.Value.ToString().ToLower()}");
+        }
+        if (ClassColor.HasValue) {
+            textTag.Class(ClassColor.Value.ToTablerText());
         }
         if (!string.IsNullOrEmpty(ValueEntry)) {
             textTag.Value(ValueEntry);

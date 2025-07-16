@@ -60,7 +60,7 @@ public class TablerSelect : Element {
     /// </summary>
     protected internal override void RegisterLibraries() {
         if (_searchable) {
-            Document?.Configuration.Libraries.TryAdd(Libraries.TomSelect, 0);
+            Document?.AddLibrary(Libraries.TomSelect);
         }
     }
 

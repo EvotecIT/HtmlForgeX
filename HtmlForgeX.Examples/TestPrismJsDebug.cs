@@ -11,7 +11,7 @@ public class TestPrismJsDebug
     {
         Console.WriteLine("=== PrismJS Debug Test ===");
 
-        var document = new Document
+        using var document = new Document
         {
             Head = {
                 Title = "PrismJS Debug Test"

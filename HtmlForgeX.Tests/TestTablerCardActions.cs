@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
@@ -15,5 +16,34 @@ public class TestTablerCardActions {
 
         Assert.AreEqual(2, actions1.Count);
         Assert.AreSame(actions1, actions2);
+    }
+
+    [TestMethod]
+    public void TablerCardHeader_NullActions_DoesNotThrow() {
+        var header = new TablerCardHeader().Title("Title");
+        var prop = typeof(TablerCardHeader).GetProperty("Actions", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        prop!.SetValue(header, null);
+
+        try {
+            var html = header.ToString();
+            StringAssert.Contains(html, "card-header");
+        } catch (Exception ex) {
+            Assert.Fail($"Exception was thrown: {ex.Message}");
+        }
+
+        var valueAfter = prop.GetValue(header);
+        Assert.IsNotNull(valueAfter);
+    }
+
+    [TestMethod]
+    public void TablerCardButtonUrl_ThrowsOnNull() {
+        var button = new TablerCardButton();
+        Assert.ThrowsException<ArgumentException>(() => button.Url(null!));
+    }
+
+    [TestMethod]
+    public void TablerCardButtonUrl_ThrowsOnWhitespace() {
+        var button = new TablerCardButton();
+        Assert.ThrowsException<ArgumentException>(() => button.Url(" "));
     }
 }

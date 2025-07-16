@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Linq;
 
 using HtmlForgeX.Logging;
 
@@ -114,8 +115,13 @@ public class Head : Element {
     /// External JavaScript links to include in the head.
     /// </summary>
     public List<string> JsLinks { get; set; } = new List<string>();
+    /// <summary>
+    /// External font links to include in the head.
+    /// </summary>
+    public List<string> FontLinks { get; set; } = new List<string>();
     private readonly HashSet<string> _cssLinkSet = new();
     private readonly HashSet<string> _jsLinkSet = new();
+    private readonly HashSet<string> _fontLinkSet = new();
     private readonly HashSet<string> _cssInlineSet = new();
     private readonly HashSet<string> _jsInlineSet = new();
     /// <summary>
@@ -249,7 +255,10 @@ public class Head : Element {
     /// </summary>
     /// <returns>A string that represents the head section of an HTML document.</returns>
     public override string ToString() {
-        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
+        foreach (var libraryEnum in _document.Configuration.Libraries
+            .OrderBy(l => l.Value)
+            .ThenBy(l => (int)l.Key)
+            .Select(l => l.Key)) {
             var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessLibrary(library);
         }
@@ -281,6 +290,10 @@ public class Head : Element {
 
         foreach (var metaTag in MetaTags) {
             head.AppendLine($"\t{metaTag.ToString()}");
+        }
+
+        foreach (var link in FontLinks) {
+            head.AppendLine($"\t{link}");
         }
 
         foreach (var link in CssLinks) {
@@ -366,10 +379,60 @@ public class Head : Element {
     }
 
     /// <summary>
+    /// Registers an external font link if it has not already been added.
+    /// </summary>
+    /// <param name="link">URL to the font stylesheet.</param>
+    public void AddFontLink(string link) {
+        if (_fontLinkSet.Add(link)) {
+            FontLinks.Add($"<link href=\"{link}\" rel=\"stylesheet\">");
+        }
+    }
+
+    /// <summary>
+    /// Sets the font-family for the specified CSS selector.
+    /// </summary>
+    /// <param name="selector">CSS selector to apply the font to.</param>
+    /// <param name="fonts">Font families in preferred order.</param>
+    public void SetFontFamily(string selector, params string[] fonts) {
+        if (fonts == null || fonts.Length == 0) {
+            return;
+        }
+        var formatted = FormatFonts(fonts);
+        AddCssInline($"{selector} {{ font-family: {formatted}; }}");
+    }
+
+    /// <summary>
+    /// Sets the font-family for the document body.
+    /// </summary>
+    /// <param name="fonts">Font families in preferred order.</param>
+    public void SetBodyFontFamily(params string[] fonts) {
+        SetFontFamily("body", fonts);
+    }
+
+    private static string FormatFonts(IEnumerable<string> fonts) {
+        return string.Join(", ", fonts.Select(QuoteFontIfNeeded));
+    }
+
+    private static string QuoteFontIfNeeded(string font) {
+        if (string.IsNullOrWhiteSpace(font)) {
+            return font;
+        }
+
+        var trimmed = font.Trim();
+
+        if (trimmed.Contains(' ') && !(trimmed.StartsWith("\"") || trimmed.StartsWith("'"))) {
+            return $"'{trimmed}'";
+        }
+
+        return trimmed;
+    }
+
+    /// <summary>
     /// Adds inline CSS content to the document head.
     /// </summary>
     /// <param name="css">CSS rules to embed.</param>
     public void AddCssInline(string css) {
+        css = css.Trim();
         if (_cssInlineSet.Add(css)) {
             Styles.Add($"<style>{css}</style>");
         }
@@ -380,12 +443,14 @@ public class Head : Element {
     /// </summary>
     /// <param name="js">JavaScript code to embed.</param>
     public void AddJsInline(string js) {
+        js = js.Trim();
         if (_jsInlineSet.Add(js)) {
             Scripts.Add($"<script>{js}</script>");
         }
     }
 
     private void AddRawScript(string script) {
+        script = script.Trim();
         if (_jsInlineSet.Add(script)) {
             Scripts.Add(script);
         }
@@ -398,18 +463,19 @@ public class Head : Element {
     /// <param name="identifier">Tracking or token identifier.</param>
     /// <returns>The <see cref="Head"/> instance for chaining.</returns>
     public Head AddAnalytics(AnalyticsProvider provider, string identifier) {
+        var encodedIdentifier = Helpers.HtmlEncode(identifier);
         switch (provider) {
             case AnalyticsProvider.GoogleAnalytics:
-                AddRawScript($"<script async src=\"https://www.googletagmanager.com/gtag/js?id={identifier}\"></script>");
+                AddRawScript($"<script async src=\"https://www.googletagmanager.com/gtag/js?id={encodedIdentifier}\"></script>");
                 AddRawScript($@"<script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){{dataLayer.push(arguments);}}
 gtag('js', new Date());
-gtag('config', '{identifier}');
+gtag('config', '{encodedIdentifier}');
 </script>");
                 break;
             case AnalyticsProvider.CloudflareInsights:
-                AddRawScript($"<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon='{{\"token\": \"{identifier}\"}}'></script>");
+                AddRawScript($"<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon='{{\"token\": \"{encodedIdentifier}\"}}'></script>");
                 break;
             default:
                 break;
@@ -564,7 +630,10 @@ gtag('config', '{identifier}');
     public string GenerateFooterScripts() {
         var footer = StringBuilderCache.Acquire();
 
-        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
+        foreach (var libraryEnum in _document.Configuration.Libraries
+            .OrderBy(l => l.Value)
+            .ThenBy(l => (int)l.Key)
+            .Select(l => l.Key)) {
             var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessLibrarySectionLinks(library.Footer, footer);
         }
@@ -608,7 +677,10 @@ gtag('config', '{identifier}');
 	</script>");
         }
 
-        foreach (var libraryEnum in _document.Configuration.Libraries.Keys) {
+        foreach (var libraryEnum in _document.Configuration.Libraries
+            .OrderBy(l => l.Value)
+            .ThenBy(l => (int)l.Key)
+            .Select(l => l.Key)) {
             var library = LibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessLibrarySectionLinks(library.Body, body);
         }

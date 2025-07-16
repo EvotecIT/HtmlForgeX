@@ -11,7 +11,7 @@ internal class TablerCardsCompleteDemo {
     public static void Demo01(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Complete Tabler Cards Demo - ALL Features with Proper C# API");
 
-        var document = new Document {
+        using var document = new Document {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };

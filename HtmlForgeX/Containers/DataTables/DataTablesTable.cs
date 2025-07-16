@@ -382,8 +382,8 @@ public class DataTablesTable : Table {
         base.RegisterLibraries();
 
         // Always register base DataTables and jQuery
-        Document?.Configuration.Libraries.TryAdd(Libraries.JQuery, 0);
-        Document?.Configuration.Libraries.TryAdd(Libraries.DataTables, 0);
+        Document?.AddLibrary(Libraries.JQuery);
+        Document?.AddLibrary(Libraries.DataTables);
 
         // Register extension libraries based on features used
         RegisterFeatureLibraries();
@@ -393,42 +393,42 @@ public class DataTablesTable : Table {
     private void RegisterFeatureLibraries() {
         // Export functionality
         if (_exportButtons.Any() || Options.Buttons?.Any() == true) {
-            Document?.Configuration.Libraries.TryAdd(Libraries.DataTablesButtons, 0);
+            Document?.AddLibrary(Libraries.DataTablesButtons);
         }
 
         // Responsive design
         if (Options.Responsive != null) {
-            Document?.Configuration.Libraries.TryAdd(Libraries.DataTablesResponsive, 0);
+            Document?.AddLibrary(Libraries.DataTablesResponsive);
         }
 
         // Fixed header
         if (Options.FixedHeader?.Enable == true) {
-            Document?.Configuration.Libraries.TryAdd(Libraries.DataTablesFixedHeader, 0);
+            Document?.AddLibrary(Libraries.DataTablesFixedHeader);
         }
 
         // Fixed columns
         if (Options.FixedColumns?.LeftColumns > 0 || Options.FixedColumns?.RightColumns > 0) {
-            Document?.Configuration.Libraries.TryAdd(Libraries.DataTablesFixedColumns, 0);
+            Document?.AddLibrary(Libraries.DataTablesFixedColumns);
         }
 
         // Row grouping
         if (Options.RowGroup != null) {
-            Document?.Configuration.Libraries.TryAdd(Libraries.DataTablesRowGroup, 0);
+            Document?.AddLibrary(Libraries.DataTablesRowGroup);
         }
 
         // Search builder
         if (Options.SearchBuilder?.Enable == true) {
-            Document?.Configuration.Libraries.TryAdd(Libraries.DataTablesSearchBuilder, 0);
+            Document?.AddLibrary(Libraries.DataTablesSearchBuilder);
         }
 
         // Search panes
         if (Options.SearchPanes?.Enable == true) {
-            Document?.Configuration.Libraries.TryAdd(Libraries.DataTablesSearchPanes, 0);
+            Document?.AddLibrary(Libraries.DataTablesSearchPanes);
         }
 
         // Row selection
         if (Options.Select != null) {
-            Document?.Configuration.Libraries.TryAdd(Libraries.DataTablesSelect, 0);
+            Document?.AddLibrary(Libraries.DataTablesSelect);
         }
     }
 

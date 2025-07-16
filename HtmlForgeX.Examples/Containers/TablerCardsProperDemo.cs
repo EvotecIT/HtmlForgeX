@@ -10,7 +10,7 @@ internal class TablerCardsProperDemo {
     public static void Demo01(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Proper Tabler Cards Demo - Zero HTML, Pure C# API");
 
-        var document = new Document {
+        using var document = new Document {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
@@ -75,7 +75,9 @@ internal class TablerCardsProperDemo {
                         card.Header(header => {
                             header.Title("Card with Actions");
                             header.WithActions(actions => {
-                                actions.Button("Add New", btn => btn.Style(TablerButtonVariant.Primary));
+                                actions.Button("Add New", btn => btn
+                                    .Style(TablerButtonVariant.Primary)
+                                    .Url("https://example.com"));
                                 actions.IconButton(TablerIconType.Phone, btn => btn.AsActionButton());
                                 actions.IconButton(TablerIconType.Mail, btn => btn.AsActionButton());
                             });

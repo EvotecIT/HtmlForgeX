@@ -34,7 +34,7 @@ public class ScrollingText : Element {
     /// Registers the required libraries for ScrollingText.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.ScrollingText, 0);
+        Document?.AddLibrary(Libraries.ScrollingText);
     }
 
     /// <summary>

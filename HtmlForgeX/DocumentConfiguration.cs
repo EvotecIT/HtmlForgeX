@@ -9,7 +9,7 @@ namespace HtmlForgeX;
 /// </summary>
 public class DocumentConfiguration {
     private readonly object _syncRoot = new();
-    private string _path = System.IO.Path.GetTempPath();
+    private string _path = TempPath.Get();
     private string _stylePath = string.Empty;
     private string _scriptPath = string.Empty;
     private LibraryMode _libraryMode = LibraryMode.Online;

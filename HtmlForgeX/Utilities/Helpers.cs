@@ -30,16 +30,27 @@ internal static class Helpers {
             bool isOsx = PlatformOverride.HasValue ? PlatformOverride.Value == OSPlatform.OSX : RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
             bool isLinux = PlatformOverride.HasValue ? PlatformOverride.Value == OSPlatform.Linux : RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
 
+            Process? process = null;
+
             if (isWindows) {
-                using Process? process = Process.Start(new ProcessStartInfo("cmd", $"/c start \"\" \"{filePath}\"") {
+                process = Process.Start(new ProcessStartInfo("cmd", $"/c start \"\" \"{filePath}\"") {
                     CreateNoWindow = true
                 });
             } else if (isOsx) {
-                using Process? process = Process.Start("open", filePath);
+                process = Process.Start("open", filePath);
             } else if (isLinux) {
-                using Process? process = Process.Start("xdg-open", filePath);
+                process = Process.Start("xdg-open", filePath);
             } else {
                 Document._logger.WriteError($"Unsupported operating system while opening '{filePath}'.");
+                return false;
+            }
+
+            if (process is null) {
+                return false;
+            }
+
+            process.WaitForExit();
+            if (process.ExitCode != 0) {
                 return false;
             }
         } catch (Win32Exception ex) {
@@ -118,6 +129,20 @@ internal static class Helpers {
 
     public static string HtmlEncode(string value) {
         return WebUtility.HtmlEncode(value);
+    }
+
+    public static string UrlEncode(string url) {
+        if (string.IsNullOrEmpty(url)) {
+            return string.Empty;
+        }
+
+        var encoded = Uri.EscapeDataString(url);
+        encoded = encoded.Replace("%3A", ":")
+                         .Replace("%2F", "/")
+                         .Replace("%3F", "?")
+                         .Replace("%3D", "=")
+                         .Replace("%26", "&");
+        return encoded;
     }
 
 }

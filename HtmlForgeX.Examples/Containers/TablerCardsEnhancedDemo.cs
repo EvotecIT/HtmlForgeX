@@ -10,7 +10,7 @@ internal class TablerCardsEnhancedDemo {
     public static void Demo01(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Enhanced Tabler Cards Demo - Proper C# API");
 
-        var document = new Document {
+        using var document = new Document {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };

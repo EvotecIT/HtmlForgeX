@@ -219,7 +219,11 @@ public class EmailHead : Element {
     /// <returns>A string that represents the head section of an email document.</returns>
     public override string ToString() {
         // Process any registered email libraries
-        foreach (var libraryEnum in _email.Configuration.Email.Libraries.Keys.WhereNotNull()) {
+        foreach (var libraryEnum in _email.Configuration.Email.Libraries
+            .OrderBy(l => l.Value)
+            .ThenBy(l => (int)l.Key)
+            .Select(l => l.Key)
+            .WhereNotNull()) {
             var library = EmailLibrariesConverter.MapLibraryEnumToLibraryObject(libraryEnum);
             ProcessEmailLibrary(library);
         }

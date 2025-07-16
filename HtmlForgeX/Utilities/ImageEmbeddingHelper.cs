@@ -35,9 +35,7 @@ public static class ImageEmbeddingHelper {
                 return ImageEmbeddingResult.CreateFailure(message);
             }
 
-            var bytes = File.ReadAllBytes(filePath);
-            var extension = Path.GetExtension(filePath).ToLowerInvariant();
-            var mimeType = GetMimeTypeFromExtension(extension);
+            var (bytes, mimeType) = ImageUtilities.LoadImageFromFile(filePath);
             var base64Data = Convert.ToBase64String(bytes);
 
             return ImageEmbeddingResult.CreateSuccess(base64Data, mimeType);
@@ -58,17 +56,24 @@ public static class ImageEmbeddingHelper {
     /// <param name="maxFileSize">Maximum file size allowed for embedding (0 = no limit)</param>
     /// <param name="logWarnings">Whether to log warnings to console</param>
     /// <returns>ImageEmbeddingResult containing the embedding data or error info</returns>
-    public static ImageEmbeddingResult EmbedFromUrl(string url, int timeoutSeconds = 30, long maxFileSize = 0, bool logWarnings = false) {
+    public static ImageEmbeddingResult EmbedFromUrl(string url, int timeoutSeconds = 30, long maxFileSize = 0, bool logWarnings = false) =>
+        EmbedFromUrlAsync(url, timeoutSeconds, maxFileSize, logWarnings).GetAwaiter().GetResult();
+
+    /// <summary>
+    /// Asynchronously embeds an image from a URL as base64
+    /// </summary>
+    /// <param name="url">URL to download and embed</param>
+    /// <param name="timeoutSeconds">Timeout for the download</param>
+    /// <param name="maxFileSize">Maximum file size allowed for embedding (0 = no limit)</param>
+    /// <param name="logWarnings">Whether to log warnings to console</param>
+    /// <returns>ImageEmbeddingResult containing the embedding data or error info</returns>
+    public static async Task<ImageEmbeddingResult> EmbedFromUrlAsync(string url, int timeoutSeconds = 30, long maxFileSize = 0, bool logWarnings = false) {
         try {
-            using var httpClient = new HttpClient();
-            httpClient.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
-
-            var response = httpClient.GetAsync(url).Result;
-            if (!response.IsSuccessStatusCode) {
-                return ImageEmbeddingResult.CreateFailure("HTTP " + response.StatusCode + ": " + response.ReasonPhrase);
+            var download = await ImageUtilities.DownloadImageAsync(url, timeoutSeconds).ConfigureAwait(false);
+            if (download is null) {
+                return ImageEmbeddingResult.CreateFailure("HTTP error while downloading " + url);
             }
-
-            var bytes = response.Content.ReadAsByteArrayAsync().Result;
+            var (bytes, mimeType) = download.Value;
 
             // Check file size if limit is specified
             if (maxFileSize > 0 && bytes.Length > maxFileSize) {
@@ -79,8 +84,7 @@ public static class ImageEmbeddingHelper {
                 return ImageEmbeddingResult.CreateFailure(message);
             }
 
-            var contentType = response.Content.Headers.ContentType?.MediaType ?? "";
-            var mimeType = !string.IsNullOrEmpty(contentType) ? contentType : GetMimeTypeFromUrl(url);
+            // 'mimeType' already determined by DownloadImage
             var base64Data = Convert.ToBase64String(bytes);
 
             return ImageEmbeddingResult.CreateSuccess(base64Data, mimeType);
@@ -125,52 +129,16 @@ public static class ImageEmbeddingHelper {
     /// </summary>
     /// <param name="extension">File extension (with or without dot)</param>
     /// <returns>MIME type string</returns>
-    public static string GetMimeTypeFromExtension(string extension) {
-        if (string.IsNullOrEmpty(extension)) {
-            return "image/jpeg";
-        }
-
-        var ext = extension.StartsWith(".") ? extension : "." + extension;
-        ext = ext.ToLowerInvariant();
-
-        switch (ext) {
-            case ".jpg":
-            case ".jpeg":
-                return "image/jpeg";
-            case ".png":
-                return "image/png";
-            case ".gif":
-                return "image/gif";
-            case ".webp":
-                return "image/webp";
-            case ".svg":
-                return "image/svg+xml";
-            case ".bmp":
-                return "image/bmp";
-            case ".ico":
-                return "image/x-icon";
-            case ".tiff":
-            case ".tif":
-                return "image/tiff";
-            default:
-                return "image/jpeg";
-        }
-    }
+public static string GetMimeTypeFromExtension(string extension) =>
+    ImageUtilities.GetMimeTypeFromExtension(extension);
 
     /// <summary>
     /// Gets MIME type from URL by examining the file extension
     /// </summary>
     /// <param name="url">URL to examine</param>
     /// <returns>MIME type string</returns>
-    public static string GetMimeTypeFromUrl(string url) {
-        try {
-            var uri = new Uri(url);
-            var extension = Path.GetExtension(uri.LocalPath);
-            return GetMimeTypeFromExtension(extension);
-        } catch {
-            return "image/jpeg";
-        }
-    }
+public static string GetMimeTypeFromUrl(string url) =>
+    ImageUtilities.GetMimeTypeFromUrl(url);
 }
 
 /// <summary>

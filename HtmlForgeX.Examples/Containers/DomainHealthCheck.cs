@@ -33,7 +33,7 @@ internal class DomainHealthCheck {
             Return keyword           operation_timedout
             """;
 
-        var document = new Document {
+        using var document = new Document {
             Head = {
                 Title = "Enhanced Domain Health Check",
                 Author = "Przemysław Kłys",

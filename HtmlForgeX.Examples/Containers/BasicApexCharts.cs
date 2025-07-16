@@ -7,7 +7,7 @@ internal class BasicApexCharts {
     public static void Demo(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("ApexCharts Demo");
 
-        var document = new Document {
+        using var document = new Document {
             Head = { Title = "ApexCharts Demo", Author = "HtmlForgeX" },
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light

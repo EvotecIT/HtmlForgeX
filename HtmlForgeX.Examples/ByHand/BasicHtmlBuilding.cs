@@ -14,7 +14,7 @@ namespace HtmlForgeX.Examples.ByHand
         {
             HelpersSpectre.PrintTitle("Basic Html Building 1");
 
-            Document document = new Document();
+            using Document document = new Document();
             document.Head.Title = "Basic Html Building 1";
             document.Head.Author = "Przemysław Kłys";
             document.Head.Revised = DateTime.Now;
@@ -95,7 +95,7 @@ namespace HtmlForgeX.Examples.ByHand
         {
             HelpersSpectre.PrintTitle("Basic Html Building 2");
 
-            Document document = new Document();
+            using Document document = new Document();
 
             document.AddLibrary(new Bootstrap());
 
@@ -185,13 +185,41 @@ namespace HtmlForgeX.Examples.ByHand
         {
             HelpersSpectre.PrintTitle("Analytics Example");
 
-            var document = new Document();
+            using var document = new Document();
             document.Head.AddTitle("Analytics Demo");
             document.Head.AddAnalytics(AnalyticsProvider.GoogleAnalytics, "G-XXXXXXX");
 
             document.Body.Span("Hello Analytics!");
 
             document.Save("AnalyticsDemo.html", openInBrowser);
+        }
+
+        public static void DemoAnalyticsSpecialChars(bool openInBrowser = false)
+        {
+            HelpersSpectre.PrintTitle("Analytics Special Characters Example");
+
+            var document = new Document();
+            document.Head.AddTitle("Analytics Special Characters Demo");
+            document.Head.AddAnalytics(AnalyticsProvider.GoogleAnalytics, "G-\"A&B<C>'");
+
+            document.Body.Span("Hello Analytics Special Characters!");
+
+            document.Save("AnalyticsDemoSpecialChars.html", openInBrowser);
+        }
+
+        public static void DemoSanitizedRawHtml(bool openInBrowser = false)
+        {
+            HelpersSpectre.PrintTitle("Sanitized RawHtml Example");
+
+            var document = new Document();
+            document.Head.AddTitle("Sanitized RawHtml Demo");
+
+            var div = new HtmlTag("div")
+                .ValueRaw("<script>alert('x')</script><span>Safe</span>", true);
+
+            document.Body.Add(div);
+
+            document.Save("SanitizedRawHtml.html", openInBrowser);
         }
     }
 }

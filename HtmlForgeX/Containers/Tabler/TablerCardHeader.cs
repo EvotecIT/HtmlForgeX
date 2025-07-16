@@ -51,7 +51,7 @@ public class TablerCardHeader : Element {
     /// Add action buttons to the header
     /// </summary>
     public TablerCardHeader WithActions(Action<TablerCardActionBuilder> actionsConfig) {
-        var builder = new TablerCardActionBuilder();
+        var builder = new TablerCardActionBuilder(this.Document);
         actionsConfig(builder);
         Actions = builder.GetActions();
         return this;
@@ -86,6 +86,7 @@ public class TablerCardHeader : Element {
     public override string ToString() {
         // CRITICAL FIX: Ensure all children have proper Document references before rendering
         EnsureChildrenHaveDocumentReference();
+        Actions ??= new List<TablerCardAction>();
 
         // ADDITIONAL FIX: Force library registration for any children that may have missed it
         foreach (var child in Children.WhereNotNull()) {
@@ -196,14 +197,36 @@ public class TablerCardHeader : Element {
     /// Ensures all children have proper Document and Email references for library registration
     /// </summary>
     private void EnsureChildrenHaveDocumentReference() {
-        if (this.Document == null) return;
+        if (Document == null) {
+            return;
+        }
 
         foreach (var child in Children.WhereNotNull()) {
             if (child.Document == null) {
-                child.Document = this.Document;
-                child.Email = this.Email;
+                child.Document = Document;
+                child.Email = Email;
                 // Call OnAddedToDocument to trigger library registration
                 child.OnAddedToDocument();
+            }
+        }
+
+        if (Navigation != null && Navigation.Document == null) {
+            Navigation.Document = Document;
+            Navigation.Email = Email;
+            Navigation.OnAddedToDocument();
+        }
+
+        if (HeaderAvatar != null && HeaderAvatar.Document == null) {
+            HeaderAvatar.Document = Document;
+            HeaderAvatar.Email = Email;
+            HeaderAvatar.OnAddedToDocument();
+        }
+
+        foreach (var action in Actions) {
+            if (action.Document == null) {
+                action.Document = Document;
+                action.Email = Email;
+                action.OnAddedToDocument();
             }
         }
     }
@@ -214,6 +237,7 @@ public class TablerCardHeader : Element {
     protected internal override void OnAddedToDocument() {
         // Propagate Document reference to all child elements and internal elements
         EnsureChildrenHaveDocumentReference();
+        Actions ??= new List<TablerCardAction>();
 
         // Also propagate to internal element collections
         if (Navigation != null && Navigation.Document == null && this.Document != null) {
@@ -245,7 +269,12 @@ public class TablerCardHeader : Element {
 /// Builder for card header actions
 /// </summary>
 public class TablerCardActionBuilder {
-    private List<TablerCardAction> actions = new List<TablerCardAction>();
+    private readonly List<TablerCardAction> actions = new List<TablerCardAction>();
+    private readonly Document? document;
+
+    public TablerCardActionBuilder(Document? document = null) {
+        this.document = document;
+    }
 
     /// <summary>
     /// Initializes or configures Button.
@@ -253,6 +282,10 @@ public class TablerCardActionBuilder {
     public TablerCardActionBuilder Button(string text, Action<TablerCardButton>? config = null) {
         var button = new TablerCardButton().WithText(text);
         config?.Invoke(button);
+        if (document != null) {
+            button.Document = document;
+            button.OnAddedToDocument();
+        }
         actions.Add(button);
         return this;
     }
@@ -263,6 +296,10 @@ public class TablerCardActionBuilder {
     public TablerCardActionBuilder IconButton(TablerIconType icon, Action<TablerCardButton>? config = null) {
         var button = new TablerCardButton().Icon(icon);
         config?.Invoke(button);
+        if (document != null) {
+            button.Document = document;
+            button.OnAddedToDocument();
+        }
         actions.Add(button);
         return this;
     }

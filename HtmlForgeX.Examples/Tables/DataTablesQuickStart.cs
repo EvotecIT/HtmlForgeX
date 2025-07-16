@@ -11,7 +11,7 @@ internal class DataTablesQuickStart
     {
         HelpersSpectre.PrintTitle("⚡ DataTables Quick Start Guide");
 
-        var document = new Document
+        using var document = new Document
         {
             Head = {
                 Title = "DataTables Quick Start Guide",

@@ -4,7 +4,7 @@ internal class BasicHtmlTable02 {
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("DataTables Options Demo");
 
-        Document document = new Document {
+        using Document document = new Document {
             Head = {
                 Title = "DataTables Options Demo",
                 Author = "Przemysław Kłys",

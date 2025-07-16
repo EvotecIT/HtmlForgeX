@@ -14,7 +14,7 @@ public class TestDocumentSave {
 
     [TestMethod]
     public void Save_CreatesDirectoryAndWritesUtf8() {
-        var doc = new Document();
+        using var doc = new Document();
         string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
         string dir = Path.Combine(tempDir, "subDirectory");
         string path = Path.Combine(dir, "testSubDirectory.html");
@@ -27,7 +27,7 @@ public class TestDocumentSave {
 
     [TestMethod]
     public async Task SaveAsync_WritesFile() {
-        var doc = new Document();
+        using var doc = new Document();
         var tempPath = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"file_{Guid.NewGuid():N}.html");
 
         await doc.SaveAsync(tempPath);
@@ -39,7 +39,13 @@ public class TestDocumentSave {
 
     [TestMethod]
     public async Task SaveAsync_InvalidPath_ThrowsArgumentException() {
-        var doc = new Document();
+        using var doc = new Document();
         await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await doc.SaveAsync("invalid\0path.html"));
+    }
+
+    [TestMethod]
+    public void Save_InvalidPath_ThrowsArgumentException() {
+        using var doc = new Document();
+        Assert.ThrowsException<ArgumentException>(() => doc.Save("invalid\0path.html"));
     }
 }

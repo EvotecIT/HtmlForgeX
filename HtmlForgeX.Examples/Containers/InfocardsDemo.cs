@@ -10,7 +10,7 @@ internal class InfocardsDemo {
     public static void Demo01(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Infocards Demo - Custom RGBColor Backgrounds & Avatars");
 
-        var document = new Document {
+        using var document = new Document {
             Head = {
                 Title = "Infocards Demo - Custom Colors",
                 Author = "HtmlForgeX",

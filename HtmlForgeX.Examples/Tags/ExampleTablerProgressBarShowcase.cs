@@ -2,7 +2,7 @@ namespace HtmlForgeX.Examples.Tags;
 
 internal static class ExampleTablerProgressBarShowcase {
     public static void Create(bool openInBrowser = false) {
-        var document = new Document { Head = { Title = "Progress Bar Showcase" } };
+        using var document = new Document { Head = { Title = "Progress Bar Showcase" } };
         document.Body.Page(page => {
             page.Row(row => {
                 row.Column(column => {
@@ -52,6 +52,10 @@ internal static class ExampleTablerProgressBarShowcase {
                         card.Add(new TablerProgressBar().Item(TablerColor.Cyan, 75, "Cyan 75%"));
                         card.LineBreak();
                         card.Add(new TablerProgressBar().Item(TablerColor.Black, 100, "Complete"));
+                        card.LineBreak();
+                        card.Add(new TablerProgressBar().Item(TablerColor.Primary, -20, "Negative clamped"));
+                        card.LineBreak();
+                        card.Add(new TablerProgressBar().Item(TablerColor.Success, 120, "Over 100% clamped"));
                         card.LineBreak();
                         card.ProgressBar(TablerProgressBarType.Separated)
                             .Item(TablerColor.Green, 25, "A")

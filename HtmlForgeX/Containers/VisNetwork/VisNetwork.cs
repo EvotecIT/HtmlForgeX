@@ -44,8 +44,8 @@ public class VisNetwork : Element {
     /// Registers the required libraries for VisNetwork.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.VisNetwork, 0);
-        Document?.Configuration.Libraries.TryAdd(Libraries.VisNetworkLoadingBar, 0);
+        Document?.AddLibrary(Libraries.VisNetwork);
+        Document?.AddLibrary(Libraries.VisNetworkLoadingBar);
     }
 
     /// <summary>

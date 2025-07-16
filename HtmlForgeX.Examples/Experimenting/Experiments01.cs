@@ -20,7 +20,7 @@ internal class Experiments01 {
 
         //Console.WriteLine("----");
 
-        var value2 = new Document();
+        using var value2 = new Document();
         value2.Body.Span("This is table with DataTables").WithAlignment(Alignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
 

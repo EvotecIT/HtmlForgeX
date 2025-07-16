@@ -5,6 +5,7 @@
 [![license](https://img.shields.io/github/license/EvotecIT/HtmlForgeX.svg)](#)
 [![Test .NET Libraries](https://github.com/EvotecIT/HtmlForgeX/actions/workflows/test-dotnet.yml/badge.svg?branch=master)](https://github.com/EvotecIT/HtmlForgeX/actions/workflows/test-dotnet.yml)
 [![codecov](https://codecov.io/gh/EvotecIT/HtmlForgeX/branch/master/graph/badge.svg)](https://codecov.io/gh/EvotecIT/HtmlForgeX)
+[![Discord](https://img.shields.io/discord/508328927853281280?style=flat-square&label=discord%20chat)](https://evo.yt/discord)
 
 If you would like to contact me you can do so via Twitter or LinkedIn.
 

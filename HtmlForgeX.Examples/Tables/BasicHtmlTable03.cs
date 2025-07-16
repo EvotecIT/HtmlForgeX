@@ -10,7 +10,7 @@ internal class BasicHtmlTable03 {
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Typed Objects Table Demo");
 
-        var document = new Document {
+        using var document = new Document {
             Head = {
                 Title = "Typed Objects Table Demo",
                 Author = "Przemysław Kłys",
