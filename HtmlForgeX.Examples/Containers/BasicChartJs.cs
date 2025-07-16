@@ -49,9 +49,9 @@ internal class BasicChartJs {
                     col.Card(card => {
                         card.ChartJs(c => {
                             c.Scatter()
-                             .AddData("Jan", 1)
-                             .AddData("Feb", 4)
-                             .AddData("Mar", 2);
+                             .AddPoint(0, 1)
+                             .AddPoint(1, 4)
+                             .AddPoint(2, 2);
                         });
                     });
                 });
@@ -59,9 +59,9 @@ internal class BasicChartJs {
                     col.Card(card => {
                         card.ChartJs(c => {
                             c.Bubble()
-                             .AddData("X", 3)
-                             .AddData("Y", 6)
-                             .AddData("Z", 2);
+                             .AddBubble(1, 3, 5)
+                             .AddBubble(2, 6, 8)
+                             .AddBubble(3, 2, 4);
                         });
                     });
                 });

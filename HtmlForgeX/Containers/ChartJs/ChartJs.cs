@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 
 namespace HtmlForgeX;
@@ -23,9 +24,19 @@ public class ChartJs : Element {
     public List<string> Labels { get; } = new();
 
     /// <summary>
-    /// Gets the numeric values for the dataset.
+    /// Gets the numeric values for the dataset (for line, bar, pie and radar charts).
     /// </summary>
     public List<double> Data { get; } = new();
+
+    /// <summary>
+    /// Gets the scatter points for scatter charts.
+    /// </summary>
+    public List<(double x, double y)> Points { get; } = new();
+
+    /// <summary>
+    /// Gets the bubble points for bubble charts.
+    /// </summary>
+    public List<(double x, double y, double r)> Bubbles { get; } = new();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ChartJs"/> class.
@@ -50,6 +61,22 @@ public class ChartJs : Element {
     public ChartJs AddData(string label, double value) {
         Labels.Add(label);
         Data.Add(value);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds a point for scatter charts.
+    /// </summary>
+    public ChartJs AddPoint(double x, double y) {
+        Points.Add((x, y));
+        return this;
+    }
+
+    /// <summary>
+    /// Adds a bubble point for bubble charts.
+    /// </summary>
+    public ChartJs AddBubble(double x, double y, double radius) {
+        Bubbles.Add((x, y, radius));
         return this;
     }
 
@@ -111,17 +138,32 @@ public class ChartJs : Element {
     /// <returns>The HTML markup.</returns>
     public override string ToString() {
         var canvas = new HtmlTag("canvas").Id(Id);
+        object dataset = Type switch {
+            ChartJsType.Scatter => new {
+                label = "Dataset",
+                data = Points.Select(p => new { x = p.x, y = p.y })
+            },
+            ChartJsType.Bubble => new {
+                label = "Dataset",
+                data = Bubbles.Select(p => new { x = p.x, y = p.y, r = p.r })
+            },
+            _ => new {
+                label = "Dataset",
+                data = Data
+            }
+        };
+        object dataObj = Type switch {
+            ChartJsType.Scatter or ChartJsType.Bubble => new {
+                datasets = new[] { dataset }
+            },
+            _ => new {
+                labels = Labels,
+                datasets = new[] { dataset }
+            }
+        };
         var options = new {
             type = Type,
-            data = new {
-                labels = Labels,
-                datasets = new[] {
-                    new {
-                        label = "Dataset",
-                        data = Data
-                    }
-                }
-            }
+            data = dataObj
         };
         var json = JsonSerializer.Serialize(options, new JsonSerializerOptions { WriteIndented = true });
         var script = new HtmlTag("script").Value($@"var ctx = document.getElementById('{Id}').getContext('2d');new Chart(ctx, {json});");

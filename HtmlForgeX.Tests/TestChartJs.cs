@@ -1,5 +1,6 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text.Json;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
@@ -58,5 +59,24 @@ public class TestChartJs {
         Assert.AreEqual(ChartJsType.Scatter, scatter.Type);
         var bubble = new ChartJs().Bubble();
         Assert.AreEqual(ChartJsType.Bubble, bubble.Type);
+    }
+
+    [TestMethod]
+    public void ChartJs_ScatterHtmlContainsPoints() {
+        var chart = new ChartJs().Scatter()
+            .AddPoint(1, 2)
+            .AddPoint(2, 3);
+        var html = chart.ToString();
+        Assert.IsTrue(html.Contains("\"scatter\""));
+        Assert.IsTrue(html.Contains("\"x\": 1"));
+    }
+
+    [TestMethod]
+    public void ChartJs_BubbleHtmlContainsRadius() {
+        var chart = new ChartJs().Bubble()
+            .AddBubble(1, 2, 5);
+        var html = chart.ToString();
+        Assert.IsTrue(html.Contains("\"bubble\""));
+        Assert.IsTrue(html.Contains("\"r\": 5"));
     }
 }
