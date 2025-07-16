@@ -8,7 +8,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Common image helper utilities for loading and basic metadata detection.
 /// </summary>
-internal static class ImageUtilities {
+public static class ImageUtilities {
     private static readonly Dictionary<string, string> ExtensionToMime = new(StringComparer.OrdinalIgnoreCase) {
         [".jpg"] = "image/jpeg",
         [".jpeg"] = "image/jpeg",
