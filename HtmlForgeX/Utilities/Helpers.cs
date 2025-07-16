@@ -120,4 +120,18 @@ internal static class Helpers {
         return WebUtility.HtmlEncode(value);
     }
 
+    public static string UrlEncode(string url) {
+        if (string.IsNullOrEmpty(url)) {
+            return string.Empty;
+        }
+
+        var encoded = Uri.EscapeDataString(url);
+        encoded = encoded.Replace("%3A", ":")
+                         .Replace("%2F", "/")
+                         .Replace("%3F", "?")
+                         .Replace("%3D", "=")
+                         .Replace("%26", "&");
+        return encoded;
+    }
+
 }
