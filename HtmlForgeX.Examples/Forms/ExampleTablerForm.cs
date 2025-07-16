@@ -25,6 +25,11 @@ internal static class ExampleTablerForm {
                                 mask.Label("Phone")
                                     .Pattern("+1 (999) 999-9999");
                             });
+                            form.Wysiwyg("notes", editor => {
+                                editor.Label("Notes")
+                                      .Placeholder("Write something...")
+                                      .Toolbar(new() { QuillFormat.Bold, QuillFormat.Italic });
+                            });
                         });
                     });
                 });

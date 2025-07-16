@@ -48,6 +48,19 @@ public class TablerForm : Element {
     }
 
     /// <summary>
+    /// Adds a rich text editor element to the form.
+    /// </summary>
+    /// <param name="name">Name and identifier of the editor.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerWysiwygEditor"/>.</returns>
+    public TablerWysiwygEditor Wysiwyg(string name, Action<TablerWysiwygEditor>? config = null) {
+        var editor = new TablerWysiwygEditor(name);
+        config?.Invoke(editor);
+        this.Add(editor);
+        return editor;
+    }
+
+    /// <summary>
     /// Adds a textarea element to the form.
     /// </summary>
     /// <param name="name">Name and identifier of the textarea.</param>
