@@ -18,10 +18,10 @@ public static class ExampleOrderConfirmationEmail {
 
         // Header box with logo and basic info
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 16px auto").WithMaxWidth("600px");
 
                         // Header with logo using new direct pattern
-            email.Header.SetPadding("20px");
+            email.Header.WithPadding("20px");
             email.Header.EmailRow(row => {
                 row.EmailColumn(col => {
                     col.SetAlignment(Alignment.Center);
@@ -44,7 +44,7 @@ public static class ExampleOrderConfirmationEmail {
 
         // Success message box
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 16px auto").WithMaxWidth("600px");
 
             // Success section using EmailContent for consistent alignment
             emailBox.EmailContent(content => {
@@ -64,14 +64,14 @@ public static class ExampleOrderConfirmationEmail {
 
         // Order details box
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 16px auto").WithMaxWidth("600px");
 
             // Order details in a two-column layout
             emailBox.EmailRow(row => {
                 row.DisableAutoSpacing(); // Disable automatic column spacing to align with other content
                 // Left column - Customer info
                 row.EmailColumn(col => {
-                    col.SetWidth("50%").SetPadding("0");
+                    col.SetWidth("50%").WithPadding("0");
                     col.EmailText("📋 Order Details")
                         .WithFontSize("18px")
                         .WithFontWeight("bold")
@@ -86,7 +86,7 @@ public static class ExampleOrderConfirmationEmail {
 
                 // Right column - Shipping info
                 row.EmailColumn(col => {
-                    col.SetWidth("50%").SetPadding("0");
+                    col.SetWidth("50%").WithPadding("0");
                     col.EmailText("🚚 Shipping Info")
                         .WithFontSize("18px")
                         .WithFontWeight("bold")
@@ -104,7 +104,7 @@ public static class ExampleOrderConfirmationEmail {
 
         // Order items table box
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 16px auto").WithMaxWidth("600px");
 
             // Order items title using EmailContent for consistent alignment
             emailBox.EmailContent(content => {
@@ -127,7 +127,7 @@ public static class ExampleOrderConfirmationEmail {
 
         // Action buttons box
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 16px auto").SetMaxWidth("600px");
+            emailBox.WithOuterMargin("0 auto 16px auto").WithMaxWidth("600px");
 
             // Action buttons using row layout
             emailBox.EmailRow(row => {
@@ -156,7 +156,7 @@ public static class ExampleOrderConfirmationEmail {
 
         // Footer box
         email.Body.EmailBox(emailBox => {
-            emailBox.SetOuterMargin("0 auto 0 auto").SetMaxWidth("600px"); // No bottom margin for last box
+            emailBox.WithOuterMargin("0 auto 0 auto").WithMaxWidth("600px"); // No bottom margin for last box
 
             // Footer section using EmailContent for consistent alignment
             emailBox.EmailContent(content => {

@@ -17,7 +17,7 @@ public static class ExampleTextWrappingDemo
                   .AddEmailCoreStyles();
 
         email.Body.EmailBox(emailBox => {
-            emailBox.SetPadding("16px");
+            emailBox.WithPadding("16px");
 
             // Header
             emailBox.EmailContent(content => {

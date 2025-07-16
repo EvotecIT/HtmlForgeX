@@ -26,7 +26,7 @@ public class TestAlignmentValidation
         var column = new EmailColumn().SetAlignment(Alignment.Right).ToString();
         StringAssert.Contains(column, "text-align: right");
 
-        var content = new EmailContent().SetAlignment(Alignment.Right).ToString();
+        var content = new EmailContent().WithAlignment(Alignment.Right).ToString();
         StringAssert.Contains(content, "text-align: right");
     }
 
@@ -38,6 +38,6 @@ public class TestAlignmentValidation
         Assert.ThrowsException<ArgumentException>(() => new EmailLink("demo", "#").WithAlignment(Alignment.Justify));
         Assert.ThrowsException<ArgumentException>(() => new EmailTextBox().WithAlignment(Alignment.Justify));
         Assert.ThrowsException<ArgumentException>(() => new EmailColumn().SetAlignment(Alignment.Justify));
-        Assert.ThrowsException<ArgumentException>(() => new EmailContent().SetAlignment(Alignment.Justify));
+        Assert.ThrowsException<ArgumentException>(() => new EmailContent().WithAlignment(Alignment.Justify));
     }
 }

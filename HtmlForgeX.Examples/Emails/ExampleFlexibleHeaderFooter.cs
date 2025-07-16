@@ -23,7 +23,7 @@ public static class ExampleFlexibleHeaderFooter
         email.Body.EmailBox(emailBox => {
             // ✅ FLEXIBLE HEADER - Build your own using EmailBox
             var header = new EmailHeader()
-                .SetPadding("24px");
+                .WithPadding("24px");
 
                         header.EmailBox(headerBox => {
                 headerBox.EmailRow(row => {
@@ -97,10 +97,10 @@ public static class ExampleFlexibleHeaderFooter
             // Example of visual mode EmailBox
             var visualBox = new EmailBox()
                 .EnableVisualMode()
-                .SetPadding("20px")
-                .SetBackgroundColor("#f8f9fa")
-                .SetBorderColor("#e9ecef")
-                .SetBorderRadius("8px");
+                .WithPadding("20px")
+                .WithBackground("#f8f9fa")
+                .WithBorderColor("#e9ecef")
+                .WithBorderRadius("8px");
 
             visualBox.EmailText("📦 This is a Visual Mode EmailBox")
                 .WithFontSize(EmailFontSize.Medium)
@@ -116,7 +116,7 @@ public static class ExampleFlexibleHeaderFooter
             // Example of structural mode EmailBox
             var structuralBox = new EmailBox()
                 .EnableStructuralMode()
-                .SetPadding("20px");
+                .WithPadding("20px");
 
             structuralBox.EmailText("🏗️ This is a Structural Mode EmailBox")
                 .WithFontSize(EmailFontSize.Medium)
@@ -131,7 +131,7 @@ public static class ExampleFlexibleHeaderFooter
 
             // ✅ FLEXIBLE FOOTER - Build your own using EmailBox
             var footer = new EmailFooter()
-                .SetPadding("32px");
+                .WithPadding("32px");
 
             footer.EmailBox(footerBox => {
                 // Social links row

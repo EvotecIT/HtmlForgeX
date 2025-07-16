@@ -20,7 +20,7 @@ public static class ExampleLayoutEmailPattern
 
         // LAYOUT pattern - structured with rows and columns
         email.Body.EmailBox(emailBox => {
-            emailBox.SetPadding("8px"); // Reduce padding for layout
+            emailBox.WithPadding("8px"); // Reduce padding for layout
 
             // First row - full width image
             emailBox.EmailRow(row => {

@@ -27,7 +27,7 @@ public static class ExampleImprovedConsistencyEmail {
         email.Head.AddTitle("Improved Consistency Demo - HtmlForgeX").AddEmailCoreStyles();
 
         // Header with consolidated EmailImage integration using new direct pattern
-        email.Header.SetPadding("20px");
+        email.Header.WithPadding("20px");
         email.Header.EmailRow(row => {
             // Logo column
             row.EmailColumn(col => {

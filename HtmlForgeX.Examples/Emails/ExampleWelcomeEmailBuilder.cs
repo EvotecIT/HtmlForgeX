@@ -19,7 +19,7 @@ public static class ExampleWelcomeEmailBuilder
                   .AddEmailCoreStyles();
 
                 // Header with company logo using new direct pattern
-        email.Header.SetPadding("20px");
+        email.Header.WithPadding("20px");
         email.Header.EmailRow(row => {
             row.EmailColumn(col => {
                 col.SetAlignment(Alignment.Center);

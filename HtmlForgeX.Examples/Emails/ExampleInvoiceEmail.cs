@@ -68,7 +68,7 @@ public static class ExampleInvoiceEmail
                 row.DisableAutoSpacing(); // Disable automatic column spacing to align with other content
                 // Left column - Customer info
                 row.EmailColumn(col => {
-                    col.SetWidth("50%").SetPadding("0"); // Use EmailLayout system for consistent padding
+                    col.SetWidth("50%").WithPadding("0"); // Use EmailLayout system for consistent padding
                     col.EmailText("Bill To:")
                         .WithFontSize(EmailFontSize.Medium)
                         .WithFontWeight(FontWeight.SemiBold)
@@ -86,7 +86,7 @@ public static class ExampleInvoiceEmail
 
                 // Right column - Invoice details
                 row.EmailColumn(col => {
-                    col.SetWidth("50%").SetPadding("0").SetAlignment(Alignment.Right); // Use EmailLayout system, align right
+                    col.SetWidth("50%").WithPadding("0").SetAlignment(Alignment.Right); // Use EmailLayout system, align right
                     col.EmailText("Invoice Date: January 6, 2025")
                         .WithFontSize(EmailFontSize.Regular)
                         .WithColor("#374151");

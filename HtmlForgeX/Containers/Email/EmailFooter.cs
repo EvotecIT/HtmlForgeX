@@ -33,10 +33,10 @@ public class EmailFooter : Element {
     /// </summary>
     public EmailFooter() {
         // Set up the footer box with structural mode (no visual styling)
-        FooterBox.SetPadding(Padding)
+        FooterBox.WithPadding(Padding)
                  .EnableStructuralMode()
-                 .SetChildSpacing("16px")
-                 .SetOuterMargin("0 auto 0 auto");
+                 .WithChildSpacing("16px")
+                 .WithOuterMargin("0 auto 0 auto");
     }
 
     /// <summary>
@@ -54,9 +54,9 @@ public class EmailFooter : Element {
     /// </summary>
     /// <param name="padding">The padding value.</param>
     /// <returns>The EmailFooter object, allowing for method chaining.</returns>
-    public EmailFooter SetPadding(string padding) {
+    public EmailFooter WithPadding(string padding) {
         Padding = padding;
-        FooterBox.SetPadding(padding);
+        FooterBox.WithPadding(padding);
         return this;
     }
 

@@ -23,7 +23,7 @@ public static class ExampleFlexibleHeaderFooterBuilder
         email.Body.EmailBox(emailBox => {
             // ✅ FLEXIBLE HEADER - Build your own using EmailBox
             var header = new EmailHeader()
-                .SetPadding("24px");
+                .WithPadding("24px");
 
                         header.EmailBox(headerBox => {
                 headerBox.EmailRow(row => {
@@ -133,7 +133,7 @@ public static class ExampleFlexibleHeaderFooterBuilder
 
             // ✅ FLEXIBLE FOOTER - Build your own using EmailBox
             var footer = new EmailFooter()
-                .SetPadding("32px");
+                .WithPadding("32px");
 
             footer.EmailBox(footerBox => {
                 // Social links row

@@ -19,7 +19,7 @@ public static class ExamplePasswordResetEmailBuilder
                   .AddEmailCoreStyles();
 
                 // Header with logo using new direct pattern
-        email.Header.SetPadding("20px");
+        email.Header.WithPadding("20px");
         email.Header.EmailRow(row => {
             row.EmailColumn(col => {
                 col.SetAlignment(Alignment.Center);
@@ -125,7 +125,7 @@ public static class ExamplePasswordResetEmailBuilder
 
         var alternativeColumn = new EmailColumn()
             .SetWidth("100%")
-            .SetPadding("16px");
+            .WithPadding("16px");
 
         var alternativeText = new Span()
             .AppendContent("Can't click the button? Copy and paste this link into your browser:")

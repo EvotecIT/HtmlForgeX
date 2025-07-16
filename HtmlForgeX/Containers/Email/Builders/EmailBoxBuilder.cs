@@ -58,6 +58,33 @@ public class EmailBoxBuilder
     }
 
     /// <summary>
+    /// Sets the outer margin of the email box.
+    /// </summary>
+    public EmailBoxBuilder WithOuterMargin(string margin)
+    {
+        _box.WithOuterMargin(margin);
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the maximum width of the email box.
+    /// </summary>
+    public EmailBoxBuilder WithMaxWidth(string maxWidth)
+    {
+        _box.WithMaxWidth(maxWidth);
+        return this;
+    }
+
+    /// <summary>
+    /// Sets consistent spacing between child elements.
+    /// </summary>
+    public EmailBoxBuilder WithChildSpacing(string spacing)
+    {
+        _box.WithChildSpacing(spacing);
+        return this;
+    }
+
+    /// <summary>
     /// Gets the configured <see cref="EmailBox"/> instance.
     /// </summary>
     public EmailBox Build() => _box;

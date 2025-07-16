@@ -135,7 +135,7 @@ public class EmailHeader : Element {
     /// </summary>
     /// <param name="padding">The padding value.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader SetPadding(string padding) {
+    public EmailHeader WithPadding(string padding) {
         Padding = padding;
         return this;
     }
@@ -145,7 +145,7 @@ public class EmailHeader : Element {
     /// </summary>
     /// <param name="color">The background color.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader SetBackgroundColor(string color) {
+    public EmailHeader WithBackground(string color) {
         BackgroundColor = color;
         return this;
     }
@@ -155,7 +155,7 @@ public class EmailHeader : Element {
     /// </summary>
     /// <param name="color">The background color.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader SetBackgroundColor(RGBColor color) {
+    public EmailHeader WithBackground(RGBColor color) {
         BackgroundColor = color.ToString();
         return this;
     }

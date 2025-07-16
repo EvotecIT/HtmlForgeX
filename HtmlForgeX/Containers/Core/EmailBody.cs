@@ -94,7 +94,7 @@ public class EmailBody : Element {
     /// </summary>
     /// <param name="color">The background color.</param>
     /// <returns>The EmailBody object, allowing for method chaining.</returns>
-    public EmailBody SetBackgroundColor(string color) {
+    public EmailBody WithBackground(string color) {
         BackgroundColor = color;
         return this;
     }
@@ -104,7 +104,7 @@ public class EmailBody : Element {
     /// </summary>
     /// <param name="color">The background color.</param>
     /// <returns>The EmailBody object, allowing for method chaining.</returns>
-    public EmailBody SetBackgroundColor(RGBColor color) {
+    public EmailBody WithBackground(RGBColor color) {
         BackgroundColor = color.ToString();
         return this;
     }
