@@ -51,7 +51,7 @@ public class TablerCardHeader : Element {
     /// Add action buttons to the header
     /// </summary>
     public TablerCardHeader WithActions(Action<TablerCardActionBuilder> actionsConfig) {
-        var builder = new TablerCardActionBuilder();
+        var builder = new TablerCardActionBuilder(this.Document);
         actionsConfig(builder);
         Actions = builder.GetActions();
         return this;
@@ -269,7 +269,12 @@ public class TablerCardHeader : Element {
 /// Builder for card header actions
 /// </summary>
 public class TablerCardActionBuilder {
-    private List<TablerCardAction> actions = new List<TablerCardAction>();
+    private readonly List<TablerCardAction> actions = new List<TablerCardAction>();
+    private readonly Document? document;
+
+    public TablerCardActionBuilder(Document? document = null) {
+        this.document = document;
+    }
 
     /// <summary>
     /// Initializes or configures Button.
@@ -277,6 +282,10 @@ public class TablerCardActionBuilder {
     public TablerCardActionBuilder Button(string text, Action<TablerCardButton>? config = null) {
         var button = new TablerCardButton().WithText(text);
         config?.Invoke(button);
+        if (document != null) {
+            button.Document = document;
+            button.OnAddedToDocument();
+        }
         actions.Add(button);
         return this;
     }
@@ -287,6 +296,10 @@ public class TablerCardActionBuilder {
     public TablerCardActionBuilder IconButton(TablerIconType icon, Action<TablerCardButton>? config = null) {
         var button = new TablerCardButton().Icon(icon);
         config?.Invoke(button);
+        if (document != null) {
+            button.Document = document;
+            button.OnAddedToDocument();
+        }
         actions.Add(button);
         return this;
     }
