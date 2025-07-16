@@ -30,8 +30,7 @@ public class QuillEditorOptions {
     /// Gets or sets module configuration.
     /// </summary>
     [JsonPropertyName("modules")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public QuillModules? Modules { get; set; }
+    public QuillModules Modules { get; set; } = new();
 
     /// <summary>
     /// Gets or sets the enabled formatting options.
