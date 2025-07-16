@@ -145,6 +145,9 @@ internal class Program {
         // Welcome email
         ExampleWelcomeEmail.Create(openInBrowser);
 
+        // Link encoding demonstration
+        ExampleLinkEncodingEmail.Create(openInBrowser);
+
         // Base64 embedding examples (if they exist)
         ExampleBase64EmbeddingEmail.Create(openInBrowser);
 
