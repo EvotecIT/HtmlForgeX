@@ -38,6 +38,7 @@ internal class DataTablesInteractiveFilteringDemo {
                         .Criterion("Region", DataTablesSearchCondition.Equals, "Europe")
                         .Criterion("Amount", DataTablesSearchCondition.GreaterThan, 1000))
                     .CustomOperator(DataTablesBuiltInOperator.StartsWith)
+                    .CustomOperator(DataTablesBuiltInOperator.Between)
                 );
             });
         });

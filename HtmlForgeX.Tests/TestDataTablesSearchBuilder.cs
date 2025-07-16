@@ -16,10 +16,12 @@ public class TestDataTablesSearchBuilder {
                 .Logic(DataTablesSearchLogic.And)
                 .Criterion("Amount", DataTablesSearchCondition.GreaterThan, 100))
             .CustomOperator(DataTablesBuiltInOperator.StartsWith)
+            .CustomOperator(DataTablesBuiltInOperator.Between)
         );
 
         var html = table.ToString();
         StringAssert.Contains(html, "\"conditionGroups\"");
         StringAssert.Contains(html, "startsWith");
+        StringAssert.Contains(html, "between");
     }
 }
