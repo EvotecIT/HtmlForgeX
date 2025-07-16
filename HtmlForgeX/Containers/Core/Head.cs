@@ -478,7 +478,7 @@ gtag('config', '{encodedIdentifier}');
                 AddRawScript($"<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon='{{\"token\": \"{encodedIdentifier}\"}}'></script>");
                 break;
             default:
-                break;
+                throw new ArgumentOutOfRangeException(nameof(provider), provider, null);
         }
         return this;
     }
