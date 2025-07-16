@@ -10,6 +10,7 @@ namespace HtmlForgeX;
 /// </summary>
 public partial class Document : Element, System.IDisposable {
     internal static readonly InternalLogger _logger = new();
+    private static int _activeDocuments;
 
     /// <summary>
     /// Configuration and state for this document instance.
@@ -71,6 +72,7 @@ public partial class Document : Element, System.IDisposable {
     /// </summary>
     /// <param name="librariesMode">Initial library mode.</param>
     public Document(LibraryMode? librariesMode = null) {
+        System.Threading.Interlocked.Increment(ref _activeDocuments);
         if (librariesMode != null) {
             Configuration.LibraryMode = librariesMode.Value;
         }
