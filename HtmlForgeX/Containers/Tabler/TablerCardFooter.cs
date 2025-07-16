@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 using HtmlForgeX.Extensions;
@@ -12,6 +13,8 @@ public class TablerCardFooter : Element {
     /// Gets or sets optional footer text content.
     /// </summary>
     public string? Content { get; set; }
+
+    private readonly HashSet<Element> _processedChildren = new();
 
     /// <summary>
     /// Initializes or configures SetContent.
@@ -53,14 +56,22 @@ public class TablerCardFooter : Element {
     /// Ensures all children have proper Document and Email references for library registration
     /// </summary>
     private void EnsureChildrenHaveDocumentReference() {
-        if (this.Document == null) return;
+        if (Document == null) {
+            return;
+        }
 
         foreach (var child in Children.WhereNotNull()) {
-            if (child.Document == null) {
-                child.Document = this.Document;
-                child.Email = this.Email;
-                // Call OnAddedToDocument to trigger library registration
+            if (!_processedChildren.Contains(child)) {
+                if (child.Document == null) {
+                    child.Document = Document;
+                    child.Email = Email;
+                }
+
                 child.OnAddedToDocument();
+                _processedChildren.Add(child);
+            } else if (child.Document == null) {
+                child.Document = Document;
+                child.Email = Email;
             }
         }
     }
