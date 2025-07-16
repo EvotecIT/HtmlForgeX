@@ -526,8 +526,8 @@ public class SmartWizard : Element {
     /// </summary>
     protected internal override void RegisterLibraries() {
         base.RegisterLibraries();
-        Document?.Configuration.Libraries.TryAdd(Libraries.JQuery, 0);
-        Document?.Configuration.Libraries.TryAdd(Libraries.SmartWizard, 10);
+        Document?.AddLibrary(Libraries.JQuery);
+        Document?.AddLibrary(Libraries.SmartWizard, 10);
     }
 
     /// <summary>
