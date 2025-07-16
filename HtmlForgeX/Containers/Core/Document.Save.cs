@@ -50,9 +50,9 @@ public partial class Document
                 _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
             }
         }
+        FileWriteLock.Semaphore.Wait();
         try
         {
-            FileWriteLock.Semaphore.Wait();
             File.WriteAllText(path, ToString(), Encoding.UTF8);
         }
         catch (Exception ex)
