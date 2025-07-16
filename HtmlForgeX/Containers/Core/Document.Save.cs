@@ -64,7 +64,7 @@ public partial class Document
         {
             FileWriteLock.Semaphore.Release();
         }
-        if (!Helpers.Open(path, openInBrowser))
+        if (openInBrowser && !Helpers.Open(path, openInBrowser))
         {
             _logger.WriteError($"Failed to open file '{path}' using the default application.");
         }
@@ -131,7 +131,7 @@ public partial class Document
         {
             FileWriteLock.Semaphore.Release();
         }
-        if (!Helpers.Open(path, openInBrowser))
+        if (openInBrowser && !Helpers.Open(path, openInBrowser))
         {
             _logger.WriteError($"Failed to open file '{path}' using the default application.");
         }
