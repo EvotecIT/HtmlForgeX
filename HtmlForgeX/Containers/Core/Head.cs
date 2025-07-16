@@ -398,18 +398,19 @@ public class Head : Element {
     /// <param name="identifier">Tracking or token identifier.</param>
     /// <returns>The <see cref="Head"/> instance for chaining.</returns>
     public Head AddAnalytics(AnalyticsProvider provider, string identifier) {
+        var encodedIdentifier = Helpers.HtmlEncode(identifier);
         switch (provider) {
             case AnalyticsProvider.GoogleAnalytics:
-                AddRawScript($"<script async src=\"https://www.googletagmanager.com/gtag/js?id={identifier}\"></script>");
+                AddRawScript($"<script async src=\"https://www.googletagmanager.com/gtag/js?id={encodedIdentifier}\"></script>");
                 AddRawScript($@"<script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){{dataLayer.push(arguments);}}
 gtag('js', new Date());
-gtag('config', '{identifier}');
+gtag('config', '{encodedIdentifier}');
 </script>");
                 break;
             case AnalyticsProvider.CloudflareInsights:
-                AddRawScript($"<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon='{{\"token\": \"{identifier}\"}}'></script>");
+                AddRawScript($"<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon='{{\"token\": \"{encodedIdentifier}\"}}'></script>");
                 break;
             default:
                 break;
