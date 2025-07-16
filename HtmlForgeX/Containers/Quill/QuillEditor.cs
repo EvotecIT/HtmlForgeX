@@ -33,7 +33,7 @@ public class QuillEditor : Element {
     /// Registers Quill library requirements with the document.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.Quill, 0);
+        Document?.AddLibrary(Libraries.Quill);
     }
 
     /// <summary>

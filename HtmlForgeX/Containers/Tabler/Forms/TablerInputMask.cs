@@ -28,7 +28,7 @@ public class TablerInputMask : Element {
     /// Ensures required JavaScript libraries for input masking are registered.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.IMask, 0);
+        Document?.AddLibrary(Libraries.IMask);
     }
 
     /// <summary>

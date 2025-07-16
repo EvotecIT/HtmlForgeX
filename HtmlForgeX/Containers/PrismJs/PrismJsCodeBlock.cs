@@ -199,7 +199,7 @@ public class PrismJsCodeBlock : Element
     protected internal override void RegisterLibraries()
     {
         // Register base PrismJS library
-        Document?.Configuration.Libraries.TryAdd(Libraries.PrismJs, 0);
+        Document?.AddLibrary(Libraries.PrismJs);
 
         // Register theme-specific library if not default
         if (Theme != PrismJsTheme.Default)
@@ -224,7 +224,7 @@ public class PrismJsCodeBlock : Element
         var themeLibrary = GetThemeLibrary();
         if (themeLibrary.HasValue)
         {
-            Document?.Configuration.Libraries.TryAdd(themeLibrary.Value, 0);
+            Document?.AddLibrary(themeLibrary.Value);
         }
     }
 

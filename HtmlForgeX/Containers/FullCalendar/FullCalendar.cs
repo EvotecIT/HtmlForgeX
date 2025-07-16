@@ -147,8 +147,8 @@ public class FullCalendar : Element {
     /// Registers FullCalendar JavaScript libraries within the document.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.FullCalendar, 0);
-        Document?.Configuration.Libraries.TryAdd(Libraries.Popper, 0);
+        Document?.AddLibrary(Libraries.FullCalendar);
+        Document?.AddLibrary(Libraries.Popper);
     }
 
     /// <summary>

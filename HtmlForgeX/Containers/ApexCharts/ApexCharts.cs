@@ -58,7 +58,7 @@ public class ApexCharts : Element {
     /// </summary>
     /// <inheritdoc />
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.ApexCharts, 0);
+        Document?.AddLibrary(Libraries.ApexCharts);
     }
 
     /// <summary>

@@ -38,7 +38,7 @@ public class ChartJs : Element {
     /// Registers the Chart.js library with the current document.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.ChartJs, 0);
+        Document?.AddLibrary(Libraries.ChartJs);
     }
 
     /// <summary>

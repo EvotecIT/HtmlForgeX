@@ -51,8 +51,8 @@ public class FancyTree : Element {
     /// Registers the required libraries for FancyTree.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        Document?.Configuration.Libraries.TryAdd(Libraries.JQuery, 0);
-        Document?.Configuration.Libraries.TryAdd(Libraries.FancyTree, 0);
+        Document?.AddLibrary(Libraries.JQuery);
+        Document?.AddLibrary(Libraries.FancyTree);
     }
 
     /// <summary>

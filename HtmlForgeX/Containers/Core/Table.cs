@@ -380,16 +380,16 @@ public class Table : Element {
         if (Library.HasValue) {
             switch (Library.Value) {
                 case TableType.BootstrapTable:
-                    Document?.Configuration.Libraries.TryAdd(Libraries.Bootstrap, 0);
+                    Document?.AddLibrary(Libraries.Bootstrap);
                     break;
                 case TableType.DataTables:
-                    Document?.Configuration.Libraries.TryAdd(Libraries.Bootstrap, 0);
-                    Document?.Configuration.Libraries.TryAdd(Libraries.JQuery, 0);
-                    Document?.Configuration.Libraries.TryAdd(Libraries.DataTables, 0);
+                    Document?.AddLibrary(Libraries.Bootstrap);
+                    Document?.AddLibrary(Libraries.JQuery);
+                    Document?.AddLibrary(Libraries.DataTables);
                     break;
                 case TableType.Tabler:
-                    Document?.Configuration.Libraries.TryAdd(Libraries.Bootstrap, 0);
-                    Document?.Configuration.Libraries.TryAdd(Libraries.Tabler, 0);
+                    Document?.AddLibrary(Libraries.Bootstrap);
+                    Document?.AddLibrary(Libraries.Tabler);
                     break;
                 default:
                     throw new Exception("Library not supported");
