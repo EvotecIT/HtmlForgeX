@@ -67,6 +67,16 @@ public class TestAddFontLink
         StringAssert.Contains(html, "font-family: Lobster, cursive;");
     }
 
+    [TestMethod]
+    public void SetBodyFontFamily_IgnoresEmptyValues()
+    {
+        var doc = new Document();
+        doc.Head.SetBodyFontFamily("Roboto", string.Empty, "  ", null, "sans-serif");
+
+        var html = doc.Head.ToString();
+        StringAssert.Contains(html, "font-family: Roboto, sans-serif;");
+    }
+
     private static int CountOccurrences(string text, string pattern)
     {
         int count = 0;
