@@ -40,4 +40,11 @@ public class TestAlignmentValidation
         Assert.ThrowsException<ArgumentException>(() => new EmailColumn().SetAlignment(Alignment.Justify));
         Assert.ThrowsException<ArgumentException>(() => new EmailContent().WithAlignment(Alignment.Justify));
     }
+
+    [TestMethod]
+    public void WithVerticalAlign_ShouldSetAlignment()
+    {
+        var column = new EmailColumn().WithVerticalAlign(EmailVerticalAlignment.Middle);
+        StringAssert.Contains(column.ToString(), "valign=\"middle\"");
+    }
 }
