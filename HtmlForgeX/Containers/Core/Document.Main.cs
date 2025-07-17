@@ -101,10 +101,15 @@ public partial class Document : Element, System.IDisposable {
         var html = StringBuilderCache.Acquire();
         html.AppendLine("<!DOCTYPE html>");
         html.AppendLine("<html>");
-        html.Append(Head.ToString());
+
+        var headString = Head.ToString().TrimEnd('\r', '\n');
+        html.Append(headString);
         html.AppendLine();
-        html.Append(Body.ToString());
+
+        var bodyString = Body.ToString().TrimEnd('\r', '\n');
+        html.Append(bodyString);
         html.AppendLine();
+
         html.AppendLine("</html>");
         return StringBuilderCache.GetStringAndRelease(html);
     }

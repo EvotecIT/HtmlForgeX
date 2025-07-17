@@ -173,7 +173,7 @@ public class EmailHeader : Element {
         html.AppendLine($@"    <td style=""padding: {Padding};"">");
 
         foreach (var child in base.Children.WhereNotNull()) {
-            html.AppendLine(child.ToString());
+            html.AppendLine(child.ToString().TrimEnd('\r', '\n'));
         }
 
         html.AppendLine($@"    </td>");
