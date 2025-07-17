@@ -5,6 +5,9 @@ namespace HtmlForgeX.Resources;
 /// </summary>
 public class PrismJsGitHubTheme : Library
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrismJsGitHubTheme"/> class.
+    /// </summary>
     public PrismJsGitHubTheme()
     {
         Header = new LibraryLinks {

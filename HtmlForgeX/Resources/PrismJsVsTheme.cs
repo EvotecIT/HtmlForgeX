@@ -5,6 +5,9 @@ namespace HtmlForgeX.Resources;
 /// </summary>
 public class PrismJsVsTheme : Library
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrismJsVsTheme"/> class.
+    /// </summary>
     public PrismJsVsTheme()
     {
         Header = new LibraryLinks {

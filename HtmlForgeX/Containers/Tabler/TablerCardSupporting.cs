@@ -247,7 +247,7 @@ public class TablerDropdownItem {
     /// Creates a divider item for use within a dropdown menu.
     /// </summary>
     public static TablerDropdownItem Divider() => new TablerDropdownItem { IsDivider = true };
-    /// <summary>
+
     /// <summary>
     /// Creates a clickable dropdown item.
     /// </summary>

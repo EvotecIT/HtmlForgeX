@@ -8,6 +8,10 @@ namespace HtmlForgeX;
 /// Custom JSON converter that serializes enum values as lowercase strings.
 /// </summary>
 public class ApexEnumConverter<T> : JsonConverter<T> where T : struct, Enum {
+    /// <summary>
+    /// Deserializes an enum value from JSON.
+    /// </summary>
+    /// <inheritdoc />
     public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         if (reader.TokenType != JsonTokenType.String) {
             throw new JsonException($"Expected string for enum {typeof(T).Name}");
@@ -21,6 +25,10 @@ public class ApexEnumConverter<T> : JsonConverter<T> where T : struct, Enum {
         throw new JsonException($"Unable to parse '{value}' as {typeof(T).Name}");
     }
 
+    /// <summary>
+    /// Serializes an enum value to JSON using ApexCharts naming conventions.
+    /// </summary>
+    /// <inheritdoc />
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options) {
         // Convert enum value to ApexCharts format
         var enumString = value.ToString();

@@ -123,10 +123,10 @@ public class ImageConfiguration {
     /// </summary>
     public bool AutoEmbedImages { get; set; } = false;
 
+    private int _embeddingTimeout = 30;
     /// <summary>
     /// Gets or sets the timeout in seconds when downloading images for embedding.
     /// </summary>
-    private int _embeddingTimeout = 30;
     public int EmbeddingTimeout {
         get => _embeddingTimeout;
         set {
@@ -137,10 +137,10 @@ public class ImageConfiguration {
         }
     }
 
+    private int _maxWidth = 800;
     /// <summary>
     /// Gets or sets the maximum width for image optimization (in pixels).
     /// </summary>
-    private int _maxWidth = 800;
     public int MaxWidth {
         get => _maxWidth;
         set {
@@ -151,10 +151,10 @@ public class ImageConfiguration {
         }
     }
 
+    private int _maxHeight = 600;
     /// <summary>
     /// Gets or sets the maximum height for image optimization (in pixels).
     /// </summary>
-    private int _maxHeight = 600;
     public int MaxHeight {
         get => _maxHeight;
         set {
@@ -165,10 +165,10 @@ public class ImageConfiguration {
         }
     }
 
+    private int _quality = 85;
     /// <summary>
     /// Gets or sets the quality for JPEG compression (0-100).
     /// </summary>
-    private int _quality = 85;
     public int Quality {
         get => _quality;
         set {

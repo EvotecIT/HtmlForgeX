@@ -463,6 +463,12 @@ public class EmailImage : Element {
     public EmailImage EmbedFromUrl(string url, int timeoutSeconds = 30) =>
         EmbedFromUrlAsync(url, timeoutSeconds).GetAwaiter().GetResult();
 
+    /// <summary>
+    /// Asynchronously embeds the image from a URL.
+    /// </summary>
+    /// <param name="url">The URL to download and embed.</param>
+    /// <param name="timeoutSeconds">Download timeout in seconds.</param>
+    /// <returns>The current <see cref="EmailImage"/> instance.</returns>
     public async Task<EmailImage> EmbedFromUrlAsync(string url, int timeoutSeconds = 30) {
         try {
             var download = await ImageUtilities.DownloadImageAsync(url, timeoutSeconds).ConfigureAwait(false);

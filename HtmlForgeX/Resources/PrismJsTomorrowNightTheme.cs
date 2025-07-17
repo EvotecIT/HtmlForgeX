@@ -5,6 +5,9 @@ namespace HtmlForgeX.Resources;
 /// </summary>
 public class PrismJsTomorrowNightTheme : Library
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrismJsTomorrowNightTheme"/> class.
+    /// </summary>
     public PrismJsTomorrowNightTheme()
     {
         Header = new LibraryLinks {
