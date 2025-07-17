@@ -18,18 +18,25 @@ public class QuillToolbarConverter : JsonConverter<object> {
     public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options) {
         switch (value) {
             case List<QuillFormat> formats:
-                WriteSimpleToolbar(writer, formats);
+                WrapInContainer(writer, () => WriteSimpleToolbar(writer, formats));
                 break;
             case List<List<QuillFormat>> groupedFormats:
-                WriteGroupedToolbar(writer, groupedFormats);
+                WrapInContainer(writer, () => WriteGroupedToolbar(writer, groupedFormats));
                 break;
             case QuillToolbarConfig config:
-                WriteAdvancedToolbar(writer, config);
+                WrapInContainer(writer, () => WriteAdvancedToolbar(writer, config));
                 break;
             default:
                 JsonSerializer.Serialize(writer, value, options);
                 break;
         }
+    }
+
+    private static void WrapInContainer(Utf8JsonWriter writer, Action writeArray) {
+        writer.WriteStartObject();
+        writer.WritePropertyName("container");
+        writeArray();
+        writer.WriteEndObject();
     }
 
     private void WriteSimpleToolbar(Utf8JsonWriter writer, List<QuillFormat> formats) {
