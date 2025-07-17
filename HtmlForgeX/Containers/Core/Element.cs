@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using HtmlForgeX.Tags;
 using HtmlForgeX.Extensions;
@@ -159,7 +160,9 @@ public abstract partial class Element {
     /// <param name="tableType">Table library type.</param>
     /// <returns>The created table element.</returns>
     public Table Table(IEnumerable<object> objects, TableType tableType) {
-        var table = HtmlForgeX.Table.Create(objects, tableType);
+        var table = objects is null
+            ? HtmlForgeX.Table.Create(Array.Empty<object>(), tableType)
+            : HtmlForgeX.Table.Create(objects, tableType);
         this.Add(table);
         return table;
     }
@@ -171,6 +174,10 @@ public abstract partial class Element {
     /// <param name="tableType">Table library type.</param>
     /// <returns>The created table element.</returns>
     public Table Table(object objects, TableType tableType) {
+        if (objects is null) {
+            throw new ArgumentNullException(nameof(objects));
+        }
+
         var table = HtmlForgeX.Table.Create(objects, tableType);
         this.Add(table);
         return table;

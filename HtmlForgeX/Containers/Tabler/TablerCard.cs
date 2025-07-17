@@ -101,7 +101,15 @@ public class TablerCard : Element {
 
     /// <summary>Gets or sets a value indicating whether a light background is used.</summary>
     public bool IsBackgroundLight { get; set; }
+
+    /// <summary>
+    /// Gets or sets a custom background color used when <see cref="BackgroundColor"/> is <c>null</c>.
+    /// </summary>
     public RGBColor? CustomBackgroundColor { get; set; }
+
+    /// <summary>
+    /// Gets or sets a custom text color used when <see cref="TextColor"/> is <c>null</c>.
+    /// </summary>
     public RGBColor? CustomTextColor { get; set; }
 
     private int Number { get; set; }

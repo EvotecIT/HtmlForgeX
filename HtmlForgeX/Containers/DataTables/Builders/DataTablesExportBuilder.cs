@@ -90,6 +90,9 @@ public class DataTablesExportBuilder
     /// <summary>Add custom export button</summary>
     public DataTablesExportBuilder Custom(Action<DataTablesExport> configure)
     {
+        if (configure is null)
+            throw new ArgumentNullException(nameof(configure));
+
         var export = new DataTablesExport();
         configure(export);
         _exports.Add(export);
@@ -99,6 +102,9 @@ public class DataTablesExportBuilder
     /// <summary>Configure export options for all buttons</summary>
     public DataTablesExportBuilder ConfigureAll(Action<DataTablesExportOptions> configure)
     {
+        if (configure is null)
+            throw new ArgumentNullException(nameof(configure));
+
         var options = new DataTablesExportOptions();
         configure(options);
 

@@ -50,9 +50,10 @@ public class TestDocumentWorkflow {
             }
         };
         
-        doc.AddLibrary(customLibrary);
+        var added = doc.AddLibrary(customLibrary);
         var html = doc.ToString();
-        
+
+        Assert.IsTrue(added);
         Assert.IsTrue(html.Contains("https://example.com/custom.css"));
         Assert.IsTrue(html.Contains("https://example.com/custom.js"));
     }
@@ -145,10 +146,12 @@ public class TestDocumentWorkflow {
             }
         };
         
-        doc.AddLibrary(lib1);
-        doc.AddLibrary(lib2);
+        var added1 = doc.AddLibrary(lib1);
+        var added2 = doc.AddLibrary(lib2);
         
         var html = doc.ToString();
+        Assert.IsTrue(added1);
+        Assert.IsTrue(added2);
         Assert.IsTrue(html.Contains("https://lib1.com/style.css"));
         Assert.IsTrue(html.Contains("https://lib2.com/script.js"));
     }
@@ -164,14 +167,16 @@ public class TestDocumentWorkflow {
             }
         };
 
-        doc.AddLibrary(customLibrary);
-        doc.AddLibrary(customLibrary);
+        var first = doc.AddLibrary(customLibrary);
+        var second = doc.AddLibrary(customLibrary);
 
         var html = doc.ToString();
 
         var cssCount = Regex.Matches(html, "https://dup.example.com/style.css").Count;
         var jsCount = Regex.Matches(html, "https://dup.example.com/script.js").Count;
 
+        Assert.IsTrue(first);
+        Assert.IsTrue(second);
         Assert.AreEqual(1, cssCount, "CSS link should be included only once");
         Assert.AreEqual(1, jsCount, "JS link should be included only once");
     }

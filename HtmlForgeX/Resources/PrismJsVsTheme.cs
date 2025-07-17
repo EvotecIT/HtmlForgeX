@@ -5,11 +5,17 @@ namespace HtmlForgeX.Resources;
 /// </summary>
 public class PrismJsVsTheme : Library
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrismJsVsTheme"/> class.
+    /// </summary>
     public PrismJsVsTheme()
     {
         Header = new LibraryLinks {
             CssLink = [
-                "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-vs.min.css"
+                "https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-vs.min.css"
+            ],
+            Css = [
+                "prism-vs.min.css"
             ]
         };
 

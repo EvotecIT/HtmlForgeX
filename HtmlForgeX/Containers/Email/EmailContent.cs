@@ -114,7 +114,7 @@ public class EmailContent : Element {
 
         // Render all child elements
         foreach (var element in _elements) {
-            html.AppendLine(element.ToString());
+            html.AppendLine(element.ToString().TrimEnd('\r', '\n'));
         }
 
         html.AppendLine("</td>");

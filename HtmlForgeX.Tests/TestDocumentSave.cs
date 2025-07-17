@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Text;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
@@ -41,6 +42,15 @@ public class TestDocumentSave {
     public async Task SaveAsync_InvalidPath_ThrowsArgumentException() {
         using var doc = new Document();
         await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await doc.SaveAsync("invalid\0path.html"));
+    }
+
+    [TestMethod]
+    public async Task SaveAsync_CancellationRequested_ThrowsOperationCanceledException() {
+        using var doc = new Document();
+        using var cts = new CancellationTokenSource();
+        cts.Cancel();
+        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"cancel_{Guid.NewGuid():N}.html");
+        await Assert.ThrowsExceptionAsync<TaskCanceledException>(async () => await doc.SaveAsync(path, cancellationToken: cts.Token));
     }
 
     [TestMethod]

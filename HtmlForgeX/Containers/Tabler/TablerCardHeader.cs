@@ -272,6 +272,10 @@ public class TablerCardActionBuilder {
     private readonly List<TablerCardAction> actions = new List<TablerCardAction>();
     private readonly Document? document;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TablerCardActionBuilder"/> class.
+    /// </summary>
+    /// <param name="document">Optional parent document used when adding actions.</param>
     public TablerCardActionBuilder(Document? document = null) {
         this.document = document;
     }

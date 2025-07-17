@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Reflection;
 
 namespace HtmlForgeX.Tests;
 
@@ -30,6 +31,17 @@ public class TestUncPaths {
             doc.Save(path);
             Assert.IsTrue(File.Exists(path));
             File.Delete(path);
+        }
+    }
+
+    [TestMethod]
+    public void Document_IsUncRoot_DetectsRoot() {
+        var method = typeof(Document).GetMethod("IsUncRoot", BindingFlags.NonPublic | BindingFlags.Static)!;
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+            Assert.IsTrue((bool)method.Invoke(null, new object[] { "\\\\server\\share" })!);
+            Assert.IsFalse((bool)method.Invoke(null, new object[] { "\\\\server\\share\\folder" })!);
+        } else {
+            Assert.IsFalse((bool)method.Invoke(null, new object[] { "//server/share" })!);
         }
     }
 }

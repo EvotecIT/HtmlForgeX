@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using HtmlForgeX.Logging;
 
@@ -267,19 +268,19 @@ public class Head : Element {
         head.AppendLine("<head>");
 
         if (!string.IsNullOrEmpty(Title)) {
-            head.AppendLine($"\t<title>{Title}</title>");
+            head.AppendLine($"<title>{Title}</title>");
         }
 
         if (!string.IsNullOrEmpty(Charset)) {
-            head.AppendLine($"\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Helpers.HtmlEncode(Charset)}\">");
+            head.AppendLine($"<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Helpers.HtmlEncode(Charset)}\">");
         }
 
         if (!string.IsNullOrEmpty(HttpEquiv) && !string.IsNullOrEmpty(Content)) {
-            head.AppendLine($"\t<meta http-equiv=\"{Helpers.HtmlEncode(HttpEquiv)}\" content=\"{Helpers.HtmlEncode(Content)}\">");
+            head.AppendLine($"<meta http-equiv=\"{Helpers.HtmlEncode(HttpEquiv)}\" content=\"{Helpers.HtmlEncode(Content)}\">");
         }
 
         if (AutoRefresh.HasValue) {
-            head.AppendLine($"\t<meta http-equiv=\"refresh\" content=\"{AutoRefresh.Value}\">");
+            head.AppendLine($"<meta http-equiv=\"refresh\" content=\"{AutoRefresh.Value}\">");
         }
 
         head.Append(MetaTagString("viewport", Viewport));
@@ -289,29 +290,29 @@ public class Head : Element {
         head.Append(MetaTagString("revised", Revised?.ToString()));
 
         foreach (var metaTag in MetaTags) {
-            head.AppendLine($"\t{metaTag.ToString()}");
+            head.AppendLine($"{metaTag.ToString().TrimEnd('\r', '\n')}");
         }
 
         foreach (var link in FontLinks) {
-            head.AppendLine($"\t{link}");
+            head.AppendLine($"{link}");
         }
 
         foreach (var link in CssLinks) {
-            head.AppendLine($"\t{link}");
+            head.AppendLine($"{link}");
         }
 
         foreach (var link in JsLinks) {
-            head.AppendLine($"\t{link}");
+            head.AppendLine($"{link}");
         }
 
         if (Styles.Count > 0) {
             foreach (var style in Styles) {
                 string styleStr = style.ToString();
                 if (styleStr.Trim().StartsWith("<style") && styleStr.Trim().EndsWith("</style>")) {
-                    head.AppendLine(styleStr);
+                    head.AppendLine(styleStr.TrimEnd('\r', '\n'));
                 } else {
                     head.AppendLine("<style type=\"text/css\">");
-                    head.AppendLine(styleStr);
+                    head.AppendLine(styleStr.TrimEnd('\r', '\n'));
                     head.AppendLine("</style>");
                 }
             }
@@ -410,7 +411,9 @@ public class Head : Element {
     }
 
     private static string FormatFonts(IEnumerable<string> fonts) {
-        return string.Join(", ", fonts.Select(QuoteFontIfNeeded));
+        return string.Join(", ",
+            fonts.Where(font => !string.IsNullOrWhiteSpace(font))
+                 .Select(QuoteFontIfNeeded));
     }
 
     private static string QuoteFontIfNeeded(string font) {
@@ -418,9 +421,9 @@ public class Head : Element {
             return font;
         }
 
-        var trimmed = font.Trim();
+        var trimmed = font.Trim().Trim('\'', '"');
 
-        if (trimmed.Contains(' ') && !(trimmed.StartsWith("\"") || trimmed.StartsWith("'"))) {
+        if (trimmed.Contains(' ')) {
             return $"'{trimmed}'";
         }
 
@@ -432,7 +435,7 @@ public class Head : Element {
     /// </summary>
     /// <param name="css">CSS rules to embed.</param>
     public void AddCssInline(string css) {
-        css = css.Trim();
+        css = Regex.Replace(css.Trim(), @"\s+", " ");
         if (_cssInlineSet.Add(css)) {
             Styles.Add($"<style>{css}</style>");
         }
@@ -443,7 +446,7 @@ public class Head : Element {
     /// </summary>
     /// <param name="js">JavaScript code to embed.</param>
     public void AddJsInline(string js) {
-        js = js.Trim();
+        js = Regex.Replace(js.Trim(), @"\s+", " ");
         if (_jsInlineSet.Add(js)) {
             Scripts.Add($"<script>{js}</script>");
         }
@@ -461,9 +464,9 @@ public class Head : Element {
     /// </summary>
     /// <param name="provider">Analytics provider.</param>
     /// <param name="identifier">Tracking or token identifier.</param>
-    /// <returns>The <see cref="Head"/> instance for chaining.</returns>
-    public Head AddAnalytics(AnalyticsProvider provider, string identifier) {
-        var encodedIdentifier = Helpers.HtmlEncode(identifier);
+    /// <returns><see langword="true"/> when the provider is handled, <see langword="false"/> otherwise.</returns>
+    public bool AddAnalytics(AnalyticsProvider provider, string identifier) {
+        var encodedIdentifier = Uri.EscapeDataString(identifier);
         switch (provider) {
             case AnalyticsProvider.GoogleAnalytics:
                 AddRawScript($"<script async src=\"https://www.googletagmanager.com/gtag/js?id={encodedIdentifier}\"></script>");
@@ -473,14 +476,13 @@ function gtag(){{dataLayer.push(arguments);}}
 gtag('js', new Date());
 gtag('config', '{encodedIdentifier}');
 </script>");
-                break;
+                return true;
             case AnalyticsProvider.CloudflareInsights:
                 AddRawScript($"<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon='{{\"token\": \"{encodedIdentifier}\"}}'></script>");
-                break;
+                return true;
             default:
-                break;
+                return false;
         }
-        return this;
     }
 
     /// <summary>
@@ -496,7 +498,7 @@ gtag('config', '{encodedIdentifier}');
             return string.Empty;
         }
         var encoded = Helpers.HtmlEncode(content);
-        return $"\t<meta name=\"{name}\" content=\"{encoded}\">\n";
+        return $"<meta name=\"{name}\" content=\"{encoded}\">\n";
     }
 
     private void ProcessLibrary(Library library) {
@@ -524,12 +526,23 @@ gtag('config', '{encodedIdentifier}');
 
         } else if (_document.Configuration.LibraryMode == LibraryMode.OfflineWithFiles) {
             foreach (var css in headerLinks.Css) {
-                AddCssLink(css);
+                var fileName = Path.GetFileName(css);
+                var linkPath = string.IsNullOrEmpty(_document.Configuration.StylePath)
+                    ? fileName
+                    : Path.Combine(_document.Configuration.StylePath, fileName);
+                AddCssLink(linkPath.Replace('\\', '/'));
             }
+
             foreach (var js in headerLinks.Js) {
                 var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
-                // we need to save the js file to disk
-                var jsFileName = Path.Combine(_document.Configuration.Path, Path.GetFileName(js));
+                var fileName = Path.GetFileName(js);
+                var linkPath = string.IsNullOrEmpty(_document.Configuration.ScriptPath)
+                    ? fileName
+                    : Path.Combine(_document.Configuration.ScriptPath, fileName);
+                AddJsLink(linkPath.Replace('\\', '/'));
+
+                var baseDir = Path.GetDirectoryName(_document.Configuration.Path) ?? string.Empty;
+                var jsFileName = Path.Combine(baseDir, linkPath);
                 var jsDirectory = Path.GetDirectoryName(jsFileName);
                 if (!string.IsNullOrEmpty(jsDirectory)) {
                     try {
@@ -577,49 +590,57 @@ gtag('config', '{encodedIdentifier}');
         if (_document.Configuration.LibraryMode == LibraryMode.Online) {
             // Process CSS links
             foreach (var link in libraryLinks.CssLink) {
-                output.AppendLine($"\t<link rel=\"stylesheet\" href=\"{link}\">");
+                output.AppendLine($"<link rel=\"stylesheet\" href=\"{link}\">");
             }
 
             // Process JS links
             foreach (var link in libraryLinks.JsLink) {
-                output.AppendLine($"\t<script src=\"{link}\"></script>");
+                output.AppendLine($"<script src=\"{link}\"></script>");
             }
         } else if (_document.Configuration.LibraryMode == LibraryMode.Offline) {
             // Process embedded CSS
             foreach (var css in libraryLinks.Css) {
                 var cssContent = ReadEmbeddedResource("HtmlForgeX.Resources.Styles." + css);
-                output.AppendLine($"\t<style>{cssContent}</style>");
+                output.AppendLine($"<style>{cssContent}</style>");
             }
 
             // Process embedded JS
             foreach (var js in libraryLinks.Js) {
                 var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
-                output.AppendLine($"\t<script>{jsContent}</script>");
+                output.AppendLine($"<script>{jsContent}</script>");
             }
         } else if (_document.Configuration.LibraryMode == LibraryMode.OfflineWithFiles) {
             // Process CSS file links
             foreach (var css in libraryLinks.Css) {
-                output.AppendLine($"\t<link rel=\"stylesheet\" href=\"{Path.GetFileName(css)}\">");
+                var fileName = Path.GetFileName(css);
+                var linkPath = string.IsNullOrEmpty(_document.Configuration.StylePath)
+                    ? fileName
+                    : Path.Combine(_document.Configuration.StylePath, fileName);
+                output.AppendLine($"<link rel=\"stylesheet\" href=\"{linkPath.Replace('\\', '/')}\">");
             }
 
             // Process JS file links
             foreach (var js in libraryLinks.Js) {
-                output.AppendLine($"\t<script src=\"{Path.GetFileName(js)}\"></script>");
+                var fileName = Path.GetFileName(js);
+                var linkPath = string.IsNullOrEmpty(_document.Configuration.ScriptPath)
+                    ? fileName
+                    : Path.Combine(_document.Configuration.ScriptPath, fileName);
+                output.AppendLine($"<script src=\"{linkPath.Replace('\\', '/')}\"></script>");
             }
         }
 
         // Process inline CSS styles (consistent with Header processing)
         foreach (var style in libraryLinks.CssStyle) {
-            output.AppendLine($"\t<style type=\"text/css\">");
-            output.AppendLine(style.ToString());
-            output.AppendLine($"\t</style>");
+            output.AppendLine($"<style type=\"text/css\">");
+            output.AppendLine(style.ToString().TrimEnd('\r', '\n'));
+            output.AppendLine($"</style>");
         }
 
         // Process inline JS scripts (consistent with Header processing)
         foreach (var script in libraryLinks.JsScript) {
-            output.AppendLine($"\t<script type=\"text/javascript\">");
+            output.AppendLine($"<script type=\"text/javascript\">");
             output.AppendLine(script);
-            output.AppendLine($"\t</script>");
+            output.AppendLine($"</script>");
         }
     }
 

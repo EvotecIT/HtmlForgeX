@@ -58,6 +58,16 @@ public class TestAddFontLink
     }
 
     [TestMethod]
+    public void SetBodyFontFamily_SanitizesQuotedFonts()
+    {
+        var doc = new Document();
+        doc.Head.SetBodyFontFamily("'Open Sans'", "Arial", "sans-serif");
+
+        var html = doc.Head.ToString();
+        StringAssert.Contains(html, "'Open Sans', Arial, sans-serif");
+    }
+
+    [TestMethod]
     public void SetBodyFontFamily_MultipleFonts()
     {
         var doc = new Document();
@@ -65,6 +75,16 @@ public class TestAddFontLink
 
         var html = doc.Head.ToString();
         StringAssert.Contains(html, "font-family: Lobster, cursive;");
+    }
+
+    [TestMethod]
+    public void SetBodyFontFamily_IgnoresEmptyValues()
+    {
+        var doc = new Document();
+        doc.Head.SetBodyFontFamily("Roboto", string.Empty, "  ", null, "sans-serif");
+
+        var html = doc.Head.ToString();
+        StringAssert.Contains(html, "font-family: Roboto, sans-serif;");
     }
 
     private static int CountOccurrences(string text, string pattern)

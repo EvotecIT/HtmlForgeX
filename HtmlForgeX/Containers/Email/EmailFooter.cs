@@ -68,7 +68,7 @@ public class EmailFooter : Element {
         var html = StringBuilderCache.Acquire();
 
         html.AppendLine($@"<!-- FOOTER -->");
-        html.AppendLine(FooterBox.ToString());
+        html.AppendLine(FooterBox.ToString().TrimEnd('\r', '\n'));
         html.AppendLine($@"<!-- /FOOTER -->");
 
         return StringBuilderCache.GetStringAndRelease(html);

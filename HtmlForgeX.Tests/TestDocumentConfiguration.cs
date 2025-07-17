@@ -97,4 +97,11 @@ public class TestDocumentConfiguration {
         Assert.ThrowsException<ArgumentException>(() => config.GenerateRandomId(null!));
         Assert.ThrowsException<ArgumentException>(() => config.GenerateRandomId(" \t\n"));
     }
+
+    [TestMethod]
+    public void ImageConfiguration_EmbeddingTimeout_Negative_Throws() {
+        var config = new DocumentConfiguration();
+
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => config.Images.EmbeddingTimeout = -1);
+    }
 }

@@ -139,27 +139,27 @@ public class EmailBody : Element {
         var actualBackgroundColor = GetThemeBackgroundColor();
 
         body.AppendLine($"<body class=\"{CssClass}{themeClass}\" style=\"{bodyStyle}\" bgcolor=\"{actualBackgroundColor}\">");
-        body.AppendLine("\t<center>");
-        body.AppendLine($"\t\t<table class=\"main {CssClass}{themeClass}\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" role=\"presentation\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;\" bgcolor=\"{actualBackgroundColor}\">");
-        body.AppendLine("\t\t\t<tr>");
-        body.AppendLine("\t\t\t\t<td align=\"center\" valign=\"top\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;\">");
+        body.AppendLine("<center>");
+        body.AppendLine($"<table class=\"main {CssClass}{themeClass}\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" role=\"presentation\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;\" bgcolor=\"{actualBackgroundColor}\">");
+        body.AppendLine("<tr>");
+        body.AppendLine("<td align=\"center\" valign=\"top\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;\">");
 
         // MSO conditional comments for IE/Outlook
-        body.AppendLine("\t\t\t\t\t<!--[if (gte mso 9)|(IE)]>");
-        body.AppendLine("\t\t\t\t\t<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
-        body.AppendLine("\t\t\t\t\t\t<tr>");
-        body.AppendLine($"\t\t\t\t\t\t\t<td align=\"center\" valign=\"top\" width=\"{MaxWidth}\">");
-        body.AppendLine("\t\t\t\t\t<![endif]-->");
+        body.AppendLine("<!--[if (gte mso 9)|(IE)]>");
+        body.AppendLine("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">");
+        body.AppendLine("<tr>");
+        body.AppendLine($"<td align=\"center\" valign=\"top\" width=\"{MaxWidth}\">");
+        body.AppendLine("<![endif]-->");
 
         // Preheader text (hidden but appears in email previews)
         if (IncludePreheader && !string.IsNullOrEmpty(PreheaderText)) {
-            body.AppendLine($"\t\t\t\t\t<span class=\"preheader\" style=\"font-size: 0; display: none; max-height: 0; mso-hide: all; line-height: 0; color: transparent; height: 0; max-width: 0; opacity: 0; overflow: hidden; visibility: hidden; width: 0; padding: 0;\">{Helpers.HtmlEncode(PreheaderText)}</span>");
+            body.AppendLine($"<span class=\"preheader\" style=\"font-size: 0; display: none; max-height: 0; mso-hide: all; line-height: 0; color: transparent; height: 0; max-width: 0; opacity: 0; overflow: hidden; visibility: hidden; width: 0; padding: 0;\">{Helpers.HtmlEncode(PreheaderText)}</span>");
         }
 
         // Main content wrapper table
-        body.AppendLine($"\t\t\t\t\t<table class=\"wrap\" cellspacing=\"0\" cellpadding=\"0\" role=\"presentation\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; max-width: {MaxWidth}px; text-align: left;\">");
-        body.AppendLine("\t\t\t\t\t\t<tr>");
-        body.AppendLine("\t\t\t\t\t\t\t<td class=\"p-sm\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding: 8px;\">");
+        body.AppendLine($"<table class=\"wrap\" cellspacing=\"0\" cellpadding=\"0\" role=\"presentation\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; border-collapse: collapse; width: 100%; max-width: {MaxWidth}px; text-align: left;\">");
+        body.AppendLine("<tr>");
+        body.AppendLine("<td class=\"p-sm\" style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; padding: 8px;\">");
 
         // Render child elements
         foreach (var child in Children.WhereNotNull()) {
@@ -170,21 +170,21 @@ public class EmailBody : Element {
         }
 
         // Close main content wrapper
-        body.AppendLine("\t\t\t\t\t\t\t</td>");
-        body.AppendLine("\t\t\t\t\t\t</tr>");
-        body.AppendLine("\t\t\t\t\t</table>");
+        body.AppendLine("</td>");
+        body.AppendLine("</tr>");
+        body.AppendLine("</table>");
 
         // Close MSO conditional comments
-        body.AppendLine("\t\t\t\t\t<!--[if (gte mso 9)|(IE)]>");
-        body.AppendLine("\t\t\t\t\t\t\t</td>");
-        body.AppendLine("\t\t\t\t\t\t</tr>");
-        body.AppendLine("\t\t\t\t\t</table>");
-        body.AppendLine("\t\t\t\t\t<![endif]-->");
+        body.AppendLine("<!--[if (gte mso 9)|(IE)]>");
+        body.AppendLine("</td>");
+        body.AppendLine("</tr>");
+        body.AppendLine("</table>");
+        body.AppendLine("<![endif]-->");
 
-        body.AppendLine("\t\t\t\t</td>");
-        body.AppendLine("\t\t\t</tr>");
-        body.AppendLine("\t\t</table>");
-        body.AppendLine("\t</center>");
+        body.AppendLine("</td>");
+        body.AppendLine("</tr>");
+        body.AppendLine("</table>");
+        body.AppendLine("</center>");
         body.AppendLine("</body>");
 
         return StringBuilderCache.GetStringAndRelease(body);

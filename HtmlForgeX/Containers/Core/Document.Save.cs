@@ -1,7 +1,9 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace HtmlForgeX;
 
@@ -63,7 +65,7 @@ public partial class Document
         {
             FileWriteLock.Semaphore.Release();
         }
-        if (!Helpers.Open(path, openInBrowser))
+        if (openInBrowser && !Helpers.Open(path, openInBrowser))
         {
             _logger.WriteError($"Failed to open file '{path}' using the default application.");
         }
@@ -76,7 +78,12 @@ public partial class Document
     /// <param name="openInBrowser">Whether to open the file after saving.</param>
     /// <param name="scriptPath">Optional scripts path.</param>
     /// <param name="stylePath">Optional styles path.</param>
-    public async Task SaveAsync(string path, bool openInBrowser = false, string scriptPath = "", string stylePath = "")
+    public async Task SaveAsync(
+        string path,
+        bool openInBrowser = false,
+        string scriptPath = "",
+        string stylePath = "",
+        CancellationToken cancellationToken = default)
     {
         PathUtilities.Validate(path);
         path = System.IO.Path.GetFullPath(path);
@@ -112,15 +119,20 @@ public partial class Document
                 _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
             }
         }
-        await FileWriteLock.Semaphore.WaitAsync().ConfigureAwait(false);
+        await FileWriteLock.Semaphore.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
 #if NET5_0_OR_GREATER
-            await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8).ConfigureAwait(false);
+            await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8, cancellationToken).ConfigureAwait(false);
 #else
             using var writer = new StreamWriter(path, false, Encoding.UTF8);
+            cancellationToken.ThrowIfCancellationRequested();
             await writer.WriteAsync(ToString()).ConfigureAwait(false);
 #endif
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
         }
         catch (Exception ex)
         {
@@ -130,7 +142,7 @@ public partial class Document
         {
             FileWriteLock.Semaphore.Release();
         }
-        if (!Helpers.Open(path, openInBrowser))
+        if (openInBrowser && !Helpers.Open(path, openInBrowser))
         {
             _logger.WriteError($"Failed to open file '{path}' using the default application.");
         }
@@ -138,6 +150,11 @@ public partial class Document
 
     private static bool IsUncRoot(string directory)
     {
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            return false;
+        }
+
         if (string.IsNullOrEmpty(directory))
         {
             return false;

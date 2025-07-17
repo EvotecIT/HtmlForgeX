@@ -10,6 +10,7 @@ namespace HtmlForgeX;
 /// </summary>
 public partial class Document : Element, System.IDisposable {
     internal static readonly InternalLogger _logger = new();
+    private static int _activeDocuments;
 
     /// <summary>
     /// Configuration and state for this document instance.
@@ -71,6 +72,7 @@ public partial class Document : Element, System.IDisposable {
     /// </summary>
     /// <param name="librariesMode">Initial library mode.</param>
     public Document(LibraryMode? librariesMode = null) {
+        System.Threading.Interlocked.Increment(ref _activeDocuments);
         if (librariesMode != null) {
             Configuration.LibraryMode = librariesMode.Value;
         }
@@ -99,10 +101,15 @@ public partial class Document : Element, System.IDisposable {
         var html = StringBuilderCache.Acquire();
         html.AppendLine("<!DOCTYPE html>");
         html.AppendLine("<html>");
-        html.Append(Head.ToString());
+
+        var headString = Head.ToString().TrimEnd('\r', '\n');
+        html.Append(headString);
         html.AppendLine();
-        html.Append(Body.ToString());
+
+        var bodyString = Body.ToString().TrimEnd('\r', '\n');
+        html.Append(bodyString);
         html.AppendLine();
+
         html.AppendLine("</html>");
         return StringBuilderCache.GetStringAndRelease(html);
     }
@@ -126,13 +133,12 @@ public partial class Document : Element, System.IDisposable {
     /// <param name="element">The element to process.</param>
     private void RegisterLibrariesFromElement(Element element) {
         foreach (var child in element.Children.WhereNotNull()) {
-            // CRITICAL FIX: Ensure child has Document reference before registering libraries
+            // Ensure the child has a Document reference before library registration
             if (child.Document == null) {
                 child.Document = this;
-                child.OnAddedToDocument(); // This will call RegisterLibraries()
-            } else {
-                child.RegisterLibraries();
             }
+
+            child.RegisterLibraries();
             RegisterLibrariesFromElement(child);
         }
     }

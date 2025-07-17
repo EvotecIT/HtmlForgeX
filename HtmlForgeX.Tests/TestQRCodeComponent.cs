@@ -159,10 +159,31 @@ public class TestQRCodeComponent {
 
         var html = doc.ToString();
 
-        var encoded = JsonSerializer.Serialize("Line1\n\"Quoted\"",
+        var encoded = JsonSerializer.Serialize(
+            Helpers.HtmlEncode("Line1\n\"Quoted\""),
             new JsonSerializerOptions { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
 
         Assert.IsTrue(html.Contains(encoded), "QR data should be JSON-encoded with escaped characters");
+    }
+
+    [TestMethod]
+    public void QRCode_HtmlTextIsEncoded() {
+        using var doc = new Document();
+
+        const string raw = "<div>QR & text</div>";
+
+        doc.Body.Add(element => {
+            element.QRCode(raw);
+        });
+
+        var html = doc.ToString();
+
+        var encoded = JsonSerializer.Serialize(
+            Helpers.HtmlEncode(raw),
+            new JsonSerializerOptions { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping }
+        );
+
+        Assert.IsTrue(html.Contains(encoded), "QR data should be HTML-encoded inside JSON string");
     }
 
     [TestMethod]

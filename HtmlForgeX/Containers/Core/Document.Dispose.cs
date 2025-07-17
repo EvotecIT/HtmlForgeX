@@ -26,7 +26,10 @@ public partial class Document
 
         if (disposing)
         {
-            // Release managed resources if needed in the future
+            if (System.Threading.Interlocked.Decrement(ref _activeDocuments) == 0)
+            {
+                FileWriteLock.DisposeSemaphore();
+            }
         }
 
         _disposed = true;

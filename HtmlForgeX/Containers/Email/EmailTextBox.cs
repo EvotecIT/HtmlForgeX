@@ -221,13 +221,13 @@ public class EmailTextBox : Element {
         var containerStyle = $"font-family: {FontFamily}; font-size: {FontSize}; line-height: {LineHeight}; color: {Color}; text-align: {TextAlign}; font-weight: {FontWeight}; text-decoration: {TextDecoration}; margin: {Margin}; padding: {Padding};";
 
         // Use div structure for text box content
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td style=\"font-family: {FontFamily};\">");
+        html.AppendLine($"<tr>");
+        html.AppendLine($"<td style=\"font-family: {FontFamily};\">");
 
         if (TextAlign == "center") {
-            html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div align=\"center\">");
+            html.AppendLine($"<div align=\"center\">");
         } else {
-            html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"defaultText\">");
+            html.AppendLine($"<div class=\"defaultText\">");
         }
 
         // Render text content
@@ -238,26 +238,26 @@ public class EmailTextBox : Element {
 
                 if (string.IsNullOrEmpty(text)) {
                     // Empty line
-                    html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span style=\"{containerStyle}\"></span>");
+                    html.AppendLine($"<span style=\"{containerStyle}\"></span>");
                 } else {
-                    html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span style=\"{containerStyle}\">{encodedText}</span>");
+                    html.AppendLine($"<span style=\"{containerStyle}\">{encodedText}</span>");
                 }
 
                 // Add line break between lines (except for last line)
                 if (i < TextContent.Count - 1) {
-                    html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br />");
+                    html.AppendLine($"<br />");
                 }
             }
         }
 
         // Render child elements (nested content)
         foreach (var child in Children.WhereNotNull()) {
-            html.AppendLine(child.ToString());
+            html.AppendLine(child.ToString().TrimEnd('\r', '\n'));
         }
 
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>");
+        html.AppendLine($"</div>");
+        html.AppendLine($"</td>");
+        html.AppendLine($"</tr>");
 
         return StringBuilderCache.GetStringAndRelease(html);
     }

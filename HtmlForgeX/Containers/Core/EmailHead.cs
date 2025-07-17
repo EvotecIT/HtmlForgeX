@@ -232,92 +232,92 @@ public class EmailHead : Element {
         head.AppendLine("<head>");
 
         // Content-Type meta tag (required for emails)
-        head.AppendLine($"\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Helpers.HtmlEncode(Charset)}\" />");
+        head.AppendLine($"<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Helpers.HtmlEncode(Charset)}\" />");
 
         // Title
         if (!string.IsNullOrEmpty(Title)) {
-            head.AppendLine($"\t<title>{Title}</title>");
+            head.AppendLine($"<title>{Title}</title>");
         }
 
         // Viewport meta tag
-        head.AppendLine($"\t<meta name=\"viewport\" content=\"{Helpers.HtmlEncode(Viewport)}\" />");
+        head.AppendLine($"<meta name=\"viewport\" content=\"{Helpers.HtmlEncode(Viewport)}\" />");
 
         // Format detection meta tag
-        head.AppendLine($"\t<meta content=\"{Helpers.HtmlEncode(FormatDetection)}\" name=\"format-detection\" />");
+        head.AppendLine($"<meta content=\"{Helpers.HtmlEncode(FormatDetection)}\" name=\"format-detection\" />");
 
         // Apple message reformatting meta tag
         if (DisableAppleMessageReformatting) {
-            head.AppendLine("\t<meta name=\"x-apple-disable-message-reformatting\" />");
+            head.AppendLine("<meta name=\"x-apple-disable-message-reformatting\" />");
         }
 
         // Color scheme meta tags for dark mode support
         if (_email.Configuration.DarkModeSupport) {
-            head.AppendLine($"\t<meta name=\"color-scheme\" content=\"{Helpers.HtmlEncode(ColorScheme)}\" />");
-            head.AppendLine($"\t<meta name=\"supported-color-schemes\" content=\"{Helpers.HtmlEncode(SupportedColorSchemes)}\" />");
+            head.AppendLine($"<meta name=\"color-scheme\" content=\"{Helpers.HtmlEncode(ColorScheme)}\" />");
+            head.AppendLine($"<meta name=\"supported-color-schemes\" content=\"{Helpers.HtmlEncode(SupportedColorSchemes)}\" />");
         }
 
         // Additional meta tags
         foreach (var metaTag in MetaTags.WhereNotNull()) {
-            head.AppendLine($"\t{metaTag.ToString()}");
+            head.AppendLine($"{metaTag.ToString()}");
         }
 
         // Dark mode CSS reset
         if (_email.Configuration.DarkModeSupport) {
-            head.AppendLine("\t<style data-premailer=\"ignore\">");
-            head.AppendLine("\t\t:root {");
-            head.AppendLine($"\t\t\tcolor-scheme: {ColorScheme};");
-            head.AppendLine($"\t\t\tsupported-color-schemes: {ColorScheme};");
-            head.AppendLine("\t\t}");
+            head.AppendLine("<style data-premailer=\"ignore\">");
+            head.AppendLine(":root {");
+            head.AppendLine($"color-scheme: {ColorScheme};");
+            head.AppendLine($"supported-color-schemes: {ColorScheme};");
+            head.AppendLine("}");
             head.AppendLine();
-            head.AppendLine("\t\t@media screen and (max-width: 600px) {");
-            head.AppendLine("\t\t\tu+.body {");
-            head.AppendLine("\t\t\t\twidth: 100vw !important;");
-            head.AppendLine("\t\t\t}");
-            head.AppendLine("\t\t}");
+            head.AppendLine("@media screen and (max-width: 600px) {");
+            head.AppendLine("u+.body {");
+            head.AppendLine("width: 100vw !important;");
+            head.AppendLine("}");
+            head.AppendLine("}");
             head.AppendLine();
-            head.AppendLine("\t\ta[x-apple-data-detectors] {");
-            head.AppendLine("\t\t\tcolor: inherit !important;");
-            head.AppendLine("\t\t\ttext-decoration: none !important;");
-            head.AppendLine("\t\t\tfont-size: inherit !important;");
-            head.AppendLine("\t\t\tfont-family: inherit !important;");
-            head.AppendLine("\t\t\tfont-weight: inherit !important;");
-            head.AppendLine("\t\t\tline-height: inherit !important;");
-            head.AppendLine("\t\t}");
-            head.AppendLine("\t</style>");
+            head.AppendLine("a[x-apple-data-detectors] {");
+            head.AppendLine("color: inherit !important;");
+            head.AppendLine("text-decoration: none !important;");
+            head.AppendLine("font-size: inherit !important;");
+            head.AppendLine("font-family: inherit !important;");
+            head.AppendLine("font-weight: inherit !important;");
+            head.AppendLine("line-height: inherit !important;");
+            head.AppendLine("}");
+            head.AppendLine("</style>");
         }
 
         // MSO conditional comments for Outlook
-        head.AppendLine("\t<!--[if mso]>");
-        head.AppendLine("\t  <style type=\"text/css\">");
-        head.AppendLine("\t\tbody, table, td {");
-        head.AppendLine("\t\t\tfont-family: Arial, Helvetica, sans-serif !important;");
-        head.AppendLine("\t\t}");
+        head.AppendLine("<!--[if mso]>");
+        head.AppendLine("  <style type=\"text/css\">");
+        head.AppendLine("body, table, td {");
+        head.AppendLine("font-family: Arial, Helvetica, sans-serif !important;");
+        head.AppendLine("}");
         head.AppendLine();
-        head.AppendLine("\t\timg {");
-        head.AppendLine("\t\t\t-ms-interpolation-mode: bicubic;");
-        head.AppendLine("\t\t}");
+        head.AppendLine("img {");
+        head.AppendLine("-ms-interpolation-mode: bicubic;");
+        head.AppendLine("}");
         head.AppendLine();
-        head.AppendLine("\t\t.box {");
-        head.AppendLine("\t\t\tborder-color: #eee !important;");
-        head.AppendLine("\t\t}");
-        head.AppendLine("\t  </style>");
-        head.AppendLine("\t<![endif]-->");
+        head.AppendLine(".box {");
+        head.AppendLine("border-color: #eee !important;");
+        head.AppendLine("}");
+        head.AppendLine("  </style>");
+        head.AppendLine("<![endif]-->");
 
         // Non-MSO font imports
-        head.AppendLine("\t<!--[if !mso]><!-->");
-        head.AppendLine("\t<link href=\"https://rsms.me/inter/inter.css\" rel=\"stylesheet\" type=\"text/css\" data-premailer=\"ignore\" />");
-        head.AppendLine("\t<style type=\"text/css\" data-premailer=\"ignore\">");
-        head.AppendLine("\t\t@import url(https://rsms.me/inter/inter.css);");
-        head.AppendLine("\t</style>");
-        head.AppendLine("\t<!--<![endif]-->");
+        head.AppendLine("<!--[if !mso]><!-->");
+        head.AppendLine("<link href=\"https://rsms.me/inter/inter.css\" rel=\"stylesheet\" type=\"text/css\" data-premailer=\"ignore\" />");
+        head.AppendLine("<style type=\"text/css\" data-premailer=\"ignore\">");
+        head.AppendLine("@import url(https://rsms.me/inter/inter.css);");
+        head.AppendLine("</style>");
+        head.AppendLine("<!--<![endif]-->");
 
         // Inline styles
         if (InlineStyles.Count > 0) {
-            head.AppendLine("\t<style>");
+            head.AppendLine("<style>");
             foreach (var style in InlineStyles.WhereNotNull()) {
                 head.AppendLine(style);
             }
-            head.AppendLine("\t</style>");
+            head.AppendLine("</style>");
         }
 
         head.AppendLine("</head>");

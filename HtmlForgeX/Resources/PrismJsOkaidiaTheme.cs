@@ -5,11 +5,17 @@ namespace HtmlForgeX.Resources;
 /// </summary>
 public class PrismJsOkaidiaTheme : Library
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrismJsOkaidiaTheme"/> class.
+    /// </summary>
     public PrismJsOkaidiaTheme()
     {
         Header = new LibraryLinks {
             CssLink = [
-                "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css"
+                "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css"
+            ],
+            Css = [
+                "prism-okaidia.min.css"
             ]
         };
 

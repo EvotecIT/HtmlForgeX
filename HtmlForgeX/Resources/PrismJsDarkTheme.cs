@@ -5,11 +5,17 @@ namespace HtmlForgeX.Resources;
 /// </summary>
 public class PrismJsDarkTheme : Library
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrismJsDarkTheme"/> class.
+    /// </summary>
     public PrismJsDarkTheme()
     {
         Header = new LibraryLinks {
             CssLink = [
-                "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-dark.min.css"
+                "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-dark.min.css"
+            ],
+            Css = [
+                "prism-dark.min.css"
             ]
         };
 

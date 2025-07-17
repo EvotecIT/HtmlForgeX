@@ -22,12 +22,9 @@ internal class Program {
         // Configuration for opening files in browser (set to openInBrowser to open automatically)
         bool openInBrowser = false;
 
-        // DEBUG: PrismJS test
-        TestPrismJsDebug.RunDebugTest(openInBrowser);
-
         // Not real examples, but useful for development
         // Support.DownloadLibrariesAsync();
-        //Support.GenerateTableIconsAsync();
+        // Support.GenerateTableIconsAsync();
 
         // Basic HTML Tag Building examples (console output)
         BasicHtmlTagBuilding.Demo1();
@@ -162,6 +159,7 @@ internal class Program {
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
         BasicApexCharts.Demo(openInBrowser);
+        ApexChartsComprehensive.Demo(true);
 
         // VisNetwork images demo
         BasicVisNetwork.Demo(openInBrowser);
@@ -178,16 +176,16 @@ internal class Program {
         DataTablesInteractiveFilteringDemo.Create(openInBrowser);
 
         // Demonstrates rendering HTML in a headless browser
-        ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
+        // ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
 
         // Show basic usage of ImageUtilities
         ExampleImageUtilities.Demonstrate();
 
         // SmartTab & SmartWizard examples
-        SmartWizardBasicDemo.Demo01(true);
-        SmartTabBasicDemo.Demo01(true);
-        SmartTabWizardCompleteDemo.Demo01(true);
-        SmartTabWizardSimpleDemo.Demo01(true);
-        SmartTabWizardInteroperabilityDemo.Demo01(true);
+        SmartWizardBasicDemo.Demo01(openInBrowser);
+        SmartTabBasicDemo.Demo01(openInBrowser);
+        SmartTabWizardCompleteDemo.Demo01(openInBrowser);
+        SmartTabWizardSimpleDemo.Demo01(openInBrowser);
+        SmartTabWizardInteroperabilityDemo.Demo01(openInBrowser);
     }
 }

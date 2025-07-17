@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 
 namespace HtmlForgeX;
@@ -122,25 +123,61 @@ public class ImageConfiguration {
     /// </summary>
     public bool AutoEmbedImages { get; set; } = false;
 
+    private int _embeddingTimeout = 30;
     /// <summary>
     /// Gets or sets the timeout in seconds when downloading images for embedding.
     /// </summary>
-    public int EmbeddingTimeout { get; set; } = 30;
+    public int EmbeddingTimeout {
+        get => _embeddingTimeout;
+        set {
+            if (value < 0) {
+                throw new ArgumentOutOfRangeException(nameof(value), "Value must be greater than or equal to zero.");
+            }
+            _embeddingTimeout = value;
+        }
+    }
 
+    private int _maxWidth = 800;
     /// <summary>
     /// Gets or sets the maximum width for image optimization (in pixels).
     /// </summary>
-    public int MaxWidth { get; set; } = 800;
+    public int MaxWidth {
+        get => _maxWidth;
+        set {
+            if (value < 0) {
+                throw new ArgumentOutOfRangeException(nameof(value), "Value must be greater than or equal to zero.");
+            }
+            _maxWidth = value;
+        }
+    }
 
+    private int _maxHeight = 600;
     /// <summary>
     /// Gets or sets the maximum height for image optimization (in pixels).
     /// </summary>
-    public int MaxHeight { get; set; } = 600;
+    public int MaxHeight {
+        get => _maxHeight;
+        set {
+            if (value < 0) {
+                throw new ArgumentOutOfRangeException(nameof(value), "Value must be greater than or equal to zero.");
+            }
+            _maxHeight = value;
+        }
+    }
 
+    private int _quality = 85;
     /// <summary>
     /// Gets or sets the quality for JPEG compression (0-100).
     /// </summary>
-    public int Quality { get; set; } = 85;
+    public int Quality {
+        get => _quality;
+        set {
+            if (value < 0) {
+                throw new ArgumentOutOfRangeException(nameof(value), "Value must be greater than or equal to zero.");
+            }
+            _quality = value;
+        }
+    }
 
     /// <summary>
     /// Gets or sets the default image format for optimization.

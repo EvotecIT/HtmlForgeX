@@ -37,8 +37,10 @@ public class EasyQRCodeElement : Element {
     public override string ToString() {
         var divTag = new HtmlTag("div").Class("qrcode").Id(Id);
 
+        var encodedText = Helpers.HtmlEncode(PrivateText);
+
         var serializedText = JsonSerializer.Serialize(
-            PrivateText,
+            encodedText,
             new JsonSerializerOptions { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping }
         );
 

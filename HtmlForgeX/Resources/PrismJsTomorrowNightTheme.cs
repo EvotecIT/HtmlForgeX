@@ -5,11 +5,17 @@ namespace HtmlForgeX.Resources;
 /// </summary>
 public class PrismJsTomorrowNightTheme : Library
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrismJsTomorrowNightTheme"/> class.
+    /// </summary>
     public PrismJsTomorrowNightTheme()
     {
         Header = new LibraryLinks {
             CssLink = [
-                "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow-night.min.css"
+                "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+            ],
+            Css = [
+                "prism-tomorrow-night.min.css"
             ]
         };
 
