@@ -526,12 +526,23 @@ gtag('config', '{encodedIdentifier}');
 
         } else if (_document.Configuration.LibraryMode == LibraryMode.OfflineWithFiles) {
             foreach (var css in headerLinks.Css) {
-                AddCssLink(css);
+                var fileName = Path.GetFileName(css);
+                var linkPath = string.IsNullOrEmpty(_document.Configuration.StylePath)
+                    ? fileName
+                    : Path.Combine(_document.Configuration.StylePath, fileName);
+                AddCssLink(linkPath.Replace('\\', '/'));
             }
+
             foreach (var js in headerLinks.Js) {
                 var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
-                // we need to save the js file to disk
-                var jsFileName = Path.Combine(_document.Configuration.Path, Path.GetFileName(js));
+                var fileName = Path.GetFileName(js);
+                var linkPath = string.IsNullOrEmpty(_document.Configuration.ScriptPath)
+                    ? fileName
+                    : Path.Combine(_document.Configuration.ScriptPath, fileName);
+                AddJsLink(linkPath.Replace('\\', '/'));
+
+                var baseDir = Path.GetDirectoryName(_document.Configuration.Path) ?? string.Empty;
+                var jsFileName = Path.Combine(baseDir, linkPath);
                 var jsDirectory = Path.GetDirectoryName(jsFileName);
                 if (!string.IsNullOrEmpty(jsDirectory)) {
                     try {
@@ -601,12 +612,20 @@ gtag('config', '{encodedIdentifier}');
         } else if (_document.Configuration.LibraryMode == LibraryMode.OfflineWithFiles) {
             // Process CSS file links
             foreach (var css in libraryLinks.Css) {
-                output.AppendLine($"\t<link rel=\"stylesheet\" href=\"{Path.GetFileName(css)}\">");
+                var fileName = Path.GetFileName(css);
+                var linkPath = string.IsNullOrEmpty(_document.Configuration.StylePath)
+                    ? fileName
+                    : Path.Combine(_document.Configuration.StylePath, fileName);
+                output.AppendLine($"\t<link rel=\"stylesheet\" href=\"{linkPath.Replace('\\', '/')}\">");
             }
 
             // Process JS file links
             foreach (var js in libraryLinks.Js) {
-                output.AppendLine($"\t<script src=\"{Path.GetFileName(js)}\"></script>");
+                var fileName = Path.GetFileName(js);
+                var linkPath = string.IsNullOrEmpty(_document.Configuration.ScriptPath)
+                    ? fileName
+                    : Path.Combine(_document.Configuration.ScriptPath, fileName);
+                output.AppendLine($"\t<script src=\"{linkPath.Replace('\\', '/')}\"></script>");
             }
         }
 
