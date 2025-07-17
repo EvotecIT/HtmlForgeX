@@ -30,7 +30,7 @@ public class TestHtmlSpan {
             "<!DOCTYPE html>",
             "<html>",
             "<head>",
-            "\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">",
+            "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">",
             "</head>",
             "<body data-bs-theme=\"light\">",
             "<span style=\"color: #FD0E35; text-align: Center\">This is table with DataTables</span><span> continue?</span>",
