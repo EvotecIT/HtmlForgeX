@@ -11,6 +11,7 @@ public class TablerSelect : Element {
     private string? _label;
     private bool _multiple;
     private bool _searchable;
+    private bool _required;
     private readonly List<(string Value, string Text)> _options = new();
 
     /// <summary>
@@ -38,6 +39,12 @@ public class TablerSelect : Element {
     /// <param name="enable">Whether search should be enabled.</param>
     /// <returns>The current <see cref="TablerSelect"/> instance.</returns>
     public TablerSelect Searchable(bool enable = true) { _searchable = enable; return this; }
+    /// <summary>
+    /// Marks the select as required.
+    /// </summary>
+    /// <param name="required">Whether the select is required.</param>
+    /// <returns>The current <see cref="TablerSelect"/> instance.</returns>
+    public TablerSelect Required(bool required = true) { _required = required; return this; }
     /// <summary>
     /// Adds a selectable option.
     /// </summary>
@@ -77,6 +84,7 @@ public class TablerSelect : Element {
             .Id(_name)
             .Attribute("name", _name);
         if (_multiple) select.Attribute("multiple", "multiple");
+        if (_required) select.Attribute("required", "required");
         foreach (var opt in _options) {
             select.Value(new HtmlTag("option").Attribute("value", opt.Value).Value(opt.Text));
         }

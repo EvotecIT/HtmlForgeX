@@ -44,12 +44,21 @@ public class QuillEditor : Element {
         var div = new HtmlTag("div").Id(Id).Style("height", Height);
         var options = new JsonSerializerOptions {
             WriteIndented = true,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
         options.Converters.Add(new DescriptionEnumConverter<QuillTheme>());
-        options.Converters.Add(new EnumListDescriptionConverter<QuillFormat>());
+        options.Converters.Add(new QuillToolbarConverter());
         var json = JsonSerializer.Serialize(Options, options);
-        var script = new HtmlTag("script").Value($"var quill = new Quill('#{Id}', {json});");
+        var safeId = Id.Replace("-", "_");
+        var script = new HtmlTag("script").Value($@"
+document.addEventListener('DOMContentLoaded', function() {{
+    try {{
+        var quill_{safeId} = new Quill('#{Id}', {json});
+    }} catch (e) {{
+        console.error('Error initializing Quill editor {Id}:', e);
+    }}
+}});");
         return div + script.ToString();
     }
 }
