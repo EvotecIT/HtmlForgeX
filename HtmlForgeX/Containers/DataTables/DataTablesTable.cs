@@ -112,10 +112,15 @@ public class DataTablesTable : Table {
         if (!string.IsNullOrEmpty(scrollY)) {
             Options.ScrollY = scrollY;
             _features["scrollY"] = true;
+        } else {
+            Options.ScrollY = null;
+            _features["scrollY"] = false;
         }
+
         if (scrollX) {
             _features["scrollX"] = true;
         }
+
         Options.ScrollCollapse = scrollCollapse;
         return this;
     }
