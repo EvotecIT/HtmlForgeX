@@ -133,13 +133,12 @@ public partial class Document : Element, System.IDisposable {
     /// <param name="element">The element to process.</param>
     private void RegisterLibrariesFromElement(Element element) {
         foreach (var child in element.Children.WhereNotNull()) {
-            // CRITICAL FIX: Ensure child has Document reference before registering libraries
+            // Ensure the child has a Document reference before library registration
             if (child.Document == null) {
                 child.Document = this;
-                child.OnAddedToDocument(); // This will call RegisterLibraries()
-            } else {
-                child.RegisterLibraries();
             }
+
+            child.RegisterLibraries();
             RegisterLibrariesFromElement(child);
         }
     }
