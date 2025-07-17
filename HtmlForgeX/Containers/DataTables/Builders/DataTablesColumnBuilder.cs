@@ -6,6 +6,8 @@ namespace HtmlForgeX;
 public class DataTablesColumnBuilder
 {
     private readonly List<DataTablesColumn> _columns = new List<DataTablesColumn>();
+    // Tracks the next available column index when none is specified
+    private int _nextIndex;
 
     /// <summary>Add a column configuration</summary>
     public DataTablesColumnBuilder Column(int targetIndex, Action<DataTablesColumn> configure)
@@ -13,13 +15,14 @@ public class DataTablesColumnBuilder
         var column = new DataTablesColumn { Targets = targetIndex };
         configure(column);
         _columns.Add(column);
+        _nextIndex = Math.Max(_nextIndex, targetIndex + 1);
         return this;
     }
 
     /// <summary>Add a column configuration by name</summary>
     public DataTablesColumnBuilder Column(string name, Action<DataTablesColumn> configure)
     {
-        var column = new DataTablesColumn { Name = name };
+        var column = new DataTablesColumn { Name = name, Targets = _nextIndex++ };
         configure(column);
         _columns.Add(column);
         return this;
@@ -101,6 +104,14 @@ public class DataTablesColumnBuilder
     /// <summary>Add a column to the collection</summary>
     internal void AddColumn(DataTablesColumn column)
     {
+        if (!column.Targets.HasValue)
+        {
+            column.Targets = _nextIndex++;
+        }
+        else
+        {
+            _nextIndex = Math.Max(_nextIndex, column.Targets.Value + 1);
+        }
         _columns.Add(column);
     }
 
