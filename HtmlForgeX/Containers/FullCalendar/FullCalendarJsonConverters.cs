@@ -86,7 +86,51 @@ public class ViewOptionDictionaryConverter : JsonConverter<Dictionary<FullCalend
 public class FullCalendarToolbarConverter : JsonConverter<FullCalendarToolbar> {
     /// <inheritdoc />
     public override FullCalendarToolbar Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
-        throw new NotImplementedException();
+        if (reader.TokenType != JsonTokenType.StartObject) {
+            throw new JsonException();
+        }
+
+        var toolbar = new FullCalendarToolbar();
+
+        while (reader.Read()) {
+            if (reader.TokenType == JsonTokenType.EndObject) {
+                return toolbar;
+            }
+
+            if (reader.TokenType != JsonTokenType.PropertyName) {
+                throw new JsonException();
+            }
+
+            var propertyName = reader.GetString();
+            reader.Read();
+
+            var raw = reader.GetString() ?? string.Empty;
+            var parts = raw.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var values = new List<FullCalendarToolbarOption>();
+
+            foreach (var part in parts) {
+                var option = ((FullCalendarToolbarOption[])Enum.GetValues(typeof(FullCalendarToolbarOption)))
+                    .First(e => GetEnumDescription(e) == part);
+                values.Add(option);
+            }
+
+            switch (propertyName) {
+                case "left":
+                    toolbar.LeftOptions = values;
+                    break;
+                case "center":
+                    toolbar.CenterOptions = values;
+                    break;
+                case "right":
+                    toolbar.RightOptions = values;
+                    break;
+                default:
+                    // Skip unknown properties
+                    break;
+            }
+        }
+
+        throw new JsonException();
     }
 
     /// <inheritdoc />
