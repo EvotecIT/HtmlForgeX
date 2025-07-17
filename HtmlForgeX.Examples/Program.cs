@@ -176,7 +176,7 @@ internal class Program {
         DataTablesInteractiveFilteringDemo.Create(openInBrowser);
 
         // Demonstrates rendering HTML in a headless browser
-        ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
+        // ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
 
         // Show basic usage of ImageUtilities
         ExampleImageUtilities.Demonstrate();

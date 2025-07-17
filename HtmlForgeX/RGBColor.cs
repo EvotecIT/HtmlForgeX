@@ -1,3 +1,7 @@
+using System;
+using System.Globalization;
+using System.Linq;
+
 namespace HtmlForgeX;
 
 public partial class RGBColor {
@@ -23,11 +27,71 @@ public partial class RGBColor {
     }
 
     /// <summary>
-    /// Public constructor that accepts hex color strings like "#111827", "#FFF", or "111827"
+    /// Public constructor that accepts hex color strings like "#111827", "#FFF", "111827" or RGBA format like "rgba(255, 0, 0, 0.5)"
     /// </summary>
-    /// <param name="hexColor">Hex color string with or without # prefix</param>
-    public RGBColor(string hexColor) : this() {
-        ParseHexColor(hexColor);
+    /// <param name="colorString">Color string in hex or RGBA format</param>
+    public RGBColor(string colorString) : this() {
+        ParseColorString(colorString);
+    }
+
+    /// <summary>
+    /// Parses a color string in hex or RGBA format and sets the RGB values
+    /// Supports formats: "#RRGGBB", "#RGB", "RRGGBB", "RGB", "rgba(r,g,b,a)", "rgb(r,g,b)"
+    /// </summary>
+    /// <param name="colorString">The color string to parse</param>
+    private void ParseColorString(string colorString) {
+        if (string.IsNullOrWhiteSpace(colorString)) {
+            throw new ArgumentException("Color string cannot be null or empty.", nameof(colorString));
+        }
+
+        // Check if it's RGBA or RGB format
+        if (colorString.StartsWith("rgba(") || colorString.StartsWith("rgb(")) {
+            ParseRgbaColor(colorString);
+        } else {
+            ParseHexColor(colorString);
+        }
+    }
+
+    /// <summary>
+    /// Parses an RGBA color string like "rgba(255, 0, 0, 0.5)" or "rgb(255, 0, 0)"
+    /// </summary>
+    /// <param name="rgbaColor">The RGBA color string to parse</param>
+    private void ParseRgbaColor(string rgbaColor) {
+        // Remove rgba( or rgb( prefix and ) suffix
+        string content = rgbaColor.Substring(rgbaColor.IndexOf('(') + 1);
+        content = content.Substring(0, content.LastIndexOf(')'));
+        
+        // Split by comma and trim spaces
+        string[] parts = content.Split(',').Select(p => p.Trim()).ToArray();
+        
+        if (parts.Length < 3 || parts.Length > 4) {
+            throw new ArgumentException($"Invalid RGBA format: {rgbaColor}. Expected rgba(r,g,b,a) or rgb(r,g,b).", nameof(rgbaColor));
+        }
+
+        // Parse RGB values
+        if (!int.TryParse(parts[0], out int r) || r < 0 || r > 255) {
+            throw new ArgumentException($"Invalid red value in RGBA format: {rgbaColor}. Expected 0-255.", nameof(rgbaColor));
+        }
+        if (!int.TryParse(parts[1], out int g) || g < 0 || g > 255) {
+            throw new ArgumentException($"Invalid green value in RGBA format: {rgbaColor}. Expected 0-255.", nameof(rgbaColor));
+        }
+        if (!int.TryParse(parts[2], out int b) || b < 0 || b > 255) {
+            throw new ArgumentException($"Invalid blue value in RGBA format: {rgbaColor}. Expected 0-255.", nameof(rgbaColor));
+        }
+
+        // Parse alpha value (optional)
+        double alpha = 1.0;
+        if (parts.Length == 4) {
+            // Use InvariantCulture to handle decimal points correctly
+            if (!double.TryParse(parts[3], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out alpha) || alpha < 0 || alpha > 1) {
+                throw new ArgumentException($"Invalid alpha value in RGBA format: {rgbaColor}. Expected 0.0-1.0.", nameof(rgbaColor));
+            }
+        }
+
+        R = (byte)r;
+        G = (byte)g;
+        B = (byte)b;
+        A = (byte)(alpha * 255);
     }
 
     /// <summary>
@@ -119,10 +183,18 @@ public partial class RGBColor {
     }
 
     /// <summary>
-    /// Returns the hexadecimal string representation of this color.
+    /// Returns the string representation of this color.
+    /// Returns RGBA format when alpha is not full opacity, otherwise hex format.
     /// </summary>
     public override string ToString() {
+        if (A < 255) {
+            // Return RGBA format for transparency
+            double alpha = A / 255.0;
+            // Use InvariantCulture to ensure decimal point is used
+            return $"rgba({R}, {G}, {B}, {alpha.ToString("F2", CultureInfo.InvariantCulture)})";
+        }
+        
+        // Return hex format for full opacity
         return $"#{R:X2}{G:X2}{B:X2}";
-        // return $"RGBColor [A={A}, R={R}, G={G}, B={B}]";
     }
 }

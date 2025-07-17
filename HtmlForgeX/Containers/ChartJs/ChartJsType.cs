@@ -20,7 +20,35 @@ public enum ChartJsType {
     /// <summary>
     /// Render a pie chart.
     /// </summary>
-    Pie
+    Pie,
+    /// <summary>
+    /// Render a radar chart.
+    /// </summary>
+    Radar,
+    /// <summary>
+    /// Render a scatter chart.
+    /// </summary>
+    Scatter,
+    /// <summary>
+    /// Render a bubble chart.
+    /// </summary>
+    Bubble,
+    /// <summary>
+    /// Render a doughnut chart.
+    /// </summary>
+    Doughnut,
+    /// <summary>
+    /// Render a polar area chart.
+    /// </summary>
+    PolarArea,
+    /// <summary>
+    /// Render a horizontal bar chart.
+    /// </summary>
+    HorizontalBar,
+    /// <summary>
+    /// Render a mixed chart.
+    /// </summary>
+    Mixed
 }
 
 /// <summary>
@@ -34,6 +62,12 @@ public class ChartJsTypeConverter : JsonConverter<ChartJsType> {
             "line" => ChartJsType.Line,
             "bar" => ChartJsType.Bar,
             "pie" => ChartJsType.Pie,
+            "radar" => ChartJsType.Radar,
+            "scatter" => ChartJsType.Scatter,
+            "bubble" => ChartJsType.Bubble,
+            "doughnut" => ChartJsType.Doughnut,
+            "polarArea" => ChartJsType.PolarArea,
+            "horizontalBar" => ChartJsType.HorizontalBar,
             _ => throw new JsonException()
         };
     }
@@ -44,6 +78,12 @@ public class ChartJsTypeConverter : JsonConverter<ChartJsType> {
             ChartJsType.Line => "line",
             ChartJsType.Bar => "bar",
             ChartJsType.Pie => "pie",
+            ChartJsType.Radar => "radar",
+            ChartJsType.Scatter => "scatter",
+            ChartJsType.Bubble => "bubble",
+            ChartJsType.Doughnut => "doughnut",
+            ChartJsType.PolarArea => "polarArea",
+            ChartJsType.HorizontalBar => "bar",
             _ => throw new JsonException()
         };
         writer.WriteStringValue(stringValue);
