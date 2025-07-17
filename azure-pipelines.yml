@@ -75,6 +75,7 @@ steps:
   
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
+    timeoutInMinutes: 10
     inputs:
       command: 'test'
       arguments: --configuration $(buildConfiguration) --collect "Code coverage"
