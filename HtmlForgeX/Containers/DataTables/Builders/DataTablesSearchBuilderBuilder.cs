@@ -83,6 +83,9 @@ public class DataTablesSearchBuilderBuilder
     /// <returns>The current builder instance.</returns>
     public DataTablesSearchBuilderBuilder Group(Action<DataTablesSearchGroupBuilder> configure)
     {
+        if (configure is null)
+            throw new ArgumentNullException(nameof(configure));
+
         var builder = new DataTablesSearchGroupBuilder();
         configure(builder);
         _groups.Add(builder.Build());
