@@ -465,7 +465,7 @@ public class Head : Element {
     /// <param name="identifier">Tracking or token identifier.</param>
     /// <returns>The <see cref="Head"/> instance for chaining.</returns>
     public Head AddAnalytics(AnalyticsProvider provider, string identifier) {
-        var encodedIdentifier = Helpers.HtmlEncode(identifier);
+        var encodedIdentifier = Uri.EscapeDataString(identifier);
         switch (provider) {
             case AnalyticsProvider.GoogleAnalytics:
                 AddRawScript($"<script async src=\"https://www.googletagmanager.com/gtag/js?id={encodedIdentifier}\"></script>");
