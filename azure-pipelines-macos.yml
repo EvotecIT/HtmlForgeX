@@ -101,6 +101,7 @@ steps:
   
   - task: DotNetCoreCLI@2
     displayName: 'Run Unit Tests (.NET 6.0)'
+    timeoutInMinutes: 10
     inputs:
       command: 'test'
       arguments: '--framework net6.0 /noautorsp'
@@ -109,6 +110,7 @@ steps:
   
   - task: DotNetCoreCLI@2
     displayName: 'Run Unit Tests (.NET 7.0)'
+    timeoutInMinutes: 10
     inputs:
       command: 'test'
       arguments: '--framework net7.0 /noautorsp'
@@ -117,6 +119,7 @@ steps:
   
   - task: DotNetCoreCLI@2
     displayName: 'Run Unit Tests (.NET 8.0)'
+    timeoutInMinutes: 10
     inputs:
       command: 'test'
       arguments: '--framework net8.0 /noautorsp'
