@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using HtmlForgeX.Logging;
 
@@ -434,7 +435,7 @@ public class Head : Element {
     /// </summary>
     /// <param name="css">CSS rules to embed.</param>
     public void AddCssInline(string css) {
-        css = css.Trim();
+        css = Regex.Replace(css.Trim(), @"\s+", " ");
         if (_cssInlineSet.Add(css)) {
             Styles.Add($"<style>{css}</style>");
         }
@@ -445,7 +446,7 @@ public class Head : Element {
     /// </summary>
     /// <param name="js">JavaScript code to embed.</param>
     public void AddJsInline(string js) {
-        js = js.Trim();
+        js = Regex.Replace(js.Trim(), @"\s+", " ");
         if (_jsInlineSet.Add(js)) {
             Scripts.Add($"<script>{js}</script>");
         }
