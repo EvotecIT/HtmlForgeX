@@ -105,4 +105,23 @@ public class TestDocumentSaveErrors {
         stream.Dispose();
         File.Delete(path);
     }
+
+    [TestMethod]
+    public void Save_OfflineWithFiles_CreatesScriptDirectory() {
+        using var doc = new Document { LibraryMode = LibraryMode.OfflineWithFiles };
+        doc.ScriptPath = Path.Combine("assets", "scripts");
+        doc.AddLibrary(Libraries.Bootstrap);
+
+        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var dir = Path.Combine(tempDir, Guid.NewGuid().ToString());
+        var filePath = Path.Combine(dir, "file.html");
+
+        doc.Save(filePath);
+
+        var scriptDir = Path.Combine(dir, "assets", "scripts");
+        Assert.IsTrue(Directory.Exists(scriptDir));
+        Assert.IsTrue(File.Exists(Path.Combine(scriptDir, "bootstrap.bundle.min.js")));
+
+        Directory.Delete(dir, true);
+    }
 }
