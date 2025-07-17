@@ -420,9 +420,9 @@ public class Head : Element {
             return font;
         }
 
-        var trimmed = font.Trim();
+        var trimmed = font.Trim().Trim('\'', '"');
 
-        if (trimmed.Contains(' ') && !(trimmed.StartsWith("\"") || trimmed.StartsWith("'"))) {
+        if (trimmed.Contains(' ')) {
             return $"'{trimmed}'";
         }
 

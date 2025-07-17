@@ -58,6 +58,16 @@ public class TestAddFontLink
     }
 
     [TestMethod]
+    public void SetBodyFontFamily_SanitizesQuotedFonts()
+    {
+        var doc = new Document();
+        doc.Head.SetBodyFontFamily("'Open Sans'", "Arial", "sans-serif");
+
+        var html = doc.Head.ToString();
+        StringAssert.Contains(html, "'Open Sans', Arial, sans-serif");
+    }
+
+    [TestMethod]
     public void SetBodyFontFamily_MultipleFonts()
     {
         var doc = new Document();

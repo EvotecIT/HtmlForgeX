@@ -12,7 +12,8 @@ internal class GoogleFontExample
         document.Head.AddTitle("Google Font Example");
         document.Head.AddFontLink("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
         document.Head.AddFontLink("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-        document.Head.SetBodyFontFamily("Roboto", "Lobster", "sans-serif");
+        document.Head.AddFontLink("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+        document.Head.SetBodyFontFamily("Roboto", "'Open Sans'", "Lobster", "sans-serif");
 
         document.Body.Span("Hello with Google Font!");
         document.Body.Span("Fallback to Lobster if Roboto missing")
