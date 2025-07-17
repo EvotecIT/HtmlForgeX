@@ -26,12 +26,13 @@ public class TestAddLibraryUtf8 {
             }
         };
         using var doc = new Document { LibraryMode = LibraryMode.Offline };
-        doc.AddLibrary(lib);
+        var added = doc.AddLibrary(lib);
         var headHtml = doc.Head.ToString();
 
         File.Delete(cssPath);
         File.Delete(jsPath);
 
+        Assert.IsTrue(added);
         StringAssert.Contains(headHtml, cssContent);
         StringAssert.Contains(headHtml, jsContent);
     }

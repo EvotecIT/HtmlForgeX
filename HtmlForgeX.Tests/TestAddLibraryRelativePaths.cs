@@ -26,11 +26,12 @@ public class TestAddLibraryRelativePaths {
         };
 
         using var doc = new Document { LibraryMode = LibraryMode.Offline, Path = baseDir };
-        doc.AddLibrary(lib);
+        var added = doc.AddLibrary(lib);
         var html = doc.ToString();
 
         Directory.Delete(baseDir, true);
 
+        Assert.IsTrue(added);
         StringAssert.Contains(html, "body{color:red;}");
         StringAssert.Contains(html, "console.log('test');");
     }

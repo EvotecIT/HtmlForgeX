@@ -84,10 +84,11 @@ public class TestLibraryPlacement {
             }
         };
         
-        doc.AddLibrary(customLibrary);
+        var added = doc.AddLibrary(customLibrary);
         var html = doc.ToString();
         
         // Verify header resources are included
+        Assert.IsTrue(added);
         Assert.IsTrue(html.Contains("https://example.com/header.css"), "Header CSS should be included");
         Assert.IsTrue(html.Contains("https://example.com/header.js"), "Header JS should be included");
         

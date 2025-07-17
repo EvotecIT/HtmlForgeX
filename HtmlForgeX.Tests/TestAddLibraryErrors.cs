@@ -30,7 +30,8 @@ public class TestAddLibraryErrors {
         using (File.Open(cssPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) {
             var lib = new Library { Header = new LibraryLinks { Css = [cssPath] } };
             using var doc = new Document { LibraryMode = LibraryMode.Offline };
-            doc.AddLibrary(lib);
+            var result = doc.AddLibrary(lib);
+            Assert.IsFalse(result);
         }
 
         logger.OnErrorMessage -= handler;
@@ -52,7 +53,8 @@ public class TestAddLibraryErrors {
         using (File.Open(jsPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) {
             var lib = new Library { Header = new LibraryLinks { Js = [jsPath] } };
             using var doc = new Document { LibraryMode = LibraryMode.Offline };
-            doc.AddLibrary(lib);
+            var result = doc.AddLibrary(lib);
+            Assert.IsFalse(result);
         }
 
         logger.OnErrorMessage -= handler;
