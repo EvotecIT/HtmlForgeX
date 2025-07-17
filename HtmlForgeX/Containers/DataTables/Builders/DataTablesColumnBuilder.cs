@@ -12,6 +12,9 @@ public class DataTablesColumnBuilder
     /// <summary>Add a column configuration</summary>
     public DataTablesColumnBuilder Column(int targetIndex, Action<DataTablesColumn> configure)
     {
+        if (configure is null)
+            throw new ArgumentNullException(nameof(configure));
+
         var column = new DataTablesColumn { Targets = targetIndex };
         configure(column);
         _columns.Add(column);
@@ -22,6 +25,9 @@ public class DataTablesColumnBuilder
     /// <summary>Add a column configuration by name</summary>
     public DataTablesColumnBuilder Column(string name, Action<DataTablesColumn> configure)
     {
+        if (configure is null)
+            throw new ArgumentNullException(nameof(configure));
+
         var column = new DataTablesColumn { Name = name, Targets = _nextIndex++ };
         configure(column);
         _columns.Add(column);
@@ -31,6 +37,9 @@ public class DataTablesColumnBuilder
     /// <summary>Configure column with fluent API</summary>
     public DataTablesColumnBuilder Column(Action<DataTablesColumnConfiguration> configure)
     {
+        if (configure is null)
+            throw new ArgumentNullException(nameof(configure));
+
         var config = new DataTablesColumnConfiguration(this);
         configure(config);
         return this;
