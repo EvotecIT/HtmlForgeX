@@ -39,9 +39,9 @@ public class EmailLineBreak : Element {
     public override string ToString() {
         var html = StringBuilderCache.Acquire();
 
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; height: {Height}; line-height: {Height};\"></td>");
-        html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>");
+        html.AppendLine($"<tr>");
+        html.AppendLine($"<td style=\"font-family: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif; height: {Height}; line-height: {Height};\"></td>");
+        html.AppendLine($"</tr>");
 
         return StringBuilderCache.GetStringAndRelease(html);
     }

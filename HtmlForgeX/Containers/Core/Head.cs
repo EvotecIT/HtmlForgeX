@@ -267,19 +267,19 @@ public class Head : Element {
         head.AppendLine("<head>");
 
         if (!string.IsNullOrEmpty(Title)) {
-            head.AppendLine($"\t<title>{Title}</title>");
+            head.AppendLine($"<title>{Title}</title>");
         }
 
         if (!string.IsNullOrEmpty(Charset)) {
-            head.AppendLine($"\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Helpers.HtmlEncode(Charset)}\">");
+            head.AppendLine($"<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Helpers.HtmlEncode(Charset)}\">");
         }
 
         if (!string.IsNullOrEmpty(HttpEquiv) && !string.IsNullOrEmpty(Content)) {
-            head.AppendLine($"\t<meta http-equiv=\"{Helpers.HtmlEncode(HttpEquiv)}\" content=\"{Helpers.HtmlEncode(Content)}\">");
+            head.AppendLine($"<meta http-equiv=\"{Helpers.HtmlEncode(HttpEquiv)}\" content=\"{Helpers.HtmlEncode(Content)}\">");
         }
 
         if (AutoRefresh.HasValue) {
-            head.AppendLine($"\t<meta http-equiv=\"refresh\" content=\"{AutoRefresh.Value}\">");
+            head.AppendLine($"<meta http-equiv=\"refresh\" content=\"{AutoRefresh.Value}\">");
         }
 
         head.Append(MetaTagString("viewport", Viewport));
@@ -289,19 +289,19 @@ public class Head : Element {
         head.Append(MetaTagString("revised", Revised?.ToString()));
 
         foreach (var metaTag in MetaTags) {
-            head.AppendLine($"\t{metaTag.ToString().TrimEnd('\r', '\n')}");
+            head.AppendLine($"{metaTag.ToString().TrimEnd('\r', '\n')}");
         }
 
         foreach (var link in FontLinks) {
-            head.AppendLine($"\t{link}");
+            head.AppendLine($"{link}");
         }
 
         foreach (var link in CssLinks) {
-            head.AppendLine($"\t{link}");
+            head.AppendLine($"{link}");
         }
 
         foreach (var link in JsLinks) {
-            head.AppendLine($"\t{link}");
+            head.AppendLine($"{link}");
         }
 
         if (Styles.Count > 0) {
@@ -498,7 +498,7 @@ gtag('config', '{encodedIdentifier}');
             return string.Empty;
         }
         var encoded = Helpers.HtmlEncode(content);
-        return $"\t<meta name=\"{name}\" content=\"{encoded}\">\n";
+        return $"<meta name=\"{name}\" content=\"{encoded}\">\n";
     }
 
     private void ProcessLibrary(Library library) {
@@ -590,24 +590,24 @@ gtag('config', '{encodedIdentifier}');
         if (_document.Configuration.LibraryMode == LibraryMode.Online) {
             // Process CSS links
             foreach (var link in libraryLinks.CssLink) {
-                output.AppendLine($"\t<link rel=\"stylesheet\" href=\"{link}\">");
+                output.AppendLine($"<link rel=\"stylesheet\" href=\"{link}\">");
             }
 
             // Process JS links
             foreach (var link in libraryLinks.JsLink) {
-                output.AppendLine($"\t<script src=\"{link}\"></script>");
+                output.AppendLine($"<script src=\"{link}\"></script>");
             }
         } else if (_document.Configuration.LibraryMode == LibraryMode.Offline) {
             // Process embedded CSS
             foreach (var css in libraryLinks.Css) {
                 var cssContent = ReadEmbeddedResource("HtmlForgeX.Resources.Styles." + css);
-                output.AppendLine($"\t<style>{cssContent}</style>");
+                output.AppendLine($"<style>{cssContent}</style>");
             }
 
             // Process embedded JS
             foreach (var js in libraryLinks.Js) {
                 var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
-                output.AppendLine($"\t<script>{jsContent}</script>");
+                output.AppendLine($"<script>{jsContent}</script>");
             }
         } else if (_document.Configuration.LibraryMode == LibraryMode.OfflineWithFiles) {
             // Process CSS file links
@@ -616,7 +616,7 @@ gtag('config', '{encodedIdentifier}');
                 var linkPath = string.IsNullOrEmpty(_document.Configuration.StylePath)
                     ? fileName
                     : Path.Combine(_document.Configuration.StylePath, fileName);
-                output.AppendLine($"\t<link rel=\"stylesheet\" href=\"{linkPath.Replace('\\', '/')}\">");
+                output.AppendLine($"<link rel=\"stylesheet\" href=\"{linkPath.Replace('\\', '/')}\">");
             }
 
             // Process JS file links
@@ -625,22 +625,22 @@ gtag('config', '{encodedIdentifier}');
                 var linkPath = string.IsNullOrEmpty(_document.Configuration.ScriptPath)
                     ? fileName
                     : Path.Combine(_document.Configuration.ScriptPath, fileName);
-                output.AppendLine($"\t<script src=\"{linkPath.Replace('\\', '/')}\"></script>");
+                output.AppendLine($"<script src=\"{linkPath.Replace('\\', '/')}\"></script>");
             }
         }
 
         // Process inline CSS styles (consistent with Header processing)
         foreach (var style in libraryLinks.CssStyle) {
-            output.AppendLine($"\t<style type=\"text/css\">");
+            output.AppendLine($"<style type=\"text/css\">");
             output.AppendLine(style.ToString().TrimEnd('\r', '\n'));
-            output.AppendLine($"\t</style>");
+            output.AppendLine($"</style>");
         }
 
         // Process inline JS scripts (consistent with Header processing)
         foreach (var script in libraryLinks.JsScript) {
-            output.AppendLine($"\t<script type=\"text/javascript\">");
+            output.AppendLine($"<script type=\"text/javascript\">");
             output.AppendLine(script);
-            output.AppendLine($"\t</script>");
+            output.AppendLine($"</script>");
         }
     }
 
