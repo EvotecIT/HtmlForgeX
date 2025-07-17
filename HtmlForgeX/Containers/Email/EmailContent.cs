@@ -26,11 +26,6 @@ public class EmailContent : Element {
     /// <summary>
     /// Sets the text alignment for the content.
     /// </summary>
-    /// <param name="alignment">The alignment value ("left", "center", "right")</param>
-    /// <returns>The EmailContent object, allowing for method chaining.</returns>
-    /// <summary>
-    /// Sets the text alignment for the content.
-    /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailContent"/> instance.</returns>
     public EmailContent WithAlignment(Alignment alignment) {

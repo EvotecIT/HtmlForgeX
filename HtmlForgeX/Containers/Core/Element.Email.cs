@@ -3,7 +3,7 @@ namespace HtmlForgeX;
 public abstract partial class Element {
     // Email Extension Methods for Natural Builder Pattern
     /// <summary>
-    /// Adds an <see cref="EmailText"/> element with optional content.
+    /// Adds an <see cref="T:HtmlForgeX.EmailText"/> element with optional content.
     /// </summary>
     /// <param name="content">Initial text content.</param>
     /// <returns>The created element.</returns>
@@ -14,7 +14,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailText"/> element using the provided action.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailText"/> element using the provided action.
     /// </summary>
     /// <param name="config">Configuration action.</param>
     /// <returns>The current element for chaining.</returns>
@@ -26,7 +26,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailTable"/> element.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailTable"/> element.
     /// </summary>
     /// <param name="config">Configuration action.</param>
     /// <returns>The current element for chaining.</returns>
@@ -38,7 +38,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds an <see cref="EmailTable"/> populated from a collection.
+    /// Adds an <see cref="T:HtmlForgeX.EmailTable"/> populated from a collection.
     /// </summary>
     /// <typeparam name="T">Type of items in the collection.</typeparam>
     /// <param name="data">Data used to populate the table.</param>
@@ -51,7 +51,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailList"/> element.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailList"/> element.
     /// </summary>
     /// <param name="config">Configuration action.</param>
     /// <returns>The current element for chaining.</returns>
@@ -63,7 +63,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailRow"/> element.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailRow"/> element.
     /// </summary>
     /// <param name="config">Configuration action.</param>
     /// <returns>The current element for chaining.</returns>
@@ -76,7 +76,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailColumn"/> element.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailColumn"/> element.
     /// </summary>
     /// <param name="config">Configuration action.</param>
     /// <returns>The current element for chaining.</returns>
@@ -89,7 +89,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailBox"/> element.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailBox"/> element.
     /// </summary>
     /// <param name="config">Configuration action.</param>
     /// <returns>The current element for chaining.</returns>
@@ -102,7 +102,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailBox"/> element using a fluent builder.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailBox"/> element using a fluent builder.
     /// </summary>
     /// <param name="config">Builder configuration action.</param>
     /// <returns>The current element for chaining.</returns>
@@ -116,7 +116,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailTextBox"/> element.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailTextBox"/> element.
     /// </summary>
     /// <param name="config">Configuration action.</param>
     /// <returns>The current element for chaining.</returns>
@@ -128,7 +128,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailImage"/> element.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailImage"/> element.
     /// </summary>
     /// <param name="config">Configuration action.</param>
     /// <returns>The current element for chaining.</returns>
@@ -140,7 +140,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds an <see cref="EmailImage"/> element with the specified source.
+    /// Adds an <see cref="T:HtmlForgeX.EmailImage"/> element with the specified source.
     /// </summary>
     /// <param name="source">Image source path or URL.</param>
     /// <returns>The created image element.</returns>
@@ -151,7 +151,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds an <see cref="EmailImage"/> element with specified source and width.
+    /// Adds an <see cref="T:HtmlForgeX.EmailImage"/> element with specified source and width.
     /// </summary>
     /// <param name="source">Image source path or URL.</param>
     /// <param name="width">Width value.</param>
@@ -209,7 +209,7 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds and configures an <see cref="EmailLink"/> element.
+    /// Adds and configures an <see cref="T:HtmlForgeX.EmailLink"/> element.
     /// </summary>
     /// <param name="config">Configuration action.</param>
     /// <returns>The current element for chaining.</returns>
