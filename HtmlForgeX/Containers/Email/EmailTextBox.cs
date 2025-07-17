@@ -136,11 +136,6 @@ public class EmailTextBox : Element {
     /// <summary>
     /// Sets the text alignment.
     /// </summary>
-    /// <param name="alignment">The text alignment.</param>
-    /// <returns>The EmailTextBox object, allowing for method chaining.</returns>
-    /// <summary>
-    /// Sets the text alignment.
-    /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailTextBox"/> instance.</returns>
     public EmailTextBox WithAlignment(Alignment alignment) {

@@ -251,11 +251,6 @@ public class EmailLink : Element {
     /// <summary>
     /// Sets the text alignment.
     /// </summary>
-    /// <param name="alignment">The text alignment.</param>
-    /// <returns>The EmailLink object, allowing for method chaining.</returns>
-    /// <summary>
-    /// Sets the text alignment.
-    /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailLink"/> instance.</returns>
     public EmailLink WithAlignment(Alignment alignment) {
