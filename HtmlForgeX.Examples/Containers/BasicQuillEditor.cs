@@ -85,10 +85,9 @@ internal class BasicQuillEditor {
                                 var config = new QuillToolbarConfig();
                                 config.Group(QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Strike)
                                       .Group(QuillFormat.Blockquote, QuillFormat.CodeBlock)
-                                      .Dropdown("header", null, "1", "2", "3")
-                                      .Button(QuillFormat.List)
-                                      .Button(QuillFormat.Indent)
-                                      .Dropdown("align", null, "center", "right", "justify")
+                                      .Dropdown("header", "1", "2", "3", "4", "5", "6")
+                                      .ListAndIndentButtons()
+                                      .Dropdown("align")
                                       .Group(QuillFormat.Link, QuillFormat.Image, QuillFormat.Video);
                                 editor.Options.Modules.Toolbar = config;
                             });
