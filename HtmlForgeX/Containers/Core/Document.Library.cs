@@ -28,8 +28,10 @@ public partial class Document
     /// Adds a custom library definition.
     /// </summary>
     /// <param name="library">Library to add.</param>
-    public void AddLibrary(Library library)
+    /// <returns><see langword="true"/> if the library was added successfully; otherwise <see langword="false"/>.</returns>
+    public bool AddLibrary(Library library)
     {
+        var success = true;
         if (Configuration.LibraryMode == LibraryMode.Online)
         {
             foreach (var link in library.Header.CssLink)
@@ -50,6 +52,7 @@ public partial class Document
                 if (!File.Exists(resolved))
                 {
                     _logger.WriteError($"CSS file '{resolved}' not found.");
+                    success = false;
                     continue;
                 }
                 try
@@ -60,6 +63,7 @@ public partial class Document
                 catch (Exception ex)
                 {
                     _logger.WriteError($"Failed to read CSS file '{resolved}'. {ex.Message}");
+                    success = false;
                 }
             }
 
@@ -69,6 +73,7 @@ public partial class Document
                 if (!File.Exists(resolved))
                 {
                     _logger.WriteError($"JS file '{resolved}' not found.");
+                    success = false;
                     continue;
                 }
                 try
@@ -79,9 +84,11 @@ public partial class Document
                 catch (Exception ex)
                 {
                     _logger.WriteError($"Failed to read JS file '{resolved}'. {ex.Message}");
+                    success = false;
                 }
             }
         }
+        return success;
     }
 }
 

@@ -15,8 +15,10 @@ public class TestLibraryIntegration {
 
         GlobalStorage.LibraryMode = LibraryMode.Online;
         using var doc = new Document();
-        doc.AddLibrary(customLibrary);
+        var added = doc.AddLibrary(customLibrary);
         var html = doc.ToString();
+
+        Assert.IsTrue(added);
 
         StringAssert.Contains(html, "<link rel=\"stylesheet\" href=\"https://example.com/style.css\">");
         StringAssert.Contains(html, "<script src=\"https://example.com/script.js\"></script>");
