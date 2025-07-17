@@ -249,7 +249,8 @@ public class ChartJsFont {
     /// </summary>
     [JsonPropertyName("weight")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public object? Weight { get; set; }
+    [JsonConverter(typeof(ChartJsFontWeightConverter))]
+    public ChartJsFontWeight? Weight { get; set; }
 
     /// <summary>
     /// Gets or sets the line height.

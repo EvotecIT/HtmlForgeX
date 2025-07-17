@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HtmlForgeX;
 
 namespace HtmlForgeX.Examples.Containers;
 
@@ -74,11 +75,7 @@ internal class BasicChartJs {
                                  .AddData("Clothing", 25)
                                  .AddData("Food", 20)
                                  .AddData("Books", 10)
-                                 .Configure(opt => {
-                                     opt.Plugins ??= new ChartJsPlugins();
-                                     opt.Plugins.Legend ??= new ChartJsLegend();
-                                     opt.Plugins.Legend.Position = ChartJsPosition.Right;
-                                 });
+                                 .Legend(true, ChartJsPosition.Right);
                             });
                         });
                     });
@@ -108,11 +105,9 @@ internal class BasicChartJs {
                                  .Title("Skills Assessment")
                                  .AddLabels("JavaScript", "Python", "C#", "SQL", "DevOps")
                                  .AddDataset("Developer A", 85, 75, 90, 80, 95)
-                                 .Configure(opt => {
-                                     opt.Scales ??= new ChartJsScales();
-                                     opt.Scales.R ??= new ChartJsAxis();
-                                     opt.Scales.R.SuggestedMin = 0;
-                                     opt.Scales.R.SuggestedMax = 100;
+                                 .RAxis(axis => {
+                                     axis.SuggestedMin = 0;
+                                     axis.SuggestedMax = 100;
                                  });
                             });
                         });
@@ -135,12 +130,11 @@ internal class BasicChartJs {
                                  .AddPoint(20, 30)
                                  .AddPoint(25, 18)
                                  .AddPoint(30, 35)
-                                 .Configure(opt => {
-                                     opt.Scales ??= new ChartJsScales();
-                                     opt.Scales.X ??= new ChartJsAxis();
-                                     opt.Scales.X.Title = new ChartJsAxisTitle { Display = true, Text = "X Values" };
-                                     opt.Scales.Y ??= new ChartJsAxis();
-                                     opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Y Values" };
+                                 .XAxis(axis => {
+                                     axis.Title = new ChartJsAxisTitle { Display = true, Text = "X Values" };
+                                 })
+                                 .YAxis(axis => {
+                                     axis.Title = new ChartJsAxisTitle { Display = true, Text = "Y Values" };
                                  });
                             });
                         });
@@ -158,17 +152,9 @@ internal class BasicChartJs {
                                  .AddBubble(20, 30, 25)
                                  .AddBubble(25, 18, 8)
                                  .AddBubble(30, 35, 18)
-                                 .Configure(opt => {
-                                     opt.Scales ??= new ChartJsScales();
-                                     opt.Scales.X ??= new ChartJsAxis();
-                                     opt.Scales.X.Title = new ChartJsAxisTitle { Display = true, Text = "Price ($)" };
-                                     opt.Scales.Y ??= new ChartJsAxis();
-                                     opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Sales" };
-                                     opt.Plugins ??= new ChartJsPlugins();
-                                     opt.Plugins.Tooltip = new ChartJsTooltip {
-                                         Mode = ChartJsInteractionMode.Point
-                                     };
-                                 });
+                                 .XAxisTitle("Price ($)")
+                                 .YAxisTitle("Sales")
+                                 .Tooltip(ChartJsInteractionMode.Point);
                             });
                         });
                     });
@@ -223,60 +209,29 @@ internal class BasicChartJs {
                                 chart.Line()
                                      .Title("Custom Styling Example")
                                      .AddLabels("Mon", "Tue", "Wed", "Thu", "Fri")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Sales";
-                                         ds.Data = new List<double> { 12, 19, 3, 17, 6 };
-                                         ds.BackgroundColor = "rgba(255, 99, 132, 0.4)";
-                                         ds.BorderColor = "#ff6384";
-                                         ds.BorderWidth = 3;
-                                         ds.PointBackgroundColor = "#fff";
-                                         ds.PointBorderColor = "#ff6384";
-                                         ds.PointBorderWidth = 2;
-                                         ds.PointRadius = 6;
-                                         ds.PointHoverRadius = 8;
-                                         ds.PointHoverBackgroundColor = "#ff6384";
-                                         ds.PointHoverBorderColor = "#fff";
-                                         ds.PointHoverBorderWidth = 2;
-                                         ds.Tension = 0.4;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Title ??= new ChartJsTitle();
-                                         opt.Plugins.Title.Font = new ChartJsFont {
-                                             Size = 20,
-                                             Weight = "bold"
-                                         };
-                                         opt.Plugins.Title.Color = "#2c3e50";
-                                         
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Labels = new ChartJsLegendLabels {
-                                             Font = new ChartJsFont { Size = 14, Weight = "600" },
-                                             Padding = 20,
-                                             Color = "#34495e"
-                                         };
-                                         
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.X ??= new ChartJsAxis();
-                                         opt.Scales.X.Grid = new ChartJsGrid {
-                                             Color = "rgba(52, 73, 94, 0.1)",
-                                             LineWidth = 1
-                                         };
-                                         opt.Scales.X.Ticks = new ChartJsTicks {
-                                             Color = "#7f8c8d",
-                                             Font = new ChartJsFont { Size = 12 }
-                                         };
-                                         
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Grid = new ChartJsGrid {
-                                             Color = "rgba(52, 73, 94, 0.1)",
-                                             LineWidth = 1
-                                         };
-                                         opt.Scales.Y.Ticks = new ChartJsTicks {
-                                             Color = "#7f8c8d",
-                                             Font = new ChartJsFont { Size = 12 }
-                                         };
-                                         opt.Scales.Y.BeginAtZero = true;
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Sales")
+                                         .SetData(12, 19, 3, 17, 6)
+                                         .SetBackgroundColor(new RGBColor("rgba(255, 99, 132, 0.4)"))
+                                         .SetBorderColor(RGBColor.IndianRed)
+                                         .SetBorderWidth(3)
+                                         .SetPointBackgroundColor(RGBColor.White)
+                                         .SetPointBorderColor(RGBColor.IndianRed)
+                                         .SetPointBorderWidth(2)
+                                         .SetPointRadius(6)
+                                         .SetPointHoverRadius(8)
+                                         .SetPointHoverBackgroundColor(RGBColor.IndianRed)
+                                         .SetPointHoverBorderColor(RGBColor.White)
+                                         .SetPointHoverBorderWidth(2)
+                                         .SetTension(0.4)
+                                     )
+                                     .TitleStyled("Sales Performance", 20, ChartJsFontWeight.Bold, RGBColor.MidnightBlue)
+                                     .LegendLabels(14, ChartJsFontWeight.Bold, RGBColor.DarkSlateGray, 20)
+                                     .XAxisGrid(new RGBColor("rgba(52, 73, 94, 0.1)"), 1)
+                                     .XAxisTicks(RGBColor.SlateGray, 12)
+                                     .YAxisGrid(new RGBColor("rgba(52, 73, 94, 0.1)"), 1)
+                                     .YAxisTicks(RGBColor.SlateGray, 12)
+                                     .BeginAtZero();
                             });
                         });
                     });
@@ -288,26 +243,14 @@ internal class BasicChartJs {
                             body.ChartJs(chart => {
                                 chart.Bar()
                                      .Title("Interactive Tooltips")
-                                     .AddData("Product A", 45)
-                                     .AddData("Product B", 37)
-                                     .AddData("Product C", 60)
-                                     .AddData("Product D", 70)
-                                     .Configure(opt => {
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Tooltip = new ChartJsTooltip {
-                                             BackgroundColor = "rgba(0, 0, 0, 0.8)",
-                                             TitleColor = "#fff",
-                                             BodyColor = "#fff",
-                                             BorderColor = "#ddd",
-                                             BorderWidth = 1,
-                                             Mode = ChartJsInteractionMode.Index,
-                                             Intersect = false
-                                         };
-                                         opt.Interaction = new ChartJsInteraction {
-                                             Mode = ChartJsInteractionMode.Nearest,
-                                             Intersect = false
-                                         };
-                                     });
+                                     .AddDataset("Sales", new RGBColor("#3498db"), 45, 37, 60, 70)
+                                     .AddLabels("Product A", "Product B", "Product C", "Product D")
+                                     .Tooltip(ChartJsInteractionMode.Index, false, 
+                                              new RGBColor("rgba(0, 0, 0, 0.8)"), 
+                                              new RGBColor("#fff"), 
+                                              new RGBColor("#fff"), 
+                                              new RGBColor("#ddd"), 1)
+                                     .Interaction(ChartJsInteractionMode.Nearest, false);
                             });
                         });
                     });
@@ -327,32 +270,27 @@ internal class BasicChartJs {
                                 chart.Line()
                                      .Title("AAPL Stock Movement")
                                      .AddLabels("9:00", "10:00", "11:00", "12:00", "1:00", "2:00", "3:00", "4:00")
-                                     .AddDataset(ds => {
-                                         ds.Label = "High";
-                                         ds.Data = new List<double> { 150, 152, 149, 153, 155, 154, 156, 158 };
-                                         ds.BorderColor = "#27ae60";
-                                         ds.BackgroundColor = "rgba(39, 174, 96, 0.1)";
-                                         ds.BorderWidth = 2;
-                                         ds.Fill = false;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Low";
-                                         ds.Data = new List<double> { 148, 149, 146, 150, 152, 151, 153, 155 };
-                                         ds.BorderColor = "#e74c3c";
-                                         ds.BackgroundColor = "rgba(231, 76, 60, 0.1)";
-                                         ds.BorderWidth = 2;
-                                         ds.Fill = false;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.BeginAtZero = false;
-                                         opt.Scales.Y.Min = 140;
-                                         opt.Scales.Y.Max = 160;
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Position = ChartJsPosition.Bottom;
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("High")
+                                         .SetData(150, 152, 149, 153, 155, 154, 156, 158)
+                                         .SetBorderColor(RGBColor.ForestGreen)
+                                         .SetBackgroundColor(new RGBColor("rgba(39, 174, 96, 0.1)"))
+                                         .SetBorderWidth(2)
+                                         .SetFill(false)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Low")
+                                         .SetData(148, 149, 146, 150, 152, 151, 153, 155)
+                                         .SetBorderColor(RGBColor.Crimson)
+                                         .SetBackgroundColor(new RGBColor("rgba(231, 76, 60, 0.1)"))
+                                         .SetBorderWidth(2)
+                                         .SetFill(false)
+                                     )
+                                     .YAxis(axis => axis
+                                         .SetBeginAtZero(false)
+                                         .SetRange(140, 160)
+                                     )
+                                     .Legend(false, ChartJsPosition.Bottom);
                             });
                         });
                     });
@@ -365,18 +303,16 @@ internal class BasicChartJs {
                                 chart.Doughnut()
                                      .Title("Q4 Revenue by Product")
                                      .AddLabels("SaaS", "Consulting", "Licenses", "Support")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Revenue";
-                                         ds.Data = new List<double> { 45, 25, 20, 10 };
-                                         ds.BackgroundColor = new List<string> { "#3498db", "#e74c3c", "#f39c12", "#27ae60" };
-                                         ds.BorderColor = new List<string> { "#3498db", "#e74c3c", "#f39c12", "#27ae60" };
-                                         ds.BorderWidth = 2;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Position = ChartJsPosition.Right;
-                                         opt.Plugins.Legend.Labels = new ChartJsLegendLabels {
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Revenue")
+                                         .SetData(45, 25, 20, 10)
+                                         .SetBackgroundColors(RGBColor.DodgerBlue, RGBColor.Crimson, RGBColor.Orange, RGBColor.ForestGreen)
+                                         .SetBorderColors(RGBColor.DodgerBlue, RGBColor.Crimson, RGBColor.Orange, RGBColor.ForestGreen)
+                                         .SetBorderWidth(2)
+                                     )
+                                     .Legend(legend => {
+                                         legend.Position = ChartJsPosition.Right;
+                                         legend.Labels = new ChartJsLegendLabels {
                                              Font = new ChartJsFont { Size = 12 },
                                              UsePointStyle = true,
                                              Padding = 15
@@ -394,20 +330,20 @@ internal class BasicChartJs {
                                 chart.Bar()
                                      .Title("Monthly KPIs")
                                      .AddLabels("Revenue", "Customers", "Conversion", "Retention")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Target";
-                                         ds.Data = new List<double> { 100, 100, 100, 100 };
-                                         ds.BackgroundColor = "rgba(149, 165, 166, 0.3)";
-                                         ds.BorderColor = "#95a5a6";
-                                         ds.BorderWidth = 1;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Actual";
-                                         ds.Data = new List<double> { 95, 112, 87, 103 };
-                                         ds.BackgroundColor = new[] { "#e74c3c", "#27ae60", "#f39c12", "#27ae60" };
-                                         ds.BorderColor = new[] { "#c0392b", "#229954", "#d68910", "#229954" };
-                                         ds.BorderWidth = 2;
-                                     })
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Target")
+                                         .SetData(100, 100, 100, 100)
+                                         .SetBackgroundColor(new RGBColor("rgba(149, 165, 166, 0.3)"))
+                                         .SetBorderColor(RGBColor.Gray)
+                                         .SetBorderWidth(1)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Actual")
+                                         .SetData(95, 112, 87, 103)
+                                         .SetBackgroundColors(RGBColor.Crimson, RGBColor.ForestGreen, RGBColor.Orange, RGBColor.ForestGreen)
+                                         .SetBorderColors(RGBColor.Firebrick, RGBColor.DarkGreen, RGBColor.DarkOrange, RGBColor.DarkGreen)
+                                         .SetBorderWidth(2)
+                                     )
                                      .BeginAtZero();
                             });
                         });
@@ -426,26 +362,21 @@ internal class BasicChartJs {
                                 chart.Line()
                                      .Title("Normal Distribution Curve")
                                      .AddLabels("-3σ", "-2σ", "-1σ", "μ", "1σ", "2σ", "3σ")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Distribution";
-                                         ds.Data = new List<double> { 0.4, 5.4, 24.2, 39.9, 24.2, 5.4, 0.4 };
-                                         ds.BorderColor = "#9b59b6";
-                                         ds.BackgroundColor = "rgba(155, 89, 182, 0.2)";
-                                         ds.BorderWidth = 3;
-                                         ds.PointRadius = 6;
-                                         ds.PointBackgroundColor = "#8e44ad";
-                                         ds.PointBorderColor = "#fff";
-                                         ds.PointBorderWidth = 2;
-                                         ds.Tension = 0.4;
-                                         ds.Fill = true;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Probability %" };
-                                         opt.Scales.X ??= new ChartJsAxis();
-                                         opt.Scales.X.Title = new ChartJsAxisTitle { Display = true, Text = "Standard Deviations" };
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Distribution")
+                                         .SetData(0.4, 5.4, 24.2, 39.9, 24.2, 5.4, 0.4)
+                                         .SetBorderColor(RGBColor.MediumPurple)
+                                         .SetBackgroundColor(new RGBColor("rgba(155, 89, 182, 0.2)"))
+                                         .SetBorderWidth(3)
+                                         .SetPointRadius(6)
+                                         .SetPointBackgroundColor(RGBColor.Purple)
+                                         .SetPointBorderColor(RGBColor.White)
+                                         .SetPointBorderWidth(2)
+                                         .SetTension(0.4)
+                                         .SetFill(true)
+                                     )
+                                     .YAxis(axis => axis.SetTitle("Probability %", true))
+                                     .XAxis(axis => axis.SetTitle("Standard Deviations", true));
                             });
                         });
                     });
@@ -458,29 +389,23 @@ internal class BasicChartJs {
                                 chart.Bar()
                                      .Title("Conversion Rate Comparison")
                                      .AddLabels("Week 1", "Week 2", "Week 3", "Week 4")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Variant A";
-                                         ds.Data = new List<double> { 12.3, 13.1, 12.8, 13.5 };
-                                         ds.BackgroundColor = "#3498db";
-                                         ds.BorderColor = "#2980b9";
-                                         ds.BorderWidth = 2;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Variant B";
-                                         ds.Data = new List<double> { 14.2, 15.1, 14.9, 15.8 };
-                                         ds.BackgroundColor = "#e74c3c";
-                                         ds.BorderColor = "#c0392b";
-                                         ds.BorderWidth = 2;
-                                     })
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Variant A")
+                                         .SetData(12.3, 13.1, 12.8, 13.5)
+                                         .SetBackgroundColor(RGBColor.DodgerBlue)
+                                         .SetBorderColor(RGBColor.SteelBlue)
+                                         .SetBorderWidth(2)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Variant B")
+                                         .SetData(14.2, 15.1, 14.9, 15.8)
+                                         .SetBackgroundColor(RGBColor.Crimson)
+                                         .SetBorderColor(RGBColor.Firebrick)
+                                         .SetBorderWidth(2)
+                                     )
                                      .BeginAtZero()
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Conversion Rate %" };
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Position = ChartJsPosition.Top;
-                                     });
+                                     .YAxis(axis => axis.SetTitle("Conversion Rate %", true))
+                                     .Legend(false, ChartJsPosition.Top);
                             });
                         });
                     });
@@ -498,56 +423,51 @@ internal class BasicChartJs {
                                 chart.Line()
                                      .Title("Multi-Core CPU Monitoring")
                                      .AddLabels("00:00", "00:15", "00:30", "00:45", "01:00", "01:15", "01:30")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Core 1";
-                                         ds.Data = new List<double> { 45, 52, 48, 61, 55, 67, 59 };
-                                         ds.BorderColor = "#e74c3c";
-                                         ds.BackgroundColor = "rgba(231, 76, 60, 0.1)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointRadius = 4;
-                                         ds.Tension = 0.3;
-                                         ds.Fill = false;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Core 2";
-                                         ds.Data = new List<double> { 38, 45, 52, 58, 49, 63, 55 };
-                                         ds.BorderColor = "#3498db";
-                                         ds.BackgroundColor = "rgba(52, 152, 219, 0.1)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointRadius = 4;
-                                         ds.Tension = 0.3;
-                                         ds.Fill = false;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Core 3";
-                                         ds.Data = new List<double> { 42, 49, 45, 65, 51, 69, 62 };
-                                         ds.BorderColor = "#2ecc71";
-                                         ds.BackgroundColor = "rgba(46, 204, 113, 0.1)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointRadius = 4;
-                                         ds.Tension = 0.3;
-                                         ds.Fill = false;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Core 4";
-                                         ds.Data = new List<double> { 39, 46, 43, 59, 47, 64, 56 };
-                                         ds.BorderColor = "#f39c12";
-                                         ds.BackgroundColor = "rgba(243, 156, 18, 0.1)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointRadius = 4;
-                                         ds.Tension = 0.3;
-                                         ds.Fill = false;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Min = 0;
-                                         opt.Scales.Y.Max = 100;
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Usage %" };
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Position = ChartJsPosition.Top;
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Core 1")
+                                         .SetData(45, 52, 48, 61, 55, 67, 59)
+                                         .SetBorderColor(RGBColor.Crimson)
+                                         .SetBackgroundColor(new RGBColor("rgba(231, 76, 60, 0.1)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointRadius(4)
+                                         .SetTension(0.3)
+                                         .SetFill(false)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Core 2")
+                                         .SetData(38, 45, 52, 58, 49, 63, 55)
+                                         .SetBorderColor(RGBColor.DodgerBlue)
+                                         .SetBackgroundColor(new RGBColor("rgba(52, 152, 219, 0.1)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointRadius(4)
+                                         .SetTension(0.3)
+                                         .SetFill(false)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Core 3")
+                                         .SetData(42, 49, 45, 65, 51, 69, 62)
+                                         .SetBorderColor(RGBColor.ForestGreen)
+                                         .SetBackgroundColor(new RGBColor("rgba(46, 204, 113, 0.1)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointRadius(4)
+                                         .SetTension(0.3)
+                                         .SetFill(false)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Core 4")
+                                         .SetData(39, 46, 43, 59, 47, 64, 56)
+                                         .SetBorderColor(RGBColor.Orange)
+                                         .SetBackgroundColor(new RGBColor("rgba(243, 156, 18, 0.1)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointRadius(4)
+                                         .SetTension(0.3)
+                                         .SetFill(false)
+                                     )
+                                     .YAxis(axis => axis
+                                         .SetRange(0, 100)
+                                         .SetTitle("Usage %", true)
+                                     )
+                                     .Legend(false, ChartJsPosition.Top);
                             });
                         });
                     });
@@ -560,22 +480,17 @@ internal class BasicChartJs {
                                 chart.PolarArea()
                                      .Title("Memory Distribution")
                                      .AddLabels("Used", "Cache", "Buffer", "Free")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Memory %";
-                                         ds.Data = new List<double> { 65, 20, 10, 5 };
-                                         ds.BackgroundColor = new List<string> { "#e74c3c", "#f39c12", "#3498db", "#27ae60" };
-                                         ds.BorderColor = new List<string> { "#c0392b", "#e67e22", "#2980b9", "#27ae60" };
-                                         ds.BorderWidth = 1;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.R ??= new ChartJsAxis();
-                                         opt.Scales.R.Min = 0;
-                                         opt.Scales.R.Max = 100;
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Position = ChartJsPosition.Bottom;
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Memory %")
+                                         .SetData(65, 20, 10, 5)
+                                         .SetBackgroundColors(RGBColor.Crimson, RGBColor.Orange, RGBColor.DodgerBlue, RGBColor.ForestGreen)
+                                         .SetBorderColors(RGBColor.Firebrick, RGBColor.DarkOrange, RGBColor.SteelBlue, RGBColor.DarkGreen)
+                                         .SetBorderWidth(1)
+                                     )
+                                     .RAxis(axis => axis
+                                         .SetRange(0, 100)
+                                     )
+                                     .Legend(false, ChartJsPosition.Bottom);
                             });
                         });
                     });
@@ -588,20 +503,20 @@ internal class BasicChartJs {
                                 chart.Bar()
                                      .Title("Bandwidth Usage")
                                      .AddLabels("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Upload (GB)";
-                                         ds.Data = new List<double> { 12, 15, 18, 14, 20, 8, 6 };
-                                         ds.BackgroundColor = "#3498db";
-                                         ds.BorderColor = "#2980b9";
-                                         ds.BorderWidth = 1;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Download (GB)";
-                                         ds.Data = new List<double> { 25, 30, 35, 28, 40, 18, 15 };
-                                         ds.BackgroundColor = "#e74c3c";
-                                         ds.BorderColor = "#c0392b";
-                                         ds.BorderWidth = 1;
-                                     })
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Upload (GB)")
+                                         .SetData(12, 15, 18, 14, 20, 8, 6)
+                                         .SetBackgroundColor(RGBColor.DodgerBlue)
+                                         .SetBorderColor(RGBColor.SteelBlue)
+                                         .SetBorderWidth(1)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Download (GB)")
+                                         .SetData(25, 30, 35, 28, 40, 18, 15)
+                                         .SetBackgroundColor(RGBColor.Crimson)
+                                         .SetBorderColor(RGBColor.Firebrick)
+                                         .SetBorderWidth(1)
+                                     )
                                      .BeginAtZero()
                                      .Stacked();
                             });
@@ -627,13 +542,8 @@ internal class BasicChartJs {
                                      .AddPoint(3000, 130000)
                                      .AddPoint(3500, 155000)
                                      .AddPoint(4000, 180000)
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.X ??= new ChartJsAxis();
-                                         opt.Scales.X.Title = new ChartJsAxisTitle { Display = true, Text = "Marketing Spend ($)" };
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Sales Revenue ($)" };
-                                     });
+                                     .XAxis(axis => axis.SetTitle("Marketing Spend ($)", true))
+                                     .YAxis(axis => axis.SetTitle("Sales Revenue ($)", true));
                             });
                         });
                     });
@@ -650,17 +560,9 @@ internal class BasicChartJs {
                                      .AddBubble(12, 18, 25)   // Risk 12%, Return 18%, Size 25
                                      .AddBubble(15, 22, 40)   // Risk 15%, Return 22%, Size 40
                                      .AddBubble(20, 25, 30)   // Risk 20%, Return 25%, Size 30
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.X ??= new ChartJsAxis();
-                                         opt.Scales.X.Title = new ChartJsAxisTitle { Display = true, Text = "Risk %" };
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Expected Return %" };
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Tooltip = new ChartJsTooltip {
-                                             Mode = ChartJsInteractionMode.Point
-                                         };
-                                     });
+                                     .XAxisTitle("Risk %")
+                                     .YAxisTitle("Expected Return %")
+                                     .Tooltip(ChartJsInteractionMode.Point);
                             });
                         });
                     });
@@ -678,21 +580,15 @@ internal class BasicChartJs {
                                 chart.Bar()
                                      .Title("Conversion Funnel")
                                      .AddLabels("Visitors", "Leads", "Prospects", "Customers")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Count";
-                                         ds.Data = new List<double> { 10000, 2500, 500, 100 };
-                                         ds.BackgroundColor = new[] { "#3498db", "#f39c12", "#e67e22", "#27ae60" };
-                                         ds.BorderColor = new[] { "#2980b9", "#d68910", "#d35400", "#229954" };
-                                         ds.BorderWidth = 2;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Display = false;
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Type = "logarithmic";
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Count")
+                                         .SetData(10000, 2500, 500, 100)
+                                         .SetBackgroundColors(RGBColor.DodgerBlue, RGBColor.Orange, RGBColor.DarkOrange, RGBColor.ForestGreen)
+                                         .SetBorderColors(RGBColor.SteelBlue, RGBColor.DarkOrange, RGBColor.OrangeRed, RGBColor.DarkGreen)
+                                         .SetBorderWidth(2)
+                                     )
+                                     .Legend(false)
+                                     .YAxis(axis => axis.SetType("logarithmic"));
                             });
                         });
                     });
@@ -705,32 +601,27 @@ internal class BasicChartJs {
                                 chart.Radar()
                                      .Title("Multi-Channel Performance")
                                      .AddLabels("Email", "Social", "PPC", "SEO", "Display", "Referral")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Q3 2024";
-                                         ds.Data = new List<double> { 80, 65, 90, 70, 55, 75 };
-                                         ds.BorderColor = "#e74c3c";
-                                         ds.BackgroundColor = "rgba(231, 76, 60, 0.2)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointBackgroundColor = "#e74c3c";
-                                         ds.PointBorderColor = "#fff";
-                                         ds.PointBorderWidth = 2;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Q4 2024";
-                                         ds.Data = new List<double> { 85, 70, 85, 80, 65, 85 };
-                                         ds.BorderColor = "#3498db";
-                                         ds.BackgroundColor = "rgba(52, 152, 219, 0.2)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointBackgroundColor = "#3498db";
-                                         ds.PointBorderColor = "#fff";
-                                         ds.PointBorderWidth = 2;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.R ??= new ChartJsAxis();
-                                         opt.Scales.R.Min = 0;
-                                         opt.Scales.R.Max = 100;
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Q3 2024")
+                                         .SetData(80, 65, 90, 70, 55, 75)
+                                         .SetBorderColor(RGBColor.Crimson)
+                                         .SetBackgroundColor(new RGBColor("rgba(231, 76, 60, 0.2)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointBackgroundColor(RGBColor.Crimson)
+                                         .SetPointBorderColor(RGBColor.White)
+                                         .SetPointBorderWidth(2)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Q4 2024")
+                                         .SetData(85, 70, 85, 80, 65, 85)
+                                         .SetBorderColor(RGBColor.DodgerBlue)
+                                         .SetBackgroundColor(new RGBColor("rgba(52, 152, 219, 0.2)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointBackgroundColor(RGBColor.DodgerBlue)
+                                         .SetPointBorderColor(RGBColor.White)
+                                         .SetPointBorderWidth(2)
+                                     )
+                                     .RAxisRange(0, 100);
                             });
                         });
                     });
@@ -743,30 +634,26 @@ internal class BasicChartJs {
                                 chart.Line()
                                      .Title("CLV by Cohort")
                                      .AddLabels("Month 1", "Month 3", "Month 6", "Month 12", "Month 24")
-                                     .AddDataset(ds => {
-                                         ds.Label = "2023 Cohort";
-                                         ds.Data = new List<double> { 50, 120, 200, 350, 500 };
-                                         ds.BorderColor = "#9b59b6";
-                                         ds.BackgroundColor = "rgba(155, 89, 182, 0.1)";
-                                         ds.BorderWidth = 3;
-                                         ds.PointRadius = 6;
-                                         ds.Tension = 0.4;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "2024 Cohort";
-                                         ds.Data = new List<double> { 60, 140, 230, 400, 580 };
-                                         ds.BorderColor = "#1abc9c";
-                                         ds.BackgroundColor = "rgba(26, 188, 156, 0.1)";
-                                         ds.BorderWidth = 3;
-                                         ds.PointRadius = 6;
-                                         ds.Tension = 0.4;
-                                     })
+                                     .AddDataset(ds => ds
+                                         .SetLabel("2023 Cohort")
+                                         .SetData(50, 120, 200, 350, 500)
+                                         .SetBorderColor(RGBColor.MediumPurple)
+                                         .SetBackgroundColor(new RGBColor("rgba(155, 89, 182, 0.1)"))
+                                         .SetBorderWidth(3)
+                                         .SetPointRadius(6)
+                                         .SetTension(0.4)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("2024 Cohort")
+                                         .SetData(60, 140, 230, 400, 580)
+                                         .SetBorderColor(RGBColor.Turquoise)
+                                         .SetBackgroundColor(new RGBColor("rgba(26, 188, 156, 0.1)"))
+                                         .SetBorderWidth(3)
+                                         .SetPointRadius(6)
+                                         .SetTension(0.4)
+                                     )
                                      .BeginAtZero()
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "CLV ($)" };
-                                     });
+                                     .YAxis(axis => axis.SetTitle("CLV ($)", true));
                             });
                         });
                     });
@@ -784,21 +671,15 @@ internal class BasicChartJs {
                                 chart.Bar()
                                      .Title("Feature Adoption Rate")
                                      .AddLabels("Dashboard", "Reports", "Analytics", "Settings", "API", "Mobile")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Daily Active Users";
-                                         ds.Data = new List<double> { 85, 70, 60, 40, 25, 55 };
-                                         ds.BackgroundColor = new[] { "#27ae60", "#f39c12", "#e67e22", "#e74c3c", "#c0392b", "#f39c12" };
-                                         ds.BorderColor = new[] { "#229954", "#d68910", "#d35400", "#c0392b", "#a93226", "#d68910" };
-                                         ds.BorderWidth = 2;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Display = false;
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Usage %" };
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Daily Active Users")
+                                         .SetData(85, 70, 60, 40, 25, 55)
+                                         .SetBackgroundColors(RGBColor.ForestGreen, RGBColor.Orange, RGBColor.DarkOrange, RGBColor.Crimson, RGBColor.Firebrick, RGBColor.Orange)
+                                         .SetBorderColors(RGBColor.DarkGreen, RGBColor.DarkOrange, RGBColor.OrangeRed, RGBColor.Firebrick, RGBColor.DarkRed, RGBColor.DarkOrange)
+                                         .SetBorderWidth(2)
+                                     )
+                                     .Legend(false)
+                                     .YAxisTitle("Usage %");
                             });
                         });
                     });
@@ -811,24 +692,20 @@ internal class BasicChartJs {
                                 chart.Line()
                                      .Title("User Journey Analytics")
                                      .AddLabels("Login", "Browse", "Search", "View", "Add to Cart", "Checkout", "Purchase")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Drop-off Rate";
-                                         ds.Data = new List<double> { 100, 85, 70, 60, 45, 30, 25 };
-                                         ds.BorderColor = "#e74c3c";
-                                         ds.BackgroundColor = "rgba(231, 76, 60, 0.2)";
-                                         ds.BorderWidth = 3;
-                                         ds.PointRadius = 7;
-                                         ds.PointBackgroundColor = "#c0392b";
-                                         ds.PointBorderColor = "#fff";
-                                         ds.PointBorderWidth = 2;
-                                         ds.Tension = 0.3;
-                                         ds.Fill = true;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Retention %" };
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Drop-off Rate")
+                                         .SetData(100, 85, 70, 60, 45, 30, 25)
+                                         .SetBorderColor(RGBColor.Crimson)
+                                         .SetBackgroundColor(new RGBColor("rgba(231, 76, 60, 0.2)"))
+                                         .SetBorderWidth(3)
+                                         .SetPointRadius(7)
+                                         .SetPointBackgroundColor(RGBColor.Firebrick)
+                                         .SetPointBorderColor(RGBColor.White)
+                                         .SetPointBorderWidth(2)
+                                         .SetTension(0.3)
+                                         .SetFill(true)
+                                     )
+                                     .YAxisTitle("Retention %");
                             });
                         });
                     });
@@ -846,18 +723,16 @@ internal class BasicChartJs {
                                 chart.Pie()
                                      .Title("Sales by Region")
                                      .AddLabels("North America", "Europe", "Asia Pacific", "Latin America")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Sales %";
-                                         ds.Data = new List<double> { 45, 30, 20, 5 };
-                                         ds.BackgroundColor = new List<string> { "#3498db", "#e74c3c", "#f39c12", "#27ae60" };
-                                         ds.BorderColor = new List<string> { "#2980b9", "#c0392b", "#e67e22", "#229954" };
-                                         ds.BorderWidth = 2;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Position = ChartJsPosition.Bottom;
-                                         opt.Plugins.Legend.Labels = new ChartJsLegendLabels {
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Sales %")
+                                         .SetData(45, 30, 20, 5)
+                                         .SetBackgroundColors(RGBColor.DodgerBlue, RGBColor.Crimson, RGBColor.Orange, RGBColor.ForestGreen)
+                                         .SetBorderColors(RGBColor.SteelBlue, RGBColor.Firebrick, RGBColor.DarkOrange, RGBColor.DarkGreen)
+                                         .SetBorderWidth(2)
+                                     )
+                                     .Legend(legend => {
+                                         legend.Position = ChartJsPosition.Bottom;
+                                         legend.Labels = new ChartJsLegendLabels {
                                              UsePointStyle = true,
                                              Font = new ChartJsFont { Size = 12 }
                                          };
@@ -874,26 +749,22 @@ internal class BasicChartJs {
                                 chart.Bar()
                                      .Title("User Age Distribution")
                                      .AddLabels("18-24", "25-34", "35-44", "45-54", "55-64", "65+")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Male";
-                                         ds.Data = new List<double> { 15, 25, 30, 20, 8, 2 };
-                                         ds.BackgroundColor = "#3498db";
-                                         ds.BorderColor = "#2980b9";
-                                         ds.BorderWidth = 1;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Female";
-                                         ds.Data = new List<double> { 12, 28, 32, 18, 7, 3 };
-                                         ds.BackgroundColor = "#e74c3c";
-                                         ds.BorderColor = "#c0392b";
-                                         ds.BorderWidth = 1;
-                                     })
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Male")
+                                         .SetData(15, 25, 30, 20, 8, 2)
+                                         .SetBackgroundColor(RGBColor.DodgerBlue)
+                                         .SetBorderColor(RGBColor.SteelBlue)
+                                         .SetBorderWidth(1)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Female")
+                                         .SetData(12, 28, 32, 18, 7, 3)
+                                         .SetBackgroundColor(RGBColor.Crimson)
+                                         .SetBorderColor(RGBColor.Firebrick)
+                                         .SetBorderWidth(1)
+                                     )
                                      .BeginAtZero()
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Percentage %" };
-                                     });
+                                     .YAxisTitle("Percentage %");
                             });
                         });
                     });
@@ -906,20 +777,18 @@ internal class BasicChartJs {
                                 chart.Doughnut()
                                      .Title("Traffic by Device")
                                      .AddLabels("Desktop", "Mobile", "Tablet")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Usage %";
-                                         ds.Data = new List<double> { 55, 35, 10 };
-                                         ds.BackgroundColor = new List<string> { "#34495e", "#e67e22", "#9b59b6" };
-                                         ds.BorderColor = new List<string> { "#2c3e50", "#d35400", "#8e44ad" };
-                                         ds.BorderWidth = 2;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Position = ChartJsPosition.Right;
-                                         opt.Plugins.Legend.Labels = new ChartJsLegendLabels {
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Usage %")
+                                         .SetData(55, 35, 10)
+                                         .SetBackgroundColors(RGBColor.DimGray, RGBColor.DarkOrange, RGBColor.MediumPurple)
+                                         .SetBorderColors(RGBColor.DarkSlateGray, RGBColor.OrangeRed, RGBColor.Purple)
+                                         .SetBorderWidth(2)
+                                     )
+                                     .Legend(legend => {
+                                         legend.Position = ChartJsPosition.Right;
+                                         legend.Labels = new ChartJsLegendLabels {
                                              UsePointStyle = true,
-                                             Font = new ChartJsFont { Size = 14, Weight = "bold" }
+                                             Font = new ChartJsFont { Size = 14, Weight = ChartJsFontWeight.Bold }
                                          };
                                      });
                             });
@@ -939,34 +808,28 @@ internal class BasicChartJs {
                                 chart.Line()
                                      .Title("Crypto Price Feed")
                                      .AddLabels("12:00", "12:15", "12:30", "12:45", "13:00", "13:15", "13:30")
-                                     .AddDataset(ds => {
-                                         ds.Label = "BTC/USD";
-                                         ds.Data = new List<double> { 45000, 45200, 44800, 45100, 45500, 45300, 45800 };
-                                         ds.BorderColor = "#f39c12";
-                                         ds.BackgroundColor = "rgba(243, 156, 18, 0.1)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointRadius = 0;
-                                         ds.Tension = 0.1;
-                                         ds.Fill = true;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "ETH/USD";
-                                         ds.Data = new List<double> { 3200, 3250, 3180, 3220, 3280, 3240, 3300 };
-                                         ds.BorderColor = "#9b59b6";
-                                         ds.BackgroundColor = "rgba(155, 89, 182, 0.1)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointRadius = 0;
-                                         ds.Tension = 0.1;
-                                         ds.Fill = true;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.BeginAtZero = false;
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Position = ChartJsPosition.Top;
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("BTC/USD")
+                                         .SetData(45000, 45200, 44800, 45100, 45500, 45300, 45800)
+                                         .SetBorderColor(RGBColor.Orange)
+                                         .SetBackgroundColor(new RGBColor("rgba(243, 156, 18, 0.1)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointRadius(0)
+                                         .SetTension(0.1)
+                                         .SetFill(true)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("ETH/USD")
+                                         .SetData(3200, 3250, 3180, 3220, 3280, 3240, 3300)
+                                         .SetBorderColor(RGBColor.MediumPurple)
+                                         .SetBackgroundColor(new RGBColor("rgba(155, 89, 182, 0.1)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointRadius(0)
+                                         .SetTension(0.1)
+                                         .SetFill(true)
+                                     )
+                                     .YAxisFloat()
+                                     .Legend(true, ChartJsPosition.Top);
                             });
                         });
                     });
@@ -979,22 +842,16 @@ internal class BasicChartJs {
                                 chart.Bar()
                                      .Title("API Endpoint Performance")
                                      .AddLabels("/api/users", "/api/orders", "/api/products", "/api/analytics", "/api/reports")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Avg Response (ms)";
-                                         ds.Data = new List<double> { 120, 250, 180, 300, 450 };
-                                         ds.BackgroundColor = new[] { "#27ae60", "#f39c12", "#27ae60", "#e67e22", "#e74c3c" };
-                                         ds.BorderColor = new[] { "#229954", "#d68910", "#229954", "#d35400", "#c0392b" };
-                                         ds.BorderWidth = 2;
-                                     })
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Avg Response (ms)")
+                                         .SetData(120, 250, 180, 300, 450)
+                                         .SetBackgroundColors(RGBColor.ForestGreen, RGBColor.Orange, RGBColor.ForestGreen, RGBColor.DarkOrange, RGBColor.Crimson)
+                                         .SetBorderColors(RGBColor.DarkGreen, RGBColor.DarkOrange, RGBColor.DarkGreen, RGBColor.OrangeRed, RGBColor.Firebrick)
+                                         .SetBorderWidth(2)
+                                     )
                                      .BeginAtZero()
-                                     .Configure(opt => {
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Display = false;
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Response Time (ms)" };
-                                     });
+                                     .Legend(false)
+                                     .YAxisTitle("Response Time (ms)");
                             });
                         });
                     });
@@ -1012,28 +869,23 @@ internal class BasicChartJs {
                                 chart.Radar()
                                      .Title("Patient Satisfaction Scores")
                                      .AddLabels("Care Quality", "Communication", "Facilities", "Wait Time", "Staff", "Overall")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Hospital A";
-                                         ds.Data = new List<double> { 85, 78, 92, 65, 88, 82 };
-                                         ds.BorderColor = "#e74c3c";
-                                         ds.BackgroundColor = "rgba(231, 76, 60, 0.2)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointBackgroundColor = "#e74c3c";
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Hospital B";
-                                         ds.Data = new List<double> { 90, 85, 88, 75, 92, 86 };
-                                         ds.BorderColor = "#27ae60";
-                                         ds.BackgroundColor = "rgba(39, 174, 96, 0.2)";
-                                         ds.BorderWidth = 2;
-                                         ds.PointBackgroundColor = "#27ae60";
-                                     })
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.R ??= new ChartJsAxis();
-                                         opt.Scales.R.Min = 0;
-                                         opt.Scales.R.Max = 100;
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Hospital A")
+                                         .SetData(85, 78, 92, 65, 88, 82)
+                                         .SetBorderColor(RGBColor.Crimson)
+                                         .SetBackgroundColor(new RGBColor("rgba(231, 76, 60, 0.2)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointBackgroundColor(RGBColor.Crimson)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Hospital B")
+                                         .SetData(90, 85, 88, 75, 92, 86)
+                                         .SetBorderColor(RGBColor.ForestGreen)
+                                         .SetBackgroundColor(new RGBColor("rgba(39, 174, 96, 0.2)"))
+                                         .SetBorderWidth(2)
+                                         .SetPointBackgroundColor(RGBColor.ForestGreen)
+                                     )
+                                     .RAxisRange(0, 100);
                             });
                         });
                     });
@@ -1046,36 +898,32 @@ internal class BasicChartJs {
                                 chart.Line()
                                      .Title("Monthly Conversion Rates")
                                      .AddLabels("Jan", "Feb", "Mar", "Apr", "May", "Jun")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Desktop";
-                                         ds.Data = new List<double> { 3.2, 3.5, 3.8, 3.6, 4.1, 4.3 };
-                                         ds.BorderColor = "#3498db";
-                                         ds.BackgroundColor = "rgba(52, 152, 219, 0.1)";
-                                         ds.BorderWidth = 3;
-                                         ds.PointRadius = 6;
-                                         ds.PointBackgroundColor = "#3498db";
-                                         ds.PointBorderColor = "#fff";
-                                         ds.PointBorderWidth = 2;
-                                         ds.Tension = 0.4;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Mobile";
-                                         ds.Data = new List<double> { 2.1, 2.3, 2.5, 2.4, 2.8, 3.0 };
-                                         ds.BorderColor = "#e74c3c";
-                                         ds.BackgroundColor = "rgba(231, 76, 60, 0.1)";
-                                         ds.BorderWidth = 3;
-                                         ds.PointRadius = 6;
-                                         ds.PointBackgroundColor = "#e74c3c";
-                                         ds.PointBorderColor = "#fff";
-                                         ds.PointBorderWidth = 2;
-                                         ds.Tension = 0.4;
-                                     })
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Desktop")
+                                         .SetData(3.2, 3.5, 3.8, 3.6, 4.1, 4.3)
+                                         .SetBorderColor(RGBColor.DodgerBlue)
+                                         .SetBackgroundColor(new RGBColor("rgba(52, 152, 219, 0.1)"))
+                                         .SetBorderWidth(3)
+                                         .SetPointRadius(6)
+                                         .SetPointBackgroundColor(RGBColor.DodgerBlue)
+                                         .SetPointBorderColor(RGBColor.White)
+                                         .SetPointBorderWidth(2)
+                                         .SetTension(0.4)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Mobile")
+                                         .SetData(2.1, 2.3, 2.5, 2.4, 2.8, 3.0)
+                                         .SetBorderColor(RGBColor.Crimson)
+                                         .SetBackgroundColor(new RGBColor("rgba(231, 76, 60, 0.1)"))
+                                         .SetBorderWidth(3)
+                                         .SetPointRadius(6)
+                                         .SetPointBackgroundColor(RGBColor.Crimson)
+                                         .SetPointBorderColor(RGBColor.White)
+                                         .SetPointBorderWidth(2)
+                                         .SetTension(0.4)
+                                     )
                                      .BeginAtZero()
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Conversion Rate %" };
-                                     });
+                                     .YAxisTitle("Conversion Rate %");
                             });
                         });
                     });
@@ -1088,23 +936,16 @@ internal class BasicChartJs {
                                 chart.Bar()
                                      .Title("Production Efficiency")
                                      .AddLabels("Line 1", "Line 2", "Line 3", "Line 4", "Line 5")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Efficiency %";
-                                         ds.Data = new List<double> { 87, 92, 78, 95, 89 };
-                                         ds.BackgroundColor = new[] { "#f39c12", "#27ae60", "#e74c3c", "#27ae60", "#f39c12" };
-                                         ds.BorderColor = new[] { "#d68910", "#229954", "#c0392b", "#229954", "#d68910" };
-                                         ds.BorderWidth = 2;
-                                     })
-                                     .Configure(opt => {
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Display = false;
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Min = 70;
-                                         opt.Scales.Y.Max = 100;
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Efficiency %" };
-                                     });
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Efficiency %")
+                                         .SetData(87, 92, 78, 95, 89)
+                                         .SetBackgroundColors(RGBColor.Orange, RGBColor.ForestGreen, RGBColor.Crimson, RGBColor.ForestGreen, RGBColor.Orange)
+                                         .SetBorderColors(RGBColor.DarkOrange, RGBColor.DarkGreen, RGBColor.Firebrick, RGBColor.DarkGreen, RGBColor.DarkOrange)
+                                         .SetBorderWidth(2)
+                                     )
+                                     .Legend(false)
+                                     .YAxisRange(70, 100)
+                                     .YAxisTitle("Efficiency %");
                             });
                         });
                     });
@@ -1122,55 +963,46 @@ internal class BasicChartJs {
                                 chart.Line()
                                      .Title("Key Performance Indicators Trend")
                                      .AddLabels("Q1 2023", "Q2 2023", "Q3 2023", "Q4 2023", "Q1 2024", "Q2 2024", "Q3 2024", "Q4 2024")
-                                     .AddDataset(ds => {
-                                         ds.Label = "Revenue Growth %";
-                                         ds.Data = new List<double> { 15, 18, 22, 25, 28, 32, 35, 38 };
-                                         ds.BorderColor = "#27ae60";
-                                         ds.BackgroundColor = "rgba(39, 174, 96, 0.1)";
-                                         ds.BorderWidth = 3;
-                                         ds.PointRadius = 6;
-                                         ds.PointBackgroundColor = "#27ae60";
-                                         ds.PointBorderColor = "#fff";
-                                         ds.PointBorderWidth = 2;
-                                         ds.Tension = 0.4;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Customer Satisfaction";
-                                         ds.Data = new List<double> { 78, 82, 85, 87, 89, 91, 93, 95 };
-                                         ds.BorderColor = "#3498db";
-                                         ds.BackgroundColor = "rgba(52, 152, 219, 0.1)";
-                                         ds.BorderWidth = 3;
-                                         ds.PointRadius = 6;
-                                         ds.PointBackgroundColor = "#3498db";
-                                         ds.PointBorderColor = "#fff";
-                                         ds.PointBorderWidth = 2;
-                                         ds.Tension = 0.4;
-                                     })
-                                     .AddDataset(ds => {
-                                         ds.Label = "Market Share %";
-                                         ds.Data = new List<double> { 12, 13, 15, 16, 18, 20, 22, 24 };
-                                         ds.BorderColor = "#e74c3c";
-                                         ds.BackgroundColor = "rgba(231, 76, 60, 0.1)";
-                                         ds.BorderWidth = 3;
-                                         ds.PointRadius = 6;
-                                         ds.PointBackgroundColor = "#e74c3c";
-                                         ds.PointBorderColor = "#fff";
-                                         ds.PointBorderWidth = 2;
-                                         ds.Tension = 0.4;
-                                     })
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Revenue Growth %")
+                                         .SetData(15, 18, 22, 25, 28, 32, 35, 38)
+                                         .SetBorderColor(RGBColor.ForestGreen)
+                                         .SetBackgroundColor(new RGBColor("rgba(39, 174, 96, 0.1)"))
+                                         .SetBorderWidth(3)
+                                         .SetPointRadius(6)
+                                         .SetPointBackgroundColor(RGBColor.ForestGreen)
+                                         .SetPointBorderColor(RGBColor.White)
+                                         .SetPointBorderWidth(2)
+                                         .SetTension(0.4)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Customer Satisfaction")
+                                         .SetData(78, 82, 85, 87, 89, 91, 93, 95)
+                                         .SetBorderColor(RGBColor.DodgerBlue)
+                                         .SetBackgroundColor(new RGBColor("rgba(52, 152, 219, 0.1)"))
+                                         .SetBorderWidth(3)
+                                         .SetPointRadius(6)
+                                         .SetPointBackgroundColor(RGBColor.DodgerBlue)
+                                         .SetPointBorderColor(RGBColor.White)
+                                         .SetPointBorderWidth(2)
+                                         .SetTension(0.4)
+                                     )
+                                     .AddDataset(ds => ds
+                                         .SetLabel("Market Share %")
+                                         .SetData(12, 13, 15, 16, 18, 20, 22, 24)
+                                         .SetBorderColor(RGBColor.Crimson)
+                                         .SetBackgroundColor(new RGBColor("rgba(231, 76, 60, 0.1)"))
+                                         .SetBorderWidth(3)
+                                         .SetPointRadius(6)
+                                         .SetPointBackgroundColor(RGBColor.Crimson)
+                                         .SetPointBorderColor(RGBColor.White)
+                                         .SetPointBorderWidth(2)
+                                         .SetTension(0.4)
+                                     )
                                      .BeginAtZero()
-                                     .Configure(opt => {
-                                         opt.Scales ??= new ChartJsScales();
-                                         opt.Scales.Y ??= new ChartJsAxis();
-                                         opt.Scales.Y.Title = new ChartJsAxisTitle { Display = true, Text = "Performance Metrics" };
-                                         opt.Plugins ??= new ChartJsPlugins();
-                                         opt.Plugins.Legend ??= new ChartJsLegend();
-                                         opt.Plugins.Legend.Position = ChartJsPosition.Top;
-                                         opt.Plugins.Legend.Labels = new ChartJsLegendLabels {
-                                             UsePointStyle = true,
-                                             Font = new ChartJsFont { Size = 12, Weight = "bold" }
-                                         };
-                                     });
+                                     .YAxisTitle("Performance Metrics")
+                                     .Legend(true, ChartJsPosition.Top)
+                                     .LegendLabels(12, ChartJsFontWeight.Bold, new RGBColor("#666"), 10, true);
                             });
                         });
                     });

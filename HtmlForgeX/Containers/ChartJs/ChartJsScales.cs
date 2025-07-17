@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -122,6 +123,94 @@ public class ChartJsAxis {
     [JsonPropertyName("ticks")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public ChartJsTicks? Ticks { get; set; }
+
+    #region Fluent API Methods
+
+    /// <summary>
+    /// Sets the axis title.
+    /// </summary>
+    public ChartJsAxis SetTitle(string text, bool display = true) {
+        Title = new ChartJsAxisTitle { Display = display, Text = text };
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the axis range.
+    /// </summary>
+    public ChartJsAxis SetRange(double? min = null, double? max = null) {
+        if (min.HasValue) Min = min.Value;
+        if (max.HasValue) Max = max.Value;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the suggested axis range.
+    /// </summary>
+    public ChartJsAxis SetSuggestedRange(double? min = null, double? max = null) {
+        if (min.HasValue) SuggestedMin = min.Value;
+        if (max.HasValue) SuggestedMax = max.Value;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets whether the axis should begin at zero.
+    /// </summary>
+    public ChartJsAxis SetBeginAtZero(bool enabled = true) {
+        BeginAtZero = enabled;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the axis type (linear, logarithmic, etc).
+    /// </summary>
+    public ChartJsAxis SetType(string type) {
+        Type = type;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets whether the axis is stacked.
+    /// </summary>
+    public ChartJsAxis SetStacked(bool stacked = true) {
+        Stacked = stacked;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets whether the axis is displayed.
+    /// </summary>
+    public ChartJsAxis SetDisplay(bool display = true) {
+        Display = display;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the axis position.
+    /// </summary>
+    public ChartJsAxis SetPosition(string position) {
+        Position = position;
+        return this;
+    }
+
+    /// <summary>
+    /// Configures the grid.
+    /// </summary>
+    public ChartJsAxis SetGrid(Action<ChartJsGrid> configure) {
+        Grid ??= new ChartJsGrid();
+        configure(Grid);
+        return this;
+    }
+
+    /// <summary>
+    /// Configures the ticks.
+    /// </summary>
+    public ChartJsAxis SetTicks(Action<ChartJsTicks> configure) {
+        Ticks ??= new ChartJsTicks();
+        configure(Ticks);
+        return this;
+    }
+
+    #endregion
 }
 
 /// <summary>

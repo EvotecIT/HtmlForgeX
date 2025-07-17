@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
@@ -170,4 +171,272 @@ public class ChartJsDataset {
     /// </summary>
     [JsonExtensionData]
     public Dictionary<string, object>? ExtensionData { get; set; }
+
+    #region Fluent API Methods
+
+    /// <summary>
+    /// Sets the label for the dataset.
+    /// </summary>
+    public ChartJsDataset SetLabel(string label) {
+        Label = label;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the data points for the dataset.
+    /// </summary>
+    public ChartJsDataset SetData(params double[] values) {
+        Data = new List<double>(values);
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the data points for the dataset.
+    /// </summary>
+    public ChartJsDataset SetData(IEnumerable<double> values) {
+        Data = values.ToList();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the background color using a string.
+    /// </summary>
+    public ChartJsDataset SetBackgroundColor(string color) {
+        BackgroundColor = color;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the background color using RGBColor.
+    /// </summary>
+    public ChartJsDataset SetBackgroundColor(RGBColor color) {
+        BackgroundColor = color.ToString();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets multiple background colors using strings.
+    /// </summary>
+    public ChartJsDataset SetBackgroundColors(params string[] colors) {
+        BackgroundColor = colors;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets multiple background colors using RGBColor.
+    /// </summary>
+    public ChartJsDataset SetBackgroundColors(params RGBColor[] colors) {
+        BackgroundColor = colors.Select(c => c.ToString()).ToArray();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the border color using a string.
+    /// </summary>
+    public ChartJsDataset SetBorderColor(string color) {
+        BorderColor = color;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the border color using RGBColor.
+    /// </summary>
+    public ChartJsDataset SetBorderColor(RGBColor color) {
+        BorderColor = color.ToString();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets multiple border colors using strings.
+    /// </summary>
+    public ChartJsDataset SetBorderColors(params string[] colors) {
+        BorderColor = colors;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets multiple border colors using RGBColor.
+    /// </summary>
+    public ChartJsDataset SetBorderColors(params RGBColor[] colors) {
+        BorderColor = colors.Select(c => c.ToString()).ToArray();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the border width.
+    /// </summary>
+    public ChartJsDataset SetBorderWidth(int width) {
+        BorderWidth = width;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point radius.
+    /// </summary>
+    public ChartJsDataset SetPointRadius(int radius) {
+        PointRadius = radius;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point background color using a string.
+    /// </summary>
+    public ChartJsDataset SetPointBackgroundColor(string color) {
+        PointBackgroundColor = color;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point background color using RGBColor.
+    /// </summary>
+    public ChartJsDataset SetPointBackgroundColor(RGBColor color) {
+        PointBackgroundColor = color.ToString();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point border color using a string.
+    /// </summary>
+    public ChartJsDataset SetPointBorderColor(string color) {
+        PointBorderColor = color;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point border color using RGBColor.
+    /// </summary>
+    public ChartJsDataset SetPointBorderColor(RGBColor color) {
+        PointBorderColor = color.ToString();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point border width.
+    /// </summary>
+    public ChartJsDataset SetPointBorderWidth(int width) {
+        PointBorderWidth = width;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point hover radius.
+    /// </summary>
+    public ChartJsDataset SetPointHoverRadius(int radius) {
+        PointHoverRadius = radius;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point hover background color using a string.
+    /// </summary>
+    public ChartJsDataset SetPointHoverBackgroundColor(string color) {
+        PointHoverBackgroundColor = color;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point hover background color using RGBColor.
+    /// </summary>
+    public ChartJsDataset SetPointHoverBackgroundColor(RGBColor color) {
+        PointHoverBackgroundColor = color.ToString();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point hover border color using a string.
+    /// </summary>
+    public ChartJsDataset SetPointHoverBorderColor(string color) {
+        PointHoverBorderColor = color;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point hover border color using RGBColor.
+    /// </summary>
+    public ChartJsDataset SetPointHoverBorderColor(RGBColor color) {
+        PointHoverBorderColor = color.ToString();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the point hover border width.
+    /// </summary>
+    public ChartJsDataset SetPointHoverBorderWidth(int width) {
+        PointHoverBorderWidth = width;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the line tension for curved lines.
+    /// </summary>
+    public ChartJsDataset SetTension(double tension) {
+        Tension = tension;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets whether to fill the area under the line.
+    /// </summary>
+    public ChartJsDataset SetFill(bool fill) {
+        Fill = fill;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets advanced fill options.
+    /// </summary>
+    public ChartJsDataset SetFill(string fill) {
+        Fill = fill;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets whether to show the line (for scatter plots).
+    /// </summary>
+    public ChartJsDataset SetShowLine(bool show) {
+        ShowLine = show;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the border dash pattern.
+    /// </summary>
+    public ChartJsDataset SetBorderDash(params int[] pattern) {
+        BorderDash = new List<int>(pattern);
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the chart type for mixed charts.
+    /// </summary>
+    public ChartJsDataset SetType(string type) {
+        Type = type;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the Y axis ID.
+    /// </summary>
+    public ChartJsDataset SetYAxisID(string id) {
+        YAxisID = id;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets whether the dataset is hidden.
+    /// </summary>
+    public ChartJsDataset SetHidden(bool hidden) {
+        Hidden = hidden;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the stack group for stacked charts.
+    /// </summary>
+    public ChartJsDataset SetStack(string stack) {
+        Stack = stack;
+        return this;
+    }
+
+    #endregion
 }
