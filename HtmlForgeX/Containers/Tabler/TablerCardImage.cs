@@ -115,6 +115,12 @@ public class TablerCardImage : Element {
     public TablerCardImage EmbedFromUrl(string url, int timeoutSeconds = 30) =>
         EmbedFromUrlAsync(url, timeoutSeconds).GetAwaiter().GetResult();
 
+    /// <summary>
+    /// Asynchronously embeds an image from a remote URL.
+    /// </summary>
+    /// <param name="url">The image URL.</param>
+    /// <param name="timeoutSeconds">Download timeout in seconds.</param>
+    /// <returns>The <see cref="TablerCardImage"/> for chaining.</returns>
     public async Task<TablerCardImage> EmbedFromUrlAsync(string url, int timeoutSeconds = 30) {
         var result = await ImageEmbeddingHelper.EmbedFromUrlAsync(url, timeoutSeconds, 0, true).ConfigureAwait(false);
         if (result.Success) {

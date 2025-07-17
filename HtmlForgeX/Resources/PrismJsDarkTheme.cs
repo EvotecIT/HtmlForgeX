@@ -5,6 +5,9 @@ namespace HtmlForgeX.Resources;
 /// </summary>
 public class PrismJsDarkTheme : Library
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrismJsDarkTheme"/> class.
+    /// </summary>
     public PrismJsDarkTheme()
     {
         Header = new LibraryLinks {

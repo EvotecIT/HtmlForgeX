@@ -5,6 +5,9 @@ namespace HtmlForgeX.Resources;
 /// </summary>
 public class PrismJsOkaidiaTheme : Library
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PrismJsOkaidiaTheme"/> class.
+    /// </summary>
     public PrismJsOkaidiaTheme()
     {
         Header = new LibraryLinks {
