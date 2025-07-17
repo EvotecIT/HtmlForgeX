@@ -34,8 +34,8 @@ public class TestHeadAnalytics
         var doc = new Document();
         doc.Head.AddAnalytics(AnalyticsProvider.GoogleAnalytics, "G-\"A&B<C>'");
         var html = doc.Head.ToString();
-        StringAssert.Contains(html, "googletagmanager.com/gtag/js?id=G-&quot;A&amp;B&lt;C&gt;&#39;");
-        StringAssert.Contains(html, "gtag('config', 'G-&quot;A&amp;B&lt;C&gt;&#39;');");
+        StringAssert.Contains(html, "googletagmanager.com/gtag/js?id=G-%22A%26B%3CC%3E%27");
+        StringAssert.Contains(html, "gtag('config', 'G-%22A%26B%3CC%3E%27');");
     }
 
     [TestMethod]
@@ -44,7 +44,7 @@ public class TestHeadAnalytics
         var doc = new Document();
         doc.Head.AddAnalytics(AnalyticsProvider.CloudflareInsights, "tok'en\"<>");
         var html = doc.Head.ToString();
-        StringAssert.Contains(html, "tok&#39;en&quot;&lt;&gt;");
+        StringAssert.Contains(html, "tok%27en%22%3C%3E");
     }
 
     [TestMethod]
