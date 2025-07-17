@@ -20,7 +20,7 @@ internal class Program {
         HelpersSpectre.PrintTitle("HtmlForgeX Examples - Document-Style Configuration");
 
         // Configuration for opening files in browser (set to openInBrowser to open automatically)
-        bool openInBrowser = true;
+        bool openInBrowser = false;
 
         // Not real examples, but useful for development
         // Support.DownloadLibrariesAsync();
