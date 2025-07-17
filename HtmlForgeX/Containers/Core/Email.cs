@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Threading;
 using HtmlForgeX.Logging;
 using HtmlForgeX.Extensions;
 
@@ -312,7 +313,7 @@ public class Email : Element {
     /// </summary>
     /// <param name="path">File path.</param>
     /// <param name="openInBrowser">Whether to open the file after saving.</param>
-    public async Task SaveAsync(string path, bool openInBrowser = false) {
+    public async Task SaveAsync(string path, bool openInBrowser = false, CancellationToken cancellationToken = default) {
         PathUtilities.Validate(path);
         Configuration.Email.DefaultPadding = path; // Store path in configuration
 
@@ -329,14 +330,17 @@ public class Email : Element {
                 _logger.WriteError($"Failed to create directory '{directory}'. {ex.Message}");
             }
         }
-        await FileWriteLock.Semaphore.WaitAsync().ConfigureAwait(false);
+        await FileWriteLock.Semaphore.WaitAsync(cancellationToken).ConfigureAwait(false);
         try {
 #if NET5_0_OR_GREATER
-            await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8).ConfigureAwait(false);
+            await File.WriteAllTextAsync(path, ToString(), Encoding.UTF8, cancellationToken).ConfigureAwait(false);
 #else
             using var writer = new StreamWriter(path, false, Encoding.UTF8);
+            cancellationToken.ThrowIfCancellationRequested();
             await writer.WriteAsync(ToString()).ConfigureAwait(false);
 #endif
+        } catch (OperationCanceledException) {
+            throw;
         } catch (Exception ex) {
             _logger.WriteError($"Failed to write file '{path}'. {ex.Message}");
         } finally {
