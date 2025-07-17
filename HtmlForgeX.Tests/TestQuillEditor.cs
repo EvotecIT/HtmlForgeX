@@ -25,7 +25,7 @@ public class TestQuillEditor {
     [TestMethod]
     public void QuillEditor_ModulesToolbarSerialized() {
         var editor = new QuillEditor();
-        editor.Options.Modules = new QuillModules { Toolbar = new() { QuillFormat.Bold } };
+        editor.Options.Modules.Toolbar = new List<QuillFormat> { QuillFormat.Bold };
         var html = editor.ToString();
         Assert.IsTrue(html.Contains("toolbar"));
     }

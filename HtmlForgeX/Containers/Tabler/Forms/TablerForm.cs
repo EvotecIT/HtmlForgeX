@@ -74,6 +74,72 @@ public class TablerForm : Element {
     }
 
     /// <summary>
+    /// Adds a checkbox element to the form.
+    /// </summary>
+    /// <param name="name">Name and identifier of the checkbox.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerCheckbox"/>.</returns>
+    public TablerCheckbox Checkbox(string name, Action<TablerCheckbox>? config = null) {
+        var checkbox = new TablerCheckbox(name);
+        config?.Invoke(checkbox);
+        this.Add(checkbox);
+        return checkbox;
+    }
+
+    /// <summary>
+    /// Adds a checkbox group to the form.
+    /// </summary>
+    /// <param name="name">Name and identifier of the checkbox group.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerCheckboxGroup"/>.</returns>
+    public TablerCheckboxGroup CheckboxGroup(string name, Action<TablerCheckboxGroup>? config = null) {
+        var group = new TablerCheckboxGroup(name);
+        config?.Invoke(group);
+        this.Add(group);
+        return group;
+    }
+
+    /// <summary>
+    /// Adds a radio button element to the form.
+    /// </summary>
+    /// <param name="name">Name of the radio button group.</param>
+    /// <param name="value">Value of this radio button.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerRadio"/>.</returns>
+    public TablerRadio Radio(string name, string value, Action<TablerRadio>? config = null) {
+        var radio = new TablerRadio(name, value);
+        config?.Invoke(radio);
+        this.Add(radio);
+        return radio;
+    }
+
+    /// <summary>
+    /// Adds a radio button group to the form.
+    /// </summary>
+    /// <param name="name">Name and identifier of the radio group.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerRadioGroup"/>.</returns>
+    public TablerRadioGroup RadioGroup(string name, Action<TablerRadioGroup>? config = null) {
+        var group = new TablerRadioGroup(name);
+        config?.Invoke(group);
+        this.Add(group);
+        return group;
+    }
+
+    /// <summary>
+    /// Adds a toggle switch element to the form.
+    /// </summary>
+    /// <param name="name">Name and identifier of the switch.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerSwitch"/>.</returns>
+    public TablerSwitch Switch(string name, Action<TablerSwitch>? config = null) {
+        var switchElement = new TablerSwitch(name);
+        config?.Invoke(switchElement);
+        this.Add(switchElement);
+        return switchElement;
+    }
+
+    /// <summary>
     /// Generates the HTML markup for the form and its child elements.
     /// </summary>
     public override string ToString() {

@@ -11,13 +11,14 @@ public class QuillLibrary : Library {
     public QuillLibrary() {
         Header = new LibraryLinks {
             CssLink = [
-                "https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css"
+                "https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css",
+                "https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.bubble.css"
             ],
-            Css = ["quill.snow.css"],
+            Css = ["quill.snow.css", "quill.bubble.css"],
             JsLink = [
-                "https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.min.js"
+                "https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"
             ],
-            Js = ["quill.min.js"]
+            Js = ["quill.js"]
         };
         Comment = "Quill rich text editor";
         LicenseLink = "https://github.com/quilljs/quill/blob/develop/LICENSE";

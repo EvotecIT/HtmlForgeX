@@ -57,6 +57,28 @@ public class TablerWysiwygEditor : Element {
         return this;
     }
 
+    /// <summary>
+    /// Configures the toolbar with grouped buttons.
+    /// </summary>
+    /// <param name="groups">Grouped toolbar formats.</param>
+    /// <returns>The current <see cref="TablerWysiwygEditor"/> instance.</returns>
+    public TablerWysiwygEditor ToolbarGroups(params List<QuillFormat>[] groups) {
+        _editor.Options.Modules.Toolbar = groups.ToList();
+        return this;
+    }
+
+    /// <summary>
+    /// Configures the toolbar with advanced configuration.
+    /// </summary>
+    /// <param name="config">Configuration callback.</param>
+    /// <returns>The current <see cref="TablerWysiwygEditor"/> instance.</returns>
+    public TablerWysiwygEditor ToolbarAdvanced(Action<QuillToolbarConfig> config) {
+        var toolbarConfig = new QuillToolbarConfig();
+        config(toolbarConfig);
+        _editor.Options.Modules.Toolbar = toolbarConfig;
+        return this;
+    }
+
     /// <inheritdoc />
     protected internal override void RegisterLibraries() {
         _editor.Document = Document;
