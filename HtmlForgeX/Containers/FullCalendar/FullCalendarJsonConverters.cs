@@ -105,7 +105,7 @@ public class FullCalendarToolbarConverter : JsonConverter<FullCalendarToolbar> {
             reader.Read();
 
             var raw = reader.GetString() ?? string.Empty;
-            var parts = raw.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            var parts = raw.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             var values = new List<FullCalendarToolbarOption>();
 
             foreach (var part in parts) {
