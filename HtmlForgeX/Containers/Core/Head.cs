@@ -463,8 +463,8 @@ public class Head : Element {
     /// </summary>
     /// <param name="provider">Analytics provider.</param>
     /// <param name="identifier">Tracking or token identifier.</param>
-    /// <returns>The <see cref="Head"/> instance for chaining.</returns>
-    public Head AddAnalytics(AnalyticsProvider provider, string identifier) {
+    /// <returns><see langword="true"/> when the provider is handled, <see langword="false"/> otherwise.</returns>
+    public bool AddAnalytics(AnalyticsProvider provider, string identifier) {
         var encodedIdentifier = Uri.EscapeDataString(identifier);
         switch (provider) {
             case AnalyticsProvider.GoogleAnalytics:
@@ -475,14 +475,13 @@ function gtag(){{dataLayer.push(arguments);}}
 gtag('js', new Date());
 gtag('config', '{encodedIdentifier}');
 </script>");
-                break;
+                return true;
             case AnalyticsProvider.CloudflareInsights:
                 AddRawScript($"<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon='{{\"token\": \"{encodedIdentifier}\"}}'></script>");
-                break;
+                return true;
             default:
-                throw new ArgumentOutOfRangeException(nameof(provider), provider, null);
+                return false;
         }
-        return this;
     }
 
     /// <summary>
