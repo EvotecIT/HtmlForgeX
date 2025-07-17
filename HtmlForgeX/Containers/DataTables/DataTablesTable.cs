@@ -126,7 +126,19 @@ public class DataTablesTable : Table {
 
     /// <summary>Add a bootstrap table style.</summary>
     public DataTablesTable Style(BootStrapTableStyle style) {
-        StyleList.Add(style);
+        if (style is BootStrapTableStyle.Small or BootStrapTableStyle.Medium or BootStrapTableStyle.Large) {
+            var existingSize = StyleList.FirstOrDefault(s => s is BootStrapTableStyle.Small or BootStrapTableStyle.Medium or BootStrapTableStyle.Large);
+            if (existingSize != default && existingSize != style) {
+                Document._logger.WriteWarning(
+                    $"Table size style '{style}' is incompatible with already applied '{existingSize}'. Only one size style can be used.");
+                return this;
+            }
+        }
+
+        if (!StyleList.Contains(style)) {
+            StyleList.Add(style);
+        }
+
         return this;
     }
 
