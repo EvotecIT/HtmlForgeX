@@ -252,7 +252,7 @@ public class EmailTextBox : Element {
 
         // Render child elements (nested content)
         foreach (var child in Children.WhereNotNull()) {
-            html.AppendLine(child.ToString());
+            html.AppendLine(child.ToString().TrimEnd('\r', '\n'));
         }
 
         html.AppendLine($"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>");

@@ -289,7 +289,7 @@ public class Head : Element {
         head.Append(MetaTagString("revised", Revised?.ToString()));
 
         foreach (var metaTag in MetaTags) {
-            head.AppendLine($"\t{metaTag.ToString()}");
+            head.AppendLine($"\t{metaTag.ToString().TrimEnd('\r', '\n')}");
         }
 
         foreach (var link in FontLinks) {
@@ -308,10 +308,10 @@ public class Head : Element {
             foreach (var style in Styles) {
                 string styleStr = style.ToString();
                 if (styleStr.Trim().StartsWith("<style") && styleStr.Trim().EndsWith("</style>")) {
-                    head.AppendLine(styleStr);
+                    head.AppendLine(styleStr.TrimEnd('\r', '\n'));
                 } else {
                     head.AppendLine("<style type=\"text/css\">");
-                    head.AppendLine(styleStr);
+                    head.AppendLine(styleStr.TrimEnd('\r', '\n'));
                     head.AppendLine("</style>");
                 }
             }
@@ -632,7 +632,7 @@ gtag('config', '{encodedIdentifier}');
         // Process inline CSS styles (consistent with Header processing)
         foreach (var style in libraryLinks.CssStyle) {
             output.AppendLine($"\t<style type=\"text/css\">");
-            output.AppendLine(style.ToString());
+            output.AppendLine(style.ToString().TrimEnd('\r', '\n'));
             output.AppendLine($"\t</style>");
         }
 

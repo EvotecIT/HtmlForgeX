@@ -32,11 +32,9 @@ public class TestHtmlSpan {
             "<head>",
             "\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">",
             "</head>",
-            string.Empty,
             "<body data-bs-theme=\"light\">",
             "<span style=\"color: #FD0E35; text-align: Center\">This is table with DataTables</span><span> continue?</span>",
             "</body>",
-            string.Empty,
             "</html>"
         };
         var expected = string.Join(Environment.NewLine, expectedLines) + Environment.NewLine;

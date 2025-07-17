@@ -34,12 +34,12 @@ public partial class Body : Element {
         if (!string.IsNullOrEmpty(bodyScripts.Trim())) {
             bodyBuilder.AppendLine();
             bodyBuilder.AppendLine("\t<!-- Body Scripts -->");
-            bodyBuilder.Append(bodyScripts);
+            bodyBuilder.Append(bodyScripts.TrimEnd('\r', '\n'));
         }
 
         // Add the HTML of the child elements
         foreach (var child in Children.WhereNotNull()) {
-            bodyBuilder.AppendLine(child.ToString());
+            bodyBuilder.AppendLine(child.ToString().TrimEnd('\r', '\n'));
         }
 
         // Add footer scripts (from library Footer sections) before closing body tag
@@ -47,7 +47,7 @@ public partial class Body : Element {
         if (!string.IsNullOrEmpty(footerScripts.Trim())) {
             bodyBuilder.AppendLine();
             bodyBuilder.AppendLine("\t<!-- Footer Scripts -->");
-            bodyBuilder.Append(footerScripts);
+            bodyBuilder.Append(footerScripts.TrimEnd('\r', '\n'));
         }
 
         bodyBuilder.AppendLine("</body>");

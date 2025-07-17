@@ -164,12 +164,12 @@ public class EmailList : Element {
 
         // Render items
         foreach (var item in Items.WhereNotNull()) {
-            html.AppendLine(item.ToString());
+            html.AppendLine(item.ToString().TrimEnd('\r', '\n'));
         }
 
         // Render child elements (nested lists, etc.)
         foreach (var child in Children.WhereNotNull()) {
-            html.AppendLine(child.ToString());
+            html.AppendLine(child.ToString().TrimEnd('\r', '\n'));
         }
 
         html.AppendLine($@"
