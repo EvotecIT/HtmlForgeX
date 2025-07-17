@@ -41,9 +41,11 @@ public class QuillToolbarConverter : JsonConverter<object> {
 
     private void WriteSimpleToolbar(Utf8JsonWriter writer, List<QuillFormat> formats) {
         writer.WriteStartArray();
+        writer.WriteStartArray();
         foreach (var format in formats) {
             writer.WriteStringValue(GetFormatDescription(format));
         }
+        writer.WriteEndArray();
         writer.WriteEndArray();
     }
 
