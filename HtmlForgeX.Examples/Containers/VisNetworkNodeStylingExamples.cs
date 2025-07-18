@@ -6,16 +6,16 @@ internal class VisNetworkNodeStylingExamples {
 
         using var document = new Document {
             Head = { Title = "VisNetwork Node Styling Examples", Author = "HtmlForgeX" },
-            LibraryMode = LibraryMode.Offline,
+            LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
 
         document.Body.Page(page => {
-            page.Text("VisNetwork Node Styling Examples").WithClass("h2");
+            page.H2("VisNetwork Node Styling Examples");
             page.LineBreak();
 
             // Example 1: Font Awesome Icons
-            page.Text("Font Awesome Icons").WithClass("h3");
+            page.H3("Font Awesome Icons");
             page.DiagramNetwork(network => {
                 network
                     .WithId("fontAwesomeIcons")
@@ -27,8 +27,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("Server")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFace("FontAwesome")
-                        .WithCode("\uf233")  // server icon
+                        .WithFontAwesome(FontAwesomeSolid.Server)
                         .WithSize(50)
                         .WithColor(RGBColor.DarkBlue)
                     )
@@ -39,8 +38,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("Database")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFace("FontAwesome")
-                        .WithCode("\uf1c0")  // database icon
+                        .WithFontAwesome(FontAwesomeSolid.Database)
                         .WithSize(50)
                         .WithColor(RGBColor.DarkGreen)
                     )
@@ -51,8 +49,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("Users")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFace("FontAwesome")
-                        .WithCode("\uf0c0")  // users icon
+                        .WithFontAwesome(FontAwesomeSolid.Users)
                         .WithSize(50)
                         .WithColor(RGBColor.DarkOrange)
                     )
@@ -63,8 +60,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("Cloud")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFace("FontAwesome")
-                        .WithCode("\uf0c2")  // cloud icon
+                        .WithFontAwesome(FontAwesomeSolid.Cloud)
                         .WithSize(50)
                         .WithColor(RGBColor.SkyBlue)
                     )
@@ -75,8 +71,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("Security")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFace("FontAwesome")
-                        .WithCode("\uf023")  // lock icon
+                        .WithFontAwesome(FontAwesomeSolid.Lock)
                         .WithSize(50)
                         .WithColor(RGBColor.DarkRed)
                     )
@@ -96,7 +91,7 @@ internal class VisNetworkNodeStylingExamples {
             page.LineBreak();
 
             // Example 2: Multiline and Multifont Labels
-            page.Text("Multiline and Multifont Labels").WithClass("h3");
+            page.H3("Multiline and Multifont Labels");
             page.DiagramNetwork(network => {
                 network
                     .WithId("multilineLabels")
@@ -115,28 +110,54 @@ internal class VisNetworkNodeStylingExamples {
 
                 // Multiline text with HTML
                 network.AddNode(1, node => node
-                    .WithLabel("<b>Bold Title</b>\n<i>Italic subtitle</i>\n<code>code.example()</code>")
+                    .WithHtmlLabel(label => label
+                        .Bold("Bold Title")
+                        .LineBreak()
+                        .Italic("Italic subtitle")
+                        .LineBreak()
+                        .Text("code.example()")
+                    )
                     .WithPosition(-300, 0)
                     .WithColor(RGBColor.LightBlue)
                 );
 
                 // Multiple fonts in one label
                 network.AddNode(2, node => node
-                    .WithLabel("<b>Server Status</b>\n<font color='green'>● Online</font>\n<small>CPU: 45%</small>")
+                    .WithHtmlLabel(label => label
+                        .Bold("Server Status")
+                        .LineBreak()
+                        .ColoredText("● Online", RGBColor.Green)
+                        .LineBreak()
+                        .Small("CPU: 45%")
+                    )
                     .WithPosition(0, 0)
                     .WithColor(RGBColor.LightGray)
                 );
 
                 // Markdown-style formatting
                 network.AddNode(3, node => node
-                    .WithLabel("<b>Performance</b>\n<font color='red'>Critical</font>\n<u>Action Required</u>")
+                    .WithHtmlLabel(label => label
+                        .Bold("Performance")
+                        .LineBreak()
+                        .ColoredText("Critical", RGBColor.Red)
+                        .LineBreak()
+                        .Underline("Action Required")
+                    )
                     .WithPosition(300, 0)
                     .WithColor(RGBColor.LightCoral)
                 );
 
                 // Complex formatting
                 network.AddNode(4, node => node
-                    .WithLabel("<b>User Profile</b>\n<i>John Doe</i>\n<font color='blue'>john@example.com</font>\n<small>Role: Admin</small>")
+                    .WithHtmlLabel(label => label
+                        .Bold("User Profile")
+                        .LineBreak()
+                        .Italic("John Doe")
+                        .LineBreak()
+                        .ColoredText("john@example.com", RGBColor.Blue)
+                        .LineBreak()
+                        .Small("Role: Admin")
+                    )
                     .WithPosition(0, -200)
                     .WithWidthConstraint(minimum: 200)
                     .WithColor(RGBColor.LightGreen)
@@ -150,7 +171,7 @@ internal class VisNetworkNodeStylingExamples {
             page.LineBreak();
 
             // Example 3: Images with Borders, Padding, and Opacity
-            page.Text("Image Styling - Borders, Padding, Opacity").WithClass("h3");
+            page.H3("Image Styling - Borders, Padding, Opacity");
             page.DiagramNetwork(network => {
                 network
                     .WithId("imagesStyling")
@@ -176,7 +197,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithShape(VisNetworkNodeShape.CircularImage)
                     .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .WithBorderWidth(3)
-                    .WithColor(RGBColor.Gold)
+                    .WithColor(RGBColor.DarkGoldenrod)
                     .WithSize(60)
                     .WithPosition(-100, 0)
                 );
@@ -195,7 +216,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("With Shadow")
                     .WithShape(VisNetworkNodeShape.CircularImage)
                     .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
-                    .WithShadow(shadow => shadow
+                    .WithShadow(new VisNetworkShadowOptions()
                         .WithEnabled(true)
                         .WithColor(RGBColor.Black)
                         .WithSize(10)
@@ -211,7 +232,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
                     .WithShapeProperties(props => props
                         .WithUseBorderWithImage(true)
-                        .WithBorderDashes(new[] { 5, 5 })
+                        .WithBorderDashes(VisNetworkDashPattern.ShortDash)
                     )
                     .WithBorderWidth(3)
                     .WithColor(RGBColor.DarkGreen)
@@ -222,14 +243,14 @@ internal class VisNetworkNodeStylingExamples {
             page.LineBreak();
 
             // Example 4: Advanced Node Styling
-            page.Text("Advanced Node Styling").WithClass("h3");
+            page.H3("Advanced Node Styling");
             page.DiagramNetwork(network => {
                 network
                     .WithId("advancedStyling")
                     .WithSize("100%", "500px")
                     .WithPhysics(physics => {
                         physics.WithEnabled(true)
-                            .WithSolver(VisNetworkPhysicsSolver.ForceAtlas2Based);
+                            .WithSolver(VisNetworkPhysicsSolver.ForceAtlas2based);
                     });
 
                 // Node with custom colors for different states
@@ -240,9 +261,9 @@ internal class VisNetworkNodeStylingExamples {
                         .WithBackground(RGBColor.LightBlue)
                         .WithBorder(RGBColor.DarkBlue)
                         .WithHighlight(RGBColor.Yellow, RGBColor.Orange)
-                        .WithHover(RGBColor.LightYellow, RGBColor.Gold)
+                        .WithHover(RGBColor.LightYellow, RGBColor.DarkGoldenrod)
                     )
-                    .WithChosen(chosen => chosen
+                    .WithChosen(new VisNetworkChosenOptions()
                         .WithNode(nodeChosen => nodeChosen
                             .WithColor(RGBColor.Red)
                             .WithBorderColor(RGBColor.DarkRed)
@@ -320,7 +341,7 @@ internal class VisNetworkNodeStylingExamples {
             page.LineBreak();
 
             // Example 5: Node Legends
-            page.Text("Network with Legend").WithClass("h3");
+            page.H3("Network with Legend");
             page.DiagramNetwork(network => {
                 network
                     .WithId("networkLegend")

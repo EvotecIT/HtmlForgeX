@@ -25,7 +25,7 @@ internal class InfocardsCleanDemo {
             page.Layout = TablerLayout.Fluid;
 
             // Header section
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "🎨 Clean RGBColor Demo"));
+            page.H1("🎨 Clean RGBColor Demo");
             page.Text("Beautiful cards using predefined RGBColor constants - No more cryptic hex numbers!")
                 .Style(TablerTextStyle.Muted).Weight(TablerFontWeight.Medium);
 
@@ -46,7 +46,7 @@ internal class InfocardsCleanDemo {
                                 });
                             })
                             .Body(body => {
-                                body.Add(new HeaderLevel(HeaderLevelTag.H2, "12,847"));
+                                body.H2("12,847");
                                 body.Text("↗️ +12% from last month");
                             });
                     });
@@ -65,7 +65,7 @@ internal class InfocardsCleanDemo {
                                 });
                             })
                             .Body(body => {
-                                body.Add(new HeaderLevel(HeaderLevelTag.H2, "$45,231"));
+                                body.H2("$45,231");
                                 body.Text("↗️ +8% from last month");
                             });
                     });
@@ -84,7 +84,7 @@ internal class InfocardsCleanDemo {
                                 });
                             })
                             .Body(body => {
-                                body.Add(new HeaderLevel(HeaderLevelTag.H2, "1,247"));
+                                body.H2("1,247");
                                 body.Text("↗️ +15% from yesterday");
                             });
                     });
@@ -103,7 +103,7 @@ internal class InfocardsCleanDemo {
                                 });
                             })
                             .Body(body => {
-                                body.Add(new HeaderLevel(HeaderLevelTag.H2, "94.2%"));
+                                body.H2("94.2%");
                                 body.Text("↗️ +2.1% improvement");
                             });
                     });
@@ -127,7 +127,7 @@ internal class InfocardsCleanDemo {
                             })
                             .Body(body => {
                                 body.Text("These products are flying off the shelves!");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H3, "🔥 Trending"));
+                                body.H3("🔥 Trending");
                             });
                     });
                 });
@@ -147,7 +147,7 @@ internal class InfocardsCleanDemo {
                             })
                             .Body(body => {
                                 body.Text("Everything is running smoothly across all environments.");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H4, "✅ Healthy"));
+                                body.H4("✅ Healthy");
                             })
                             .Progress(95, TablerColor.Success);
                     });
@@ -168,7 +168,7 @@ internal class InfocardsCleanDemo {
                             })
                             .Body(body => {
                                 body.Text("Our customers absolutely love the new features!");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H3, "💖 Amazing"));
+                                body.H3("💖 Amazing");
                             });
                     });
                 });
@@ -191,7 +191,7 @@ internal class InfocardsCleanDemo {
                             .Body(body => {
                                 body.Text("Professional-grade analytics with clean, readable color constants.");
                                 body.Text("No more wondering what #1F2937 looks like!");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H4, "RGBColor.Navy = Professional"));
+                                body.H4("RGBColor.Navy = Professional");
                             });
                     });
                 });
@@ -211,7 +211,7 @@ internal class InfocardsCleanDemo {
                             .Body(body => {
                                 body.Text("Creative projects benefit from descriptive color names.");
                                 body.Text("RGBColor.Coral is much clearer than #FF7F50!");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H4, "🎨 Self-Documenting"));
+                                body.H4("🎨 Self-Documenting");
                             });
                     });
                 });
@@ -235,7 +235,7 @@ internal class InfocardsCleanDemo {
                             })
                             .Body(body => {
                                 body.Text("Old way with hex strings:");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H5, "card.Background(\"#8B5CF6\", \"#FFFFFF\")"));
+                                body.H5("card.Background(\"#8B5CF6\", \"#FFFFFF\")");
                                 body.Text("What color is #8B5CF6? 🤔");
                                 body.Text("Hard to remember, hard to maintain!");
                             });
@@ -256,7 +256,7 @@ internal class InfocardsCleanDemo {
                             })
                             .Body(body => {
                                 body.Text("New way with predefined constants:");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H5, "card.Background(RGBColor.Purple, RGBColor.White)"));
+                                body.H5("card.Background(RGBColor.Purple, RGBColor.White)");
                                 body.Text("Crystal clear! 🎯");
                                 body.Text("Easy to read, easy to maintain!");
                             });

@@ -6,16 +6,16 @@ internal class VisNetworkPhysicsExamples {
 
         using var document = new Document {
             Head = { Title = "VisNetwork Physics Examples", Author = "HtmlForgeX" },
-            LibraryMode = LibraryMode.Offline,
+            LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
 
         document.Body.Page(page => {
-            page.Text("VisNetwork Physics Simulation Examples").WithClass("h2");
+            page.H2("VisNetwork Physics Simulation Examples");
             page.LineBreak();
 
             // Example 1: Barnes Hut Physics
-            page.Text("Barnes Hut Physics").WithClass("h3");
+            page.H3("Barnes Hut Physics");
             page.DiagramNetwork(network => {
                 network
                     .WithId("barnesHutPhysics")
@@ -33,14 +33,12 @@ internal class VisNetworkPhysicsExamples {
                                     .WithDamping(0.09)
                                     .WithAvoidOverlap(0.5);
                             })
-                            .WithStabilization(stabilization => {
-                                stabilization
-                                    .WithEnabled(true)
-                                    .WithIterations(1000)
-                                    .WithUpdateInterval(100)
-                                    .WithOnlyDynamicEdges(false)
-                                    .WithFit(true);
-                            });
+                            .WithStabilization(new VisNetworkStabilizationOptions()
+                                .WithEnabled(true)
+                                .WithIterations(1000)
+                                .WithUpdateInterval(100)
+                                .WithOnlyDynamicEdges(false)
+                                .WithFit(true));
                     });
 
                 // Create a network of nodes
@@ -49,7 +47,7 @@ internal class VisNetworkPhysicsExamples {
                         .WithLabel($"Node {i}")
                         .WithShape(VisNetworkNodeShape.Dot)
                         .WithSize(20)
-                        .WithColor(RGBColor.FromRGB(100 + i * 15, 50, 200 - i * 15))
+                        .WithColor(new RGBColor($"#{100 + i * 15:X2}{50:X2}{200 - i * 15:X2}"))
                     );
                 }
 
@@ -70,7 +68,7 @@ internal class VisNetworkPhysicsExamples {
             page.LineBreak();
 
             // Example 2: Force Atlas 2 Based Physics
-            page.Text("Force Atlas 2 Based Physics").WithClass("h3");
+            page.H3("Force Atlas 2 Based Physics");
             page.DiagramNetwork(network => {
                 network
                     .WithId("forceAtlas2Physics")
@@ -78,7 +76,7 @@ internal class VisNetworkPhysicsExamples {
                     .WithPhysics(physics => {
                         physics
                             .WithEnabled(true)
-                            .WithSolver(VisNetworkPhysicsSolver.ForceAtlas2Based)
+                            .WithSolver(VisNetworkPhysicsSolver.ForceAtlas2based)
                             .WithForceAtlas2Based(forceAtlas2 => {
                                 forceAtlas2
                                     .WithGravitationalConstant(-50)
@@ -95,7 +93,7 @@ internal class VisNetworkPhysicsExamples {
                     .WithLabel("Central Hub")
                     .WithShape(VisNetworkNodeShape.Star)
                     .WithSize(40)
-                    .WithColor(RGBColor.Gold)
+                    .WithColor(RGBColor.DarkGoldenrod)
                 );
 
                 for (int i = 1; i <= 8; i++) {
@@ -112,7 +110,7 @@ internal class VisNetworkPhysicsExamples {
             page.LineBreak();
 
             // Example 3: Repulsion Physics
-            page.Text("Repulsion Physics").WithClass("h3");
+            page.H3("Repulsion Physics");
             page.DiagramNetwork(network => {
                 network
                     .WithId("repulsionPhysics")
@@ -159,7 +157,7 @@ internal class VisNetworkPhysicsExamples {
             page.LineBreak();
 
             // Example 4: Hierarchical Repulsion
-            page.Text("Hierarchical Repulsion").WithClass("h3");
+            page.H3("Hierarchical Repulsion");
             page.DiagramNetwork(network => {
                 network
                     .WithId("hierarchicalRepulsion")
@@ -179,18 +177,16 @@ internal class VisNetworkPhysicsExamples {
                             });
                     })
                     .WithLayout(layout => {
-                        layout.WithHierarchical(hierarchical => {
-                            hierarchical
-                                .WithEnabled(true)
-                                .WithLevelSeparation(150)
-                                .WithNodeSpacing(100)
-                                .WithTreeSpacing(200)
-                                .WithBlockShifting(true)
-                                .WithEdgeMinimization(true)
-                                .WithParentCentralization(true)
-                                .WithDirection(VisNetworkLayoutDirection.Ud)
-                                .WithSortMethod(VisNetworkSortMethod.Hubsize);
-                        });
+                        layout.WithHierarchical(new VisNetworkHierarchicalOptions()
+                            .WithEnabled(true)
+                            .WithLevelSeparation(150)
+                            .WithNodeSpacing(100)
+                            .WithTreeSpacing(200)
+                            .WithBlockShifting(true)
+                            .WithEdgeMinimization(true)
+                            .WithParentCentralization(true)
+                            .WithDirection(VisNetworkLayoutDirection.Ud)
+                            .WithSortMethod(VisNetworkLayoutSort.Hubsize));
                     });
 
                 // Create hierarchical structure
@@ -213,7 +209,7 @@ internal class VisNetworkPhysicsExamples {
             page.LineBreak();
 
             // Example 5: Wind Physics Effect
-            page.Text("Wind Physics Effect").WithClass("h3");
+            page.H3("Wind Physics Effect");
             page.DiagramNetwork(network => {
                 network
                     .WithId("windPhysics")
@@ -221,10 +217,8 @@ internal class VisNetworkPhysicsExamples {
                     .WithPhysics(physics => {
                         physics
                             .WithEnabled(true)
-                            .WithWind(wind => {
-                                wind.WithX(0.05).WithY(0);
-                            })
-                            .WithSolver(VisNetworkPhysicsSolver.ForceAtlas2Based)
+                            .WithWind(0.05, 0)
+                            .WithSolver(VisNetworkPhysicsSolver.ForceAtlas2based)
                             .WithForceAtlas2Based(forceAtlas2 => {
                                 forceAtlas2
                                     .WithGravitationalConstant(-30)
@@ -241,7 +235,7 @@ internal class VisNetworkPhysicsExamples {
                         .WithLabel($"P{i}")
                         .WithShape(VisNetworkNodeShape.Dot)
                         .WithSize(10 + (i % 3) * 5)
-                        .WithColor(RGBColor.FromRGB(255, 165 - i * 10, 0))
+                        .WithColor(new RGBColor($"#{255:X2}{165 - i * 10:X2}{0:X2}"))
                         .WithMass(0.5 + (i % 3) * 0.5)
                     );
                 }
@@ -250,7 +244,7 @@ internal class VisNetworkPhysicsExamples {
                 for (int i = 1; i < 15; i++) {
                     if (i % 3 != 0) {
                         network.AddEdge(i, i + 1, edge => edge
-                            .WithColor(RGBColor.FromRGB(255, 200, 200))
+                            .WithColor(new RGBColor($"#{255:X2}{200:X2}{200:X2}"))
                             .WithWidth(0.5)
                         );
                     }
@@ -260,7 +254,7 @@ internal class VisNetworkPhysicsExamples {
             page.LineBreak();
 
             // Example 6: Adaptive Physics
-            page.Text("Adaptive Physics").WithClass("h3");
+            page.H3("Adaptive Physics");
             page.DiagramNetwork(network => {
                 network
                     .WithId("adaptivePhysics")
@@ -278,12 +272,10 @@ internal class VisNetworkPhysicsExamples {
                                     .WithSpringConstant(0.05)
                                     .WithDamping(0.2);
                             })
-                            .WithStabilization(stabilization => {
-                                stabilization
-                                    .WithEnabled(true)
-                                    .WithIterations(2000)
-                                    .WithUpdateInterval(50);
-                            });
+                            .WithStabilization(new VisNetworkStabilizationOptions()
+                                .WithEnabled(true)
+                                .WithIterations(2000)
+                                .WithUpdateInterval(50));
                     })
                     .WithInteraction(interaction => {
                         interaction

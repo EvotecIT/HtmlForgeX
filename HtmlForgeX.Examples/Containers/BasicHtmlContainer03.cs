@@ -198,8 +198,14 @@ internal class BasicHtmlContainer03 {
                             diagam.AddNode(new { id = 3, label = "Node 3" });
                             diagam.AddEdge(new { from = 1, to = 2 });
                             diagam.AddEdge(new { from = 2, to = 3 });
-                            diagam.SetOption("nodes", new { shape = "box" });
-                            diagam.SetOption("edges", new { arrows = "to" });
+                            diagam.WithOptions(options => {
+                                options.WithNodes(nodes => {
+                                    nodes.WithShape(VisNetworkNodeShape.Box);
+                                });
+                                options.WithEdges(edges => {
+                                    edges.WithArrows(new VisNetworkArrowOptions().WithTo(true));
+                                });
+                            });
                         });
                     });
                 });

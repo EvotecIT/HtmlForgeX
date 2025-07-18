@@ -44,7 +44,7 @@ internal class SmartTabWizardInteroperabilityDemo {
             page.Layout = TablerLayout.Fluid;
 
             // SECTION: Admin Dashboard with SmartTab containing DataTables, Cards, and SmartWizard
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "Admin Dashboard"));
+            page.H1("Admin Dashboard");
             page.Text("Complete admin interface showcasing SmartTab and SmartWizard interoperability").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -385,7 +385,7 @@ internal class SmartTabWizardInteroperabilityDemo {
             });
 
             // SECTION: Domain Health Check Integration (Enhanced version of existing component)
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Enhanced Domain Health Check"));
+            page.H2("Enhanced Domain Health Check");
             page.Text("Domain health monitoring integrated with SmartTab interface").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {

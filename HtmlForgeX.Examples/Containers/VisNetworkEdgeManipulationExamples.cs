@@ -6,16 +6,16 @@ internal class VisNetworkEdgeManipulationExamples {
 
         using var document = new Document {
             Head = { Title = "VisNetwork Edge & Manipulation Examples", Author = "HtmlForgeX" },
-            LibraryMode = LibraryMode.Offline,
+            LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
 
         document.Body.Page(page => {
-            page.Text("VisNetwork Edge Styling & Manipulation").WithClass("h2");
+            page.H2("VisNetwork Edge Styling & Manipulation");
             page.LineBreak();
 
             // Example 1: Edge Styling Showcase
-            page.Text("Edge Styling Options").WithClass("h3");
+            page.H3("Edge Styling Options");
             page.DiagramNetwork(network => {
                 network
                     .WithId("edgeStyling")
@@ -47,13 +47,13 @@ internal class VisNetworkEdgeManipulationExamples {
 
                 network.AddEdge(2, 3, edge => edge
                     .WithLabel("Dashed")
-                    .WithDashes(new[] { 5, 10 })
+                    .WithDashes(VisNetworkDashPattern.MediumDash)
                     .WithColor(RGBColor.Green)
                 );
 
                 network.AddEdge(3, 4, edge => edge
                     .WithLabel("Curved")
-                    .WithSmooth(smooth => smooth
+                    .WithSmooth(new VisNetworkSmoothOptions()
                         .WithEnabled(true)
                         .WithType(VisNetworkSmoothType.Curvedcw)
                         .WithRoundness(0.5)
@@ -63,7 +63,7 @@ internal class VisNetworkEdgeManipulationExamples {
 
                 network.AddEdge(4, 5, edge => edge
                     .WithLabel("Shadow")
-                    .WithShadow(shadow => shadow
+                    .WithShadow(new VisNetworkShadowOptions()
                         .WithEnabled(true)
                         .WithColor(RGBColor.Black)
                         .WithSize(10)
@@ -74,7 +74,7 @@ internal class VisNetworkEdgeManipulationExamples {
 
                 network.AddEdge(5, 6, edge => edge
                     .WithLabel("Arrows Both")
-                    .WithArrows(arrows => arrows
+                    .WithArrows(new VisNetworkArrowOptions()
                         .WithTo(true)
                         .WithFrom(true)
                         .WithMiddle(true)
@@ -84,7 +84,7 @@ internal class VisNetworkEdgeManipulationExamples {
 
                 network.AddEdge(6, 7, edge => edge
                     .WithLabel("Custom Arrow")
-                    .WithArrows(arrows => arrows
+                    .WithArrows(new VisNetworkArrowOptions()
                         .WithTo(new VisNetworkArrowTypeOptions()
                             .WithType(VisNetworkArrowType.Arrow)
                             .WithScaleFactor(2)
@@ -117,7 +117,7 @@ internal class VisNetworkEdgeManipulationExamples {
             page.LineBreak();
 
             // Example 2: Dynamic Edge Colors and Widths
-            page.Text("Dynamic Edge Properties").WithClass("h3");
+            page.H3("Dynamic Edge Properties");
             page.DiagramNetwork(network => {
                 network
                     .WithId("dynamicEdges")
@@ -130,7 +130,7 @@ internal class VisNetworkEdgeManipulationExamples {
                 // Network traffic visualization
                 network.AddNode("internet", node => node
                     .WithLabel("Internet")
-                    .WithShape(VisNetworkNodeShape.Cloud)
+                    .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
                         .WithFace("FontAwesome")
                         .WithCode("\uf0c2")
@@ -174,49 +174,49 @@ internal class VisNetworkEdgeManipulationExamples {
                     .WithLabel("High Traffic")
                     .WithWidth(8)
                     .WithColor(RGBColor.Red)
-                    .WithArrows(arrows => arrows.WithTo(true))
+                    .WithArrows(new VisNetworkArrowOptions().WithTo(true))
                 );
 
                 network.AddEdge("firewall", "loadbalancer", edge => edge
                     .WithLabel("Filtered")
                     .WithWidth(6)
                     .WithColor(RGBColor.Orange)
-                    .WithArrows(arrows => arrows.WithTo(true))
+                    .WithArrows(new VisNetworkArrowOptions().WithTo(true))
                 );
 
                 network.AddEdge("loadbalancer", "server1", edge => edge
                     .WithLabel("50%")
                     .WithWidth(3)
                     .WithColor(RGBColor.Green)
-                    .WithArrows(arrows => arrows.WithTo(true))
+                    .WithArrows(new VisNetworkArrowOptions().WithTo(true))
                 );
 
                 network.AddEdge("loadbalancer", "server2", edge => edge
                     .WithLabel("50%")
                     .WithWidth(3)
                     .WithColor(RGBColor.Green)
-                    .WithArrows(arrows => arrows.WithTo(true))
+                    .WithArrows(new VisNetworkArrowOptions().WithTo(true))
                 );
 
                 network.AddEdge("server1", "database", edge => edge
                     .WithLabel("Queries")
                     .WithWidth(2)
                     .WithColor(RGBColor.Blue)
-                    .WithArrows(arrows => arrows.WithTo(true).WithFrom(true))
+                    .WithArrows(new VisNetworkArrowOptions().WithTo(true).WithFrom(true))
                 );
 
                 network.AddEdge("server2", "database", edge => edge
                     .WithLabel("Queries")
                     .WithWidth(2)
                     .WithColor(RGBColor.Blue)
-                    .WithArrows(arrows => arrows.WithTo(true).WithFrom(true))
+                    .WithArrows(new VisNetworkArrowOptions().WithTo(true).WithFrom(true))
                 );
             });
 
             page.LineBreak();
 
             // Example 3: Network Manipulation
-            page.Text("Interactive Network Manipulation").WithClass("h3");
+            page.H3("Interactive Network Manipulation");
             page.DiagramNetwork(network => {
                 network
                     .WithId("manipulation")
@@ -230,32 +230,13 @@ internal class VisNetworkEdgeManipulationExamples {
                             .WithEditNode(true)
                             .WithEditEdge(true)
                             .WithDeleteNode(true)
-                            .WithDeleteEdge(true)
-                            .WithControlNodeStyle(style => {
-                                style
-                                    .WithShape(VisNetworkNodeShape.Dot)
-                                    .WithSize(6)
-                                    .WithColor(RGBColor.FromRGB(255, 0, 0))
-                                    .WithBorderWidth(2)
-                                    .WithBorderWidthSelected(2);
-                            });
+                            .WithDeleteEdge(true);
+                            // Control node style configuration is not available in current API
                     })
                     .WithOptions(options => {
                         options
-                            .WithLocale(VisNetworkLocale.En)
-                            .WithLocales(locales => {
-                                locales.WithEn(en => {
-                                    en.Edit = "Edit Network";
-                                    en.Del = "Delete Selected";
-                                    en.Back = "Back to View";
-                                    en.AddNode = "Add New Node";
-                                    en.AddEdge = "Add Connection";
-                                    en.EditNode = "Edit Node";
-                                    en.EditEdge = "Edit Connection";
-                                    en.AddDescription = "Click in empty space to add a node";
-                                    en.EdgeDescription = "Click on a node and drag to another node to connect them";
-                                });
-                            });
+                            .WithLocale(VisNetworkLocale.En);
+                            // Locales configuration is not available in current API
                     });
 
                 // Initial network
@@ -284,7 +265,7 @@ internal class VisNetworkEdgeManipulationExamples {
             page.LineBreak();
 
             // Example 4: Edge Smooth Types
-            page.Text("Edge Smooth Types").WithClass("h3");
+            page.H3("Edge Smooth Types");
             page.DiagramNetwork(network => {
                 network
                     .WithId("smoothTypes")
@@ -296,7 +277,7 @@ internal class VisNetworkEdgeManipulationExamples {
                     (VisNetworkSmoothType.Dynamic, "Dynamic"),
                     (VisNetworkSmoothType.Continuous, "Continuous"),
                     (VisNetworkSmoothType.Discrete, "Discrete"),
-                    (VisNetworkSmoothType.Diagonalcross, "Diagonal Cross"),
+                    (VisNetworkSmoothType.Diagonally, "Diagonal"),
                     (VisNetworkSmoothType.Straightcross, "Straight Cross"),
                     (VisNetworkSmoothType.Horizontal, "Horizontal"),
                     (VisNetworkSmoothType.Vertical, "Vertical"),
@@ -327,12 +308,12 @@ internal class VisNetworkEdgeManipulationExamples {
 
                     network.AddEdge(fromId, toId, edge => edge
                         .WithLabel(name)
-                        .WithSmooth(smooth => smooth
+                        .WithSmooth(new VisNetworkSmoothOptions()
                             .WithEnabled(true)
                             .WithType(smoothType)
                             .WithRoundness(0.5)
                         )
-                        .WithArrows(arrows => arrows.WithTo(true))
+                        .WithArrows(new VisNetworkArrowOptions().WithTo(true))
                     );
 
                     y += 80;
@@ -342,7 +323,7 @@ internal class VisNetworkEdgeManipulationExamples {
             page.LineBreak();
 
             // Example 5: Advanced Manipulation with Events
-            page.Text("Advanced Network with Toolbar").WithClass("h3");
+            page.H3("Advanced Network with Toolbar");
             page.DiagramNetwork(network => {
                 network
                     .WithId("advancedManipulation")
@@ -351,25 +332,12 @@ internal class VisNetworkEdgeManipulationExamples {
                         manipulation
                             .WithEnabled(true)
                             .WithInitiallyActive(false)
-                            .WithAddNode((nodeData, callback) => {
-                                // Custom add node function would go here
-                                // This is a placeholder showing the API
-                            })
-                            .WithAddEdge((edgeData, callback) => {
-                                // Custom add edge function would go here
-                            })
-                            .WithEditNode((nodeData, callback) => {
-                                // Custom edit node function would go here
-                            })
-                            .WithEditEdge((edgeData, callback) => {
-                                // Custom edit edge function would go here
-                            })
-                            .WithDeleteNode((nodeData, callback) => {
-                                // Custom delete node function would go here
-                            })
-                            .WithDeleteEdge((edgeData, callback) => {
-                                // Custom delete edge function would go here
-                            });
+                            .WithAddNode(true)
+                            .WithAddEdge(true)
+                            .WithEditNode(true)
+                            .WithEditEdge(true)
+                            .WithDeleteNode(true)
+                            .WithDeleteEdge(true);
                     })
                     .WithInteraction(interaction => {
                         interaction
@@ -382,9 +350,9 @@ internal class VisNetworkEdgeManipulationExamples {
                             .WithHover(true)
                             .WithHoverConnectedEdges(true)
                             .WithNavigationButtons(true)
-                            .WithKeyboard(keyboard => keyboard
+                            .WithKeyboard(new VisNetworkKeyboardOptions()
                                 .WithEnabled(true)
-                                .WithSpeed(speed => speed.WithX(10).WithY(10).WithZoom(0.02))
+                                .WithSpeed(10, 10, 0.02)
                                 .WithBindToWindow(true)
                                 .WithAutoFocus(true)
                             );
@@ -395,7 +363,7 @@ internal class VisNetworkEdgeManipulationExamples {
                     .WithLabel("Central Hub")
                     .WithShape(VisNetworkNodeShape.Star)
                     .WithSize(40)
-                    .WithColor(RGBColor.Gold)
+                    .WithColor(RGBColor.DarkGoldenrod)
                 );
 
                 var satellites = new[] { "North", "East", "South", "West" };

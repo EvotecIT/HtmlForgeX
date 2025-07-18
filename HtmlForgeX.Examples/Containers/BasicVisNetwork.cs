@@ -6,7 +6,7 @@ internal class BasicVisNetwork {
 
         using var document = new Document {
             Head = { Title = "VisNetwork Basic Demo", Author = "HtmlForgeX" },
-            LibraryMode = LibraryMode.Offline,
+            LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
 
@@ -40,7 +40,7 @@ internal class BasicVisNetwork {
                 // Add connection
                 network.AddEdge(2, 1, edge => edge
                     .WithLabel("connects")
-                    .WithArrows(arrows => arrows.WithTo(true))
+                    .WithArrows(new VisNetworkArrowOptions().WithTo(true))
                 );
             });
         });

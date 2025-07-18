@@ -25,7 +25,7 @@ internal class InfocardsDemo {
             page.Layout = TablerLayout.Fluid;
 
             // Header section
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "🎨 Infocards Demo"));
+            page.H1("🎨 Infocards Demo");
             page.Text("Beautiful cards with custom RGBColor backgrounds and colorful avatars - Zero HTML, Pure C# API!")
                 .Style(TablerTextStyle.Muted).Weight(TablerFontWeight.Medium);
 
@@ -46,7 +46,7 @@ internal class InfocardsDemo {
                                 });
                             })
                             .Body(body => {
-                                body.Add(new HeaderLevel(HeaderLevelTag.H2, "12,847"));
+                                body.H2("12,847");
                                 body.Text("↗️ +12% from last month");
                             });
                     });
@@ -65,7 +65,7 @@ internal class InfocardsDemo {
                                 });
                             })
                             .Body(body => {
-                                body.Add(new HeaderLevel(HeaderLevelTag.H2, "$45,231"));
+                                body.H2("$45,231");
                                 body.Text("↗️ +8% from last month");
                             });
                     });
@@ -84,7 +84,7 @@ internal class InfocardsDemo {
                                 });
                             })
                             .Body(body => {
-                                body.Add(new HeaderLevel(HeaderLevelTag.H2, "1,247"));
+                                body.H2("1,247");
                                 body.Text("↗️ +15% from yesterday");
                             });
                     });
@@ -103,7 +103,7 @@ internal class InfocardsDemo {
                                 });
                             })
                             .Body(body => {
-                                body.Add(new HeaderLevel(HeaderLevelTag.H2, "94.2%"));
+                                body.H2("94.2%");
                                 body.Text("↗️ +2.1% improvement");
                             });
                     });
@@ -127,7 +127,7 @@ internal class InfocardsDemo {
                             })
                             .Body(body => {
                                 body.Text("Our team achieved exceptional results this week with improved collaboration and efficiency.");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H3, "Achievement Unlocked!"));
+                                body.H3("Achievement Unlocked!");
                             });
                     });
                 });
@@ -147,7 +147,7 @@ internal class InfocardsDemo {
                             })
                             .Body(body => {
                                 body.Text("Frontend development is progressing smoothly. Backend API integration scheduled for next sprint.");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H4, "Progress: 78%"));
+                                body.H4("Progress: 78%");
                             })
                             .Progress(78, TablerColor.Success);
                     });
@@ -168,7 +168,7 @@ internal class InfocardsDemo {
                             })
                             .Body(body => {
                                 body.Text("Customer satisfaction has reached an all-time high with our latest product updates.");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H3, "98.5% Happy"));
+                                body.H3("98.5% Happy");
                             });
                     });
                 });
@@ -278,7 +278,7 @@ internal class InfocardsDemo {
                             })
                             .Body(body => {
                                 body.Text("Unlock powerful analytics with custom RGBColor precision.");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H4, "Color: " + deepPurple.ToString()));
+                                body.H4("Color: " + deepPurple.ToString());
                             });
                     });
                 });
@@ -301,7 +301,7 @@ internal class InfocardsDemo {
                             })
                             .Body(body => {
                                 body.Text("Track environmental impact with precise color coding.");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H4, "RGB: " + emerald.ToString()));
+                                body.H4("RGB: " + emerald.ToString());
                             })
                             .Progress(85, TablerColor.Success);
                     });
@@ -325,7 +325,7 @@ internal class InfocardsDemo {
                             })
                             .Body(body => {
                                 body.Text("Perfect brand color matching with RGBColor precision.");
-                                body.Add(new HeaderLevel(HeaderLevelTag.H4, "Brand: " + brandPrimary.ToString()));
+                                body.H4("Brand: " + brandPrimary.ToString());
                             });
                     });
                 });

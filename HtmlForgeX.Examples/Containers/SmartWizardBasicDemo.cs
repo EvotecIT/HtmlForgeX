@@ -29,7 +29,7 @@ internal class SmartWizardBasicDemo {
             page.Layout = TablerLayout.Fluid;
 
             // SECTION: Basic SmartWizard Example
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Basic SmartWizard Example"));
+            page.H2("Basic SmartWizard Example");
             page.Text("Step-by-step wizard interface using SmartWizard fluent API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -229,7 +229,7 @@ internal class SmartWizardBasicDemo {
             });
 
             // SECTION: Advanced SmartWizard with Different Themes
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Advanced SmartWizard Themes"));
+            page.H2("Advanced SmartWizard Themes");
             page.Text("SmartWizard with different themes and orientations").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -318,7 +318,7 @@ internal class SmartWizardBasicDemo {
             });
 
             // SECTION: Vertical SmartWizard
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Vertical SmartWizard"));
+            page.H2("Vertical SmartWizard");
             page.Text("SmartWizard with vertical orientation").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {

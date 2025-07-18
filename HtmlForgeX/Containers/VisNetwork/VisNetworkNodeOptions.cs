@@ -121,28 +121,95 @@ public class VisNetworkNodeOptions {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public object? HeightConstraint { get; set; }
 
+    [JsonPropertyName("ctxRenderer")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? CtxRenderer { get; set; }
+
     // Fluent API Methods
 
+    /// <summary>
+    /// Sets the unique identifier for the node.
+    /// </summary>
+    /// <param name="id">The identifier (can be string, number, or any object)</param>
+    /// <returns>The node options for method chaining</returns>
     public VisNetworkNodeOptions WithId(object id) {
         Id = id;
         return this;
     }
 
+    /// <summary>
+    /// Sets the plain text label for the node.
+    /// </summary>
+    /// <param name="label">The label text (use \n for line breaks)</param>
+    /// <returns>The node options for method chaining</returns>
     public VisNetworkNodeOptions WithLabel(string label) {
         Label = label;
         return this;
     }
+    
+    /// <summary>
+    /// Sets an HTML-formatted label with multi-line support. Automatically enables HTML multi-line mode.
+    /// </summary>
+    /// <param name="htmlLabel">The HTML-formatted label content</param>
+    /// <returns>The node options for method chaining</returns>
+    public VisNetworkNodeOptions WithHtmlLabel(string htmlLabel) {
+        Label = htmlLabel;
+        // Ensure font options exist and set multi to HTML
+        Font ??= new VisNetworkFontOptions();
+        Font.Multi = VisNetworkMulti.Html;
+        return this;
+    }
+    
+    /// <summary>
+    /// Builds an HTML-formatted label using a fluent builder. Automatically enables HTML multi-line mode.
+    /// </summary>
+    /// <param name="configure">Action to configure the label builder</param>
+    /// <returns>The node options for method chaining</returns>
+    public VisNetworkNodeOptions WithHtmlLabel(Action<VisNetworkLabelBuilder> configure) {
+        var builder = new VisNetworkLabelBuilder();
+        configure(builder);
+        return WithHtmlLabel(builder.Build());
+    }
+    
+    /// <summary>
+    /// Sets a Markdown-formatted label with multi-line support. Automatically enables Markdown multi-line mode.
+    /// </summary>
+    /// <param name="markdownLabel">The Markdown-formatted label content</param>
+    /// <returns>The node options for method chaining</returns>
+    public VisNetworkNodeOptions WithMarkdownLabel(string markdownLabel) {
+        Label = markdownLabel;
+        // Ensure font options exist and set multi to Markdown
+        Font ??= new VisNetworkFontOptions();
+        Font.Multi = VisNetworkMulti.Markdown;
+        return this;
+    }
 
+    /// <summary>
+    /// Sets the tooltip text that appears when hovering over the node.
+    /// </summary>
+    /// <param name="title">The tooltip text</param>
+    /// <returns>The node options for method chaining</returns>
     public VisNetworkNodeOptions WithTitle(string title) {
         Title = title;
         return this;
     }
 
+    /// <summary>
+    /// Assigns the node to a group for shared styling.
+    /// </summary>
+    /// <param name="group">The group name</param>
+    /// <returns>The node options for method chaining</returns>
     public VisNetworkNodeOptions WithGroup(string group) {
         Group = group;
         return this;
     }
 
+    /// <summary>
+    /// Sets the initial position of the node.
+    /// </summary>
+    /// <param name="x">The X coordinate</param>
+    /// <param name="y">The Y coordinate</param>
+    /// <returns>The node options for method chaining</returns>
     public VisNetworkNodeOptions WithPosition(double x, double y) {
         X = x;
         Y = y;
@@ -197,6 +264,11 @@ public class VisNetworkNodeOptions {
 
     public VisNetworkNodeOptions WithColor(RGBColor color) {
         Color = color.ToHex();
+        return this;
+    }
+
+    public VisNetworkNodeOptions WithColor(string color) {
+        Color = color;
         return this;
     }
 
@@ -304,6 +376,19 @@ public class VisNetworkNodeOptions {
             if (minimum.HasValue) constraint["minimum"] = minimum.Value;
             if (maximum.HasValue) constraint["maximum"] = maximum.Value;
             HeightConstraint = constraint;
+        }
+        return this;
+    }
+
+    /// <summary>
+    /// Sets a custom shape for the node using the provided custom shape definition.
+    /// </summary>
+    /// <param name="customShape">The custom shape to use for rendering the node</param>
+    /// <returns>The node options for method chaining</returns>
+    public VisNetworkNodeOptions WithCustomShape(VisNetworkCustomShape customShape) {
+        if (customShape != null && !string.IsNullOrEmpty(customShape.RenderFunction)) {
+            Shape = VisNetworkNodeShape.Custom;
+            CtxRenderer = customShape.RenderFunction;
         }
         return this;
     }
@@ -496,6 +581,53 @@ public class VisNetworkIconOptions {
         Weight = weight;
         return this;
     }
+
+    /// <summary>
+    /// Sets the icon using a FontAwesome enum value. Automatically sets face to "FontAwesome".
+    /// </summary>
+    /// <param name="icon">The FontAwesome icon to use</param>
+    /// <returns>The icon options for method chaining</returns>
+    public VisNetworkIconOptions WithFontAwesome(FontAwesome icon) {
+        Face = "FontAwesome";
+        Code = icon.GetCode();
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the icon using a FontAwesome Solid icon. Automatically sets face for Font Awesome 6.
+    /// </summary>
+    /// <param name="icon">The FontAwesome solid icon to use</param>
+    /// <returns>The icon options for method chaining</returns>
+    public VisNetworkIconOptions WithFontAwesome(FontAwesomeSolid icon) {
+        Face = "Font Awesome 6 Free";
+        Code = icon.GetCode();
+        Weight = "900"; // Solid weight
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the icon using a FontAwesome Regular icon. Automatically sets face for Font Awesome 6.
+    /// </summary>
+    /// <param name="icon">The FontAwesome regular icon to use</param>
+    /// <returns>The icon options for method chaining</returns>
+    public VisNetworkIconOptions WithFontAwesome(FontAwesomeRegular icon) {
+        Face = "Font Awesome 6 Free";
+        Code = icon.GetCode();
+        Weight = "400"; // Regular weight
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the icon using a FontAwesome Brand icon. Automatically sets face for Font Awesome 6 Brands.
+    /// </summary>
+    /// <param name="icon">The FontAwesome brand icon to use</param>
+    /// <returns>The icon options for method chaining</returns>
+    public VisNetworkIconOptions WithFontAwesome(FontAwesomeBrands icon) {
+        Face = "Font Awesome 6 Brands";
+        Code = icon.GetCode();
+        Weight = "400"; // Brands use regular weight
+        return this;
+    }
 }
 
 /// <summary>
@@ -522,13 +654,33 @@ public class VisNetworkShapeProperties {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? UseBorderWithImage { get; set; }
 
+    /// <summary>
+    /// Enables or disables dashed borders for the node.
+    /// </summary>
+    /// <param name="enabled">True to enable dashed borders, false for solid borders</param>
+    /// <returns>The shape properties for method chaining</returns>
     public VisNetworkShapeProperties WithBorderDashes(bool enabled = true) {
         BorderDashes = enabled;
         return this;
     }
 
+    /// <summary>
+    /// Sets a custom dash pattern for the node border.
+    /// </summary>
+    /// <param name="pattern">An array of integers representing dash and gap lengths</param>
+    /// <returns>The shape properties for method chaining</returns>
     public VisNetworkShapeProperties WithBorderDashes(params int[] pattern) {
         BorderDashes = pattern;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets a predefined dash pattern for the node border.
+    /// </summary>
+    /// <param name="pattern">The dash pattern to use</param>
+    /// <returns>The shape properties for method chaining</returns>
+    public VisNetworkShapeProperties WithBorderDashes(VisNetworkDashPattern pattern) {
+        BorderDashes = pattern == VisNetworkDashPattern.Solid ? false : (object)pattern.ToArray();
         return this;
     }
 
@@ -726,6 +878,14 @@ public class VisNetworkImageOptions {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Selected { get; set; }
 
+    [JsonPropertyName("brokenImage")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? BrokenImage { get; set; }
+
+    [JsonPropertyName("imagePadding")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public object? ImagePadding { get; set; }
+
     public VisNetworkImageOptions WithUnselected(string url) {
         Unselected = url;
         return this;
@@ -733,6 +893,39 @@ public class VisNetworkImageOptions {
 
     public VisNetworkImageOptions WithSelected(string url) {
         Selected = url;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the URL of the image to use when the main image cannot be loaded.
+    /// </summary>
+    /// <param name="url">The URL of the broken image placeholder</param>
+    /// <returns>The image options for method chaining</returns>
+    public VisNetworkImageOptions WithBrokenImage(string url) {
+        BrokenImage = url;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets uniform padding around the image in pixels.
+    /// </summary>
+    /// <param name="padding">The padding value in pixels</param>
+    /// <returns>The image options for method chaining</returns>
+    public VisNetworkImageOptions WithImagePadding(int padding) {
+        ImagePadding = padding;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets individual padding values for each side of the image.
+    /// </summary>
+    /// <param name="top">Top padding in pixels</param>
+    /// <param name="right">Right padding in pixels</param>
+    /// <param name="bottom">Bottom padding in pixels</param>
+    /// <param name="left">Left padding in pixels</param>
+    /// <returns>The image options for method chaining</returns>
+    public VisNetworkImageOptions WithImagePadding(int top, int right, int bottom, int left) {
+        ImagePadding = new { top, right, bottom, left };
         return this;
     }
 }

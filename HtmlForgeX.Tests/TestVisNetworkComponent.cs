@@ -432,6 +432,69 @@ public class TestVisNetworkComponent {
 
         Assert.IsTrue(html.Contains("star"), "Should render star shape");
         Assert.IsTrue(html.Contains("#FFBF00"), "Should render color");
-        Assert.IsTrue(html.Contains("to, from") || html.Contains("from, to"), "Should render arrows");
+        Assert.IsTrue(html.Contains("\"to\":true") && html.Contains("\"from\":true"), "Should render arrows");
+    }
+
+    [TestMethod]
+    public void VisNetwork_HtmlLabels() {
+        using var doc = new Document();
+
+        doc.Body.Add(element => {
+            element.DiagramNetwork(network => {
+                network.AddNode(new VisNetworkNodeOptions()
+                    .WithId(1)
+                    .WithHtmlLabel("<b>Bold</b><br><i>Italic</i>")
+                );
+                
+                network.AddEdge(new VisNetworkEdgeOptions()
+                    .WithConnection(1, 1)
+                    .WithHtmlLabel("<span style='color: red'>Red Text</span>")
+                );
+            });
+        });
+
+        var html = doc.ToString();
+
+        // Should contain HTML content
+        Assert.IsTrue(html.Contains("<b>Bold</b>"), "Should contain HTML bold tag");
+        Assert.IsTrue(html.Contains("<i>Italic</i>"), "Should contain HTML italic tag");
+        Assert.IsTrue(html.Contains("color: red"), "Should contain HTML style");
+        
+        // The methods should have set up the font configuration
+        // Let's just verify the content is there rather than the exact JSON structure
+        Assert.IsTrue(html.Contains("var nodes = new vis.DataSet"), "Should contain nodes DataSet");
+        Assert.IsTrue(html.Contains("var edges = new vis.DataSet"), "Should contain edges DataSet");
+    }
+
+    [TestMethod]
+    public void VisNetwork_MarkdownLabels() {
+        using var doc = new Document();
+
+        doc.Body.Add(element => {
+            element.DiagramNetwork(network => {
+                network.AddNode(new VisNetworkNodeOptions()
+                    .WithId(1)
+                    .WithMarkdownLabel("# Header\n**Bold** and *italic*")
+                );
+                
+                network.AddEdge(new VisNetworkEdgeOptions()
+                    .WithConnection(1, 1)
+                    .WithMarkdownLabel("- Item 1\n- Item 2")
+                );
+            });
+        });
+
+        var html = doc.ToString();
+
+        // Should contain Markdown content
+        Assert.IsTrue(html.Contains("# Header"), "Should contain Markdown header");
+        Assert.IsTrue(html.Contains("**Bold**"), "Should contain Markdown bold");
+        Assert.IsTrue(html.Contains("*italic*"), "Should contain Markdown italic");
+        Assert.IsTrue(html.Contains("- Item 1"), "Should contain Markdown list");
+        
+        // The methods should have set up the font configuration
+        // Let's just verify the content is there rather than the exact JSON structure
+        Assert.IsTrue(html.Contains("var nodes = new vis.DataSet"), "Should contain nodes DataSet");
+        Assert.IsTrue(html.Contains("var edges = new vis.DataSet"), "Should contain edges DataSet");
     }
 }

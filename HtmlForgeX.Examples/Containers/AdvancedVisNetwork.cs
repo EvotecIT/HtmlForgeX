@@ -6,7 +6,7 @@ internal class AdvancedVisNetwork {
 
         using var document = new Document {
             Head = { Title = "Advanced VisNetwork Demo", Author = "HtmlForgeX" },
-            LibraryMode = LibraryMode.Offline,
+            LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
 
@@ -35,7 +35,7 @@ internal class AdvancedVisNetwork {
                         });
                         
                         options.WithEdges(edges => {
-                            edges.WithArrows(arrows => arrows.WithTo(true));
+                            edges.WithArrows(new VisNetworkArrowOptions().WithTo(true));
                         });
                     });
 
@@ -43,21 +43,21 @@ internal class AdvancedVisNetwork {
                 network.AddNode(1, node => node
                     .WithLabel("CEO")
                     .WithLevel(0)
-                    .WithColor(RGBColor.FromRGB(231, 76, 60))
+                    .WithColor(new RGBColor($"#{231:X2}{76:X2}{60:X2}"))
                     .WithFont(font => font.WithColor(RGBColor.White).WithSize(16))
                 );
 
                 network.AddNode(2, node => node
                     .WithLabel("CTO")
                     .WithLevel(1)
-                    .WithColor(RGBColor.FromRGB(52, 152, 219))
+                    .WithColor(new RGBColor($"#{52:X2}{152:X2}{219:X2}"))
                     .WithFont(font => font.WithColor(RGBColor.White))
                 );
 
                 network.AddNode(3, node => node
                     .WithLabel("CFO")
                     .WithLevel(1)
-                    .WithColor(RGBColor.FromRGB(46, 204, 113))
+                    .WithColor(new RGBColor($"#{46:X2}{204:X2}{113:X2}"))
                     .WithFont(font => font.WithColor(RGBColor.White))
                 );
 
@@ -88,12 +88,12 @@ internal class AdvancedVisNetwork {
 
                 // Configure groups
                 network.WithGroup("tech", group => group
-                    .WithColor(RGBColor.FromRGB(155, 89, 182))
+                    .WithColor(new RGBColor($"#{155:X2}{89:X2}{182:X2}"))
                     .WithFont(font => font.WithColor(RGBColor.White))
                 );
 
                 network.WithGroup("finance", group => group
-                    .WithColor(RGBColor.FromRGB(243, 156, 18))
+                    .WithColor(new RGBColor($"#{243:X2}{156:X2}{18:X2}"))
                     .WithFont(font => font.WithColor(RGBColor.White))
                 );
             });
@@ -141,11 +141,11 @@ internal class AdvancedVisNetwork {
                 }
 
                 // Add connections
-                network.AddEdge(1, 2, edge => edge.WithLabel("Query").WithArrows(arrows => arrows.WithTo(true)));
-                network.AddEdge(1, 3, edge => edge.WithLabel("Response").WithArrows(arrows => arrows.WithTo(true)));
-                network.AddEdge(1, 4, edge => edge.WithLabel("Response").WithArrows(arrows => arrows.WithTo(true)));
-                network.AddEdge(5, 1, edge => edge.WithLabel("Route").WithArrows(arrows => arrows.WithTo(true)));
-                network.AddEdge(1, 6, edge => edge.WithLabel("Cache").WithArrows(arrows => arrows.WithTo(true).WithFrom(true)));
+                network.AddEdge(1, 2, edge => edge.WithLabel("Query").WithArrows(new VisNetworkArrowOptions().WithTo(true)));
+                network.AddEdge(1, 3, edge => edge.WithLabel("Response").WithArrows(new VisNetworkArrowOptions().WithTo(true)));
+                network.AddEdge(1, 4, edge => edge.WithLabel("Response").WithArrows(new VisNetworkArrowOptions().WithTo(true)));
+                network.AddEdge(5, 1, edge => edge.WithLabel("Route").WithArrows(new VisNetworkArrowOptions().WithTo(true)));
+                network.AddEdge(1, 6, edge => edge.WithLabel("Cache").WithArrows(new VisNetworkArrowOptions().WithTo(true).WithFrom(true)));
             });
 
             page.LineBreak();
@@ -211,8 +211,8 @@ internal class AdvancedVisNetwork {
                         options.WithEdges(edges => {
                             edges
                                 .WithWidth(2)
-                                .WithColor(RGBColor.FromRGB(132, 132, 132))
-                                .WithArrows(arrows => arrows.WithTo(true));
+                                .WithColor(new RGBColor($"#{132:X2}{132:X2}{132:X2}"))
+                                .WithArrows(new VisNetworkArrowOptions().WithTo(true));
                         });
                     });
 
@@ -263,7 +263,7 @@ internal class AdvancedVisNetwork {
                 network.AddEdge("n4", "n1", edge => edge
                     .WithLabel("Feedback")
                     .WithColor(RGBColor.Gray)
-                    .WithDashes(new[] { 5, 10 })
+                    .WithDashes(VisNetworkDashPattern.MediumDash)
                 );
             });
 
@@ -293,7 +293,7 @@ internal class AdvancedVisNetwork {
                     );
 
                     network.AddEdge("server", $"client{i}", edge => edge
-                        .WithArrows(arrows => arrows.WithTo(true).WithFrom(true))
+                        .WithArrows(new VisNetworkArrowOptions().WithTo(true).WithFrom(true))
                         .WithLabel($"Connection {i}")
                     );
                 }

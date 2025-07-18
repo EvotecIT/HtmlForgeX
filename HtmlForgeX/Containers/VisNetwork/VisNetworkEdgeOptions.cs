@@ -124,6 +124,32 @@ public class VisNetworkEdgeOptions {
         Label = label;
         return this;
     }
+    
+    /// <summary>
+    /// Sets an HTML-formatted label with multi-line support. Automatically enables HTML multi-line mode.
+    /// </summary>
+    /// <param name="htmlLabel">The HTML-formatted label content</param>
+    /// <returns>The edge options for method chaining</returns>
+    public VisNetworkEdgeOptions WithHtmlLabel(string htmlLabel) {
+        Label = htmlLabel;
+        // Ensure font options exist and set multi to HTML
+        Font ??= new VisNetworkFontOptions();
+        Font.Multi = VisNetworkMulti.Html;
+        return this;
+    }
+    
+    /// <summary>
+    /// Sets a Markdown-formatted label with multi-line support. Automatically enables Markdown multi-line mode.
+    /// </summary>
+    /// <param name="markdownLabel">The Markdown-formatted label content</param>
+    /// <returns>The edge options for method chaining</returns>
+    public VisNetworkEdgeOptions WithMarkdownLabel(string markdownLabel) {
+        Label = markdownLabel;
+        // Ensure font options exist and set multi to Markdown
+        Font ??= new VisNetworkFontOptions();
+        Font.Multi = VisNetworkMulti.Markdown;
+        return this;
+    }
 
     public VisNetworkEdgeOptions WithTitle(string title) {
         Title = title;
@@ -159,6 +185,15 @@ public class VisNetworkEdgeOptions {
         return this;
     }
 
+    public VisNetworkEdgeOptions WithArrows(Action<VisNetworkArrowOptions> configure) {
+        if (Arrows is not VisNetworkArrowOptions arrowOptions) {
+            arrowOptions = new VisNetworkArrowOptions();
+            Arrows = arrowOptions;
+        }
+        configure(arrowOptions);
+        return this;
+    }
+
     public VisNetworkEdgeOptions WithArrowStrikethrough(bool strikethrough = true) {
         ArrowStrikethrough = strikethrough;
         return this;
@@ -179,18 +214,82 @@ public class VisNetworkEdgeOptions {
         return this;
     }
 
+    public VisNetworkEdgeOptions WithColor(string color) {
+        Color = color;
+        return this;
+    }
+
     public VisNetworkEdgeOptions WithColor(VisNetworkEdgeColorOptions colorOptions) {
         Color = colorOptions;
         return this;
     }
+    
+    public VisNetworkEdgeOptions WithColor(Action<VisNetworkEdgeColorOptions> configure) {
+        if (Color is not VisNetworkEdgeColorOptions colorOptions) {
+            colorOptions = new VisNetworkEdgeColorOptions();
+            Color = colorOptions;
+        }
+        configure(colorOptions);
+        return this;
+    }
+    
+    /// <summary>
+    /// Sets a gradient color for the edge that transitions from one color to another.
+    /// The gradient follows the edge direction from source to target.
+    /// </summary>
+    /// <param name="fromColor">The color at the start of the edge (source node)</param>
+    /// <param name="toColor">The color at the end of the edge (target node)</param>
+    /// <returns>The edge options for method chaining</returns>
+    public VisNetworkEdgeOptions WithGradientColor(RGBColor fromColor, RGBColor toColor) {
+        // VisNetwork expects gradient as an object with specific structure
+        Color = new {
+            from = fromColor.ToHex(),
+            to = toColor.ToHex()
+        };
+        return this;
+    }
+    
+    /// <summary>
+    /// Sets a gradient color for the edge using color strings.
+    /// </summary>
+    /// <param name="fromColor">The color at the start of the edge (source node)</param>
+    /// <param name="toColor">The color at the end of the edge (target node)</param>
+    /// <returns>The edge options for method chaining</returns>
+    public VisNetworkEdgeOptions WithGradientColor(string fromColor, string toColor) {
+        Color = new {
+            from = fromColor,
+            to = toColor
+        };
+        return this;
+    }
 
+    /// <summary>
+    /// Enables or disables dashed lines for the edge.
+    /// </summary>
+    /// <param name="enabled">True to enable dashed lines, false for solid lines</param>
+    /// <returns>The edge options for method chaining</returns>
     public VisNetworkEdgeOptions WithDashes(bool enabled = true) {
         Dashes = enabled;
         return this;
     }
 
+    /// <summary>
+    /// Sets a custom dash pattern for the edge line.
+    /// </summary>
+    /// <param name="pattern">An array of integers representing dash and gap lengths</param>
+    /// <returns>The edge options for method chaining</returns>
     public VisNetworkEdgeOptions WithDashes(params int[] pattern) {
         Dashes = pattern;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets a predefined dash pattern for the edge line.
+    /// </summary>
+    /// <param name="pattern">The dash pattern to use</param>
+    /// <returns>The edge options for method chaining</returns>
+    public VisNetworkEdgeOptions WithDashes(VisNetworkDashPattern pattern) {
+        Dashes = pattern == VisNetworkDashPattern.Solid ? false : (object)pattern.ToArray();
         return this;
     }
 
@@ -252,6 +351,15 @@ public class VisNetworkEdgeOptions {
         return this;
     }
 
+    public VisNetworkEdgeOptions WithSmooth(Action<VisNetworkSmoothOptions> configure) {
+        if (Smooth is not VisNetworkSmoothOptions smoothOptions) {
+            smoothOptions = new VisNetworkSmoothOptions();
+            Smooth = smoothOptions;
+        }
+        configure(smoothOptions);
+        return this;
+    }
+
     public VisNetworkEdgeOptions WithEndPointOffset(Action<VisNetworkEndPointOffset> configure) {
         EndPointOffset ??= new VisNetworkEndPointOffset();
         configure(EndPointOffset);
@@ -284,6 +392,13 @@ public class VisNetworkArrowOptions {
         To = options;
         return this;
     }
+    
+    public VisNetworkArrowOptions WithTo(Action<VisNetworkArrowTypeOptions> configure) {
+        var options = new VisNetworkArrowTypeOptions();
+        configure(options);
+        To = options;
+        return this;
+    }
 
     public VisNetworkArrowOptions WithFrom(bool enabled = true) {
         From = enabled;
@@ -294,6 +409,13 @@ public class VisNetworkArrowOptions {
         From = options;
         return this;
     }
+    
+    public VisNetworkArrowOptions WithFrom(Action<VisNetworkArrowTypeOptions> configure) {
+        var options = new VisNetworkArrowTypeOptions();
+        configure(options);
+        From = options;
+        return this;
+    }
 
     public VisNetworkArrowOptions WithMiddle(bool enabled = true) {
         Middle = enabled;
@@ -301,6 +423,13 @@ public class VisNetworkArrowOptions {
     }
 
     public VisNetworkArrowOptions WithMiddle(VisNetworkArrowTypeOptions options) {
+        Middle = options;
+        return this;
+    }
+    
+    public VisNetworkArrowOptions WithMiddle(Action<VisNetworkArrowTypeOptions> configure) {
+        var options = new VisNetworkArrowTypeOptions();
+        configure(options);
         Middle = options;
         return this;
     }
@@ -386,9 +515,19 @@ public class VisNetworkEdgeColorOptions {
         Color = color.ToHex();
         return this;
     }
+    
+    public VisNetworkEdgeColorOptions WithColor(string color) {
+        Color = color;
+        return this;
+    }
 
     public VisNetworkEdgeColorOptions WithHighlight(RGBColor color) {
         Highlight = color.ToHex();
+        return this;
+    }
+    
+    public VisNetworkEdgeColorOptions WithHighlight(string color) {
+        Highlight = color;
         return this;
     }
 
@@ -396,7 +535,17 @@ public class VisNetworkEdgeColorOptions {
         Hover = color.ToHex();
         return this;
     }
+    
+    public VisNetworkEdgeColorOptions WithHover(string color) {
+        Hover = color;
+        return this;
+    }
 
+    public VisNetworkEdgeColorOptions WithInherit(VisNetworkColorInherit inherit) {
+        Inherit = inherit;
+        return this;
+    }
+    
     public VisNetworkEdgeColorOptions WithInherit(string from) {
         Inherit = from;
         return this;
@@ -498,7 +647,13 @@ public class VisNetworkSmoothOptions {
         return this;
     }
 
+    public VisNetworkSmoothOptions WithForceDirection(VisNetworkForceDirection direction) {
+        ForceDirection = direction;
+        return this;
+    }
+    
     public VisNetworkSmoothOptions WithForceDirection(string direction) {
+        // For backward compatibility
         ForceDirection = direction;
         return this;
     }

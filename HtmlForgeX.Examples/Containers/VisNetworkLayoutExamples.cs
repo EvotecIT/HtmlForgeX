@@ -6,16 +6,16 @@ internal class VisNetworkLayoutExamples {
 
         using var document = new Document {
             Head = { Title = "VisNetwork Layout Examples", Author = "HtmlForgeX" },
-            LibraryMode = LibraryMode.Offline,
+            LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
 
         document.Body.Page(page => {
-            page.Text("VisNetwork Layout Examples").WithClass("h2");
+            page.H2("VisNetwork Layout Examples");
             page.LineBreak();
 
             // Example 1: Hierarchical Layout with Different Directions
-            page.Text("Hierarchical Layout - Different Directions").WithClass("h3");
+            page.H3("Hierarchical Layout - Different Directions");
             
             var directions = new[] { 
                 (VisNetworkLayoutDirection.Ud, "Up-Down"),
@@ -25,7 +25,7 @@ internal class VisNetworkLayoutExamples {
             };
 
             foreach (var (direction, name) in directions) {
-                page.Text($"{name} Direction").WithClass("h4");
+                page.H4($"{name} Direction");
                 page.DiagramNetwork(network => {
                     network
                         .WithId($"hierarchical{direction}")
@@ -34,18 +34,16 @@ internal class VisNetworkLayoutExamples {
                         .WithPhysics(false)
                         .WithOptions(options => {
                             options.WithLayout(layout => {
-                                layout.WithHierarchical(hierarchical => {
-                                    hierarchical
-                                        .WithEnabled(true)
-                                        .WithLevelSeparation(100)
-                                        .WithNodeSpacing(100)
-                                        .WithTreeSpacing(200)
-                                        .WithBlockShifting(true)
-                                        .WithEdgeMinimization(true)
-                                        .WithParentCentralization(true)
-                                        .WithDirection(direction)
-                                        .WithSortMethod(VisNetworkSortMethod.Directed);
-                                });
+                                layout.WithHierarchical(new VisNetworkHierarchicalOptions()
+                                    .WithEnabled(true)
+                                    .WithLevelSeparation(100)
+                                    .WithNodeSpacing(100)
+                                    .WithTreeSpacing(200)
+                                    .WithBlockShifting(true)
+                                    .WithEdgeMinimization(true)
+                                    .WithParentCentralization(true)
+                                    .WithDirection(direction)
+                                    .WithSortMethod(VisNetworkLayoutSort.Directed));
                             });
                         });
 
@@ -66,7 +64,7 @@ internal class VisNetworkLayoutExamples {
             page.LineBreak();
 
             // Example 2: Hierarchical Layout with Overlap Avoidance
-            page.Text("Hierarchical Layout with Overlap Avoidance").WithClass("h3");
+            page.H3("Hierarchical Layout with Overlap Avoidance");
             page.DiagramNetwork(network => {
                 network
                     .WithId("hierarchicalOverlap")
@@ -74,23 +72,20 @@ internal class VisNetworkLayoutExamples {
                     .WithPhysics(physics => {
                         physics
                             .WithEnabled(false)
-                            .WithStabilization(stabilization => {
-                                stabilization.WithEnabled(false);
-                            });
+                            .WithStabilization(new VisNetworkStabilizationOptions()
+                                .WithEnabled(false));
                     })
                     .WithLayout(layout => {
-                        layout.WithHierarchical(hierarchical => {
-                            hierarchical
-                                .WithEnabled(true)
-                                .WithLevelSeparation(150)
-                                .WithNodeSpacing(300)
-                                .WithTreeSpacing(400)
-                                .WithBlockShifting(true)
-                                .WithEdgeMinimization(true)
-                                .WithParentCentralization(true)
-                                .WithDirection(VisNetworkLayoutDirection.Ud)
-                                .WithSortMethod(VisNetworkSortMethod.Hubsize);
-                        });
+                        layout.WithHierarchical(new VisNetworkHierarchicalOptions()
+                            .WithEnabled(true)
+                            .WithLevelSeparation(150)
+                            .WithNodeSpacing(300)
+                            .WithTreeSpacing(400)
+                            .WithBlockShifting(true)
+                            .WithEdgeMinimization(true)
+                            .WithParentCentralization(true)
+                            .WithDirection(VisNetworkLayoutDirection.Ud)
+                            .WithSortMethod(VisNetworkLayoutSort.Hubsize));
                     })
                     .WithOptions(options => {
                         options.WithNodes(nodes => {
@@ -102,25 +97,25 @@ internal class VisNetworkLayoutExamples {
                     });
 
                 // Create complex organization chart
-                network.AddNode(1, node => node.WithLabel("CEO\nJohn Smith").WithLevel(0).WithColor(RGBColor.FromRGB(231, 76, 60)));
+                network.AddNode(1, node => node.WithLabel("CEO\nJohn Smith").WithLevel(0).WithColor(new RGBColor($"#{231:X2}{76:X2}{60:X2}")));
                 
                 // VPs
-                network.AddNode(2, node => node.WithLabel("VP Engineering\nJane Doe").WithLevel(1).WithColor(RGBColor.FromRGB(52, 152, 219)));
-                network.AddNode(3, node => node.WithLabel("VP Sales\nBob Johnson").WithLevel(1).WithColor(RGBColor.FromRGB(52, 152, 219)));
-                network.AddNode(4, node => node.WithLabel("VP Marketing\nAlice Brown").WithLevel(1).WithColor(RGBColor.FromRGB(52, 152, 219)));
+                network.AddNode(2, node => node.WithLabel("VP Engineering\nJane Doe").WithLevel(1).WithColor(new RGBColor($"#{52:X2}{152:X2}{219:X2}")));
+                network.AddNode(3, node => node.WithLabel("VP Sales\nBob Johnson").WithLevel(1).WithColor(new RGBColor($"#{52:X2}{152:X2}{219:X2}")));
+                network.AddNode(4, node => node.WithLabel("VP Marketing\nAlice Brown").WithLevel(1).WithColor(new RGBColor($"#{52:X2}{152:X2}{219:X2}")));
                 
                 // Engineering teams
-                network.AddNode(5, node => node.WithLabel("Frontend Team\nLead: Mike").WithLevel(2).WithColor(RGBColor.FromRGB(46, 204, 113)));
-                network.AddNode(6, node => node.WithLabel("Backend Team\nLead: Sarah").WithLevel(2).WithColor(RGBColor.FromRGB(46, 204, 113)));
-                network.AddNode(7, node => node.WithLabel("DevOps Team\nLead: Tom").WithLevel(2).WithColor(RGBColor.FromRGB(46, 204, 113)));
+                network.AddNode(5, node => node.WithLabel("Frontend Team\nLead: Mike").WithLevel(2).WithColor(new RGBColor($"#{46:X2}{204:X2}{113:X2}")));
+                network.AddNode(6, node => node.WithLabel("Backend Team\nLead: Sarah").WithLevel(2).WithColor(new RGBColor($"#{46:X2}{204:X2}{113:X2}")));
+                network.AddNode(7, node => node.WithLabel("DevOps Team\nLead: Tom").WithLevel(2).WithColor(new RGBColor($"#{46:X2}{204:X2}{113:X2}")));
                 
                 // Sales teams
-                network.AddNode(8, node => node.WithLabel("Enterprise Sales\nLead: David").WithLevel(2).WithColor(RGBColor.FromRGB(155, 89, 182)));
-                network.AddNode(9, node => node.WithLabel("SMB Sales\nLead: Emma").WithLevel(2).WithColor(RGBColor.FromRGB(155, 89, 182)));
+                network.AddNode(8, node => node.WithLabel("Enterprise Sales\nLead: David").WithLevel(2).WithColor(new RGBColor($"#{155:X2}{89:X2}{182:X2}")));
+                network.AddNode(9, node => node.WithLabel("SMB Sales\nLead: Emma").WithLevel(2).WithColor(new RGBColor($"#{155:X2}{89:X2}{182:X2}")));
                 
                 // Marketing teams
-                network.AddNode(10, node => node.WithLabel("Content Team\nLead: Chris").WithLevel(2).WithColor(RGBColor.FromRGB(243, 156, 18)));
-                network.AddNode(11, node => node.WithLabel("Digital Marketing\nLead: Lisa").WithLevel(2).WithColor(RGBColor.FromRGB(243, 156, 18)));
+                network.AddNode(10, node => node.WithLabel("Content Team\nLead: Chris").WithLevel(2).WithColor(new RGBColor($"#{243:X2}{156:X2}{18:X2}")));
+                network.AddNode(11, node => node.WithLabel("Digital Marketing\nLead: Lisa").WithLevel(2).WithColor(new RGBColor($"#{243:X2}{156:X2}{18:X2}")));
 
                 // Add connections
                 network.AddEdge(1, 2);
@@ -138,9 +133,9 @@ internal class VisNetworkLayoutExamples {
             page.LineBreak();
 
             // Example 3: Random Layout with Seed
-            page.Text("Random Layout with Different Seeds").WithClass("h3");
+            page.H3("Random Layout with Different Seeds");
             for (int seed = 1; seed <= 2; seed++) {
-                page.Text($"Random Seed: {seed}").WithClass("h4");
+                page.H4($"Random Seed: {seed}");
                 page.DiagramNetwork(network => {
                     network
                         .WithId($"randomLayout{seed}")
@@ -152,9 +147,8 @@ internal class VisNetworkLayoutExamples {
                         })
                         .WithPhysics(physics => {
                             physics.WithEnabled(true)
-                                .WithStabilization(stabilization => {
-                                    stabilization.WithIterations(100);
-                                });
+                                .WithStabilization(new VisNetworkStabilizationOptions()
+                                    .WithIterations(100));
                         });
 
                     // Create network
@@ -162,7 +156,7 @@ internal class VisNetworkLayoutExamples {
                         network.AddNode(i, node => node
                             .WithLabel($"R{i}")
                             .WithShape(VisNetworkNodeShape.Circle)
-                            .WithColor(RGBColor.FromRGB(100, 150 + i * 10, 200))
+                            .WithColor(new RGBColor($"#{100:X2}{150 + i * 10:X2}{200:X2}"))
                         );
                     }
 
@@ -177,7 +171,7 @@ internal class VisNetworkLayoutExamples {
             page.LineBreak();
 
             // Example 4: Cluster Layout
-            page.Text("Cluster Layout").WithClass("h3");
+            page.H3("Cluster Layout");
             page.DiagramNetwork(network => {
                 network
                     .WithId("clusterLayout")
@@ -187,7 +181,7 @@ internal class VisNetworkLayoutExamples {
                             .WithPhysics(physics => {
                                 physics
                                     .WithEnabled(true)
-                                    .WithSolver(VisNetworkPhysicsSolver.ForceAtlas2Based)
+                                    .WithSolver(VisNetworkPhysicsSolver.ForceAtlas2based)
                                     .WithForceAtlas2Based(forceAtlas2 => {
                                         forceAtlas2
                                             .WithGravitationalConstant(-50)
@@ -195,9 +189,6 @@ internal class VisNetworkLayoutExamples {
                                             .WithSpringLength(150)
                                             .WithSpringConstant(0.2);
                                     });
-                            })
-                            .WithGroups(groups => {
-                                groups.WithUseDefaultGroups(true);
                             });
                     });
 
@@ -249,14 +240,15 @@ internal class VisNetworkLayoutExamples {
             page.LineBreak();
 
             // Example 5: Improved Layout
-            page.Text("Improved Layout Algorithm").WithClass("h3");
+            page.H3("Improved Layout Algorithm");
             page.DiagramNetwork(network => {
                 network
                     .WithId("improvedLayout")
                     .WithSize("100%", "500px")
                     .WithLayout(layout => {
                         layout
-                            .WithImprovedLayout(true, nodes: true, edges: true, clusterThreshold: 150);
+                            .WithImprovedLayout(true)
+                            .WithClusterThreshold(150);
                     })
                     .WithPhysics(physics => {
                         physics

@@ -21,12 +21,12 @@ public class DataTablesDocumentationDemo
         {
             page.Layout = TablerLayout.Fluid;
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "📊 DataTables Enhanced API Guide"));
+            page.H1("📊 DataTables Enhanced API Guide");
             page.Text("Complete documentation with interactive code examples")
                 .Style(TablerTextStyle.Muted);
 
             // Quick Start
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "🚀 Quick Start"));
+            page.H2("🚀 Quick Start");
             page.Text("Get started with DataTables in just a few lines:");
 
             page.CSharpCode(@"
@@ -47,10 +47,10 @@ page.DataTable(products, table => {
                 .GitHubTheme());
 
             // Rendering Modes
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "⚡ Rendering Modes"));
+            page.H2("⚡ Rendering Modes");
             page.Text("Choose the optimal rendering mode for your data size:");
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "HTML Rendering (Traditional)"));
+            page.H3("HTML Rendering (Traditional)");
             page.Text("Best for smaller datasets and maximum compatibility:");
 
             page.CSharpCode(@"
@@ -64,7 +64,7 @@ page.DataTable(smallDataset, table => {
                 .HighlightLine(2)
                 .OkaidiaTheme());
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "JavaScript Rendering (High Performance)"));
+            page.H3("JavaScript Rendering (High Performance)");
             page.Text("Best for large datasets (1000+ rows):");
 
             page.CSharpCode(@"
@@ -81,7 +81,7 @@ page.DataTable(largeDataset, table => {
                 .HighlightLine(2, 6, 7)
                 .TomorrowNightTheme());
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "Auto Mode (Smart Selection)"));
+            page.H3("Auto Mode (Smart Selection)");
             page.Text("Automatically chooses the best rendering mode:");
 
             page.CSharpCode(@"
@@ -98,7 +98,7 @@ page.DataTable(data, table => {
                 .VsTheme());
 
             // Global Configuration
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "🌐 Global Configuration"));
+            page.H2("🌐 Global Configuration");
             page.Text("Set document-wide defaults for consistency:");
 
             page.CSharpCode(@"
@@ -120,7 +120,7 @@ document.Configuration.DataTables.DefaultColumnStyle = DataTablesColumnStyle.Non
                 .DarkTheme());
 
             // Column Configuration
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "📋 Column Configuration"));
+            page.H2("📋 Column Configuration");
             page.Text("Fine-tune individual columns with the fluent API:");
 
             page.CSharpCode(@"
@@ -155,9 +155,9 @@ page.DataTable(products, table => {
                 .GitHubTheme());
 
             // Advanced Features
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "🔧 Advanced Features"));
+            page.H2("🔧 Advanced Features");
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "Export Functionality"));
+            page.H3("Export Functionality");
             page.CSharpCode(@"
 table.EnableExport(
     DataTablesExportFormat.Excel,
@@ -167,7 +167,7 @@ table.EnableExport(
                 .EnableLineNumbers()
                 .OkaidiaTheme());
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "Search and Filtering"));
+            page.H3("Search and Filtering");
             page.CSharpCode(@"
 table.EnableSearching()
      .EnableSearchBuilder()
@@ -175,7 +175,7 @@ table.EnableSearching()
                 .EnableLineNumbers()
                 .VsTheme());
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "Responsive Design"));
+            page.H3("Responsive Design");
             page.CSharpCode(@"
 table.EnableResponsive()
      .EnableFixedHeader()
@@ -184,7 +184,7 @@ table.EnableResponsive()
                 .TomorrowNightTheme());
 
             // Performance Tips
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "⚡ Performance Tips"));
+            page.H2("⚡ Performance Tips");
 
             page.CodeBlock(@"
 // ✅ For large datasets (1000+ rows)
@@ -209,7 +209,7 @@ document.Configuration.DataTables.EnableDeferredRendering = true;", PrismJsLangu
                 .DarkTheme());
 
             // Complete Example
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "🎯 Complete Example"));
+            page.H2("🎯 Complete Example");
             page.Text("Putting it all together:");
 
             page.CSharpCode(@"

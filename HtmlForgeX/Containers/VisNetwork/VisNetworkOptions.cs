@@ -62,6 +62,10 @@ public class VisNetworkOptions {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public VisNetworkPhysicsOptions? Physics { get; set; }
 
+    // Events are not serialized to JSON, they are handled separately
+    [JsonIgnore]
+    public VisNetworkEvents? Events { get; set; }
+
     // Fluent API Methods
 
     public VisNetworkOptions WithAutoResize(bool autoResize = true) {
@@ -91,6 +95,13 @@ public class VisNetworkOptions {
     }
 
     public VisNetworkOptions WithConfigure(VisNetworkConfigureOptions configureOptions) {
+        Configure = configureOptions;
+        return this;
+    }
+
+    public VisNetworkOptions WithConfigure(Action<VisNetworkConfigureOptions> configure) {
+        var configureOptions = Configure as VisNetworkConfigureOptions ?? new VisNetworkConfigureOptions();
+        configure(configureOptions);
         Configure = configureOptions;
         return this;
     }
@@ -136,6 +147,12 @@ public class VisNetworkOptions {
     public VisNetworkOptions WithPhysics(Action<VisNetworkPhysicsOptions> configure) {
         Physics ??= new VisNetworkPhysicsOptions();
         configure(Physics);
+        return this;
+    }
+
+    public VisNetworkOptions WithEvents(Action<VisNetworkEvents> configure) {
+        Events ??= new VisNetworkEvents();
+        configure(Events);
         return this;
     }
 }
@@ -249,6 +266,13 @@ public class VisNetworkLayoutOptions {
         Hierarchical = hierarchicalOptions;
         return this;
     }
+
+    public VisNetworkLayoutOptions WithHierarchical(Action<VisNetworkHierarchicalOptions> configure) {
+        var hierarchicalOptions = Hierarchical as VisNetworkHierarchicalOptions ?? new VisNetworkHierarchicalOptions();
+        configure(hierarchicalOptions);
+        Hierarchical = hierarchicalOptions;
+        return this;
+    }
 }
 
 /// <summary>
@@ -293,7 +317,7 @@ public class VisNetworkHierarchicalOptions {
 
     [JsonPropertyName("shakeTowards")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? ShakeTowards { get; set; }
+    public object? ShakeTowards { get; set; }
 
     public VisNetworkHierarchicalOptions WithEnabled(bool enabled = true) {
         Enabled = enabled;
@@ -340,7 +364,13 @@ public class VisNetworkHierarchicalOptions {
         return this;
     }
 
+    public VisNetworkHierarchicalOptions WithShakeTowards(VisNetworkShakeTowards direction) {
+        ShakeTowards = direction;
+        return this;
+    }
+    
     public VisNetworkHierarchicalOptions WithShakeTowards(string direction) {
+        // For backward compatibility
         ShakeTowards = direction;
         return this;
     }
@@ -452,6 +482,13 @@ public class VisNetworkInteractionOptions {
 
     public VisNetworkInteractionOptions WithKeyboard(VisNetworkKeyboardOptions keyboardOptions) {
         Keyboard = keyboardOptions;
+        return this;
+    }
+
+    public VisNetworkInteractionOptions WithKeyboard(Action<VisNetworkKeyboardOptions> configure) {
+        var keyboard = Keyboard as VisNetworkKeyboardOptions ?? new VisNetworkKeyboardOptions();
+        configure(keyboard);
+        Keyboard = keyboard;
         return this;
     }
 
@@ -583,32 +620,44 @@ public class VisNetworkManipulationOptions {
     }
 
     public VisNetworkManipulationOptions WithAddNode(bool enabled = true) {
-        AddNode = enabled;
+        // When true, we don't set the property to let VisNetwork use default handlers
+        // When false, we explicitly disable it
+        AddNode = enabled ? null : false;
         return this;
     }
 
     public VisNetworkManipulationOptions WithAddEdge(bool enabled = true) {
-        AddEdge = enabled;
+        // When true, we don't set the property to let VisNetwork use default handlers
+        // When false, we explicitly disable it
+        AddEdge = enabled ? null : false;
         return this;
     }
 
     public VisNetworkManipulationOptions WithEditNode(bool enabled = true) {
-        EditNode = enabled;
+        // When true, we don't set the property to let VisNetwork use default handlers
+        // When false, we explicitly disable it
+        EditNode = enabled ? null : false;
         return this;
     }
 
     public VisNetworkManipulationOptions WithEditEdge(bool enabled = true) {
-        EditEdge = enabled;
+        // When true, we don't set the property to let VisNetwork use default handlers
+        // When false, we explicitly disable it
+        EditEdge = enabled ? null : false;
         return this;
     }
 
     public VisNetworkManipulationOptions WithDeleteNode(bool enabled = true) {
-        DeleteNode = enabled;
+        // When true, we don't set the property to let VisNetwork use default handlers
+        // When false, we explicitly disable it
+        DeleteNode = enabled ? null : false;
         return this;
     }
 
     public VisNetworkManipulationOptions WithDeleteEdge(bool enabled = true) {
-        DeleteEdge = enabled;
+        // When true, we don't set the property to let VisNetwork use default handlers
+        // When false, we explicitly disable it
+        DeleteEdge = enabled ? null : false;
         return this;
     }
 }

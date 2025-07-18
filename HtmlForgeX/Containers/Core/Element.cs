@@ -148,6 +148,72 @@ public abstract partial class Element {
     }
 
     /// <summary>
+    /// Adds an H1 heading.
+    /// </summary>
+    /// <param name="text">The heading text.</param>
+    /// <returns>The HeaderLevel element.</returns>
+    public HeaderLevel H1(string text) {
+        var header = new HeaderLevel(HeaderLevelTag.H1, text);
+        this.Add(header);
+        return header;
+    }
+
+    /// <summary>
+    /// Adds an H2 heading.
+    /// </summary>
+    /// <param name="text">The heading text.</param>
+    /// <returns>The HeaderLevel element.</returns>
+    public HeaderLevel H2(string text) {
+        var header = new HeaderLevel(HeaderLevelTag.H2, text);
+        this.Add(header);
+        return header;
+    }
+
+    /// <summary>
+    /// Adds an H3 heading.
+    /// </summary>
+    /// <param name="text">The heading text.</param>
+    /// <returns>The HeaderLevel element.</returns>
+    public HeaderLevel H3(string text) {
+        var header = new HeaderLevel(HeaderLevelTag.H3, text);
+        this.Add(header);
+        return header;
+    }
+
+    /// <summary>
+    /// Adds an H4 heading.
+    /// </summary>
+    /// <param name="text">The heading text.</param>
+    /// <returns>The HeaderLevel element.</returns>
+    public HeaderLevel H4(string text) {
+        var header = new HeaderLevel(HeaderLevelTag.H4, text);
+        this.Add(header);
+        return header;
+    }
+
+    /// <summary>
+    /// Adds an H5 heading.
+    /// </summary>
+    /// <param name="text">The heading text.</param>
+    /// <returns>The HeaderLevel element.</returns>
+    public HeaderLevel H5(string text) {
+        var header = new HeaderLevel(HeaderLevelTag.H5, text);
+        this.Add(header);
+        return header;
+    }
+
+    /// <summary>
+    /// Adds an H6 heading.
+    /// </summary>
+    /// <param name="text">The heading text.</param>
+    /// <returns>The HeaderLevel element.</returns>
+    public HeaderLevel H6(string text) {
+        var header = new HeaderLevel(HeaderLevelTag.H6, text);
+        this.Add(header);
+        return header;
+    }
+
+    /// <summary>
     /// Creates a table from a collection of objects.
     /// </summary>
     /// <param name="objects">Data source.</param>
@@ -232,6 +298,57 @@ public abstract partial class Element {
         config(scrollingText);
         this.Add(scrollingText);
         return scrollingText;
+    }
+
+    /// <summary>
+    /// Adds a FontAwesome icon with a solid style.
+    /// </summary>
+    /// <param name="icon">The solid icon to add.</param>
+    /// <param name="config">Optional configuration action.</param>
+    /// <returns>The created icon element.</returns>
+    public FontAwesomeIcon Icon(FontAwesomeSolid icon, Action<FontAwesomeIcon>? config = null) {
+        var faIcon = new FontAwesomeIcon(icon);
+        config?.Invoke(faIcon);
+        this.Add(faIcon);
+        return faIcon;
+    }
+
+    /// <summary>
+    /// Adds a FontAwesome icon with a regular style.
+    /// </summary>
+    /// <param name="icon">The regular icon to add.</param>
+    /// <param name="config">Optional configuration action.</param>
+    /// <returns>The created icon element.</returns>
+    public FontAwesomeIcon Icon(FontAwesomeRegular icon, Action<FontAwesomeIcon>? config = null) {
+        var faIcon = new FontAwesomeIcon(icon);
+        config?.Invoke(faIcon);
+        this.Add(faIcon);
+        return faIcon;
+    }
+
+    /// <summary>
+    /// Adds a FontAwesome brand icon.
+    /// </summary>
+    /// <param name="icon">The brand icon to add.</param>
+    /// <param name="config">Optional configuration action.</param>
+    /// <returns>The created icon element.</returns>
+    public FontAwesomeIcon Icon(FontAwesomeBrands icon, Action<FontAwesomeIcon>? config = null) {
+        var faIcon = new FontAwesomeIcon(icon);
+        config?.Invoke(faIcon);
+        this.Add(faIcon);
+        return faIcon;
+    }
+
+    /// <summary>
+    /// Adds a FontAwesome icon with configuration.
+    /// </summary>
+    /// <param name="config">Configuration action for the icon.</param>
+    /// <returns>The created icon element.</returns>
+    public FontAwesomeIcon Icon(Action<FontAwesomeIcon> config) {
+        var faIcon = new FontAwesomeIcon();
+        config(faIcon);
+        this.Add(faIcon);
+        return faIcon;
     }
 
 }

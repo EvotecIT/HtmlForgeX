@@ -85,7 +85,9 @@ public enum Libraries {
     /// <summary>SmartTab jQuery plugin for responsive tabs.</summary>
     SmartTab,
     /// <summary>SmartWizard jQuery plugin for step wizards.</summary>
-    SmartWizard
+    SmartWizard,
+    /// <summary>FontAwesome 6 Free icon library.</summary>
+    FontAwesome6
 }
 
 /// <summary>
@@ -243,6 +245,8 @@ public class LibrariesConverter {
             return new Resources.SmartTabLibrary();
         case Libraries.SmartWizard:
             return new Resources.SmartWizardLibrary();
+        case Libraries.FontAwesome6:
+            return new Resources.FontAwesome6Library();
         default:
             throw new ArgumentException($"Unsupported library: {libraries}");
         }

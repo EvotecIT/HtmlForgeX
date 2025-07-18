@@ -114,6 +114,13 @@ public class VisNetworkPhysicsOptions {
         return this;
     }
 
+    public VisNetworkPhysicsOptions WithStabilization(Action<VisNetworkStabilizationOptions> configure) {
+        var stabilizationOptions = new VisNetworkStabilizationOptions();
+        configure(stabilizationOptions);
+        Stabilization = stabilizationOptions;
+        return this;
+    }
+
     public VisNetworkPhysicsOptions WithTimestep(double timestep) {
         Timestep = timestep;
         return this;

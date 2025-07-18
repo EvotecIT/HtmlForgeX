@@ -27,7 +27,7 @@ internal class TablerCardsCompleteDemo {
             // SECTION 1: Basic Card Variations (from cards.html)
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Basic Cards - Complete Recreation of cards.html"));
+            page.H2("Basic Cards - Complete Recreation of cards.html");
             page.Text("Every card type from the original Tabler cards.html file - now with proper C# API").Style(TablerTextStyle.Muted);
 
             page.Row(row => {
@@ -179,7 +179,7 @@ internal class TablerCardsCompleteDemo {
             // SECTION 2: Cards with Images (from cards.html)
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Cards with Images - All Image Positions"));
+            page.H2("Cards with Images - All Image Positions");
 
             page.Row(row => {
                 // Top image
@@ -268,7 +268,7 @@ internal class TablerCardsCompleteDemo {
             // SECTION 3: Card Actions (from card-actions.html)
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Card Actions - Complete Recreation of card-actions.html"));
+            page.H2("Card Actions - Complete Recreation of card-actions.html");
             page.Text("Avatars, action buttons, and interactive elements using proper C# API").Style(TablerTextStyle.Muted);
 
             page.Row(row => {
@@ -346,7 +346,7 @@ internal class TablerCardsCompleteDemo {
             // SECTION 4: Advanced Cards & Footer Examples
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Advanced Features - Footers, Tabs, Complex Layouts"));
+            page.H2("Advanced Features - Footers, Tabs, Complex Layouts");
 
             page.Row(row => {
                 // Card with footer
@@ -442,7 +442,7 @@ internal class TablerCardsCompleteDemo {
             // SECTION 5: Different Card States & Effects
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Card States & Visual Effects"));
+            page.H2("Card States & Visual Effects");
 
             page.Row(row => {
                 // Active card
@@ -494,7 +494,7 @@ internal class TablerCardsCompleteDemo {
             // SECTION 6: Summary & Completion
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Complete Implementation Summary"));
+            page.H2("Complete Implementation Summary");
 
             page.Row(row => {
                 row.Column(TablerColumnNumber.Twelve, column => {

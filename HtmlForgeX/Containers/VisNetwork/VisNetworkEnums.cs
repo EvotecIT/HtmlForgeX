@@ -4,6 +4,9 @@ namespace HtmlForgeX;
 
 #region Node Enums
 
+/// <summary>
+/// Predefined node shapes available in VisNetwork.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkNodeShape>))]
 public enum VisNetworkNodeShape {
     Ellipse,
@@ -24,6 +27,9 @@ public enum VisNetworkNodeShape {
     Custom
 }
 
+/// <summary>
+/// Text alignment options for labels and other text elements.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkAlign>))]
 public enum VisNetworkAlign {
     Left,
@@ -31,6 +37,9 @@ public enum VisNetworkAlign {
     Right
 }
 
+/// <summary>
+/// Multi-line text formatting options for labels.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkMulti>))]
 public enum VisNetworkMulti {
     False,
@@ -39,6 +48,9 @@ public enum VisNetworkMulti {
     Markdown
 }
 
+/// <summary>
+/// Border dash pattern options.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkBorderDashes>))]
 public enum VisNetworkBorderDashes {
     False,
@@ -50,6 +62,56 @@ public enum VisNetworkBorderDashes {
 
 #region Edge Enums
 
+/// <summary>
+/// Color inheritance options for edges.
+/// </summary>
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkColorInherit>))]
+public enum VisNetworkColorInherit {
+    /// <summary>
+    /// No color inheritance.
+    /// </summary>
+    False,
+    
+    /// <summary>
+    /// Inherit color from source node.
+    /// </summary>
+    From,
+    
+    /// <summary>
+    /// Inherit color from target node.
+    /// </summary>
+    To,
+    
+    /// <summary>
+    /// Inherit color from both nodes (gradient).
+    /// </summary>
+    Both
+}
+
+/// <summary>
+/// Force direction options for smooth edges.
+/// </summary>
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkForceDirection>))]  
+public enum VisNetworkForceDirection {
+    /// <summary>
+    /// No force direction.
+    /// </summary>
+    None,
+    
+    /// <summary>
+    /// Force horizontal direction.
+    /// </summary>
+    Horizontal,
+    
+    /// <summary>
+    /// Force vertical direction.
+    /// </summary>
+    Vertical
+}
+
+/// <summary>
+/// Arrow type options for edge endpoints.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkArrowType>))]
 public enum VisNetworkArrowType {
     Arrow,
@@ -59,6 +121,9 @@ public enum VisNetworkArrowType {
     Vee
 }
 
+/// <summary>
+/// Smooth curve types for edges.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkSmoothType>))]
 public enum VisNetworkSmoothType {
     Dynamic,
@@ -73,6 +138,9 @@ public enum VisNetworkSmoothType {
     Cubicbezier
 }
 
+/// <summary>
+/// Edge endpoint types.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkEdgeType>))]
 public enum VisNetworkEdgeType {
     Arrow,
@@ -84,6 +152,9 @@ public enum VisNetworkEdgeType {
 
 #region Physics Enums
 
+/// <summary>
+/// Physics solver algorithms for network simulation.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkPhysicsSolver>))]
 public enum VisNetworkPhysicsSolver {
     BarnesHut,
@@ -96,6 +167,25 @@ public enum VisNetworkPhysicsSolver {
 
 #region Layout Enums
 
+/// <summary>
+/// Shake towards options for hierarchical layout.
+/// </summary>
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkShakeTowards>))]  
+public enum VisNetworkShakeTowards {
+    /// <summary>
+    /// Shake towards roots.
+    /// </summary>
+    Roots,
+    
+    /// <summary>
+    /// Shake towards leaves.
+    /// </summary>
+    Leaves
+}
+
+/// <summary>
+/// Hierarchical layout direction options.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkLayoutDirection>))]
 public enum VisNetworkLayoutDirection {
     Ud,  // up-down
@@ -104,12 +194,18 @@ public enum VisNetworkLayoutDirection {
     Rl   // right-left
 }
 
+/// <summary>
+/// Sorting methods for hierarchical layout.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkLayoutSort>))]
 public enum VisNetworkLayoutSort {
     Hubsize,
     Directed
 }
 
+/// <summary>
+/// Tree spacing methods for hierarchical layout.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkTreeSpacing>))]
 public enum VisNetworkTreeSpacing {
     EdgeMinimization,
@@ -120,6 +216,9 @@ public enum VisNetworkTreeSpacing {
 
 #region Interaction Enums
 
+/// <summary>
+/// Keyboard navigation speed options.
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkKeyboardSpeed>))]
 public enum VisNetworkKeyboardSpeed {
     X,
@@ -277,6 +376,18 @@ public class VisNetworkEnumConverter<T> : JsonConverter<T> where T : struct, Enu
                 writer.WriteBooleanValue(false);
             } else if (value.Equals(VisNetworkMulti.True)) {
                 writer.WriteBooleanValue(true);
+            } else {
+                writer.WriteStringValue(stringValue.ToLowerInvariant());
+            }
+        } else if (typeof(T) == typeof(VisNetworkForceDirection)) {
+            if (value.Equals(VisNetworkForceDirection.None)) {
+                writer.WriteBooleanValue(false);
+            } else {
+                writer.WriteStringValue(stringValue.ToLowerInvariant());
+            }
+        } else if (typeof(T) == typeof(VisNetworkColorInherit)) {
+            if (value.Equals(VisNetworkColorInherit.False)) {
+                writer.WriteBooleanValue(false);
             } else {
                 writer.WriteStringValue(stringValue.ToLowerInvariant());
             }

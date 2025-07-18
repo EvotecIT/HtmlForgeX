@@ -17,7 +17,7 @@ internal class BasicChartJs {
             page.Layout = TablerLayout.Fluid;
             
             // Header
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "📊 ChartJs Enhanced Demo"));
+            page.H1("📊 ChartJs Enhanced Demo");
             page.Text("Comprehensive Chart.js integration with fluent API")
                 .Style(TablerTextStyle.Muted).Weight(TablerFontWeight.Medium);
 

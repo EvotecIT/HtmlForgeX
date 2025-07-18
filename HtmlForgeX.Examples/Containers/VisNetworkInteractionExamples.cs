@@ -6,16 +6,16 @@ internal class VisNetworkInteractionExamples {
 
         using var document = new Document {
             Head = { Title = "VisNetwork Interaction Examples", Author = "HtmlForgeX" },
-            LibraryMode = LibraryMode.Offline,
+            LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
 
         document.Body.Page(page => {
-            page.Text("VisNetwork Interaction & Configuration").WithClass("h2");
+            page.H2("VisNetwork Interaction & Configuration");
             page.LineBreak();
 
             // Example 1: Interaction Options
-            page.Text("Interaction Options").WithClass("h3");
+            page.H3("Interaction Options");
             page.DiagramNetwork(network => {
                 network
                     .WithId("interactionOptions")
@@ -29,9 +29,9 @@ internal class VisNetworkInteractionExamples {
                             .WithHideNodesOnDrag(false)
                             .WithHover(true)
                             .WithHoverConnectedEdges(true)
-                            .WithKeyboard(keyboard => keyboard
+                            .WithKeyboard(new VisNetworkKeyboardOptions()
                                 .WithEnabled(true)
-                                .WithSpeed(speed => speed.WithX(5).WithY(5).WithZoom(0.02))
+                                .WithSpeed(5, 5, 0.02)
                                 .WithBindToWindow(false)
                             )
                             .WithMultiselect(true)
@@ -44,11 +44,8 @@ internal class VisNetworkInteractionExamples {
                     })
                     .WithOptions(options => {
                         options.WithNodes(nodes => {
-                            nodes.WithChosen(chosen => chosen
-                                .WithNode(nodeChosen => nodeChosen
-                                    .WithBorderColor(RGBColor.Red)
-                                    .WithBorderWidth(3)
-                                )
+                            nodes.WithChosen(new VisNetworkChosenOptions()
+                                .WithNode(true)  // Simply enable chosen functionality
                                 .WithLabel(true)
                             );
                         });
@@ -77,7 +74,7 @@ internal class VisNetworkInteractionExamples {
             page.LineBreak();
 
             // Example 2: Configure Options
-            page.Text("Configure Options").WithClass("h3");
+            page.H3("Configure Options");
             page.DiagramNetwork(network => {
                 network
                     .WithId("configureOptions")
@@ -85,10 +82,9 @@ internal class VisNetworkInteractionExamples {
                     .WithOptions(options => {
                         options
                             .WithAutoResize(true)
-                            .WithHeight("100%")
-                            .WithWidth("100%")
+                            .WithSize("100%", "100%")
                             .WithClickToUse(false)
-                            .WithConfigure(configure => configure
+                            .WithConfigure(new VisNetworkConfigureOptions()
                                 .WithEnabled(true)
                                 .WithFilter("nodes,edges")
                                 .WithShowButton(true)
@@ -104,7 +100,7 @@ internal class VisNetworkInteractionExamples {
             page.LineBreak();
 
             // Example 3: Clustering
-            page.Text("Network Clustering").WithClass("h3");
+            page.H3("Network Clustering");
             page.DiagramNetwork(network => {
                 network
                     .WithId("clustering")
@@ -166,7 +162,7 @@ internal class VisNetworkInteractionExamples {
             page.LineBreak();
 
             // Example 4: Locale Configuration
-            page.Text("Locale Configuration").WithClass("h3");
+            page.H3("Locale Configuration");
             page.DiagramNetwork(network => {
                 network
                     .WithId("localeConfig")
@@ -176,24 +172,9 @@ internal class VisNetworkInteractionExamples {
                     })
                     .WithOptions(options => {
                         options
-                            .WithLocale(VisNetworkLocale.En)
-                            .WithLocales(locales => {
-                                locales.WithEn(en => {
-                                    en.Edit = "Edit Network";
-                                    en.Del = "Delete Selection";
-                                    en.Back = "Return";
-                                    en.AddNode = "Add New Node";
-                                    en.AddEdge = "Add Connection";
-                                    en.EditNode = "Modify Node";
-                                    en.EditEdge = "Modify Connection";
-                                    en.AddDescription = "Click empty space to place a new node";
-                                    en.EdgeDescription = "Drag from one node to another to connect";
-                                    en.EditEdgeDescription = "Drag the connection to a different node";
-                                    en.CreateEdgeError = "Cannot create self-loops";
-                                    en.DeleteClusterError = "Cannot delete clusters";
-                                    en.EditClusterError = "Cannot edit clusters";
-                                });
-                            });
+                            .WithLocale(VisNetworkLocale.En);
+                            // Locales configuration is not available in the current API
+                            // The locale is set with WithLocale(VisNetworkLocale.En) above
                     });
 
                 // Sample network
@@ -205,7 +186,7 @@ internal class VisNetworkInteractionExamples {
             page.LineBreak();
 
             // Example 5: Performance Configuration
-            page.Text("Performance Optimized Network").WithClass("h3");
+            page.H3("Performance Optimized Network");
             page.DiagramNetwork(network => {
                 network
                     .WithId("performanceNetwork")
@@ -225,14 +206,12 @@ internal class VisNetworkInteractionExamples {
                                             .WithDamping(0.1)
                                             .WithAvoidOverlap(0.5);
                                     })
-                                    .WithStabilization(stabilization => {
-                                        stabilization
-                                            .WithEnabled(true)
-                                            .WithIterations(1000)
-                                            .WithUpdateInterval(25)
-                                            .WithOnlyDynamicEdges(false)
-                                            .WithFit(true);
-                                    })
+                                    .WithStabilization(new VisNetworkStabilizationOptions()
+                                        .WithEnabled(true)
+                                        .WithIterations(1000)
+                                        .WithUpdateInterval(25)
+                                        .WithOnlyDynamicEdges(false)
+                                        .WithFit(true))
                                     .WithMaxVelocity(146)
                                     .WithMinVelocity(0.75)
                                     .WithTimestep(0.5);
@@ -244,7 +223,7 @@ internal class VisNetworkInteractionExamples {
                                     .WithHideNodesOnDrag(false);
                             })
                             .WithEdges(edges => {
-                                edges.WithSmooth(smooth => smooth
+                                edges.WithSmooth(new VisNetworkSmoothOptions()
                                     .WithEnabled(false)  // Disable for performance
                                 );
                             });
@@ -261,11 +240,7 @@ internal class VisNetworkInteractionExamples {
                         .WithLabel($"N{i}")
                         .WithShape(VisNetworkNodeShape.Dot)
                         .WithSize(10 + (i % 5) * 5)
-                        .WithColor(RGBColor.FromRGB(
-                            100 + (i * 3) % 155,
-                            100 + (i * 5) % 155,
-                            100 + (i * 7) % 155
-                        ))
+                        .WithColor(new RGBColor($"#{100 + (i * 3) % 155:X2}{100 + (i * 5) % 155:X2}{100 + (i * 7) % 155:X2}"))
                     );
                     nodes.Add(i);
                 }
@@ -276,7 +251,8 @@ internal class VisNetworkInteractionExamples {
                     var from = nodes[random.Next(nodes.Count)];
                     var to = nodes[random.Next(nodes.Count)];
                     if (from != to) {
-                        network.AddEdge($"e{i}", from, to, edge => edge
+                        network.AddEdge(from, to, edge => edge
+                            .WithId($"e{i}")
                             .WithColor(RGBColor.LightGray)
                             .WithWidth(0.5)
                         );
@@ -287,7 +263,7 @@ internal class VisNetworkInteractionExamples {
             page.LineBreak();
 
             // Example 6: View Options
-            page.Text("View Options & Animations").WithClass("h3");
+            page.H3("View Options & Animations");
             page.DiagramNetwork(network => {
                 network
                     .WithId("viewOptions")
@@ -339,7 +315,7 @@ internal class VisNetworkInteractionExamples {
                 network.AddNode(4, node => node
                     .WithLabel("Extra Large")
                     .WithValue(150)
-                    .WithColor(RGBColor.Navy)
+                    .WithColor(RGBColor.NavyBlue)
                 );
 
                 // Edges with different values
