@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text.Json;
 
 namespace HtmlForgeX;
@@ -9,7 +10,6 @@ public class VisNetwork : Element {
     private readonly List<VisNetworkNodeOptions> _nodes = new();
     private readonly List<VisNetworkEdgeOptions> _edges = new();
     private VisNetworkOptions _options = new();
-    private Dictionary<string, object>? _customOptions;
     private bool _enableLoadingBar;
     private string _id;
 
@@ -21,23 +21,6 @@ public class VisNetwork : Element {
         set => _id = value;
     }
 
-    /// <summary>
-    /// Gets the collection of nodes to render (legacy property).
-    /// </summary>
-    [Obsolete("Use AddNode methods instead. This property is for backward compatibility only.")]
-    public List<object> Nodes { get; } = new List<object>();
-
-    /// <summary>
-    /// Gets the collection of edges connecting nodes (legacy property).
-    /// </summary>
-    [Obsolete("Use AddEdge methods instead. This property is for backward compatibility only.")]
-    public List<object> Edges { get; } = new List<object>();
-
-    /// <summary>
-    /// Gets a dictionary of additional options passed directly to Vis Network (legacy property).
-    /// </summary>
-    [Obsolete("Use WithOptions method instead. This property is for backward compatibility only.")]
-    public Dictionary<string, object> Options { get; } = new Dictionary<string, object>();
 
     /// <summary>
     /// Gets or sets a value indicating whether the loading bar should be displayed.
@@ -76,13 +59,6 @@ public class VisNetwork : Element {
                 ApplyArrowImageEmbedding(arrowOptions);
             }
         }
-
-        // Handle legacy nodes
-        foreach (var nodeObj in Nodes) {
-            if (nodeObj is VisNetworkNode node) {
-                node.ApplyDocumentConfiguration(Document!);
-            }
-        }
     }
 
     #region Fluent API - Configuration
@@ -118,20 +94,23 @@ public class VisNetwork : Element {
     }
 
     /// <summary>
-    /// Sets an option that will be passed to the underlying Vis Network instance (legacy support).
+    /// Sets a specific option using a key-value pair (for backward compatibility).
     /// </summary>
-    /// <param name="key">Option name.</param>
-    /// <param name="value">Option value.</param>
-    /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
-    [Obsolete("Use WithOptions method with strongly-typed configuration instead.")]
-    public VisNetwork SetOption(string key, object value) {
-        // This is a legacy method that directly manipulates options
-        // For better type safety, use the WithOptions method
-        // We'll need to handle this in the ToString method
-        _customOptions ??= new Dictionary<string, object>();
-        _customOptions[key] = value;
+    /// <param name="key">The option key (e.g., "nodes", "edges", "physics")</param>
+    /// <param name="value">The option value</param>
+    /// <returns>The current VisNetwork instance for method chaining</returns>
+    public VisNetwork WithOptions(string key, object value) {
+        // Use reflection to set the appropriate property on _options
+        var property = _options.GetType().GetProperty(key, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+        if (property != null) {
+            // Convert anonymous type to JSON and back to target type for compatibility
+            var json = JsonSerializer.Serialize(value);
+            var convertedValue = JsonSerializer.Deserialize(json, property.PropertyType);
+            property.SetValue(_options, convertedValue);
+        }
         return this;
     }
+
 
     #endregion
 
@@ -1458,30 +1437,16 @@ public class VisNetwork : Element {
                         .Value(new HtmlTag("div").Class("diagram diagramObject").Style("position", "absolute").Id(_id));
         }
 
-        // Combine new and legacy nodes
+        // Use the current nodes collection
         var allNodes = new List<object>(_nodes);
-        foreach (var node in Nodes) {
-            if (node is VisNetworkNode visNode) {
-                allNodes.Add(visNode.ToNodeOptions());
-            } else {
-                allNodes.Add(node);
-            }
-        }
 
         // Apply image embedding before serialization
         foreach (var node in allNodes.OfType<VisNetworkNodeOptions>()) {
             ApplyImageEmbedding(node);
         }
 
-        // Combine new and legacy edges
+        // Use the current edges collection
         var allEdges = new List<object>(_edges);
-        foreach (var edge in Edges) {
-            if (edge is VisNetworkEdge visEdge) {
-                allEdges.Add(visEdge.ToEdgeOptions());
-            } else {
-                allEdges.Add(edge);
-            }
-        }
 
         foreach (var edge in allEdges.OfType<VisNetworkEdgeOptions>()) {
             if (edge.Arrows is VisNetworkArrowOptions arrowOptions) {
@@ -1497,21 +1462,9 @@ public class VisNetwork : Element {
         var nodesJson = JsonSerializer.Serialize(allNodes, jsonOptions);
         var edgesJson = JsonSerializer.Serialize(allEdges, jsonOptions);
         
-        // Merge options from different sources
+        // Use the current options
         var mergedOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(
             JsonSerializer.Serialize(_options, jsonOptions)) ?? new Dictionary<string, object>();
-        
-        // Add custom options from SetOption calls
-        if (_customOptions != null) {
-            foreach (var kvp in _customOptions) {
-                mergedOptions[kvp.Key] = kvp.Value;
-            }
-        }
-        
-        // Add legacy Options
-        foreach (var kvp in Options) {
-            mergedOptions[kvp.Key] = kvp.Value;
-        }
         
         var optionsJson = JsonSerializer.Serialize(mergedOptions, jsonOptions);
 

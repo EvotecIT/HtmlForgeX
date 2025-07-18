@@ -38,9 +38,9 @@ public class TestVisNetworkComponent {
                 network.AddNode(new { id = 2, label = "End", color = "blue" });
                 network.AddEdge(new { from = 1, to = 2, arrows = "to" });
                 
-                network.SetOption("nodes", new { shape = "box", font = new { size = 14 } });
-                network.SetOption("edges", new { smooth = true });
-                network.SetOption("physics", new { enabled = false });
+                network.WithOptions("nodes", new { shape = "box", font = new { size = 14 } });
+                network.WithOptions("edges", new { smooth = true });
+                network.WithOptions("physics", new { enabled = false });
             });
         });
         
@@ -114,7 +114,7 @@ public class TestVisNetworkComponent {
                 network.AddEdge(new { from = 1, to = 3 });
                 network.AddEdge(new { from = 2, to = 4 });
                 
-                network.SetOption("layout", new { 
+                network.WithOptions("layout", new { 
                     hierarchical = new { 
                         direction = "UD",
                         sortMethod = "directed"
@@ -145,7 +145,7 @@ public class TestVisNetworkComponent {
                 network.AddEdge(new { from = 1, to = 2, label = "queries" });
                 network.AddEdge(new { from = 3, to = 1, label = "requests" });
                 
-                network.SetOption("groups", new {
+                network.WithOptions("groups", new {
                     servers = new { color = new { background = "lightblue" } },
                     databases = new { color = new { background = "lightgreen" } },
                     clients = new { color = new { background = "lightyellow" } }
@@ -171,14 +171,14 @@ public class TestVisNetworkComponent {
             element.DiagramNetwork(network => {
                 network.AddNode(new { id = 1, label = "Interactive Node" });
                 
-                network.SetOption("interaction", new {
+                network.WithOptions("interaction", new {
                     dragNodes = true,
                     dragView = true,
                     zoomView = true,
                     selectConnectedEdges = true
                 });
                 
-                network.SetOption("manipulation", new {
+                network.WithOptions("manipulation", new {
                     enabled = true,
                     addNode = true,
                     addEdge = true,
@@ -275,7 +275,7 @@ public class TestVisNetworkComponent {
                     dashes = true
                 });
                 
-                network.SetOption("edges", new {
+                network.WithOptions("edges", new {
                     smooth = new {
                         type = "cubicBezier",
                         forceDirection = "horizontal",

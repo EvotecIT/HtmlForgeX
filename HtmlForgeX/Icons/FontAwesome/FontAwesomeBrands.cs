@@ -8,78 +8,153 @@ namespace HtmlForgeX;
 /// </summary>
 public enum FontAwesomeBrands {
     // Social Media
+    /// <summary>
+    /// Facebook logo icon
+    /// </summary>
     [Description("\uf09a")]
     Facebook,
     
+    /// <summary>
+    /// Facebook F logo icon
+    /// </summary>
     [Description("\uf39e")]
     FacebookF,
     
+    /// <summary>
+    /// Facebook logo in square icon
+    /// </summary>
     [Description("\uf082")]
     FacebookSquare,
     
+    /// <summary>
+    /// Facebook Messenger logo icon
+    /// </summary>
     [Description("\uf308")]
     FacebookMessenger,
     
+    /// <summary>
+    /// Twitter/X logo icon
+    /// </summary>
     [Description("\uf099")]
     Twitter,
     
+    /// <summary>
+    /// Twitter/X logo in square icon
+    /// </summary>
     [Description("\uf081")]
     TwitterSquare,
     
+    /// <summary>
+    /// Instagram logo icon
+    /// </summary>
     [Description("\uf16d")]
     Instagram,
     
+    /// <summary>
+    /// Instagram logo in square icon
+    /// </summary>
     [Description("\uf431")]
     InstagramSquare,
     
+    /// <summary>
+    /// LinkedIn logo icon
+    /// </summary>
     [Description("\uf0e1")]
     Linkedin,
     
+    /// <summary>
+    /// LinkedIn 'in' logo icon
+    /// </summary>
     [Description("\uf08c")]
     LinkedinIn,
     
+    /// <summary>
+    /// YouTube logo icon
+    /// </summary>
     [Description("\uf167")]
     Youtube,
     
+    /// <summary>
+    /// YouTube logo in square icon
+    /// </summary>
     [Description("\uf431")]
     YoutubeSquare,
     
+    /// <summary>
+    /// Snapchat logo icon
+    /// </summary>
     [Description("\uf2ac")]
     Snapchat,
     
+    /// <summary>
+    /// Snapchat ghost logo icon
+    /// </summary>
     [Description("\uf2ad")]
     SnapchatGhost,
     
+    /// <summary>
+    /// Snapchat logo in square icon
+    /// </summary>
     [Description("\uf2ae")]
     SnapchatSquare,
     
+    /// <summary>
+    /// Pinterest logo icon
+    /// </summary>
     [Description("\uf0d5")]
     Pinterest,
     
+    /// <summary>
+    /// Pinterest 'P' logo icon
+    /// </summary>
     [Description("\uf0d4")]
     PinterestP,
     
+    /// <summary>
+    /// Pinterest logo in square icon
+    /// </summary>
     [Description("\uf231")]
     PinterestSquare,
     
+    /// <summary>
+    /// Tumblr logo icon
+    /// </summary>
     [Description("\uf173")]
     Tumblr,
     
+    /// <summary>
+    /// Tumblr logo in square icon
+    /// </summary>
     [Description("\uf174")]
     TumblrSquare,
     
+    /// <summary>
+    /// Twitch streaming platform logo icon
+    /// </summary>
     [Description("\uf1e8")]
     Twitch,
     
+    /// <summary>
+    /// Reddit logo icon
+    /// </summary>
     [Description("\uf1bd")]
     Reddit,
     
+    /// <summary>
+    /// Reddit logo in square icon
+    /// </summary>
     [Description("\uf1a2")]
     RedditSquare,
     
+    /// <summary>
+    /// Reddit alien mascot logo icon
+    /// </summary>
     [Description("\uf281")]
     RedditAlien,
     
+    /// <summary>
+    /// Telegram messaging app logo icon
+    /// </summary>
     [Description("\uf2c6")]
     Telegram,
     
@@ -102,6 +177,9 @@ public enum FontAwesomeBrands {
     Tiktok,
     
     // Development & Tech
+    /// <summary>
+    /// GitHub logo icon
+    /// </summary>
     [Description("\uf09b")]
     Github,
     
@@ -208,6 +286,9 @@ public enum FontAwesomeBrands {
     SteamSquare,
     
     // Operating Systems
+    /// <summary>
+    /// Apple company logo icon
+    /// </summary>
     [Description("\uf179")]
     Apple,
     
@@ -239,12 +320,18 @@ public enum FontAwesomeBrands {
     Redhat,
     
     // Cloud & Services
+    /// <summary>
+    /// Amazon company logo icon
+    /// </summary>
     [Description("\uf270")]
     Amazon,
     
     [Description("\uf375")]
     Aws,
     
+    /// <summary>
+    /// Google company logo icon
+    /// </summary>
     [Description("\uf1a3")]
     Google,
     
@@ -266,6 +353,9 @@ public enum FontAwesomeBrands {
     [Description("\uf3ab")]
     GoogleWallet,
     
+    /// <summary>
+    /// Microsoft company logo icon
+    /// </summary>
     [Description("\uf3d5")]
     Microsoft,
     

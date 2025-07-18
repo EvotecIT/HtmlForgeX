@@ -8,12 +8,21 @@ namespace HtmlForgeX;
 /// </summary>
 public enum FontAwesome {
     // Server & Infrastructure
+    /// <summary>
+    /// Server/host computer icon
+    /// </summary>
     [Description("\uf233")]
     Server,
 
+    /// <summary>
+    /// Database/data storage icon
+    /// </summary>
     [Description("\uf1c0")]
     Database,
 
+    /// <summary>
+    /// Cloud computing/storage icon
+    /// </summary>
     [Description("\uf0c2")]
     Cloud,
 
@@ -27,9 +36,15 @@ public enum FontAwesome {
     Hdd,
 
     // Users & People
+    /// <summary>
+    /// Single user/person icon
+    /// </summary>
     [Description("\uf007")]
     User,
 
+    /// <summary>
+    /// Multiple users/group icon
+    /// </summary>
     [Description("\uf0c0")]
     Users,
 
@@ -46,6 +61,9 @@ public enum FontAwesome {
     UserPlus,
 
     // Security & Lock
+    /// <summary>
+    /// Padlock/security lock icon
+    /// </summary>
     [Description("\uf023")]
     Lock,
 

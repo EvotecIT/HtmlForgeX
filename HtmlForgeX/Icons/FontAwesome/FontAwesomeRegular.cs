@@ -8,78 +8,150 @@ namespace HtmlForgeX;
 /// </summary>
 public enum FontAwesomeRegular {
     // User & People
+    /// <summary>
+    /// Outlined single user/person icon
+    /// </summary>
     [Description("\uf007")]
     User,
     
+    /// <summary>
+    /// User icon in a circle outline
+    /// </summary>
     [Description("\uf2bd")]
     UserCircle,
     
     // Files
+    /// <summary>
+    /// Basic file/document outline icon
+    /// </summary>
     [Description("\uf15b")]
     File,
     
+    /// <summary>
+    /// Alternative file/document with text lines outline
+    /// </summary>
     [Description("\uf15c")]
     FileAlt,
     
+    /// <summary>
+    /// Archive/compressed file outline icon
+    /// </summary>
     [Description("\uf1c6")]
     FileArchive,
     
+    /// <summary>
+    /// Audio/sound file outline icon
+    /// </summary>
     [Description("\uf1c7")]
     FileAudio,
     
+    /// <summary>
+    /// Code/programming file outline icon
+    /// </summary>
     [Description("\uf1c9")]
     FileCode,
     
+    /// <summary>
+    /// Excel spreadsheet file outline icon
+    /// </summary>
     [Description("\uf1c3")]
     FileExcel,
     
+    /// <summary>
+    /// Image/picture file outline icon
+    /// </summary>
     [Description("\uf1c5")]
     FileImage,
     
+    /// <summary>
+    /// PDF document file outline icon
+    /// </summary>
     [Description("\uf1c8")]
     FilePdf,
     
+    /// <summary>
+    /// PowerPoint presentation file outline icon
+    /// </summary>
     [Description("\uf1c4")]
     FilePowerpoint,
     
+    /// <summary>
+    /// Video file outline icon
+    /// </summary>
     [Description("\uf1c1")]
     FileVideo,
     
+    /// <summary>
+    /// Word document file outline icon
+    /// </summary>
     [Description("\uf1c2")]
     FileWord,
     
+    /// <summary>
+    /// Folder/directory outline icon
+    /// </summary>
     [Description("\uf07b")]
     Folder,
     
+    /// <summary>
+    /// Open folder/directory outline icon
+    /// </summary>
     [Description("\uf07c")]
     FolderOpen,
     
     // Communication
+    /// <summary>
+    /// Email/mail envelope outline icon
+    /// </summary>
     [Description("\uf0e0")]
     Envelope,
     
+    /// <summary>
+    /// Open email/mail envelope outline icon
+    /// </summary>
     [Description("\uf2b6")]
     EnvelopeOpen,
     
+    /// <summary>
+    /// Single comment/speech bubble outline icon
+    /// </summary>
     [Description("\uf075")]
     Comment,
     
+    /// <summary>
+    /// Alternative comment bubble outline icon
+    /// </summary>
     [Description("\uf27a")]
     CommentAlt,
     
+    /// <summary>
+    /// Comment bubble with dots outline icon
+    /// </summary>
     [Description("\uf4ad")]
     CommentDots,
     
+    /// <summary>
+    /// Multiple comments/discussion outline icon
+    /// </summary>
     [Description("\uf086")]
     Comments,
     
     // UI Elements
+    /// <summary>
+    /// Checkmark/tick icon in circle outline
+    /// </summary>
     [Description("\uf058")]
     CheckCircle,
     
+    /// <summary>
+    /// X/close icon in circle outline
+    /// </summary>
     [Description("\uf057")]
     TimesCircle,
     
+    /// <summary>
+    /// Question mark icon in circle outline
+    /// </summary>
     [Description("\uf059")]
     QuestionCircle,
     
