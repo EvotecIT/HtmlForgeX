@@ -166,8 +166,13 @@ internal class Program {
         ApexChartsComprehensive.Demo(openInBrowser);
 
         // VisNetwork images demo
-        BasicVisNetwork.Demo(openInBrowser);
-        AdvancedVisNetwork.Demo(openInBrowser);
+        BasicVisNetwork.Demo(true);
+        AdvancedVisNetwork.Demo(true);
+        VisNetworkPhysicsExamples.Demo(true);
+        VisNetworkLayoutExamples.Demo(true);
+        VisNetworkNodeStylingExamples.Demo(true);
+        VisNetworkEdgeManipulationExamples.Demo(true);
+        VisNetworkInteractionExamples.Demo(true);
 
         // Table examples
         DataTablesQuickStart.Create(openInBrowser);

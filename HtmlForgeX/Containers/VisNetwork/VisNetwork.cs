@@ -59,9 +59,7 @@ public class VisNetwork : Element {
     /// </summary>
     protected internal override void RegisterLibraries() {
         Document?.AddLibrary(Libraries.VisNetwork);
-        if (_enableLoadingBar) {
-            Document?.AddLibrary(Libraries.VisNetworkLoadingBar);
-        }
+        Document?.AddLibrary(Libraries.VisNetworkLoadingBar);
     }
 
     /// <summary>

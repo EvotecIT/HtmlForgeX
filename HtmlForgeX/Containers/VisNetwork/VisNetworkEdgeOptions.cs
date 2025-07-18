@@ -154,11 +154,6 @@ public class VisNetworkEdgeOptions {
         return this;
     }
 
-    public VisNetworkEdgeOptions WithArrows(string direction) {
-        Arrows = direction;
-        return this;
-    }
-
     public VisNetworkEdgeOptions WithArrows(VisNetworkArrowOptions arrows) {
         Arrows = arrows;
         return this;
@@ -176,11 +171,6 @@ public class VisNetworkEdgeOptions {
 
     public VisNetworkEdgeOptions WithChosen(VisNetworkChosenEdgeOptions chosenOptions) {
         Chosen = chosenOptions;
-        return this;
-    }
-
-    public VisNetworkEdgeOptions WithColor(string color) {
-        Color = color;
         return this;
     }
 
@@ -392,23 +382,18 @@ public class VisNetworkEdgeColorOptions {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public double? Opacity { get; set; }
 
-    public VisNetworkEdgeColorOptions WithColor(string color) {
-        Color = color;
-        return this;
-    }
-
     public VisNetworkEdgeColorOptions WithColor(RGBColor color) {
         Color = color.ToHex();
         return this;
     }
 
-    public VisNetworkEdgeColorOptions WithHighlight(string color) {
-        Highlight = color;
+    public VisNetworkEdgeColorOptions WithHighlight(RGBColor color) {
+        Highlight = color.ToHex();
         return this;
     }
 
-    public VisNetworkEdgeColorOptions WithHover(string color) {
-        Hover = color;
+    public VisNetworkEdgeColorOptions WithHover(RGBColor color) {
+        Hover = color.ToHex();
         return this;
     }
 

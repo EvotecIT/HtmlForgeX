@@ -35,7 +35,7 @@ internal class AdvancedVisNetwork {
                         });
                         
                         options.WithEdges(edges => {
-                            edges.WithArrows("to");
+                            edges.WithArrows(arrows => arrows.WithTo(true));
                         });
                     });
 
@@ -43,22 +43,22 @@ internal class AdvancedVisNetwork {
                 network.AddNode(1, node => node
                     .WithLabel("CEO")
                     .WithLevel(0)
-                    .WithColor("#e74c3c")
-                    .WithFont(font => font.WithColor("white").WithSize(16))
+                    .WithColor(RGBColor.FromRGB(231, 76, 60))
+                    .WithFont(font => font.WithColor(RGBColor.White).WithSize(16))
                 );
 
                 network.AddNode(2, node => node
                     .WithLabel("CTO")
                     .WithLevel(1)
-                    .WithColor("#3498db")
-                    .WithFont(font => font.WithColor("white"))
+                    .WithColor(RGBColor.FromRGB(52, 152, 219))
+                    .WithFont(font => font.WithColor(RGBColor.White))
                 );
 
                 network.AddNode(3, node => node
                     .WithLabel("CFO")
                     .WithLevel(1)
-                    .WithColor("#2ecc71")
-                    .WithFont(font => font.WithColor("white"))
+                    .WithColor(RGBColor.FromRGB(46, 204, 113))
+                    .WithFont(font => font.WithColor(RGBColor.White))
                 );
 
                 network.AddNode(4, node => node
@@ -88,13 +88,13 @@ internal class AdvancedVisNetwork {
 
                 // Configure groups
                 network.WithGroup("tech", group => group
-                    .WithColor("#9b59b6")
-                    .WithFont(font => font.WithColor("white"))
+                    .WithColor(RGBColor.FromRGB(155, 89, 182))
+                    .WithFont(font => font.WithColor(RGBColor.White))
                 );
 
                 network.WithGroup("finance", group => group
-                    .WithColor("#f39c12")
-                    .WithFont(font => font.WithColor("white"))
+                    .WithColor(RGBColor.FromRGB(243, 156, 18))
+                    .WithFont(font => font.WithColor(RGBColor.White))
                 );
             });
 
@@ -136,16 +136,16 @@ internal class AdvancedVisNetwork {
                         .WithPosition(pos.x, pos.y)
                         .WithShape(VisNetworkNodeShape.Box)
                         .WithColor(RGBColor.Blue)
-                        .WithFont(font => font.WithColor("white"))
+                        .WithFont(font => font.WithColor(RGBColor.White))
                     );
                 }
 
                 // Add connections
-                network.AddEdge(1, 2, edge => edge.WithLabel("Query").WithArrows("to"));
-                network.AddEdge(1, 3, edge => edge.WithLabel("Response").WithArrows("to"));
-                network.AddEdge(1, 4, edge => edge.WithLabel("Response").WithArrows("to"));
-                network.AddEdge(5, 1, edge => edge.WithLabel("Route").WithArrows("to"));
-                network.AddEdge(1, 6, edge => edge.WithLabel("Cache").WithArrows("to,from"));
+                network.AddEdge(1, 2, edge => edge.WithLabel("Query").WithArrows(arrows => arrows.WithTo(true)));
+                network.AddEdge(1, 3, edge => edge.WithLabel("Response").WithArrows(arrows => arrows.WithTo(true)));
+                network.AddEdge(1, 4, edge => edge.WithLabel("Response").WithArrows(arrows => arrows.WithTo(true)));
+                network.AddEdge(5, 1, edge => edge.WithLabel("Route").WithArrows(arrows => arrows.WithTo(true)));
+                network.AddEdge(1, 6, edge => edge.WithLabel("Cache").WithArrows(arrows => arrows.WithTo(true).WithFrom(true)));
             });
 
             page.LineBreak();
@@ -211,8 +211,8 @@ internal class AdvancedVisNetwork {
                         options.WithEdges(edges => {
                             edges
                                 .WithWidth(2)
-                                .WithColor("#848484")
-                                .WithArrows("to");
+                                .WithColor(RGBColor.FromRGB(132, 132, 132))
+                                .WithArrows(arrows => arrows.WithTo(true));
                         });
                     });
 
@@ -221,7 +221,7 @@ internal class AdvancedVisNetwork {
                     .WithLabel("Important Node")
                     .WithColor(RGBColor.Red)
                     .WithSize(50)
-                    .WithFont(font => font.WithColor("white").WithSize(16))
+                    .WithFont(font => font.WithColor(RGBColor.White).WithSize(16))
                 );
 
                 network.AddNode("n2", node => node
@@ -293,7 +293,7 @@ internal class AdvancedVisNetwork {
                     );
 
                     network.AddEdge("server", $"client{i}", edge => edge
-                        .WithArrows("to,from")
+                        .WithArrows(arrows => arrows.WithTo(true).WithFrom(true))
                         .WithLabel($"Connection {i}")
                     );
                 }

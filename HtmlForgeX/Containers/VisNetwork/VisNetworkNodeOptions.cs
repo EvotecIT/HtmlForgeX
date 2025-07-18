@@ -195,11 +195,6 @@ public class VisNetworkNodeOptions {
         return this;
     }
 
-    public VisNetworkNodeOptions WithColor(string color) {
-        Color = color;
-        return this;
-    }
-
     public VisNetworkNodeOptions WithColor(RGBColor color) {
         Color = color.ToHex();
         return this;
@@ -334,18 +329,8 @@ public class VisNetworkColorOptions {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public object? Hover { get; set; }
 
-    public VisNetworkColorOptions WithBackground(string color) {
-        Background = color;
-        return this;
-    }
-
     public VisNetworkColorOptions WithBackground(RGBColor color) {
         Background = color.ToHex();
-        return this;
-    }
-
-    public VisNetworkColorOptions WithBorder(string color) {
-        Border = color;
         return this;
     }
 
@@ -354,13 +339,13 @@ public class VisNetworkColorOptions {
         return this;
     }
 
-    public VisNetworkColorOptions WithHighlight(string background, string border) {
-        Highlight = new { background, border };
+    public VisNetworkColorOptions WithHighlight(RGBColor background, RGBColor border) {
+        Highlight = new { background = background.ToHex(), border = border.ToHex() };
         return this;
     }
 
-    public VisNetworkColorOptions WithHover(string background, string border) {
-        Hover = new { background, border };
+    public VisNetworkColorOptions WithHover(RGBColor background, RGBColor border) {
+        Hover = new { background = background.ToHex(), border = border.ToHex() };
         return this;
     }
 }
@@ -421,11 +406,6 @@ public class VisNetworkFontOptions {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public object? Mono { get; set; }
 
-    public VisNetworkFontOptions WithColor(string color) {
-        Color = color;
-        return this;
-    }
-
     public VisNetworkFontOptions WithColor(RGBColor color) {
         Color = color.ToHex();
         return this;
@@ -441,14 +421,14 @@ public class VisNetworkFontOptions {
         return this;
     }
 
-    public VisNetworkFontOptions WithBackground(string background) {
-        Background = background;
+    public VisNetworkFontOptions WithBackground(RGBColor background) {
+        Background = background.ToHex();
         return this;
     }
 
-    public VisNetworkFontOptions WithStroke(double width, string color) {
+    public VisNetworkFontOptions WithStroke(double width, RGBColor color) {
         StrokeWidth = width;
-        StrokeColor = color;
+        StrokeColor = color.ToHex();
         return this;
     }
 
@@ -504,11 +484,6 @@ public class VisNetworkIconOptions {
 
     public VisNetworkIconOptions WithSize(int size) {
         Size = size;
-        return this;
-    }
-
-    public VisNetworkIconOptions WithColor(string color) {
-        Color = color;
         return this;
     }
 
@@ -651,11 +626,6 @@ public class VisNetworkShadowOptions {
         return this;
     }
 
-    public VisNetworkShadowOptions WithColor(string color) {
-        Color = color;
-        return this;
-    }
-
     public VisNetworkShadowOptions WithColor(RGBColor color) {
         Color = color.ToHex();
         return this;
@@ -723,13 +693,13 @@ public class VisNetworkChosenNodeOptions {
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public double? Size { get; set; }
 
-    public VisNetworkChosenNodeOptions WithColor(string color) {
-        Color = color;
+    public VisNetworkChosenNodeOptions WithColor(RGBColor color) {
+        Color = color.ToHex();
         return this;
     }
 
-    public VisNetworkChosenNodeOptions WithBorderColor(string color) {
-        BorderColor = color;
+    public VisNetworkChosenNodeOptions WithBorderColor(RGBColor color) {
+        BorderColor = color.ToHex();
         return this;
     }
 
