@@ -48,6 +48,9 @@ public class FontAwesomeIcon : Element {
         WithIcon(icon);
     }
 
+    /// <summary>
+    /// Registers the required FontAwesome libraries with the current document.
+    /// </summary>
     protected internal override void RegisterLibraries() {
         // Register FontAwesome 6 Free
         if (Document != null) {
@@ -212,6 +215,10 @@ public class FontAwesomeIcon : Element {
         return this;
     }
 
+    /// <summary>
+    /// Generates the HTML markup for the configured FontAwesome icon.
+    /// </summary>
+    /// <returns>String representation of the icon element.</returns>
     public override string ToString() {
         var tag = new HtmlTag("i");
         var classes = new List<string>();
