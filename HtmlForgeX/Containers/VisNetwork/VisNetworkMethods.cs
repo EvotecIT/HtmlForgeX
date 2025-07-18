@@ -26,18 +26,30 @@ public class VisNetworkMethodCall {
 /// Options for the fit() method.
 /// </summary>
 public class VisNetworkFitOptions {
+    /// <summary>
+    /// Gets or sets the node identifiers to fit. When <see langword="null"/>, all nodes are used.
+    /// </summary>
     [JsonPropertyName("nodes")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public object[]? Nodes { get; set; }
 
+    /// <summary>
+    /// Gets or sets the minimum zoom level.
+    /// </summary>
     [JsonPropertyName("minZoomLevel")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public double? MinZoomLevel { get; set; }
 
+    /// <summary>
+    /// Gets or sets the maximum zoom level.
+    /// </summary>
     [JsonPropertyName("maxZoomLevel")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public double? MaxZoomLevel { get; set; }
 
+    /// <summary>
+    /// Gets or sets the animation configuration. Can be a boolean or a complex options object.
+    /// </summary>
     [JsonPropertyName("animation")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public object? Animation { get; set; }
@@ -89,18 +101,30 @@ public class VisNetworkFitOptions {
 /// Options for the focus() method.
 /// </summary>
 public class VisNetworkFocusOptions {
+    /// <summary>
+    /// Gets or sets the zoom scale where <c>1.0</c> represents 100&#x25;.
+    /// </summary>
     [JsonPropertyName("scale")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public double? Scale { get; set; }
 
+    /// <summary>
+    /// Gets or sets the offset from the viewport center.
+    /// </summary>
     [JsonPropertyName("offset")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public VisNetworkPosition? Offset { get; set; }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether the view remains locked to the node.
+    /// </summary>
     [JsonPropertyName("locked")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? Locked { get; set; }
 
+    /// <summary>
+    /// Gets or sets the animation configuration. Can be a boolean or a complex options object.
+    /// </summary>
     [JsonPropertyName("animation")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public object? Animation { get; set; }
@@ -152,18 +176,30 @@ public class VisNetworkFocusOptions {
 /// Options for the moveTo() method.
 /// </summary>
 public class VisNetworkMoveToOptions {
+    /// <summary>
+    /// Gets or sets the absolute position to move the viewport to.
+    /// </summary>
     [JsonPropertyName("position")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public VisNetworkPosition? Position { get; set; }
 
+    /// <summary>
+    /// Gets or sets the zoom level after moving.
+    /// </summary>
     [JsonPropertyName("scale")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public double? Scale { get; set; }
 
+    /// <summary>
+    /// Gets or sets the offset relative to the target position.
+    /// </summary>
     [JsonPropertyName("offset")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public VisNetworkPosition? Offset { get; set; }
 
+    /// <summary>
+    /// Gets or sets the animation configuration. Can be a boolean or a complex options object.
+    /// </summary>
     [JsonPropertyName("animation")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public object? Animation { get; set; }
@@ -215,10 +251,16 @@ public class VisNetworkMoveToOptions {
 /// Animation options for network methods.
 /// </summary>
 public class VisNetworkAnimationOptions {
+    /// <summary>
+    /// Gets or sets the animation duration in milliseconds.
+    /// </summary>
     [JsonPropertyName("duration")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? Duration { get; set; }
 
+    /// <summary>
+    /// Gets or sets the name of the easing function to apply.
+    /// </summary>
     [JsonPropertyName("easingFunction")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? EasingFunction { get; set; }
@@ -244,9 +286,15 @@ public class VisNetworkAnimationOptions {
 /// Position representation.
 /// </summary>
 public class VisNetworkPosition {
+    /// <summary>
+    /// Gets or sets the horizontal coordinate.
+    /// </summary>
     [JsonPropertyName("x")]
     public double X { get; set; }
 
+    /// <summary>
+    /// Gets or sets the vertical coordinate.
+    /// </summary>
     [JsonPropertyName("y")]
     public double Y { get; set; }
 }
@@ -255,18 +303,31 @@ public class VisNetworkPosition {
 /// Easing functions for animations.
 /// </summary>
 public enum VisNetworkEasingFunction {
+    /// <summary>Linear easing.</summary>
     Linear,
+    /// <summary>Easing that accelerates from zero velocity.</summary>
     EaseInQuad,
+    /// <summary>Easing that decelerates to zero velocity.</summary>
     EaseOutQuad,
+    /// <summary>Easing that accelerates then decelerates.</summary>
     EaseInOutQuad,
+    /// <summary>Cubic ease-in.</summary>
     EaseInCubic,
+    /// <summary>Cubic ease-out.</summary>
     EaseOutCubic,
+    /// <summary>Cubic ease-in-out.</summary>
     EaseInOutCubic,
+    /// <summary>Quartic ease-in.</summary>
     EaseInQuart,
+    /// <summary>Quartic ease-out.</summary>
     EaseOutQuart,
+    /// <summary>Quartic ease-in-out.</summary>
     EaseInOutQuart,
+    /// <summary>Quintic ease-in.</summary>
     EaseInQuint,
+    /// <summary>Quintic ease-out.</summary>
     EaseOutQuint,
+    /// <summary>Quintic ease-in-out.</summary>
     EaseInOutQuint
 }
 
@@ -274,6 +335,9 @@ public enum VisNetworkEasingFunction {
 /// Options for stabilization.
 /// </summary>
 public class VisNetworkStabilizeOptions {
+    /// <summary>
+    /// Gets or sets the number of iterations used during stabilization.
+    /// </summary>
     [JsonPropertyName("iterations")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? Iterations { get; set; }
