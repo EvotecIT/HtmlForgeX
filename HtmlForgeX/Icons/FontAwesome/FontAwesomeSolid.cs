@@ -952,44 +952,83 @@ public enum FontAwesomeSolid {
     [Description("\uf59f")]
     MapLocation,
     
+    /// <summary>
+    /// Location arrow icon
+    /// </summary>
     [Description("\uf124")]
     LocationArrow,
     
+    /// <summary>
+    /// Globe/world icon
+    /// </summary>
     [Description("\uf0ac")]
     Globe,
     
+    /// <summary>
+    /// Globe showing Africa
+    /// </summary>
     [Description("\uf57c")]
     GlobeAfrica,
     
+    /// <summary>
+    /// Globe showing the Americas
+    /// </summary>
     [Description("\uf57d")]
     GlobeAmericas,
     
+    /// <summary>
+    /// Globe showing Asia
+    /// </summary>
     [Description("\uf57e")]
     GlobeAsia,
     
+    /// <summary>
+    /// Globe showing Europe
+    /// </summary>
     [Description("\uf7a2")]
     GlobeEurope,
     
     // Social & Sharing
+    /// <summary>
+    /// Generic share icon
+    /// </summary>
     [Description("\uf1e0")]
     Share,
     
+    /// <summary>
+    /// Alternative share icon
+    /// </summary>
     [Description("\uf14d")]
     ShareAlt,
     
+    /// <summary>
+    /// Share icon inside a square
+    /// </summary>
     [Description("\uf045")]
     ShareSquare,
     
+    /// <summary>
+    /// Alternative share icon inside a square
+    /// </summary>
     [Description("\uf1e1")]
     ShareAltSquare,
     
+    /// <summary>
+    /// Share to multiple nodes icon
+    /// </summary>
     [Description("\uf064")]
     ShareNodes,
     
     // Nature & Weather
+    /// <summary>
+    /// Sun/daytime icon
+    /// </summary>
     [Description("\uf185")]
     Sun,
     
+    /// <summary>
+    /// Moon/night icon
+    /// </summary>
     [Description("\uf186")]
     Moon,
     
@@ -1096,150 +1135,297 @@ public enum FontAwesomeSolid {
     [Description("\uf0ea")]
     Paste,
     
+    /// <summary>
+    /// Edit/pencil icon
+    /// </summary>
     [Description("\uf044")]
     Edit,
     
+    /// <summary>
+    /// Classic pencil icon
+    /// </summary>
     [Description("\uf040")]
     Pencil,
     
+    /// <summary>
+    /// Alternative pencil icon
+    /// </summary>
     [Description("\uf303")]
     PencilAlt,
     
+    /// <summary>
+    /// Pencil icon inside a square
+    /// </summary>
     [Description("\uf14b")]
     PencilSquare,
     
+    /// <summary>
+    /// Trash/delete icon
+    /// </summary>
     [Description("\uf1f8")]
     Trash,
     
+    /// <summary>
+    /// Alternative trash icon
+    /// </summary>
     [Description("\uf2ed")]
     TrashAlt,
     
+    /// <summary>
+    /// Trash can icon
+    /// </summary>
     [Description("\uf014")]
     TrashCan,
     
+    /// <summary>
+    /// Download arrow icon
+    /// </summary>
     [Description("\uf019")]
     Download,
     
+    /// <summary>
+    /// Upload arrow icon
+    /// </summary>
     [Description("\uf093")]
     Upload,
     
+    /// <summary>
+    /// Synchronize/refresh icon
+    /// </summary>
     [Description("\uf021")]
     Sync,
     
+    /// <summary>
+    /// Alternative synchronize icon
+    /// </summary>
     [Description("\uf2f1")]
     SyncAlt,
     
+    /// <summary>
+    /// Redo/forward icon
+    /// </summary>
     [Description("\uf01e")]
     Redo,
     
+    /// <summary>
+    /// Undo/back icon
+    /// </summary>
     [Description("\uf0e2")]
     Undo,
     
+    /// <summary>
+    /// Random/shuffle icon
+    /// </summary>
     [Description("\uf074")]
     Random,
     
+    /// <summary>
+    /// Code brackets icon
+    /// </summary>
     [Description("\uf11c")]
     Code,
     
+    /// <summary>
+    /// Code branch icon
+    /// </summary>
     [Description("\uf121")]
     CodeBranch,
     
+    /// <summary>
+    /// Code fork icon
+    /// </summary>
     [Description("\uf126")]
     CodeFork,
     
+    /// <summary>
+    /// Sitemap/structure icon
+    /// </summary>
     [Description("\uf0e8")]
     Sitemap,
     
+    /// <summary>
+    /// Flag icon
+    /// </summary>
     [Description("\uf024")]
     Flag,
     
+    /// <summary>
+    /// Checkered flag icon
+    /// </summary>
     [Description("\uf11e")]
     FlagCheckered,
     
+    /// <summary>
+    /// Laboratory flask icon
+    /// </summary>
     [Description("\uf0c3")]
     Flask,
     
+    /// <summary>
+    /// Lightbulb/idea icon
+    /// </summary>
     [Description("\uf0eb")]
     Lightbulb,
     
+    /// <summary>
+    /// Eye/view icon
+    /// </summary>
     [Description("\uf06e")]
     Eye,
     
+    /// <summary>
+    /// Slashed eye/hidden icon
+    /// </summary>
     [Description("\uf070")]
     EyeSlash,
     
+    /// <summary>
+    /// Binoculars/vision icon
+    /// </summary>
     [Description("\uf1e5")]
     Binoculars,
     
+    /// <summary>
+    /// Right pointing hand icon
+    /// </summary>
     [Description("\uf25a")]
     HandPointRight,
     
+    /// <summary>
+    /// Left pointing hand icon
+    /// </summary>
     [Description("\uf25b")]
     HandPointLeft,
     
+    /// <summary>
+    /// Upward pointing hand icon
+    /// </summary>
     [Description("\uf25c")]
     HandPointUp,
     
+    /// <summary>
+    /// Downward pointing hand icon
+    /// </summary>
     [Description("\uf25d")]
     HandPointDown,
     
+    /// <summary>
+    /// Open hand holding object icon
+    /// </summary>
     [Description("\uf4c0")]
     HandHolding,
     
+    /// <summary>
+    /// Hand holding a heart icon
+    /// </summary>
     [Description("\uf4c2")]
     HandHoldingHeart,
     
+    /// <summary>
+    /// Hand holding dollar sign icon
+    /// </summary>
     [Description("\uf4b8")]
     HandHoldingUsd,
     
+    /// <summary>
+    /// Peace hand gesture icon
+    /// </summary>
     [Description("\uf0a6")]
     HandPeace,
     
+    /// <summary>
+    /// Hand pointer/cursor icon
+    /// </summary>
     [Description("\uf25e")]
     HandPointer,
     
+    /// <summary>
+    /// Rock/paper/scissors hand in rock pose
+    /// </summary>
     [Description("\uf258")]
     HandRock,
     
+    /// <summary>
+    /// Paper hand gesture icon
+    /// </summary>
     [Description("\uf259")]
     HandPaper,
     
+    /// <summary>
+    /// Scissors hand gesture icon
+    /// </summary>
     [Description("\uf256")]
     HandScissors,
     
+    /// <summary>
+    /// Lizard hand gesture icon
+    /// </summary>
     [Description("\uf257")]
     HandLizard,
     
+    /// <summary>
+    /// Vulcan salute hand gesture icon
+    /// </summary>
     [Description("\uf255")]
     HandSpock,
     
+    /// <summary>
+    /// Handshake greeting icon
+    /// </summary>
     [Description("\uf2b5")]
     Handshake,
     
+    /// <summary>
+    /// Handshake with slash icon
+    /// </summary>
     [Description("\uf4c4")]
     HandshakeAltSlash,
     
+    /// <summary>
+    /// Raised hand stop icon
+    /// </summary>
     [Description("\uf0a7")]
     HandStop,
     
+    /// <summary>
+    /// Bars/hamburger menu icon
+    /// </summary>
     [Description("\uf0c9")]
     Bars,
     
+    /// <summary>
+    /// Horizontal ellipsis icon
+    /// </summary>
     [Description("\uf142")]
     EllipsisH,
     
+    /// <summary>
+    /// Vertical ellipsis icon
+    /// </summary>
     [Description("\uf141")]
     EllipsisV,
     
+    /// <summary>
+    /// Unordered list icon
+    /// </summary>
     [Description("\uf0ca")]
     ListUl,
     
+    /// <summary>
+    /// Ordered list icon
+    /// </summary>
     [Description("\uf0cb")]
     ListOl,
     
+    /// <summary>
+    /// Table/grid icon
+    /// </summary>
     [Description("\uf0ce")]
     Table,
     
+    /// <summary>
+    /// Columns layout icon
+    /// </summary>
     [Description("\uf0db")]
     Columns,
     
