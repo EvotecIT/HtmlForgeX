@@ -32,7 +32,7 @@ public class EmailHeader : Element {
     /// </summary>
     /// <param name="element">The element to add.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader Add(Element element) {
+    public new EmailHeader Add(Element element) {
         // Propagate the Email reference to child elements for configuration access
         if (element != null && this.Email != null) {
             PropagateEmailReference(element, this.Email);
@@ -63,7 +63,7 @@ public class EmailHeader : Element {
     /// </summary>
     /// <param name="configure">Action to configure the row.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader EmailRow(Action<EmailRow> configure) {
+    public new EmailHeader EmailRow(Action<EmailRow> configure) {
         var row = new EmailRow();
         // Set Email reference BEFORE configuration so child elements can access it
         row.Email = this.Email;
@@ -77,7 +77,7 @@ public class EmailHeader : Element {
     /// </summary>
     /// <param name="configure">Action to configure the content.</param>
     /// <returns>The EmailHeader object, allowing for method chaining.</returns>
-    public EmailHeader EmailContent(Action<EmailContent> configure) {
+    public new EmailHeader EmailContent(Action<EmailContent> configure) {
         var content = new EmailContent();
         // Set Email reference BEFORE configuration so child elements can access it
         content.Email = this.Email;
@@ -91,7 +91,7 @@ public class EmailHeader : Element {
     /// </summary>
     /// <param name="text">The text content.</param>
     /// <returns>The EmailText object, allowing for method chaining.</returns>
-    public EmailText EmailText(string text) {
+    public new EmailText EmailText(string text) {
         var textElement = new EmailText(text);
         Add(textElement);
         return textElement;
@@ -112,7 +112,7 @@ public class EmailHeader : Element {
     /// </summary>
     /// <param name="source">The image source URL or file path.</param>
     /// <returns>The EmailImage object, allowing for method chaining.</returns>
-    public EmailImage EmailImage(string source) {
+    public new EmailImage EmailImage(string source) {
         var image = new EmailImage(source);
         Add(image);
         return image;
@@ -124,7 +124,7 @@ public class EmailHeader : Element {
     /// <param name="text">The link text.</param>
     /// <param name="url">The link URL.</param>
     /// <returns>The EmailLink object, allowing for method chaining.</returns>
-    public EmailLink EmailLink(string text, string url) {
+    public new EmailLink EmailLink(string text, string url) {
         var link = new EmailLink(text, url);
         Add(link);
         return link;

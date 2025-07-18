@@ -124,7 +124,7 @@ public class TablerCardListItem : Element {
     /// <summary>
     /// Initializes or configures Text.
     /// </summary>
-    public TablerCardListItem Text(string text) {
+    public new TablerCardListItem Text(string text) {
         ItemText = text;
         return this;
     }
@@ -199,7 +199,7 @@ public class TablerCardListItem : Element {
         // Create content
         if (!string.IsNullOrEmpty(ItemUrl)) {
             var linkElement = new HtmlTag("a");
-            linkElement.Attribute("href", ItemUrl);
+            linkElement.Attribute("href", ItemUrl!);
 
             if (ItemIcon.HasValue) {
                 linkElement.Value(new TablerIconElement(ItemIcon.Value).ToString());

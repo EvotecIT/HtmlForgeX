@@ -102,7 +102,7 @@ public static class DisplayExtensions {
     /// <returns>The CSS text for the display value.</returns>
     public static string EnumToString(this Display value) {
         var fieldInfo = value.GetType().GetField(value.ToString());
-        var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+        var attributes = (DescriptionAttribute[])fieldInfo!.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
         return attributes.Length > 0 ? attributes[0].Description : value.ToString().ToLower();
     }

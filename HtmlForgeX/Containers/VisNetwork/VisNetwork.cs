@@ -789,6 +789,7 @@ public class VisNetwork : Element {
     /// Fits the network view to show all nodes or specified nodes.
     /// </summary>
     /// <param name="configure">Optional action to configure fit options.</param>
+    /// <param name="delay">Optional delay in milliseconds before executing the fit method.</param>
     /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork Fit(Action<VisNetworkFitOptions>? configure = null, int? delay = null) {
         var options = new VisNetworkFitOptions();
@@ -809,6 +810,7 @@ public class VisNetwork : Element {
     /// </summary>
     /// <param name="nodeId">The node ID to focus on.</param>
     /// <param name="configure">Optional action to configure focus options.</param>
+    /// <param name="delay">Optional delay in milliseconds before executing the focus method.</param>
     /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork Focus(object nodeId, Action<VisNetworkFocusOptions>? configure = null, int? delay = null) {
         var options = new VisNetworkFocusOptions();
@@ -828,6 +830,7 @@ public class VisNetwork : Element {
     /// Moves the view to a specific position.
     /// </summary>
     /// <param name="configure">Action to configure move options.</param>
+    /// <param name="delay">Optional delay in milliseconds before executing the move method.</param>
     /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork MoveTo(Action<VisNetworkMoveToOptions> configure, int? delay = null) {
         var options = new VisNetworkMoveToOptions();
@@ -848,6 +851,7 @@ public class VisNetwork : Element {
     /// </summary>
     /// <param name="nodeIds">The node IDs to select.</param>
     /// <param name="highlightEdges">Whether to highlight connected edges.</param>
+    /// <param name="delay">Optional delay in milliseconds before executing the select method.</param>
     /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork SelectNodes(object[] nodeIds, bool highlightEdges = true, int? delay = null) {
         _methodCalls ??= new List<VisNetworkMethodCall>();
@@ -864,6 +868,7 @@ public class VisNetwork : Element {
     /// Selects edges in the network.
     /// </summary>
     /// <param name="edgeIds">The edge IDs to select.</param>
+    /// <param name="delay">Optional delay in milliseconds before executing the select method.</param>
     /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork SelectEdges(object[] edgeIds, int? delay = null) {
         _methodCalls ??= new List<VisNetworkMethodCall>();
@@ -922,6 +927,7 @@ public class VisNetwork : Element {
     /// Stabilizes the network.
     /// </summary>
     /// <param name="iterations">Optional number of iterations.</param>
+    /// <param name="delay">Optional delay in milliseconds before executing the stabilize method.</param>
     /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork Stabilize(int? iterations = null, int? delay = null) {
         _methodCalls ??= new List<VisNetworkMethodCall>();
@@ -966,6 +972,7 @@ public class VisNetwork : Element {
     /// Executes a custom JavaScript method on the network.
     /// </summary>
     /// <param name="methodName">The method name to call.</param>
+    /// <param name="delay">Optional delay in milliseconds before executing the method.</param>
     /// <param name="parameters">Optional parameters for the method.</param>
     /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork ExecuteMethod(string methodName, int? delay = null, params object[] parameters) {

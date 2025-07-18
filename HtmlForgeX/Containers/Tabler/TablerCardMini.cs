@@ -24,7 +24,7 @@ public class TablerCardMini : TablerCard {
     /// <summary>
     /// Initializes or configures BackgroundColor.
     /// </summary>
-    public TablerCardMini BackgroundColor(TablerColor color) {
+    public new TablerCardMini BackgroundColor(TablerColor color) {
         AvatarBackgroundColor = color;
         return this;
     }
@@ -56,7 +56,7 @@ public class TablerCardMini : TablerCard {
     /// <summary>
     /// Set custom avatar background color using RGBColor for precise color control
     /// </summary>
-    public TablerCardMini BackgroundColor(RGBColor backgroundColor, RGBColor? textColor = null) {
+    public new TablerCardMini BackgroundColor(RGBColor backgroundColor, RGBColor? textColor = null) {
         CustomAvatarBackgroundColor = backgroundColor;
         CustomAvatarTextColor = textColor;
         return this;
@@ -65,10 +65,10 @@ public class TablerCardMini : TablerCard {
     /// <summary>
     /// Set custom avatar background color using hex string for precise color control
     /// </summary>
-    public TablerCardMini BackgroundColor(string hexBackgroundColor, string? hexTextColor = null) {
+    public new TablerCardMini BackgroundColor(string hexBackgroundColor, string? hexTextColor = null) {
         CustomAvatarBackgroundColor = new RGBColor(hexBackgroundColor);
         if (!string.IsNullOrEmpty(hexTextColor)) {
-            CustomAvatarTextColor = new RGBColor(hexTextColor);
+            CustomAvatarTextColor = new RGBColor(hexTextColor!);
         }
         return this;
     }
@@ -86,7 +86,7 @@ public class TablerCardMini : TablerCard {
         // Create the inner div for the card body
         var cardBodyDiv = new HtmlTag("div");
         cardBodyDiv.Class("card-body").Value(CardContent);
-        cardBodyDiv.Attributes["style"] = CardInnerStyle;
+        cardBodyDiv.Attributes["style"] = CardInnerStyle!;
 
         var cardInside = cardBodyDiv.Row(cardRow => {
             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {

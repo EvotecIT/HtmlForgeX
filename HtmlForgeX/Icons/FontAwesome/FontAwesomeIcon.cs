@@ -232,7 +232,7 @@ public class FontAwesomeIcon : Element {
             classes.Add($"fa-{_iconName}");
         } else if (!string.IsNullOrEmpty(_iconCode)) {
             // Fallback to code mapping for backward compatibility
-            var iconName = GetIconNameFromCode(_iconCode);
+            var iconName = GetIconNameFromCode(_iconCode!);
             if (!string.IsNullOrEmpty(iconName)) {
                 classes.Add($"fa-{iconName}");
             }
@@ -240,17 +240,17 @@ public class FontAwesomeIcon : Element {
         
         // Add size class
         if (!string.IsNullOrEmpty(_size)) {
-            classes.Add(_size);
+            classes.Add(_size!);
         }
         
         // Add modifier classes
         if (_fixedWidth) classes.Add("fa-fw");
         if (_spin) classes.Add("fa-spin");
         if (_pulse) classes.Add("fa-pulse");
-        if (!string.IsNullOrEmpty(_rotate)) classes.Add(_rotate);
-        if (!string.IsNullOrEmpty(_flip)) classes.Add(_flip);
+        if (!string.IsNullOrEmpty(_rotate)) classes.Add(_rotate!);
+        if (!string.IsNullOrEmpty(_flip)) classes.Add(_flip!);
         if (_border) classes.Add("fa-border");
-        if (!string.IsNullOrEmpty(_pull)) classes.Add(_pull);
+        if (!string.IsNullOrEmpty(_pull)) classes.Add(_pull!);
         
         // Add custom classes
         classes.AddRange(_additionalClasses);
@@ -276,7 +276,7 @@ public class FontAwesomeIcon : Element {
         // For compatibility with older FontAwesome or custom implementations,
         // we can also add the Unicode as a data attribute
         if (!string.IsNullOrEmpty(_iconCode)) {
-            tag.Attribute("data-icon", _iconCode);
+            tag.Attribute("data-icon", _iconCode!);
         }
         
         return tag.ToString();

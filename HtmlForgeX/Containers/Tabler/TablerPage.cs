@@ -97,7 +97,7 @@ public class TablerPage : Element {
     /// <summary>
     /// Initializes or configures Column.
     /// </summary>
-    public TablerColumn Column(Action<TablerColumn> config) {
+    public new TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         config(column);
         this.Add(column);

@@ -31,8 +31,8 @@ public class TestVisNetworkDebug {
                 Console.WriteLine(nodesJson);
                 
                 // Also write to test output
-                TestContext.WriteLine("Nodes JSON:");
-                TestContext.WriteLine(nodesJson);
+                TestContext!.WriteLine("Nodes JSON:");
+                TestContext!.WriteLine(nodesJson);
             }
         }
         
@@ -40,5 +40,5 @@ public class TestVisNetworkDebug {
         Assert.IsTrue(true);
     }
     
-    public TestContext TestContext { get; set; }
+    public TestContext? TestContext { get; set; }
 }

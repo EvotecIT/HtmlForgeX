@@ -11,10 +11,23 @@ namespace HtmlForgeX;
 /// Custom JSON converter for Quill toolbar configuration.
 /// </summary>
 public class QuillToolbarConverter : JsonConverter<object> {
+    /// <summary>
+    /// Reads JSON and converts it to an object. Not implemented for this converter.
+    /// </summary>
+    /// <param name="reader">The JSON reader.</param>
+    /// <param name="typeToConvert">The type to convert to.</param>
+    /// <param name="options">The serializer options.</param>
+    /// <returns>The converted object.</returns>
     public override object? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
         throw new NotImplementedException("Deserialization is not supported");
     }
 
+    /// <summary>
+    /// Writes the specified value as JSON.
+    /// </summary>
+    /// <param name="writer">The JSON writer.</param>
+    /// <param name="value">The value to write.</param>
+    /// <param name="options">The serializer options.</param>
     public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options) {
         switch (value) {
             case List<QuillFormat> formats:

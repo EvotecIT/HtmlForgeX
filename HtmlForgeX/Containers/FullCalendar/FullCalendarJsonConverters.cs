@@ -9,7 +9,7 @@ namespace HtmlForgeX;
 public class Iso8601DateConverter : JsonConverter<DateTime> {
     /// <inheritdoc />
     public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
-        return DateTime.Parse(reader.GetString());
+        return DateTime.Parse(reader.GetString() ?? "");
     }
 
     /// <inheritdoc />
@@ -38,7 +38,7 @@ public class DescriptionEnumConverter<T> : JsonConverter<T> where T : Enum {
         return value.GetType()
             .GetMember(value.ToString())
             .First()
-            .GetCustomAttribute<DescriptionAttribute>()
+            .GetCustomAttribute<DescriptionAttribute>()!
             .Description;
     }
 }
@@ -52,7 +52,7 @@ public class ViewOptionDictionaryConverter : JsonConverter<Dictionary<FullCalend
         var value = JsonSerializer.Deserialize<Dictionary<string, FullCalendarView>>(ref reader, options);
         var result = new Dictionary<FullCalendarViewOption, FullCalendarView>();
 
-        foreach (var kvp in value) {
+        foreach (var kvp in value!) {
             var enumValue = ((FullCalendarViewOption[])Enum.GetValues(typeof(FullCalendarViewOption)))
                 .First(e => GetEnumDescription(e) == kvp.Key);
             result[enumValue] = kvp.Value;
@@ -75,7 +75,7 @@ public class ViewOptionDictionaryConverter : JsonConverter<Dictionary<FullCalend
         return value.GetType()
             .GetMember(value.ToString())
             .First()
-            .GetCustomAttribute<DescriptionAttribute>()
+            .GetCustomAttribute<DescriptionAttribute>()!
             .Description;
     }
 }
@@ -146,7 +146,7 @@ public class FullCalendarToolbarConverter : JsonConverter<FullCalendarToolbar> {
         return value.GetType()
             .GetMember(value.ToString())
             .First()
-            .GetCustomAttribute<DescriptionAttribute>()
+            .GetCustomAttribute<DescriptionAttribute>()!
             .Description;
     }
 }

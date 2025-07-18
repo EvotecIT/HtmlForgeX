@@ -44,7 +44,7 @@ public class EmailFooter : Element {
     /// </summary>
     /// <param name="configure">Action to configure the footer content.</param>
     /// <returns>The EmailFooter object, allowing for method chaining.</returns>
-    public EmailFooter EmailBox(Action<EmailBox> configure) {
+    public new EmailFooter EmailBox(Action<EmailBox> configure) {
         configure(FooterBox);
         return this;
     }

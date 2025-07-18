@@ -327,7 +327,7 @@ public class TablerDataGridItem : Element {
         }
 
         if (!string.IsNullOrEmpty(CustomCssStyle)) {
-            inlineStyles.Add(CustomCssStyle);
+            inlineStyles.Add(CustomCssStyle!);
         }
 
         // Start item container

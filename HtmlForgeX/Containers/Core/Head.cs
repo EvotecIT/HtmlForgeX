@@ -272,11 +272,11 @@ public class Head : Element {
         }
 
         if (!string.IsNullOrEmpty(Charset)) {
-            head.AppendLine($"<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Helpers.HtmlEncode(Charset)}\">");
+            head.AppendLine($"<meta http-equiv=\"Content-Type\" content=\"text/html; charset={Helpers.HtmlEncode(Charset!)}\">"); 
         }
 
         if (!string.IsNullOrEmpty(HttpEquiv) && !string.IsNullOrEmpty(Content)) {
-            head.AppendLine($"<meta http-equiv=\"{Helpers.HtmlEncode(HttpEquiv)}\" content=\"{Helpers.HtmlEncode(Content)}\">");
+            head.AppendLine($"<meta http-equiv=\"{Helpers.HtmlEncode(HttpEquiv!)}\" content=\"{Helpers.HtmlEncode(Content!)}\">"); 
         }
 
         if (AutoRefresh.HasValue) {
@@ -307,12 +307,12 @@ public class Head : Element {
 
         if (Styles.Count > 0) {
             foreach (var style in Styles) {
-                string styleStr = style.ToString();
-                if (styleStr.Trim().StartsWith("<style") && styleStr.Trim().EndsWith("</style>")) {
-                    head.AppendLine(styleStr.TrimEnd('\r', '\n'));
+                string styleStr = style?.ToString() ?? "";
+                if (styleStr?.Trim().StartsWith("<style") == true && styleStr.Trim().EndsWith("</style>")) {
+                    head.AppendLine(styleStr?.TrimEnd('\r', '\n') ?? "");
                 } else {
                     head.AppendLine("<style type=\"text/css\">");
-                    head.AppendLine(styleStr.TrimEnd('\r', '\n'));
+                    head.AppendLine(styleStr?.TrimEnd('\r', '\n') ?? "");
                     head.AppendLine("</style>");
                 }
             }
@@ -497,7 +497,7 @@ gtag('config', '{encodedIdentifier}');
         if (string.IsNullOrEmpty(content)) {
             return string.Empty;
         }
-        var encoded = Helpers.HtmlEncode(content);
+        var encoded = Helpers.HtmlEncode(content!);
         return $"<meta name=\"{name}\" content=\"{encoded}\">\n";
     }
 

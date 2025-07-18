@@ -78,7 +78,7 @@ public class TablerAvatar : Element {
     public TablerAvatar BackgroundColor(string hexBackgroundColor, string? hexTextColor = null) {
         CustomBackgroundColor = new RGBColor(hexBackgroundColor);
         if (!string.IsNullOrEmpty(hexTextColor)) {
-            CustomTextColor = new RGBColor(hexTextColor);
+            CustomTextColor = new RGBColor(hexTextColor!);
         }
         return this;
     }
@@ -91,8 +91,8 @@ public class TablerAvatar : Element {
         var classes = new List<string> { "avatar" };
 
         void AddClass(string? className) {
-            if (!string.IsNullOrEmpty(className) && !classes.Contains(className)) {
-                classes.Add(className);
+            if (!string.IsNullOrEmpty(className) && !classes.Contains(className!)) {
+                classes.Add(className!);
             }
         }
 

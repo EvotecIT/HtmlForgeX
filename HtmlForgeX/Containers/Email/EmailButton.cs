@@ -7,7 +7,7 @@ public class EmailButton : Element {
     /// <summary>
     /// Gets or sets the button text.
     /// </summary>
-    public string Text { get; set; } = "";
+    public new string Text { get; set; } = "";
 
     /// <summary>
     /// Gets or sets the button link URL.

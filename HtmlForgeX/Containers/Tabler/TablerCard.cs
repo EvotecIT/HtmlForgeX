@@ -257,7 +257,7 @@ public class TablerCard : Element {
         var classes = new List<string> { "card" };
 
         if (!string.IsNullOrEmpty(CardOuterStyle)) {
-            classes.Add(CardOuterStyle);
+            classes.Add(CardOuterStyle!);
         }
 
         // Card states
@@ -333,7 +333,7 @@ public class TablerCard : Element {
 
             // Adjust ribbon width based on text length for better display
             if (!string.IsNullOrEmpty(RibbonText)) {
-                var textLength = RibbonText.Length;
+                var textLength = RibbonText!.Length;
                 if (textLength > 5) {
                     // Use very aggressive CSS to completely override Tabler's ribbon constraints
                     var minWidth = Math.Max(textLength * 1.2 + 1, 10);
@@ -427,7 +427,7 @@ public class TablerCard : Element {
                 }
 
                 if (!string.IsNullOrEmpty(CardInnerStyle)) {
-                    cardBodyDiv.Attributes["style"] = CardInnerStyle;
+                    cardBodyDiv.Attributes["style"] = CardInnerStyle!;
                 }
 
                 // Add child elements to the card body (this handles old API usage)
@@ -456,7 +456,7 @@ public class TablerCard : Element {
                 var embedProperty = image.GetType().GetProperty("EmbedAsBase64", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 var isEmbedded = (bool)(embedProperty?.GetValue(image) ?? false);
 
-                string finalUrl = imageUrl;
+                string finalUrl = imageUrl ?? "";
                 if (isEmbedded) {
                     var base64Property = image.GetType().GetProperty("Base64Data", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                     var mimeProperty = image.GetType().GetProperty("MimeType", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -480,7 +480,7 @@ public class TablerCard : Element {
                     var effectMethod = effect.GetType().GetMethod("ToTablerImageEffectClass");
                     var effectClass = effectMethod?.Invoke(effect, null)?.ToString();
                     if (!string.IsNullOrEmpty(effectClass)) {
-                        classes.Add(effectClass);
+                        classes.Add(effectClass!);
                     }
                 }
             }
@@ -661,7 +661,7 @@ public class TablerCard : Element {
     public TablerCard Background(string hexBackgroundColor, string? hexTextColor = null) {
         CustomBackgroundColor = new RGBColor(hexBackgroundColor);
         if (!string.IsNullOrEmpty(hexTextColor)) {
-            CustomTextColor = new RGBColor(hexTextColor);
+            CustomTextColor = new RGBColor(hexTextColor!);
         }
         return this;
     }

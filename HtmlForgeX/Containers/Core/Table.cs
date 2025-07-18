@@ -177,7 +177,7 @@ public class Table : Element {
             foreach (var property in properties) {
                 try {
                     var value = property.GetValue(obj);
-                    row.Add(value != null ? value.ToString() : "");
+                    row.Add(value?.ToString() ?? "");
                 } catch (Exception ex) {
                     Document?.Configuration.Errors.Add($"Error getting value for property {property.Name}: {ex.Message}");
                     row.Add("");
@@ -206,7 +206,7 @@ public class Table : Element {
             foreach (var key in dict.Keys) {
                 try {
                     var value = dict[key];
-                    row.Add(value != null ? value.ToString() : "");
+                    row.Add(value?.ToString() ?? "");
                 } catch (Exception ex) {
                     Document?.Configuration.Errors.Add($"Error getting value for key {key}: {ex.Message}");
                     row.Add("");
@@ -269,14 +269,14 @@ public class Table : Element {
 
             if (enumerable != null) {
                 foreach (var item in enumerable.Cast<object?>().WhereNotNull()) {
-                    var nameProperty = GetCachedProperty(item.GetType(), "Name");
-                    var valueProperty = GetCachedProperty(item.GetType(), "Value");
+                    var nameProperty = GetCachedProperty(item!.GetType(), "Name");
+                    var valueProperty = GetCachedProperty(item!.GetType(), "Value");
 
                     if (nameProperty != null && valueProperty != null) {
                         var name = nameProperty.GetValue(item)?.ToString();
                         var value = valueProperty.GetValue(item);
                         if (name != null) {
-                            properties[name] = value;
+                            properties[name] = value!;
                         }
                     }
                 }

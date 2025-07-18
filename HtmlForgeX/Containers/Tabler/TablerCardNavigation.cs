@@ -77,7 +77,7 @@ public class TablerCardNavItem : Element {
     /// <summary>
     /// Initializes or configures Text.
     /// </summary>
-    public TablerCardNavItem Text(string text) {
+    public new TablerCardNavItem Text(string text) {
         ItemText = text;
         return this;
     }

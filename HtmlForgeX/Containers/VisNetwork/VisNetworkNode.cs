@@ -247,10 +247,10 @@ public class VisNetworkNode {
 
         if (SkipAutoEmbedding) return;
 
-        if (Image.StartsWith("data:", StringComparison.OrdinalIgnoreCase)) return;
+        if (Image?.StartsWith("data:", StringComparison.OrdinalIgnoreCase) == true) return;
 
         if (document.Configuration.LibraryMode == LibraryMode.Offline && document.Configuration.Images.AutoEmbedImages) {
-            Image = EmbedImage(Image, document.Configuration.Images.EmbeddingTimeout);
+            Image = EmbedImage(Image!, document.Configuration.Images.EmbeddingTimeout);
             Shape ??= VisNetworkNodeShape.Image;
         }
     }

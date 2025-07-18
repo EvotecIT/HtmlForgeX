@@ -39,14 +39,14 @@ public class FullCalendarEvent {
     /// </summary>
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("url")]
-    public string UrlValue { get; set; }
+    public string? UrlValue { get; set; }
 
     /// <summary>
     /// Gets or sets the description of the event.
     /// </summary>
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("description")]
-    public string DescriptionValue { get; set; }
+    public string? DescriptionValue { get; set; }
 
     /// <summary>
     /// Gets or sets the start date of the event.
@@ -81,7 +81,7 @@ public class FullCalendarEvent {
     [JsonConverter(typeof(RGBColorConverter))]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("color")]
-    public RGBColor ColorValue { get; set; }
+    public RGBColor? ColorValue { get; set; }
 
     /// <summary>
     /// Gets or sets the background color of the event.
@@ -89,7 +89,7 @@ public class FullCalendarEvent {
     [JsonConverter(typeof(RGBColorConverter))]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("backgroundColor")]
-    public RGBColor BackgroundColorValue { get; set; }
+    public RGBColor? BackgroundColorValue { get; set; }
 
     /// <summary>
     /// Gets or sets the border color of the event.
@@ -97,7 +97,7 @@ public class FullCalendarEvent {
     [JsonConverter(typeof(RGBColorConverter))]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("borderColor")]
-    public RGBColor BorderColorValue { get; set; }
+    public RGBColor? BorderColorValue { get; set; }
 
     /// <summary>
     /// Gets or sets the text color of the event.
@@ -105,7 +105,7 @@ public class FullCalendarEvent {
     [JsonConverter(typeof(RGBColorConverter))]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("textColor")]
-    public RGBColor TextColorValue { get; set; }
+    public RGBColor? TextColorValue { get; set; }
 
     /// <summary>
     /// Sets whether the event spans the entire day.

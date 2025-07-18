@@ -11,7 +11,7 @@ public class SmartWizard : Element {
     public string Id { get; }
 
     /// <summary>Gets the list of wizard steps.</summary>
-    public List<SmartWizardStep> Steps { get; } = new();
+    public new List<SmartWizardStep> Steps { get; } = new();
 
     /// <summary>Gets the configuration options.</summary>
     public SmartWizardOptions Options { get; } = new();
@@ -95,7 +95,7 @@ public class SmartWizard : Element {
     /// <returns>The current instance for method chaining.</returns>
     public SmartWizard AddStep(string title, TablerIconType icon, string? subtitle = null, Action<SmartWizardStep>? configure = null) {
         var step = new SmartWizardStep(title).WithIcon(icon);
-        if (!string.IsNullOrEmpty(subtitle)) step.WithSubtitle(subtitle);
+        if (!string.IsNullOrEmpty(subtitle)) step.WithSubtitle(subtitle!);
         configure?.Invoke(step);
         Steps.Add(step);
         this.Add(step); // ensure document propagation for library registration
@@ -546,14 +546,14 @@ public class SmartWizard : Element {
 
         var containerClasses = new List<string> { "sw-main" };
         if (IsVertical) containerClasses.Add("sw-vertical");
-        if (!string.IsNullOrEmpty(ContainerClass)) containerClasses.Add(ContainerClass);
+        if (!string.IsNullOrEmpty(ContainerClass)) containerClasses.Add(ContainerClass!);
 
         var navClasses = new List<string> { "nav", "sw-nav" };
         if (IsVertical) navClasses.Add("flex-column");
-        if (!string.IsNullOrEmpty(NavClass)) navClasses.Add(NavClass);
+        if (!string.IsNullOrEmpty(NavClass)) navClasses.Add(NavClass!);
 
         var contentClasses = new List<string> { "tab-content", "sw-content" };
-        if (!string.IsNullOrEmpty(ContentClass)) contentClasses.Add(ContentClass);
+        if (!string.IsNullOrEmpty(ContentClass)) contentClasses.Add(ContentClass!);
 
         // Build steps navigation
         var stepsHtml = new List<string>();

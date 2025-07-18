@@ -75,7 +75,7 @@ public class TablerInput : Element {
             .Attribute("type", _type.ToInputString())
             .Id(_name)
             .Attribute("name", _name);
-        if (!string.IsNullOrEmpty(_placeholder)) input.Attribute("placeholder", _placeholder);
+        if (!string.IsNullOrEmpty(_placeholder)) input.Attribute("placeholder", _placeholder!);
         if (_required) input.Attribute("required", "required");
         if (_state != null) input.Class(_state.Value.ToInputClass());
 

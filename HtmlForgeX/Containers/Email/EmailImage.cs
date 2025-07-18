@@ -438,7 +438,7 @@ public class EmailImage : Element {
                 // File doesn't exist, fallback to file path
                 Source = filePath;
             }
-        } catch (Exception ex) {
+        } catch (Exception) {
             // Fallback to file path if embedding fails
             Source = filePath;
             if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
@@ -494,7 +494,7 @@ public class EmailImage : Element {
             } else {
                 throw new Exception("Download failed");
             }
-        } catch (Exception ex) {
+        } catch (Exception) {
             // Fallback to URL if embedding fails
             Source = url;
             if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
@@ -601,7 +601,7 @@ public class EmailImage : Element {
             // Update DarkModeSource to use data URI
             DarkModeSource = $"data:{mimeType};base64,{DarkModeBase64Data}";
 
-        } catch (Exception ex) {
+        } catch (Exception) {
             // Fallback to original source if embedding fails
             if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null) {
                 Email.Configuration.Errors.Add("Warning: Failed to embed dark mode image.");

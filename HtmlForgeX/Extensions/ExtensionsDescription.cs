@@ -18,13 +18,13 @@ internal static class ExtensionsDescription {
         }
 
         var description = enumValue.ToString();
-        var fieldInfo = enumValue.GetType().GetField(description);
-        var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+        var fieldInfo = enumValue.GetType().GetField(description!);
+        var attributes = (DescriptionAttribute[])fieldInfo!.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
         if (attributes != null && attributes.Length > 0) {
             description = attributes[0].Description;
         }
 
-        return description;
+        return description!;
     }
 }

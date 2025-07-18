@@ -17,7 +17,7 @@ public class TablerNavItem {
     public bool IsDisabled { get; set; }
 
     /// <summary>Optional icon displayed before the text.</summary>
-    public TablerIconElement Icon { get; set; }
+    public TablerIconElement? Icon { get; set; }
 }
 
 /// <summary>
@@ -37,7 +37,7 @@ public class TablerButton : Element {
     public TablerButtonSize Size { get; set; } = TablerButtonSize.Default;
 
     /// <summary>Optional icon displayed before the text.</summary>
-    public TablerIconElement Icon { get; set; }
+    public new TablerIconElement? Icon { get; set; }
 
     /// <summary>Indicates whether the button is disabled.</summary>
     public bool IsDisabled { get; set; }
@@ -133,7 +133,7 @@ public class TablerButton : Element {
 /// </summary>
 public class TablerIconButton : Element {
     /// <summary>Icon displayed within the button.</summary>
-    public TablerIconElement Icon { get; set; }
+    public new TablerIconElement Icon { get; set; }
 
     /// <summary>Target URL when the button acts as a link.</summary>
     public string Href { get; set; } = "#";

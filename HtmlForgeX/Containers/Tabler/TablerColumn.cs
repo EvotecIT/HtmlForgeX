@@ -67,7 +67,7 @@ public class TablerColumn : Element {
     /// <summary>
     /// Initializes or configures Card.
     /// </summary>
-    public TablerCard Card(Action<TablerCard> config) {
+    public new TablerCard Card(Action<TablerCard> config) {
         var card = new TablerCard();
         this.Add(card);
         config(card);
@@ -87,7 +87,7 @@ public class TablerColumn : Element {
     /// <summary>
     /// Add a DataGrid directly to the column using the enhanced TablerDataGrid component
     /// </summary>
-    public TablerDataGrid DataGrid(Action<TablerDataGrid> dataGridConfig) {
+    public new TablerDataGrid DataGrid(Action<TablerDataGrid> dataGridConfig) {
         var dataGrid = new TablerDataGrid();
         dataGridConfig(dataGrid);
         this.Add(dataGrid);

@@ -39,7 +39,7 @@ public class EmailContent : Element {
     /// </summary>
     /// <param name="text">The text content</param>
     /// <returns>EmailText object for method chaining</returns>
-    public EmailText EmailText(string text) {
+    public new EmailText EmailText(string text) {
         var emailText = new EmailText(text);
         _elements.Add(emailText);
         return emailText;
@@ -75,7 +75,7 @@ public class EmailContent : Element {
     /// </summary>
     /// <param name="configure">Action to configure the EmailTable</param>
     /// <returns>The EmailContent object, allowing for method chaining.</returns>
-    public EmailContent EmailTable(Action<EmailTable> configure) {
+    public new EmailContent EmailTable(Action<EmailTable> configure) {
         var table = new EmailTable();
         configure(table);
         _elements.Add(table);

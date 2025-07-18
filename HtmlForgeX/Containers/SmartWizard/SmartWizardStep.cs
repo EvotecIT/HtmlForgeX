@@ -17,7 +17,7 @@ public class SmartWizardStep : ElementContainer {
     public string? Subtitle { get; set; }
 
     /// <summary>Gets or sets the step icon.</summary>
-    public TablerIconType? Icon { get; set; }
+    public new TablerIconType? Icon { get; set; }
 
     /// <summary>Gets or sets the step state.</summary>
     public SmartWizardStepState State { get; set; } = SmartWizardStepState.Default;
@@ -235,7 +235,7 @@ public class SmartWizardStep : ElementContainer {
         if (isActive) classes.Add("active");
         if (Disabled) classes.Add("disabled");
         if (Optional) classes.Add("optional");
-        if (!string.IsNullOrEmpty(AnchorClass)) classes.Add(AnchorClass);
+        if (!string.IsNullOrEmpty(AnchorClass)) classes.Add(AnchorClass!);
 
         var attributes = new List<string> {
             $"href=\"#{Id}\"",
@@ -277,7 +277,7 @@ public class SmartWizardStep : ElementContainer {
     internal string BuildStepContent(int stepIndex, bool isActive = false) {
         var classes = new List<string> { "tab-pane", "step-content" };
         if (isActive) classes.Add("active");
-        if (!string.IsNullOrEmpty(ContentClass)) classes.Add(ContentClass);
+        if (!string.IsNullOrEmpty(ContentClass)) classes.Add(ContentClass!);
 
         var attributes = new List<string> {
             $"id=\"{Id}\"",

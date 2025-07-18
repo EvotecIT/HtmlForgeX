@@ -9,7 +9,7 @@ namespace HtmlForgeX;
 /// </summary>
 public class TablerTabsPanel : ElementContainer {
     internal string Id { get; } = GlobalStorage.GenerateRandomId("tabsPanel");
-    internal string PrivateTitle { get; set; }
+    internal string? PrivateTitle { get; set; }
     internal bool IsActive { get; set; }
     internal bool IsDisabled { get; set; }
     internal TabState? PrivateTabState { get; set; }

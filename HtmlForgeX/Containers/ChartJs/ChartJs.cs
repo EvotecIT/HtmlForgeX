@@ -703,11 +703,11 @@ public class ChartJs : Element {
         var canvas = new HtmlTag("canvas").Id(Id);
         
         if (!string.IsNullOrEmpty(Width)) {
-            canvas.Attributes["width"] = Width;
+            canvas.Attributes["width"] = Width!;
         }
         
         if (!string.IsNullOrEmpty(Height)) {
-            canvas.Attributes["height"] = Height;
+            canvas.Attributes["height"] = Height!;
         }
 
         // If using the simple API, create a default dataset
