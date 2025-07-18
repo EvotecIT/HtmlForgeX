@@ -167,6 +167,7 @@ internal class Program {
 
         // VisNetwork images demo
         BasicVisNetwork.Demo(openInBrowser);
+        AdvancedVisNetwork.Demo(openInBrowser);
 
         // Table examples
         DataTablesQuickStart.Create(openInBrowser);

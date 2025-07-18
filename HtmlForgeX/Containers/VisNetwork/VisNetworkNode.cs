@@ -261,7 +261,14 @@ public class VisNetworkNode {
         if (Label != null) dict["label"] = Label;
         if (Title != null) dict["title"] = Title;
         if (Image != null) dict["image"] = Image;
-        if (Shape != null) dict["shape"] = Shape.Value.EnumToString();
+        if (Shape != null) {
+            var shapeStr = Shape.Value switch {
+                VisNetworkNodeShape.CircularImage => "circularImage",
+                VisNetworkNodeShape.TriangleDown => "triangleDown",
+                _ => Shape.Value.ToString().ToLowerInvariant()
+            };
+            dict["shape"] = shapeStr;
+        }
         if (Group != null) dict["group"] = Group;
         if (Color != null) dict["color"] = Color;
         if (Size != null) dict["size"] = Size;

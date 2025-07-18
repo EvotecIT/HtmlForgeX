@@ -1,95 +1,154 @@
+using System.Text.Json.Serialization;
+
 namespace HtmlForgeX;
 
-/// <summary>
-/// Available node shapes in VisNetwork.
-/// </summary>
+#region Node Enums
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkNodeShape>))]
 public enum VisNetworkNodeShape {
-    /// <summary>
-    /// Renders the node as an ellipse.
-    /// </summary>
     Ellipse,
-
-    /// <summary>
-    /// Renders the node as a circle.
-    /// </summary>
     Circle,
-
-    /// <summary>
-    /// Uses a database icon for the node.
-    /// </summary>
     Database,
-
-    /// <summary>
-    /// Shows the node as a rectangular box.
-    /// </summary>
     Box,
-
-    /// <summary>
-    /// Displays the node with a simple text label.
-    /// </summary>
     Text,
-
-    /// <summary>
-    /// References an image specified by the <c>Image</c> property.
-    /// </summary>
     Image,
-
-    /// <summary>
-    /// Similar to <see cref="Image"/> but clips the image to a circle.
-    /// </summary>
     CircularImage,
-
-    /// <summary>
-    /// Renders the node as a diamond shape.
-    /// </summary>
     Diamond,
-
-    /// <summary>
-    /// Shows the node as a small dot.
-    /// </summary>
     Dot,
-
-    /// <summary>
-    /// Renders the node as a square.
-    /// </summary>
     Square,
-
-    /// <summary>
-    /// Displays the node as a triangle pointing up.
-    /// </summary>
     Triangle,
-
-    /// <summary>
-    /// Displays the node as a triangle pointing down.
-    /// </summary>
     TriangleDown,
-
-    /// <summary>
-    /// Renders the node as a hexagon.
-    /// </summary>
     Hexagon,
-
-    /// <summary>
-    /// Displays the node using a star icon.
-    /// </summary>
-    Star
+    Star,
+    Icon,
+    Custom
 }
 
-/// <summary>
-/// Helper methods for <see cref="VisNetworkNodeShape"/> values.
-/// </summary>
-public static class VisNetworkNodeShapeExtensions {
-    /// <summary>
-    /// Converts a <see cref="VisNetworkNodeShape"/> value to its string representation used by the library.
-    /// </summary>
-    /// <param name="shape">Shape to convert.</param>
-    /// <returns>String representation understood by Vis Network.</returns>
-    public static string EnumToString(this VisNetworkNodeShape shape) => shape switch {
-        VisNetworkNodeShape.CircularImage => "circularImage",
-        VisNetworkNodeShape.TriangleDown => "triangleDown",
-        _ => shape.ToString().ToLower()
-    };
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkAlign>))]
+public enum VisNetworkAlign {
+    Left,
+    Center,
+    Right
 }
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkMulti>))]
+public enum VisNetworkMulti {
+    False,
+    True,
+    Html,
+    Markdown
+}
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkBorderDashes>))]
+public enum VisNetworkBorderDashes {
+    False,
+    True,
+    Array
+}
+
+#endregion
+
+#region Edge Enums
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkArrowType>))]
+public enum VisNetworkArrowType {
+    Arrow,
+    Bar,
+    Circle,
+    Image,
+    Vee
+}
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkSmoothType>))]
+public enum VisNetworkSmoothType {
+    Dynamic,
+    Continuous,
+    Discrete,
+    Diagonally,
+    Straightcross,
+    Horizontal,
+    Vertical,
+    Curvedcw,
+    Curvedccw,
+    Cubicbezier
+}
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkEdgeType>))]
+public enum VisNetworkEdgeType {
+    Arrow,
+    Bar,
+    Circle
+}
+
+#endregion
+
+#region Physics Enums
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkPhysicsSolver>))]
+public enum VisNetworkPhysicsSolver {
+    BarnesHut,
+    ForceAtlas2based,
+    Repulsion,
+    HierarchicalRepulsion
+}
+
+#endregion
+
+#region Layout Enums
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkLayoutDirection>))]
+public enum VisNetworkLayoutDirection {
+    Ud,  // up-down
+    Du,  // down-up
+    Lr,  // left-right
+    Rl   // right-left
+}
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkLayoutSort>))]
+public enum VisNetworkLayoutSort {
+    Hubsize,
+    Directed
+}
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkTreeSpacing>))]
+public enum VisNetworkTreeSpacing {
+    EdgeMinimization,
+    NodeDistance
+}
+
+#endregion
+
+#region Interaction Enums
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkKeyboardSpeed>))]
+public enum VisNetworkKeyboardSpeed {
+    X,
+    Y,
+    Zoom
+}
+
+#endregion
+
+#region Manipulation Enums
+
+[JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkLocale>))]
+public enum VisNetworkLocale {
+    En,
+    Es,
+    De,
+    Fr,
+    It,
+    Nl,
+    Pt,
+    Ru,
+    Uk,
+    Zh,
+    Ja
+}
+
+#endregion
+
+#region Legacy Compatibility
 
 /// <summary>
 /// Defines arrow positioning on an edge.
@@ -145,3 +204,87 @@ public static class VisNetworkArrowExtensions {
         return string.Join(", ", parts);
     }
 }
+
+#endregion
+
+#region Base Converter
+
+public class VisNetworkEnumConverter<T> : JsonConverter<T> where T : struct, Enum {
+    public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
+        var value = reader.GetString();
+        if (value == null) {
+            return default;
+        }
+
+        // Handle special cases
+        if (typeof(T) == typeof(VisNetworkLayoutDirection)) {
+            value = value.ToUpperInvariant();
+        } else if (typeof(T) == typeof(VisNetworkSmoothType)) {
+            value = char.ToUpperInvariant(value[0]) + value.Substring(1);
+        } else if (typeof(T) == typeof(VisNetworkNodeShape)) {
+            if (value == "circularImage") return (T)(object)VisNetworkNodeShape.CircularImage;
+            if (value == "triangleDown") return (T)(object)VisNetworkNodeShape.TriangleDown;
+            value = char.ToUpperInvariant(value[0]) + value.Substring(1);
+        } else {
+            // Default: capitalize first letter
+            value = char.ToUpperInvariant(value[0]) + value.Substring(1);
+        }
+
+        if (Enum.TryParse<T>(value, true, out var result)) {
+            return result;
+        }
+
+        return default;
+    }
+
+    public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options) {
+        var stringValue = value.ToString();
+        
+        // Handle special cases
+        if (typeof(T) == typeof(VisNetworkLayoutDirection)) {
+            writer.WriteStringValue(stringValue.ToUpperInvariant());
+        } else if (typeof(T) == typeof(VisNetworkNodeShape)) {
+            switch (value) {
+                case VisNetworkNodeShape.CircularImage:
+                    writer.WriteStringValue("circularImage");
+                    break;
+                case VisNetworkNodeShape.TriangleDown:
+                    writer.WriteStringValue("triangleDown");
+                    break;
+                default:
+                    writer.WriteStringValue(stringValue.ToLowerInvariant());
+                    break;
+            }
+        } else if (typeof(T) == typeof(VisNetworkPhysicsSolver)) {
+            switch (value) {
+                case VisNetworkPhysicsSolver.BarnesHut:
+                    writer.WriteStringValue("barnesHut");
+                    break;
+                case VisNetworkPhysicsSolver.ForceAtlas2based:
+                    writer.WriteStringValue("forceAtlas2Based");
+                    break;
+                case VisNetworkPhysicsSolver.HierarchicalRepulsion:
+                    writer.WriteStringValue("hierarchicalRepulsion");
+                    break;
+                default:
+                    writer.WriteStringValue(stringValue.ToLowerInvariant());
+                    break;
+            }
+        } else if (typeof(T) == typeof(VisNetworkLocale)) {
+            writer.WriteStringValue(stringValue.ToLowerInvariant());
+        } else if (typeof(T) == typeof(VisNetworkMulti)) {
+            if (value.Equals(VisNetworkMulti.False)) {
+                writer.WriteBooleanValue(false);
+            } else if (value.Equals(VisNetworkMulti.True)) {
+                writer.WriteBooleanValue(true);
+            } else {
+                writer.WriteStringValue(stringValue.ToLowerInvariant());
+            }
+        } else {
+            // Default: lowercase
+            writer.WriteStringValue(stringValue.ToLowerInvariant());
+        }
+    }
+}
+
+#endregion
