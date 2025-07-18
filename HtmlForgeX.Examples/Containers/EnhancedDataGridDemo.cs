@@ -26,7 +26,7 @@ internal class EnhancedDataGridDemo {
             // Header
             page.Row(row => {
                 row.Column(TablerColumnNumber.Twelve, column => {
-                    column.Add(new HeaderLevel(HeaderLevelTag.H1, "Enhanced DataGrid Component"));
+                    column.H1("Enhanced DataGrid Component");
                     column.Text("Complete recreation of Tabler's datagrid.html features using pure C# fluent API - zero HTML knowledge required!")
                         .Style(TablerTextStyle.Muted);
                 });
@@ -36,7 +36,7 @@ internal class EnhancedDataGridDemo {
             // SECTION 1: Basic DataGrid Features
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Section 1: Basic DataGrid Features"));
+            page.H2("Section 1: Basic DataGrid Features");
 
             page.Row(row => {
                 row.Column(TablerColumnNumber.Six, column => {
@@ -78,7 +78,7 @@ internal class EnhancedDataGridDemo {
             // SECTION 2: Advanced Content Types
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Section 2: Advanced Content Types"));
+            page.H2("Section 2: Advanced Content Types");
 
             page.Row(row => {
                 row.Column(TablerColumnNumber.Four, column => {
@@ -157,7 +157,7 @@ internal class EnhancedDataGridDemo {
             // SECTION 3: Layout & Spacing Configuration
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Section 3: Layout & Spacing Configuration"));
+            page.H2("Section 3: Layout & Spacing Configuration");
 
             page.Row(row => {
                 row.Column(TablerColumnNumber.Four, column => {
@@ -223,7 +223,7 @@ internal class EnhancedDataGridDemo {
             // SECTION 4: Responsive Behavior
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Section 4: Responsive Behavior"));
+            page.H2("Section 4: Responsive Behavior");
 
             page.Row(row => {
                 row.Column(TablerColumnNumber.Six, column => {
@@ -275,7 +275,7 @@ internal class EnhancedDataGridDemo {
             // SECTION 5: Advanced Customization
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Section 5: Advanced Customization"));
+            page.H2("Section 5: Advanced Customization");
 
             page.Row(row => {
                 row.Column(TablerColumnNumber.Twelve, column => {
@@ -326,7 +326,7 @@ internal class EnhancedDataGridDemo {
             // SECTION 6: Real-World Example
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Section 6: Real-World Server Dashboard"));
+            page.H2("Section 6: Real-World Server Dashboard");
 
             page.Row(row => {
                 row.Column(TablerColumnNumber.Eight, column => {

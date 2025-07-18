@@ -390,15 +390,15 @@ public class SmartTab : Element {
 
         var containerClasses = new List<string>();
         if (IsVertical) containerClasses.Add("st-vertical");
-        if (!string.IsNullOrEmpty(ContainerClass)) containerClasses.Add(ContainerClass);
+        if (!string.IsNullOrEmpty(ContainerClass)) containerClasses.Add(ContainerClass!);
 
         var navClasses = new List<string> { "nav" };
         if (IsVertical) navClasses.Add("flex-column nav-pills");
         else navClasses.Add("nav-tabs");
-        if (!string.IsNullOrEmpty(NavClass)) navClasses.Add(NavClass);
+        if (!string.IsNullOrEmpty(NavClass)) navClasses.Add(NavClass!);
 
         var contentClasses = new List<string> { "tab-content" };
-        if (!string.IsNullOrEmpty(ContentClass)) contentClasses.Add(ContentClass);
+        if (!string.IsNullOrEmpty(ContentClass)) contentClasses.Add(ContentClass!);
 
         // Build tabs navigation
         var tabsHtml = new List<string>();

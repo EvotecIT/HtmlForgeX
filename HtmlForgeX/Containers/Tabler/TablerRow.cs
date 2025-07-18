@@ -179,7 +179,7 @@ public class TablerRow : Element {
     /// <summary>
     /// Initializes or configures Column.
     /// </summary>
-    public TablerColumn Column(Action<TablerColumn> config) {
+    public new TablerColumn Column(Action<TablerColumn> config) {
         var column = new TablerColumn();
         this.Add(column);
         config(column);
@@ -189,7 +189,7 @@ public class TablerRow : Element {
     /// <summary>
     /// Initializes or configures Column.
     /// </summary>
-    public TablerColumn Column(TablerColumnNumber number, Action<TablerColumn> config) {
+    public new TablerColumn Column(TablerColumnNumber number, Action<TablerColumn> config) {
         var column = new TablerColumn(number);
         this.Add(column);
         config(column);

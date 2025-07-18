@@ -4,7 +4,7 @@ namespace HtmlForgeX;
 /// Horizontal divider with optional text using Tabler styling.
 /// </summary>
 public class TablerDivider : Element {
-    private string Text { get; }
+    private new string Text { get; }
     private HrTextAlignment Alignment { get; }
     private TablerColor Color { get; }
 

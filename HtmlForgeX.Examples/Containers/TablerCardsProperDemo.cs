@@ -26,7 +26,7 @@ internal class TablerCardsProperDemo {
             // SECTION 1: Basic Cards with Proper Headers
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Basic Cards - Proper C# API"));
+            page.H2("Basic Cards - Proper C# API");
             page.Text("All cards built using fluent C# methods - zero raw HTML").Style(TablerTextStyle.Muted);
 
             page.Row(row => {
@@ -93,7 +93,7 @@ internal class TablerCardsProperDemo {
             // SECTION 2: Cards with Enhanced Features
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Enhanced Cards - Ribbons, Stamps, Progress"));
+            page.H2("Enhanced Cards - Ribbons, Stamps, Progress");
 
             page.Row(row => {
                 // Card with stamp
@@ -147,7 +147,7 @@ internal class TablerCardsProperDemo {
             // SECTION 3: Cards with Lists and Text Formatting
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Cards with Lists and Text Formatting"));
+            page.H2("Cards with Lists and Text Formatting");
 
             page.Row(row => {
                 // Card with proper list
@@ -220,7 +220,7 @@ internal class TablerCardsProperDemo {
             // SECTION 4: Cards with Images
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Cards with Images - Proper Positioning"));
+            page.H2("Cards with Images - Proper Positioning");
 
             page.Row(row => {
                 // Card with top image
@@ -300,7 +300,7 @@ internal class TablerCardsProperDemo {
             // SECTION 5: Summary
             // ===============================================
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "✅ Zero HTML Implementation Complete"));
+            page.H2("✅ Zero HTML Implementation Complete");
 
             page.Row(row => {
                 row.Column(TablerColumnNumber.Twelve, column => {

@@ -45,7 +45,7 @@ internal class DataTablesRenderingDemo
             page.Layout = TablerLayout.Fluid;
 
             // Header
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "🚀 DataTables Rendering Modes"));
+            page.H1("🚀 DataTables Rendering Modes");
             page.Text("Compare HTML vs JavaScript rendering for optimal performance with different dataset sizes")
                 .Style(TablerTextStyle.Muted).Weight(TablerFontWeight.Medium);
 

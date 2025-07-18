@@ -31,7 +31,7 @@ internal class DataTablesExtensionsDemo
             page.Layout = TablerLayout.Fluid;
 
             // Header
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "🚀 DataTables Extension Methods"));
+            page.H1("🚀 DataTables Extension Methods");
             page.Text("Quick setup methods for common DataTables configurations")
                 .Style(TablerTextStyle.Muted).Weight(TablerFontWeight.Medium);
 

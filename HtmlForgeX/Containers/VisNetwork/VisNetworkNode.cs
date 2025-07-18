@@ -247,10 +247,10 @@ public class VisNetworkNode {
 
         if (SkipAutoEmbedding) return;
 
-        if (Image.StartsWith("data:", StringComparison.OrdinalIgnoreCase)) return;
+        if (Image?.StartsWith("data:", StringComparison.OrdinalIgnoreCase) == true) return;
 
         if (document.Configuration.LibraryMode == LibraryMode.Offline && document.Configuration.Images.AutoEmbedImages) {
-            Image = EmbedImage(Image, document.Configuration.Images.EmbeddingTimeout);
+            Image = EmbedImage(Image!, document.Configuration.Images.EmbeddingTimeout);
             Shape ??= VisNetworkNodeShape.Image;
         }
     }
@@ -261,7 +261,14 @@ public class VisNetworkNode {
         if (Label != null) dict["label"] = Label;
         if (Title != null) dict["title"] = Title;
         if (Image != null) dict["image"] = Image;
-        if (Shape != null) dict["shape"] = Shape.Value.EnumToString();
+        if (Shape != null) {
+            var shapeStr = Shape.Value switch {
+                VisNetworkNodeShape.CircularImage => "circularImage",
+                VisNetworkNodeShape.TriangleDown => "triangleDown",
+                _ => Shape.Value.ToString().ToLowerInvariant()
+            };
+            dict["shape"] = shapeStr;
+        }
         if (Group != null) dict["group"] = Group;
         if (Color != null) dict["color"] = Color;
         if (Size != null) dict["size"] = Size;

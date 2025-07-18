@@ -144,7 +144,7 @@ public partial class TablerCardEnhanced {
                 bodyDiv.Value(CardContent);
             }
             if (!string.IsNullOrEmpty(CardInnerStyle)) {
-                bodyDiv.Attribute("style", CardInnerStyle);
+                bodyDiv.Attribute("style", CardInnerStyle!);
             }
             foreach (var child in Children.WhereNotNull()) {
                 bodyDiv.Value(child);
@@ -177,7 +177,7 @@ public partial class TablerCardEnhanced {
                 bodyDiv.Value(CardContent);
             }
             if (!string.IsNullOrEmpty(CardInnerStyle)) {
-                bodyDiv.Attribute("style", CardInnerStyle);
+                bodyDiv.Attribute("style", CardInnerStyle!);
             }
             foreach (var child in Children.WhereNotNull()) {
                 bodyDiv.Value(child);

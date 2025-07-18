@@ -87,7 +87,7 @@ public class FancyTreeNode {
     /// <param name="icon">Child icon.</param>
     /// <param name="nodeFolder">Whether the child is a folder.</param>
     /// <returns>The created node.</returns>
-    public FancyTreeNode AddNode(string title, string icon = null, bool nodeFolder = false) {
+    public FancyTreeNode AddNode(string title, string? icon = null, bool nodeFolder = false) {
         var node = new FancyTreeNode { NodeTitle = title, NodeIcon = icon, NodeFolder = nodeFolder };
         Nodes.Add(node);
         return node;

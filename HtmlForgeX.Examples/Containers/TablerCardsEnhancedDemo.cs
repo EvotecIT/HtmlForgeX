@@ -30,7 +30,7 @@ internal class TablerCardsEnhancedDemo {
             page.Layout = TablerLayout.Fluid;
 
             // SECTION: Basic enhanced cards
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Basic Enhanced Cards"));
+            page.H2("Basic Enhanced Cards");
             page.Text("Enhanced cards using proper C# fluent API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -75,7 +75,7 @@ internal class TablerCardsEnhancedDemo {
             });
 
             // SECTION: Card states and effects
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Card States and Link Effects"));
+            page.H2("Card States and Link Effects");
             page.Text("Interactive card states using proper C# API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -121,7 +121,7 @@ internal class TablerCardsEnhancedDemo {
             });
 
             // SECTION: Card decorations
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Card Decorations"));
+            page.H2("Card Decorations");
             page.Text("Ribbons, stamps, and status indicators using proper C# API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -167,7 +167,7 @@ internal class TablerCardsEnhancedDemo {
             });
 
             // SECTION: Progress and backgrounds
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Progress and Backgrounds"));
+            page.H2("Progress and Backgrounds");
             page.Text("Progress bars and background variations using proper C# API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -214,7 +214,7 @@ internal class TablerCardsEnhancedDemo {
             });
 
             // SECTION: Complex examples using proper C# API
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Complex Card Examples"));
+            page.H2("Complex Card Examples");
             page.Text("Advanced card layouts using proper C# fluent API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -281,7 +281,7 @@ internal class TablerCardsEnhancedDemo {
             });
 
             // SECTION: Masonry-like layout demonstration using proper API
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Different Heights (Masonry-style)"));
+            page.H2("Different Heights (Masonry-style)");
             page.Text("Cards with varying heights using proper C# API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -337,7 +337,7 @@ internal class TablerCardsEnhancedDemo {
             });
 
             // SECTION: Cards with proper image handling
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Cards with Images"));
+            page.H2("Cards with Images");
             page.Text("Image positioning using proper C# API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -389,7 +389,7 @@ internal class TablerCardsEnhancedDemo {
             });
 
             // SECTION: Cards with navigation
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Cards with Navigation"));
+            page.H2("Cards with Navigation");
             page.Text("Navigation tabs and pills using proper C# API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {

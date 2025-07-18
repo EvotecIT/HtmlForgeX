@@ -14,7 +14,7 @@ public class SmartTabPanel : ElementContainer {
     public string Label { get; set; }
 
     /// <summary>Gets or sets the tab icon.</summary>
-    public TablerIconType? Icon { get; set; }
+    public new TablerIconType? Icon { get; set; }
 
     /// <summary>Gets or sets whether this tab is disabled.</summary>
     public bool Disabled { get; set; }
@@ -110,7 +110,7 @@ public class SmartTabPanel : ElementContainer {
         var classes = new List<string> { "nav-link" };
         if (isActive) classes.Add("active");
         if (Disabled) classes.Add("disabled");
-        if (!string.IsNullOrEmpty(TabClass)) classes.Add(TabClass);
+        if (!string.IsNullOrEmpty(TabClass)) classes.Add(TabClass!);
 
         var attributes = new List<string> {
             $"href=\"#{Id}\"",
@@ -147,7 +147,7 @@ public class SmartTabPanel : ElementContainer {
     internal string BuildTabPanel(bool isActive = false) {
         var classes = new List<string> { "tab-pane" };
         if (isActive) classes.Add("active");
-        if (!string.IsNullOrEmpty(PanelClass)) classes.Add(PanelClass);
+        if (!string.IsNullOrEmpty(PanelClass)) classes.Add(PanelClass!);
 
         var attributes = new List<string> {
             $"id=\"{Id}\"",

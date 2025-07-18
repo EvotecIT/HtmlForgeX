@@ -97,7 +97,7 @@ public class TablerTextarea : Element {
             .Id(_name)
             .Attribute("name", _name);
             
-        if (!string.IsNullOrEmpty(_placeholder)) textarea.Attribute("placeholder", _placeholder);
+        if (!string.IsNullOrEmpty(_placeholder)) textarea.Attribute("placeholder", _placeholder!);
         if (_required) textarea.Attribute("required", "required");
         if (_rows.HasValue) textarea.Attribute("rows", _rows.Value.ToString());
         if (_cols.HasValue) textarea.Attribute("cols", _cols.Value.ToString());

@@ -41,7 +41,7 @@ internal class AdvancedDataTablesDemo
             page.Layout = TablerLayout.Fluid;
 
             // Header
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "🚀 Advanced DataTables Features"));
+            page.H1("🚀 Advanced DataTables Features");
             page.Text("Comprehensive demonstration of DataTables with all advanced features enabled")
                 .Style(TablerTextStyle.Muted).Weight(TablerFontWeight.Medium);
 
@@ -259,7 +259,7 @@ page.DataTable(employees, table => {
                 .OkaidiaTheme());
 
             // Feature-Rich Configuration
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "🚀 Feature-Rich Configuration"));
+            page.H2("🚀 Feature-Rich Configuration");
             page.Text("Here's how to create a DataTable with all advanced features enabled:");
 
             page.CSharpCode(@"
@@ -290,7 +290,7 @@ page.DataTable(employees, table => {
                 .OkaidiaTheme());
 
             // Export Configuration
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "📊 Export Configuration"));
+            page.H3("📊 Export Configuration");
             page.Text("Configure export functionality with custom options:");
 
             page.CSharpCode(@"
@@ -309,7 +309,7 @@ table.ConfigureExport(export => {
                 .TomorrowNightTheme());
 
             // Column Configuration
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "📋 Column Configuration"));
+            page.H3("📋 Column Configuration");
             page.Text("Fine-tune individual columns with detailed configuration:");
 
             page.CSharpCode(@"
@@ -333,7 +333,7 @@ table.ConfigureColumns(columns => {
                 .VsTheme());
 
             // Advanced Features
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "🔍 Advanced Search Features"));
+            page.H3("🔍 Advanced Search Features");
             page.Text("Enable advanced search capabilities:");
 
             page.CSharpCode(@"
@@ -363,7 +363,7 @@ table
                 .GitHubTheme());
 
             // Localization
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "🌐 Localization"));
+            page.H3("🌐 Localization");
             page.Text("Customize text and labels for better user experience:");
 
             page.CSharpCode(@"
@@ -388,9 +388,9 @@ table.Localize(lang => {
                 .DarkTheme());
 
             // Simple Configuration Examples
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "⚡ Simple Configuration Examples"));
+            page.H2("⚡ Simple Configuration Examples");
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "Basic DataTable"));
+            page.H3("Basic DataTable");
             page.Text("Simple DataTable with essential features:");
 
             page.CSharpCode(@"
@@ -406,7 +406,7 @@ page.DataTable(employees, table => {
                 .EnableCopyButton()
                 .GitHubTheme());
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "Column-Specific Features"));
+            page.H3("Column-Specific Features");
             page.Text("Focus on column-specific configurations:");
 
             page.CSharpCode(@"
@@ -442,7 +442,7 @@ page.DataTable(employees, table => {
                 .SetMaxHeight("400px")
                 .OkaidiaTheme());
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H3, "Advanced Search Configuration"));
+            page.H3("Advanced Search Configuration");
             page.Text("Complex search and filtering setup:");
 
             page.CSharpCode(@"
@@ -471,7 +471,7 @@ page.DataTable(employees, table => {
                 .TomorrowNightTheme());
 
             // Performance Tips
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "⚡ Performance Tips"));
+            page.H2("⚡ Performance Tips");
             page.Text("Optimize your DataTables for better performance:");
 
             page.CSharpCode(@"

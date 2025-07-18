@@ -81,7 +81,7 @@ public class TestAddFontLink
     public void SetBodyFontFamily_IgnoresEmptyValues()
     {
         var doc = new Document();
-        doc.Head.SetBodyFontFamily("Roboto", string.Empty, "  ", null, "sans-serif");
+        doc.Head.SetBodyFontFamily("Roboto", string.Empty, "  ", null!, "sans-serif");
 
         var html = doc.Head.ToString();
         StringAssert.Contains(html, "font-family: Roboto, sans-serif;");

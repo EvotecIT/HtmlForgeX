@@ -21,7 +21,7 @@ public class PrismJsDemo
         {
             page.Layout = TablerLayout.Fluid;
 
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "🎨 PrismJS Syntax Highlighting"));
+            page.H1("🎨 PrismJS Syntax Highlighting");
             page.Text("Beautiful code highlighting with themes, line numbers, and copy functionality")
                 .Style(TablerTextStyle.Muted);
 

@@ -74,7 +74,7 @@ public class EmailText : Element {
     /// <summary>
     /// Gets or sets whether to include line break.
     /// </summary>
-    public bool LineBreak { get; set; } = false;
+    public new bool LineBreak { get; set; } = false;
 
     /// <summary>
     /// Gets or sets the text wrapping mode for controlling how text breaks and wraps.
@@ -102,7 +102,7 @@ public class EmailText : Element {
     /// </summary>
     /// <param name="content">The text content.</param>
     /// <returns>The EmailText object, allowing for method chaining.</returns>
-    public EmailText Text(string content) {
+    public new EmailText Text(string content) {
         Content = content;
         return this;
     }

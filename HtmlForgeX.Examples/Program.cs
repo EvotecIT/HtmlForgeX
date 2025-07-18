@@ -8,6 +8,7 @@ using HtmlForgeX.Examples.ByHand;
 using HtmlForgeX.Examples.Experimenting;
 using HtmlForgeX.Examples.Support;
 using HtmlForgeX.Examples.Forms;
+using HtmlForgeX.Examples.VisNetwork;
 
 namespace HtmlForgeX.Examples;
 
@@ -167,6 +168,21 @@ internal class Program {
 
         // VisNetwork images demo
         BasicVisNetwork.Demo(openInBrowser);
+        AdvancedVisNetwork.Demo(openInBrowser);
+        VisNetworkPhysicsExamples.Demo(openInBrowser);
+        VisNetworkLayoutExamples.Demo(openInBrowser);
+        VisNetworkNodeStylingExamples.Demo(openInBrowser);
+        VisNetworkEdgeManipulationExamples.Demo(openInBrowser);
+        VisNetworkInteractionExamples.Demo(openInBrowser);
+        VisNetworkImprovementsDemo.Create(openInBrowser);
+        VisNetworkMultiLineLabelDemo.Create(openInBrowser);
+        VisNetworkGradientEdgesDemo.Create(openInBrowser);
+        VisNetworkEventsDemo.Create(openInBrowser);
+        VisNetworkClusteringDemo.Create(openInBrowser);
+        VisNetworkMethodsDemo.Create(openInBrowser);
+        VisNetworkExportImportDemo.Create(openInBrowser);
+        VisNetworkCustomShapesDemo.Create(openInBrowser);
+        VisNetworkAdvancedFeaturesDemo.Create(openInBrowser);
 
         // Table examples
         DataTablesQuickStart.Create(openInBrowser);

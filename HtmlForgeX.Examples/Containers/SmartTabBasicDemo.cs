@@ -29,7 +29,7 @@ internal class SmartTabBasicDemo {
             page.Layout = TablerLayout.Fluid;
 
             // SECTION: Basic SmartTab Example
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Basic SmartTab Example"));
+            page.H2("Basic SmartTab Example");
             page.Text("Simple tabbed interface using SmartTab fluent API").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -135,7 +135,7 @@ internal class SmartTabBasicDemo {
             });
 
             // SECTION: Advanced SmartTab with Animations
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Advanced SmartTab with Animations"));
+            page.H2("Advanced SmartTab with Animations");
             page.Text("SmartTab with different themes and animations").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {
@@ -255,7 +255,7 @@ internal class SmartTabBasicDemo {
             });
 
             // SECTION: Auto-Progress SmartTab
-            page.Add(new HeaderLevel(HeaderLevelTag.H2, "Auto-Progress SmartTab"));
+            page.H2("Auto-Progress SmartTab");
             page.Text("SmartTab with automatic progression through tabs").Weight(TablerFontWeight.Medium);
 
             page.Row(row => {

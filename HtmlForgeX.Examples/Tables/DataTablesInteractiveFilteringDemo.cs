@@ -30,7 +30,7 @@ internal class DataTablesInteractiveFilteringDemo {
 
         document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "Interactive Filtering"));
+            page.H1("Interactive Filtering");
             page.Text("SearchBuilder with predefined groups and a custom operator:");
             page.DataTable(sales, table => {
                 table.ConfigureSearchBuilder(sb => sb

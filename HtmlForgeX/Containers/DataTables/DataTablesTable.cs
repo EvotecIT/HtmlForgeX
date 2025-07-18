@@ -536,7 +536,7 @@ public class DataTablesTable : Table {
 
         // Add existing classes if any
         if (!string.IsNullOrEmpty(column.ClassName)) {
-            cssClasses.AddRange(column.ClassName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            cssClasses.AddRange(column.ClassName!.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
         }
 
         // Apply default alignment if not already in CSS classes

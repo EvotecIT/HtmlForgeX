@@ -22,7 +22,7 @@ internal class SmartTabWizardSimpleDemo {
             page.Layout = TablerLayout.Fluid;
 
             // Title
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "SmartTab & SmartWizard Simple Demo"));
+            page.H1("SmartTab & SmartWizard Simple Demo");
             page.Text("Demonstration of SmartTab and SmartWizard components with proper fluent API usage")
                 .Weight(TablerFontWeight.Medium)
                 .Style(TablerTextStyle.Muted);

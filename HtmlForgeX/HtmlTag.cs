@@ -94,7 +94,7 @@ public class HtmlTag : Element {
                     Attributes[attribute.Key] = nestedValue.ToString().TrimEnd(' ', ';');
 
                 } else {
-                    Attributes[attribute.Key] = attribute.Value.ToString();
+                    Attributes[attribute.Key] = attribute.Value?.ToString() ?? "";
                 }
             }
         }
@@ -188,7 +188,7 @@ public class HtmlTag : Element {
                     if (attribute.Value is IFormattable formattable) {
                         valueString = formattable.ToString(null, CultureInfo.InvariantCulture);
                     } else {
-                        valueString = attribute.Value.ToString();
+                        valueString = attribute.Value?.ToString() ?? "";
                     }
                     var value = Helpers.HtmlEncode(valueString?.Trim() ?? string.Empty);
                     html.Append($" {attribute.Key}=\"{value}\"");

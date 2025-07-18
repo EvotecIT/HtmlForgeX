@@ -41,7 +41,7 @@ internal class DataTablesQuickStart
             page.Layout = TablerLayout.Fluid;
 
             // Header
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "⚡ DataTables Quick Start"));
+            page.H1("⚡ DataTables Quick Start");
             page.Text("Learn the enhanced DataTables features with simple examples")
                 .Style(TablerTextStyle.Muted).Weight(TablerFontWeight.Medium);
 

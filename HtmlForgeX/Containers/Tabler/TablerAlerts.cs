@@ -9,8 +9,8 @@ public class TablerAlert : Element {
     private TablerColor AlertColor { get; set; }
     private TablerAlertType AlertType { get; }
     private TablerIconElement? AlertIcon { get; set; }
-    private string AlertImportant { get; set; }
-    private string AlertMinor { get; set; }
+    private string? AlertImportant { get; set; }
+    private string? AlertMinor { get; set; }
     private bool UseHeadingStyle { get; set; }
     private string? ActionHref { get; set; }
     private string? ActionText { get; set; }
@@ -106,7 +106,7 @@ public class TablerAlert : Element {
         }
 
         if (!string.IsNullOrEmpty(ActionHref) && !string.IsNullOrEmpty(ActionText)) {
-            alertTag.Value(new Anchor(ActionHref, ActionText).Class("alert-action"));
+            alertTag.Value(new Anchor(ActionHref!, ActionText!).Class("alert-action"));
         }
 
         if (AlertType == TablerAlertType.Dismissible) {

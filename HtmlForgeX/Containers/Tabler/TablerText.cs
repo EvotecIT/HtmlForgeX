@@ -54,7 +54,7 @@ public class TablerText : Element {
     /// <summary>
     /// Initializes or configures Text.
     /// </summary>
-    public TablerText Text(string text) {
+    public new TablerText Text(string text) {
         ValueEntry += text;
         return this;
     }

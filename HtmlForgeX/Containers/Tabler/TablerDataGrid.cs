@@ -361,7 +361,7 @@ public class TablerDataGrid : Element {
 
         // Add custom classes
         if (!string.IsNullOrEmpty(ContainerCssClasses)) {
-            cssClasses.Add(ContainerCssClasses);
+            cssClasses.Add(ContainerCssClasses!);
         }
 
         // Build inline styles for the container
@@ -381,7 +381,7 @@ public class TablerDataGrid : Element {
         }
 
         if (!string.IsNullOrEmpty(CustomCssStyle)) {
-            inlineStyles.Add(CustomCssStyle);
+            inlineStyles.Add(CustomCssStyle!);
         }
 
         // Start container

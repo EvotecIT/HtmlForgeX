@@ -18,6 +18,8 @@ internal class DomainHealthCheck {
             new { Name = "Bob", Age = 35, Occupation = "Architect" }
         };
 
+        // Placeholder for logs data - not used in current implementation
+        /*
         var logs =
             """
             Effective URL            https://evotec.xyz
@@ -32,6 +34,7 @@ internal class DomainHealthCheck {
             Response code            0
             Return keyword           operation_timedout
             """;
+        */
 
         using var document = new Document {
             Head = {

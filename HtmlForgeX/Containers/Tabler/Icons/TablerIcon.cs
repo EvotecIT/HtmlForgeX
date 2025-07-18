@@ -115,7 +115,7 @@ public class TablerIcon : Element {
     /// <summary>
     /// Position the icon absolutely
     /// </summary>
-    public TablerIcon Position(string position, string top = null, string right = null, string bottom = null, string left = null) {
+    public TablerIcon Position(string position, string? top = null, string? right = null, string? bottom = null, string? left = null) {
         ContainerStyles["position"] = position;
         if (top != null) ContainerStyles["top"] = top;
         if (right != null) ContainerStyles["right"] = right;

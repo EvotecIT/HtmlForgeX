@@ -10,7 +10,7 @@ public class FullCalendarOptions {
     [JsonConverter(typeof(FullCalendarToolbarConverter))]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("headerToolbar")]
-    public FullCalendarToolbar HeaderToolbar { get; set; }
+    public FullCalendarToolbar? HeaderToolbar { get; set; }
 
     /// <summary>
     /// Gets or sets the toolbar displayed at the bottom of the calendar.
@@ -18,7 +18,7 @@ public class FullCalendarOptions {
     [JsonConverter(typeof(FullCalendarToolbarConverter))]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("footerToolbar")]
-    public FullCalendarToolbar FooterToolbar { get; set; }
+    public FullCalendarToolbar? FooterToolbar { get; set; }
 
     /// <summary>
     /// Gets or sets the initial date the calendar will display.

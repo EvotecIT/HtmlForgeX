@@ -2,36 +2,49 @@ namespace HtmlForgeX.Examples.Containers;
 
 internal class BasicVisNetwork {
     public static void Demo(bool openInBrowser = false) {
-        HelpersSpectre.PrintTitle("VisNetwork Image Demo");
+        HelpersSpectre.PrintTitle("VisNetwork Basic Demo - Fluent API");
 
         using var document = new Document {
-            Head = { Title = "VisNetwork Image Demo", Author = "HtmlForgeX" },
-            LibraryMode = LibraryMode.Offline,
+            Head = { Title = "VisNetwork Basic Demo", Author = "HtmlForgeX" },
+            LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
 
         document.Body.Page(page => {
             page.DiagramNetwork(network => {
-                var server = new VisNetworkNode()
-                    .IdValue(1)
-                    .LabelText("Server")
-                    .UseImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png");
+                network
+                    .WithId("basicNetwork")
+                    .WithSize("100%", "400px")
+                    .WithOptions(options => {
+                        options.WithNodes(nodes => {
+                            nodes.WithBorderWidth(2);
+                        });
+                    });
 
-                var client = new VisNetworkNode()
-                    .IdValue(2)
-                    .LabelText("Client")
-                    .UseImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png");
+                // Add server node with image
+                network.AddNode(1, node => node
+                    .WithLabel("Server")
+                    .WithShape(VisNetworkNodeShape.CircularImage)
+                    .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .WithSize(60)
+                );
 
-                network.AddNode(server)
-                       .AddNode(client)
-                       .AddEdge(new VisNetworkEdge()
-                           .FromNode(2)
-                           .ToNode(1)
-                           .EdgeLabel("connects")
-                           .EdgeArrows(VisNetworkArrows.To));
+                // Add client node with image
+                network.AddNode(2, node => node
+                    .WithLabel("Client")
+                    .WithShape(VisNetworkNodeShape.CircularImage)
+                    .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .WithSize(60)
+                );
+
+                // Add connection
+                network.AddEdge(2, 1, edge => edge
+                    .WithLabel("connects")
+                    .WithArrows(new VisNetworkArrowOptions().WithTo(true))
+                );
             });
         });
 
-        document.Save("VisNetworkImageDemo.html", openInBrowser);
+        document.Save("VisNetworkBasicDemo.html", openInBrowser);
     }
 }

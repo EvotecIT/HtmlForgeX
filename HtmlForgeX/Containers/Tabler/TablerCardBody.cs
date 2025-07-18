@@ -56,7 +56,7 @@ public class TablerCardBody : Element {
     /// <summary>
     /// Add a DataGrid to the card body using the enhanced TablerDataGrid component
     /// </summary>
-    public TablerCardBody DataGrid(Action<TablerDataGrid> dataGridConfig) {
+    public new TablerCardBody DataGrid(Action<TablerDataGrid> dataGridConfig) {
         var dataGrid = new TablerDataGrid();
         dataGridConfig(dataGrid);
         DataGrids.Add(dataGrid);

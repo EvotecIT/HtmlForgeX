@@ -29,7 +29,7 @@ internal class DataTablesFeatureTest
             page.Layout = TablerLayout.Fluid;
 
             // Header
-            page.Add(new HeaderLevel(HeaderLevelTag.H1, "🧪 DataTables Feature Test Suite"));
+            page.H1("🧪 DataTables Feature Test Suite");
             page.Text("Comprehensive validation of all enhanced DataTables features")
                 .Style(TablerTextStyle.Muted).Weight(TablerFontWeight.Medium);
 

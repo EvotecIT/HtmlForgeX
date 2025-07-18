@@ -245,7 +245,7 @@ public class TestComponentInteractions {
                 network.AddEdge(new { from = 1, to = 2, label = "API calls" });
                 network.AddEdge(new { from = 2, to = 3, label = "queries" });
                 
-                network.SetOption("groups", new {
+                network.WithOptions("groups", new {
                     ui = new { color = "lightblue" },
                     api = new { color = "lightgreen" },
                     data = new { color = "lightyellow" }
@@ -297,7 +297,7 @@ public class TestComponentInteractions {
             
             element.DiagramNetwork(network => {
                 network.AddNode(new { id = 1, label = "Interactive Node" });
-                network.SetOption("interaction", new { 
+                network.WithOptions("interaction", new { 
                     dragNodes = true,
                     selectConnectedEdges = true 
                 });

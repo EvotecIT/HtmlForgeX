@@ -5,7 +5,7 @@ namespace HtmlForgeX;
 /// </summary>
 public class UnorderedList : Element {
     private HtmlTag ulTag;
-    private HtmlTag liTag;
+    private HtmlTag? liTag;
 
     /// <summary>
     /// Initializes or configures UnorderedList.
