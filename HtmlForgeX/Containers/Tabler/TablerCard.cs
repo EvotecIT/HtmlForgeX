@@ -108,7 +108,7 @@ public class TablerCard : Element {
     public RGBColor? CustomBackgroundColor { get; set; }
 
     /// <summary>
-    /// Gets or sets a custom text color used when <see cref="TextColor"/> is <c>null</c>.
+    /// Gets or sets a custom text color used when <see cref="M:HtmlForgeX.TablerCardMini.TextColor(HtmlForgeX.TablerColor)"/> is <c>null</c>.
     /// </summary>
     public RGBColor? CustomTextColor { get; set; }
 

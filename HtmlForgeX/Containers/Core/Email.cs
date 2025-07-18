@@ -313,6 +313,7 @@ public class Email : Element {
     /// </summary>
     /// <param name="path">File path.</param>
     /// <param name="openInBrowser">Whether to open the file after saving.</param>
+    /// <param name="cancellationToken">Token used to cancel the operation.</param>
     public async Task SaveAsync(string path, bool openInBrowser = false, CancellationToken cancellationToken = default) {
         PathUtilities.Validate(path);
         Configuration.Email.DefaultPadding = path; // Store path in configuration

@@ -78,6 +78,7 @@ public partial class Document
     /// <param name="openInBrowser">Whether to open the file after saving.</param>
     /// <param name="scriptPath">Optional scripts path.</param>
     /// <param name="stylePath">Optional styles path.</param>
+    /// <param name="cancellationToken">Token used to cancel the operation.</param>
     public async Task SaveAsync(
         string path,
         bool openInBrowser = false,

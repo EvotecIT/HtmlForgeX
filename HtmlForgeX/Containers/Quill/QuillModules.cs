@@ -15,10 +15,12 @@ public class QuillModules {
     public object? Clipboard { get; set; }
 
     /// <summary>
-    /// Gets or sets a toolbar configuration defined as a list of formats.
+    /// Gets or sets a toolbar configuration.
+    /// Can be a simple array of formats, an array of arrays for grouped buttons,
+    /// or custom toolbar configuration object.
     /// </summary>
     [JsonPropertyName("toolbar")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    [JsonConverter(typeof(EnumListDescriptionConverter<QuillFormat>))]
-    public List<QuillFormat>? Toolbar { get; set; }
+    [JsonConverter(typeof(QuillToolbarConverter))]
+    public object? Toolbar { get; set; }
 }

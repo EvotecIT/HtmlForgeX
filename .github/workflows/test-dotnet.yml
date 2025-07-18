@@ -40,6 +40,7 @@ jobs:
 
             - name: Run tests
               run: dotnet test HtmlForgeX.sln --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --verbosity normal --logger trx --collect:"XPlat Code Coverage"
+              timeout-minutes: 10
 
             - name: Upload test results
               uses: actions/upload-artifact@v4
@@ -81,6 +82,7 @@ jobs:
 
             - name: Run tests
               run: dotnet test HtmlForgeX.sln --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --verbosity normal --logger trx --collect:"XPlat Code Coverage"
+              timeout-minutes: 10
 
             - name: Upload test results
               uses: actions/upload-artifact@v4
@@ -115,6 +117,7 @@ jobs:
 
             - name: Run tests
               run: dotnet test HtmlForgeX.sln --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --verbosity normal --logger trx --collect:"XPlat Code Coverage"
+              timeout-minutes: 10
 
             - name: Upload test results
               uses: actions/upload-artifact@v4

@@ -313,11 +313,6 @@ public class EmailImage : Element {
     /// <summary>
     /// Sets the image alignment.
     /// </summary>
-    /// <param name="alignment">The image alignment.</param>
-    /// <returns>The EmailImage object, allowing for method chaining.</returns>
-    /// <summary>
-    /// Sets the image alignment.
-    /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailImage"/> instance.</returns>
     public EmailImage WithAlignment(Alignment alignment) {

@@ -59,6 +59,10 @@ internal class Program {
 
         // Forms examples
         ExampleTablerForm.Create(openInBrowser);
+        ExampleComprehensiveForm.Create(openInBrowser);
+
+        // Quill editor example
+        BasicQuillEditor.Demo(openInBrowser);
 
         // Container examples
         BasicHtmlContainer01.Demo01(openInBrowser);
@@ -159,13 +163,10 @@ internal class Program {
         // ChartJs examples
         BasicChartJs.Demo(openInBrowser);
         BasicApexCharts.Demo(openInBrowser);
-        ApexChartsComprehensive.Demo(true);
+        ApexChartsComprehensive.Demo(openInBrowser);
 
         // VisNetwork images demo
         BasicVisNetwork.Demo(openInBrowser);
-
-        // Quill editor example
-        BasicQuillEditor.Demo(openInBrowser);
 
         // Table examples
         DataTablesQuickStart.Create(openInBrowser);

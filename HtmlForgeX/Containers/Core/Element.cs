@@ -148,12 +148,6 @@ public abstract partial class Element {
     }
 
     /// <summary>
-    /// Adds the table.
-    /// </summary>
-    /// <param name="objects">The objects.</param>
-    /// <param name="tableType">Type of the table.</param>
-    /// <returns></returns>
-    /// <summary>
     /// Creates a table from a collection of objects.
     /// </summary>
     /// <param name="objects">Data source.</param>

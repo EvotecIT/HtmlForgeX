@@ -5,26 +5,98 @@ internal class BasicQuillEditor {
         HelpersSpectre.PrintTitle("Quill Editor Demo");
 
         using var document = new Document {
-            Head = { Title = "Quill Demo", Author = "HtmlForgeX" },
+            Head = { Title = "Quill Editor Showcase", Author = "HtmlForgeX" },
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
 
         document.Body.Page(page => {
-            page.Card(card => {
-                card.QuillEditor(editor => {
-                    editor.Height = "200px";
-                    editor.Options.Placeholder = "Compose an epic...";
-                    // THOSE OPTIONS don't really work correctly, at least theme, formats, it needs improvements
-                    //editor.Options.Theme = QuillTheme.Bubble;
-                    // editor.Options.Modules = new QuillModules {
-                    //     Toolbar = new() { QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Image, QuillFormat.Code, QuillFormat.CodeBlock }
-                    // };
-                    editor.Options.Formats = new() { QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Image };
+            page.Row(row => {
+                // Basic Editor
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => header.Title("Basic Editor"));
+                        card.Body(body => {
+                            body.QuillEditor(editor => {
+                                editor.Height = "200px";
+                                editor.Options.Placeholder = "Compose an epic...";
+                                editor.Options.Theme = QuillTheme.Snow;
+                                editor.Options.Modules.Toolbar = new List<QuillFormat> { 
+                                    QuillFormat.Bold, 
+                                    QuillFormat.Italic, 
+                                    QuillFormat.Underline,
+                                    QuillFormat.Strike,
+                                    QuillFormat.Link
+                                };
+                            });
+                        });
+                    });
+                });
+
+                // Bubble Theme Editor
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => header.Title("Bubble Theme Editor"));
+                        card.Body(body => {
+                            body.QuillEditor(editor => {
+                                editor.Height = "200px";
+                                editor.Options.Placeholder = "Select text to see options...";
+                                editor.Options.Theme = QuillTheme.Bubble;
+                                editor.Options.Modules.Toolbar = new List<QuillFormat> { 
+                                    QuillFormat.Bold, 
+                                    QuillFormat.Italic, 
+                                    QuillFormat.Link,
+                                    QuillFormat.Blockquote
+                                };
+                            });
+                        });
+                    });
+                });
+            });
+
+            page.Row(row => {
+                // Grouped Toolbar
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => header.Title("Grouped Toolbar"));
+                        card.Body(body => {
+                            body.QuillEditor(editor => {
+                                editor.Height = "250px";
+                                editor.Options.Placeholder = "Toolbar with grouped buttons...";
+                                editor.Options.Modules.Toolbar = new List<List<QuillFormat>> {
+                                    new() { QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Strike },
+                                    new() { QuillFormat.List, QuillFormat.Indent },
+                                    new() { QuillFormat.Link, QuillFormat.Image },
+                                    new() { QuillFormat.Code, QuillFormat.CodeBlock }
+                                };
+                            });
+                        });
+                    });
+                });
+
+                // Advanced Toolbar
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => header.Title("Advanced Toolbar"));
+                        card.Body(body => {
+                            body.QuillEditor(editor => {
+                                editor.Height = "250px";
+                                editor.Options.Placeholder = "Full featured editor...";
+                                var config = new QuillToolbarConfig();
+                                config.Group(QuillFormat.Bold, QuillFormat.Italic, QuillFormat.Underline, QuillFormat.Strike)
+                                      .Group(QuillFormat.Blockquote, QuillFormat.CodeBlock)
+                                      .Dropdown("header", "1", "2", "3", "4", "5", "6")
+                                      .ListAndIndentButtons()
+                                      .Dropdown("align")
+                                      .Group(QuillFormat.Link, QuillFormat.Image, QuillFormat.Video);
+                                editor.Options.Modules.Toolbar = config;
+                            });
+                        });
+                    });
                 });
             });
         });
 
-        document.Save("QuillDemo.html", openInBrowser);
+        document.Save("QuillEditorShowcase.html", openInBrowser);
     }
 }

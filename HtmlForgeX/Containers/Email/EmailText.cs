@@ -179,11 +179,6 @@ public class EmailText : Element {
     /// <summary>
     /// Sets the text alignment.
     /// </summary>
-    /// <param name="alignment">The text alignment.</param>
-    /// <returns>The EmailText object, allowing for method chaining.</returns>
-    /// <summary>
-    /// Sets the text alignment.
-    /// </summary>
     /// <param name="alignment">The alignment option.</param>
     /// <returns>The <see cref="EmailText"/> instance.</returns>
     public EmailText WithAlignment(Alignment alignment) {
