@@ -279,7 +279,7 @@ internal class AdvancedVisNetwork {
                 network.AddNode("server", node => node
                     .WithLabel("Main Server")
                     .WithShape(VisNetworkNodeShape.CircularImage)
-                    .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .WithImage("Assets/Icons/UxWing/server-icon.png")
                     .WithSize(60)
                 );
 
@@ -288,7 +288,7 @@ internal class AdvancedVisNetwork {
                     network.AddNode($"client{i}", node => node
                         .WithLabel($"Client {i}")
                         .WithShape(VisNetworkNodeShape.Image)
-                        .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                        .WithImage("Assets/Icons/UxWing/desktop-monitor-display-icon.png")
                         .WithSize(40)
                     );
 

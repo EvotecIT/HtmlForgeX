@@ -277,7 +277,9 @@ public class VisNetworkAnimationOptions {
     /// Sets the easing function.
     /// </summary>
     public VisNetworkAnimationOptions WithEasingFunction(VisNetworkEasingFunction easing) {
-        EasingFunction = easing.ToString();
+        // Convert to camelCase for vis-network compatibility
+        var easingString = easing.ToString();
+        EasingFunction = char.ToLowerInvariant(easingString[0]) + easingString.Substring(1);
         return this;
     }
 }

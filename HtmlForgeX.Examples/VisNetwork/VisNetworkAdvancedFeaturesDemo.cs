@@ -27,12 +27,6 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithSize("100%", "500px")
                         .WithOptions(options => {
                             options.WithPhysics(physics => physics.WithEnabled(false));
-                            // Set global broken image for all nodes
-                            options.WithNodes(nodes => {
-                                var globalImage = new VisNetworkImageOptions()
-                                    .WithBrokenImage("https://via.placeholder.com/150x150/ff0000/ffffff?text=ERROR");
-                                nodes.WithImageObject(globalImage);
-                            });
                         });
 
                     // Working image with uniform padding
@@ -40,10 +34,10 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithLabel("User 1\n(10px padding)")
                         .WithShape(VisNetworkNodeShape.Image)
                         .WithImageObject(new VisNetworkImageOptions()
-                            .WithUnselected("https://via.placeholder.com/150x150/4682B4/ffffff?text=User+1")
-                            .WithSelected("https://via.placeholder.com/150x150/1E90FF/ffffff?text=Selected")
-                            .WithImagePadding(10)
+                            .WithUnselected("Assets/Icons/UxWing/user-settings-icon.png")
+                            .WithSelected("Assets/Icons/UxWing/user-settings-icon.png")
                         )
+                        .WithImagePadding(10)
                         .WithPosition(-300, -100)
                         .WithSize(80)
                     );
@@ -53,9 +47,9 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithLabel("User 2\n(Custom padding)")
                         .WithShape(VisNetworkNodeShape.Image)
                         .WithImageObject(new VisNetworkImageOptions()
-                            .WithUnselected("https://via.placeholder.com/150x150/228B22/ffffff?text=User+2")
-                            .WithImagePadding(5, 20, 5, 20) // top, right, bottom, left
+                            .WithUnselected("Assets/Icons/UxWing/user-settings-icon.png")
                         )
+                        .WithImagePadding(5, 20, 5, 20) // top, right, bottom, left
                         .WithPosition(0, -100)
                         .WithSize(80)
                     );
@@ -64,11 +58,9 @@ namespace HtmlForgeX.Examples.VisNetwork {
                     network.AddNode("user3", node => node
                         .WithLabel("User 3\n(Broken image)")
                         .WithShape(VisNetworkNodeShape.Image)
-                        .WithImageObject(new VisNetworkImageOptions()
-                            .WithUnselected("https://broken-url-that-does-not-exist.com/image.jpg")
-                            .WithBrokenImage("https://via.placeholder.com/150x150/FFA500/000000?text=BROKEN")
-                            .WithImagePadding(15)
-                        )
+                        .WithImage("https://broken-url-that-does-not-exist.com/image.jpg")
+                        .WithBrokenImage("Assets/Icons/UxWing/hashtag-icon.png")
+                        .WithImagePadding(15)
                         .WithPosition(300, -100)
                         .WithSize(80)
                     );
@@ -78,10 +70,10 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithLabel("User 4\n(Click to select)")
                         .WithShape(VisNetworkNodeShape.Image)
                         .WithImageObject(new VisNetworkImageOptions()
-                            .WithUnselected("https://via.placeholder.com/150x150/800080/ffffff?text=Normal")
-                            .WithSelected("https://via.placeholder.com/150x150/FF1493/ffffff?text=Active")
-                            .WithImagePadding(20)
+                            .WithUnselected("Assets/Icons/UxWing/user-settings-icon.png")
+                            .WithSelected("Assets/Icons/UxWing/user-settings-icon.png")
                         )
+                        .WithImagePadding(20)
                         .WithPosition(-150, 100)
                         .WithSize(100)
                     );
@@ -90,10 +82,8 @@ namespace HtmlForgeX.Examples.VisNetwork {
                     network.AddNode("user5", node => node
                         .WithLabel("User 5\n(Circular + padding)")
                         .WithShape(VisNetworkNodeShape.CircularImage)
-                        .WithImageObject(new VisNetworkImageOptions()
-                            .WithUnselected("https://via.placeholder.com/150x150/008080/ffffff?text=Circle")
-                            .WithImagePadding(25)
-                        )
+                        .WithImage("Assets/Icons/UxWing/user-settings-icon.png")
+                        .WithImagePadding(25)
                         .WithPosition(150, 100)
                         .WithSize(100)
                     );
@@ -243,26 +233,21 @@ namespace HtmlForgeX.Examples.VisNetwork {
                                 )
                                 .WithWind(0.1, 0) // Gentle breeze to the right
                             );
-                            options.WithNodes(nodes => {
-                                var defaultImage = new VisNetworkImageOptions()
-                                    .WithBrokenImage("https://via.placeholder.com/100x100/cccccc/666666?text=N/A")
-                                    .WithImagePadding(5);
-                                nodes.WithImageObject(defaultImage);
-                            });
+                            // Note: brokenImage and imagePadding are set per node, not globally
                         });
 
                     // Create a weather monitoring network
                     network.AddNode("station1", node => node
                         .WithLabel("Weather Station 1")
                         .WithShape(VisNetworkNodeShape.Image)
-                        .WithImage("https://via.placeholder.com/100x100/4169E1/ffffff?text=WS1")
+                        .WithImage("Assets/Icons/UxWing/cloud-icon.png")
                         .WithMass(3) // Heavy, less affected by wind
                     );
 
                     network.AddNode("station2", node => node
                         .WithLabel("Weather Station 2")
                         .WithShape(VisNetworkNodeShape.Image)
-                        .WithImage("https://via.placeholder.com/100x100/32CD32/ffffff?text=WS2")
+                        .WithImage("Assets/Icons/UxWing/cloud-icon.png")
                         .WithMass(3)
                     );
 
@@ -276,7 +261,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             network.AddNode(sensorId, node => node
                                 .WithLabel($"{sensorTypes[i]} {s}")
                                 .WithShape(VisNetworkNodeShape.CircularImage)
-                                .WithImage($"https://via.placeholder.com/80x80/{sensorColors[i].Replace("#", "")}/ffffff?text={sensorTypes[i][0]}")
+                                .WithImage("Assets/Icons/UxWing/compass-icon.png")
                                 .WithSize(40)
                                 .WithMass(0.5) // Lightweight, more affected by wind
                             );

@@ -98,7 +98,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
 
                     // Add method calls with delays
                     network
-                        // Start by fitting all nodes
+                        // Start by fitting all nodes after a short delay for initialization
                         .Fit(fit => fit
                             .WithAnimation(anim => anim
                                 .WithDuration(1000)
@@ -106,30 +106,30 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             )
                             .WithMinZoomLevel(0.5)
                             .WithMaxZoomLevel(2.0)
-                        )
-                        // After 2 seconds, focus on cluster1
+                        , delay: 500)  // Add initial delay for network initialization
+                        // After 2.5 seconds, focus on cluster1
                         .Focus("cluster1", focus => focus
                             .WithScale(1.5)
                             .WithAnimation(anim => anim
                                 .WithDuration(1500)
                                 .WithEasingFunction(VisNetworkEasingFunction.EaseInOutCubic)
                             ), 
-                            2000
+                            2500
                         )
-                        // After 4 seconds, focus on cluster2
+                        // After 4.5 seconds, focus on cluster2
                         .Focus("cluster2", focus => focus
                             .WithScale(1.5)
                             .WithOffset(50, -50)
                             .WithAnimation(true), 
-                            4000
+                            4500
                         )
-                        // After 6 seconds, fit only cluster3 nodes
+                        // After 6.5 seconds, fit only cluster3 nodes
                         .Fit(fit => fit
                             .WithNodes("cluster3", "c3n1", "c3n2", "c3n3")
                             .WithAnimation(anim => anim
                                 .WithDuration(2000)
                             ), 
-                            6000
+                            6500
                         );
                 });
 
@@ -163,28 +163,29 @@ namespace HtmlForgeX.Examples.VisNetwork {
 
                     // Animated tour through the grid
                     network
-                        // Start at top-left
+                        // Start at top-left after initialization
                         .MoveTo(move => move
                             .WithPosition(-300, -300)
                             .WithScale(1.0)
-                            .WithAnimation(anim => anim.WithDuration(1000))
+                            .WithAnimation(anim => anim.WithDuration(1000)),
+                            delay: 500
                         )
                         // Move to center with zoom
                         .MoveTo(move => move
                             .WithPosition(0, 0)
                             .WithScale(1.5)
                             .WithAnimation(anim => anim.WithDuration(2000)),
-                            1500
+                            2000
                         )
                         // Move to bottom-right
                         .MoveTo(move => move
                             .WithPosition(300, 300)
                             .WithScale(1.0)
                             .WithAnimation(anim => anim.WithDuration(1500)),
-                            4000
+                            4500
                         )
                         // Zoom out to see all
-                        .Fit(fit => fit.WithAnimation(true), 6000);
+                        .Fit(fit => fit.WithAnimation(true), 6500);
                 });
 
                 page.H2("3. Selection Control");
@@ -221,28 +222,25 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         }
                     }
 
-                    // Connect groups
-                    network.AddEdge("Frontend1", "Backend1");
-                    network.AddEdge("Frontend2", "Backend1");
-                    network.AddEdge("Frontend3", "Backend2");
-                    network.AddEdge("Frontend4", "Backend3");
-                    network.AddEdge("Backend1", "Database1");
-                    network.AddEdge("Backend2", "Database2");
-                    network.AddEdge("Backend3", "Database3");
-                    network.AddEdge("Backend4", "Database4");
+                    // Connect groups with explicit edge IDs
+                    network.AddEdge("Frontend1", "Backend1", edge => edge.WithId("edge1"));
+                    network.AddEdge("Frontend2", "Backend1", edge => edge.WithId("edge2"));
+                    network.AddEdge("Frontend3", "Backend2", edge => edge.WithId("edge3"));
+                    network.AddEdge("Frontend4", "Backend3", edge => edge.WithId("edge4"));
+                    network.AddEdge("Backend1", "Database1", edge => edge.WithId("edge5"));
+                    network.AddEdge("Backend2", "Database2", edge => edge.WithId("edge6"));
+                    network.AddEdge("Backend3", "Database3", edge => edge.WithId("edge7"));
+                    network.AddEdge("Backend4", "Database4", edge => edge.WithId("edge8"));
 
-                    // Selection sequence
+                    // Selection sequence with initial delay for network initialization
                     network
-                        // Select all frontend nodes after 1 second
-                        .SelectNodes(new[] { "Frontend1", "Frontend2", "Frontend3", "Frontend4" }, delay: 1000)
-                        // Select backend nodes after 3 seconds
-                        .SelectNodes(new[] { "Backend1", "Backend2", "Backend3", "Backend4" }, delay: 3000)
-                        // Select specific edges after 5 seconds
-                        .UnselectAll(delay: 5000)
-                        .SelectEdges(new[] { 
-                            new { from = "Frontend1", to = "Backend1" },
-                            new { from = "Backend1", to = "Database1" }
-                        }, delay: 5500);
+                        // Select all frontend nodes after 1.5 seconds
+                        .SelectNodes(new[] { "Frontend1", "Frontend2", "Frontend3", "Frontend4" }, delay: 1500)
+                        // Select backend nodes after 3.5 seconds
+                        .SelectNodes(new[] { "Backend1", "Backend2", "Backend3", "Backend4" }, delay: 3500)
+                        // Select specific edges after 5.5 seconds
+                        .UnselectAll(delay: 5500)
+                        .SelectEdges(new[] { "edge1", "edge5" }, delay: 6000);
                 });
 
                 page.H2("4. Physics Control");

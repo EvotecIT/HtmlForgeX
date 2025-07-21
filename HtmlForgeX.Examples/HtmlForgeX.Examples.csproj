@@ -16,4 +16,15 @@
     <ProjectReference Include="..\HtmlForgeX\HtmlForgeX.csproj" />
   </ItemGroup>
 
+  <!-- Automatically copy Assets folder to output directory on build -->
+  <Target Name="CopyAssetsFolder" AfterTargets="Build">
+    <ItemGroup>
+      <AssetFiles Include="$(MSBuildProjectDirectory)\..\Assets\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AssetFiles)"
+          DestinationFiles="@(AssetFiles->'$(OutDir)Assets\%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+    <Message Text="Copied Assets folder to output directory" Importance="high" />
+  </Target>
+
 </Project>

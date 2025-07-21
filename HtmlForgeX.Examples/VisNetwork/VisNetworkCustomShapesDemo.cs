@@ -189,51 +189,63 @@ namespace HtmlForgeX.Examples.VisNetwork {
 
                     // Create a custom diamond shape
                     var diamondShape = VisNetworkCustomShapes.Custom("diamond", @"
-                        function(ctx, x, y, state, doStroke, doFill) {
-                            var r = this.options.size || 25;
-                            ctx.beginPath();
-                            ctx.moveTo(x, y - r);
-                            ctx.lineTo(x + r, y);
-                            ctx.lineTo(x, y + r);
-                            ctx.lineTo(x - r, y);
-                            ctx.closePath();
-                            if (doFill) {
-                                ctx.fill();
-                            }
-                            if (doStroke) {
-                                ctx.stroke();
-                            }
+                        function({ ctx, id, x, y, state: { selected, hover }, style, label }) {
+                            return {
+                                drawNode() {
+                                    var r = style.size || 25;
+                                    ctx.beginPath();
+                                    ctx.moveTo(x, y - r);
+                                    ctx.lineTo(x + r, y);
+                                    ctx.lineTo(x, y + r);
+                                    ctx.lineTo(x - r, y);
+                                    ctx.closePath();
+                                    ctx.fillStyle = style.color;
+                                    ctx.fill();
+                                    if (selected || hover) {
+                                        ctx.strokeStyle = selected ? '#000' : '#333';
+                                        ctx.lineWidth = selected ? 2 : 1;
+                                        ctx.stroke();
+                                    }
+                                },
+                                nodeDimensions: { width: (style.size || 25) * 2, height: (style.size || 25) * 2 }
+                            };
                         }");
 
                     // Create a custom star burst shape
                     var starBurstShape = VisNetworkCustomShapes.Custom("starBurst", @"
-                        function(ctx, x, y, state, doStroke, doFill) {
-                            var r = this.options.size || 25;
-                            var spikes = 8;
-                            var innerRadius = r * 0.5;
-                            var outerRadius = r;
-                            
-                            ctx.beginPath();
-                            for (var i = 0; i < spikes * 2; i++) {
-                                var angle = (i * Math.PI) / spikes - Math.PI / 2;
-                                var radius = i % 2 === 0 ? outerRadius : innerRadius;
-                                var x1 = x + Math.cos(angle) * radius;
-                                var y1 = y + Math.sin(angle) * radius;
-                                
-                                if (i === 0) {
-                                    ctx.moveTo(x1, y1);
-                                } else {
-                                    ctx.lineTo(x1, y1);
-                                }
-                            }
-                            ctx.closePath();
-                            
-                            if (doFill) {
-                                ctx.fill();
-                            }
-                            if (doStroke) {
-                                ctx.stroke();
-                            }
+                        function({ ctx, id, x, y, state: { selected, hover }, style, label }) {
+                            return {
+                                drawNode() {
+                                    var r = style.size || 25;
+                                    var spikes = 8;
+                                    var innerRadius = r * 0.5;
+                                    var outerRadius = r;
+                                    
+                                    ctx.beginPath();
+                                    for (var i = 0; i < spikes * 2; i++) {
+                                        var angle = (i * Math.PI) / spikes - Math.PI / 2;
+                                        var radius = i % 2 === 0 ? outerRadius : innerRadius;
+                                        var x1 = x + Math.cos(angle) * radius;
+                                        var y1 = y + Math.sin(angle) * radius;
+                                        
+                                        if (i === 0) {
+                                            ctx.moveTo(x1, y1);
+                                        } else {
+                                            ctx.lineTo(x1, y1);
+                                        }
+                                    }
+                                    ctx.closePath();
+                                    
+                                    ctx.fillStyle = style.color;
+                                    ctx.fill();
+                                    if (selected || hover) {
+                                        ctx.strokeStyle = selected ? '#000' : '#333';
+                                        ctx.lineWidth = selected ? 2 : 1;
+                                        ctx.stroke();
+                                    }
+                                },
+                                nodeDimensions: { width: (style.size || 25) * 2, height: (style.size || 25) * 2 }
+                            };
                         }");
 
                     // Create nodes with custom shapes

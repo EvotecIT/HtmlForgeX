@@ -182,7 +182,7 @@ internal class VisNetworkNodeStylingExamples {
                 network.AddNode(1, node => node
                     .WithLabel("Border Style")
                     .WithShape(VisNetworkNodeShape.Image)
-                    .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .WithImage("Assets/Icons/UxWing/server-icon.png")
                     .WithShapeProperties(props => props
                         .WithUseBorderWithImage(true)
                     )
@@ -195,7 +195,7 @@ internal class VisNetworkNodeStylingExamples {
                 network.AddNode(2, node => node
                     .WithLabel("Circular Border")
                     .WithShape(VisNetworkNodeShape.CircularImage)
-                    .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .WithImage("Assets/Icons/UxWing/user-settings-icon.png")
                     .WithBorderWidth(3)
                     .WithColor(RGBColor.DarkGoldenrod)
                     .WithSize(60)
@@ -206,7 +206,7 @@ internal class VisNetworkNodeStylingExamples {
                 network.AddNode(3, node => node
                     .WithLabel("50% Opacity")
                     .WithShape(VisNetworkNodeShape.Image)
-                    .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .WithImage("Assets/Icons/UxWing/cloud-icon.png")
                     .WithOpacity(0.5)
                     .WithPosition(100, 0)
                 );
@@ -215,7 +215,7 @@ internal class VisNetworkNodeStylingExamples {
                 network.AddNode(4, node => node
                     .WithLabel("With Shadow")
                     .WithShape(VisNetworkNodeShape.CircularImage)
-                    .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .WithImage("Assets/Icons/UxWing/computer-cpu-icon.png")
                     .WithShadow(new VisNetworkShadowOptions()
                         .WithEnabled(true)
                         .WithColor(RGBColor.Black)
@@ -229,7 +229,7 @@ internal class VisNetworkNodeStylingExamples {
                 network.AddNode(5, node => node
                     .WithLabel("Dashed Border")
                     .WithShape(VisNetworkNodeShape.Image)
-                    .WithImage("../../../../Assets/Images/WhiteBackground/Logo-evotec.png")
+                    .WithImage("Assets/Icons/UxWing/wrench-icon.png")
                     .WithShapeProperties(props => props
                         .WithUseBorderWithImage(true)
                         .WithBorderDashes(VisNetworkDashPattern.ShortDash)

@@ -167,22 +167,22 @@ internal class Program {
         ApexChartsComprehensive.Demo(openInBrowser);
 
         // VisNetwork images demo
-        BasicVisNetwork.Demo(openInBrowser);
-        AdvancedVisNetwork.Demo(openInBrowser);
-        VisNetworkPhysicsExamples.Demo(openInBrowser);
-        VisNetworkLayoutExamples.Demo(openInBrowser);
-        VisNetworkNodeStylingExamples.Demo(openInBrowser);
-        VisNetworkEdgeManipulationExamples.Demo(openInBrowser);
-        VisNetworkInteractionExamples.Demo(openInBrowser);
-        VisNetworkImprovementsDemo.Create(openInBrowser);
-        VisNetworkMultiLineLabelDemo.Create(openInBrowser);
-        VisNetworkGradientEdgesDemo.Create(openInBrowser);
-        VisNetworkEventsDemo.Create(openInBrowser);
-        VisNetworkClusteringDemo.Create(openInBrowser);
-        VisNetworkMethodsDemo.Create(openInBrowser);
-        VisNetworkExportImportDemo.Create(openInBrowser);
-        VisNetworkCustomShapesDemo.Create(openInBrowser);
-        VisNetworkAdvancedFeaturesDemo.Create(openInBrowser);
+        BasicVisNetwork.Demo(true);
+        AdvancedVisNetwork.Demo(true);
+        VisNetworkPhysicsExamples.Demo(true);
+        VisNetworkLayoutExamples.Demo(true);
+        VisNetworkNodeStylingExamples.Demo(true);
+        VisNetworkEdgeManipulationExamples.Demo(true);
+        VisNetworkInteractionExamples.Demo(true);
+        VisNetworkImprovementsDemo.Create(true);
+        VisNetworkMultiLineLabelDemo.Create(true);
+        VisNetworkGradientEdgesDemo.Create(true);
+        VisNetworkEventsDemo.Create(true);
+        VisNetworkClusteringDemo.Create(true);
+        VisNetworkMethodsDemo.Create(true);
+        VisNetworkExportImportDemo.Create(true);
+        VisNetworkCustomShapesDemo.Create(true);
+        VisNetworkAdvancedFeaturesDemo.Create(true);
 
         // Table examples
         DataTablesQuickStart.Create(openInBrowser);

@@ -197,6 +197,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             function(clusterOptions, childNodesOptions) {
                                 clusterOptions.label = 'Outliers (' + childNodesOptions.length + ')';
                                 clusterOptions.title = 'Click to expand ' + childNodesOptions.length + ' outlier nodes';
+                                return clusterOptions;
                             }"
                         )
                     );
@@ -323,7 +324,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithJoinCondition(@"
                             function(nodeOptions, childNodeOptions) {
                                 // Cluster red (high priority) nodes
-                                return childNodeOptions.color === '#FF0000';
+                                return childNodeOptions && childNodeOptions.color === '#FF0000';
                             }"
                         )
                         .WithClusterNodeProperties(props => props

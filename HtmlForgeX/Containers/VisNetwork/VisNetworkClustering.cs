@@ -102,6 +102,7 @@ public static class VisNetworkClusteringTemplates {
             clusterOptions.label = 'Cluster (' + childrenCount + ' nodes)';
             clusterOptions.title = 'Contains ' + childrenCount + ' nodes';
             clusterOptions.value = childrenCount;
+            return clusterOptions;
         }";
 
     /// <summary>
@@ -113,6 +114,7 @@ public static class VisNetworkClusteringTemplates {
                 var firstChild = childNodesOptions[0];
                 clusterOptions.label = firstChild.label + ' +' + (childNodesOptions.length - 1);
             }
+            return clusterOptions;
         }";
 
     /// <summary>
@@ -141,6 +143,7 @@ public static class VisNetworkClusteringTemplates {
                 }
                 clusterOptions.color = maxColor;
             }
+            return clusterOptions;
         }";
 }
 

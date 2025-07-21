@@ -124,6 +124,14 @@ Special handling for PowerShell compatibility:
 
 ## Common Tasks
 
+### Running Examples
+When running examples that reference images (like Logo-evotec.png), note that:
+- Image paths are relative: `../../../../Assets/Images/WhiteBackground/Logo-evotec.png`
+- These paths expect the HTML to be generated in the Examples directory
+- When testing with Playwright or browsers, use the correct working directory
+- Image loading errors for these paths are expected when running from different locations
+- The actual Assets folder is at the project root: `/HtmlForgeX/Assets/`
+
 ### Adding a New Component
 1. Create class inheriting from `Element`
 2. Override `RegisterLibraries()` to register dependencies

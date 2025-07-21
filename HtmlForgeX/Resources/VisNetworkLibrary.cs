@@ -14,14 +14,14 @@ internal class VisNetworkLibrary : Library {
     public VisNetworkLibrary() {
         Header = new LibraryLinks {
             CssLink = [
-                "https://cdn.jsdelivr.net/npm/vis-network@9.1.9/styles/vis-network.min.css"
+                "https://cdn.jsdelivr.net/npm/vis-network@10.0.1/styles/vis-network.min.css"
             ],
             Css = [
                 "vis-network.min.css"
             ],
             JsLink = [
-                "https://cdn.jsdelivr.net/npm/vis-data@7.1.6/peer/umd/vis-data.min.js",
-                "https://cdn.jsdelivr.net/npm/vis-network@9.1.9/peer/umd/vis-network.min.js"
+                "https://cdn.jsdelivr.net/npm/vis-data@7.1.9/peer/umd/vis-data.min.js",
+                "https://cdn.jsdelivr.net/npm/vis-network@10.0.1/peer/umd/vis-network.min.js"
             ],
             Js = [
                 "vis-data.min.js",

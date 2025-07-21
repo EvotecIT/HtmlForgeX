@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text;
 using System.Text.Json;
 
 namespace HtmlForgeX;
@@ -756,7 +757,7 @@ public class VisNetwork : Element {
         // Set default join condition for group clustering
         options.JoinCondition ??= $@"
             function(nodeOptions, childNodeOptions) {{
-                return childNodeOptions.group === '{groupName}';
+                return childNodeOptions && childNodeOptions.group === '{groupName}';
             }}";
         
         _clusteringCommands ??= new List<VisNetworkClusteringCommand>();
@@ -1084,7 +1085,9 @@ public class VisNetwork : Element {
             if (importData.positions) {{
                 network.setOptions({{ physics: {{ enabled: false }} }});
                 for (var nodeId in importData.positions) {{
-                    network.moveNode(nodeId, importData.positions[nodeId].x, importData.positions[nodeId].y);
+                    if (nodes.get(nodeId)) {{
+                        network.moveNode(nodeId, importData.positions[nodeId].x, importData.positions[nodeId].y);
+                    }}
                 }}
             }}
             
@@ -1135,7 +1138,7 @@ public class VisNetwork : Element {
             network.setOptions({{ physics: {{ enabled: false }} }});
             
             for (var nodeId in positions) {{
-                if (positions.hasOwnProperty(nodeId)) {{
+                if (positions.hasOwnProperty(nodeId) && nodes.get(nodeId)) {{
                     network.moveNode(nodeId, positions[nodeId].x, positions[nodeId].y);
                 }}
             }}
@@ -1425,6 +1428,99 @@ public class VisNetwork : Element {
     #endregion
 
     /// <summary>
+    /// Processes nodes to handle custom shapes by converting ctxRenderer strings to functions.
+    /// </summary>
+    private string ProcessCustomShapes(List<object> nodes, string networkId) {
+        var customShapeMap = new Dictionary<string, string>();
+        var nodesWithCustomShapes = new List<(VisNetworkNodeOptions node, string shapeName)>();
+        var shapeCounter = 0;
+        
+        // First pass: collect all unique custom shapes
+        foreach (var node in nodes) {
+            if (node is VisNetworkNodeOptions nodeOptions && 
+                nodeOptions.Shape == VisNetworkNodeShape.Custom && 
+                !string.IsNullOrEmpty(nodeOptions.CtxRenderer)) {
+                
+                var shapeKey = nodeOptions.CtxRenderer.GetHashCode().ToString();
+                if (!customShapeMap.ContainsKey(shapeKey)) {
+                    var shapeName = $"customShape{shapeCounter++}";
+                    customShapeMap[shapeKey] = shapeName;
+                }
+                nodesWithCustomShapes.Add((nodeOptions, customShapeMap[shapeKey]));
+            }
+        }
+        
+        var script = new StringBuilder();
+        
+        // Register custom shapes as functions
+        if (customShapeMap.Count > 0) {
+            script.AppendLine("// Register custom shapes");
+            foreach (var kvp in customShapeMap) {
+                var shapeName = kvp.Value;
+                var shapeFunc = nodesWithCustomShapes.First(n => n.shapeName == shapeName).node.CtxRenderer;
+                script.AppendLine($"var {shapeName} = {shapeFunc};");
+            }
+            script.AppendLine();
+        }
+        
+        // Build nodes array
+        script.AppendLine("var nodesArray = [];");
+        
+        foreach (var node in nodes) {
+            if (node is VisNetworkNodeOptions nodeOptions && 
+                nodeOptions.Shape == VisNetworkNodeShape.Custom && 
+                !string.IsNullOrEmpty(nodeOptions.CtxRenderer)) {
+                
+                // Find the shape name for this node
+                var shapeKey = nodeOptions.CtxRenderer.GetHashCode().ToString();
+                var shapeName = customShapeMap[shapeKey];
+                
+                // Create node object without ctxRenderer
+                var nodeClone = new VisNetworkNodeOptions();
+                var properties = typeof(VisNetworkNodeOptions).GetProperties();
+                foreach (var prop in properties) {
+                    if (prop.Name != "CtxRenderer" && prop.CanRead && prop.CanWrite) {
+                        prop.SetValue(nodeClone, prop.GetValue(nodeOptions));
+                    }
+                }
+                
+                var jsonOptions = new JsonSerializerOptions {
+                    WriteIndented = false,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                };
+                var baseNodeJson = JsonSerializer.Serialize(nodeClone, jsonOptions);
+                
+                // Add the node with the function reference
+                script.AppendLine($@"(function() {{
+                    var node = {baseNodeJson};
+                    node.ctxRenderer = {shapeName};
+                    nodesArray.push(node);
+                }})();");
+            } else {
+                // Regular node
+                var jsonOptions = new JsonSerializerOptions {
+                    WriteIndented = false,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                };
+                var nodeJson = JsonSerializer.Serialize(node, jsonOptions);
+                script.AppendLine($"nodesArray.push({nodeJson});");
+            }
+        }
+        
+        script.AppendLine("var nodes = new vis.DataSet(nodesArray);");
+        
+        // Add edges
+        var edgesJsonOptions = new JsonSerializerOptions {
+            WriteIndented = false,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+        var edgesJsonData = JsonSerializer.Serialize(_edges, edgesJsonOptions);
+        script.AppendLine($"var edges = new vis.DataSet({edgesJsonData});");
+        
+        return script.ToString();
+    }
+
+    /// <summary>
     /// Generates the HTML and JavaScript required to render the diagram.
     /// </summary>
     /// <returns>HTML string representing the network diagram.</returns>
@@ -1465,9 +1561,6 @@ public class VisNetwork : Element {
             WriteIndented = false,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
-
-        var nodesJson = JsonSerializer.Serialize(allNodes, jsonOptions);
-        var edgesJson = JsonSerializer.Serialize(allEdges, jsonOptions);
         
         // Use the current options
         var mergedOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(
@@ -1481,20 +1574,24 @@ public class VisNetwork : Element {
         // Generate clustering commands JavaScript
         var clusteringCommands = GenerateClusteringCommands();
 
+        // Process nodes to handle custom shapes
+        var processedNodesScript = ProcessCustomShapes(allNodes, _id);
+        
         var scriptTag = new HtmlTag("script").Value($@"
-            var nodes = new vis.DataSet({nodesJson});
-            var edges = new vis.DataSet({edgesJson});
-            var container = document.getElementById('{_id}');
-            var data = {{
-                nodes: nodes,
-                edges: edges
-            }};
-            var options = {optionsJson};
-            var network = loadDiagramWithFonts(container, data, options, '{_id}', {(_enableLoadingBar || EnableLoadingBar).ToString().ToLower()}, false);
-            diagramTracker['{_id}'] = network;
-            {eventHandlers}
-            {clusteringCommands}
-            {GenerateMethodCalls()}
+            (function() {{
+                {processedNodesScript}
+                var container = document.getElementById('{_id}');
+                var data = {{
+                    nodes: nodes,
+                    edges: edges
+                }};
+                var options = {optionsJson};
+                var network = loadDiagramWithFonts(container, data, options, '{_id}', {(_enableLoadingBar || EnableLoadingBar).ToString().ToLower()}, false);
+                diagramTracker['{_id}'] = network;
+                {eventHandlers}
+                {clusteringCommands}
+                {GenerateMethodCalls()}
+            }})();
         ");
 
         return divTag + scriptTag.ToString();

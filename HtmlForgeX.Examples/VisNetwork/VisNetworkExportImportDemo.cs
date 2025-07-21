@@ -87,12 +87,16 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .ExecuteMethod(@"
                             // Show message
                             var messageDiv = document.createElement('div');
+                            messageDiv.id = 'basicExportImportDemo-message';
                             messageDiv.innerHTML = '<strong>Drag the nodes around! Network will reset in 5 seconds...</strong>';
                             messageDiv.style.cssText = 'position: absolute; top: 10px; left: 10px; background: yellow; padding: 10px; border-radius: 5px; z-index: 1000;';
                             container.appendChild(messageDiv);
                             
                             setTimeout(function() {
-                                container.removeChild(messageDiv);
+                                var msg = document.getElementById('basicExportImportDemo-message');
+                                if (msg && msg.parentNode) {
+                                    msg.parentNode.removeChild(msg);
+                                }
                             }, 5000);
                         ")
                         .Import("window.basicDemoInitialState", true, 5000)
@@ -171,12 +175,16 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             
                             // Show notification
                             var notification = document.createElement('div');
+                            notification.id = 'exportToFileDemo-notification';
                             notification.innerHTML = '<strong>✓ Network exported!</strong><br>Check your downloads for:<br>• organization-network.json<br>• organization-diagram.png';
                             notification.style.cssText = 'position: absolute; top: 10px; right: 10px; background: #4CAF50; color: white; padding: 15px; border-radius: 5px; z-index: 1000;';
                             container.appendChild(notification);
                             
                             setTimeout(function() {
-                                container.removeChild(notification);
+                                var notif = document.getElementById('exportToFileDemo-notification');
+                                if (notif && notif.parentNode) {
+                                    notif.parentNode.removeChild(notif);
+                                }
                             }, 5000);
                         ", 3600);
                 });

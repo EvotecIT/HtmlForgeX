@@ -139,6 +139,23 @@ public class VisNetworkNodeOptions {
     public object? Image { get; set; }
 
     /// <summary>
+    /// Gets or sets the fallback image URL when the main image fails to load.
+    /// Used when shape is 'image' or 'circularImage'.
+    /// </summary>
+    [JsonPropertyName("brokenImage")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? BrokenImage { get; set; }
+
+    /// <summary>
+    /// Gets or sets the padding around the image.
+    /// Can be a number for uniform padding or an object with top, right, bottom, left properties.
+    /// Used when shape is 'image' or 'circularImage'.
+    /// </summary>
+    [JsonPropertyName("imagePadding")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public object? ImagePadding { get; set; }
+
+    /// <summary>
     /// Gets or sets icon options when using icon shaped nodes.
     /// </summary>
     [JsonPropertyName("icon")]
@@ -214,6 +231,7 @@ public class VisNetworkNodeOptions {
     [JsonPropertyName("ctxRenderer")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? CtxRenderer { get; set; }
+
 
     // Fluent API Methods
 
@@ -472,6 +490,42 @@ public class VisNetworkNodeOptions {
         if (Shape == null || Shape == VisNetworkNodeShape.Ellipse) {
             Shape = VisNetworkNodeShape.Image;
         }
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the fallback image URL when the main image fails to load.
+    /// Used when shape is 'image' or 'circularImage'.
+    /// </summary>
+    /// <param name="url">The URL of the broken image placeholder</param>
+    /// <returns>The node options for method chaining</returns>
+    public VisNetworkNodeOptions WithBrokenImage(string url) {
+        BrokenImage = url;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets uniform padding around the image in pixels.
+    /// Used when shape is 'image' or 'circularImage'.
+    /// </summary>
+    /// <param name="padding">The padding value in pixels</param>
+    /// <returns>The node options for method chaining</returns>
+    public VisNetworkNodeOptions WithImagePadding(int padding) {
+        ImagePadding = padding;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets individual padding values for each side of the image.
+    /// Used when shape is 'image' or 'circularImage'.
+    /// </summary>
+    /// <param name="top">Top padding in pixels</param>
+    /// <param name="right">Right padding in pixels</param>
+    /// <param name="bottom">Bottom padding in pixels</param>
+    /// <param name="left">Left padding in pixels</param>
+    /// <returns>The node options for method chaining</returns>
+    public VisNetworkNodeOptions WithImagePadding(int top, int right, int bottom, int left) {
+        ImagePadding = new { top, right, bottom, left };
         return this;
     }
 
