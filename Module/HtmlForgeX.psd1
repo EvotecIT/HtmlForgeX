@@ -1,4 +1,4 @@
-﻿@{
+@{
     AliasesToExport      = @()
     Author               = 'Przemyslaw Klys'
     CmdletsToExport      = @('*')
@@ -8,7 +8,7 @@
     Description          = 'HtmlForgeX'
     FunctionsToExport    = @()
     GUID                 = 'cf110735-4a69-4a17-9982-5a5a379ce659'
-    ModuleVersion        = '0.1.0'
+    ModuleVersion        = '0.2.0'
     PowerShellVersion    = '5.1'
     PrivateData          = @{
         PSData = @{

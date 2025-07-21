@@ -1,9 +1,9 @@
-﻿Import-Module "C:\Support\GitHub\PSPublishModule\PSPublishModule.psd1" -Force
+Import-Module "C:\Support\GitHub\PSPublishModule\PSPublishModule.psd1" -Force
 
 Build-Module -ModuleName 'HtmlForgeX' {
     # Usual defaults as per standard module
     $Manifest = [ordered] @{
-        ModuleVersion        = '0.1.0'
+        ModuleVersion        = '0.2.0'
         CompatiblePSEditions = @('Desktop', 'Core')
         GUID                 = 'cf110735-4a69-4a17-9982-5a5a379ce659'
         Author               = 'Przemyslaw Klys'

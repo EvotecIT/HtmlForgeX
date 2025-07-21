@@ -20,7 +20,7 @@ namespace HtmlForgeX;
 /// Static library for SVG icons with embedded content from tabler-icons
 /// This is an auto-generated class - do not modify manually
 /// </summary>
-public static class TablerIconLibrary {
+public static partial class TablerIconLibrary {
     private static readonly Dictionary<TablerIconType, string> _iconContent = new() {
         { TablerIconType.AB, "<path d=\"M3 16v-5.5a2.5 2.5 0 0 1 5 0v5.5m0 -4h-5\" />\n  <path d=\"M12 6l0 12\" />\n  <path d=\"M16 16v-8h3a2 2 0 0 1 0 4h-3m3 0a2 2 0 0 1 0 4h-3\" />" },
         { TablerIconType.AB2, "<path d=\"M16 21h3c.81 0 1.48 -.67 1.48 -1.48l.02 -.02c0 -.82 -.69 -1.5 -1.5 -1.5h-3v3z\" />\n  <path d=\"M16 15h2.5c.84 -.01 1.5 .66 1.5 1.5s-.66 1.5 -1.5 1.5h-2.5v-3z\" />\n  <path d=\"M4 9v-4c0 -1.036 .895 -2 2 -2s2 .964 2 2v4\" />\n  <path d=\"M2.99 11.98a9 9 0 0 0 9 9m9 -9a9 9 0 0 0 -9 -9\" />\n  <path d=\"M8 7h-4\" />" },
@@ -4986,45 +4986,4 @@ public static class TablerIconLibrary {
         { TablerIconType.Zzz, "<path d=\"M4 12h6l-6 8h6\" />\n  <path d=\"M14 4h6l-6 8h6\" />" },
         { TablerIconType.ZzzOff, "<path d=\"M4 12h6l-6 8h6\" />\n  <path d=\"M14 4h6l-5.146 6.862m1.146 1.138h4\" />\n  <path d=\"M3 3l18 18\" />" },
     };
-
-    /// <summary>
-    /// Get an SVG icon by type
-    /// </summary>
-    public static TablerIcon GetIcon(TablerIconType TablerIconType) {
-        var svgContent = GetSvgContent(TablerIconType);
-        return new TablerIcon(svgContent);
-    }
-
-    /// <summary>
-    /// Get raw SVG content for an icon
-    /// </summary>
-    public static string GetSvgContent(TablerIconType TablerIconType) {
-        if (_iconContent.TryGetValue(TablerIconType, out var content)) {
-            return content;
-        }
-
-        throw new ArgumentException($"Icon not found: {TablerIconType}");
-    }
-
-    /// <summary>
-    /// Check if an icon exists
-    /// </summary>
-    public static bool HasIcon(TablerIconType TablerIconType) {
-        return _iconContent.ContainsKey(TablerIconType);
-    }
-
-    /// <summary>
-    /// Get all available icon types
-    /// </summary>
-    public static IEnumerable<TablerIconType> GetAllIcons() {
-        return _iconContent.Keys;
-    }
-
-    /// <summary>
-    /// Gets the total count of available icons in the library
-    /// </summary>
-    /// <returns>Total number of available icons</returns>
-    public static int GetAvailableIconCount() {
-        return Enum.GetValues(typeof(TablerIconType)).Length;
-    }
 }

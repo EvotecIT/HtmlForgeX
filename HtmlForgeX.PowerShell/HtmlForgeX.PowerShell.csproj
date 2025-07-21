@@ -10,7 +10,7 @@
         <Description>PowerShell Module for working with Event Logs</Description>
         <AssemblyName>HtmlForgeX.PowerShell</AssemblyName>
         <AssemblyTitle>HtmlForgeX.PowerShell</AssemblyTitle>
-        <VersionPrefix>0.1.0</VersionPrefix>
+        <VersionPrefix>0.2.0</VersionPrefix>
         <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <Company>Evotec</Company>
         <Authors>Przemyslaw Klys</Authors>

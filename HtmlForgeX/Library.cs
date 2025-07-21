@@ -38,6 +38,8 @@ public enum Libraries {
     Tabler,
     /// <summary>Tabler icon set.</summary>
     TablerIcon,
+    /// <summary>Tabler icons webfont.</summary>
+    TablerIconsFont,
     /// <summary>Tabler flag icons.</summary>
     TablerFlags,
     /// <summary>Tabler social icons.</summary>
@@ -197,6 +199,8 @@ public class LibrariesConverter {
                 return new Tabler();
             case Libraries.TablerIcon:
                 return new Resources.TablerIconLibrary();
+            case Libraries.TablerIconsFont:
+                return new Resources.TablerIconsFont();
             case Libraries.TablerFlags:
                 return new Resources.TablerFlags();
             case Libraries.TablerSocials:

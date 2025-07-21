@@ -24,7 +24,7 @@ param(
 Write-Host "🚀 Generating Font Awesome Icon Enums..." -ForegroundColor Cyan
 
 # Set correct paths
-$projectRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$projectRoot = Split-Path -Parent $PSScriptRoot
 Set-Location $projectRoot
 $ProjectPath = Join-Path $projectRoot "HtmlForgeX"
 $TempPath = Join-Path $projectRoot "Temp\fontawesome-icons"
@@ -36,7 +36,7 @@ Write-Host "Project: $ProjectPath" -ForegroundColor Gray
 New-Item -ItemType Directory -Path $TempPath -Force | Out-Null
 
 # Function to convert icon name to enum name
-function Convert-ToEnumName($iconName) {
+function ConvertTo-EnumName($iconName) {
     # Convert kebab-case to PascalCase (e.g., "address-book" -> "AddressBook")
     $parts = $iconName -split '-'
     $enumName = ($parts | ForEach-Object {
@@ -47,24 +47,7 @@ function Convert-ToEnumName($iconName) {
     $enumName = $enumName -replace '^500px', 'FiveHundredPx'
     $enumName = $enumName -replace '^\d+', { 'Number' + $_.Value }
     
-    # Handle brand specific naming
-    switch ($enumName) {
-        'Linkedin' { $enumName = 'LinkedIn' }
-        'Linkedin-In' { $enumName = 'LinkedInIn' }
-        'Github' { $enumName = 'GitHub' }
-        'Gitlab' { $enumName = 'GitLab' }
-        'Bitbucket' { $enumName = 'BitBucket' }
-        'Youtube' { $enumName = 'YouTube' }
-        'Paypal' { $enumName = 'PayPal' }
-        'Javascript' { $enumName = 'JavaScript' }
-        'Php' { $enumName = 'PHP' }
-        'Css3' { $enumName = 'CSS3' }
-        'Html5' { $enumName = 'HTML5' }
-        'Vuejs' { $enumName = 'VueJs' }
-        'Nodejs' { $enumName = 'NodeJs' }
-        'Npm' { $enumName = 'NPM' }
-        'Ios' { $enumName = 'iOS' }
-    }
+    # No brand-specific naming needed - we now store the icon name in the IconName attribute
     
     return $enumName
 }
@@ -121,7 +104,7 @@ function Get-FontAwesomeIcons($version) {
 }
 
 # Function to generate enum file
-function Generate-EnumFile($icons, $enumName, $outputPath, $description) {
+function New-EnumFile($icons, $enumName, $outputPath, $description) {
     Write-Host "✍️ Generating $enumName..." -ForegroundColor Yellow
     
     $sb = [System.Text.StringBuilder]::new()
@@ -144,7 +127,7 @@ function Generate-EnumFile($icons, $enumName, $outputPath, $description) {
     foreach ($icon in $sortedIcons) {
         $iconName = $icon.Key
         $iconData = $icon.Value
-        $enumMember = Convert-ToEnumName $iconName
+        $enumMember = ConvertTo-EnumName $iconName
         $unicode = "0x" + $iconData.unicode
         
         # Add XML documentation
@@ -183,15 +166,15 @@ if ($Version -eq '5' -or $Version -eq 'both') {
         $fa5Path = Join-Path $ProjectPath "Icons\FontAwesome5"
         
         # Generate enums
-        Generate-EnumFile $fa5Icons.Solid "FontAwesome5Solid" `
+        New-EnumFile $fa5Icons.Solid "FontAwesome5Solid" `
             (Join-Path $fa5Path "FontAwesome5Solid.cs") `
             "Font Awesome 5 Solid icons (Free) - Generated automatically by GenerateFontAwesomeIcons.ps1"
             
-        Generate-EnumFile $fa5Icons.Regular "FontAwesome5Regular" `
+        New-EnumFile $fa5Icons.Regular "FontAwesome5Regular" `
             (Join-Path $fa5Path "FontAwesome5Regular.cs") `
             "Font Awesome 5 Regular icons (Free) - Generated automatically by GenerateFontAwesomeIcons.ps1"
             
-        Generate-EnumFile $fa5Icons.Brands "FontAwesome5Brands" `
+        New-EnumFile $fa5Icons.Brands "FontAwesome5Brands" `
             (Join-Path $fa5Path "FontAwesome5Brands.cs") `
             "Font Awesome 5 Brand icons (Free) - Generated automatically by GenerateFontAwesomeIcons.ps1"
     }
@@ -206,15 +189,15 @@ if ($Version -eq '6' -or $Version -eq 'both') {
         $fa6Path = Join-Path $ProjectPath "Icons\FontAwesome"
         
         # Generate enums
-        Generate-EnumFile $fa6Icons.Solid "FontAwesomeSolid" `
+        New-EnumFile $fa6Icons.Solid "FontAwesomeSolid" `
             (Join-Path $fa6Path "FontAwesomeSolid.cs") `
             "Font Awesome 6 Solid icons (Free) - Generated automatically by GenerateFontAwesomeIcons.ps1"
             
-        Generate-EnumFile $fa6Icons.Regular "FontAwesomeRegular" `
+        New-EnumFile $fa6Icons.Regular "FontAwesomeRegular" `
             (Join-Path $fa6Path "FontAwesomeRegular.cs") `
             "Font Awesome 6 Regular icons (Free) - Generated automatically by GenerateFontAwesomeIcons.ps1"
             
-        Generate-EnumFile $fa6Icons.Brands "FontAwesomeBrands" `
+        New-EnumFile $fa6Icons.Brands "FontAwesomeBrands" `
             (Join-Path $fa6Path "FontAwesomeBrands.cs") `
             "Font Awesome 6 Brand icons (Free) - Generated automatically by GenerateFontAwesomeIcons.ps1"
     }
