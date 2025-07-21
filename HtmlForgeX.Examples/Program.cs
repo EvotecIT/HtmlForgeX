@@ -184,6 +184,12 @@ internal class Program {
         VisNetworkCustomShapesDemo.Create(true);
         VisNetworkAdvancedFeaturesDemo.Create(true);
 
+        // VisNetwork HTML Nodes example (with visjs-html-nodes plugin)
+        VisNetworkExamples.VisNetworkHtmlNodesExample.Run(true);
+        
+        // VisNetwork Advanced Labels example (HTML tooltips, \n line breaks, markdown)
+        VisNetworkAdvancedLabelsExample.Run(true);
+
         // Table examples
         DataTablesQuickStart.Create(openInBrowser);
         AdvancedDataTablesDemo.Create(openInBrowser);

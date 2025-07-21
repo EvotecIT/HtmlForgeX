@@ -247,6 +247,20 @@ public class HtmlTag : Element {
     }
 
     /// <summary>
+    /// Adds an element as a child of this HtmlTag.
+    /// </summary>
+    /// <param name="element">The element to add.</param>
+    /// <returns>This element for method chaining.</returns>
+    public override Element Add(Element? element) {
+        if (element is not null) {
+            Children.Add(element);
+            // Still call base to maintain parent-child relationships
+            base.Add(element);
+        }
+        return this;
+    }
+
+    /// <summary>
     /// Appends a child element.
     /// </summary>
     /// <param name="value">The child element.</param>

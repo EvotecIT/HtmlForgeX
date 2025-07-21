@@ -10,6 +10,7 @@ namespace HtmlForgeX;
 public class VisNetwork : Element {
     private readonly List<VisNetworkNodeOptions> _nodes = new();
     private readonly List<VisNetworkEdgeOptions> _edges = new();
+    private readonly List<VisNetworkHtmlNode> _htmlNodes = new();
     private VisNetworkOptions _options = new();
     private bool _enableLoadingBar;
     private string _id;
@@ -64,6 +65,12 @@ public class VisNetwork : Element {
         
         if (usesFontAwesome5) {
             Document?.AddLibrary(Libraries.FontAwesome5);
+        }
+        
+        // Check if any nodes are HTML nodes
+        bool usesHtmlNodes = _htmlNodes.Count > 0;
+        if (usesHtmlNodes) {
+            Document?.AddLibrary(Libraries.VisNetworkHtmlNodes);
         }
     }
 
@@ -180,6 +187,17 @@ public class VisNetwork : Element {
             ApplyImageEmbedding(nodeOptions);
         }
         _nodes.Add(nodeOptions);
+        return this;
+    }
+    
+    /// <summary>
+    /// Adds a <see cref="VisNetworkHtmlNode"/> with full HTML support to the diagram.
+    /// This requires the visjs-html-nodes plugin which will be automatically loaded.
+    /// </summary>
+    /// <param name="node">The HTML node to add.</param>
+    /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
+    public VisNetwork AddHtmlNode(VisNetworkHtmlNode node) {
+        _htmlNodes.Add(node);
         return this;
     }
 
@@ -1563,6 +1581,20 @@ public class VisNetwork : Element {
 
         // Use the current nodes collection
         var allNodes = new List<object>(_nodes);
+        
+        // Convert HTML nodes to regular nodes and collect HTML content
+        var htmlNodeContents = new Dictionary<string, string>();
+        foreach (var htmlNode in _htmlNodes) {
+            // Create a basic node structure for vis.js
+            var nodeOptions = new VisNetworkNodeOptions()
+                .WithId(htmlNode.Id)
+                .WithShape(VisNetworkNodeShape.Box); // HTML nodes need a shape
+            
+            // Store the HTML content for later
+            htmlNodeContents[htmlNode.Id.ToString()] = htmlNode.GetHtmlContent();
+            
+            allNodes.Add(nodeOptions);
+        }
 
         // Apply image embedding before serialization
         foreach (var node in allNodes.OfType<VisNetworkNodeOptions>()) {
@@ -1598,6 +1630,29 @@ public class VisNetwork : Element {
         // Process nodes to handle custom shapes
         var processedNodesScript = ProcessCustomShapes(allNodes, _id);
         
+        // Generate HTML nodes initialization if needed
+        var htmlNodesInit = "";
+        if (htmlNodeContents.Count > 0) {
+            var htmlNodesJson = JsonSerializer.Serialize(htmlNodeContents, jsonOptions);
+            htmlNodesInit = $@"
+                // Initialize HTML nodes
+                var htmlContents = {htmlNodesJson};
+                
+                // Apply HTML content after network is created
+                setTimeout(function() {{
+                    if (typeof VisJsHtmlNodes !== 'undefined') {{
+                        network.htmlNodes = new VisJsHtmlNodes(network, {{
+                            template: function(nodeData) {{
+                                // Return HTML content for HTML nodes, null for regular nodes
+                                return htmlContents[nodeData.id] || null;
+                            }}
+                        }});
+                    }} else {{
+                        console.error('VisJsHtmlNodes library not loaded.');
+                    }}
+                }}, 100);";
+        }
+
         var scriptTag = new HtmlTag("script").Value($@"
             (function() {{
                 {processedNodesScript}
@@ -1609,6 +1664,7 @@ public class VisNetwork : Element {
                 var options = {optionsJson};
                 var network = loadDiagramWithFonts(container, data, options, '{_id}', {(_enableLoadingBar || EnableLoadingBar).ToString().ToLower()}, true);
                 diagramTracker['{_id}'] = network;
+                {htmlNodesInit}
                 {eventHandlers}
                 {clusteringCommands}
                 {GenerateMethodCalls()}

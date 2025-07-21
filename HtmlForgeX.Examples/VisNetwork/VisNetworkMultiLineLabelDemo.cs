@@ -4,7 +4,9 @@ using HtmlForgeX;
 namespace HtmlForgeX.Examples.VisNetwork;
 
 /// <summary>
-/// Demonstrates HTML and Markdown multi-line label support in VisNetwork
+/// Demonstrates native HTML and Markdown multi-line label support in VisNetwork.
+/// Note: Native VisJS only supports <b>, <i>, <code>, and <br> tags.
+/// For full HTML support, use VisNetworkHtmlNodesExample instead.
 /// </summary>
 internal class VisNetworkMultiLineLabelDemo {
     public static void Create(bool openInBrowser = false) {
@@ -23,9 +25,9 @@ internal class VisNetworkMultiLineLabelDemo {
             page.H1("VisNetwork Multi-Line Label Support");
             page.Text("This demo showcases HTML and Markdown formatted labels for nodes and edges.");
             
-            // Section 1: HTML Labels
-            page.H2("1. HTML-Formatted Labels");
-            page.Text("Nodes and edges can use HTML for rich text formatting including colors, styles, and line breaks.");
+            // Section 1: HTML Labels (Native VisJS Support)
+            page.H2("1. HTML-Formatted Labels (Native Support)");
+            page.Text("Native VisJS supports only basic HTML tags: <b> (bold), <i> (italic), <code> (code), and <br> (line break). For full HTML support, use the HTML nodes plugin.");
             
             page.DiagramNetwork(network => {
                 network
@@ -35,14 +37,24 @@ internal class VisNetworkMultiLineLabelDemo {
 
                 // HTML formatted nodes
                 network.AddNode(1, node => node
-                    .WithHtmlLabel("<b>Bold Title</b><br><i>Italic subtitle</i><br><span style='color: red'>Red text</span>")
+                    .WithHtmlLabel(label => label
+                        .Bold("Bold Title")
+                        .LineBreak()
+                        .Italic("Italic subtitle")
+                        .LineBreak()
+                        .Text("Normal text"))
                     .WithPosition(-300, -100)
                     .WithShape(VisNetworkNodeShape.Box)
                     .WithColor(RGBColor.LightBlue)
                 );
                 
                 network.AddNode(2, node => node
-                    .WithHtmlLabel("<h3>HTML Node</h3><ul><li>Feature 1</li><li>Feature 2</li></ul>")
+                    .WithHtmlLabel(label => label
+                        .Bold("HTML Node")
+                        .LineBreak()
+                        .Code("Feature 1")
+                        .LineBreak()
+                        .Code("Feature 2"))
                     .WithPosition(0, -100)
                     .WithShape(VisNetworkNodeShape.Box)
                     .WithColor(RGBColor.LightGreen)
@@ -50,7 +62,12 @@ internal class VisNetworkMultiLineLabelDemo {
                 );
                 
                 network.AddNode(3, node => node
-                    .WithHtmlLabel("<div style='text-align: center'><strong>Centered</strong><br><em>Multi-line</em><br><u>Underlined</u></div>")
+                    .WithHtmlLabel(label => label
+                        .Bold("Centered")
+                        .LineBreak()
+                        .Italic("Multi-line")
+                        .LineBreak()
+                        .Code("Code text"))
                     .WithPosition(300, -100)
                     .WithShape(VisNetworkNodeShape.Box)
                     .WithColor(RGBColor.Orange)
@@ -58,12 +75,12 @@ internal class VisNetworkMultiLineLabelDemo {
 
                 // HTML formatted edges
                 network.AddEdge(1, 2, edge => edge
-                    .WithHtmlLabel("<b>Connection 1</b><br><small>High Priority</small>")
+                    .WithHtmlLabel("<b>Connection 1</b><br><i>High Priority</i>")
                     .WithColor(RGBColor.Gray)
                 );
                 
                 network.AddEdge(2, 3, edge => edge
-                    .WithHtmlLabel("<span style='color: blue'>Data Flow</span><br><span style='color: green'>→ Active</span>")
+                    .WithHtmlLabel("<b>Data Flow</b><br><i>Active</i>")
                     .WithColor(RGBColor.Gray)
                 );
             });
@@ -131,7 +148,12 @@ internal class VisNetworkMultiLineLabelDemo {
 
                 // Core infrastructure nodes
                 network.AddNode("lb", node => node
-                    .WithHtmlLabel("<div style='text-align: center'><b>Load Balancer</b><br><span style='color: green'>● Active</span><br><small>nginx/1.21</small></div>")
+                    .WithHtmlLabel(label => label
+                        .Bold("Load Balancer")
+                        .LineBreak()
+                        .Italic("Active")
+                        .LineBreak()
+                        .Code("nginx/1.21"))
                     .WithShape(VisNetworkNodeShape.Box)
                     .WithColor(RGBColor.Blue)
                     .WithFont(font => font.WithColor(RGBColor.White))
@@ -152,7 +174,14 @@ internal class VisNetworkMultiLineLabelDemo {
                 );
                 
                 network.AddNode("cache", node => node
-                    .WithHtmlLabel("<b>Redis Cache</b><br><hr style='margin: 5px 0'><small>Memory: 512MB<br>Keys: 15,234<br>Hit Rate: 94%</small>")
+                    .WithHtmlLabel(label => label
+                        .Bold("Redis Cache")
+                        .LineBreak()
+                        .Italic("Memory: 512MB")
+                        .LineBreak()
+                        .Italic("Keys: 15,234")
+                        .LineBreak()
+                        .Italic("Hit Rate: 94%"))
                     .WithShape(VisNetworkNodeShape.Database)
                     .WithColor(RGBColor.Red)
                     .WithFont(font => font.WithColor(RGBColor.White))
@@ -167,13 +196,13 @@ internal class VisNetworkMultiLineLabelDemo {
 
                 // Connections with informative labels
                 network.AddEdge("lb", "web1", edge => edge
-                    .WithHtmlLabel("<small><b>HTTP/2</b><br>50% traffic</small>")
+                    .WithHtmlLabel("<b>HTTP/2</b><br>50% traffic")
                     .WithArrows(arrows => arrows.WithTo(true))
                     .WithWidth(3)
                 );
                 
                 network.AddEdge("lb", "web2", edge => edge
-                    .WithHtmlLabel("<small><b>HTTP/2</b><br>50% traffic</small>")
+                    .WithHtmlLabel("<b>HTTP/2</b><br>50% traffic")
                     .WithArrows(arrows => arrows.WithTo(true))
                     .WithWidth(3)
                 );
@@ -217,7 +246,7 @@ network.AddNode(1, node => node
 
 // HTML formatted edge label
 network.AddEdge(1, 2, edge => edge
-    .WithHtmlLabel(""<span style='color: red'>Important</span>"")
+    .WithHtmlLabel(""<b>Important</b><br><i>Connection</i>"")
 );", config => config.EnableLineNumbers().EnableCopyButton());
                         });
                     });

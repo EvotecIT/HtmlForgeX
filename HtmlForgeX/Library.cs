@@ -58,6 +58,8 @@ public enum Libraries {
     VisNetwork,
     /// <summary>vis-network loading bar extension.</summary>
     VisNetworkLoadingBar,
+    /// <summary>vis-network HTML nodes plugin for full HTML support in nodes.</summary>
+    VisNetworkHtmlNodes,
     /// <summary>EasyQRCode library.</summary>
     EasyQRCode,
     /// <summary>FullCalendar library.</summary>
@@ -118,6 +120,8 @@ public class Library {
     public bool Default { get; set; } = false;
     /// <summary>Indicates the library is for email usage only.</summary>
     public bool Email { get; set; } = false;
+    /// <summary>Prevents this library from being refreshed from CDN when updating local files.</summary>
+    public bool BlockDownload { get; set; } = false;
 }
 
 /// <summary>
@@ -221,6 +225,8 @@ public class LibrariesConverter {
                 return new VisNetworkLibrary();
             case Libraries.VisNetworkLoadingBar:
                 return new VisNetworkLoadingBarLibrary();
+            case Libraries.VisNetworkHtmlNodes:
+                return new VisNetworkHtmlNodesLibrary();
             case Libraries.EasyQRCode:
                 return new EasyQRCode();
             case Libraries.FullCalendar:

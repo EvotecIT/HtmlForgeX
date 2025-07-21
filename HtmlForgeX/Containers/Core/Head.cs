@@ -446,7 +446,8 @@ public class Head : Element {
     /// </summary>
     /// <param name="js">JavaScript code to embed.</param>
     public void AddJsInline(string js) {
-        js = Regex.Replace(js.Trim(), @"\s+", " ");
+        // Don't minify JavaScript - it can break the code
+        js = js.Trim();
         if (_jsInlineSet.Add(js)) {
             Scripts.Add($"<script>{js}</script>");
         }
@@ -512,6 +513,22 @@ gtag('config', '{encodedIdentifier}');
 
             foreach (var link in headerLinks.JsLink) {
                 AddJsLink(link);
+            }
+            
+            // If no JsLink but has embedded Js resources, embed them inline
+            if (headerLinks.JsLink.Count == 0 && headerLinks.Js.Count > 0) {
+                foreach (var js in headerLinks.Js) {
+                    var jsContent = ReadEmbeddedResource("HtmlForgeX.Resources.Scripts." + js);
+                    AddJsInline(jsContent);
+                }
+            }
+            
+            // If no CssLink but has embedded Css resources, embed them inline
+            if (headerLinks.CssLink.Count == 0 && headerLinks.Css.Count > 0) {
+                foreach (var css in headerLinks.Css) {
+                    var cssContent = ReadEmbeddedResource("HtmlForgeX.Resources.Styles." + css);
+                    AddCssInline(cssContent);
+                }
             }
         } else if (_document.Configuration.LibraryMode == LibraryMode.Offline) {
             foreach (var css in headerLinks.Css) {
