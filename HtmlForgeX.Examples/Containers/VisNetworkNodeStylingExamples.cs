@@ -38,7 +38,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("Database")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFontAwesome(FontAwesomeSolid.Database)
+                        .WithFontAwesome5(FontAwesome5Solid.Database)
                         .WithSize(50)
                         .WithColor(RGBColor.DarkGreen)
                     )
@@ -49,7 +49,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("Users")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFontAwesome(FontAwesomeSolid.Users)
+                        .WithFontAwesome5(FontAwesome5Solid.Users)
                         .WithSize(50)
                         .WithColor(RGBColor.DarkOrange)
                     )
@@ -60,7 +60,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("Cloud")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFontAwesome(FontAwesomeSolid.Cloud)
+                        .WithFontAwesome5(FontAwesome5Solid.Cloud)
                         .WithSize(50)
                         .WithColor(RGBColor.SkyBlue)
                     )
@@ -71,7 +71,7 @@ internal class VisNetworkNodeStylingExamples {
                     .WithLabel("Security")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFontAwesome(FontAwesomeSolid.Lock)
+                        .WithFontAwesome5(FontAwesome5Solid.Lock)
                         .WithSize(50)
                         .WithColor(RGBColor.DarkRed)
                     )

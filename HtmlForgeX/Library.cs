@@ -87,7 +87,9 @@ public enum Libraries {
     /// <summary>SmartWizard jQuery plugin for step wizards.</summary>
     SmartWizard,
     /// <summary>FontAwesome 6 Free icon library.</summary>
-    FontAwesome6
+    FontAwesome6,
+    /// <summary>FontAwesome 5 Free icon library (for compatibility with vis.js).</summary>
+    FontAwesome5
 }
 
 /// <summary>
@@ -247,6 +249,8 @@ public class LibrariesConverter {
             return new Resources.SmartWizardLibrary();
         case Libraries.FontAwesome6:
             return new Resources.FontAwesome6Library();
+        case Libraries.FontAwesome5:
+            return new Resources.FontAwesome5Library();
         default:
             throw new ArgumentException($"Unsupported library: {libraries}");
         }

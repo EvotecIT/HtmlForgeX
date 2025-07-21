@@ -13,10 +13,10 @@ public class FontAwesome6Library : Library {
         // Header links for CSS
         Header = new LibraryLinks {
             CssLink = {
-                "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+                "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             },
             Css = {
-                "font-awesome.6.5.1.all.min.css"
+                "font-awesome.6.7.2.all.min.css"
             }
         };
     }

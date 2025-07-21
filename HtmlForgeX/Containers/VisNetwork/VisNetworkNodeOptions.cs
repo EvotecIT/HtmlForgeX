@@ -966,7 +966,7 @@ public class VisNetworkIconOptions {
     /// <param name="icon">The FontAwesome solid icon to use</param>
     /// <returns>The icon options for method chaining</returns>
     public VisNetworkIconOptions WithFontAwesome(FontAwesomeSolid icon) {
-        Face = "Font Awesome 6 Free";
+        Face = "\"Font Awesome 6 Free\"";
         Code = icon.GetCode();
         Weight = "900"; // Solid weight
         return this;
@@ -978,7 +978,7 @@ public class VisNetworkIconOptions {
     /// <param name="icon">The FontAwesome regular icon to use</param>
     /// <returns>The icon options for method chaining</returns>
     public VisNetworkIconOptions WithFontAwesome(FontAwesomeRegular icon) {
-        Face = "Font Awesome 6 Free";
+        Face = "\"Font Awesome 6 Free\"";
         Code = icon.GetCode();
         Weight = "400"; // Regular weight
         return this;
@@ -990,9 +990,47 @@ public class VisNetworkIconOptions {
     /// <param name="icon">The FontAwesome brand icon to use</param>
     /// <returns>The icon options for method chaining</returns>
     public VisNetworkIconOptions WithFontAwesome(FontAwesomeBrands icon) {
-        Face = "Font Awesome 6 Brands";
+        Face = "\"Font Awesome 6 Brands\"";
         Code = icon.GetCode();
         Weight = "400"; // Brands use regular weight
+        return this;
+    }
+
+    // Font Awesome 5 methods for vis.js compatibility
+
+    /// <summary>
+    /// Sets the icon using a FontAwesome 5 Solid icon. Uses proper face format for vis.js compatibility.
+    /// </summary>
+    /// <param name="icon">The FontAwesome 5 solid icon to use</param>
+    /// <returns>The icon options for method chaining</returns>
+    public VisNetworkIconOptions WithFontAwesome5(FontAwesome5Solid icon) {
+        Face = "\"Font Awesome 5 Free\"";
+        Code = icon.GetCode();
+        Weight = "bold"; // Font Awesome 5 uses "bold" for solid
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the icon using a FontAwesome 5 Regular icon. Uses proper face format for vis.js compatibility.
+    /// </summary>
+    /// <param name="icon">The FontAwesome 5 regular icon to use</param>
+    /// <returns>The icon options for method chaining</returns>
+    public VisNetworkIconOptions WithFontAwesome5(FontAwesome5Regular icon) {
+        Face = "\"Font Awesome 5 Free\"";
+        Code = icon.GetCode();
+        Weight = "bold"; // Font Awesome 5 uses "bold" even for regular
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the icon using a FontAwesome 5 Brand icon. Uses proper face format for vis.js compatibility.
+    /// </summary>
+    /// <param name="icon">The FontAwesome 5 brand icon to use</param>
+    /// <returns>The icon options for method chaining</returns>
+    public VisNetworkIconOptions WithFontAwesome5(FontAwesome5Brands icon) {
+        Face = "\"Font Awesome 5 Brands\"";
+        Code = icon.GetCode();
+        Weight = "bold"; // Font Awesome 5 uses "bold" for brands
         return this;
     }
 }
