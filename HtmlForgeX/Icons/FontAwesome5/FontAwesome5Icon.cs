@@ -3,10 +3,10 @@ using System.Collections.Generic;
 namespace HtmlForgeX;
 
 /// <summary>
-/// FontAwesome icon component for displaying icons anywhere in HtmlForgeX
+/// FontAwesome 5 icon component for displaying icons anywhere in HtmlForgeX
 /// </summary>
-public class FontAwesomeIcon : Element {
-    private FontAwesomeStyle _style = FontAwesomeStyle.Solid;
+public class FontAwesome5Icon : Element {
+    private FontAwesome5Style _style = FontAwesome5Style.Solid;
     private string? _iconCode;
     private string? _iconName;
     private string? _size;
@@ -21,48 +21,48 @@ public class FontAwesomeIcon : Element {
     private readonly List<string> _additionalClasses = new();
 
     /// <summary>
-    /// Creates a new FontAwesome icon component
+    /// Creates a new FontAwesome 5 icon component
     /// </summary>
-    public FontAwesomeIcon() {
+    public FontAwesome5Icon() {
         RegisterLibraries();
     }
 
     /// <summary>
-    /// Creates a FontAwesome icon with a solid icon
+    /// Creates a FontAwesome 5 icon with a solid icon
     /// </summary>
-    public FontAwesomeIcon(FontAwesomeSolid icon) : this() {
+    public FontAwesome5Icon(FontAwesome5Solid icon) : this() {
         WithIcon(icon);
     }
 
     /// <summary>
-    /// Creates a FontAwesome icon with a regular icon
+    /// Creates a FontAwesome 5 icon with a regular icon
     /// </summary>
-    public FontAwesomeIcon(FontAwesomeRegular icon) : this() {
+    public FontAwesome5Icon(FontAwesome5Regular icon) : this() {
         WithIcon(icon);
     }
 
     /// <summary>
-    /// Creates a FontAwesome icon with a brand icon
+    /// Creates a FontAwesome 5 icon with a brand icon
     /// </summary>
-    public FontAwesomeIcon(FontAwesomeBrands icon) : this() {
+    public FontAwesome5Icon(FontAwesome5Brands icon) : this() {
         WithIcon(icon);
     }
 
     /// <summary>
-    /// Registers the required FontAwesome libraries with the current document.
+    /// Registers the required FontAwesome 5 libraries with the current document.
     /// </summary>
     protected internal override void RegisterLibraries() {
-        // Register FontAwesome 6 Free
+        // Register FontAwesome 5 Free
         if (Document != null) {
-            Document.AddLibrary(Libraries.FontAwesome6);
+            Document.AddLibrary(Libraries.FontAwesome5);
         }
     }
 
     /// <summary>
     /// Sets a solid icon
     /// </summary>
-    public FontAwesomeIcon WithIcon(FontAwesomeSolid icon) {
-        _style = FontAwesomeStyle.Solid;
+    public FontAwesome5Icon WithIcon(FontAwesome5Solid icon) {
+        _style = FontAwesome5Style.Solid;
         _iconCode = icon.GetCode();
         _iconName = icon.GetIconName();
         return this;
@@ -71,8 +71,8 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Sets a regular icon
     /// </summary>
-    public FontAwesomeIcon WithIcon(FontAwesomeRegular icon) {
-        _style = FontAwesomeStyle.Regular;
+    public FontAwesome5Icon WithIcon(FontAwesome5Regular icon) {
+        _style = FontAwesome5Style.Regular;
         _iconCode = icon.GetCode();
         _iconName = icon.GetIconName();
         return this;
@@ -81,8 +81,8 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Sets a brand icon
     /// </summary>
-    public FontAwesomeIcon WithIcon(FontAwesomeBrands icon) {
-        _style = FontAwesomeStyle.Brands;
+    public FontAwesome5Icon WithIcon(FontAwesome5Brands icon) {
+        _style = FontAwesome5Style.Brands;
         _iconCode = icon.GetCode();
         _iconName = icon.GetIconName();
         return this;
@@ -91,7 +91,7 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Sets the icon by Unicode code (for backward compatibility or custom icons)
     /// </summary>
-    public FontAwesomeIcon WithCode(string code, FontAwesomeStyle style = FontAwesomeStyle.Solid) {
+    public FontAwesome5Icon WithCode(string code, FontAwesome5Style style = FontAwesome5Style.Solid) {
         _iconCode = code;
         _style = style;
         return this;
@@ -100,7 +100,7 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Sets the icon size using FontAwesome size classes
     /// </summary>
-    public FontAwesomeIcon WithSize(FontAwesomeSize size) {
+    public FontAwesome5Icon WithSize(FontAwesomeSize size) {
         _size = size switch {
             FontAwesomeSize.ExtraSmall => "fa-xs",
             FontAwesomeSize.Small => "fa-sm",
@@ -122,31 +122,31 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Sets the icon color
     /// </summary>
-    public FontAwesomeIcon WithColor(RGBColor color) {
-        _color = color.ToHex();
+    public FontAwesome5Icon WithColor(string color) {
+        _color = color;
         return this;
     }
 
     /// <summary>
-    /// Sets the icon color using hex string
+    /// Sets the icon color using RGB values
     /// </summary>
-    public FontAwesomeIcon WithColor(string color) {
-        _color = color;
+    public FontAwesome5Icon WithColor(RGBColor color) {
+        _color = color.ToHex();
         return this;
     }
 
     /// <summary>
     /// Makes the icon fixed width
     /// </summary>
-    public FontAwesomeIcon WithFixedWidth(bool fixedWidth = true) {
+    public FontAwesome5Icon WithFixedWidth(bool fixedWidth = true) {
         _fixedWidth = fixedWidth;
         return this;
     }
 
     /// <summary>
-    /// Makes the icon spin
+    /// Makes the icon spin continuously
     /// </summary>
-    public FontAwesomeIcon WithSpin(bool spin = true) {
+    public FontAwesome5Icon WithSpin(bool spin = true) {
         _spin = spin;
         return this;
     }
@@ -154,7 +154,7 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Makes the icon pulse (8-step rotation)
     /// </summary>
-    public FontAwesomeIcon WithPulse(bool pulse = true) {
+    public FontAwesome5Icon WithPulse(bool pulse = true) {
         _pulse = pulse;
         return this;
     }
@@ -162,11 +162,11 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Rotates the icon
     /// </summary>
-    public FontAwesomeIcon WithRotate(int degrees) {
-        _rotate = degrees switch {
-            90 => "fa-rotate-90",
-            180 => "fa-rotate-180",
-            270 => "fa-rotate-270",
+    public FontAwesome5Icon WithRotate(FontAwesome5Rotate rotate) {
+        _rotate = rotate switch {
+            FontAwesome5Rotate.Rotate90 => "fa-rotate-90",
+            FontAwesome5Rotate.Rotate180 => "fa-rotate-180",
+            FontAwesome5Rotate.Rotate270 => "fa-rotate-270",
             _ => null
         };
         return this;
@@ -175,11 +175,10 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Flips the icon
     /// </summary>
-    public FontAwesomeIcon WithFlip(FontAwesomeFlip flip) {
+    public FontAwesome5Icon WithFlip(FontAwesome5Flip flip) {
         _flip = flip switch {
-            FontAwesomeFlip.Horizontal => "fa-flip-horizontal",
-            FontAwesomeFlip.Vertical => "fa-flip-vertical",
-            FontAwesomeFlip.Both => "fa-flip-both",
+            FontAwesome5Flip.Horizontal => "fa-flip-horizontal",
+            FontAwesome5Flip.Vertical => "fa-flip-vertical",
             _ => null
         };
         return this;
@@ -188,18 +187,18 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Adds a border around the icon
     /// </summary>
-    public FontAwesomeIcon WithBorder(bool border = true) {
+    public FontAwesome5Icon WithBorder(bool border = true) {
         _border = border;
         return this;
     }
 
     /// <summary>
-    /// Pulls the icon to left or right
+    /// Pulls the icon to the left or right
     /// </summary>
-    public FontAwesomeIcon WithPull(FontAwesomePull pull) {
+    public FontAwesome5Icon WithPull(FontAwesome5Pull pull) {
         _pull = pull switch {
-            FontAwesomePull.Left => "fa-pull-left",
-            FontAwesomePull.Right => "fa-pull-right",
+            FontAwesome5Pull.Left => "fa-pull-left",
+            FontAwesome5Pull.Right => "fa-pull-right",
             _ => null
         };
         return this;
@@ -208,7 +207,7 @@ public class FontAwesomeIcon : Element {
     /// <summary>
     /// Adds custom CSS class to the icon
     /// </summary>
-    public FontAwesomeIcon WithClass(string className) {
+    public FontAwesome5Icon WithClass(string className) {
         if (!string.IsNullOrWhiteSpace(className)) {
             _additionalClasses.Add(className);
         }
@@ -216,7 +215,7 @@ public class FontAwesomeIcon : Element {
     }
 
     /// <summary>
-    /// Generates the HTML markup for the configured FontAwesome icon.
+    /// Generates the HTML markup for the configured FontAwesome 5 icon.
     /// </summary>
     /// <returns>String representation of the icon element.</returns>
     public override string ToString() {
@@ -277,5 +276,6 @@ public class FontAwesomeIcon : Element {
         
         return tag.ToString();
     }
+
 
 }

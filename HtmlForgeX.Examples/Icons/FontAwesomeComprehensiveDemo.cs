@@ -43,7 +43,7 @@ internal class FontAwesomeComprehensiveDemo {
                             body.Icon(FontAwesomeSolid.Database).WithSize(FontAwesomeSize.X2).WithColor(RGBColor.DarkGreen);
                             body.Text(" Database Operations").LineBreak();
                             
-                            body.Icon(FontAwesomeSolid.Cog, icon => icon
+                            body.Icon(FontAwesomeSolid.Gear, icon => icon
                                 .WithSize(FontAwesomeSize.X2)
                                 .WithSpin()
                                 .WithColor(RGBColor.Orange)
@@ -60,7 +60,7 @@ internal class FontAwesomeComprehensiveDemo {
                             header.Icon(FontAwesomeRegular.Heart);
                         });
                         card.Body(body => {
-                            body.Icon(FontAwesomeRegular.FileAlt).WithSize(FontAwesomeSize.X2);
+                            body.Icon(FontAwesomeRegular.FileLines).WithSize(FontAwesomeSize.X2);
                             body.Text(" Document").LineBreak();
                             
                             body.Icon(FontAwesomeRegular.Calendar).WithSize(FontAwesomeSize.X2);
@@ -79,7 +79,7 @@ internal class FontAwesomeComprehensiveDemo {
                     col.Card(card => {
                         card.Header(header => {
                             header.Title("Brand Icons");
-                            header.Icon(FontAwesomeBrands.Github);
+                            header.Icon(FontAwesomeBrands.GitHub);
                         });
                         card.Body(body => {
                             body.Icon(FontAwesomeBrands.Facebook).WithSize(FontAwesomeSize.X2).WithColor("#1877f2");
@@ -88,7 +88,7 @@ internal class FontAwesomeComprehensiveDemo {
                             body.Icon(FontAwesomeBrands.Twitter).WithSize(FontAwesomeSize.X2).WithColor("#1da1f2");
                             body.Text(" Twitter").LineBreak();
                             
-                            body.Icon(FontAwesomeBrands.Youtube).WithSize(FontAwesomeSize.X2).WithColor("#ff0000");
+                            body.Icon(FontAwesomeBrands.YouTube).WithSize(FontAwesomeSize.X2).WithColor("#ff0000");
                             body.Text(" YouTube").LineBreak();
                             
                             body.Icon(FontAwesomeBrands.LinkedinIn).WithSize(FontAwesomeSize.X2).WithColor("#0077b5");
@@ -108,17 +108,17 @@ internal class FontAwesomeComprehensiveDemo {
                         card.Body(body => {
                             // Sizes
                             body.H4("Sizes:");
-                            body.Icon(FontAwesomeSolid.Home).WithSize(FontAwesomeSize.ExtraSmall);
+                            body.Icon(FontAwesomeSolid.House).WithSize(FontAwesomeSize.ExtraSmall);
                             body.Text(" xs  ");
-                            body.Icon(FontAwesomeSolid.Home).WithSize(FontAwesomeSize.Small);
+                            body.Icon(FontAwesomeSolid.House).WithSize(FontAwesomeSize.Small);
                             body.Text(" sm  ");
-                            body.Icon(FontAwesomeSolid.Home);
+                            body.Icon(FontAwesomeSolid.House);
                             body.Text(" normal  ");
-                            body.Icon(FontAwesomeSolid.Home).WithSize(FontAwesomeSize.Large);
+                            body.Icon(FontAwesomeSolid.House).WithSize(FontAwesomeSize.Large);
                             body.Text(" lg  ");
-                            body.Icon(FontAwesomeSolid.Home).WithSize(FontAwesomeSize.X2);
+                            body.Icon(FontAwesomeSolid.House).WithSize(FontAwesomeSize.X2);
                             body.Text(" 2x  ");
-                            body.Icon(FontAwesomeSolid.Home).WithSize(FontAwesomeSize.X3);
+                            body.Icon(FontAwesomeSolid.House).WithSize(FontAwesomeSize.X3);
                             body.Text(" 3x ").LineBreak().LineBreak();
                             
                             // Rotations
@@ -145,7 +145,7 @@ internal class FontAwesomeComprehensiveDemo {
                             
                             // Animations
                             body.H4("Animations:");
-                            body.Icon(FontAwesomeSolid.Sync).WithSpin();
+                            body.Icon(FontAwesomeSolid.ArrowRotateRight).WithSpin();
                             body.Text(" Spin  ");
                             body.Icon(FontAwesomeRegular.Heart).WithPulse();
                             body.Text(" Pulse ").LineBreak();
@@ -189,7 +189,7 @@ internal class FontAwesomeComprehensiveDemo {
                 network.AddNode(4, node => node
                     .WithLabel("Documents")
                     .WithShape(VisNetworkNodeShape.Icon)
-                    .WithIcon(icon => icon.WithFontAwesome(FontAwesomeRegular.FileAlt))
+                    .WithIcon(icon => icon.WithFontAwesome(FontAwesomeRegular.FileLines))
                     .WithPosition(-300, 0)
                 );
 
@@ -211,7 +211,7 @@ internal class FontAwesomeComprehensiveDemo {
                 network.AddNode(7, node => node
                     .WithLabel("GitHub Repo")
                     .WithShape(VisNetworkNodeShape.Icon)
-                    .WithIcon(icon => icon.WithFontAwesome(FontAwesomeBrands.Github))
+                    .WithIcon(icon => icon.WithFontAwesome(FontAwesomeBrands.GitHub))
                     .WithPosition(-300, 100)
                 );
 
@@ -256,11 +256,11 @@ page.Icon(FontAwesomeRegular.Heart)
     .WithSize(FontAwesomeSize.X2);
 
 // Add brand icon with color
-page.Icon(FontAwesomeBrands.Github)
+page.Icon(FontAwesomeBrands.GitHub)
     .WithColor(""#333"");
 
 // Icon with multiple modifiers
-page.Icon(FontAwesomeSolid.Sync, icon => icon
+page.Icon(FontAwesomeSolid.ArrowRotateRight, icon => icon
     .WithSize(FontAwesomeSize.X3)
     .WithSpin()
     .WithColor(RGBColor.Blue)

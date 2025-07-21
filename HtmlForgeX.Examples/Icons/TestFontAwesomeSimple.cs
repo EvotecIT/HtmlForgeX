@@ -32,7 +32,7 @@ namespace HtmlForgeX.Examples.Icons {
                 page.Text(" Heart Icon").LineBreak();
                 
                 page.H2("Brand Icons");
-                page.Icon(FontAwesomeBrands.Github).WithSize(FontAwesomeSize.X3);
+                page.Icon(FontAwesomeBrands.GitHub).WithSize(FontAwesomeSize.X3);
                 page.Text(" GitHub Icon").LineBreak();
                 
                 page.Icon(FontAwesomeBrands.Twitter).WithSize(FontAwesomeSize.X2).WithColor("#1DA1F2");
@@ -70,7 +70,7 @@ namespace HtmlForgeX.Examples.Icons {
                         .WithLabel("GitHub")
                         .WithShape(VisNetworkNodeShape.Icon)
                         .WithIcon(icon => icon
-                            .WithFontAwesome(FontAwesomeBrands.Github)
+                            .WithFontAwesome(FontAwesomeBrands.GitHub)
                             .WithColor(RGBColor.Black)
                         )
                         .WithPosition(200, 0)

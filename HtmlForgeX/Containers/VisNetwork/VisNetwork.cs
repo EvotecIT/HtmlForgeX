@@ -1607,7 +1607,7 @@ public class VisNetwork : Element {
                     edges: edges
                 }};
                 var options = {optionsJson};
-                var network = loadDiagramWithFonts(container, data, options, '{_id}', {(_enableLoadingBar || EnableLoadingBar).ToString().ToLower()}, false);
+                var network = loadDiagramWithFonts(container, data, options, '{_id}', {(_enableLoadingBar || EnableLoadingBar).ToString().ToLower()}, true);
                 diagramTracker['{_id}'] = network;
                 {eventHandlers}
                 {clusteringCommands}
