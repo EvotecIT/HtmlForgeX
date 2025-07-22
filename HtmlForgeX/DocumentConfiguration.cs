@@ -37,8 +37,16 @@ public class DocumentConfiguration {
     /// Gets or sets the file path for this document.
     /// </summary>
     public string Path {
-        get { lock (_syncRoot) { return _path; } }
-        set { lock (_syncRoot) { _path = value; } }
+        get {
+            lock (_syncRoot) {
+                return _path;
+            }
+        }
+        set {
+            lock (_syncRoot) {
+                _path = value;
+            }
+        }
     }
 
     /// <summary>
