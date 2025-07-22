@@ -46,4 +46,16 @@ public class TestTablerCardActions {
         var button = new TablerCardButton();
         Assert.ThrowsException<ArgumentException>(() => button.Url(" "));
     }
+
+    [TestMethod]
+    public void TablerCardActionBuilder_ButtonThrowsOnNull() {
+        var builder = new TablerCardActionBuilder();
+        Assert.ThrowsException<ArgumentException>(() => builder.Button(null!));
+    }
+
+    [TestMethod]
+    public void TablerCardActionBuilder_ButtonThrowsOnWhitespace() {
+        var builder = new TablerCardActionBuilder();
+        Assert.ThrowsException<ArgumentException>(() => builder.Button(" "));
+    }
 }
