@@ -683,6 +683,13 @@ public class VisNetworkNodeOptions {
         }
         return this;
     }
+    
+    /// <summary>
+    /// Internal flag to track whether auto-embedding should be skipped for this node.
+    /// This is not serialized to JSON.
+    /// </summary>
+    [JsonIgnore]
+    internal bool SkipAutoEmbedding { get; set; }
 }
 
 /// <summary>

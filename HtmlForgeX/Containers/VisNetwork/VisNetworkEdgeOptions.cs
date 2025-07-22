@@ -153,7 +153,7 @@ public class VisNetworkEdgeOptions {
         Label = label;
         return this;
     }
-    
+
     /// <summary>
     /// Sets an HTML-formatted label with multi-line support. Automatically enables HTML multi-line mode.
     /// </summary>
@@ -166,7 +166,7 @@ public class VisNetworkEdgeOptions {
         Font.Multi = VisNetworkMulti.Html;
         return this;
     }
-    
+
     /// <summary>
     /// Sets a Markdown-formatted label with multi-line support. Automatically enables Markdown multi-line mode.
     /// </summary>
@@ -260,22 +260,23 @@ public class VisNetworkEdgeOptions {
         return this;
     }
 
-    /// <summary>Configures the color.</summary>
-    public VisNetworkEdgeOptions WithColor(VisNetworkEdgeColorOptions colorOptions) {
+
+    /// <summary>Configures the color using advanced color options.</summary>
+    public VisNetworkEdgeOptions WithColor(VisNetworkAdvancedColorOptions colorOptions) {
         Color = colorOptions;
         return this;
     }
-    
-    /// <summary>Configures the color.</summary>
-    public VisNetworkEdgeOptions WithColor(Action<VisNetworkEdgeColorOptions> configure) {
-        if (Color is not VisNetworkEdgeColorOptions colorOptions) {
-            colorOptions = new VisNetworkEdgeColorOptions();
+
+    /// <summary>Configures the color using advanced color options.</summary>
+    public VisNetworkEdgeOptions WithColor(Action<VisNetworkAdvancedColorOptions> configure) {
+        if (Color is not VisNetworkAdvancedColorOptions colorOptions) {
+            colorOptions = new VisNetworkAdvancedColorOptions();
             Color = colorOptions;
         }
         configure(colorOptions);
         return this;
     }
-    
+
     /// <summary>
     /// Sets a gradient color for the edge that transitions from one color to another.
     /// The gradient follows the edge direction from source to target.
@@ -291,7 +292,7 @@ public class VisNetworkEdgeOptions {
         };
         return this;
     }
-    
+
     /// <summary>
     /// Sets a gradient color for the edge using color strings.
     /// </summary>
@@ -419,392 +420,6 @@ public class VisNetworkEdgeOptions {
     public VisNetworkEdgeOptions WithEndPointOffset(Action<VisNetworkEndPointOffset> configure) {
         EndPointOffset ??= new VisNetworkEndPointOffset();
         configure(EndPointOffset);
-        return this;
-    }
-}
-
-/// <summary>
-/// Arrow configuration options for edges.
-/// </summary>
-public class VisNetworkArrowOptions {
-    /// <summary>Gets or sets the to.</summary>
-    [JsonPropertyName("to")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public object? To { get; set; }
-
-    /// <summary>Gets or sets the from.</summary>
-    [JsonPropertyName("from")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public object? From { get; set; }
-
-    /// <summary>Gets or sets the middle.</summary>
-    [JsonPropertyName("middle")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public object? Middle { get; set; }
-
-    /// <summary>Configures the to.</summary>
-    public VisNetworkArrowOptions WithTo(bool enabled = true) {
-        To = enabled;
-        return this;
-    }
-
-    /// <summary>Configures the to.</summary>
-    public VisNetworkArrowOptions WithTo(VisNetworkArrowTypeOptions options) {
-        To = options;
-        return this;
-    }
-    
-    /// <summary>Configures the to.</summary>
-    public VisNetworkArrowOptions WithTo(Action<VisNetworkArrowTypeOptions> configure) {
-        var options = new VisNetworkArrowTypeOptions();
-        configure(options);
-        To = options;
-        return this;
-    }
-
-    /// <summary>Configures the from.</summary>
-    public VisNetworkArrowOptions WithFrom(bool enabled = true) {
-        From = enabled;
-        return this;
-    }
-
-    /// <summary>Configures the from.</summary>
-    public VisNetworkArrowOptions WithFrom(VisNetworkArrowTypeOptions options) {
-        From = options;
-        return this;
-    }
-    
-    /// <summary>Configures the from.</summary>
-    public VisNetworkArrowOptions WithFrom(Action<VisNetworkArrowTypeOptions> configure) {
-        var options = new VisNetworkArrowTypeOptions();
-        configure(options);
-        From = options;
-        return this;
-    }
-
-    /// <summary>Configures the middle.</summary>
-    public VisNetworkArrowOptions WithMiddle(bool enabled = true) {
-        Middle = enabled;
-        return this;
-    }
-
-    /// <summary>Configures the middle.</summary>
-    public VisNetworkArrowOptions WithMiddle(VisNetworkArrowTypeOptions options) {
-        Middle = options;
-        return this;
-    }
-    
-    /// <summary>Configures the middle.</summary>
-    public VisNetworkArrowOptions WithMiddle(Action<VisNetworkArrowTypeOptions> configure) {
-        var options = new VisNetworkArrowTypeOptions();
-        configure(options);
-        Middle = options;
-        return this;
-    }
-}
-
-/// <summary>
-/// Arrow type configuration.
-/// </summary>
-public class VisNetworkArrowTypeOptions {
-    /// <summary>Gets or sets the enabled.</summary>
-    [JsonPropertyName("enabled")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public bool? Enabled { get; set; }
-
-    /// <summary>Gets or sets the image height.</summary>
-    [JsonPropertyName("imageHeight")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? ImageHeight { get; set; }
-
-    /// <summary>Gets or sets the image width.</summary>
-    [JsonPropertyName("imageWidth")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? ImageWidth { get; set; }
-
-    /// <summary>Gets or sets the scale factor.</summary>
-    [JsonPropertyName("scaleFactor")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? ScaleFactor { get; set; }
-
-    /// <summary>Gets or sets the src.</summary>
-    [JsonPropertyName("src")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Src { get; set; }
-
-    /// <summary>Gets or sets the type.</summary>
-    [JsonPropertyName("type")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public VisNetworkArrowType? Type { get; set; }
-
-    /// <summary>Configures the enabled.</summary>
-    public VisNetworkArrowTypeOptions WithEnabled(bool enabled = true) {
-        Enabled = enabled;
-        return this;
-    }
-
-    /// <summary>Configures the type.</summary>
-    public VisNetworkArrowTypeOptions WithType(VisNetworkArrowType type) {
-        Type = type;
-        return this;
-    }
-
-    /// <summary>Configures the scale factor.</summary>
-    public VisNetworkArrowTypeOptions WithScaleFactor(double scaleFactor) {
-        ScaleFactor = scaleFactor;
-        return this;
-    }
-
-    /// <summary>Configures the image.</summary>
-    public VisNetworkArrowTypeOptions WithImage(string src, double? width = null, double? height = null) {
-        Type = VisNetworkArrowType.Image;
-        Src = src;
-        if (width.HasValue) ImageWidth = width.Value;
-        if (height.HasValue) ImageHeight = height.Value;
-        return this;
-    }
-}
-
-/// <summary>
-/// Edge color configuration options.
-/// </summary>
-public class VisNetworkEdgeColorOptions {
-    /// <summary>Gets or sets the color.</summary>
-    [JsonPropertyName("color")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Color { get; set; }
-
-    /// <summary>Gets or sets the highlight.</summary>
-    [JsonPropertyName("highlight")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Highlight { get; set; }
-
-    /// <summary>Gets or sets the hover.</summary>
-    [JsonPropertyName("hover")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string? Hover { get; set; }
-
-    /// <summary>Gets or sets the inherit.</summary>
-    [JsonPropertyName("inherit")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public object? Inherit { get; set; }
-
-    /// <summary>Gets or sets the opacity.</summary>
-    [JsonPropertyName("opacity")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? Opacity { get; set; }
-
-    /// <summary>Configures the color.</summary>
-    public VisNetworkEdgeColorOptions WithColor(RGBColor color) {
-        Color = color.ToHex();
-        return this;
-    }
-    
-    /// <summary>Configures the color.</summary>
-    public VisNetworkEdgeColorOptions WithColor(string color) {
-        Color = color;
-        return this;
-    }
-
-    /// <summary>Configures the highlight.</summary>
-    public VisNetworkEdgeColorOptions WithHighlight(RGBColor color) {
-        Highlight = color.ToHex();
-        return this;
-    }
-    
-    /// <summary>Configures the highlight.</summary>
-    public VisNetworkEdgeColorOptions WithHighlight(string color) {
-        Highlight = color;
-        return this;
-    }
-
-    /// <summary>Configures the hover.</summary>
-    public VisNetworkEdgeColorOptions WithHover(RGBColor color) {
-        Hover = color.ToHex();
-        return this;
-    }
-    
-    /// <summary>Configures the hover.</summary>
-    public VisNetworkEdgeColorOptions WithHover(string color) {
-        Hover = color;
-        return this;
-    }
-
-    /// <summary>Configures the inherit.</summary>
-    public VisNetworkEdgeColorOptions WithInherit(VisNetworkColorInherit inherit) {
-        Inherit = inherit;
-        return this;
-    }
-    
-    /// <summary>Configures the inherit.</summary>
-    public VisNetworkEdgeColorOptions WithInherit(string from) {
-        Inherit = from;
-        return this;
-    }
-
-    /// <summary>Configures the inherit.</summary>
-    public VisNetworkEdgeColorOptions WithInherit(bool enabled) {
-        Inherit = enabled;
-        return this;
-    }
-
-    /// <summary>Configures the opacity.</summary>
-    public VisNetworkEdgeColorOptions WithOpacity(double opacity) {
-        Opacity = opacity;
-        return this;
-    }
-}
-
-/// <summary>
-/// Chosen edge configuration options.
-/// </summary>
-public class VisNetworkChosenEdgeOptions {
-    /// <summary>Gets or sets the edge.</summary>
-    [JsonPropertyName("edge")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public bool? Edge { get; set; }
-
-    /// <summary>Gets or sets the label.</summary>
-    [JsonPropertyName("label")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public bool? Label { get; set; }
-
-    /// <summary>Configures the edge.</summary>
-    public VisNetworkChosenEdgeOptions WithEdge(bool enabled = true) {
-        Edge = enabled;
-        return this;
-    }
-
-    /// <summary>Configures the label.</summary>
-    public VisNetworkChosenEdgeOptions WithLabel(bool enabled = true) {
-        Label = enabled;
-        return this;
-    }
-}
-
-/// <summary>
-/// Self reference configuration for edges that connect a node to itself.
-/// </summary>
-public class VisNetworkSelfReferenceOptions {
-    /// <summary>Gets or sets the size.</summary>
-    [JsonPropertyName("size")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? Size { get; set; }
-
-    /// <summary>Gets or sets the angle.</summary>
-    [JsonPropertyName("angle")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? Angle { get; set; }
-
-    /// <summary>Gets or sets the render behind the node.</summary>
-    [JsonPropertyName("renderBehindTheNode")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public bool? RenderBehindTheNode { get; set; }
-
-    /// <summary>Configures the size.</summary>
-    public VisNetworkSelfReferenceOptions WithSize(double size) {
-        Size = size;
-        return this;
-    }
-
-    /// <summary>Configures the angle.</summary>
-    public VisNetworkSelfReferenceOptions WithAngle(double angle) {
-        Angle = angle;
-        return this;
-    }
-
-    /// <summary>Configures the render behind the node.</summary>
-    public VisNetworkSelfReferenceOptions WithRenderBehindTheNode(bool renderBehind = true) {
-        RenderBehindTheNode = renderBehind;
-        return this;
-    }
-}
-
-/// <summary>
-/// Smooth curve configuration for edges.
-/// </summary>
-public class VisNetworkSmoothOptions {
-    /// <summary>Gets or sets the enabled.</summary>
-    [JsonPropertyName("enabled")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public bool? Enabled { get; set; }
-
-    /// <summary>Gets or sets the type.</summary>
-    [JsonPropertyName("type")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public VisNetworkSmoothType? Type { get; set; }
-
-    /// <summary>Gets or sets the force direction.</summary>
-    [JsonPropertyName("forceDirection")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public object? ForceDirection { get; set; }
-
-    /// <summary>Gets or sets the roundness.</summary>
-    [JsonPropertyName("roundness")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? Roundness { get; set; }
-
-    /// <summary>Configures the enabled.</summary>
-    public VisNetworkSmoothOptions WithEnabled(bool enabled = true) {
-        Enabled = enabled;
-        return this;
-    }
-
-    /// <summary>Configures the type.</summary>
-    public VisNetworkSmoothOptions WithType(VisNetworkSmoothType type) {
-        Type = type;
-        return this;
-    }
-
-    /// <summary>Configures the force direction.</summary>
-    public VisNetworkSmoothOptions WithForceDirection(VisNetworkForceDirection direction) {
-        ForceDirection = direction;
-        return this;
-    }
-    
-    /// <summary>Configures the force direction.</summary>
-    public VisNetworkSmoothOptions WithForceDirection(string direction) {
-        // For backward compatibility
-        ForceDirection = direction;
-        return this;
-    }
-
-    /// <summary>Configures the force direction.</summary>
-    public VisNetworkSmoothOptions WithForceDirection(bool enabled) {
-        ForceDirection = enabled;
-        return this;
-    }
-
-    /// <summary>Configures the roundness.</summary>
-    public VisNetworkSmoothOptions WithRoundness(double roundness) {
-        Roundness = roundness;
-        return this;
-    }
-}
-
-/// <summary>
-/// End point offset configuration for edges.
-/// </summary>
-public class VisNetworkEndPointOffset {
-    /// <summary>Gets or sets the from.</summary>
-    [JsonPropertyName("from")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? From { get; set; }
-
-    /// <summary>Gets or sets the to.</summary>
-    [JsonPropertyName("to")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public double? To { get; set; }
-
-    /// <summary>Configures the from.</summary>
-    public VisNetworkEndPointOffset WithFrom(double offset) {
-        From = offset;
-        return this;
-    }
-
-    /// <summary>Configures the to.</summary>
-    public VisNetworkEndPointOffset WithTo(double offset) {
-        To = offset;
         return this;
     }
 }

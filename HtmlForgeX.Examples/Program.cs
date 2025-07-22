@@ -186,7 +186,7 @@ internal class Program {
 
         // VisNetwork HTML Nodes example (with visjs-html-nodes plugin)
         VisNetworkExamples.VisNetworkHtmlNodesExample.Run(true);
-        
+
         // VisNetwork Advanced Labels example (HTML tooltips, \n line breaks, markdown)
         VisNetworkAdvancedLabelsExample.Run(true);
 

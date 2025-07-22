@@ -95,7 +95,7 @@ internal class VisNetworkEdgeManipulationExamples {
 
                 network.AddEdge(7, 8, edge => edge
                     .WithLabel("Hover Effect")
-                    .WithColor(new VisNetworkEdgeColorOptions()
+                    .WithColor(new VisNetworkAdvancedColorOptions()
                         .WithColor(RGBColor.Gray)
                         .WithHover(RGBColor.Yellow)
                         .WithHighlight(RGBColor.Red)

@@ -372,6 +372,19 @@ public class VisNetwork : Element {
     }
 
     /// <summary>
+    /// Adds a <see cref="VisNetworkEdgeOptions"/> to the diagram.
+    /// </summary>
+    /// <param name="edgeOptions">Edge options to add.</param>
+    /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
+    public VisNetwork AddEdge(VisNetworkEdgeOptions edgeOptions) {
+        if (Document != null && edgeOptions.Arrows is VisNetworkArrowOptions arrowOptions) {
+            ApplyArrowImageEmbedding(arrowOptions);
+        }
+        _edges.Add(edgeOptions);
+        return this;
+    }
+
+    /// <summary>
     /// Adds a raw edge object to the diagram (legacy support).
     /// </summary>
     /// <param name="edge">Object containing edge definition.</param>
@@ -614,6 +627,11 @@ public class VisNetwork : Element {
         }
 
         if (!Document.Configuration.Images.AutoEmbedImages) {
+            return;
+        }
+
+        // Check if auto-embedding is disabled for this specific node
+        if (node.SkipAutoEmbedding) {
             return;
         }
 
@@ -1697,6 +1715,9 @@ public static class VisNetworkExtensions {
         if (node.Physics.HasValue) options.WithPhysics(node.Physics.Value);
         if (node.X.HasValue && node.Y.HasValue) options.WithPosition(node.X.Value, node.Y.Value);
         if (node.Image != null) options.WithImage(node.Image);
+
+        // Preserve the SkipAutoEmbedding flag
+        options.SkipAutoEmbedding = node.SkipAutoEmbedding;
 
         return options;
     }
