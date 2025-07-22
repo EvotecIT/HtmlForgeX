@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text.RegularExpressions;
 
 namespace HtmlForgeX.Tests;
 
@@ -79,9 +80,15 @@ public class TestVisNetworkGradientEdges {
         
         var html = doc.ToString();
         
-        // Should contain inherit configuration
-        Assert.IsTrue(html.Contains("inherit"), "Should contain inherit property");
-        Assert.IsTrue(html.Contains("from") || html.Contains("From"), "Should contain 'from' inheritance");
+        // Extract the script content to check for edge configuration
+        var scriptMatch = Regex.Match(html, @"<script>(.*?)</script>", RegexOptions.Singleline);
+        Assert.IsTrue(scriptMatch.Success, "Should have script tag");
+        
+        var script = scriptMatch.Groups[1].Value;
+        
+        // The color object should contain inherit property with "from" value
+        Assert.IsTrue(script.Contains("\"color\":{"), "Should contain color object");
+        Assert.IsTrue(script.Contains("\"inherit\":\"from\""), "Should contain inherit:from");
     }
     
     [TestMethod]
@@ -104,8 +111,14 @@ public class TestVisNetworkGradientEdges {
         
         var html = doc.ToString();
         
-        Assert.IsTrue(html.Contains("inherit"), "Should contain inherit property");
-        Assert.IsTrue(html.Contains("to") || html.Contains("To"), "Should contain 'to' inheritance");
+        // Extract the script content
+        var scriptMatch = Regex.Match(html, @"<script>(.*?)</script>", RegexOptions.Singleline);
+        Assert.IsTrue(scriptMatch.Success, "Should have script tag");
+        
+        var script = scriptMatch.Groups[1].Value;
+        
+        // Check for inherit:to
+        Assert.IsTrue(script.Contains("\"inherit\":\"to\""), "Should contain inherit:to");
     }
     
     [TestMethod]
@@ -128,8 +141,14 @@ public class TestVisNetworkGradientEdges {
         
         var html = doc.ToString();
         
-        Assert.IsTrue(html.Contains("inherit"), "Should contain inherit property");
-        Assert.IsTrue(html.Contains("both") || html.Contains("Both"), "Should contain 'both' inheritance");
+        // Extract the script content
+        var scriptMatch = Regex.Match(html, @"<script>(.*?)</script>", RegexOptions.Singleline);
+        Assert.IsTrue(scriptMatch.Success, "Should have script tag");
+        
+        var script = scriptMatch.Groups[1].Value;
+        
+        // Check for inherit:both
+        Assert.IsTrue(script.Contains("\"inherit\":\"both\""), "Should contain inherit:both");
     }
     
     [TestMethod]
@@ -153,9 +172,15 @@ public class TestVisNetworkGradientEdges {
         
         var html = doc.ToString();
         
+        // Extract the script content
+        var scriptMatch = Regex.Match(html, @"<script>(.*?)</script>", RegexOptions.Singleline);
+        Assert.IsTrue(scriptMatch.Success, "Should have script tag");
+        
+        var script = scriptMatch.Groups[1].Value;
+        
         // When inheritance is false, the edge should use its own color
-        Assert.IsTrue(html.Contains("#808080") || html.Contains("gray") || html.Contains("Grey"), 
-            "Should contain gray color");
+        Assert.IsTrue(script.Contains("#808080"), "Should contain gray color hex value");
+        Assert.IsTrue(script.Contains("\"inherit\":false"), "Should contain inherit:false");
     }
     
     [TestMethod]
@@ -179,8 +204,14 @@ public class TestVisNetworkGradientEdges {
         
         var html = doc.ToString();
         
-        Assert.IsTrue(html.Contains("opacity"), "Should contain opacity property");
-        Assert.IsTrue(html.Contains("0.5"), "Should contain opacity value");
+        // Extract the script content
+        var scriptMatch = Regex.Match(html, @"<script>(.*?)</script>", RegexOptions.Singleline);
+        Assert.IsTrue(scriptMatch.Success, "Should have script tag");
+        
+        var script = scriptMatch.Groups[1].Value;
+        
+        // Should contain opacity property in color object
+        Assert.IsTrue(script.Contains("\"opacity\":0.5"), "Should contain opacity:0.5");
     }
     
     [TestMethod]
@@ -207,12 +238,18 @@ public class TestVisNetworkGradientEdges {
         
         var html = doc.ToString();
         
-        // Should contain all color properties
-        Assert.IsTrue(html.Contains("color"), "Should contain color property");
-        Assert.IsTrue(html.Contains("highlight"), "Should contain highlight property");
-        Assert.IsTrue(html.Contains("hover"), "Should contain hover property");
-        Assert.IsTrue(html.Contains("opacity"), "Should contain opacity property");
-        Assert.IsTrue(html.Contains("inherit"), "Should contain inherit property");
+        // Extract the script content
+        var scriptMatch = Regex.Match(html, @"<script>(.*?)</script>", RegexOptions.Singleline);
+        Assert.IsTrue(scriptMatch.Success, "Should have script tag");
+        
+        var script = scriptMatch.Groups[1].Value;
+        
+        // Should contain all color properties in the edge configuration
+        Assert.IsTrue(script.Contains("\"color\":{"), "Should contain color object");
+        Assert.IsTrue(script.Contains("\"highlight\":\"#FF0000\""), "Should contain highlight with red color");
+        Assert.IsTrue(script.Contains("\"hover\":\"#FFA500\""), "Should contain hover with orange color");
+        Assert.IsTrue(script.Contains("\"opacity\":0.8"), "Should contain opacity:0.8");
+        Assert.IsTrue(script.Contains("\"inherit\":\"both\""), "Should contain inherit:both");
     }
     
     [TestMethod]
@@ -242,12 +279,18 @@ public class TestVisNetworkGradientEdges {
         
         var html = doc.ToString();
         
-        // Should contain gradient and all other options
-        Assert.IsTrue(html.Contains("Gradient Edge"), "Should contain edge label");
-        Assert.IsTrue(html.Contains("width"), "Should contain width property");
-        Assert.IsTrue(html.Contains("dashes"), "Should contain dashes property");
-        Assert.IsTrue(html.Contains("arrows"), "Should contain arrows property");
-        Assert.IsTrue(html.Contains("smooth"), "Should contain smooth property");
+        // Extract the script content
+        var scriptMatch = Regex.Match(html, @"<script>(.*?)</script>", RegexOptions.Singleline);
+        Assert.IsTrue(scriptMatch.Success, "Should have script tag");
+        
+        var script = scriptMatch.Groups[1].Value;
+        
+        // Should contain edge properties
+        Assert.IsTrue(script.Contains("Gradient Edge"), "Should contain edge label");
+        Assert.IsTrue(script.Contains("\"width\":3"), "Should contain width property");
+        Assert.IsTrue(script.Contains("\"dashes\":[5,10]"), "Should contain dash pattern");
+        Assert.IsTrue(script.Contains("\"arrows\":{"), "Should contain arrows object");
+        Assert.IsTrue(script.Contains("\"smooth\":{"), "Should contain smooth object");
     }
     
     [TestMethod]
@@ -272,8 +315,16 @@ public class TestVisNetworkGradientEdges {
         
         var html = doc.ToString();
         
-        Assert.IsTrue(html.Contains("#FF0000"), "Should contain red hex color");
-        Assert.IsTrue(html.Contains("#00FF00"), "Should contain green hex color");
-        Assert.IsTrue(html.Contains("#0000FF"), "Should contain blue hex color");
+        // Extract the script content
+        var scriptMatch = Regex.Match(html, @"<script>(.*?)</script>", RegexOptions.Singleline);
+        Assert.IsTrue(scriptMatch.Success, "Should have script tag");
+        
+        var script = scriptMatch.Groups[1].Value;
+        
+        // Should contain colors in edge configuration
+        Assert.IsTrue(script.Contains("\"color\":\"#FF0000\"") || script.Contains("\"color\":{") && script.Contains("\"color\":\"#FF0000\""), 
+            "Should contain red hex color");
+        Assert.IsTrue(script.Contains("\"highlight\":\"#00FF00\""), "Should contain green highlight color");
+        Assert.IsTrue(script.Contains("\"hover\":\"#0000FF\""), "Should contain blue hover color");
     }
 }

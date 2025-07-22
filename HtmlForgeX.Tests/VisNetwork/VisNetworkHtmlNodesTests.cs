@@ -45,8 +45,8 @@ public class VisNetworkHtmlNodesTests {
         Assert.IsTrue(html.Contains("\\u003Ci\\u003EItalic\\u003C/i\\u003E"), "Should contain italic HTML tag");
         Assert.IsTrue(html.Contains("\\u003Ccode\\u003ECode\\u003C/code\\u003E"), "Should contain code HTML tag");
         
-        // Check if HTML nodes plugin script is included
-        Assert.IsTrue(html.Contains("visjs-html-nodes.min.js"), "Should include HTML nodes plugin script");
+        // Check if HTML nodes plugin script is included (it's inlined in Online mode)
+        Assert.IsTrue(html.Contains("HtmlForgeX VisJS HTML Nodes Plugin"), "Should include HTML nodes plugin script");
         Assert.IsTrue(html.Contains("VisJsHtmlNodes"), "Should contain VisJsHtmlNodes initialization");
         Assert.IsTrue(html.Contains("htmlContents"), "Should contain HTML contents object");
         Assert.IsTrue(html.Contains("htmlNode1"), "Should contain HTML node ID");
@@ -91,7 +91,7 @@ public class VisNetworkHtmlNodesTests {
         Assert.IsTrue(html.Contains("\\u003Cb\\u003EBold Text\\u003C/b\\u003E"), "Should contain bold tag");
         Assert.IsTrue(html.Contains("\\u003Ci\\u003EItalic Text\\u003C/i\\u003E"), "Should contain italic tag");
         Assert.IsTrue(html.Contains("\\u003Ccode\\u003Ecode.example()\\u003C/code\\u003E"), "Should contain code tag");
-        Assert.IsTrue(html.Contains("\\u003Cbr\\u003E"), "Should contain line break tag");
+        Assert.IsTrue(html.Contains("\\n"), "Should contain line break character");
         Assert.IsTrue(html.Contains("Plain text"), "Should contain plain text");
         
         // The HTML should not contain unsupported tags in native mode

@@ -70,7 +70,8 @@ public class VisNetwork : Element {
         // Check if any nodes are HTML nodes
         bool usesHtmlNodes = _htmlNodes.Count > 0;
         if (usesHtmlNodes) {
-            Document?.AddLibrary(Libraries.VisNetworkHtmlNodes);
+            // HTML nodes plugin must be loaded after VisNetwork, use a higher weight
+            Document?.AddLibrary(Libraries.VisNetworkHtmlNodes, 50);
         }
     }
 
