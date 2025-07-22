@@ -284,6 +284,9 @@ public class TablerCardActionBuilder {
     /// Initializes or configures Button.
     /// </summary>
     public TablerCardActionBuilder Button(string text, Action<TablerCardButton>? config = null) {
+        if (string.IsNullOrWhiteSpace(text)) {
+            throw new ArgumentException("text cannot be null or whitespace.", nameof(text));
+        }
         var button = new TablerCardButton().WithText(text);
         config?.Invoke(button);
         if (document != null) {
