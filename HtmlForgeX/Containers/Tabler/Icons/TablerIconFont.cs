@@ -111,11 +111,11 @@ public class TablerIconFont : Element {
         
         // Add inline styles
         if (!string.IsNullOrEmpty(_size)) {
-            _styles["font-size"] = _size;
+            _styles["font-size"] = _size!;
         }
         
         if (!string.IsNullOrEmpty(_color)) {
-            _styles["color"] = _color;
+            _styles["color"] = _color!;
         }
         
         foreach (var style in _styles) {

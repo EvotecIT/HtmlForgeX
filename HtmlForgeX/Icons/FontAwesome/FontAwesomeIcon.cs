@@ -272,7 +272,7 @@ public class FontAwesomeIcon : Element {
         // When using WithCode(), add the Unicode as content via CSS pseudo-element
         if (!string.IsNullOrEmpty(_iconCode) && string.IsNullOrEmpty(_iconName)) {
             // Add the Unicode character as text content for Font Awesome to render
-            tag.Text(_iconCode);
+            tag.Text(_iconCode!);
         }
         
         return tag.ToString();

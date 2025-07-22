@@ -1481,7 +1481,7 @@ public class VisNetwork : Element {
                 nodeOptions.Shape == VisNetworkNodeShape.Custom && 
                 !string.IsNullOrEmpty(nodeOptions.CtxRenderer)) {
                 
-                var shapeKey = nodeOptions.CtxRenderer.GetHashCode().ToString();
+                var shapeKey = nodeOptions.CtxRenderer!.GetHashCode().ToString();
                 if (!customShapeMap.ContainsKey(shapeKey)) {
                     var shapeName = $"customShape{shapeCounter++}";
                     customShapeMap[shapeKey] = shapeName;
@@ -1512,7 +1512,7 @@ public class VisNetwork : Element {
                 !string.IsNullOrEmpty(nodeOptions.CtxRenderer)) {
                 
                 // Find the shape name for this node
-                var shapeKey = nodeOptions.CtxRenderer.GetHashCode().ToString();
+                var shapeKey = nodeOptions.CtxRenderer!.GetHashCode().ToString();
                 var shapeName = customShapeMap[shapeKey];
                 
                 // Create node object without ctxRenderer
