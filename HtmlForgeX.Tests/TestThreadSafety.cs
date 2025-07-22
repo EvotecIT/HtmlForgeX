@@ -53,4 +53,19 @@ public class TestThreadSafety {
         Assert.IsTrue(htmlOutput.Contains("bootstrap"), "HTML should contain Bootstrap library reference");
         Assert.IsTrue(htmlOutput.Contains("tabler"), "HTML should contain Tabler library reference");
     }
+
+    [TestMethod]
+    public void DocumentConfiguration_Path_ConcurrentSet() {
+        var config = new DocumentConfiguration();
+        var tasks = new List<Task>();
+
+        for (int i = 0; i < 100; i++) {
+            int copy = i;
+            tasks.Add(Task.Run(() => config.Path = $"path_{copy}"));
+        }
+
+        Task.WaitAll(tasks.ToArray());
+
+        StringAssert.StartsWith(config.Path, "path_");
+    }
 }
