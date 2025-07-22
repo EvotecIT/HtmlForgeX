@@ -117,9 +117,7 @@ public class DataTablesTable : Table {
             _features["scrollY"] = false;
         }
 
-        if (scrollX) {
-            _features["scrollX"] = true;
-        }
+        _features["scrollX"] = scrollX;
 
         Options.ScrollCollapse = scrollCollapse;
         return this;
