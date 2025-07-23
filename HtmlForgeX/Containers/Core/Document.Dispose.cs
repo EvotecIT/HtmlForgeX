@@ -26,6 +26,7 @@ public partial class Document
 
         if (disposing)
         {
+            Configuration.Libraries.Clear();
             if (System.Threading.Interlocked.Decrement(ref _activeDocuments) == 0)
             {
                 FileWriteLock.DisposeSemaphore();
