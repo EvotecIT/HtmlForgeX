@@ -273,21 +273,21 @@ page.Table(data, TableType.DataTables, table => {
 
         document.Save("DataTablesExtensionsDemo.html", openInBrowser);
 
-        Console.WriteLine("🚀 DataTables Extensions Demo created successfully!");
-        Console.WriteLine("⚡ Extension methods demonstrated:");
-        Console.WriteLine("   • QuickSetup() - Simple one-liner configuration");
-        Console.WriteLine("   • EnterpriseSetup() - Full-featured business tables");
-        Console.WriteLine("   • MobileOptimized() - Perfect for mobile devices");
-        Console.WriteLine("   • DashboardSetup() - Clean dashboard layouts");
-        Console.WriteLine("   • ReportSetup() - Comprehensive reporting");
-        Console.WriteLine("   • AnalyticsSetup() - Advanced data analysis");
-        Console.WriteLine("   • PerformanceSetup() - Optimized for large datasets");
-        Console.WriteLine("");
-        Console.WriteLine("🎯 Benefits:");
-        Console.WriteLine("   ✓ Reduced configuration code");
-        Console.WriteLine("   ✓ Consistent setups across projects");
-        Console.WriteLine("   ✓ Best practices built-in");
-        Console.WriteLine("   ✓ Easy to customize and extend");
+        HelpersSpectre.Success("🚀 DataTables Extensions Demo created successfully!");
+        HelpersSpectre.Success("⚡ Extension methods demonstrated:");
+        HelpersSpectre.Success("   • QuickSetup() - Simple one-liner configuration");
+        HelpersSpectre.Success("   • EnterpriseSetup() - Full-featured business tables");
+        HelpersSpectre.Success("   • MobileOptimized() - Perfect for mobile devices");
+        HelpersSpectre.Success("   • DashboardSetup() - Clean dashboard layouts");
+        HelpersSpectre.Success("   • ReportSetup() - Comprehensive reporting");
+        HelpersSpectre.Success("   • AnalyticsSetup() - Advanced data analysis");
+        HelpersSpectre.Success("   • PerformanceSetup() - Optimized for large datasets");
+        HelpersSpectre.Success("");
+        HelpersSpectre.Success("🎯 Benefits:");
+        HelpersSpectre.Success("   ✓ Reduced configuration code");
+        HelpersSpectre.Success("   ✓ Consistent setups across projects");
+        HelpersSpectre.Success("   ✓ Best practices built-in");
+        HelpersSpectre.Success("   ✓ Easy to customize and extend");
     }
 
     private static List<dynamic> GenerateSalesData()

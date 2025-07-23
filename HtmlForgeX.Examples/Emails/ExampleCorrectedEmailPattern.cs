@@ -19,7 +19,7 @@ public static class ExampleCorrectedEmailPattern
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating corrected email pattern example...");
+        HelpersSpectre.Success("Creating corrected email pattern example...");
 
         var email = new Email();
 
@@ -181,7 +181,7 @@ public static class ExampleCorrectedEmailPattern
 
         // Save email
         email.Save("corrected-email-pattern.html", openInBrowser);
-        Console.WriteLine("✅ Corrected email pattern created successfully!");
-        Console.WriteLine("📧 Demonstrates: Proper EmailBox spacing, consistent text positioning, multiple sections, proper margins");
+        HelpersSpectre.Success("✅ Corrected email pattern created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: Proper EmailBox spacing, consistent text positioning, multiple sections, proper margins");
     }
 }

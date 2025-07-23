@@ -9,7 +9,7 @@ namespace HtmlForgeX.Examples.Emails;
 /// </summary>
 public static class ExampleImprovedConsistencyEmail {
     public static void Create(bool openInBrowser = false) {
-        Console.WriteLine("Creating improved consistency email example with Document-style configuration...");
+        HelpersSpectre.Success("Creating improved consistency email example with Document-style configuration...");
 
         // Natural Document-style approach - configure the email directly!
         var email = new Email()
@@ -420,8 +420,8 @@ public static class ExampleImprovedConsistencyEmail {
         // Save email
         email.Save("improved-consistency-demo.html", openInBrowser);
 
-        Console.WriteLine("✅ Improved consistency email created successfully!");
-        Console.WriteLine($@"🎯 Demonstrates: Document-style configuration pattern
+        HelpersSpectre.Success("✅ Improved consistency email created successfully!");
+        HelpersSpectre.Success($@"🎯 Demonstrates: Document-style configuration pattern
 🔧 Key Features:
   🏗️ Natural email configuration - email.EnableImageEmbedding()
   ⚙️ Method chaining - configure multiple settings fluently

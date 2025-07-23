@@ -219,6 +219,6 @@ internal class FontAwesomeExampleDemo {
         });
 
         document.Save("FontAwesomeEnumDemo.html", openInBrowser);
-        Console.WriteLine("FontAwesome Enum System Demo created successfully!");
+        HelpersSpectre.Success("FontAwesome Enum System Demo created successfully!");
     }
 }

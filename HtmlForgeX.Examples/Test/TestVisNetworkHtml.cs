@@ -191,7 +191,7 @@ public static class TestVisNetworkHtml {
         });
 
         document.Save("test-visnetwork-html.html", openInBrowser: true);
-        Console.WriteLine("✅ VisNetwork HTML test created at: test-visnetwork-html.html");
-        Console.WriteLine("🔍 Open the browser console to see diagnostic information");
+        HelpersSpectre.Success("✅ VisNetwork HTML test created at: test-visnetwork-html.html");
+        HelpersSpectre.Success("🔍 Open the browser console to see diagnostic information");
     }
 }

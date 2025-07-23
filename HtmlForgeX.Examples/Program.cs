@@ -90,8 +90,8 @@ internal class Program {
         BasicHtmlTable04.Create(openInBrowser);
 
         // Email examples - showcasing the new Document-style configuration!
-        Console.WriteLine("📧 Running Email Examples with Document-Style Configuration:");
-        Console.WriteLine();
+        HelpersSpectre.Success("📧 Running Email Examples with Document-Style Configuration:");
+        HelpersSpectre.Break();
 
         // Text wrapping demo
         ExampleTextWrappingDemo.Create(openInBrowser);

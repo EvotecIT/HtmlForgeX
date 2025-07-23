@@ -369,7 +369,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
             });
 
             document.Save("VisNetworkMethodsDemo.html", openInBrowser);
-            Console.WriteLine($"VisNetwork Methods API Demo created at: VisNetworkMethodsDemo.html");
+            HelpersSpectre.Success($"VisNetwork Methods API Demo created at: VisNetworkMethodsDemo.html");
         }
     }
 }

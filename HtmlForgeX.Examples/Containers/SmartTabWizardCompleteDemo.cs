@@ -743,22 +743,22 @@ internal class SmartTabWizardCompleteDemo {
 
         document.Save("SmartTabWizardCompleteDemo.html", openInBrowser);
 
-        Console.WriteLine("🎉 SmartTab & SmartWizard Complete Demo created!");
-        Console.WriteLine("📋 This comprehensive demo showcases:");
-        Console.WriteLine("   ✅ All 7 SmartTab themes (Bootstrap, Classic, Dark, Material, Round, Square, Basic)");
-        Console.WriteLine("   ✅ All 8 SmartWizard themes (Basic, Arrows, Square, Round, Dots, Progress, Material, Dark)");
-        Console.WriteLine("   ✅ All 6 animation types (None, Fade, SlideHorizontal, SlideVertical, SlideSwing, CSS)");
-        Console.WriteLine("   ✅ Vertical and horizontal orientations");
-        Console.WriteLine("   ✅ Auto-progress functionality");
-        Console.WriteLine("   ✅ Keyboard navigation support");
-        Console.WriteLine("   ✅ URL hash navigation");
-        Console.WriteLine("   ✅ Complex nested components (SmartTab in SmartWizard, SmartWizard in SmartTab)");
-        Console.WriteLine("   ✅ Full integration with all existing HtmlForgeX components");
-        Console.WriteLine("   ✅ DataTables, DataGrids, Cards, Forms, Lists, Badges, Alerts, Progress bars");
-        Console.WriteLine("   ✅ Responsive design with mobile support");
-        Console.WriteLine("   ✅ Production-ready implementation");
-        Console.WriteLine("   ✅ Zero HTML/CSS/JS knowledge required - Pure C# fluent API!");
-        Console.WriteLine();
-        Console.WriteLine("🚀 SmartTab and SmartWizard are now fully integrated into HtmlForgeX!");
+        HelpersSpectre.Success("🎉 SmartTab & SmartWizard Complete Demo created!");
+        HelpersSpectre.Success("📋 This comprehensive demo showcases:");
+        HelpersSpectre.Success("   ✅ All 7 SmartTab themes (Bootstrap, Classic, Dark, Material, Round, Square, Basic)");
+        HelpersSpectre.Success("   ✅ All 8 SmartWizard themes (Basic, Arrows, Square, Round, Dots, Progress, Material, Dark)");
+        HelpersSpectre.Success("   ✅ All 6 animation types (None, Fade, SlideHorizontal, SlideVertical, SlideSwing, CSS)");
+        HelpersSpectre.Success("   ✅ Vertical and horizontal orientations");
+        HelpersSpectre.Success("   ✅ Auto-progress functionality");
+        HelpersSpectre.Success("   ✅ Keyboard navigation support");
+        HelpersSpectre.Success("   ✅ URL hash navigation");
+        HelpersSpectre.Success("   ✅ Complex nested components (SmartTab in SmartWizard, SmartWizard in SmartTab)");
+        HelpersSpectre.Success("   ✅ Full integration with all existing HtmlForgeX components");
+        HelpersSpectre.Success("   ✅ DataTables, DataGrids, Cards, Forms, Lists, Badges, Alerts, Progress bars");
+        HelpersSpectre.Success("   ✅ Responsive design with mobile support");
+        HelpersSpectre.Success("   ✅ Production-ready implementation");
+        HelpersSpectre.Success("   ✅ Zero HTML/CSS/JS knowledge required - Pure C# fluent API!");
+        HelpersSpectre.Break();
+        HelpersSpectre.Success("🚀 SmartTab and SmartWizard are now fully integrated into HtmlForgeX!");
     }
 }

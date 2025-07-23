@@ -10,7 +10,7 @@ public static class ExampleLayoutEmailPattern
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating layout email pattern example (like PowerShell EmailLayout)...");
+        HelpersSpectre.Success("Creating layout email pattern example (like PowerShell EmailLayout)...");
 
         var email = new Email();
 
@@ -132,8 +132,8 @@ public static class ExampleLayoutEmailPattern
 
         // Save email
         email.Save("layout-email-pattern.html", openInBrowser);
-        Console.WriteLine("✅ Layout email pattern created successfully!");
-        Console.WriteLine("📧 Demonstrates: Structured layout, EmailRow, EmailColumn, EmailImage, multi-column design");
-        Console.WriteLine("🎯 This is the LAYOUT pattern - for complex structured emails!");
+        HelpersSpectre.Success("✅ Layout email pattern created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: Structured layout, EmailRow, EmailColumn, EmailImage, multi-column design");
+        HelpersSpectre.Success("🎯 This is the LAYOUT pattern - for complex structured emails!");
     }
 }

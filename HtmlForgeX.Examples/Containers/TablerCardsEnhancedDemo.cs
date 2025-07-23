@@ -435,19 +435,19 @@ internal class TablerCardsEnhancedDemo {
 
         document.Save("TablerCardsEnhancedDemo.html", openInBrowser);
 
-        Console.WriteLine("✅ Enhanced Tabler Cards demo created using proper C# API!");
-        Console.WriteLine("📋 Features demonstrated with zero HTML cheating:");
-        Console.WriteLine("   ✅ Card states (active, borderless, stacked)");
-        Console.WriteLine("   ✅ Link effects (rotate, pop, default)");
-        Console.WriteLine("   ✅ Decorations (ribbons, stamps, status indicators)");
-        Console.WriteLine("   ✅ Progress bars and backgrounds");
-        Console.WriteLine("   ✅ Complex layouts with avatars and actions");
-        Console.WriteLine("   ✅ Masonry-style different heights");
-        Console.WriteLine("   ✅ Image positioning (top, side, background)");
-        Console.WriteLine("   ✅ Navigation (tabs and pills)");
-        Console.WriteLine("   ✅ Lists and formatted text");
-        Console.WriteLine("   ✅ All using proper C# fluent API - zero raw HTML!");
-        Console.WriteLine();
-        Console.WriteLine("🎯 This is the proper HtmlForgeX way!");
+        HelpersSpectre.Success("✅ Enhanced Tabler Cards demo created using proper C# API!");
+        HelpersSpectre.Success("📋 Features demonstrated with zero HTML cheating:");
+        HelpersSpectre.Success("   ✅ Card states (active, borderless, stacked)");
+        HelpersSpectre.Success("   ✅ Link effects (rotate, pop, default)");
+        HelpersSpectre.Success("   ✅ Decorations (ribbons, stamps, status indicators)");
+        HelpersSpectre.Success("   ✅ Progress bars and backgrounds");
+        HelpersSpectre.Success("   ✅ Complex layouts with avatars and actions");
+        HelpersSpectre.Success("   ✅ Masonry-style different heights");
+        HelpersSpectre.Success("   ✅ Image positioning (top, side, background)");
+        HelpersSpectre.Success("   ✅ Navigation (tabs and pills)");
+        HelpersSpectre.Success("   ✅ Lists and formatted text");
+        HelpersSpectre.Success("   ✅ All using proper C# fluent API - zero raw HTML!");
+        HelpersSpectre.Break();
+        HelpersSpectre.Success("🎯 This is the proper HtmlForgeX way!");
     }
 }

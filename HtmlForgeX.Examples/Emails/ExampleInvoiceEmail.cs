@@ -21,7 +21,7 @@ public static class ExampleInvoiceEmail
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating invoice email example with Document-style configuration...");
+        HelpersSpectre.Success("Creating invoice email example with Document-style configuration...");
 
         // Natural Document-style configuration - just like document.Head.AddTitle()!
         var email = new Email()
@@ -162,8 +162,8 @@ public static class ExampleInvoiceEmail
         // Save email
         email.Save("invoice-email.html", openInBrowser);
 
-        Console.WriteLine("✅ Invoice email created successfully!");
-        Console.WriteLine($@"📧 Demonstrates: Professional invoice layout, type-safe tables, proper alignment
+        HelpersSpectre.Success("✅ Invoice email created successfully!");
+        HelpersSpectre.Success($@"📧 Demonstrates: Professional invoice layout, type-safe tables, proper alignment
 🔧 Improved Features: Document-style configuration, automatic base64 embedding, EmailLink usage
 📁 Logo automatically embedded as base64 data URI via email configuration!
 💡 Natural configuration: email.EnableImageEmbedding().ConfigureLayout() - just like Document!");

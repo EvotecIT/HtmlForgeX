@@ -178,6 +178,6 @@ public static class VisNetworkHtmlNodesExample {
 
         // Save document
         document.Save("VisNetworkHtmlNodesExample.html", openInBrowser);
-        Console.WriteLine("Created VisNetworkHtmlNodesExample.html");
+        HelpersSpectre.Success("Created VisNetworkHtmlNodesExample.html");
     }
 }

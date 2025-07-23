@@ -352,7 +352,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
             });
 
             document.Save("VisNetworkExportImportDemo.html", openInBrowser);
-            Console.WriteLine($"VisNetwork Export/Import Demo created at: VisNetworkExportImportDemo.html");
+            HelpersSpectre.Success($"VisNetwork Export/Import Demo created at: VisNetworkExportImportDemo.html");
         }
     }
 }

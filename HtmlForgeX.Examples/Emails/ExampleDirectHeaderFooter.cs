@@ -10,7 +10,7 @@ public static class ExampleDirectHeaderFooter
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating direct header/footer pattern example...");
+        HelpersSpectre.Success("Creating direct header/footer pattern example...");
 
         var email = new Email()
             .SetThemeMode(EmailThemeMode.Light)
@@ -99,12 +99,12 @@ public static class ExampleDirectHeaderFooter
 
         // Save email
         email.Save("direct-header-footer-pattern.html", openInBrowser);
-        Console.WriteLine("✅ Direct header/footer pattern created successfully!");
-        Console.WriteLine("🎯 Key Benefits:");
-        Console.WriteLine("   • email.Header.EmailRow() - Direct access like Body");
-        Console.WriteLine("   • email.Footer.EmailRow() - No more confusing patterns");
-        Console.WriteLine("   • Proper alignment and positioning");
-        Console.WriteLine("   • Clean, intuitive API");
-        Console.WriteLine("💡 This is the new HtmlForgeX way - direct and simple!");
+        HelpersSpectre.Success("✅ Direct header/footer pattern created successfully!");
+        HelpersSpectre.Success("🎯 Key Benefits:");
+        HelpersSpectre.Success("   • email.Header.EmailRow() - Direct access like Body");
+        HelpersSpectre.Success("   • email.Footer.EmailRow() - No more confusing patterns");
+        HelpersSpectre.Success("   • Proper alignment and positioning");
+        HelpersSpectre.Success("   • Clean, intuitive API");
+        HelpersSpectre.Success("💡 This is the new HtmlForgeX way - direct and simple!");
     }
 }

@@ -275,7 +275,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
             });
 
             document.Save("VisNetworkEventsDemo.html", openInBrowser);
-            Console.WriteLine($"VisNetwork Events Demo created at: VisNetworkEventsDemo.html");
+            HelpersSpectre.Success($"VisNetwork Events Demo created at: VisNetworkEventsDemo.html");
         }
     }
 }

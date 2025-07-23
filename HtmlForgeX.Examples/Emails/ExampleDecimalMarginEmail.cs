@@ -7,7 +7,7 @@ namespace HtmlForgeX.Examples.Emails;
 /// </summary>
 public static class ExampleDecimalMarginEmail {
     public static void Create(bool openInBrowser = false) {
-        Console.WriteLine("Creating decimal margin email example...");
+        HelpersSpectre.Success("Creating decimal margin email example...");
 
         var email = new Email();
 
@@ -23,7 +23,7 @@ public static class ExampleDecimalMarginEmail {
         });
 
         email.Save("decimal-margin-email.html", openInBrowser);
-        Console.WriteLine("✅ Decimal margin email created successfully!");
-        Console.WriteLine("📧 Demonstrates: Using decimal margins (1.5em).\n");
+        HelpersSpectre.Success("✅ Decimal margin email created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: Using decimal margins (1.5em).\n");
     }
 }

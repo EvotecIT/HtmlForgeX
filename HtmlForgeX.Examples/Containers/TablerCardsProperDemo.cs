@@ -345,18 +345,18 @@ internal class TablerCardsProperDemo {
 
         document.Save("TablerCardsProperDemo.html", openInBrowser);
 
-        Console.WriteLine("🎉 Proper Tabler Cards demo created!");
-        Console.WriteLine("✅ Zero raw HTML - Pure C# fluent API");
-        Console.WriteLine("🔧 Features demonstrated:");
-        Console.WriteLine("   ✅ Proper TablerCardHeader with fluent methods");
-        Console.WriteLine("   ✅ Proper TablerCardBody with text and lists");
-        Console.WriteLine("   ✅ TablerCardImage with positioning enums");
-        Console.WriteLine("   ✅ TablerCardNavigation for tabs and pills");
-        Console.WriteLine("   ✅ TablerCardList with proper styling");
-        Console.WriteLine("   ✅ TablerCardAction buttons with types");
-        Console.WriteLine("   ✅ All decorations using C# methods");
-        Console.WriteLine("   ✅ Type-safe enums for everything");
-        Console.WriteLine();
-        Console.WriteLine("🚀 This is how card components should be built!");
+        HelpersSpectre.Success("🎉 Proper Tabler Cards demo created!");
+        HelpersSpectre.Success("✅ Zero raw HTML - Pure C# fluent API");
+        HelpersSpectre.Success("🔧 Features demonstrated:");
+        HelpersSpectre.Success("   ✅ Proper TablerCardHeader with fluent methods");
+        HelpersSpectre.Success("   ✅ Proper TablerCardBody with text and lists");
+        HelpersSpectre.Success("   ✅ TablerCardImage with positioning enums");
+        HelpersSpectre.Success("   ✅ TablerCardNavigation for tabs and pills");
+        HelpersSpectre.Success("   ✅ TablerCardList with proper styling");
+        HelpersSpectre.Success("   ✅ TablerCardAction buttons with types");
+        HelpersSpectre.Success("   ✅ All decorations using C# methods");
+        HelpersSpectre.Success("   ✅ Type-safe enums for everything");
+        HelpersSpectre.Break();
+        HelpersSpectre.Success("🚀 This is how card components should be built!");
     }
 }

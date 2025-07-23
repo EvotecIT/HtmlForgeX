@@ -1012,13 +1012,13 @@ internal class BasicChartJs {
 
         document.Save("ChartJsDemoEnhanced.html", openInBrowser);
         
-        Console.WriteLine("📊 ChartJs Enhanced Demo created successfully!");
-        Console.WriteLine("✨ Features demonstrated:");
-        Console.WriteLine("   • All chart types: Line, Bar, Pie, Doughnut, Radar, Polar Area, Scatter, Bubble");
-        Console.WriteLine("   • Multiple datasets with custom colors and styling");
-        Console.WriteLine("   • Advanced configuration: titles, legends, tooltips, animations");
-        Console.WriteLine("   • Stacked charts and custom scales");
-        Console.WriteLine("   • Fluent API with full type safety");
-        Console.WriteLine("   • Zero HTML/CSS/JS required from the user");
+        HelpersSpectre.Success("📊 ChartJs Enhanced Demo created successfully!");
+        HelpersSpectre.Success("✨ Features demonstrated:");
+        HelpersSpectre.Success("   • All chart types: Line, Bar, Pie, Doughnut, Radar, Polar Area, Scatter, Bubble");
+        HelpersSpectre.Success("   • Multiple datasets with custom colors and styling");
+        HelpersSpectre.Success("   • Advanced configuration: titles, legends, tooltips, animations");
+        HelpersSpectre.Success("   • Stacked charts and custom scales");
+        HelpersSpectre.Success("   • Fluent API with full type safety");
+        HelpersSpectre.Success("   • Zero HTML/CSS/JS required from the user");
     }
 }

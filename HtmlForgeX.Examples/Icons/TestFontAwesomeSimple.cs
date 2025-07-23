@@ -82,7 +82,7 @@ namespace HtmlForgeX.Examples.Icons {
             });
 
             document.Save("TestFontAwesomeSimple.html", openInBrowser);
-            Console.WriteLine("FontAwesome Simple Test created successfully!");
+            HelpersSpectre.Success("FontAwesome Simple Test created successfully!");
         }
     }
 }

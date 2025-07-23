@@ -10,7 +10,7 @@ public static class ExampleWelcomeEmailBuilder
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating welcome email example...");
+        HelpersSpectre.Success("Creating welcome email example...");
 
         var email = new Email();
 
@@ -154,7 +154,7 @@ public static class ExampleWelcomeEmailBuilder
 
         // Save email
         email.Save("welcome-email.html", openInBrowser);
-        Console.WriteLine("✅ Welcome email created successfully!");
-        Console.WriteLine("📧 Demonstrates: User-friendly text styling, flexible list building, contact information");
+        HelpersSpectre.Success("✅ Welcome email created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: User-friendly text styling, flexible list building, contact information");
     }
 }

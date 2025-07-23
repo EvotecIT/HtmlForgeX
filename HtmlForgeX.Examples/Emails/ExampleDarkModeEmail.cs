@@ -10,7 +10,7 @@ public static class ExampleDarkModeEmail
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating dark mode email example...");
+        HelpersSpectre.Success("Creating dark mode email example...");
 
         // Create email with dark mode enabled
         var email = new Email()
@@ -410,8 +410,8 @@ public static class ExampleDarkModeEmail
         // Save email
         email.Save("dark-mode-demo.html", openInBrowser);
 
-        Console.WriteLine("✅ Dark mode email created successfully!");
-        Console.WriteLine($@"🌙 Demonstrates: Comprehensive dark mode implementation
+        HelpersSpectre.Success("✅ Dark mode email created successfully!");
+        HelpersSpectre.Success($@"🌙 Demonstrates: Comprehensive dark mode implementation
 🔧 Key Features:
   🎨 Dark backgrounds and light text
   🔘 Dark mode button styling
@@ -424,7 +424,7 @@ public static class ExampleDarkModeEmail
 
     public static void CreateLightModeComparison(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating light mode comparison email...");
+        HelpersSpectre.Success("Creating light mode comparison email...");
 
         // Create the same email but in light mode for comparison
         var email = new Email()
@@ -456,12 +456,12 @@ public static class ExampleDarkModeEmail
         });
 
         email.Save("light-mode-demo.html", openInBrowser);
-        Console.WriteLine("✅ Light mode comparison email created!");
+        HelpersSpectre.Success("✅ Light mode comparison email created!");
     }
 
     public static void CreateAutoModeExample(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating auto mode email example...");
+        HelpersSpectre.Success("Creating auto mode email example...");
 
         // Create email with auto mode - adapts to user's system preference
         var email = new Email()
@@ -496,9 +496,9 @@ public static class ExampleDarkModeEmail
         });
 
         email.Save("auto-mode-demo.html", openInBrowser);
-        Console.WriteLine("✅ Auto mode email created!");
-        Console.WriteLine("📧 Demonstrates: System preference detection, media queries, CSS fallbacks");
-        Console.WriteLine("🎯 This email adapts to the user's system dark mode setting!");
+        HelpersSpectre.Success("✅ Auto mode email created!");
+        HelpersSpectre.Success("📧 Demonstrates: System preference detection, media queries, CSS fallbacks");
+        HelpersSpectre.Success("🎯 This email adapts to the user's system dark mode setting!");
     }
 }
 
@@ -510,7 +510,7 @@ public static class ExampleEnhancedDarkModeEmail
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating comprehensive enhanced dark mode email example...");
+        HelpersSpectre.Success("Creating comprehensive enhanced dark mode email example...");
 
         // Create email with dark mode and all enhancements
         var email = new Email()
@@ -866,9 +866,9 @@ public static class ExampleEnhancedDarkModeEmail
         // Save email
         email.Save("enhanced-dark-mode-demo.html", openInBrowser);
 
-        Console.WriteLine("✅ Enhanced dark mode email created successfully!");
-        Console.WriteLine("🚀 New Features: Image variants, enhanced links, improved tables");
-        Console.WriteLine("📧 Demonstrates: Comprehensive dark mode support with all enhancements");
-        Console.WriteLine("🎯 This showcases the complete dark mode feature set!");
+        HelpersSpectre.Success("✅ Enhanced dark mode email created successfully!");
+        HelpersSpectre.Success("🚀 New Features: Image variants, enhanced links, improved tables");
+        HelpersSpectre.Success("📧 Demonstrates: Comprehensive dark mode support with all enhancements");
+        HelpersSpectre.Success("🎯 This showcases the complete dark mode feature set!");
     }
 }

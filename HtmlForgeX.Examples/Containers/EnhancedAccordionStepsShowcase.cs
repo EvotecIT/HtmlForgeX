@@ -446,15 +446,15 @@ internal class EnhancedAccordionStepsShowcase {
         });
 
         document.Save("EnhancedAccordionStepsShowcase.html", openInBrowser);
-        Console.WriteLine("✅ Enhanced Accordion & Steps showcase created successfully!");
-        Console.WriteLine("📋 Complete feature demonstration includes:");
-        Console.WriteLine("   🎛️ All 5 accordion types with comprehensive configurations");
-        Console.WriteLine("   🎨 Color theming and visual state management");
-        Console.WriteLine("   🔄 Advanced steps with state tracking and navigation");
-        Console.WriteLine("   🖱️ Interactive elements and clickable components");
-        Console.WriteLine("   ♿ Enhanced accessibility features");
-        Console.WriteLine("   📱 Responsive design patterns");
-        Console.WriteLine("   🎯 Real-world usage scenarios");
-        Console.WriteLine("💡 Perfect showcase of HtmlForgeX's enhanced capabilities!");
+        HelpersSpectre.Success("✅ Enhanced Accordion & Steps showcase created successfully!");
+        HelpersSpectre.Success("📋 Complete feature demonstration includes:");
+        HelpersSpectre.Success("   🎛️ All 5 accordion types with comprehensive configurations");
+        HelpersSpectre.Success("   🎨 Color theming and visual state management");
+        HelpersSpectre.Success("   🔄 Advanced steps with state tracking and navigation");
+        HelpersSpectre.Success("   🖱️ Interactive elements and clickable components");
+        HelpersSpectre.Success("   ♿ Enhanced accessibility features");
+        HelpersSpectre.Success("   📱 Responsive design patterns");
+        HelpersSpectre.Success("   🎯 Real-world usage scenarios");
+        HelpersSpectre.Success("💡 Perfect showcase of HtmlForgeX's enhanced capabilities!");
     }
 }

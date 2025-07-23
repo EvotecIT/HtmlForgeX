@@ -307,16 +307,16 @@ internal class InfocardsCleanDemo {
 
         document.Save("InfocardsCleanDemo.html", openInBrowser);
 
-        Console.WriteLine("🎨 Clean Infocards Demo created successfully!");
-        Console.WriteLine("✨ Features demonstrated:");
-        Console.WriteLine("   🎯 Predefined RGBColor constants (RGBColor.Purple, RGBColor.White)");
-        Console.WriteLine("   📖 Self-documenting color usage");
-        Console.WriteLine("   🚀 No more cryptic hex numbers!");
-        Console.WriteLine("   🌈 Over 800 available color constants");
-        Console.WriteLine("");
-        Console.WriteLine("🔧 Clean API usage:");
-        Console.WriteLine("   • card.Background(RGBColor.Purple, RGBColor.White)");
-        Console.WriteLine("   • avatar.BackgroundColor(RGBColor.Crimson, RGBColor.White)");
-        Console.WriteLine("   • Much cleaner than hex strings!");
+        HelpersSpectre.Success("🎨 Clean Infocards Demo created successfully!");
+        HelpersSpectre.Success("✨ Features demonstrated:");
+        HelpersSpectre.Success("   🎯 Predefined RGBColor constants (RGBColor.Purple, RGBColor.White)");
+        HelpersSpectre.Success("   📖 Self-documenting color usage");
+        HelpersSpectre.Success("   🚀 No more cryptic hex numbers!");
+        HelpersSpectre.Success("   🌈 Over 800 available color constants");
+        HelpersSpectre.Success("");
+        HelpersSpectre.Success("🔧 Clean API usage:");
+        HelpersSpectre.Success("   • card.Background(RGBColor.Purple, RGBColor.White)");
+        HelpersSpectre.Success("   • avatar.BackgroundColor(RGBColor.Crimson, RGBColor.White)");
+        HelpersSpectre.Success("   • Much cleaner than hex strings!");
     }
 }

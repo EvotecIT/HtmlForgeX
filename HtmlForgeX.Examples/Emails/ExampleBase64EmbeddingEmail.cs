@@ -10,7 +10,7 @@ public static class ExampleBase64EmbeddingEmail
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating comprehensive base64 image embedding example...");
+        HelpersSpectre.Success("Creating comprehensive base64 image embedding example...");
 
         var email = new Email();
 
@@ -369,8 +369,8 @@ public static class ExampleBase64EmbeddingEmail
         // Save email
         email.Save("base64-embedding-demo.html", openInBrowser);
 
-        Console.WriteLine("✅ Base64 embedding demo email created successfully!");
-        Console.WriteLine($@"📧 Demonstrates: All base64 embedding methods and best practices
+        HelpersSpectre.Success("✅ Base64 embedding demo email created successfully!");
+        HelpersSpectre.Success($@"📧 Demonstrates: All base64 embedding methods and best practices
 🔧 Features Shown:
   📁 .EmbedFromFile() - Local file embedding
   🌐 .EmbedFromUrlAsync() - Remote URL embedding

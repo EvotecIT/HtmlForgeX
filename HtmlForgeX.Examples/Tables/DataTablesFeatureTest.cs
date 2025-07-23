@@ -64,9 +64,9 @@ internal class DataTablesFeatureTest
 
         document.Save("DataTablesFeatureTest.html", openInBrowser);
 
-        Console.WriteLine("🧪 DataTables Feature Test Suite completed!");
-        Console.WriteLine("✅ All features tested successfully");
-        Console.WriteLine("📊 Test results saved to DataTablesFeatureTest.html");
+        HelpersSpectre.Success("🧪 DataTables Feature Test Suite completed!");
+        HelpersSpectre.Success("✅ All features tested successfully");
+        HelpersSpectre.Success("📊 Test results saved to DataTablesFeatureTest.html");
     }
 
     private static List<dynamic> GenerateTestData()
