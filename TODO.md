@@ -234,19 +234,6 @@ public enum OffcanvasPosition { Left, Right, Top, Bottom }
 
 ## Phase 5: Specialized Components
 
-### 14. Star Rating (`TablerStarRating`)
-**Source Reference**: `/preview/pages/stars-rating.html`
-```csharp
-// Proposed API
-element.StarRating(rating => {
-    rating.Value(4.5)
-          .MaxStars(5)
-          .ReadOnly(false)
-          .ShowValue()
-          .OnChange("handleRatingChange");
-});
-```
-
 ### 15. Color Picker (`TablerColorPicker`)
 **Source Reference**: `/preview/pages/colorpicker.html`
 ```csharp
