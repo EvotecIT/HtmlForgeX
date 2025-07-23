@@ -26,6 +26,8 @@ This document outlines the implementation plan for Tabler features missing in Ht
 - **Accordion**: `TablerAccordion`
 - **Steps**: `TablerSteps`
 - **Tags**: `TablerTag`
+- **Timeline**: `TablerTimeline`
+- **Toasts**: `TablerToast`
 
 ### 🔄 Partially Implemented (Need Enhancement)
 - **Cards**: Missing ribbon, stamps, hover effects
@@ -72,23 +74,19 @@ element.Dropdown("Options", dropdown => {
 // Checkbox dropdown variant
 dropdown.CheckboxItem("Option 1", isChecked: true);
 dropdown.RadioItem("Option A", groupName: "options");
-```
 
-### 3. Toasts (`TablerToast`)
-**Source Reference**: `/preview/pages/toasts.html`
+### 3. Tooltips & Popovers (`TablerTooltip`, `TablerPopover`)
+**Source Reference**: `/preview/pages/tooltip.html`
 ```csharp
 // Proposed API
-element.Toast(toast => {
-    toast.Title("Success!")
-        .Message("Operation completed")
-        .Type(TablerToastType.Success)
-        .AutoDismiss(5000) // ms
-        .Position(TablerToastPosition.BottomRight);
-});
+element.Tooltip("Save changes")
+    .Position(TablerTooltipPosition.Top)
+    .Trigger(TablerTooltipTrigger.Hover);
 
-// Enums needed
-public enum TablerToastType { Default, Success, Warning, Danger, Info }
-public enum TablerToastPosition { TopLeft, TopRight, BottomLeft, BottomRight, TopCenter, BottomCenter }
+element.Popover("More Info", pop => {
+    pop.Content("Extra details here")
+       .Placement(TablerPopoverPlacement.Right);
+});
 ```
 
 ### 4. Forms Enhancement (`TablerForm`, `TablerInput`)
@@ -123,9 +121,19 @@ public enum InputType { Text, Email, Password, Number, Date, Time, File, Tel, Ur
 public enum ValidationState { Valid, Invalid, Warning }
 ```
 
+
+### 5. Button Component (`TablerButton`)
+**Source Reference**: `/preview/pages/buttons.html`
+```csharp
+// Proposed API
+element.Button("Submit", TablerColor.Primary)
+       .Size(TablerButtonSize.Large)
+       .Icon(TablerIcon.Send)
+       .OnClick("handleSubmit");
+```
 ## Phase 2: Navigation & Layout Components
 
-### 5. Pagination (`TablerPagination`)
+### 6. Pagination (`TablerPagination`)
 **Source Reference**: `/preview/pages/pagination.html`
 ```csharp
 // Proposed API
@@ -144,7 +152,7 @@ pagination.Descriptive()
          .NextDescription("Installation Guide");
 ```
 
-### 6. Breadcrumbs (`TablerBreadcrumb`)
+### 7. Breadcrumbs (`TablerBreadcrumb`)
 **Source Reference**: `/preview/pages/navigation.html`
 ```csharp
 // Proposed API
@@ -156,7 +164,7 @@ element.Breadcrumb(breadcrumb => {
 });
 ```
 
-### 7. Navigation (`TablerNavigation`)
+### 8. Navigation (`TablerNavigation`)
 **Source Reference**: `/preview/pages/navigation.html`
 ```csharp
 // Proposed API
@@ -174,27 +182,12 @@ element.Navigation(nav => {
 
 ## Phase 3: Data Display Components
 
-### 8. DataGrid Enhancement (`TablerDataGrid`)
+### 9. DataGrid Enhancement (`TablerDataGrid`)
 **Source Reference**: `/preview/pages/datagrid.html`
 - Add sorting capabilities
 - Add filtering support
 - Add pagination integration
 - Add column customization
-
-### 9. Timeline (`TablerTimeline`)
-**Source Reference**: `/preview/pages/activity.html`
-```csharp
-// Proposed API
-element.Timeline(timeline => {
-    timeline.Item(item => {
-        item.Time(DateTime.Now)
-            .Icon(TablerIconType.Check)
-            .Color(TablerColor.Success)
-            .Title("Task Completed")
-            .Description("The deployment was successful");
-    });
-});
-```
 
 ### 10. Empty States (`TablerEmpty`)
 **Source Reference**: `/preview/pages/empty.html`
@@ -370,7 +363,7 @@ public TablerModal Content(Action<Element> configure)
 
 ## Priority Implementation Order
 
-1. **Week 1-2**: Phase 1 (Modals, Dropdowns, Toasts, Forms)
+1. **Week 1-2**: Phase 1 (Modals, Dropdowns, Tooltips/Popovers, Buttons, Forms)
 2. **Week 3**: Phase 2 (Navigation components)
 3. **Week 4**: Phase 3 (Data display components)
 4. **Week 5**: Phase 4 (Visual components)
