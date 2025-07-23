@@ -1,7 +1,7 @@
 using HtmlForgeX;
 using HtmlForgeX.Tags;
 
-namespace HtmlForgeX.Examples.Icons;
+namespace HtmlForgeX.Examples.Tabler;
 
 public static class ExampleTablerIconFont {
     public static void Run() {

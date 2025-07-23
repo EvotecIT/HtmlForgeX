@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HtmlForgeX.Examples.Tags;
+namespace HtmlForgeX.Examples.Tabler;
 internal class ExampleTablerIcon {
     public static void Create() {
         var icon = new TablerIconElement(TablerIconType.BasketDollar).Color(RGBColor.Akaroa).FontSize(24).StrokeWidth(0.1);

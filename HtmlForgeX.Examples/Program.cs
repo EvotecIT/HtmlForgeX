@@ -8,6 +8,7 @@ using HtmlForgeX.Examples.ByHand;
 using HtmlForgeX.Examples.Experimenting;
 using HtmlForgeX.Examples.Support;
 using HtmlForgeX.Examples.Forms;
+using HtmlForgeX.Examples.Tabler;
 using HtmlForgeX.Examples.VisNetwork;
 
 namespace HtmlForgeX.Examples;

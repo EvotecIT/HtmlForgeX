@@ -1,6 +1,6 @@
 using HtmlForgeX.Examples;
 
-namespace HtmlForgeX.Examples.Containers;
+namespace HtmlForgeX.Examples.Tabler;
 
 /// <summary>
 /// Proper Tabler Cards Demo - Zero HTML, proper C# API usage

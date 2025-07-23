@@ -1,6 +1,6 @@
 using System;
 
-namespace HtmlForgeX.Examples.Tags;
+namespace HtmlForgeX.Examples.Tabler;
 
 internal static class ExampleTablerTag {
     public static void Create(bool openInBrowser = false) {

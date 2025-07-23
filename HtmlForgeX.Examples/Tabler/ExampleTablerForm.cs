@@ -1,4 +1,4 @@
-namespace HtmlForgeX.Examples.Forms;
+namespace HtmlForgeX.Examples.Tabler;
 
 internal static class ExampleTablerForm {
     public static void Create(bool openInBrowser = false) {

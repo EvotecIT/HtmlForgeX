@@ -1,4 +1,4 @@
-namespace HtmlForgeX.Examples.Containers;
+namespace HtmlForgeX.Examples.VisNetwork;
 
 internal class VisNetworkEdgeManipulationExamples {
     public static void Demo(bool openInBrowser = false) {

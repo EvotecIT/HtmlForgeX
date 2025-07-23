@@ -1,6 +1,6 @@
 using HtmlForgeX.Examples;
 
-namespace HtmlForgeX.Examples.Containers;
+namespace HtmlForgeX.Examples.Tabler;
 
 /// <summary>
 /// Complete Tabler Cards Demo - Full recreation of ALL features from cards.html, card-actions.html, and cards-masonry.html

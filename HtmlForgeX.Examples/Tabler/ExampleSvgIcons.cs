@@ -1,6 +1,6 @@
 using System;
 
-namespace HtmlForgeX.Examples.Tags;
+namespace HtmlForgeX.Examples.Tabler;
 
 internal class ExampleSvgIcons {
     public static void Create() {
