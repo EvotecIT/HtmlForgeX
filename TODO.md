@@ -28,6 +28,7 @@ This document outlines the implementation plan for Tabler features missing in Ht
 - **Tags**: `TablerTag`
 - **Timeline**: `TablerTimeline`
 - **Toasts**: `TablerToast`
+- **Modals**: `TablerModal`
 
 ### 🔄 Partially Implemented (Need Enhancement)
 - **Cards**: Missing ribbon, stamps, hover effects
@@ -38,7 +39,7 @@ This document outlines the implementation plan for Tabler features missing in Ht
 
 ## Phase 1: Core Interactive Components (High Priority)
 
-### 1. Modals (`TablerModal`)
+### ✅ Modals (`TablerModal`)
 **Source Reference**: `/preview/pages/modals.html`
 ```csharp
 // Proposed API

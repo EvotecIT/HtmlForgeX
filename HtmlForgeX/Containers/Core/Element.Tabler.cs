@@ -437,4 +437,16 @@ public abstract partial class Element {
         this.Add(smartWizard);
         return smartWizard;
     }
+
+    /// <summary>
+    /// Adds and configures a <see cref="TablerModal"/> component.
+    /// </summary>
+    /// <param name="config">Configuration action.</param>
+    /// <returns>The created modal.</returns>
+    public TablerModal Modal(Action<TablerModal> config) {
+        var modal = new TablerModal();
+        config(modal);
+        this.Add(modal);
+        return modal;
+    }
 }
