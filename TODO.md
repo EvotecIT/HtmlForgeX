@@ -269,8 +269,6 @@ element.ColorPicker(picker => {
 
 ### 18. Alert Enhancements
 **Source Reference**: `/preview/pages/alerts.html`
-- Add list support in alerts
-- Add minor alert style: `alert.Minor()`
 
 ### 19. Table Mobile Responsive
 **Source Reference**: `/preview/pages/tables.html`

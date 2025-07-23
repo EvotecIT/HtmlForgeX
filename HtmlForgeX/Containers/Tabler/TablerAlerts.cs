@@ -14,6 +14,7 @@ public class TablerAlert : Element {
     private bool UseHeadingStyle { get; set; }
     private string? ActionHref { get; set; }
     private string? ActionText { get; set; }
+    private List<string>? AlertListItems { get; set; }
 
     /// <summary>
     /// Initializes or configures TablerAlert.
@@ -58,6 +59,14 @@ public class TablerAlert : Element {
     }
 
     /// <summary>
+    /// Adds list items to be rendered under the alert.
+    /// </summary>
+    public TablerAlert List(params string[] items) {
+        AlertListItems = items.ToList();
+        return this;
+    }
+
+    /// <summary>
     /// Initializes or configures WithDescription.
     /// </summary>
     public TablerAlert WithDescription() {
@@ -92,7 +101,7 @@ public class TablerAlert : Element {
             alertTag.Value(divIcon);
         }
 
-        if (!string.IsNullOrEmpty(Title) || !string.IsNullOrEmpty(Message)) {
+        if (!string.IsNullOrEmpty(Title) || !string.IsNullOrEmpty(Message) || (AlertListItems?.Count > 0)) {
             var divAlertDetails = new HtmlTag("div");
             if (!string.IsNullOrEmpty(Title)) {
                 var cls = UseHeadingStyle ? "alert-heading" : "alert-title";
@@ -101,6 +110,14 @@ public class TablerAlert : Element {
             if (!string.IsNullOrEmpty(Message)) {
                 var cls = UseHeadingStyle ? "alert-description" : "text-secondary";
                 divAlertDetails.Value(new HtmlTag("div").Class(cls).Value(Message));
+            }
+            if (AlertListItems is { Count: > 0 }) {
+                var ul = new HtmlTag("ul").Class("alert-list");
+                foreach (var item in AlertListItems) {
+                    ul.Value(new HtmlTag("li").Value(item));
+                }
+                var cls = UseHeadingStyle ? "alert-description" : "text-secondary";
+                divAlertDetails.Value(new HtmlTag("div").Class(cls).Value(ul));
             }
             alertTag.Value(divAlertDetails);
         }

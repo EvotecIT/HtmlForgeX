@@ -17,6 +17,15 @@ public class TestTablerAlerts {
     }
 
     [TestMethod]
+    public void AlertList() {
+        var alert = new TablerAlert("Title", string.Empty).WithDescription().List("Item1", "Item2");
+        var html = alert.ToString();
+        StringAssert.Contains(html, "alert-list");
+        StringAssert.Contains(html, "Item1");
+        StringAssert.Contains(html, "Item2");
+    }
+
+    [TestMethod]
     public void AlertActionLink() {
         var alert = new TablerAlert(string.Empty, "Info", TablerColor.Info, TablerAlertType.Dismissible)
             .Action("https://example.com", "Link");
