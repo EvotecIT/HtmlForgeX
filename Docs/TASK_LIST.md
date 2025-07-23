@@ -45,8 +45,6 @@ This task list covers the complete upgrade from Tabler 1.0.0 to 1.3.0, implement
 ### Interactive & Notification Components
 - [ ] **Implement TablerCookieBanner component** for GDPR compliance with customizable text, buttons, and positioning  
   *Reference: [cookie-banner.html](Assets/TablerDemo/cookie-banner.html)*
-- [ ] **Implement TablerToast component** for temporary notification messages with auto-dismiss, positioning, and styling options  
-  *Reference: [toasts.html](Assets/TablerDemo/toasts.html)*
 - [ ] **Implement TablerOffcanvas component** for sidebar panels that slide in from left/right/top/bottom  
   *Reference: [offcanvas.html](Assets/TablerDemo/offcanvas.html)*
 
