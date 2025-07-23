@@ -100,7 +100,7 @@ public class TablerCardImage : Element {
     /// Embed image from file path
     /// </summary>
     public TablerCardImage EmbedFromFile(string filePath) {
-        var result = ImageEmbeddingHelper.EmbedFromFile(filePath, 0, true);
+        var result = ImageEmbedding.EmbedFromFile(filePath, 0, true);
         if (result.Success) {
             Base64Data = result.Base64Data;
             MimeType = result.MimeType;
@@ -122,7 +122,7 @@ public class TablerCardImage : Element {
     /// <param name="timeoutSeconds">Download timeout in seconds.</param>
     /// <returns>The <see cref="TablerCardImage"/> for chaining.</returns>
     public async Task<TablerCardImage> EmbedFromUrlAsync(string url, int timeoutSeconds = 30) {
-        var result = await ImageEmbeddingHelper.EmbedFromUrlAsync(url, timeoutSeconds, 0, true).ConfigureAwait(false);
+        var result = await ImageEmbedding.EmbedFromUrlAsync(url, timeoutSeconds, 0, true).ConfigureAwait(false);
         if (result.Success) {
             Base64Data = result.Base64Data;
             MimeType = result.MimeType;
@@ -135,7 +135,7 @@ public class TablerCardImage : Element {
     /// Smart embedding - auto-detects file vs URL
     /// </summary>
     public TablerCardImage EmbedSmart(string source, int timeoutSeconds = 30) {
-        var result = ImageEmbeddingHelper.EmbedSmart(source, timeoutSeconds, 0, true);
+        var result = ImageEmbedding.EmbedSmart(source, timeoutSeconds, 0, true);
         if (result.Success) {
             Base64Data = result.Base64Data;
             MimeType = result.MimeType;

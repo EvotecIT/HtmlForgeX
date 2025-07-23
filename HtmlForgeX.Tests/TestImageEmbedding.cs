@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HtmlForgeX.Tests;
 
 [TestClass]
-public class TestImageEmbeddingHelper {
+public class TestImageEmbedding {
     private static int GetFreePort() {
         TcpListener listener = new(IPAddress.Loopback, 0);
         listener.Start();
@@ -35,7 +35,7 @@ public class TestImageEmbeddingHelper {
     public void EmbedFromUrl_InvalidUrl_ReturnsFailure() {
         string prefix = StartErrorServer();
         string url = $"{prefix}image.png";
-        var result = ImageEmbeddingHelper.EmbedFromUrl(url, 5);
+        var result = ImageEmbedding.EmbedFromUrl(url, 5);
         Assert.IsFalse(result.Success);
         Assert.AreEqual($"HTTP error while downloading {url}", result.ErrorMessage);
     }

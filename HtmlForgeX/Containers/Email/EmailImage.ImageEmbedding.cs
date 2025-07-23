@@ -9,44 +9,27 @@ public partial class EmailImage
 
     public EmailImage EmbedFromFile(string filePath)
     {
-        try
-        {
-            if (System.IO.File.Exists(filePath))
-            {
-                var fileInfo = new System.IO.FileInfo(filePath);
-                var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
-                if (fileInfo.Length > maxSize)
-                {
-                    if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null)
-                    {
-                        Email.Configuration.Errors.Add("Warning: File size exceeds maximum embed size.");
-                        Email.IncrementEmbeddingWarning();
-                    }
-                    Source = filePath;
-                    return this;
-                }
+        var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
+        var logWarnings = Email?.Configuration?.Email?.LogEmbeddingWarnings == true;
 
-                var result = ImageUtilities.LoadImageFromFile(filePath, OptimizeImage, MaxWidth, MaxHeight, Quality);
-                var bytes = result.Bytes;
-                MimeType = result.MimeType;
-                Base64Data = Convert.ToBase64String(bytes);
-                EmbedAsBase64 = true;
-                Source = $"data:{MimeType};base64,{Base64Data}";
-            }
-            else
-            {
-                Source = filePath;
-            }
+        var result = ImageEmbedding.EmbedFromFile(filePath, maxSize, logWarnings, OptimizeImage, MaxWidth, MaxHeight, Quality);
+        if (result.Success)
+        {
+            MimeType = result.MimeType;
+            Base64Data = result.Base64Data;
+            EmbedAsBase64 = true;
+            Source = $"data:{MimeType};base64,{Base64Data}";
         }
-        catch (Exception)
+        else
         {
             Source = filePath;
-            if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null)
+            if (logWarnings && Email is not null)
             {
-                Email.Configuration.Errors.Add("Warning: Failed to embed image.");
+                Email.Configuration.Errors.Add($"Warning: {result.ErrorMessage}");
                 Email.IncrementEmbeddingWarning();
             }
         }
+
         return this;
     }
 
@@ -55,49 +38,28 @@ public partial class EmailImage
 
     public async Task<EmailImage> EmbedFromUrlAsync(string url, int timeoutSeconds = 30)
     {
-        try
+        var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
+        var logWarnings = Email?.Configuration?.Email?.LogEmbeddingWarnings == true;
+
+        var result = await ImageEmbedding.EmbedFromUrlAsync(url, timeoutSeconds, maxSize, logWarnings, OptimizeImage, MaxWidth, MaxHeight, Quality).ConfigureAwait(false);
+
+        if (result.Success)
         {
-            var download = await ImageUtilities.DownloadImageAsync(url, timeoutSeconds).ConfigureAwait(false);
-            if (download is not null)
-            {
-                var (bytes, mimeType) = download.Value;
-                var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
-                if (bytes.Length > maxSize)
-                {
-                    if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null)
-                    {
-                        Email.Configuration.Errors.Add("Warning: URL content exceeds maximum embed size.");
-                        Email.IncrementEmbeddingWarning();
-                    }
-                    Source = url;
-                    return this;
-                }
-
-                MimeType = mimeType;
-                if (OptimizeImage)
-                {
-                    var extension = ImageUtilities.GetExtensionFromMimeType(MimeType);
-                    bytes = ImageUtilities.OptimizeImageBytes(bytes, extension, MaxWidth, MaxHeight, Quality);
-                }
-
-                Base64Data = Convert.ToBase64String(bytes);
-                EmbedAsBase64 = true;
-                Source = $"data:{MimeType};base64,{Base64Data}";
-            }
-            else
-            {
-                throw new Exception("Download failed");
-            }
+            MimeType = result.MimeType;
+            Base64Data = result.Base64Data;
+            EmbedAsBase64 = true;
+            Source = $"data:{MimeType};base64,{Base64Data}";
         }
-        catch (Exception)
+        else
         {
             Source = url;
-            if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null)
+            if (logWarnings && Email is not null)
             {
-                Email.Configuration.Errors.Add("Warning: Failed to embed image from URL.");
+                Email.Configuration.Errors.Add($"Warning: {result.ErrorMessage}");
                 Email.IncrementEmbeddingWarning();
             }
         }
+
         return this;
     }
 
@@ -108,22 +70,28 @@ public partial class EmailImage
             return this;
         }
 
-        if (Uri.TryCreate(source, UriKind.Absolute, out var uri) && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps))
+        var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
+        var logWarnings = Email?.Configuration?.Email?.LogEmbeddingWarnings == true;
+
+        var result = ImageEmbedding.EmbedSmart(source, timeoutSeconds, maxSize, logWarnings, OptimizeImage, MaxWidth, MaxHeight, Quality);
+
+        if (result.Success)
         {
-            return EmbedFromUrl(source, timeoutSeconds);
+            MimeType = result.MimeType;
+            Base64Data = result.Base64Data;
+            EmbedAsBase64 = true;
+            Source = $"data:{MimeType};base64,{Base64Data}";
+        }
+        else
+        {
+            Source = source;
+            if (logWarnings && Email is not null)
+            {
+                Email.Configuration.Errors.Add($"Warning: {result.ErrorMessage}");
+                Email.IncrementEmbeddingWarning();
+            }
         }
 
-        if (System.IO.File.Exists(source))
-        {
-            return EmbedFromFile(source);
-        }
-
-        Source = source;
-        if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null)
-        {
-            Email.Configuration.Errors.Add("Warning: Could not embed source - using direct source.");
-            Email.IncrementEmbeddingWarning();
-        }
         return this;
     }
 
@@ -143,59 +111,34 @@ public partial class EmailImage
             return this;
         }
 
-        try
+        var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
+        var logWarnings = Email?.Configuration?.Email?.LogEmbeddingWarnings == true;
+
+        ImageEmbeddingResult result;
+        if (useSmartDetection)
         {
-            byte[] bytes;
-            string mimeType;
-
-            if (useSmartDetection)
-            {
-                if (Uri.TryCreate(source, UriKind.Absolute, out var uri) && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps))
-                {
-                    var download = ImageUtilities.DownloadImage(source, timeoutSeconds);
-                    if (download is null)
-                    {
-                        throw new Exception("Download failed");
-                    }
-                    (bytes, mimeType) = download.Value;
-                }
-                else if (System.IO.File.Exists(source))
-                {
-                    (bytes, mimeType) = ImageUtilities.LoadImageFromFile(source, OptimizeImage, MaxWidth, MaxHeight, Quality);
-                }
-                else
-                {
-                    throw new Exception("Source is neither a valid URL nor an existing file");
-                }
-            }
-            else
-            {
-                (bytes, mimeType) = ImageUtilities.LoadImageFromFile(source, OptimizeImage, MaxWidth, MaxHeight, Quality);
-            }
-
-            var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
-            if (bytes.Length > maxSize)
-            {
-                if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null)
-                {
-                    Email.Configuration.Errors.Add("Warning: Dark mode image exceeds maximum embed size.");
-                    Email.IncrementEmbeddingWarning();
-                }
-                return this;
-            }
-
-            DarkModeBase64Data = Convert.ToBase64String(bytes);
-            DarkModeMimeType = mimeType;
-            DarkModeEmbedAsBase64 = true;
-            DarkModeSource = $"data:{mimeType};base64,{DarkModeBase64Data}";
+            result = ImageEmbedding.EmbedSmart(source, timeoutSeconds, maxSize, logWarnings, OptimizeImage, MaxWidth, MaxHeight, Quality);
         }
-        catch (Exception)
+        else if (Uri.TryCreate(source, UriKind.Absolute, out var uri) && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps))
         {
-            if (Email?.Configuration?.Email?.LogEmbeddingWarnings == true && Email is not null)
-            {
-                Email.Configuration.Errors.Add("Warning: Failed to embed dark mode image.");
-                Email.IncrementEmbeddingWarning();
-            }
+            result = ImageEmbedding.EmbedFromUrl(source, timeoutSeconds, maxSize, logWarnings, OptimizeImage, MaxWidth, MaxHeight, Quality);
+        }
+        else
+        {
+            result = ImageEmbedding.EmbedFromFile(source, maxSize, logWarnings, OptimizeImage, MaxWidth, MaxHeight, Quality);
+        }
+
+        if (result.Success)
+        {
+            DarkModeBase64Data = result.Base64Data;
+            DarkModeMimeType = result.MimeType;
+            DarkModeEmbedAsBase64 = true;
+            DarkModeSource = $"data:{result.MimeType};base64,{result.Base64Data}";
+        }
+        else if (logWarnings && Email is not null)
+        {
+            Email.Configuration.Errors.Add($"Warning: {result.ErrorMessage}");
+            Email.IncrementEmbeddingWarning();
         }
 
         return this;
