@@ -35,8 +35,9 @@ internal static class ExampleTablerAlerts {
                 });
                 row.Column(column => {
                     column.Card(card => {
-                        card.Alert("Password does not meet requirements:", "<ul class=\"alert-list\"><li>Minimum 8 characters</li><li>Include a special character</li></ul>", TablerColor.Danger, TablerAlertType.Dismissible)
+                        card.Alert("Password does not meet requirements:", string.Empty, TablerColor.Danger, TablerAlertType.Dismissible)
                             .WithDescription()
+                            .List("Minimum 8 characters", "Include a special character")
                             .Icon(TablerIconType.AlertCircle);
                         card.Alert("Some information is missing!", "This is a custom alert box with a description.", TablerColor.Warning, TablerAlertType.Dismissible)
                             .WithDescription()
@@ -51,8 +52,9 @@ internal static class ExampleTablerAlerts {
                 });
                 row.Column(column => {
                     column.Card(card => {
-                        card.Alert("Password does not meet requirements:", "<ul class=\"alert-list\"><li>Minimum 8 characters</li><li>Include a special character</li></ul>", TablerColor.Danger, TablerAlertType.Dismissible)
+                        card.Alert("Password does not meet requirements:", string.Empty, TablerColor.Danger, TablerAlertType.Dismissible)
                             .WithDescription()
+                            .List("Minimum 8 characters", "Include a special character")
                             .Icon(TablerIconType.AlertCircle)
                             .Important();
                         card.Alert("This is a custom alert box!", "This is a custom alert box with a description.", TablerColor.Success, TablerAlertType.Dismissible)
@@ -71,8 +73,9 @@ internal static class ExampleTablerAlerts {
                 });
                 row.Column(column => {
                     column.Card(card => {
-                        card.Alert("Password does not meet requirements:", "<ul class=\"alert-list\"><li>Minimum 8 characters</li><li>Include a special character</li></ul>", TablerColor.Danger, TablerAlertType.Dismissible)
+                        card.Alert("Password does not meet requirements:", string.Empty, TablerColor.Danger, TablerAlertType.Dismissible)
                             .WithDescription()
+                            .List("Minimum 8 characters", "Include a special character")
                             .Icon(TablerIconType.AlertCircle)
                             .Minor();
                         card.Alert("This is a custom alert box!", "This is a custom alert box with a description.", TablerColor.Success, TablerAlertType.Dismissible)
