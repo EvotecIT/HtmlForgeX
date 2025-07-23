@@ -4,7 +4,12 @@ namespace HtmlForgeX.Examples;
 
 internal static class HelpersSpectre {
     public static void PrintTitle(string title) {
-        AnsiConsole.MarkupLine($"[bold yellow]{title}[/]");
+        var panel = new Panel(new Markup($"[bold yellow]{title}[/]")) {
+            Border = BoxBorder.Double,
+            Padding = new Padding(1, 0),
+            Expand = true
+        };
+        AnsiConsole.Write(panel);
         AnsiConsole.WriteLine();
     }
 
