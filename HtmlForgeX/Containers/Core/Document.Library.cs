@@ -18,7 +18,7 @@ public partial class Document
     /// <param name="weight">Ordering weight. Lower values load first.</param>
     public void AddLibrary(Libraries library, byte weight)
     {
-        Configuration.Libraries.AddOrUpdate(library, weight, (_, _) => weight);
+        Configuration.Libraries.TryAdd(library, weight);
     }
 
     /// <summary>
