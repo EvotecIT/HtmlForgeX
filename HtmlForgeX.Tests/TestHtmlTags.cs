@@ -82,4 +82,13 @@ public class TestHtmlTags {
 
     }
 
+    [TestMethod]
+    public void HtmlTagAddTextAndChild() {
+        var div = new HtmlTag("div")
+            .AddText("Hello")
+            .AddChild(new HtmlTag("span").AddText("World"));
+
+        Assert.AreEqual("<div>Hello<span>World</span></div>", div.ToString());
+    }
+
 }

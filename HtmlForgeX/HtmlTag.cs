@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Globalization;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -322,6 +323,23 @@ public class HtmlTag : Element {
                 Children.Add(val);
             }
         }
+        return this;
+    }
+
+    /// <summary>
+    /// Adds a text node to this tag.
+    /// </summary>
+    /// <param name="text">The text to add.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
+    public HtmlTag AddText(string text) => Value(text);
+
+    /// <summary>
+    /// Adds the specified element as a child of this tag.
+    /// </summary>
+    /// <param name="element">Element to add.</param>
+    /// <returns>The current <see cref="HtmlTag"/> instance.</returns>
+    public HtmlTag AddChild(Element? element) {
+        Add(element);
         return this;
     }
 }
