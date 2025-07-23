@@ -17,20 +17,24 @@ internal class VisNetworkHtmlSupportExample {
 
         document.Body.Page(page => {
             page.H2("VisNetwork Native HTML Support");
-            page.Add(new HtmlTag("div", @"
-                <div class='alert alert-warning'>
-                    <h4>⚠️ Limited HTML Support in VisJS</h4>
-                    <p>VisJS has very limited native HTML support. Only these tags work:</p>
-                    <ul>
-                        <li><code>&lt;b&gt;</code> - Bold text</li>
-                        <li><code>&lt;i&gt;</code> - Italic text</li>
-                        <li><code>&lt;code&gt;</code> - Monospace text</li>
-                        <li><code>&lt;br&gt;</code> - Line breaks</li>
-                    </ul>
-                    <p>Other HTML tags like <code>&lt;span&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;u&gt;</code>, 
-                       <code>&lt;small&gt;</code>, etc. are <strong>NOT supported</strong> and will render as plain text.</p>
-                </div>
-            "));
+            var warning = new TablerAlert("⚠️ Limited HTML Support in VisJS",
+                "VisJS has very limited native HTML support. Only these tags work:", TablerColor.Warning)
+                .WithDescription();
+
+            warning.Add(new UnorderedList()
+                .AddItem(new HtmlTag("code").Value("&lt;b&gt;").ToString() + " - Bold text", TablerIconType.InfoCircle)
+                .AddItem(new HtmlTag("code").Value("&lt;i&gt;").ToString() + " - Italic text", TablerIconType.InfoCircle)
+                .AddItem(new HtmlTag("code").Value("&lt;code&gt;").ToString() + " - Monospace text", TablerIconType.InfoCircle)
+                .AddItem(new HtmlTag("code").Value("&lt;br&gt;").ToString() + " - Line breaks", TablerIconType.InfoCircle));
+
+            warning.Add(new HtmlTag("p")
+                .Value("Other HTML tags like ")
+                .ValueRaw("<code>&lt;span&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;u&gt;</code>, <code>&lt;small&gt;</code>")
+                .Value(", etc. are ")
+                .Value(new HtmlTag("strong", "NOT supported"))
+                .Value(" and will render as plain text."));
+
+            page.Add(warning);
 
             page.LineBreak();
 
