@@ -20,4 +20,24 @@ public class TestDocumentDispose {
         Assert.AreEqual(1, FileWriteLock.Semaphore.CurrentCount);
         System.IO.File.Delete(path);
     }
+
+    [TestMethod]
+    public void Dispose_DecrementsActiveDocumentsAndClearsLibraries() {
+        var field = typeof(Document).GetField("_activeDocuments", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+        Assert.IsNotNull(field);
+        var before = (int)field!.GetValue(null)!;
+
+        var doc = new Document();
+        var during = (int)field.GetValue(null)!;
+        Assert.AreEqual(before + 1, during);
+
+        doc.AddLibrary(Libraries.Bootstrap);
+        Assert.AreNotEqual(0, doc.Configuration.Libraries.Count);
+
+        doc.Dispose();
+
+        var after = (int)field.GetValue(null)!;
+        Assert.AreEqual(before, after);
+        Assert.AreEqual(0, doc.Configuration.Libraries.Count);
+    }
 }
