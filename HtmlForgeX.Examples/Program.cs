@@ -38,6 +38,7 @@ internal class Program {
 
         // Tabler examples html output
         ExampleTablerTag.Create(openInBrowser);
+        ExampleTablerColorHex.Create();
         ExampleTablerAlerts.Create(openInBrowser);
 
         // Experimental examples (console output)
