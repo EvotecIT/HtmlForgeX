@@ -57,12 +57,14 @@
         <None Include="..\README.MD" Pack="true" PackagePath="" />
     </ItemGroup>
 
-    <ItemGroup>
-        <EmbeddedResource Include="Resources\Scripts\**" />
-        <EmbeddedResource Include="Resources\Styles\**" />
-        <EmbeddedResource Include="Resources\Fonts\**" />
-        <EmbeddedResource Include="Resources\Images\**" />
-    </ItemGroup>
+  <ItemGroup>
+      <EmbeddedResource Include="Resources\Scripts\**" />
+      <EmbeddedResource Include="Resources\Styles\**" />
+      <EmbeddedResource Include="Resources\Fonts\**" />
+      <EmbeddedResource Include="Resources\Images\**" />
+  </ItemGroup>
+
+
 
     <!--
     SVG Icon generation is now a MANUAL process to avoid 15+ minute build times.
