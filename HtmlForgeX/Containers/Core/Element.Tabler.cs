@@ -439,6 +439,17 @@ public abstract partial class Element {
     }
 
     /// <summary>
+    /// Adds and configures a <see cref="TablerModal"/> component.
+    /// </summary>
+    /// <param name="config">Configuration action.</param>
+    /// <returns>The created modal.</returns>
+    public TablerModal Modal(Action<TablerModal> config) {
+        var modal = new TablerModal();
+        config(modal);
+        this.Add(modal);
+        return modal;
+    }
+  
     /// Adds and configures a countdown timer element.
     /// </summary>
     /// <param name="config">Optional configuration action.</param>
