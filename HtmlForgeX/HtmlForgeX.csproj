@@ -81,7 +81,6 @@
 
     <ItemGroup>
         <Folder Include="Containers\ScrollingText\" />
-        <Folder Include="Containers\VisNetwork\Partial\" />
     </ItemGroup>
 
     <!-- <ItemGroup>
