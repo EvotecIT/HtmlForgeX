@@ -280,20 +280,20 @@ internal class DomainHealthCheck {
 
         document.Save("EnhancedDomainHealthCheck.html", openInBrowser);
 
-        Console.WriteLine("🎉 Enhanced Domain Health Check created with advanced DataGrid features!");
-        Console.WriteLine("📋 Features demonstrated:");
-        Console.WriteLine("   ✅ Badge content with various colors and styles");
-        Console.WriteLine("   ✅ Status indicators with semantic colors");
-        Console.WriteLine("   ✅ Avatar integration with user information");
-        Console.WriteLine("   ✅ Icon content with text and colors");
-        Console.WriteLine("   ✅ Checkbox and form control elements");
-        Console.WriteLine("   ✅ Configurable spacing and layout options");
-        Console.WriteLine("   ✅ Responsive behavior for mobile devices");
-        Console.WriteLine("   ✅ Title width customization");
-        Console.WriteLine("   ✅ Margin and padding utilities");
-        Console.WriteLine("   ✅ Custom styling and alignment options");
-        Console.WriteLine("   ✅ Compact and spacious layout presets");
-        Console.WriteLine("   ✅ Mixed content types in single DataGrid");
-        Console.WriteLine("   ✅ Zero HTML knowledge required - Pure C# fluent API!");
+        HelpersSpectre.Success("🎉 Enhanced Domain Health Check created with advanced DataGrid features!");
+        HelpersSpectre.Success("📋 Features demonstrated:");
+        HelpersSpectre.Success("   ✅ Badge content with various colors and styles");
+        HelpersSpectre.Success("   ✅ Status indicators with semantic colors");
+        HelpersSpectre.Success("   ✅ Avatar integration with user information");
+        HelpersSpectre.Success("   ✅ Icon content with text and colors");
+        HelpersSpectre.Success("   ✅ Checkbox and form control elements");
+        HelpersSpectre.Success("   ✅ Configurable spacing and layout options");
+        HelpersSpectre.Success("   ✅ Responsive behavior for mobile devices");
+        HelpersSpectre.Success("   ✅ Title width customization");
+        HelpersSpectre.Success("   ✅ Margin and padding utilities");
+        HelpersSpectre.Success("   ✅ Custom styling and alignment options");
+        HelpersSpectre.Success("   ✅ Compact and spacious layout presets");
+        HelpersSpectre.Success("   ✅ Mixed content types in single DataGrid");
+        HelpersSpectre.Success("   ✅ Zero HTML knowledge required - Pure C# fluent API!");
     }
 }

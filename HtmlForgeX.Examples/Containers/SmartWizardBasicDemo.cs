@@ -460,17 +460,17 @@ internal class SmartWizardBasicDemo {
 
         document.Save("SmartWizardBasicDemo.html", openInBrowser);
 
-        Console.WriteLine("🎉 SmartWizard Basic Demo created!");
-        Console.WriteLine("📋 Features demonstrated:");
-        Console.WriteLine("   ✅ Step-by-step wizard with fluent API");
-        Console.WriteLine("   ✅ Multiple themes (Progress, Arrows, Dots, Square)");
-        Console.WriteLine("   ✅ Various animations (SlideHorizontal, Fade, SlideVertical)");
-        Console.WriteLine("   ✅ Vertical wizard orientation");
-        Console.WriteLine("   ✅ Toolbar positioning (Top, Bottom)");
-        Console.WriteLine("   ✅ Step states and validation");
-        Console.WriteLine("   ✅ Integration with existing components (DataGrid, Cards, Forms)");
-        Console.WriteLine("   ✅ Icon support with Tabler icons");
-        Console.WriteLine("   ✅ Responsive design");
-        Console.WriteLine("   ✅ Zero HTML knowledge required - Pure C# fluent API!");
+        HelpersSpectre.Success("🎉 SmartWizard Basic Demo created!");
+        HelpersSpectre.Success("📋 Features demonstrated:");
+        HelpersSpectre.Success("   ✅ Step-by-step wizard with fluent API");
+        HelpersSpectre.Success("   ✅ Multiple themes (Progress, Arrows, Dots, Square)");
+        HelpersSpectre.Success("   ✅ Various animations (SlideHorizontal, Fade, SlideVertical)");
+        HelpersSpectre.Success("   ✅ Vertical wizard orientation");
+        HelpersSpectre.Success("   ✅ Toolbar positioning (Top, Bottom)");
+        HelpersSpectre.Success("   ✅ Step states and validation");
+        HelpersSpectre.Success("   ✅ Integration with existing components (DataGrid, Cards, Forms)");
+        HelpersSpectre.Success("   ✅ Icon support with Tabler icons");
+        HelpersSpectre.Success("   ✅ Responsive design");
+        HelpersSpectre.Success("   ✅ Zero HTML knowledge required - Pure C# fluent API!");
     }
 }

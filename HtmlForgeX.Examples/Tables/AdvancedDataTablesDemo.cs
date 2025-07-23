@@ -502,22 +502,22 @@ document.Configuration.DataTables.DefaultRenderMode = DataTablesRenderMode.Auto;
         document.Save("AdvancedDataTablesDemo.html", openInBrowser);
 
         // Console output
-        Console.WriteLine("🚀 Advanced DataTables Demo created successfully!");
-        Console.WriteLine("✨ Features demonstrated:");
-        Console.WriteLine("   📊 Export to Excel, CSV, PDF with custom options");
-        Console.WriteLine("   🔍 Advanced search builder with multiple conditions");
-        Console.WriteLine("   📱 Responsive design with fixed headers");
-        Console.WriteLine("   👁️ Column visibility controls");
-        Console.WriteLine("   🔄 Row grouping by department");
-        Console.WriteLine("   📋 Search panes for filtering");
-        Console.WriteLine("   🎨 Custom styling and localization");
-        Console.WriteLine("   ⚡ State saving and performance optimizations");
-        Console.WriteLine("");
-        Console.WriteLine("🔧 Fluent API examples:");
-        Console.WriteLine("   • .EnableExport(Excel, CSV, PDF)");
-        Console.WriteLine("   • .ConfigureColumns(c => c.SetType(3, Currency))");
-        Console.WriteLine("   • .EnableSearchBuilder(b => b.Logic = \"AND\")");
-        Console.WriteLine("   • .EnableRowGrouping(2, rg => rg.ClassName = \"group\")");
-        Console.WriteLine("   • .Localize(l => l.Search = \"🔍 Filter:\")");
+        HelpersSpectre.Success("🚀 Advanced DataTables Demo created successfully!");
+        HelpersSpectre.Success("✨ Features demonstrated:");
+        HelpersSpectre.Success("   📊 Export to Excel, CSV, PDF with custom options");
+        HelpersSpectre.Success("   🔍 Advanced search builder with multiple conditions");
+        HelpersSpectre.Success("   📱 Responsive design with fixed headers");
+        HelpersSpectre.Success("   👁️ Column visibility controls");
+        HelpersSpectre.Success("   🔄 Row grouping by department");
+        HelpersSpectre.Success("   📋 Search panes for filtering");
+        HelpersSpectre.Success("   🎨 Custom styling and localization");
+        HelpersSpectre.Success("   ⚡ State saving and performance optimizations");
+        HelpersSpectre.Success("");
+        HelpersSpectre.Success("🔧 Fluent API examples:");
+        HelpersSpectre.Success("   • .EnableExport(Excel, CSV, PDF)");
+        HelpersSpectre.Success("   • .ConfigureColumns(c => c.SetType(3, Currency))");
+        HelpersSpectre.Success("   • .EnableSearchBuilder(b => b.Logic = \"AND\")");
+        HelpersSpectre.Success("   • .EnableRowGrouping(2, rg => rg.ClassName = \"group\")");
+        HelpersSpectre.Success("   • .Localize(l => l.Search = \"🔍 Filter:\")");
     }
 }

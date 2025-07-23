@@ -7,7 +7,7 @@ namespace HtmlForgeX.Examples.Emails;
 /// </summary>
 public static class ExampleLinkEncodingEmail {
     public static void Create(bool openInBrowser = false) {
-        Console.WriteLine("Creating link encoding email example...");
+        HelpersSpectre.Success("Creating link encoding email example...");
 
         var email = new Email();
 
@@ -27,6 +27,6 @@ public static class ExampleLinkEncodingEmail {
         });
 
         email.Save("link-encoding-email.html", openInBrowser);
-        Console.WriteLine("✅ Link encoding email created successfully!");
+        HelpersSpectre.Success("✅ Link encoding email created successfully!");
     }
 }

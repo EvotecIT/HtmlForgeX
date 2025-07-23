@@ -13,6 +13,6 @@ internal static class ExampleThreadSafeErrors {
             tasks.Add(Task.Run(() => document.Configuration.Errors.Add($"error {copy}")));
         }
         Task.WaitAll(tasks.ToArray());
-        Console.WriteLine($"Total errors: {document.Configuration.Errors.Count}");
+        HelpersSpectre.Success($"Total errors: {document.Configuration.Errors.Count}");
     }
 }

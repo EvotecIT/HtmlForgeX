@@ -8,7 +8,7 @@ namespace HtmlForgeX.Examples.Emails;
 /// </summary>
 public static class ExampleOrderConfirmationEmail {
     public static void Create(bool openInBrowser = false) {
-        Console.WriteLine("Creating order confirmation email example...");
+        HelpersSpectre.Success("Creating order confirmation email example...");
 
         var email = new Email();
 
@@ -184,7 +184,7 @@ public static class ExampleOrderConfirmationEmail {
 
         // Save email
         email.Save("order-confirmation-email.html", openInBrowser);
-        Console.WriteLine("✅ Order confirmation email created successfully!");
-        Console.WriteLine("📧 Demonstrates: E-commerce layouts, two-column design, tables, multiple action buttons, social links");
+        HelpersSpectre.Success("✅ Order confirmation email created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: E-commerce layouts, two-column design, tables, multiple action buttons, social links");
     }
 }

@@ -443,6 +443,6 @@ network.AddNode(1, node => node
         });
 
         document.Save("VisNetworkAdvancedLabelsExample.html", openInBrowser);
-        Console.WriteLine("VisNetwork Advanced Labels Example created successfully!");
+        HelpersSpectre.Success("VisNetwork Advanced Labels Example created successfully!");
     }
 }

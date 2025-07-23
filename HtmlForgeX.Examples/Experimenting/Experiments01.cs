@@ -9,41 +9,41 @@ internal class Experiments01 {
     public static void Create() {
         //var value = new HtmlSpan().AddContent("This is table with DataTables").WithAlignment(Alignment.Center).WithColor(RGBColor.TractorRed).ToString();
 
-        //Console.WriteLine(value);
+        //HelpersSpectre.Success(value);
 
-        //Console.WriteLine("----");
+        //HelpersSpectre.Success("----");
 
         //var value1 = new HtmlSpan().AddContent("This is table with DataTables").WithAlignment(Alignment.Center)
         //    .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
 
-        //Console.WriteLine(value1);
+        //HelpersSpectre.Success(value1);
 
-        //Console.WriteLine("----");
+        //HelpersSpectre.Success("----");
 
         using var value2 = new Document();
         value2.Body.Span("This is table with DataTables").WithAlignment(Alignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
 
-        Console.WriteLine(value2);
+        HelpersSpectre.Info(value2.ToString());
 
-        Console.WriteLine("----");
+        HelpersSpectre.Success("----");
 
         var value3 = new Document().Body.Span("This is table with DataTables").WithAlignment(Alignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
 
-        Console.WriteLine(value3);
+        HelpersSpectre.Info(value3.ToString());
 
-        Console.WriteLine("----");
+        HelpersSpectre.Success("----");
 
         var span = new Document().Body.Span("This is table with DataTables").WithAlignment(Alignment.Center)
             .WithColor(RGBColor.TractorRed).AppendContent(" continue?");
         var value4 = span;
-        Console.WriteLine(value4);
+        HelpersSpectre.Info(value4.ToString());
 
-        Console.WriteLine("----");
+        HelpersSpectre.Success("----");
 
 
-        Console.WriteLine("---- Hello World");
+        HelpersSpectre.Success("---- Hello World");
 
 
 
@@ -54,6 +54,6 @@ internal class Experiments01 {
         //    .AppendContent(" Welcome to HTML by HtmlForgeX")
         //    .WithColor(RGBColor.HarvestGold).WithBackgroundColor(RGBColor.AirForceBlue)
         //    .AppendContent(" Hurray!");
-        //Console.WriteLine(document.ToString());
+        //HelpersSpectre.Success(document.ToString());
     }
 }

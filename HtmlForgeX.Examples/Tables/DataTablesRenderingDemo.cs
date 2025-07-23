@@ -283,16 +283,16 @@ page.DataTable(data, table => {
 
         document.Save("DataTablesRenderingDemo.html", openInBrowser);
 
-        Console.WriteLine("🚀 DataTables Rendering Modes Demo created successfully!");
-        Console.WriteLine("📊 Performance comparison included:");
-        Console.WriteLine($"   • Small dataset: {smallDataset.Count} rows (HTML rendering)");
-        Console.WriteLine($"   • Medium dataset: {mediumDataset.Count} rows (JavaScript rendering)");
-        Console.WriteLine($"   • Large dataset: {largeDataset.Count} rows (Auto mode)");
-        Console.WriteLine("⚙️ Global configuration features:");
-        Console.WriteLine("   • Auto mode with configurable threshold");
-        Console.WriteLine("   • Deferred rendering for performance");
-        Console.WriteLine("   • Debug mode for development");
-        Console.WriteLine("   • Global default settings");
+        HelpersSpectre.Success("🚀 DataTables Rendering Modes Demo created successfully!");
+        HelpersSpectre.Success("📊 Performance comparison included:");
+        HelpersSpectre.Success($"   • Small dataset: {smallDataset.Count} rows (HTML rendering)");
+        HelpersSpectre.Success($"   • Medium dataset: {mediumDataset.Count} rows (JavaScript rendering)");
+        HelpersSpectre.Success($"   • Large dataset: {largeDataset.Count} rows (Auto mode)");
+        HelpersSpectre.Success("⚙️ Global configuration features:");
+        HelpersSpectre.Success("   • Auto mode with configurable threshold");
+        HelpersSpectre.Success("   • Deferred rendering for performance");
+        HelpersSpectre.Success("   • Debug mode for development");
+        HelpersSpectre.Success("   • Global default settings");
     }
 
     private static List<dynamic> GenerateProducts(int count)

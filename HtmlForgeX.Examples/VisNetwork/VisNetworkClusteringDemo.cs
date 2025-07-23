@@ -360,7 +360,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
             });
 
             document.Save("VisNetworkClusteringDemo.html", openInBrowser);
-            Console.WriteLine($"VisNetwork Clustering Demo created at: VisNetworkClusteringDemo.html");
+            HelpersSpectre.Success($"VisNetwork Clustering Demo created at: VisNetworkClusteringDemo.html");
         }
     }
 }

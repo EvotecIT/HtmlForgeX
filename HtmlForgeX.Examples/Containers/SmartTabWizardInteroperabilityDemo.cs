@@ -586,17 +586,17 @@ internal class SmartTabWizardInteroperabilityDemo {
 
         document.Save("SmartTabWizardInteroperabilityDemo.html", openInBrowser);
 
-        Console.WriteLine("🎉 SmartTab & SmartWizard Interoperability Demo created!");
-        Console.WriteLine("📋 Advanced features demonstrated:");
-        Console.WriteLine("   ✅ SmartTab containing DataTables with advanced features");
-        Console.WriteLine("   ✅ SmartWizard within SmartTab panels");
-        Console.WriteLine("   ✅ Nested SmartTab components");
-        Console.WriteLine("   ✅ Integration with existing Tabler components (Cards, DataGrid, etc.)");
-        Console.WriteLine("   ✅ Enhanced Domain Health Check with tabbed interface");
-        Console.WriteLine("   ✅ Complex admin dashboard with multiple component types");
-        Console.WriteLine("   ✅ Real-world use cases and scenarios");
-        Console.WriteLine("   ✅ Full interoperability between all HtmlForgeX components");
-        Console.WriteLine("   ✅ Responsive design with mobile support");
-        Console.WriteLine("   ✅ Zero HTML knowledge required - Pure C# fluent API!");
+        HelpersSpectre.Success("🎉 SmartTab & SmartWizard Interoperability Demo created!");
+        HelpersSpectre.Success("📋 Advanced features demonstrated:");
+        HelpersSpectre.Success("   ✅ SmartTab containing DataTables with advanced features");
+        HelpersSpectre.Success("   ✅ SmartWizard within SmartTab panels");
+        HelpersSpectre.Success("   ✅ Nested SmartTab components");
+        HelpersSpectre.Success("   ✅ Integration with existing Tabler components (Cards, DataGrid, etc.)");
+        HelpersSpectre.Success("   ✅ Enhanced Domain Health Check with tabbed interface");
+        HelpersSpectre.Success("   ✅ Complex admin dashboard with multiple component types");
+        HelpersSpectre.Success("   ✅ Real-world use cases and scenarios");
+        HelpersSpectre.Success("   ✅ Full interoperability between all HtmlForgeX components");
+        HelpersSpectre.Success("   ✅ Responsive design with mobile support");
+        HelpersSpectre.Success("   ✅ Zero HTML knowledge required - Pure C# fluent API!");
     }
 }

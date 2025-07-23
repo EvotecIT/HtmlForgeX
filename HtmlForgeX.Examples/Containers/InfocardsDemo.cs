@@ -370,18 +370,18 @@ internal class InfocardsDemo {
 
         document.Save("InfocardsDemo.html", openInBrowser);
 
-        Console.WriteLine("🎨 Infocards Demo created successfully!");
-        Console.WriteLine("✨ Features demonstrated:");
-        Console.WriteLine("   🎯 Custom RGBColor backgrounds for cards");
-        Console.WriteLine("   🎨 Custom avatar colors with hex strings");
-        Console.WriteLine("   🌈 RGBColor object support");
-        Console.WriteLine("   📱 Responsive colorful card layouts");
-        Console.WriteLine("   🚀 Zero HTML - Pure C# fluent API");
-        Console.WriteLine("");
-        Console.WriteLine("🔧 New API methods added:");
-        Console.WriteLine("   • card.Background(\"#FF6B35\", \"#FFFFFF\")");
-        Console.WriteLine("   • card.Background(rgbColor, textColor)");
-        Console.WriteLine("   • avatar.BackgroundColor(\"#8B5CF6\", \"#FFFFFF\")");
-        Console.WriteLine("   • avatar.BackgroundColor(rgbColor, textColor)");
+        HelpersSpectre.Success("🎨 Infocards Demo created successfully!");
+        HelpersSpectre.Success("✨ Features demonstrated:");
+        HelpersSpectre.Success("   🎯 Custom RGBColor backgrounds for cards");
+        HelpersSpectre.Success("   🎨 Custom avatar colors with hex strings");
+        HelpersSpectre.Success("   🌈 RGBColor object support");
+        HelpersSpectre.Success("   📱 Responsive colorful card layouts");
+        HelpersSpectre.Success("   🚀 Zero HTML - Pure C# fluent API");
+        HelpersSpectre.Success("");
+        HelpersSpectre.Success("🔧 New API methods added:");
+        HelpersSpectre.Success("   • card.Background(\"#FF6B35\", \"#FFFFFF\")");
+        HelpersSpectre.Success("   • card.Background(rgbColor, textColor)");
+        HelpersSpectre.Success("   • avatar.BackgroundColor(\"#8B5CF6\", \"#FFFFFF\")");
+        HelpersSpectre.Success("   • avatar.BackgroundColor(rgbColor, textColor)");
     }
 }

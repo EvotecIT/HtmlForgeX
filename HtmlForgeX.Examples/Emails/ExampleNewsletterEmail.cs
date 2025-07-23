@@ -18,7 +18,7 @@ public class NewsUpdate {
 /// </summary>
 public static class ExampleNewsletterEmail {
     public static void Create(bool openInBrowser = false) {
-        Console.WriteLine("Creating newsletter email example with advanced base64 embedding...");
+        HelpersSpectre.Success("Creating newsletter email example with advanced base64 embedding...");
 
         var email = new Email();
 
@@ -284,8 +284,8 @@ public static class ExampleNewsletterEmail {
         // Save email
         email.Save("newsletter-email.html", openInBrowser);
 
-        Console.WriteLine("✅ Newsletter email created successfully!");
-        Console.WriteLine($@"📧 Demonstrates: Newsletter layout, multiple sections, data tables, social links, proper column spacing
+        HelpersSpectre.Success("✅ Newsletter email created successfully!");
+        HelpersSpectre.Success($@"📧 Demonstrates: Newsletter layout, multiple sections, data tables, social links, proper column spacing
 🔧 New Features: Advanced base64 embedding with URL support and smart embedding
 📁 Multiple embedding methods: .EmbedFromFile(), .EmbedFromUrl(), .EmbedSmart()
 ⚡ Image optimization: .WithOptimization() for size and quality control

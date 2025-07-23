@@ -23,4 +23,18 @@ internal static class HelpersSpectre {
     public static void PrintException(Exception ex) {
         AnsiConsole.WriteException(ex);
     }
+
+    public static void Success(string message) {
+        var markup = Markup.Escape(message);
+        AnsiConsole.MarkupLine($"[green]{markup}[/]");
+    }
+
+    public static void Info(string message) {
+        var markup = Markup.Escape(message);
+        AnsiConsole.MarkupLine(markup);
+    }
+
+    public static void Break() {
+        AnsiConsole.WriteLine();
+    }
 }

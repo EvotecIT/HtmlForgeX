@@ -380,7 +380,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
             });
 
             document.Save("VisNetworkCustomShapesDemo.html", openInBrowser);
-            Console.WriteLine($"VisNetwork Custom Shapes Demo created at: VisNetworkCustomShapesDemo.html");
+            HelpersSpectre.Success($"VisNetwork Custom Shapes Demo created at: VisNetworkCustomShapesDemo.html");
         }
     }
 }

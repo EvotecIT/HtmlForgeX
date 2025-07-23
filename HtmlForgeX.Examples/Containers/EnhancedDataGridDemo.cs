@@ -451,16 +451,16 @@ internal class EnhancedDataGridDemo {
 
         document.Save("EnhancedDataGridDemo.html", openInBrowser);
 
-        Console.WriteLine("🎉 Enhanced DataGrid demo created successfully!");
-        Console.WriteLine("📋 Complete feature set demonstrated:");
-        Console.WriteLine("   ✅ All content types (text, badges, avatars, icons, forms)");
-        Console.WriteLine("   ✅ Layout configurations (compact, spacious, horizontal)");
-        Console.WriteLine("   ✅ Spacing control (predefined + custom)");
-        Console.WriteLine("   ✅ Responsive behavior for all screen sizes");
-        Console.WriteLine("   ✅ Advanced customization options");
-        Console.WriteLine("   ✅ Real-world server dashboard example");
-        Console.WriteLine("   ✅ Zero HTML exposure - Pure C# fluent API!");
-        Console.WriteLine("");
-        Console.WriteLine("🎯 Perfect for HTML-challenged developers who want powerful web UIs!");
+        HelpersSpectre.Success("🎉 Enhanced DataGrid demo created successfully!");
+        HelpersSpectre.Success("📋 Complete feature set demonstrated:");
+        HelpersSpectre.Success("   ✅ All content types (text, badges, avatars, icons, forms)");
+        HelpersSpectre.Success("   ✅ Layout configurations (compact, spacious, horizontal)");
+        HelpersSpectre.Success("   ✅ Spacing control (predefined + custom)");
+        HelpersSpectre.Success("   ✅ Responsive behavior for all screen sizes");
+        HelpersSpectre.Success("   ✅ Advanced customization options");
+        HelpersSpectre.Success("   ✅ Real-world server dashboard example");
+        HelpersSpectre.Success("   ✅ Zero HTML exposure - Pure C# fluent API!");
+        HelpersSpectre.Success("");
+        HelpersSpectre.Success("🎯 Perfect for HTML-challenged developers who want powerful web UIs!");
     }
 }

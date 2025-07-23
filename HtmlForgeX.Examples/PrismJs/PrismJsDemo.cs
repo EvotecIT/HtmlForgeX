@@ -264,16 +264,16 @@ if (data.Count > 1000) {
 
         document.Save("prismjs_demo.html", true);
 
-        Console.WriteLine("✅ PrismJS Demo completed successfully!");
-        Console.WriteLine("🎨 Features demonstrated:");
-        Console.WriteLine("   • Multiple programming languages (C#, JavaScript, HTML, CSS, JSON)");
-        Console.WriteLine("   • Various themes (Default, Dark, Okaidia, GitHub, VS, Tomorrow Night)");
-        Console.WriteLine("   • Line numbers and highlighting");
-        Console.WriteLine("   • Copy to clipboard functionality");
-        Console.WriteLine("   • Custom heights and scrolling");
-        Console.WriteLine("   • Word wrapping");
-        Console.WriteLine("   • Fluent API configuration");
-        Console.WriteLine("");
-        Console.WriteLine("🚀 Perfect for documentation and code examples!");
+        HelpersSpectre.Success("✅ PrismJS Demo completed successfully!");
+        HelpersSpectre.Success("🎨 Features demonstrated:");
+        HelpersSpectre.Success("   • Multiple programming languages (C#, JavaScript, HTML, CSS, JSON)");
+        HelpersSpectre.Success("   • Various themes (Default, Dark, Okaidia, GitHub, VS, Tomorrow Night)");
+        HelpersSpectre.Success("   • Line numbers and highlighting");
+        HelpersSpectre.Success("   • Copy to clipboard functionality");
+        HelpersSpectre.Success("   • Custom heights and scrolling");
+        HelpersSpectre.Success("   • Word wrapping");
+        HelpersSpectre.Success("   • Fluent API configuration");
+        HelpersSpectre.Success("");
+        HelpersSpectre.Success("🚀 Perfect for documentation and code examples!");
     }
 }

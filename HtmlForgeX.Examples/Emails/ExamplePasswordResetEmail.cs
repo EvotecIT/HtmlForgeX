@@ -10,7 +10,7 @@ public static class ExamplePasswordResetEmail
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating password reset email example...");
+        HelpersSpectre.Success("Creating password reset email example...");
 
         var email = new Email();
 
@@ -164,7 +164,7 @@ public static class ExamplePasswordResetEmail
 
         // Save email
         email.Save("password-reset-email.html", openInBrowser);
-        Console.WriteLine("✅ Password reset email created successfully!");
-        Console.WriteLine("📧 Demonstrates: Security messaging, flexible warning boxes, alternative actions, monospace fonts");
+        HelpersSpectre.Success("✅ Password reset email created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: Security messaging, flexible warning boxes, alternative actions, monospace fonts");
     }
 }

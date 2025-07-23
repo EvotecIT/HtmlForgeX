@@ -10,7 +10,7 @@ public static class ExampleDirectEmailPattern
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating direct email pattern example (like PowerShell EmailBody)...");
+        HelpersSpectre.Success("Creating direct email pattern example (like PowerShell EmailBody)...");
 
         var email = new Email();
 
@@ -132,8 +132,8 @@ public static class ExampleDirectEmailPattern
 
         // Save email
         email.Save("direct-email-pattern.html", openInBrowser);
-        Console.WriteLine("✅ Direct email pattern created successfully!");
-        Console.WriteLine("📧 Demonstrates: Simple top-to-bottom flow, EmailText, EmailTextBox, EmailTable, EmailList");
-        Console.WriteLine("🎯 This is the SIMPLE pattern - like writing in Outlook!");
+        HelpersSpectre.Success("✅ Direct email pattern created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: Simple top-to-bottom flow, EmailText, EmailTextBox, EmailTable, EmailList");
+        HelpersSpectre.Success("🎯 This is the SIMPLE pattern - like writing in Outlook!");
     }
 }

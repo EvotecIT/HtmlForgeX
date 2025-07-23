@@ -279,11 +279,11 @@ internal class VisNetworkHtmlSupportExample {
 
         document.Save("VisNetworkHtmlSupport.html", openInBrowser);
         
-        Console.WriteLine("✅ VisNetwork HTML Support example created");
-        Console.WriteLine("📋 Demonstrates:");
-        Console.WriteLine("   • Native supported HTML tags (b, i, code, br)");
-        Console.WriteLine("   • Unsupported tags that won't work");
-        Console.WriteLine("   • Best practices for creating rich labels");
-        Console.WriteLine("   • Real-world examples with proper formatting");
+        HelpersSpectre.Success("✅ VisNetwork HTML Support example created");
+        HelpersSpectre.Success("📋 Demonstrates:");
+        HelpersSpectre.Success("   • Native supported HTML tags (b, i, code, br)");
+        HelpersSpectre.Success("   • Unsupported tags that won't work");
+        HelpersSpectre.Success("   • Best practices for creating rich labels");
+        HelpersSpectre.Success("   • Real-world examples with proper formatting");
     }
 }

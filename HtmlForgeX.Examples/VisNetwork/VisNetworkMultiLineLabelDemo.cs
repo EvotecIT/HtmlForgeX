@@ -281,6 +281,6 @@ network.AddEdge(1, 2, edge => edge
         });
 
         document.Save("VisNetworkMultiLineLabelDemo.html", openInBrowser);
-        Console.WriteLine("VisNetwork Multi-Line Label Demo created successfully!");
+        HelpersSpectre.Success("VisNetwork Multi-Line Label Demo created successfully!");
     }
 }

@@ -11,7 +11,7 @@ public static class ExampleFlexibleHeaderFooter
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating flexible header/footer example...");
+        HelpersSpectre.Success("Creating flexible header/footer example...");
 
         var email = new Email()
             .SetThemeMode(EmailThemeMode.Light)
@@ -197,12 +197,12 @@ public static class ExampleFlexibleHeaderFooter
         // Save email
         email.Save("flexible-header-footer.html", openInBrowser);
 
-        Console.WriteLine("✅ Flexible header/footer email created successfully!");
-        Console.WriteLine("🎯 Key Benefits:");
-        Console.WriteLine("   • No preset methods - full flexibility");
-        Console.WriteLine("   • Use any combination of EmailImage, EmailLink, EmailText");
-        Console.WriteLine("   • Custom layouts with EmailRow and EmailColumn");
-        Console.WriteLine("   • Complete control over styling and positioning");
-        Console.WriteLine("💡 This is the HtmlForgeX way - build what you need!");
+        HelpersSpectre.Success("✅ Flexible header/footer email created successfully!");
+        HelpersSpectre.Success("🎯 Key Benefits:");
+        HelpersSpectre.Success("   • No preset methods - full flexibility");
+        HelpersSpectre.Success("   • Use any combination of EmailImage, EmailLink, EmailText");
+        HelpersSpectre.Success("   • Custom layouts with EmailRow and EmailColumn");
+        HelpersSpectre.Success("   • Complete control over styling and positioning");
+        HelpersSpectre.Success("💡 This is the HtmlForgeX way - build what you need!");
     }
 }

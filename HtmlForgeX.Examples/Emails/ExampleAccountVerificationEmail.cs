@@ -8,7 +8,7 @@ namespace HtmlForgeX.Examples.Emails;
 /// </summary>
 public static class ExampleAccountVerificationEmail {
     public static void Create(bool openInBrowser = false) {
-        Console.WriteLine("Creating account verification email example...");
+        HelpersSpectre.Success("Creating account verification email example...");
 
         var email = new Email();
 
@@ -102,7 +102,7 @@ public static class ExampleAccountVerificationEmail {
 
         // Save email
         email.Save("account-verification-email.html", openInBrowser);
-        Console.WriteLine("✅ Account verification email created successfully!");
-        Console.WriteLine("📧 Demonstrates: Clean verification messaging, security notices, alternative methods, account details");
+        HelpersSpectre.Success("✅ Account verification email created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: Clean verification messaging, security notices, alternative methods, account details");
     }
 }

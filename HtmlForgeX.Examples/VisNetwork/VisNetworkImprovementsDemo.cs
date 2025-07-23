@@ -346,7 +346,7 @@ network.WithLayout(layout => layout
         });
 
         document.Save("VisNetworkImprovementsDemo.html", openInBrowser);
-        Console.WriteLine("VisNetwork Improvements Demo created successfully!");
+        HelpersSpectre.Success("VisNetwork Improvements Demo created successfully!");
     }
     
     private static RGBColor GetRandomColor() {

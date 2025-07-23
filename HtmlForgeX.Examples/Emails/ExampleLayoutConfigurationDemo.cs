@@ -10,7 +10,7 @@ public static class ExampleLayoutConfigurationDemo
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating layout configuration demonstration with enum-based settings...");
+        HelpersSpectre.Success("Creating layout configuration demonstration with enum-based settings...");
 
         // Example 1: Using predefined enums (easiest)
         var email1 = new Email()
@@ -288,18 +288,18 @@ public static class ExampleLayoutConfigurationDemo
         email3.Save("layout-demo-3-all-sizes.html", false);
         email4.Save("layout-demo-4-all-padding.html", false);
 
-        Console.WriteLine("✅ Layout configuration demos created successfully!");
-        Console.WriteLine("📧 Demonstrates: Enum-based configuration, predefined sizes, custom options");
-        Console.WriteLine("🎯 Files created:");
-        Console.WriteLine("   • layout-demo-1-extra-wide.html - ExtraWide layout with Large padding");
-        Console.WriteLine("   • layout-demo-2-custom-width.html - Custom 750px width with enum padding");
-        Console.WriteLine("   • layout-demo-3-all-sizes.html - Overview of all layout sizes");
-        Console.WriteLine("   • layout-demo-4-all-padding.html - Overview of all padding sizes");
-        Console.WriteLine("💡 Key Benefits:");
-        Console.WriteLine("   ✅ Easy-to-use predefined options (EmailLayoutSize.Standard)");
-        Console.WriteLine("   ✅ Professional control for experts (custom values)");
-        Console.WriteLine("   ✅ Clear descriptions (.GetDescription() method)");
-        Console.WriteLine("   ✅ Proper configuration integration (affects all components)");
-        Console.WriteLine("   ✅ Backward compatibility (string values still work)");
+        HelpersSpectre.Success("✅ Layout configuration demos created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: Enum-based configuration, predefined sizes, custom options");
+        HelpersSpectre.Success("🎯 Files created:");
+        HelpersSpectre.Success("   • layout-demo-1-extra-wide.html - ExtraWide layout with Large padding");
+        HelpersSpectre.Success("   • layout-demo-2-custom-width.html - Custom 750px width with enum padding");
+        HelpersSpectre.Success("   • layout-demo-3-all-sizes.html - Overview of all layout sizes");
+        HelpersSpectre.Success("   • layout-demo-4-all-padding.html - Overview of all padding sizes");
+        HelpersSpectre.Success("💡 Key Benefits:");
+        HelpersSpectre.Success("   ✅ Easy-to-use predefined options (EmailLayoutSize.Standard)");
+        HelpersSpectre.Success("   ✅ Professional control for experts (custom values)");
+        HelpersSpectre.Success("   ✅ Clear descriptions (.GetDescription() method)");
+        HelpersSpectre.Success("   ✅ Proper configuration integration (affects all components)");
+        HelpersSpectre.Success("   ✅ Backward compatibility (string values still work)");
     }
 }

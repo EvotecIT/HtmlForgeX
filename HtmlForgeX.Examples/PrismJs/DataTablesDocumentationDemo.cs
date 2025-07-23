@@ -257,16 +257,16 @@ document.Save(""product-catalog.html"", true);", config => config
 
         document.Save("datatables_documentation.html", true);
 
-        Console.WriteLine("✅ DataTables Documentation Demo completed!");
-        Console.WriteLine("📚 Documentation includes:");
-        Console.WriteLine("   • Quick start guide");
-        Console.WriteLine("   • Rendering mode explanations");
-        Console.WriteLine("   • Global configuration examples");
-        Console.WriteLine("   • Column configuration details");
-        Console.WriteLine("   • Advanced features showcase");
-        Console.WriteLine("   • Performance optimization tips");
-        Console.WriteLine("   • Complete working example");
-        Console.WriteLine("");
-        Console.WriteLine("🎨 All code examples are syntax-highlighted and copyable!");
+        HelpersSpectre.Success("✅ DataTables Documentation Demo completed!");
+        HelpersSpectre.Success("📚 Documentation includes:");
+        HelpersSpectre.Success("   • Quick start guide");
+        HelpersSpectre.Success("   • Rendering mode explanations");
+        HelpersSpectre.Success("   • Global configuration examples");
+        HelpersSpectre.Success("   • Column configuration details");
+        HelpersSpectre.Success("   • Advanced features showcase");
+        HelpersSpectre.Success("   • Performance optimization tips");
+        HelpersSpectre.Success("   • Complete working example");
+        HelpersSpectre.Success("");
+        HelpersSpectre.Success("🎨 All code examples are syntax-highlighted and copyable!");
     }
 }

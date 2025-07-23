@@ -1,4 +1,5 @@
 using System;
+using HtmlForgeX.Examples;
 
 namespace HtmlForgeX.Examples {
     class TestFontAwesomeOnline {
@@ -43,7 +44,7 @@ namespace HtmlForgeX.Examples {
             });
 
             document.Save("TestFontAwesomeOnline.html");
-            Console.WriteLine("Test file created: TestFontAwesomeOnline.html");
+            HelpersSpectre.Success("Test file created: TestFontAwesomeOnline.html");
         }
     }
 }

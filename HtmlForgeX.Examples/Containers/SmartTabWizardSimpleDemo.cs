@@ -200,6 +200,6 @@ internal class SmartTabWizardSimpleDemo {
         });
 
         document.Save("SmartTabWizardSimpleDemo.html", openInBrowser);
-        Console.WriteLine(document.ToString());
+        HelpersSpectre.Success(document.ToString());
     }
 }

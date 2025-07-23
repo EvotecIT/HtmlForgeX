@@ -315,16 +315,16 @@ internal class SmartTabBasicDemo {
 
         document.Save("SmartTabBasicDemo.html", openInBrowser);
 
-        Console.WriteLine("🎉 SmartTab Basic Demo created!");
-        Console.WriteLine("📋 Features demonstrated:");
-        Console.WriteLine("   ✅ Basic tabbed interface with fluent API");
-        Console.WriteLine("   ✅ Multiple themes (Bootstrap, Classic, Material, Dark)");
-        Console.WriteLine("   ✅ Various animations (Fade, SlideHorizontal)");
-        Console.WriteLine("   ✅ Vertical tab orientation");
-        Console.WriteLine("   ✅ Auto-progress functionality");
-        Console.WriteLine("   ✅ Integration with existing components (DataTables, Cards, DataGrid)");
-        Console.WriteLine("   ✅ Icon support with Tabler icons");
-        Console.WriteLine("   ✅ Responsive design");
-        Console.WriteLine("   ✅ Zero HTML knowledge required - Pure C# fluent API!");
+        HelpersSpectre.Success("🎉 SmartTab Basic Demo created!");
+        HelpersSpectre.Success("📋 Features demonstrated:");
+        HelpersSpectre.Success("   ✅ Basic tabbed interface with fluent API");
+        HelpersSpectre.Success("   ✅ Multiple themes (Bootstrap, Classic, Material, Dark)");
+        HelpersSpectre.Success("   ✅ Various animations (Fade, SlideHorizontal)");
+        HelpersSpectre.Success("   ✅ Vertical tab orientation");
+        HelpersSpectre.Success("   ✅ Auto-progress functionality");
+        HelpersSpectre.Success("   ✅ Integration with existing components (DataTables, Cards, DataGrid)");
+        HelpersSpectre.Success("   ✅ Icon support with Tabler icons");
+        HelpersSpectre.Success("   ✅ Responsive design");
+        HelpersSpectre.Success("   ✅ Zero HTML knowledge required - Pure C# fluent API!");
     }
 }

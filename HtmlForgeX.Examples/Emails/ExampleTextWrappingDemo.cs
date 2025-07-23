@@ -10,7 +10,7 @@ public static class ExampleTextWrappingDemo
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating text wrapping demonstration...");
+        HelpersSpectre.Success("Creating text wrapping demonstration...");
 
         var email = new Email();
         email.Head.AddTitle("Text Wrapping Modes Demo - Professional Control")
@@ -199,9 +199,9 @@ public static class ExampleTextWrappingDemo
 
         // Save email
         email.Save("text-wrapping-demo.html", openInBrowser);
-        Console.WriteLine("✅ Text wrapping demo created successfully!");
-        Console.WriteLine("📧 Demonstrates: Natural, Smart, Default, Aggressive, and Preserved text wrapping modes");
-        Console.WriteLine("🎯 Perfect for: Technical documentation, method names, code examples, and professional layouts");
-        Console.WriteLine("💡 Pro tip: Use .WithNaturalWrapping() for method names like 'ConfigureImageOptimization'!");
+        HelpersSpectre.Success("✅ Text wrapping demo created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: Natural, Smart, Default, Aggressive, and Preserved text wrapping modes");
+        HelpersSpectre.Success("🎯 Perfect for: Technical documentation, method names, code examples, and professional layouts");
+        HelpersSpectre.Success("💡 Pro tip: Use .WithNaturalWrapping() for method names like 'ConfigureImageOptimization'!");
     }
 }

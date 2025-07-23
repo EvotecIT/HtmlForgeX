@@ -301,7 +301,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
             });
 
             document.Save("VisNetworkAdvancedFeaturesDemo.html", openInBrowser);
-            Console.WriteLine($"VisNetwork Advanced Features Demo created at: VisNetworkAdvancedFeaturesDemo.html");
+            HelpersSpectre.Success($"VisNetwork Advanced Features Demo created at: VisNetworkAdvancedFeaturesDemo.html");
         }
     }
 }

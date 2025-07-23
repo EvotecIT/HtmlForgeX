@@ -10,7 +10,7 @@ public static class ExampleSimpleConfirmationEmail
 {
     public static void Create(bool openInBrowser = false)
     {
-        Console.WriteLine("Creating simple confirmation email example...");
+        HelpersSpectre.Success("Creating simple confirmation email example...");
 
         var email = new Email();
 
@@ -65,7 +65,7 @@ public static class ExampleSimpleConfirmationEmail
 
         // Save email
         email.Save("simple-confirmation-email.html", openInBrowser);
-        Console.WriteLine("✅ Simple confirmation email created successfully!");
-        Console.WriteLine("📧 Demonstrates: Clean confirmation messaging, proper asset paths, natural flow");
+        HelpersSpectre.Success("✅ Simple confirmation email created successfully!");
+        HelpersSpectre.Success("📧 Demonstrates: Clean confirmation messaging, proper asset paths, natural flow");
     }
 }

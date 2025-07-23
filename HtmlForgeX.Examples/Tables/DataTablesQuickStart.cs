@@ -257,15 +257,15 @@ document.Body.DataTable(data, table =>
 
         document.Save("DataTablesQuickStart.html", openInBrowser);
 
-        Console.WriteLine("⚡ DataTables Quick Start Guide created successfully!");
-        Console.WriteLine("📚 Examples included:");
-        Console.WriteLine("   1. Basic enhanced table with exports");
-        Console.WriteLine("   2. Column configuration and formatting");
-        Console.WriteLine("   3. Advanced search features");
-        Console.WriteLine("   4. Custom export configuration");
-        Console.WriteLine("   5. Localization examples");
-        Console.WriteLine("   6. Performance optimizations");
-        Console.WriteLine("");
-        Console.WriteLine("🚀 Ready to use enhanced DataTables with fluent API!");
+        HelpersSpectre.Success("⚡ DataTables Quick Start Guide created successfully!");
+        HelpersSpectre.Success("📚 Examples included:");
+        HelpersSpectre.Success("   1. Basic enhanced table with exports");
+        HelpersSpectre.Success("   2. Column configuration and formatting");
+        HelpersSpectre.Success("   3. Advanced search features");
+        HelpersSpectre.Success("   4. Custom export configuration");
+        HelpersSpectre.Success("   5. Localization examples");
+        HelpersSpectre.Success("   6. Performance optimizations");
+        HelpersSpectre.Success("");
+        HelpersSpectre.Success("🚀 Ready to use enhanced DataTables with fluent API!");
     }
 }

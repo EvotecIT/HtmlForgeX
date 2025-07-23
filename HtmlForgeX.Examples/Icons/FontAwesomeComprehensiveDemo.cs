@@ -311,6 +311,6 @@ network.AddNode(1, node => node
         });
 
         document.Save("FontAwesomeComprehensiveDemo.html", openInBrowser);
-        Console.WriteLine("FontAwesome Comprehensive Demo created successfully!");
+        HelpersSpectre.Success("FontAwesome Comprehensive Demo created successfully!");
     }
 }
