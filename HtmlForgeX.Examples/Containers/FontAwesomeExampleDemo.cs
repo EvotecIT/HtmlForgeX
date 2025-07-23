@@ -84,7 +84,7 @@ internal class FontAwesomeExampleDemo {
                     .WithLabel("Server")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFontAwesome(FontAwesome.Server)  // Clear and discoverable!
+                        .WithFontAwesome(FontAwesomeSolid.Server)  // Clear and discoverable!
                         .WithSize(50)
                         .WithColor(RGBColor.DarkBlue)
                     )
@@ -95,7 +95,7 @@ internal class FontAwesomeExampleDemo {
                     .WithLabel("Users")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFontAwesome(FontAwesome.Users)  // Obvious what this is
+                        .WithFontAwesome(FontAwesomeSolid.Users)  // Obvious what this is
                         .WithSize(50)
                         .WithColor(RGBColor.DarkGreen)
                     )
@@ -106,7 +106,7 @@ internal class FontAwesomeExampleDemo {
                     .WithLabel("Security")
                     .WithShape(VisNetworkNodeShape.Icon)
                     .WithIcon(icon => icon
-                        .WithFontAwesome(FontAwesome.Lock)  // IntelliSense suggests this
+                        .WithFontAwesome(FontAwesomeSolid.Lock)  // IntelliSense suggests this
                         .WithSize(50)
                         .WithColor(RGBColor.DarkRed)
                     )
@@ -128,11 +128,11 @@ internal class FontAwesomeExampleDemo {
                     .WithPhysics(false);
 
                 var icons = new[] {
-                    (FontAwesome.Server, "Server", -300),
-                    (FontAwesome.Database, "Database", -150),
-                    (FontAwesome.Cloud, "Cloud", 0),
-                    (FontAwesome.Desktop, "Desktop", 150),
-                    (FontAwesome.Laptop, "Laptop", 300)
+                    (FontAwesomeSolid.Server, "Server", -300),
+                    (FontAwesomeSolid.Database, "Database", -150),
+                    (FontAwesomeSolid.Cloud, "Cloud", 0),
+                    (FontAwesomeSolid.Desktop, "Desktop", 150),
+                    (FontAwesomeSolid.Laptop, "Laptop", 300)
                 };
 
                 for (int i = 0; i < icons.Length; i++) {
@@ -158,11 +158,11 @@ internal class FontAwesomeExampleDemo {
                     .WithPhysics(false);
 
                 var icons = new[] {
-                    (FontAwesome.User, "User", -300),
-                    (FontAwesome.Users, "Users", -150),
-                    (FontAwesome.UserTie, "UserTie", 0),
-                    (FontAwesome.Email, "Email", 150),
-                    (FontAwesome.Phone, "Phone", 300)
+                    (FontAwesomeSolid.User, "User", -300),
+                    (FontAwesomeSolid.Users, "Users", -150),
+                    (FontAwesomeSolid.UserTie, "UserTie", 0),
+                    (FontAwesomeSolid.Envelope, "Email", 150),
+                    (FontAwesomeSolid.Phone, "Phone", 300)
                 };
 
                 for (int i = 0; i < icons.Length; i++) {
@@ -188,11 +188,11 @@ internal class FontAwesomeExampleDemo {
                     .WithPhysics(false);
 
                 var icons = new[] {
-                    (FontAwesome.CheckCircle, "Success", -300),
-                    (FontAwesome.TimesCircle, "Error", -150),
-                    (FontAwesome.Warning, "Warning", 0),
-                    (FontAwesome.Info, "Info", 150),
-                    (FontAwesome.Gear, "Settings", 300)
+                    (FontAwesomeSolid.CircleCheck, "Success", -300),
+                    (FontAwesomeSolid.CircleXmark, "Error", -150),
+                    (FontAwesomeSolid.TriangleExclamation, "Warning", 0),
+                    (FontAwesomeSolid.Info, "Info", 150),
+                    (FontAwesomeSolid.Gear, "Settings", 300)
                 };
 
                 for (int i = 0; i < icons.Length; i++) {
