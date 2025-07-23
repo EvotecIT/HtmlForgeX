@@ -14,6 +14,6 @@ internal static class ExampleTablerStarRating {
                 });
             });
         });
-        Support.SaveAndOpen(document, openInBrowser, "star-rating.html");
+        document.Save("star-rating.html", openInBrowser);
     }
 }
