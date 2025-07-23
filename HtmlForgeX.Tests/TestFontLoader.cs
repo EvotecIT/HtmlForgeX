@@ -15,7 +15,7 @@ public class TestFontLoader {
     public void LoadFontFromStreamMatchesFile() {
         var fontFamily = "Test Font";
         var bytes = new byte[] { 1, 2, 3, 4, 5, 6 };
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var path = Path.Combine(tempDir, $"{Guid.NewGuid():N}.ttf");
         File.WriteAllBytes(path, bytes);
         var expected = FontLoader.LoadFontAsStyle(fontFamily, path);
@@ -30,7 +30,7 @@ public class TestFontLoader {
     public void LoadFontFromFileReleasesHandle() {
         var fontFamily = "Test Font";
         var bytes = new byte[] { 1, 2, 3, 4 };
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var path = Path.Combine(tempDir, $"{Guid.NewGuid():N}.ttf");
         File.WriteAllBytes(path, bytes);
         FontLoader.LoadFontAsStyle(fontFamily, path);

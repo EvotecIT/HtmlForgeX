@@ -24,7 +24,7 @@ public class TestAddLibraryErrors {
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
 
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var cssPath = Path.Combine(tempDir, $"locked_{Guid.NewGuid():N}.css");
         File.WriteAllText(cssPath, "body {}", System.Text.Encoding.UTF8);
         using (File.Open(cssPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) {
@@ -47,7 +47,7 @@ public class TestAddLibraryErrors {
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
 
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var jsPath = Path.Combine(tempDir, $"locked_{Guid.NewGuid():N}.js");
         File.WriteAllText(jsPath, "console.log('hi');", System.Text.Encoding.UTF8);
         using (File.Open(jsPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) {

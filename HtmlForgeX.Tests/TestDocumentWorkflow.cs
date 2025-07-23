@@ -103,7 +103,7 @@ public class TestDocumentWorkflow {
         using var doc = new Document();
         doc.Body.Add(new HtmlTag("p", "Test content"));
         
-        var tempFile = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"test_{System.Guid.NewGuid()}.html");
+        var tempFile = Path.Combine(TempPath.Get(), $"test_{System.Guid.NewGuid()}.html");
         
         doc.Save(tempFile);
         
@@ -119,7 +119,7 @@ public class TestDocumentWorkflow {
         using var doc = new Document();
         doc.Body.Add(new HtmlTag("p", "Async test content"));
         
-        var tempFile = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"async_test_{System.Guid.NewGuid()}.html");
+        var tempFile = Path.Combine(TempPath.Get(), $"async_test_{System.Guid.NewGuid()}.html");
         
         await doc.SaveAsync(tempFile);
         

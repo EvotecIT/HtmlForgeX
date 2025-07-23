@@ -60,7 +60,7 @@ public class TestLibraryDownloader {
     private static async Task RunTestAsync(string extension, string folder) {
         string prefix = StartServer();
         string url = $"{prefix}file{extension}";
-        string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
+        string tempDir = Path.Combine(TempPath.Get(), Guid.NewGuid().ToString());
         var downloader = new LibraryDownloader();
         await downloader.DownloadFileAsync(tempDir, url);
         string expected = Path.Combine(tempDir, folder, $"file{extension}");
@@ -81,7 +81,7 @@ public class TestLibraryDownloader {
     public async Task DownloadFileDisposesFileOnError() {
         string prefix = StartErrorServer();
         string url = $"{prefix}file.css";
-        string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
+        string tempDir = Path.Combine(TempPath.Get(), Guid.NewGuid().ToString());
         var downloader = new LibraryDownloader();
         await Assert.ThrowsExceptionAsync<HttpRequestException>(() => downloader.DownloadFileAsync(tempDir, url));
         string expected = Path.Combine(tempDir, "Styles", "file.css");

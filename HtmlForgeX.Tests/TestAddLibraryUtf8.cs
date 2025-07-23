@@ -11,7 +11,7 @@ namespace HtmlForgeX.Tests;
 public class TestAddLibraryUtf8 {
     [TestMethod]
     public void AddLibrary_LoadsUtf8Files() {
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var cssPath = Path.Combine(tempDir, $"utf8_{System.Guid.NewGuid():N}.css");
         var jsPath = Path.Combine(tempDir, $"utf8_{System.Guid.NewGuid():N}.js");
         var cssContent = "body::after { content: 'żółć'; }";
@@ -39,7 +39,7 @@ public class TestAddLibraryUtf8 {
 
     [TestMethod]
     public void AddLibrary_DeduplicatesWhitespaceVariants() {
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var css1 = Path.Combine(tempDir, $"dup1_{System.Guid.NewGuid():N}.css");
         var css2 = Path.Combine(tempDir, $"dup2_{System.Guid.NewGuid():N}.css");
         var js1 = Path.Combine(tempDir, $"dup1_{System.Guid.NewGuid():N}.js");

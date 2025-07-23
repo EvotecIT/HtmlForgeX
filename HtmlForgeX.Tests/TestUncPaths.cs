@@ -20,7 +20,7 @@ public class TestUncPaths {
     public void Document_Save_UncStylePath() {
         using var doc = new Document();
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
-            string local = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString(), "file.html");
+            string local = Path.Combine(TempPath.Get(), Guid.NewGuid().ToString(), "file.html");
             Directory.CreateDirectory(Path.GetDirectoryName(local)!);
             string uncPath = "\\\\?\\" + local;
             doc.Save(uncPath);

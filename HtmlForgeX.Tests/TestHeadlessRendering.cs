@@ -13,7 +13,7 @@ namespace HtmlForgeX.Tests;
 public class TestHeadlessRendering {
     [TestMethod]
     public async Task GeneratedHtml_ShouldMatchBaselineScreenshot() {
-        string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
+        string tempDir = Path.Combine(TempPath.Get(), Guid.NewGuid().ToString());
         Directory.CreateDirectory(tempDir);
         string htmlPath = Path.Combine(tempDir, "index.html");
 

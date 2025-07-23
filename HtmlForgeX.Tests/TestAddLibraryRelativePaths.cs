@@ -11,7 +11,7 @@ namespace HtmlForgeX.Tests;
 public class TestAddLibraryRelativePaths {
     [TestMethod]
     public void AddLibrary_RelativePathsWorkOffline() {
-        var baseDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"rel_{Guid.NewGuid():N}");
+        var baseDir = Path.Combine(TempPath.Get(), $"rel_{Guid.NewGuid():N}");
         Directory.CreateDirectory(baseDir);
         var cssFile = Path.Combine(baseDir, "style.css");
         var jsFile = Path.Combine(baseDir, "script.js");

@@ -28,7 +28,7 @@ public class TestEmailEmbeddingWarnings
         var image = new EmailImage();
         email.Body.Add(image);
         image.EmbedSmart("non-existent-file.png");
-        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
+        var path = Path.Combine(TempPath.Get(), Path.GetRandomFileName() + ".html");
         await email.SaveAsync(path);
         Assert.AreEqual(1, email.EmbeddingWarningCount);
         File.Delete(path);
