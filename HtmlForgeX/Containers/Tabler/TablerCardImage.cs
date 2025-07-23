@@ -150,7 +150,7 @@ public class TablerCardImage : Element {
     public override string ToString() {
         // Auto-embed based on LibraryMode unless explicitly overridden
         if (!SkipEmbedding && !EmbedAsBase64 &&
-            (ForceEmbedding || GlobalStorage.LibraryMode == LibraryMode.Offline)) {
+            (ForceEmbedding || Document?.Configuration.LibraryMode == LibraryMode.Offline)) {
             EmbedSmart(ImageUrl, EmbeddingTimeout);
         }
 
