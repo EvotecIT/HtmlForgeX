@@ -28,6 +28,7 @@ This document outlines the implementation plan for Tabler features missing in Ht
 - **Tags**: `TablerTag`
 - **Timeline**: `TablerTimeline`
 - **Toasts**: `TablerToast`
+- **Forms**: `TablerForm`, `TablerInput`, `TablerSelect`, `TablerInputMask`
 
 ### 🔄 Partially Implemented (Need Enhancement)
 - **Cards**: Missing ribbon, stamps, hover effects
