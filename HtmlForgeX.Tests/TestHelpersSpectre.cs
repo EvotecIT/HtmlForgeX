@@ -1,3 +1,4 @@
+#if NET8_0_OR_GREATER
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spectre.Console;
 using Spectre.Console.Testing;
@@ -15,8 +16,7 @@ public class TestHelpersSpectre {
         try {
             var assembly = Assembly.Load("HtmlForgeX.Examples");
             var type = assembly.GetType("HtmlForgeX.Examples.HelpersSpectre");
-            var method = type!.GetMethod("PrintTitle",
-                BindingFlags.Static | BindingFlags.Public);
+            var method = type!.GetMethod("PrintTitle", BindingFlags.Static | BindingFlags.Public);
             method.Invoke(null, new object[] { "Demo Title" });
         } finally {
             AnsiConsole.Console = previous;
@@ -27,3 +27,4 @@ public class TestHelpersSpectre {
         Assert.IsTrue(output.Contains("═"));
     }
 }
+#endif
