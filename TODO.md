@@ -59,22 +59,6 @@ element.Modal(modal => {
 public enum TablerModalSize { Small, Default, Large, FullWidth }
 ```
 
-### 2. Dropdowns (`TablerDropdown`)
-**Source Reference**: `/preview/pages/dropdowns.html`
-```csharp
-// Proposed API
-element.Dropdown("Options", dropdown => {
-    dropdown.Item("Edit").Icon(TablerIconType.Edit)
-           .Separator()
-           .Item("Delete").Icon(TablerIconType.Trash).Danger()
-           .Dark() // Dark theme
-           .WithArrow(); // Show arrow indicator
-});
-
-// Checkbox dropdown variant
-dropdown.CheckboxItem("Option 1", isChecked: true);
-dropdown.RadioItem("Option A", groupName: "options");
-
 ### 3. Tooltips & Popovers (`TablerTooltip`, `TablerPopover`)
 **Source Reference**: `/preview/pages/tooltip.html`
 ```csharp
@@ -363,7 +347,7 @@ public TablerModal Content(Action<Element> configure)
 
 ## Priority Implementation Order
 
-1. **Week 1-2**: Phase 1 (Modals, Dropdowns, Tooltips/Popovers, Buttons, Forms)
+1. **Week 1-2**: Phase 1 (Modals, Tooltips/Popovers, Buttons, Forms)
 2. **Week 3**: Phase 2 (Navigation components)
 3. **Week 4**: Phase 3 (Data display components)
 4. **Week 5**: Phase 4 (Visual components)

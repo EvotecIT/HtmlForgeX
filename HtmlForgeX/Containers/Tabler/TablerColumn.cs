@@ -85,6 +85,18 @@ public class TablerColumn : Element {
     }
 
     /// <summary>
+    /// Adds a <see cref="TablerCardEnhanced"/> to the column using fluent configuration.
+    /// </summary>
+    /// <param name="config">Action that configures the card.</param>
+    /// <returns>The created <see cref="TablerCardEnhanced"/>.</returns>
+    public TablerCardEnhanced CardEnhanced(Action<TablerCardEnhanced> config) {
+        var card = new TablerCardEnhanced();
+        this.Add(card);
+        config(card);
+        return card;
+    }
+
+    /// <summary>
     /// Add a DataGrid directly to the column using the enhanced TablerDataGrid component
     /// </summary>
     public new TablerDataGrid DataGrid(Action<TablerDataGrid> dataGridConfig) {

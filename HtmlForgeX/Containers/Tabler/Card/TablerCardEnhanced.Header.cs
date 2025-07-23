@@ -50,10 +50,24 @@ public partial class TablerCardEnhanced {
     }
 
     /// <summary>
-    /// Initializes or configures WithHeaderDropdown.
+    /// Adds a dropdown menu to the header using predefined items.
     /// </summary>
+    /// <param name="items">Collection of dropdown items.</param>
+    /// <returns>The current card instance.</returns>
     public TablerCardEnhanced WithHeaderDropdown(List<TablerDropdownItem> items) {
         HeaderActions.Add(new TablerDropdown(items));
+        return this;
+    }
+
+    /// <summary>
+    /// Adds a dropdown menu to the header using a fluent configuration action.
+    /// </summary>
+    /// <param name="configure">Action that configures the dropdown.</param>
+    /// <returns>The current card instance.</returns>
+    public TablerCardEnhanced WithHeaderDropdown(Action<TablerDropdown> configure) {
+        var dropdown = new TablerDropdown();
+        configure?.Invoke(dropdown);
+        HeaderActions.Add(dropdown);
         return this;
     }
 
