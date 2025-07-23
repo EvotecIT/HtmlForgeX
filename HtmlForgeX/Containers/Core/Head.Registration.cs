@@ -25,6 +25,8 @@ public partial class Head
     /// <summary>External font links to include in the head.</summary>
     public List<string> FontLinks { get; } = new();
 
+    private readonly object _syncRoot = new();
+
     private readonly HashSet<string> _cssLinkSet = new();
     private readonly HashSet<string> _jsLinkSet = new();
     private readonly HashSet<string> _fontLinkSet = new();
@@ -70,27 +72,36 @@ public partial class Head
     /// <summary>Registers an external CSS link if not already added.</summary>
     public void AddCssLink(string link)
     {
-        if (_cssLinkSet.Add(link))
+        lock (_syncRoot)
         {
-            CssLinks.Add($"<link rel=\"stylesheet\" href=\"{link}\">");
+            if (_cssLinkSet.Add(link))
+            {
+                CssLinks.Add($"<link rel=\"stylesheet\" href=\"{link}\">");
+            }
         }
     }
 
     /// <summary>Registers an external JavaScript link if not already added.</summary>
     public void AddJsLink(string link)
     {
-        if (_jsLinkSet.Add(link))
+        lock (_syncRoot)
         {
-            JsLinks.Add($"<script src=\"{link}\"></script>");
+            if (_jsLinkSet.Add(link))
+            {
+                JsLinks.Add($"<script src=\"{link}\"></script>");
+            }
         }
     }
 
     /// <summary>Registers an external font link if not already added.</summary>
     public void AddFontLink(string link)
     {
-        if (_fontLinkSet.Add(link))
+        lock (_syncRoot)
         {
-            FontLinks.Add($"<link href=\"{link}\" rel=\"stylesheet\">");
+            if (_fontLinkSet.Add(link))
+            {
+                FontLinks.Add($"<link href=\"{link}\" rel=\"stylesheet\">");
+            }
         }
     }
 
@@ -127,9 +138,12 @@ public partial class Head
     public void AddCssInline(string css)
     {
         css = Regex.Replace(css.Trim(), @"\s+", " ");
-        if (_cssInlineSet.Add(css))
+        lock (_syncRoot)
         {
-            Styles.Add($"<style>{css}</style>");
+            if (_cssInlineSet.Add(css))
+            {
+                Styles.Add($"<style>{css}</style>");
+            }
         }
     }
 
@@ -137,18 +151,24 @@ public partial class Head
     public void AddJsInline(string js)
     {
         js = js.Trim();
-        if (_jsInlineSet.Add(js))
+        lock (_syncRoot)
         {
-            Scripts.Add($"<script>{js}</script>");
+            if (_jsInlineSet.Add(js))
+            {
+                Scripts.Add($"<script>{js}</script>");
+            }
         }
     }
 
     private void AddRawScript(string script)
     {
         script = script.Trim();
-        if (_jsInlineSet.Add(script))
+        lock (_syncRoot)
         {
-            Scripts.Add(script);
+            if (_jsInlineSet.Add(script))
+            {
+                Scripts.Add(script);
+            }
         }
     }
 
