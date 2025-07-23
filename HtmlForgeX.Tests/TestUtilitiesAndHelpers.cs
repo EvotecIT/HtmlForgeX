@@ -10,7 +10,7 @@ public class TestUtilitiesAndHelpers {
     [TestMethod]
     public async Task LibraryDownloader_DownloadLibrary() {
         var downloader = new LibraryDownloader();
-        var tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"lib_test_{System.Guid.NewGuid()}");
+        var tempDir = Path.Combine(TempPath.Get(), $"lib_test_{System.Guid.NewGuid()}");
         try {
             Directory.CreateDirectory(tempDir);
         } catch (Exception ex) {

@@ -19,7 +19,7 @@ public class TestDocumentSaveOpenInBrowser {
         logger.OnErrorMessage += handler;
         Helpers.PlatformOverride = OSPlatform.Create("other");
         using var doc = new Document();
-        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
+        var path = Path.Combine(TempPath.Get(), Path.GetRandomFileName() + ".html");
         doc.Save(path, false);
         logger.OnErrorMessage -= handler;
         Helpers.PlatformOverride = null;
@@ -36,7 +36,7 @@ public class TestDocumentSaveOpenInBrowser {
         logger.OnErrorMessage += handler;
         Helpers.PlatformOverride = OSPlatform.Create("other");
         using var doc = new Document();
-        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
+        var path = Path.Combine(TempPath.Get(), Path.GetRandomFileName() + ".html");
         await doc.SaveAsync(path, false);
         logger.OnErrorMessage -= handler;
         Helpers.PlatformOverride = null;

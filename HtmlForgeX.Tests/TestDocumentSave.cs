@@ -16,7 +16,7 @@ public class TestDocumentSave {
     [TestMethod]
     public void Save_CreatesDirectoryAndWritesUtf8() {
         using var doc = new Document();
-        string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
+        string tempDir = Path.Combine(TempPath.Get(), Guid.NewGuid().ToString());
         string dir = Path.Combine(tempDir, "subDirectory");
         string path = Path.Combine(dir, "testSubDirectory.html");
         doc.Save(path);
@@ -29,7 +29,7 @@ public class TestDocumentSave {
     [TestMethod]
     public async Task SaveAsync_WritesFile() {
         using var doc = new Document();
-        var tempPath = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"file_{Guid.NewGuid():N}.html");
+        var tempPath = Path.Combine(TempPath.Get(), $"file_{Guid.NewGuid():N}.html");
 
         await doc.SaveAsync(tempPath);
         Assert.IsTrue(File.Exists(tempPath));
@@ -49,7 +49,7 @@ public class TestDocumentSave {
         using var doc = new Document();
         using var cts = new CancellationTokenSource();
         cts.Cancel();
-        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"cancel_{Guid.NewGuid():N}.html");
+        var path = Path.Combine(TempPath.Get(), $"cancel_{Guid.NewGuid():N}.html");
         await Assert.ThrowsExceptionAsync<TaskCanceledException>(async () => await doc.SaveAsync(path, cancellationToken: cts.Token));
     }
 

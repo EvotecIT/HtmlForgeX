@@ -71,7 +71,7 @@ public class TestParallelDocuments {
             // Configure each document differently
             doc.LibraryMode = (LibraryMode)(i % 3);
             doc.Configuration.EnableDeferredScripts = i % 2 == 0;
-            doc.Path = TestUtilities.GetFrameworkSpecificTempPath();
+            doc.Path = TempPath.Get();
             
             // Add some errors to specific documents
             if (i % 5 == 0) {

@@ -53,7 +53,7 @@ public class TestEmailImageBase64Embedding
     [TestMethod]
     public void EmailImage_EmbedFromFile_ShouldNotLockFile()
     {
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var filePath = Path.Combine(tempDir, Path.GetRandomFileName() + ".png");
         File.WriteAllBytes(filePath, _testImageData);
 

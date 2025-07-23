@@ -14,7 +14,7 @@ public class TestEmailSave {
     [TestMethod]
     public void Save_CreatesDirectoryAndWritesUtf8() {
         var email = new Email();
-        string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
+        string tempDir = Path.Combine(TempPath.Get(), Guid.NewGuid().ToString());
         string dir = Path.Combine(tempDir, "subDirectory");
         string path = Path.Combine(dir, "testSubDirectory.html");
         email.Save(path);
@@ -27,7 +27,7 @@ public class TestEmailSave {
     [TestMethod]
     public async Task SaveAsync_WritesFile() {
         var email = new Email();
-        var tempPath = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"file_{Guid.NewGuid():N}.html");
+        var tempPath = Path.Combine(TempPath.Get(), $"file_{Guid.NewGuid():N}.html");
 
         await email.SaveAsync(tempPath);
         Assert.IsTrue(File.Exists(tempPath));

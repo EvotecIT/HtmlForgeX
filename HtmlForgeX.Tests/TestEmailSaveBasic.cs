@@ -12,7 +12,7 @@ public class TestEmailSaveBasic {
     public void Email_SaveCreatesFile() {
         var email = new Email();
         email.Body.Add(new HtmlTag("p", "Hello"));
-        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
+        var path = Path.Combine(TempPath.Get(), Path.GetRandomFileName() + ".html");
         email.Save(path, false);
         Assert.IsTrue(File.Exists(path));
         File.Delete(path);

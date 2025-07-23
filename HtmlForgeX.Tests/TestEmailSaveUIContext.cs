@@ -22,7 +22,7 @@ public class TestEmailSaveUIContext {
         SynchronizationContext.SetSynchronizationContext(new NoOpSynchronizationContext());
         try {
             var email = new Email();
-            var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"ui_{Guid.NewGuid():N}.html");
+            var path = Path.Combine(TempPath.Get(), $"ui_{Guid.NewGuid():N}.html");
             email.SaveAsync(path).GetAwaiter().GetResult();
             Assert.IsTrue(File.Exists(path));
             File.Delete(path);

@@ -25,7 +25,7 @@ public class TestEmailSaveErrors {
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
         var email = new Email();
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var dir = Path.Combine(tempDir, Guid.NewGuid().ToString());
         try {
             Directory.CreateDirectory(dir);
@@ -46,7 +46,7 @@ public class TestEmailSaveErrors {
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
         var email = new Email();
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var path = Path.Combine(tempDir, $"file_{Guid.NewGuid()}.html");
         using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
             email.Save(path);
@@ -64,7 +64,7 @@ public class TestEmailSaveErrors {
         EventHandler<LogEventArgs> handler = (_, e) => received = e.FullMessage;
         logger.OnErrorMessage += handler;
         var email = new Email();
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var path = Path.Combine(tempDir, $"file_{Guid.NewGuid():N}.html");
         using (File.Open(path, FileMode.Create, FileAccess.ReadWrite, FileShare.None)) {
             await email.SaveAsync(path);
@@ -82,7 +82,7 @@ public class TestEmailSaveErrors {
         EventHandler<LogEventArgs> handler = (_, e) => received ??= e.FullMessage;
         logger.OnErrorMessage += handler;
         var email = new Email();
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var dirPath = Path.Combine(tempDir, $"dir_{Guid.NewGuid()}");
         File.WriteAllText(dirPath, string.Empty);
         var filePath = Path.Combine(dirPath, "file.html");

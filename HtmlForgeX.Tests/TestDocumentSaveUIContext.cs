@@ -23,7 +23,7 @@ public class TestDocumentSaveUIContext {
         SynchronizationContext.SetSynchronizationContext(new NoOpSynchronizationContext());
         try {
             using var doc = new Document();
-            var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), $"ui_{Guid.NewGuid():N}.html");
+            var path = Path.Combine(TempPath.Get(), $"ui_{Guid.NewGuid():N}.html");
             doc.SaveAsync(path).GetAwaiter().GetResult();
             Assert.IsTrue(File.Exists(path));
             File.Delete(path);

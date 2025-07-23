@@ -14,7 +14,7 @@ public class TestEmailSaveMultithreaded {
     [TestMethod]
     public void Save_MultipleThreads_OneFileProduced() {
         var email = new Email();
-        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
+        var path = Path.Combine(TempPath.Get(), Path.GetRandomFileName() + ".html");
 
         var tasks = Enumerable.Range(0, 5).Select(_ => Task.Run(() => email.Save(path)));
         Task.WaitAll(tasks.ToArray());
@@ -30,7 +30,7 @@ public class TestEmailSaveMultithreaded {
     [TestMethod]
     public async Task SaveAsync_MultipleThreads_OneFileProduced() {
         var email = new Email();
-        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
+        var path = Path.Combine(TempPath.Get(), Path.GetRandomFileName() + ".html");
 
         var tasks = Enumerable.Range(0, 5).Select(_ => Task.Run(() => email.SaveAsync(path)));
         await Task.WhenAll(tasks);

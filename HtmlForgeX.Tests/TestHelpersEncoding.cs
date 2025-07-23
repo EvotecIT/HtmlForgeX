@@ -25,14 +25,14 @@ public class TestHelpersEncoding {
 
     [TestMethod]
     public void Open_ReturnsFalseForMissingFile() {
-        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName());
+        var path = Path.Combine(TempPath.Get(), Path.GetRandomFileName());
         var result = Helpers.Open(path, true);
         Assert.IsFalse(result);
     }
 
     [TestMethod]
     public void Open_UnsupportedOS_LogsError() {
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var path = Path.Combine(tempDir, Path.GetRandomFileName());
         File.WriteAllText(path, "test");
         string? message = null;
@@ -54,7 +54,7 @@ public class TestHelpersEncoding {
             return;
         }
 
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var path = Path.Combine(tempDir, Path.GetRandomFileName());
         File.WriteAllText(path, "test");
 

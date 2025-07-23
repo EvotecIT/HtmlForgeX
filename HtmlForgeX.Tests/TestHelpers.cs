@@ -10,7 +10,7 @@ namespace HtmlForgeX.Tests;
 public class TestHelpers {
     [TestMethod]
     public void IsFileLockedDetectsOpenStream() {
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var path = Path.Combine(tempDir, Path.GetRandomFileName());
         File.WriteAllText(path, "test");
         var fileInfo = new FileInfo(path);
@@ -32,7 +32,7 @@ public class TestHelpers {
 
     [TestMethod]
     public void IsFileLocked_ReturnsFalseForMissingFileInfo() {
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var path = Path.Combine(tempDir, Path.GetRandomFileName());
         var fileInfo = new FileInfo(path);
         var lockedViaInfo = fileInfo.IsFileLocked();
@@ -41,7 +41,7 @@ public class TestHelpers {
 
     [TestMethod]
     public void IsFileLocked_ReturnsFalseForMissingPath() {
-        var tempDir = TestUtilities.GetFrameworkSpecificTempPath();
+        var tempDir = TempPath.Get();
         var path = Path.Combine(tempDir, Path.GetRandomFileName());
         var lockedViaPath = path.IsFileLocked();
         Assert.IsFalse(lockedViaPath);

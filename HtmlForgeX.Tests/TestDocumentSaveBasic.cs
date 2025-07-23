@@ -12,7 +12,7 @@ public class TestDocumentSaveBasic {
     public void Document_SaveCreatesFile() {
         using var doc = new Document();
         doc.Body.Add(new HtmlTag("p", "Hello"));
-        var path = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Path.GetRandomFileName() + ".html");
+        var path = Path.Combine(TempPath.Get(), Path.GetRandomFileName() + ".html");
         doc.Save(path, false);
         Assert.IsTrue(File.Exists(path));
         File.Delete(path);
