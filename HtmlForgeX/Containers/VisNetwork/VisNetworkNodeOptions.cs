@@ -801,16 +801,6 @@ public class VisNetworkIconOptions {
     }
 
     /// <summary>
-    /// Sets the icon using a FontAwesome enum value. Automatically sets face to "FontAwesome".
-    /// </summary>
-    /// <param name="icon">The FontAwesome icon to use</param>
-    /// <returns>The icon options for method chaining</returns>
-    public VisNetworkIconOptions WithFontAwesome(FontAwesome icon) {
-        Face = "FontAwesome";
-        Code = icon.GetCode();
-        return this;
-    }
-
     /// <summary>
     /// Sets the icon using a FontAwesome Solid icon. Automatically sets face for Font Awesome 6.
     /// </summary>

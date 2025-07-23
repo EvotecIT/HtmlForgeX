@@ -29,6 +29,7 @@ This document outlines the implementation plan for Tabler features missing in Ht
 - **Timeline**: `TablerTimeline`
 - **Toasts**: `TablerToast`
 - **Modals**: `TablerModal`
+- **Forms**: `TablerForm`, `TablerInput`, `TablerSelect`, `TablerInputMask`
 
 ### 🔄 Partially Implemented (Need Enhancement)
 - **Cards**: Missing ribbon, stamps, hover effects
@@ -258,15 +259,6 @@ element.ColorPicker(picker => {
 });
 ```
 
-### 16. Countdown/Timer (`TablerCountdown`)
-```csharp
-// Proposed API
-element.Countdown(countdown => {
-    countdown.EndTime(DateTime.Now.AddHours(24))
-             .Format("DD:HH:MM:SS")
-             .OnComplete("handleCountdownComplete");
-});
-```
 
 ## Phase 6: Enhancement of Existing Components
 
@@ -279,8 +271,6 @@ element.Countdown(countdown => {
 
 ### 18. Alert Enhancements
 **Source Reference**: `/preview/pages/alerts.html`
-- Add list support in alerts
-- Add minor alert style: `alert.Minor()`
 
 ### 19. Table Mobile Responsive
 **Source Reference**: `/preview/pages/tables.html`

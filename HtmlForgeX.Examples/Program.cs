@@ -10,6 +10,7 @@ using HtmlForgeX.Examples.Support;
 using HtmlForgeX.Examples.Forms;
 using HtmlForgeX.Examples.Tabler;
 using HtmlForgeX.Examples.VisNetwork;
+using HtmlForgeX.Examples.Icons;
 
 namespace HtmlForgeX.Examples;
 
@@ -36,9 +37,11 @@ internal class Program {
         // Tabler examples (console output)
         ExampleTablerIcon.Create();
         ExampleSvgIcons.Create();
+        ExampleFontAwesomeOnline.Create(openInBrowser);
 
         // Tabler examples html output
         ExampleTablerTag.Create(openInBrowser);
+        ExampleTablerColorHex.Create();
         ExampleTablerAlerts.Create(openInBrowser);
 
         // Experimental examples (console output)
@@ -62,6 +65,7 @@ internal class Program {
 
         // Forms examples
         ExampleTablerForm.Create(openInBrowser);
+        ExampleTablerFormInputs.Create(openInBrowser);
         ExampleComprehensiveForm.Create(openInBrowser);
 
         // Quill editor example
