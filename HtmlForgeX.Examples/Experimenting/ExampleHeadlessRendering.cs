@@ -11,7 +11,7 @@ internal class ExampleHeadlessRendering {
         doc.Head.Title = "Headless Rendering Example";
         doc.Body.Add(new HtmlTag("h1", "Hello from Headless Browser"));
         var path = Path.Combine(Path.GetTempPath(), "headless_example.html");
-        doc.Save(path, openInBrowser);
+        await doc.SaveAsync(path, openInBrowser).ConfigureAwait(false);
 
         using var playwright = await Playwright.CreateAsync();
         await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });

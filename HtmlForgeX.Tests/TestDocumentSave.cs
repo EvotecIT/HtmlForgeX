@@ -39,6 +39,20 @@ public class TestDocumentSave {
     }
 
     [TestMethod]
+    public async Task SaveAsync_CreatesDirectoryAndWritesUtf8() {
+        using var doc = new Document();
+        string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
+        string dir = Path.Combine(tempDir, "subDirectory");
+        string path = Path.Combine(dir, "testSubDirectoryAsync.html");
+
+        await doc.SaveAsync(path);
+        Assert.IsTrue(Directory.Exists(dir));
+        string content = File.ReadAllText(path, Encoding.UTF8);
+        Assert.AreEqual(doc.ToString(), content);
+        Directory.Delete(tempDir, true);
+    }
+
+    [TestMethod]
     public async Task SaveAsync_InvalidPath_ThrowsArgumentException() {
         using var doc = new Document();
         await Assert.ThrowsExceptionAsync<ArgumentException>(async () => await doc.SaveAsync("invalid\0path.html"));
