@@ -41,7 +41,7 @@ public class TestDocumentSave {
     [TestMethod]
     public async Task SaveAsync_CreatesDirectoryAndWritesUtf8() {
         using var doc = new Document();
-        string tempDir = Path.Combine(TestUtilities.GetFrameworkSpecificTempPath(), Guid.NewGuid().ToString());
+        string tempDir = Path.Combine(TempPath.Get(), Guid.NewGuid().ToString());
         string dir = Path.Combine(tempDir, "subDirectory");
         string path = Path.Combine(dir, "testSubDirectoryAsync.html");
 
