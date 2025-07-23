@@ -1,3 +1,4 @@
+using System.Net;
 using HtmlForgeX;
 
 namespace HtmlForgeX.Examples.VisNetwork;
@@ -22,10 +23,10 @@ internal class VisNetworkHtmlSupportExample {
                 .WithDescription();
 
             warning.Add(new UnorderedList()
-                .AddItem(new HtmlTag("code").Value("&lt;b&gt;").ToString() + " - Bold text", TablerIconType.InfoCircle)
-                .AddItem(new HtmlTag("code").Value("&lt;i&gt;").ToString() + " - Italic text", TablerIconType.InfoCircle)
-                .AddItem(new HtmlTag("code").Value("&lt;code&gt;").ToString() + " - Monospace text", TablerIconType.InfoCircle)
-                .AddItem(new HtmlTag("code").Value("&lt;br&gt;").ToString() + " - Line breaks", TablerIconType.InfoCircle));
+                .AddItem(new HtmlTag("code").Value(WebUtility.HtmlEncode("<b>")).ToString() + " - Bold text", TablerIconType.InfoCircle)
+                .AddItem(new HtmlTag("code").Value(WebUtility.HtmlEncode("<i>")).ToString() + " - Italic text", TablerIconType.InfoCircle)
+                .AddItem(new HtmlTag("code").Value(WebUtility.HtmlEncode("<code>")).ToString() + " - Monospace text", TablerIconType.InfoCircle)
+                .AddItem(new HtmlTag("code").Value(WebUtility.HtmlEncode("<br>")).ToString() + " - Line breaks", TablerIconType.InfoCircle));
 
             warning.Add(new HtmlTag("p")
                 .Value("Other HTML tags like ")
