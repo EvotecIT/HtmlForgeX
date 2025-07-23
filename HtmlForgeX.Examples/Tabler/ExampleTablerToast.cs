@@ -1,4 +1,4 @@
-namespace HtmlForgeX.Examples.Tags;
+namespace HtmlForgeX.Examples.Tabler;
 
 internal static class ExampleTablerToast {
     public static void Create(bool openInBrowser = false) {

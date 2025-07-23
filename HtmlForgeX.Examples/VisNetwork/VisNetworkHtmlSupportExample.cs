@@ -1,6 +1,6 @@
 using HtmlForgeX;
 
-namespace HtmlForgeX.Examples.Containers;
+namespace HtmlForgeX.Examples.VisNetwork;
 
 /// <summary>
 /// Demonstrates the limited native HTML support in VisJS and shows best practices
