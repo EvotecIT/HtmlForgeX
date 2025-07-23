@@ -178,14 +178,38 @@ public class TablerDropdown : Element {
     public List<TablerDropdownItem> Items { get; set; } = new List<TablerDropdownItem>();
 
     /// <summary>Icon used for the dropdown trigger button.</summary>
-    public TablerIconElement TriggerIcon { get; set; }
+    public TablerIconElement TriggerIcon { get; set; } = new TablerIconElement(TablerIconType.DotsVertical);
 
     /// <summary>
-    /// Initializes or configures TablerDropdown.
+    /// Initializes a new instance of the <see cref="TablerDropdown"/> class.
     /// </summary>
+    public TablerDropdown() {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TablerDropdown"/> class with predefined items.
+    /// </summary>
+    /// <param name="items">Initial dropdown items.</param>
     public TablerDropdown(List<TablerDropdownItem> items) {
         Items = items;
-        TriggerIcon = new TablerIconElement(TablerIconType.DotsVertical);
+    }
+
+    /// <summary>Adds a clickable item to the dropdown.</summary>
+    public TablerDropdown AddItem(string text, string href = "#", bool isDanger = false) {
+        Items.Add(new TablerDropdownItem { Text = text, Href = href, IsDanger = isDanger });
+        return this;
+    }
+
+    /// <summary>Adds a divider to the dropdown.</summary>
+    public TablerDropdown AddDivider() {
+        Items.Add(new TablerDropdownItem { IsDivider = true });
+        return this;
+    }
+
+    /// <summary>Sets the icon used for the dropdown trigger.</summary>
+    public TablerDropdown Icon(TablerIconType icon) {
+        TriggerIcon = new TablerIconElement(icon);
+        return this;
     }
 
     /// <summary>
