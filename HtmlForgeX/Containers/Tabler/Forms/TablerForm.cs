@@ -140,6 +140,19 @@ public class TablerForm : Element {
     }
 
     /// <summary>
+    /// Adds a star rating element to the form.
+    /// </summary>
+    /// <param name="name">Name and identifier of the rating.</param>
+    /// <param name="config">Optional configuration callback.</param>
+    /// <returns>The created <see cref="TablerStarRating"/>.</returns>
+    public TablerStarRating StarRating(string name, Action<TablerStarRating>? config = null) {
+        var rating = new TablerStarRating(name);
+        config?.Invoke(rating);
+        this.Add(rating);
+        return rating;
+    }
+
+    /// <summary>
     /// Generates the HTML markup for the form and its child elements.
     /// </summary>
     public override string ToString() {

@@ -63,6 +63,7 @@ internal class Program {
         // Forms examples
         ExampleTablerForm.Create(openInBrowser);
         ExampleComprehensiveForm.Create(openInBrowser);
+        ExampleTablerStarRating.Create(openInBrowser);
 
         // Quill editor example
         BasicQuillEditor.Demo(openInBrowser);

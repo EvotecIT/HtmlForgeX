@@ -74,6 +74,8 @@ public enum Libraries {
     TomSelect,
     /// <summary>IMask input masking library.</summary>
     IMask,
+    /// <summary>Star rating component.</summary>
+    StarRating,
     /// <summary>PrismJS syntax highlighting library.</summary>
     PrismJs,
     /// <summary>PrismJS Dark theme.</summary>
@@ -241,6 +243,8 @@ public class LibrariesConverter {
             return new Resources.TomSelectLibrary();
         case Libraries.IMask:
             return new Resources.IMaskLibrary();
+        case Libraries.StarRating:
+            return new Resources.StarRatingLibrary();
         case Libraries.PrismJs:
             return new Resources.PrismJsLibrary();
         case Libraries.PrismJsDarkTheme:
