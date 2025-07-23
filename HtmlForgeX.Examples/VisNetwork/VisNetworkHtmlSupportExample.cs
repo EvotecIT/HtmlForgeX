@@ -17,21 +17,25 @@ internal class VisNetworkHtmlSupportExample {
 
         document.Body.Page(page => {
             page.H2("VisNetwork Native HTML Support");
-            page.Add(new HtmlTag("div", @"
-                <div class='alert alert-warning'>
-                    <h4>⚠️ Limited HTML Support in VisJS</h4>
-                    <p>VisJS has very limited native HTML support. Only these tags work:</p>
-                    <ul>
-                        <li><code>&lt;b&gt;</code> - Bold text</li>
-                        <li><code>&lt;i&gt;</code> - Italic text</li>
-                        <li><code>&lt;code&gt;</code> - Monospace text</li>
-                        <li><code>&lt;br&gt;</code> - Line breaks</li>
-                    </ul>
-                    <p>Other HTML tags like <code>&lt;span&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;u&gt;</code>, 
-                       <code>&lt;small&gt;</code>, etc. are <strong>NOT supported</strong> and will render as plain text.</p>
-                </div>
-            "));
-            
+            var warning = new TablerAlert("⚠️ Limited HTML Support in VisJS",
+                "VisJS has very limited native HTML support. Only these tags work:", TablerColor.Warning)
+                .WithDescription();
+
+            warning.Add(new UnorderedList()
+                .AddItem("<code>&lt;b&gt;</code> - Bold text", TablerIconType.InfoCircle)
+                .AddItem("<code>&lt;i&gt;</code> - Italic text", TablerIconType.InfoCircle)
+                .AddItem("<code>&lt;code&gt;</code> - Monospace text", TablerIconType.InfoCircle)
+                .AddItem("<code>&lt;br&gt;</code> - Line breaks", TablerIconType.InfoCircle));
+
+            warning.Add(new HtmlTag("p")
+                .Value("Other HTML tags like ")
+                .ValueRaw("<code>&lt;span&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;u&gt;</code>, <code>&lt;small&gt;</code>")
+                .Value(", etc. are ")
+                .Value(new HtmlTag("strong", "NOT supported"))
+                .Value(" and will render as plain text."));
+
+            page.Add(warning);
+
             page.LineBreak();
 
             // Example 1: What Works
@@ -263,22 +267,21 @@ internal class VisNetworkHtmlSupportExample {
                 network.AddEdge("web-server", "cache", edge => edge.WithArrows(arrows => arrows.WithTo().WithFrom()));
             });
 
-            // Add note about alternatives
-            page.Add(new HtmlTag("div", @"
-                <div class='alert alert-info mt-4'>
-                    <h4>💡 Need Full HTML Support?</h4>
-                    <p>If you need full HTML/CSS support in nodes, consider:</p>
-                    <ul>
-                        <li><strong>visjs-html-nodes plugin</strong> - Adds full HTML support but may impact performance</li>
-                        <li><strong>Custom node shapes</strong> - Use SVG or Canvas for complex visualizations</li>
-                        <li><strong>Node tooltips</strong> - Tooltips support full HTML and can show rich content on hover</li>
-                    </ul>
-                </div>
-            "));
+            // Add note about alternatives using fluent components (no raw HTML)
+            var alert = new TablerAlert("💡 Need Full HTML Support?",
+                "If you need full HTML/CSS support in nodes, consider:", TablerColor.Info)
+                .WithDescription();
+
+            alert.Add(new UnorderedList()
+                .AddItem("visjs-html-nodes plugin - Adds full HTML support but may impact performance", TablerIconType.InfoCircle)
+                .AddItem("Custom node shapes - Use SVG or Canvas for complex visualizations", TablerIconType.InfoCircle)
+                .AddItem("Node tooltips - Tooltips support full HTML and can show rich content on hover", TablerIconType.InfoCircle));
+
+            page.Add(alert);
         });
 
         document.Save("VisNetworkHtmlSupport.html", openInBrowser);
-        
+
         HelpersSpectre.Success("✅ VisNetwork HTML Support example created");
         HelpersSpectre.Success("📋 Demonstrates:");
         HelpersSpectre.Success("   • Native supported HTML tags (b, i, code, br)");

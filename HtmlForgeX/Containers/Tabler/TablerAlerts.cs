@@ -1,3 +1,7 @@
+using System.Linq;
+
+using HtmlForgeX.Extensions;
+
 namespace HtmlForgeX;
 
 /// <summary>
@@ -130,6 +134,9 @@ public class TablerAlert : Element {
             alertTag.Value(new HtmlTag("a").Class("btn-close").Attribute("data-bs-dismiss", "alert").Attribute("aria-label", "close"));
         }
 
+        foreach (var child in Children.WhereNotNull()) {
+            alertTag.Value(child);
+        }
 
         return alertTag.ToString();
     }

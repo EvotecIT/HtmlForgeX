@@ -40,4 +40,13 @@ public class TestTablerAlerts {
         StringAssert.Contains(html, "alert-heading");
         StringAssert.Contains(html, "alert-description");
     }
+
+    [TestMethod]
+    public void Alert_WithChildren_ShouldRenderThem() {
+        var alert = new TablerAlert("Test", "Message");
+        alert.Add(new UnorderedList().AddItem("Item", TablerIconType.InfoCircle));
+        var html = alert.ToString();
+        StringAssert.Contains(html, "<ul");
+        StringAssert.Contains(html, "Item");
+    }
 }
