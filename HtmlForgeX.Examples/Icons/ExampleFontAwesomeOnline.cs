@@ -1,12 +1,12 @@
 using System;
-using HtmlForgeX.Examples;
 
-namespace HtmlForgeX.Examples {
-    class TestFontAwesomeOnline {
-        static void Main() {
+namespace HtmlForgeX.Examples.Icons {
+    internal class ExampleFontAwesomeOnline {
+        public static void Create(bool openInBrowser = true) {
+            HelpersSpectre.PrintTitle("FontAwesome Online Mode Test");
             using var document = new Document {
-                Head = { 
-                    Title = "FontAwesome Online Mode Test", 
+                Head = {
+                    Title = "FontAwesome Online Mode Test",
                     Author = "HtmlForgeX"
                 },
                 LibraryMode = LibraryMode.Online,
@@ -23,7 +23,7 @@ namespace HtmlForgeX.Examples {
                 page.Icon(FontAwesomeSolid.Lock).WithSize(FontAwesomeSize.X2).WithColor(RGBColor.Red);
                 page.Text(" Lock Icon").LineBreak();
                 
-                page.Icon(FontAwesomeBrands.Github).WithSize(FontAwesomeSize.X3);
+                page.Icon(FontAwesomeBrands.GitHub).WithSize(FontAwesomeSize.X3);
                 page.Text(" GitHub Brand Icon").LineBreak();
                 
                 // Test in VisNetwork
@@ -43,8 +43,8 @@ namespace HtmlForgeX.Examples {
                 });
             });
 
-            document.Save("TestFontAwesomeOnline.html");
-            HelpersSpectre.Success("Test file created: TestFontAwesomeOnline.html");
+            document.Save("TestFontAwesomeOnline.html", openInBrowser);
+            HelpersSpectre.Success("FontAwesome Online Mode Test created successfully!");
         }
     }
 }
