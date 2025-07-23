@@ -152,8 +152,30 @@ public class VisNetworkHtmlNodesTests {
         Assert.IsTrue(html.Contains("Loading"), "Should contain progress bar label");
         Assert.IsTrue(html.Contains("75%"), "Should contain progress value");
         Assert.IsTrue(html.Contains("#ffc107"), "Should contain progress color");
-        
+
         // Verify proper escaping of HTML in JSON
         Assert.IsTrue(html.Contains("\\u003C") || html.Contains("<"), "HTML should be properly encoded");
+    }
+
+    [TestMethod]
+    public void VisNetwork_HtmlNodesLibrary_LoadOrder()
+    {
+        using var document = new Document();
+
+        document.Body.Add(element =>
+        {
+            element.DiagramNetwork(network =>
+            {
+                network.AddHtmlNode(new VisNetworkHtmlNode("node1")
+                    .WithCard("Title", "Body"));
+            });
+        });
+
+        _ = document.ToString();
+
+        Assert.IsTrue(document.Configuration.Libraries.TryGetValue(Libraries.VisNetwork, out var visWeight));
+        Assert.IsTrue(document.Configuration.Libraries.TryGetValue(Libraries.VisNetworkHtmlNodes, out var htmlWeight));
+        Assert.IsTrue(htmlWeight > visWeight, "HTML nodes library should load after VisNetwork");
+        Assert.AreEqual((byte)50, htmlWeight);
     }
 }
