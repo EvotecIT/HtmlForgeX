@@ -1,4 +1,3 @@
-using System.Reflection;
 using System.Text;
 using System.Text.Json;
 
@@ -9,6 +8,16 @@ public partial class VisNetwork : Element {
     private readonly List<VisNetworkEdgeOptions> _edges = new();
     private readonly List<VisNetworkHtmlNode> _htmlNodes = new();
     private VisNetworkOptions _options = new();
+    private static readonly Dictionary<string, Action<VisNetworkOptions, object>> _optionSetters =
+        new(StringComparer.OrdinalIgnoreCase) {
+            ["nodes"] = (opts, val) => opts.Nodes = ConvertValue<VisNetworkNodeGlobalOptions>(val),
+            ["edges"] = (opts, val) => opts.Edges = ConvertValue<VisNetworkEdgeGlobalOptions>(val),
+            ["physics"] = (opts, val) => opts.Physics = ConvertValue<VisNetworkPhysicsOptions>(val),
+            ["layout"] = (opts, val) => opts.Layout = ConvertValue<VisNetworkLayoutOptions>(val),
+            ["interaction"] = (opts, val) => opts.Interaction = ConvertValue<VisNetworkInteractionOptions>(val),
+            ["manipulation"] = (opts, val) => opts.Manipulation = ConvertValue<VisNetworkManipulationOptions>(val),
+            ["groups"] = (opts, val) => opts.Groups = ConvertValue<Dictionary<string, VisNetworkGroupOptions>>(val)
+        };
     private bool _enableLoadingBar;
     private string _id;
 
@@ -127,15 +136,15 @@ public partial class VisNetwork : Element {
     /// <param name="value">The option value</param>
     /// <returns>The current VisNetwork instance for method chaining</returns>
     public VisNetwork WithOptions(string key, object value) {
-        // Use reflection to set the appropriate property on _options
-        var property = _options.GetType().GetProperty(key, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-        if (property != null) {
-            // Convert anonymous type to JSON and back to target type for compatibility
-            var json = JsonSerializer.Serialize(value);
-            var convertedValue = JsonSerializer.Deserialize(json, property.PropertyType);
-            property.SetValue(_options, convertedValue);
+        if (_optionSetters.TryGetValue(key, out var setter)) {
+            setter(_options, value);
         }
         return this;
+    }
+
+    private static T? ConvertValue<T>(object value) {
+        var json = JsonSerializer.Serialize(value);
+        return JsonSerializer.Deserialize<T>(json);
     }
 
 
