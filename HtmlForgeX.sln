@@ -51,6 +51,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF74206F-ECF1-4E9A-9EE5-3CB118C741EE}
-		FileExplorer = |..\PSWriteHTML\
 	EndGlobalSection
 EndGlobal
