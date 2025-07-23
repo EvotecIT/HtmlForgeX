@@ -9,7 +9,7 @@ namespace HtmlForgeX;
 /// Shared utility for image embedding functionality
 /// Used by both EmailImage and TablerCardImage to avoid code duplication
 /// </summary>
-public static class ImageEmbeddingHelper {
+public static class ImageEmbedding {
 
     /// <summary>
     /// Embeds an image from a file path as base64
@@ -17,8 +17,19 @@ public static class ImageEmbeddingHelper {
     /// <param name="filePath">Path to the image file</param>
     /// <param name="maxFileSize">Maximum file size allowed for embedding (0 = no limit)</param>
     /// <param name="logWarnings">Whether to log warnings to console</param>
+    /// <param name="optimize">Whether to optimize the image before encoding</param>
+    /// <param name="maxWidth">Maximum width used when optimizing</param>
+    /// <param name="maxHeight">Maximum height used when optimizing</param>
+    /// <param name="quality">JPEG quality used for optimization</param>
     /// <returns>ImageEmbeddingResult containing the embedding data or error info</returns>
-    public static ImageEmbeddingResult EmbedFromFile(string filePath, long maxFileSize = 0, bool logWarnings = false) {
+    public static ImageEmbeddingResult EmbedFromFile(
+        string filePath,
+        long maxFileSize = 0,
+        bool logWarnings = false,
+        bool optimize = false,
+        int maxWidth = 0,
+        int maxHeight = 0,
+        int quality = 85) {
         try {
             if (!File.Exists(filePath)) {
                 return ImageEmbeddingResult.CreateFailure("File not found: " + filePath);
@@ -35,7 +46,7 @@ public static class ImageEmbeddingHelper {
                 return ImageEmbeddingResult.CreateFailure(message);
             }
 
-            var (bytes, mimeType) = ImageUtilities.LoadImageFromFile(filePath);
+            var (bytes, mimeType) = ImageUtilities.LoadImageFromFile(filePath, optimize, maxWidth, maxHeight, quality);
             var base64Data = Convert.ToBase64String(bytes);
 
             return ImageEmbeddingResult.CreateSuccess(base64Data, mimeType);
@@ -55,9 +66,21 @@ public static class ImageEmbeddingHelper {
     /// <param name="timeoutSeconds">Timeout for the download</param>
     /// <param name="maxFileSize">Maximum file size allowed for embedding (0 = no limit)</param>
     /// <param name="logWarnings">Whether to log warnings to console</param>
+    /// <param name="optimize">Whether to optimize the image before encoding</param>
+    /// <param name="maxWidth">Maximum width used when optimizing</param>
+    /// <param name="maxHeight">Maximum height used when optimizing</param>
+    /// <param name="quality">JPEG quality used for optimization</param>
     /// <returns>ImageEmbeddingResult containing the embedding data or error info</returns>
-    public static ImageEmbeddingResult EmbedFromUrl(string url, int timeoutSeconds = 30, long maxFileSize = 0, bool logWarnings = false) =>
-        EmbedFromUrlAsync(url, timeoutSeconds, maxFileSize, logWarnings).GetAwaiter().GetResult();
+    public static ImageEmbeddingResult EmbedFromUrl(
+        string url,
+        int timeoutSeconds = 30,
+        long maxFileSize = 0,
+        bool logWarnings = false,
+        bool optimize = false,
+        int maxWidth = 0,
+        int maxHeight = 0,
+        int quality = 85) =>
+        EmbedFromUrlAsync(url, timeoutSeconds, maxFileSize, logWarnings, optimize, maxWidth, maxHeight, quality).GetAwaiter().GetResult();
 
     /// <summary>
     /// Asynchronously embeds an image from a URL as base64
@@ -66,8 +89,20 @@ public static class ImageEmbeddingHelper {
     /// <param name="timeoutSeconds">Timeout for the download</param>
     /// <param name="maxFileSize">Maximum file size allowed for embedding (0 = no limit)</param>
     /// <param name="logWarnings">Whether to log warnings to console</param>
+    /// <param name="optimize">Whether to optimize the image before encoding</param>
+    /// <param name="maxWidth">Maximum width used when optimizing</param>
+    /// <param name="maxHeight">Maximum height used when optimizing</param>
+    /// <param name="quality">JPEG quality used for optimization</param>
     /// <returns>ImageEmbeddingResult containing the embedding data or error info</returns>
-    public static async Task<ImageEmbeddingResult> EmbedFromUrlAsync(string url, int timeoutSeconds = 30, long maxFileSize = 0, bool logWarnings = false) {
+    public static async Task<ImageEmbeddingResult> EmbedFromUrlAsync(
+        string url,
+        int timeoutSeconds = 30,
+        long maxFileSize = 0,
+        bool logWarnings = false,
+        bool optimize = false,
+        int maxWidth = 0,
+        int maxHeight = 0,
+        int quality = 85) {
         try {
             var download = await ImageUtilities.DownloadImageAsync(url, timeoutSeconds).ConfigureAwait(false);
             if (download is null) {
@@ -82,6 +117,11 @@ public static class ImageEmbeddingHelper {
                     Console.WriteLine("Warning: " + message + ". Using direct URL.");
                 }
                 return ImageEmbeddingResult.CreateFailure(message);
+            }
+
+            if (optimize) {
+                var extension = ImageUtilities.GetExtensionFromMimeType(mimeType);
+                bytes = ImageUtilities.OptimizeImageBytes(bytes, extension, maxWidth, maxHeight, quality);
             }
 
             // 'mimeType' already determined by DownloadImage
@@ -104,8 +144,20 @@ public static class ImageEmbeddingHelper {
     /// <param name="timeoutSeconds">Timeout for URL downloads</param>
     /// <param name="maxFileSize">Maximum file size allowed for embedding (0 = no limit)</param>
     /// <param name="logWarnings">Whether to log warnings to console</param>
+    /// <param name="optimize">Whether to optimize the image before encoding</param>
+    /// <param name="maxWidth">Maximum width used when optimizing</param>
+    /// <param name="maxHeight">Maximum height used when optimizing</param>
+    /// <param name="quality">JPEG quality used for optimization</param>
     /// <returns>ImageEmbeddingResult containing the embedding data or error info</returns>
-    public static ImageEmbeddingResult EmbedSmart(string source, int timeoutSeconds = 30, long maxFileSize = 0, bool logWarnings = false) {
+    public static ImageEmbeddingResult EmbedSmart(
+        string source,
+        int timeoutSeconds = 30,
+        long maxFileSize = 0,
+        bool logWarnings = false,
+        bool optimize = false,
+        int maxWidth = 0,
+        int maxHeight = 0,
+        int quality = 85) {
         if (string.IsNullOrEmpty(source)) {
             return ImageEmbeddingResult.CreateFailure("Source is null or empty");
         }
@@ -113,12 +165,12 @@ public static class ImageEmbeddingHelper {
         // Check if it's a URL
         if (Uri.TryCreate(source, UriKind.Absolute, out Uri? uri) &&
            (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)) {
-            return EmbedFromUrl(source, timeoutSeconds, maxFileSize, logWarnings);
+            return EmbedFromUrl(source, timeoutSeconds, maxFileSize, logWarnings, optimize, maxWidth, maxHeight, quality);
         }
 
         // Check if it's a file path
         if (File.Exists(source)) {
-            return EmbedFromFile(source, maxFileSize, logWarnings);
+            return EmbedFromFile(source, maxFileSize, logWarnings, optimize, maxWidth, maxHeight, quality);
         }
 
         return ImageEmbeddingResult.CreateFailure("Source is neither a valid URL nor an existing file: " + source);

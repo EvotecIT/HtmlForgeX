@@ -60,28 +60,8 @@ public partial class VisNetwork {
             return source;
         }
 
-        try {
-            byte[] bytes;
-            string mimeType;
-
-            if (Uri.TryCreate(source, UriKind.Absolute, out var uri) && 
-                (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)) {
-                var download = ImageUtilities.DownloadImage(source, timeoutSeconds);
-                if (download is null) {
-                    return source;
-                }
-                (bytes, mimeType) = download.Value;
-            } else if (File.Exists(source)) {
-                (bytes, mimeType) = ImageUtilities.LoadImageFromFile(source);
-            } else {
-                return source;
-            }
-
-            var base64 = Convert.ToBase64String(bytes);
-            return $"data:{mimeType};base64,{base64}";
-        } catch {
-            return source;
-        }
+        var result = ImageEmbedding.EmbedSmart(source, timeoutSeconds);
+        return result.Success ? $"data:{result.MimeType};base64,{result.Base64Data}" : source;
     }
 
     #region Clustering Methods
