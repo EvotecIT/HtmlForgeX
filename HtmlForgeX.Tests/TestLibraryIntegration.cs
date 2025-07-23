@@ -13,8 +13,8 @@ public class TestLibraryIntegration {
             }
         };
 
-        GlobalStorage.LibraryMode = LibraryMode.Online;
         using var doc = new Document();
+        doc.LibraryMode = LibraryMode.Online;
         var added = doc.AddLibrary(customLibrary);
         var html = doc.ToString();
 
