@@ -400,15 +400,15 @@ public static class ColorExtensions {
         return "#000000";
     }
 
-    private static readonly IReadOnlyDictionary<TablerColor, string> HexMap = Enum
-        .GetValues<TablerColor>()
-        .Select(value => new {
-            Value = value,
-            Hex = typeof(TablerColor)
-                .GetField(value.ToString())?
-                .GetCustomAttribute<HexColorAttribute>()?
-                .Hex
-        })
-        .Where(x => x.Hex is not null)
-        .ToDictionary(x => x.Value, x => x.Hex!);
+    private static readonly IReadOnlyDictionary<TablerColor, string> HexMap =
+        ((TablerColor[])Enum.GetValues(typeof(TablerColor)))
+            .Select(value => new {
+                Value = value,
+                Hex = typeof(TablerColor)
+                    .GetField(value.ToString())?
+                    .GetCustomAttribute<HexColorAttribute>()?
+                    .Hex
+            })
+            .Where(x => x.Hex is not null)
+            .ToDictionary(x => x.Value, x => x.Hex!);
 }

@@ -18,7 +18,7 @@ public class TestTablerColorHex {
 
     [TestMethod]
     public void TablerColorToHex_AllColorsHaveAttributes() {
-        foreach (var color in Enum.GetValues<TablerColor>()) {
+        foreach (var color in (TablerColor[])Enum.GetValues(typeof(TablerColor))) {
             var field = typeof(TablerColor).GetField(color.ToString());
             var attr = field?.GetCustomAttribute<HexColorAttribute>();
             Assert.IsNotNull(attr, $"Missing HexColorAttribute for {color}");
