@@ -58,7 +58,8 @@ public class TablerStarRating : Element {
             select.Value(option);
         }
 
-        var lines = new List<string> {
+        var lines = new List<string>
+        {
             $"document.addEventListener('DOMContentLoaded', function(){{",
             $"    new StarRating('#{_id}', {{ maxStars: {_maxStars} }});"
         };
@@ -66,7 +67,7 @@ public class TablerStarRating : Element {
             lines.Add($"    document.getElementById('{_id}').addEventListener('change', {_onChange});");
         }
         lines.Add("});");
-        var script = new HtmlTag("script").Value(string.Join('\n', lines));
+        var script = new HtmlTag("script").Value(string.Join(Environment.NewLine, lines));
         return select.ToString() + script.ToString();
     }
 }
