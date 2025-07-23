@@ -257,15 +257,6 @@ element.ColorPicker(picker => {
 });
 ```
 
-### 16. Countdown/Timer (`TablerCountdown`)
-```csharp
-// Proposed API
-element.Countdown(countdown => {
-    countdown.EndTime(DateTime.Now.AddHours(24))
-             .Format("DD:HH:MM:SS")
-             .OnComplete("handleCountdownComplete");
-});
-```
 
 ## Phase 6: Enhancement of Existing Components
 

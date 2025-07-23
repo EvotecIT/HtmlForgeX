@@ -437,4 +437,16 @@ public abstract partial class Element {
         this.Add(smartWizard);
         return smartWizard;
     }
+
+    /// <summary>
+    /// Adds and configures a countdown timer element.
+    /// </summary>
+    /// <param name="config">Optional configuration action.</param>
+    /// <returns>The created <see cref="TablerCountdown"/>.</returns>
+    public TablerCountdown Countdown(Action<TablerCountdown>? config = null) {
+        var countdown = new TablerCountdown();
+        config?.Invoke(countdown);
+        this.Add(countdown);
+        return countdown;
+    }
 }
