@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace HtmlForgeX;
@@ -35,21 +34,11 @@ public static class ImageEmbedding {
                 return ImageEmbeddingResult.CreateFailure("File not found: " + filePath);
             }
 
-            var fileInfo = new FileInfo(filePath);
+            var bytes = ImageUtilities.LoadImageBytes(filePath);
+            var extension = Path.GetExtension(filePath);
+            var mimeType = ImageUtilities.GetMimeTypeFromExtension(extension);
 
-            // Check file size if limit is specified
-            if (maxFileSize > 0 && fileInfo.Length > maxFileSize) {
-                var message = "File " + filePath + " (" + fileInfo.Length + " bytes) exceeds maximum embed size (" + maxFileSize + " bytes)";
-                if (logWarnings) {
-                    Console.WriteLine("Warning: " + message + ". Using direct path.");
-                }
-                return ImageEmbeddingResult.CreateFailure(message);
-            }
-
-            var (bytes, mimeType) = ImageUtilities.LoadImageFromFile(filePath, optimize, maxWidth, maxHeight, quality);
-            var base64Data = Convert.ToBase64String(bytes);
-
-            return ImageEmbeddingResult.CreateSuccess(base64Data, mimeType);
+            return ProcessBytes(bytes, mimeType, "File " + filePath, maxFileSize, logWarnings, optimize, maxWidth, maxHeight, quality);
         } catch (Exception ex) {
             var message = "Failed to embed image " + filePath + ": " + ex.Message;
             if (logWarnings) {
@@ -110,24 +99,7 @@ public static class ImageEmbedding {
             }
             var (bytes, mimeType) = download.Value;
 
-            // Check file size if limit is specified
-            if (maxFileSize > 0 && bytes.Length > maxFileSize) {
-                var message = "URL " + url + " content (" + bytes.Length + " bytes) exceeds maximum embed size (" + maxFileSize + " bytes)";
-                if (logWarnings) {
-                    Console.WriteLine("Warning: " + message + ". Using direct URL.");
-                }
-                return ImageEmbeddingResult.CreateFailure(message);
-            }
-
-            if (optimize) {
-                var extension = ImageUtilities.GetExtensionFromMimeType(mimeType);
-                bytes = ImageUtilities.OptimizeImageBytes(bytes, extension, maxWidth, maxHeight, quality);
-            }
-
-            // 'mimeType' already determined by DownloadImage
-            var base64Data = Convert.ToBase64String(bytes);
-
-            return ImageEmbeddingResult.CreateSuccess(base64Data, mimeType);
+            return ProcessBytes(bytes, mimeType, "URL " + url, maxFileSize, logWarnings, optimize, maxWidth, maxHeight, quality);
         } catch (Exception ex) {
             var message = "Failed to embed image from URL " + url + ": " + ex.Message;
             if (logWarnings) {
@@ -191,6 +163,33 @@ public static string GetMimeTypeFromExtension(string extension) =>
     /// <returns>MIME type string</returns>
 public static string GetMimeTypeFromUrl(string url) =>
     ImageUtilities.GetMimeTypeFromUrl(url);
+
+    private static ImageEmbeddingResult ProcessBytes(
+        byte[] bytes,
+        string mimeType,
+        string context,
+        long maxFileSize,
+        bool logWarnings,
+        bool optimize,
+        int maxWidth,
+        int maxHeight,
+        int quality) {
+        if (maxFileSize > 0 && bytes.Length > maxFileSize) {
+            var message = context + " (" + bytes.Length + " bytes) exceeds maximum embed size (" + maxFileSize + " bytes)";
+            if (logWarnings) {
+                Console.WriteLine("Warning: " + message + ". Using direct source.");
+            }
+            return ImageEmbeddingResult.CreateFailure(message);
+        }
+
+        if (optimize) {
+            var ext = ImageUtilities.GetExtensionFromMimeType(mimeType);
+            bytes = ImageUtilities.OptimizeImageBytes(bytes, ext, maxWidth, maxHeight, quality);
+        }
+
+        var base64Data = Convert.ToBase64String(bytes);
+        return ImageEmbeddingResult.CreateSuccess(base64Data, mimeType);
+    }
 }
 
 /// <summary>
