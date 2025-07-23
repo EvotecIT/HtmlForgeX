@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Playwright;
+using HtmlTinkerX;
 
 namespace HtmlForgeX.Tests;
 
@@ -22,8 +23,16 @@ public class TestHeadlessRendering {
         doc.Body.Add(new HtmlTag("h1", "Hello world!"));
         doc.Save(htmlPath);
 
+        await HtmlBrowser.EnsureInstalledAsync(HtmlBrowserEngine.Chromium);
         using var playwright = await Playwright.CreateAsync();
-        await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
+        IBrowser? browser;
+        try {
+            browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true });
+        } catch (PlaywrightException ex) {
+            Assert.Inconclusive($"Playwright is unavailable: {ex.Message}");
+            return;
+        }
+        await using var _ = browser;
         var page = await browser.NewPageAsync();
         await page.GotoAsync(new Uri(htmlPath).AbsoluteUri);
         await page.SetViewportSizeAsync(800, 600);

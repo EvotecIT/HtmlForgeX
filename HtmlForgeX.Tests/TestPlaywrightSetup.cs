@@ -1,6 +1,6 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Playwright;
+using HtmlTinkerX;
 
 namespace HtmlForgeX.Tests;
 
@@ -9,7 +9,7 @@ public static class TestPlaywrightSetup {
     [AssemblyInitialize]
     public static void AssemblyInit(TestContext context) {
         try {
-            Microsoft.Playwright.Program.Main(new[] { "install" });
+            HtmlBrowser.EnsureInstalledAsync(HtmlBrowserEngine.Chromium).GetAwaiter().GetResult();
         } catch (Exception ex) {
             Assert.Inconclusive($"Playwright browser install failed: {ex.Message}");
         }
