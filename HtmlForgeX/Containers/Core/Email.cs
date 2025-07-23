@@ -433,6 +433,6 @@ public class Email : Element {
     /// </summary>
     /// <param name="library">Library identifier.</param>
     public void AddLibrary(EmailLibraries library) {
-        // TODO: Implement email library management
+        Configuration.Email.Libraries.TryAdd(library, 0);
     }
 }
