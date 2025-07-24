@@ -175,28 +175,28 @@ internal class Program {
         ChartsApexComprehensiveDemo.Demo(openInBrowser);
 
         // VisNetwork images demo
-        VisNetworkBasicDemo.Demo(true);
-        VisNetworkAdvancedDemo.Demo(true);
-        VisNetworkPhysicsExamples.Demo(true);
-        VisNetworkLayoutExamples.Demo(true);
-        VisNetworkNodeStylingExamples.Demo(true);
-        VisNetworkEdgeManipulationExamples.Demo(true);
-        VisNetworkInteractionExamples.Demo(true);
-        VisNetworkImprovementsDemo.Create(true);
-        VisNetworkMultiLineLabelDemo.Create(true);
-        VisNetworkGradientEdgesDemo.Create(true);
-        VisNetworkEventsDemo.Create(true);
-        VisNetworkClusteringDemo.Create(true);
-        VisNetworkMethodsDemo.Create(true);
-        VisNetworkExportImportDemo.Create(true);
-        VisNetworkCustomShapesDemo.Create(true);
-        VisNetworkAdvancedFeaturesDemo.Create(true);
+        VisNetworkBasicDemo.Demo(openInBrowser);
+        VisNetworkAdvancedDemo.Demo(openInBrowser);
+        VisNetworkPhysicsExamples.Demo(openInBrowser);
+        VisNetworkLayoutExamples.Demo(openInBrowser);
+        VisNetworkNodeStylingExamples.Demo(openInBrowser);
+        VisNetworkEdgeManipulationExamples.Demo(openInBrowser);
+        VisNetworkInteractionExamples.Demo(openInBrowser);
+        VisNetworkImprovementsDemo.Create(openInBrowser);
+        VisNetworkMultiLineLabelDemo.Create(openInBrowser);
+        VisNetworkGradientEdgesDemo.Create(openInBrowser);
+        VisNetworkEventsDemo.Create(openInBrowser);
+        VisNetworkClusteringDemo.Create(openInBrowser);
+        VisNetworkMethodsDemo.Create(openInBrowser);
+        VisNetworkExportImportDemo.Create(openInBrowser);
+        VisNetworkCustomShapesDemo.Create(openInBrowser);
+        VisNetworkAdvancedFeaturesDemo.Create(openInBrowser);
 
         // VisNetwork HTML Nodes example (with visjs-html-nodes plugin)
-        VisNetworkExamples.VisNetworkHtmlNodesExample.Run(true);
+        VisNetworkExamples.VisNetworkHtmlNodesExample.Run(openInBrowser);
 
         // VisNetwork Advanced Labels example (HTML tooltips, \n line breaks, markdown)
-        VisNetworkAdvancedLabelsExample.Run(true);
+        VisNetworkAdvancedLabelsExample.Run(openInBrowser);
 
         // Table examples
         DataTablesQuickStart.Create(openInBrowser);
