@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example demonstrating the LAYOUT email pattern - structured rows and columns.
 /// This matches the PowerShell EmailLayout pattern with EmailLayoutRow/EmailLayoutColumn.
 /// </summary>
-public static class EmailLayoutPattern
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailLayoutPattern {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating layout email pattern example (like PowerShell EmailLayout)...");
 
         var email = new Email();

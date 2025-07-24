@@ -6,11 +6,9 @@ namespace HtmlForgeX.Tests;
 /// Ensures that nested elements keep a reference to the parent document.
 /// </summary>
 [TestClass]
-public class TestDocumentReferencePropagation
-{
+public class TestDocumentReferencePropagation {
     [TestMethod]
-    public void Element_Add_ShouldPropagate_DocumentReference()
-    {
+    public void Element_Add_ShouldPropagate_DocumentReference() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
         var parentElement = new TablerPage();
@@ -28,8 +26,7 @@ public class TestDocumentReferencePropagation
     }
 
     [TestMethod]
-    public void Element_Add_ShouldPropagate_EmailReference()
-    {
+    public void Element_Add_ShouldPropagate_EmailReference() {
         // Arrange
         var email = new Email();
         var parentElement = new EmailBox();
@@ -47,8 +44,7 @@ public class TestDocumentReferencePropagation
     }
 
     [TestMethod]
-    public void DeepNesting_ShouldPropagate_DocumentReference()
-    {
+    public void DeepNesting_ShouldPropagate_DocumentReference() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
@@ -70,26 +66,21 @@ public class TestDocumentReferencePropagation
     }
 
     [TestMethod]
-    public void ConfigDelegate_ShouldHave_DocumentReference()
-    {
+    public void ConfigDelegate_ShouldHave_DocumentReference() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
 
         // Act
-        document.Body.Page(page =>
-        {
+        document.Body.Page(page => {
             Assert.AreSame(document, page.Document, "Page config should have Document reference");
 
-            page.Row(row =>
-            {
+            page.Row(row => {
                 Assert.AreSame(document, row.Document, "Row config should have Document reference");
 
-                row.Column(TablerColumnNumber.Twelve, column =>
-                {
+                row.Column(TablerColumnNumber.Twelve, column => {
                     Assert.AreSame(document, column.Document, "Column config should have Document reference");
 
-                    column.Card(card =>
-                    {
+                    column.Card(card => {
                         Assert.AreSame(document, card.Document, "Card config should have Document reference");
                     });
                 });
@@ -98,8 +89,7 @@ public class TestDocumentReferencePropagation
     }
 
     [TestMethod]
-    public void FluentAPI_ShouldPropagate_DocumentReference()
-    {
+    public void FluentAPI_ShouldPropagate_DocumentReference() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
         var data = new[] { new { Name = "Test", Value = 123 } };
@@ -133,8 +123,7 @@ public class TestDocumentReferencePropagation
     }
 
     [TestMethod]
-    public void Element_WithoutDocumentReference_ShouldNotRegisterLibraries()
-    {
+    public void Element_WithoutDocumentReference_ShouldNotRegisterLibraries() {
         // Arrange
         var page = new TablerPage();
         var card = new TablerCard();
@@ -157,8 +146,7 @@ public class TestDocumentReferencePropagation
     }
 
     [TestMethod]
-    public void RegressionTest_ComponentHtmlContainer01_ShouldWork()
-    {
+    public void RegressionTest_ComponentHtmlContainer01_ShouldWork() {
         // Arrange - Simulate the exact scenario from ComponentHtmlContainer01
         using var document = new Document {
             LibraryMode = LibraryMode.Online,
@@ -219,12 +207,10 @@ public class TestDocumentReferencePropagation
         Assert.IsTrue(dataTablesCount >= 2, $"Should have multiple DataTables references, got {dataTablesCount}");
     }
 
-    private static int CountOccurrences(string text, string pattern)
-    {
+    private static int CountOccurrences(string text, string pattern) {
         int count = 0;
         int index = 0;
-        while ((index = text.IndexOf(pattern, index, StringComparison.OrdinalIgnoreCase)) != -1)
-        {
+        while ((index = text.IndexOf(pattern, index, StringComparison.OrdinalIgnoreCase)) != -1) {
             count++;
             index += pattern.Length;
         }

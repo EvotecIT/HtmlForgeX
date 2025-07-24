@@ -7,8 +7,8 @@ public class VisNetworkGradientEdgesDemo {
         HelpersSpectre.PrintTitle("VisNetwork Gradient Edge Colors Demo");
 
         using var document = new Document {
-            Head = { 
-                Title = "VisNetwork - Gradient Edge Colors Demo", 
+            Head = {
+                Title = "VisNetwork - Gradient Edge Colors Demo",
                 Author = "HtmlForgeX"
             },
             LibraryMode = LibraryMode.Online,
@@ -18,11 +18,11 @@ public class VisNetworkGradientEdgesDemo {
         document.Body.Page(page => {
             page.H1("VisNetwork Gradient Edge Colors Demo");
             page.Text("This example demonstrates gradient edge colors with various configurations including color inheritance.");
-            
+
             // Section 1: Basic Gradient Edges
             page.H2("1. Basic Gradient Edges");
             page.Text("Edges can have gradient colors that transition from one color to another.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("basicGradient")
@@ -36,21 +36,21 @@ public class VisNetworkGradientEdgesDemo {
                     .WithColor(RGBColor.Red)
                     .WithPosition(0, 0)
                 );
-                
+
                 network.AddNode(2, node => node
                     .WithLabel("Blue Node")
                     .WithShape(VisNetworkNodeShape.Box)
                     .WithColor(RGBColor.Blue)
                     .WithPosition(200, 0)
                 );
-                
+
                 network.AddNode(3, node => node
                     .WithLabel("Green Node")
                     .WithShape(VisNetworkNodeShape.Box)
                     .WithColor(RGBColor.Green)
                     .WithPosition(100, 150)
                 );
-                
+
                 // Add gradient edges
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection(1, 2)
@@ -58,14 +58,14 @@ public class VisNetworkGradientEdgesDemo {
                     .WithGradientColor(RGBColor.Red, RGBColor.Blue)
                     .WithWidth(3)
                 );
-                
+
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection(2, 3)
                     .WithLabel("Blue to Green Gradient")
                     .WithGradientColor(RGBColor.Blue, RGBColor.Green)
                     .WithWidth(3)
                 );
-                
+
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection(3, 1)
                     .WithLabel("Green to Red Gradient")
@@ -77,7 +77,7 @@ public class VisNetworkGradientEdgesDemo {
             // Section 2: Color Inheritance
             page.H2("2. Color Inheritance");
             page.Text("Edges can inherit colors from connected nodes using the VisNetworkColorInherit enum.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("colorInheritance")
@@ -91,28 +91,28 @@ public class VisNetworkGradientEdgesDemo {
                     .WithColor(RGBColor.Orange)
                     .WithPosition(-150, 0)
                 );
-                
+
                 network.AddNode("B", node => node
                     .WithLabel("Purple Node")
                     .WithShape(VisNetworkNodeShape.Circle)
                     .WithColor(RGBColor.Purple)
                     .WithPosition(0, -100)
                 );
-                
+
                 network.AddNode("C", node => node
                     .WithLabel("Cyan Node")
                     .WithShape(VisNetworkNodeShape.Circle)
                     .WithColor(RGBColor.Cyan)
                     .WithPosition(150, 0)
                 );
-                
+
                 network.AddNode("D", node => node
                     .WithLabel("Yellow Node")
                     .WithShape(VisNetworkNodeShape.Circle)
                     .WithColor(RGBColor.Yellow)
                     .WithPosition(0, 100)
                 );
-                
+
                 // Edges with different inheritance settings
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection("A", "B")
@@ -123,7 +123,7 @@ public class VisNetworkGradientEdgesDemo {
                     .WithWidth(4)
                     .WithArrows(arrowOptions => arrowOptions.WithTo())
                 );
-                
+
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection("B", "C")
                     .WithLabel("Inherit To")
@@ -133,7 +133,7 @@ public class VisNetworkGradientEdgesDemo {
                     .WithWidth(4)
                     .WithArrows(arrowOptions => arrowOptions.WithTo())
                 );
-                
+
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection("C", "D")
                     .WithLabel("Inherit Both")
@@ -143,7 +143,7 @@ public class VisNetworkGradientEdgesDemo {
                     .WithWidth(4)
                     .WithArrows(arrowOptions => arrowOptions.WithTo())
                 );
-                
+
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection("D", "A")
                     .WithLabel("No Inheritance")
@@ -159,7 +159,7 @@ public class VisNetworkGradientEdgesDemo {
             // Section 3: Complex Gradient with Styling
             page.H2("3. Complex Edge Styling with Gradients");
             page.Text("Combining gradients with other edge styling options creates visually rich networks.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("complexGradients")
@@ -174,26 +174,26 @@ public class VisNetworkGradientEdgesDemo {
                     .WithSize(30)
                     .WithPosition(0, 0)
                 );
-                
+
                 // Create surrounding nodes in a circle
-                var colors = new[] { 
-                    RGBColor.Red, RGBColor.Orange, RGBColor.Yellow, 
-                    RGBColor.Green, RGBColor.Blue, RGBColor.Indigo, 
-                    RGBColor.Violet, RGBColor.Pink 
+                var colors = new[] {
+                    RGBColor.Red, RGBColor.Orange, RGBColor.Yellow,
+                    RGBColor.Green, RGBColor.Blue, RGBColor.Indigo,
+                    RGBColor.Violet, RGBColor.Pink
                 };
-                
+
                 for (int i = 0; i < 8; i++) {
                     var angle = (i * Math.PI * 2) / 8;
                     var x = Math.Cos(angle) * 150;
                     var y = Math.Sin(angle) * 150;
-                    
+
                     network.AddNode($"node{i}", node => node
                         .WithLabel($"Node {i + 1}")
                         .WithShape(VisNetworkNodeShape.Dot)
                         .WithColor(colors[i])
                         .WithPosition(x, y)
                     );
-                    
+
                     // Add gradient edge from hub to node
                     network.AddEdge(new VisNetworkEdgeOptions()
                         .WithConnection("hub", $"node{i}")
@@ -213,7 +213,7 @@ public class VisNetworkGradientEdgesDemo {
                         )
                     );
                 }
-                
+
                 // Add some interconnections with different styles
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection("node0", "node4")
@@ -222,14 +222,14 @@ public class VisNetworkGradientEdgesDemo {
                     .WithDashes(VisNetworkDashPattern.ShortDash)
                     .WithWidth(2)
                 );
-                
+
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection("node2", "node6")
                     .WithLabel("Wide Gradient")
                     .WithGradientColor(colors[2], colors[6])
                     .WithWidth(5, 8, 10) // width, hoverWidth, selectionWidth
                 );
-                
+
                 // Enable interaction
                 network.WithOptions(options => options
                     .WithInteraction(interaction => interaction
@@ -243,7 +243,7 @@ public class VisNetworkGradientEdgesDemo {
             // Section 4: Gradients with Opacity
             page.H2("4. Gradients with Opacity");
             page.Text("Edge gradients can have varying opacity levels for subtle visual effects.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("gradientOpacity")
@@ -259,7 +259,7 @@ public class VisNetworkGradientEdgesDemo {
                         .WithPosition((i - 2.5) * 100, 0)
                     );
                 }
-                
+
                 // Add edges with different opacities
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection(1, 2)
@@ -270,7 +270,7 @@ public class VisNetworkGradientEdgesDemo {
                     )
                     .WithWidth(5)
                 );
-                
+
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection(2, 3)
                     .WithLabel("Opacity 0.5")
@@ -280,7 +280,7 @@ public class VisNetworkGradientEdgesDemo {
                     )
                     .WithWidth(5)
                 );
-                
+
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection(3, 4)
                     .WithLabel("Opacity 0.2")
@@ -290,7 +290,7 @@ public class VisNetworkGradientEdgesDemo {
                     )
                     .WithWidth(5)
                 );
-                
+
                 // Add a self-referencing edge with gradient
                 network.AddEdge(new VisNetworkEdgeOptions()
                     .WithConnection(2, 2)

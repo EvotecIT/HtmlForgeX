@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example demonstrating comprehensive dark mode support in HtmlForgeX emails.
 /// Shows how dark mode affects all components: text, buttons, tables, backgrounds, etc.
 /// </summary>
-public static class EmailDarkMode
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailDarkMode {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating dark mode email example...");
 
         // Create email with dark mode enabled
@@ -101,29 +99,29 @@ public static class EmailDarkMode
             emailBox.EmailRow(row => {
                 row.SetColumnSpacing("16px");
 
-                                 row.EmailColumn(col => {
-                     col.SetWidth("33.33%");
-                     var primaryButton = new EmailButton("Primary Action", "https://evotec.xyz")
-                         .SetStyle(EmailButtonStyle.Primary)
-                         .SetSize(EmailButtonSize.Medium);
-                     col.Add(primaryButton);
-                 });
+                row.EmailColumn(col => {
+                    col.SetWidth("33.33%");
+                    var primaryButton = new EmailButton("Primary Action", "https://evotec.xyz")
+                        .SetStyle(EmailButtonStyle.Primary)
+                        .SetSize(EmailButtonSize.Medium);
+                    col.Add(primaryButton);
+                });
 
-                 row.EmailColumn(col => {
-                     col.SetWidth("33.33%");
-                     var secondaryButton = new EmailButton("Secondary", "https://evotec.xyz")
-                         .SetStyle(EmailButtonStyle.Secondary)
-                         .SetSize(EmailButtonSize.Medium);
-                     col.Add(secondaryButton);
-                 });
+                row.EmailColumn(col => {
+                    col.SetWidth("33.33%");
+                    var secondaryButton = new EmailButton("Secondary", "https://evotec.xyz")
+                        .SetStyle(EmailButtonStyle.Secondary)
+                        .SetSize(EmailButtonSize.Medium);
+                    col.Add(secondaryButton);
+                });
 
-                 row.EmailColumn(col => {
-                     col.SetWidth("33.33%");
-                     var successButton = new EmailButton("Success", "https://evotec.xyz")
-                         .SetStyle(EmailButtonStyle.Success)
-                         .SetSize(EmailButtonSize.Medium);
-                     col.Add(successButton);
-                 });
+                row.EmailColumn(col => {
+                    col.SetWidth("33.33%");
+                    var successButton = new EmailButton("Success", "https://evotec.xyz")
+                        .SetStyle(EmailButtonStyle.Success)
+                        .SetSize(EmailButtonSize.Medium);
+                    col.Add(successButton);
+                });
             });
 
             // Link demonstration
@@ -393,9 +391,9 @@ public static class EmailDarkMode
                     .WithMargin(EmailSpacing.ExtraLarge, EmailSpacing.None, EmailSpacing.Medium, EmailSpacing.None);
             });
 
-                         var ctaButton = new EmailButton("Get Started with Dark Mode", "https://evotec.xyz/htmlforgex/")
-                 .SetStyle(EmailButtonStyle.Primary)
-                 .SetSize(EmailButtonSize.Large);
+            var ctaButton = new EmailButton("Get Started with Dark Mode", "https://evotec.xyz/htmlforgex/")
+    .SetStyle(EmailButtonStyle.Primary)
+    .SetSize(EmailButtonSize.Large);
             emailBox.Add(ctaButton);
 
             // Footer
@@ -422,8 +420,7 @@ public static class EmailDarkMode
 💡 Use .SetThemeMode(EmailThemeMode.Dark) to enable dark mode!");
     }
 
-    public static void CreateLightModeComparison(bool openInBrowser = false)
-    {
+    public static void CreateLightModeComparison(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating light mode comparison email...");
 
         // Create the same email but in light mode for comparison
@@ -449,9 +446,9 @@ public static class EmailDarkMode
                     .WithLineHeight("1.6");
             });
 
-                     var ctaButton = new EmailButton("Light Mode Version", "https://evotec.xyz/htmlforgex/")
-             .SetStyle(EmailButtonStyle.Primary)
-             .SetSize(EmailButtonSize.Large);
+            var ctaButton = new EmailButton("Light Mode Version", "https://evotec.xyz/htmlforgex/")
+    .SetStyle(EmailButtonStyle.Primary)
+    .SetSize(EmailButtonSize.Large);
             emailBox.Add(ctaButton);
         });
 
@@ -459,8 +456,7 @@ public static class EmailDarkMode
         HelpersSpectre.Success("✅ Light mode comparison email created!");
     }
 
-    public static void CreateAutoModeExample(bool openInBrowser = false)
-    {
+    public static void CreateAutoModeExample(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating auto mode email example...");
 
         // Create email with auto mode - adapts to user's system preference
@@ -489,9 +485,9 @@ public static class EmailDarkMode
                     .WithAlignment(Alignment.Center);
             });
 
-                     var ctaButton = new EmailButton("Auto Mode Magic", "https://evotec.xyz/htmlforgex/")
-             .SetStyle(EmailButtonStyle.Primary)
-             .SetSize(EmailButtonSize.Large);
+            var ctaButton = new EmailButton("Auto Mode Magic", "https://evotec.xyz/htmlforgex/")
+    .SetStyle(EmailButtonStyle.Primary)
+    .SetSize(EmailButtonSize.Large);
             emailBox.Add(ctaButton);
         });
 
@@ -506,10 +502,8 @@ public static class EmailDarkMode
 /// Comprehensive example demonstrating all enhanced dark mode features.
 /// Shows image variants, improved links, enhanced tables, and usage examples.
 /// </summary>
-public static class EmailEnhancedDarkMode
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailEnhancedDarkMode {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating comprehensive enhanced dark mode email example...");
 
         // Create email with dark mode and all enhancements
@@ -648,16 +642,16 @@ public static class EmailEnhancedDarkMode
                         .WithAlignment(Alignment.Center)
                         .WithColor("#10b981");
 
-                                                              col.EmailImage()
-                         .WithImagePair(
-                             "../../../../Assets/Images/WhiteBackground/Logo-evotec.png",
-                             "../../../../Assets/Images/BlackBackground/Logo-evotec.png",
-                             "Smart Logo"
-                         )
-                         .WithWidth("120px")
-                         .WithHeight("34px")
-                         .WithAlignment(Alignment.Center)
-                         .WithLink("https://evotec.xyz");
+                    col.EmailImage()
+.WithImagePair(
+"../../../../Assets/Images/WhiteBackground/Logo-evotec.png",
+"../../../../Assets/Images/BlackBackground/Logo-evotec.png",
+"Smart Logo"
+)
+.WithWidth("120px")
+.WithHeight("34px")
+.WithAlignment(Alignment.Center)
+.WithLink("https://evotec.xyz");
 
                     col.EmailText("Automatically switches to dark variant")
                         .WithFontSize(EmailFontSize.Small)
@@ -755,9 +749,9 @@ public static class EmailEnhancedDarkMode
                 new { Feature = "🎯 Button Styling", Before = "May disappear", After = "Proper dark colors", Status = "✅ Fixed" }
             };
 
-                         emailBox.EmailTable(featureData)
-                 .SetStyle(EmailTableStyle.Striped)
-                 .SetClass("email-table");
+            emailBox.EmailTable(featureData)
+    .SetStyle(EmailTableStyle.Striped)
+    .SetClass("email-table");
 
             // Usage guide
             emailBox.EmailContent(content => {

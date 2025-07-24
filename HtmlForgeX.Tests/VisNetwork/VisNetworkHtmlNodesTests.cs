@@ -4,7 +4,7 @@ namespace HtmlForgeX.Tests.VisNetwork;
 
 [TestClass]
 public class VisNetworkHtmlNodesTests {
-    
+
     [TestMethod]
     public void VisNetwork_HtmlNodes_ShouldRenderCorrectly() {
         // Arrange
@@ -29,14 +29,14 @@ public class VisNetworkHtmlNodesTests {
         network.AddHtmlNode(htmlNode);
 
         document.Body.Add(network);
-        
+
         // Act
         var html = document.ToString();
-        
+
         // Debug output
         System.Console.WriteLine("=== HTML Output ===");
         System.Console.WriteLine(html.Substring(0, Math.Min(1000, html.Length)));
-        
+
         // Assert - Check HTML structure
         Assert.IsTrue(html.Contains("diagramTracker"), "Should contain diagram tracker");
         Assert.IsTrue(html.Contains("testNetwork"), "Should contain network ID");
@@ -44,13 +44,13 @@ public class VisNetworkHtmlNodesTests {
         Assert.IsTrue(html.Contains("\\u003Cb\\u003EBold\\u003C/b\\u003E"), "Should contain bold HTML tag");
         Assert.IsTrue(html.Contains("\\u003Ci\\u003EItalic\\u003C/i\\u003E"), "Should contain italic HTML tag");
         Assert.IsTrue(html.Contains("\\u003Ccode\\u003ECode\\u003C/code\\u003E"), "Should contain code HTML tag");
-        
+
         // Check if HTML nodes plugin script is included (it's inlined in Online mode)
         Assert.IsTrue(html.Contains("HtmlForgeX VisJS HTML Nodes Plugin"), "Should include HTML nodes plugin script");
         Assert.IsTrue(html.Contains("VisJsHtmlNodes"), "Should contain VisJsHtmlNodes initialization");
         Assert.IsTrue(html.Contains("htmlContents"), "Should contain HTML contents object");
         Assert.IsTrue(html.Contains("htmlNode1"), "Should contain HTML node ID");
-        
+
         // Check card HTML content
         Assert.IsTrue(html.Contains("Test Card"), "Should contain card title");
         Assert.IsTrue(html.Contains("Card Content"), "Should contain card content");
@@ -82,10 +82,10 @@ public class VisNetworkHtmlNodesTests {
             .WithShape(VisNetworkNodeShape.Box));
 
         document.Body.Add(network);
-        
+
         // Act
         var html = document.ToString();
-        
+
         // Assert - Check generated HTML content
         // Should contain only supported tags (HTML is escaped as Unicode in JSON)
         Assert.IsTrue(html.Contains("\\u003Cb\\u003EBold Text\\u003C/b\\u003E"), "Should contain bold tag");
@@ -93,7 +93,7 @@ public class VisNetworkHtmlNodesTests {
         Assert.IsTrue(html.Contains("\\u003Ccode\\u003Ecode.example()\\u003C/code\\u003E"), "Should contain code tag");
         Assert.IsTrue(html.Contains("\\n"), "Should contain line break character");
         Assert.IsTrue(html.Contains("Plain text"), "Should contain plain text");
-        
+
         // The HTML should not contain unsupported tags in native mode
         // (The label builder only generates supported tags)
     }
@@ -126,29 +126,29 @@ public class VisNetworkHtmlNodesTests {
             .WithProgressBar("Loading", 75, "#ffc107"));
 
         document.Body.Add(network);
-        
+
         // Act
         var html = document.ToString();
-        
+
         // Assert - Check if HTML nodes are properly set up
         Assert.IsTrue(html.Contains("testHtmlPlugin"), "Should contain network ID");
         Assert.IsTrue(html.Contains("htmlContents"), "Should contain HTML contents object");
         Assert.IsTrue(html.Contains("VisJsHtmlNodes"), "Should reference HTML nodes plugin");
-        
+
         // Check various HTML node types
         Assert.IsTrue(html.Contains("Card Title"), "Should contain card title");
         Assert.IsTrue(html.Contains("Card Body"), "Should contain card body");
         Assert.IsTrue(html.Contains("#007bff"), "Should contain card color");
-        
+
         Assert.IsTrue(html.Contains("Column 1"), "Should contain table column 1");
         Assert.IsTrue(html.Contains("Column 2"), "Should contain table column 2");
         Assert.IsTrue(html.Contains("Row 1 Col 1"), "Should contain table row data");
-        
+
         Assert.IsTrue(html.Contains("Todo List"), "Should contain list title");
         Assert.IsTrue(html.Contains("Item 1"), "Should contain list item 1");
         Assert.IsTrue(html.Contains("Item 2"), "Should contain list item 2");
         Assert.IsTrue(html.Contains("Item 3"), "Should contain list item 3");
-        
+
         Assert.IsTrue(html.Contains("Loading"), "Should contain progress bar label");
         Assert.IsTrue(html.Contains("75%"), "Should contain progress value");
         Assert.IsTrue(html.Contains("#ffc107"), "Should contain progress color");
@@ -158,14 +158,11 @@ public class VisNetworkHtmlNodesTests {
     }
 
     [TestMethod]
-    public void VisNetwork_HtmlNodesLibrary_LoadOrder()
-    {
+    public void VisNetwork_HtmlNodesLibrary_LoadOrder() {
         using var document = new Document();
 
-        document.Body.Add(element =>
-        {
-            element.DiagramNetwork(network =>
-            {
+        document.Body.Add(element => {
+            element.DiagramNetwork(network => {
                 network.AddHtmlNode(new VisNetworkHtmlNode("node1")
                     .WithCard("Title", "Body"));
             });

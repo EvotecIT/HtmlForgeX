@@ -1,6 +1,7 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
@@ -8,14 +9,11 @@ namespace HtmlForgeX.Tests;
 /// Checks that DataTables configuration options serialize to JavaScript correctly.
 /// </summary>
 [TestClass]
-public class TestDataTablesOptions
-{
+public class TestDataTablesOptions {
     [TestMethod]
-    public void ConfigureOptions_ShouldSerializeValues()
-    {
+    public void ConfigureOptions_ShouldSerializeValues() {
         var table = new DataTablesTable();
-        table.Configure(o =>
-        {
+        table.Configure(o => {
             o.PageLength = 25;
             o.StateSave = true;
         });
@@ -26,17 +24,14 @@ public class TestDataTablesOptions
     }
 
     [TestMethod]
-    public void Options_ShouldSerializePropertyNames()
-    {
-        var options = new DataTablesOptions
-        {
+    public void Options_ShouldSerializePropertyNames() {
+        var options = new DataTablesOptions {
             AutoWidth = true,
             ScrollCollapse = true,
             FixedHeader = new DataTablesFixedHeader { Enable = true }
         };
 
-        var json = JsonSerializer.Serialize(options, new JsonSerializerOptions
-        {
+        var json = JsonSerializer.Serialize(options, new JsonSerializerOptions {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         });

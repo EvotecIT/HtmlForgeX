@@ -1,14 +1,13 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
 [TestClass]
-public class TestTempPath
-{
+public class TestTempPath {
     [TestMethod]
-    public void Get_ReturnsExistingFrameworkFolder()
-    {
+    public void Get_ReturnsExistingFrameworkFolder() {
         var path = TempPath.Get();
         Assert.IsTrue(Directory.Exists(path));
         StringAssert.Contains(path, "HtmlForgeX");

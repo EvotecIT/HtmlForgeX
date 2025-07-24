@@ -15,17 +15,17 @@ namespace HtmlForgeX.Examples.Icons {
 
             document.Body.Page(page => {
                 page.H1("FontAwesome Icons - Online Mode Test");
-                
+
                 page.H2("Testing FontAwesome Icons");
                 page.Icon(FontAwesomeSolid.User).WithSize(FontAwesomeSize.X2);
                 page.Text(" User Icon").LineBreak();
-                
+
                 page.Icon(FontAwesomeSolid.Lock).WithSize(FontAwesomeSize.X2).WithColor(RGBColor.Red);
                 page.Text(" Lock Icon").LineBreak();
-                
+
                 page.Icon(FontAwesomeBrands.GitHub).WithSize(FontAwesomeSize.X3);
                 page.Text(" GitHub Brand Icon").LineBreak();
-                
+
                 // Test in VisNetwork
                 page.H2("FontAwesome in VisNetwork");
                 page.DiagramNetwork(network => {

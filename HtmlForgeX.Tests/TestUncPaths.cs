@@ -1,8 +1,9 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Reflection;
+using System.Runtime.InteropServices;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 

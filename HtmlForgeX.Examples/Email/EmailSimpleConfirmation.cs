@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example of a simple email confirmation using natural HtmlForgeX patterns.
 /// Demonstrates clean confirmation messaging with clear action buttons.
 /// </summary>
-public static class EmailSimpleConfirmation
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailSimpleConfirmation {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating simple confirmation email example...");
 
         var email = new Email();

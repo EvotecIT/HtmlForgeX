@@ -17,10 +17,8 @@ public class InvoiceItem {
 /// Demonstrates professional invoice layout with tables and proper alignment.
 /// Uses the natural Document-style configuration approach.
 /// </summary>
-public static class EmailInvoice
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailInvoice {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating invoice email example with Document-style configuration...");
 
         // Natural Document-style configuration - just like document.Head.AddTitle()!

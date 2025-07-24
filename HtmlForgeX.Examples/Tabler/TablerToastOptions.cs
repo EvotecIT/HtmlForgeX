@@ -46,4 +46,3 @@ internal static class TablerToastOptions {
         document.Save("TablerToastOptions.html", openInBrowser);
     }
 }
-

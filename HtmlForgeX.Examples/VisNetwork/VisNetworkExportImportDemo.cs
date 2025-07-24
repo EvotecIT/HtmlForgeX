@@ -6,8 +6,8 @@ namespace HtmlForgeX.Examples.VisNetwork {
             HelpersSpectre.PrintTitle("VisNetwork Export/Import Demo");
 
             using var document = new Document {
-                Head = { 
-                    Title = "VisNetwork Export/Import Demo - Save and Restore Networks", 
+                Head = {
+                    Title = "VisNetwork Export/Import Demo - Save and Restore Networks",
                     Author = "HtmlForgeX"
                 },
                 LibraryMode = LibraryMode.Online,

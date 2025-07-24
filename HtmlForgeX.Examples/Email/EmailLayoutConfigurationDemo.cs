@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example demonstrating the new enum-based layout configuration system.
 /// Shows all predefined layout sizes and padding options, plus custom configurations.
 /// </summary>
-public static class EmailLayoutConfigurationDemo
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailLayoutConfigurationDemo {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating layout configuration demonstration with enum-based settings...");
 
         // Example 1: Using predefined enums (easiest)

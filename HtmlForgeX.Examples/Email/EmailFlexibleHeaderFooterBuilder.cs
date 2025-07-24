@@ -7,10 +7,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Shows how to build custom headers and footers using EmailImage, EmailLink, EmailText, etc.
 /// This replaces the old preset methods like SetLogo, SetViewOnlineLink, etc.
 /// </summary>
-public static class EmailFlexibleHeaderFooterBuilder
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailFlexibleHeaderFooterBuilder {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating flexible header/footer example...");
 
         var email = new Email()
@@ -25,7 +23,7 @@ public static class EmailFlexibleHeaderFooterBuilder
             var header = new EmailHeader()
                 .WithPadding("24px");
 
-                        header.EmailBox(headerBox => {
+            header.EmailBox(headerBox => {
                 headerBox.EmailRow(row => {
                     // Logo column
                     row.EmailColumn(col => {

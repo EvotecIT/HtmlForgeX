@@ -1,6 +1,7 @@
+using System.Collections.Generic;
+
 using HtmlForgeX;
 using HtmlForgeX.Resources;
-using System.Collections.Generic;
 namespace HtmlForgeX.Examples.ByHand;
 
 internal static class DocumentSpanStylesExample {

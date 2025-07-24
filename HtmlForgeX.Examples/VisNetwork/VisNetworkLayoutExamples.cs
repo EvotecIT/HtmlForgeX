@@ -16,8 +16,8 @@ internal class VisNetworkLayoutExamples {
 
             // Example 1: Hierarchical Layout with Different Directions
             page.H3("Hierarchical Layout - Different Directions");
-            
-            var directions = new[] { 
+
+            var directions = new[] {
                 (VisNetworkLayoutDirection.Ud, "Up-Down"),
                 (VisNetworkLayoutDirection.Du, "Down-Up"),
                 (VisNetworkLayoutDirection.Lr, "Left-Right"),
@@ -98,21 +98,21 @@ internal class VisNetworkLayoutExamples {
 
                 // Create complex organization chart
                 network.AddNode(1, node => node.WithLabel("CEO\nJohn Smith").WithLevel(0).WithColor(new RGBColor($"#{231:X2}{76:X2}{60:X2}")));
-                
+
                 // VPs
                 network.AddNode(2, node => node.WithLabel("VP Engineering\nJane Doe").WithLevel(1).WithColor(new RGBColor($"#{52:X2}{152:X2}{219:X2}")));
                 network.AddNode(3, node => node.WithLabel("VP Sales\nBob Johnson").WithLevel(1).WithColor(new RGBColor($"#{52:X2}{152:X2}{219:X2}")));
                 network.AddNode(4, node => node.WithLabel("VP Marketing\nAlice Brown").WithLevel(1).WithColor(new RGBColor($"#{52:X2}{152:X2}{219:X2}")));
-                
+
                 // Engineering teams
                 network.AddNode(5, node => node.WithLabel("Frontend Team\nLead: Mike").WithLevel(2).WithColor(new RGBColor($"#{46:X2}{204:X2}{113:X2}")));
                 network.AddNode(6, node => node.WithLabel("Backend Team\nLead: Sarah").WithLevel(2).WithColor(new RGBColor($"#{46:X2}{204:X2}{113:X2}")));
                 network.AddNode(7, node => node.WithLabel("DevOps Team\nLead: Tom").WithLevel(2).WithColor(new RGBColor($"#{46:X2}{204:X2}{113:X2}")));
-                
+
                 // Sales teams
                 network.AddNode(8, node => node.WithLabel("Enterprise Sales\nLead: David").WithLevel(2).WithColor(new RGBColor($"#{155:X2}{89:X2}{182:X2}")));
                 network.AddNode(9, node => node.WithLabel("SMB Sales\nLead: Emma").WithLevel(2).WithColor(new RGBColor($"#{155:X2}{89:X2}{182:X2}")));
-                
+
                 // Marketing teams
                 network.AddNode(10, node => node.WithLabel("Content Team\nLead: Chris").WithLevel(2).WithColor(new RGBColor($"#{243:X2}{156:X2}{18:X2}")));
                 network.AddNode(11, node => node.WithLabel("Digital Marketing\nLead: Lisa").WithLevel(2).WithColor(new RGBColor($"#{243:X2}{156:X2}{18:X2}")));

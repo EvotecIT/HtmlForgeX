@@ -125,7 +125,7 @@ internal class VisNetworkInteractionExamples {
 
                 foreach (var cluster in clusters) {
                     nodesByCluster[cluster] = new List<int>();
-                    
+
                     // Configure cluster group
                     network.WithGroup(cluster, group => group
                         .WithColor(clusterColors[cluster])
@@ -151,11 +151,11 @@ internal class VisNetworkInteractionExamples {
                 }
 
                 // Connect clusters
-                network.AddEdge(nodesByCluster["Frontend"][0], nodesByCluster["Backend"][0], 
+                network.AddEdge(nodesByCluster["Frontend"][0], nodesByCluster["Backend"][0],
                     edge => edge.WithLabel("API").WithWidth(3));
-                network.AddEdge(nodesByCluster["Backend"][1], nodesByCluster["Database"][0], 
+                network.AddEdge(nodesByCluster["Backend"][1], nodesByCluster["Database"][0],
                     edge => edge.WithLabel("Query").WithWidth(3));
-                network.AddEdge(nodesByCluster["Frontend"][2], nodesByCluster["External"][0], 
+                network.AddEdge(nodesByCluster["Frontend"][2], nodesByCluster["External"][0],
                     edge => edge.WithLabel("Service").WithWidth(3));
             });
 
@@ -173,8 +173,8 @@ internal class VisNetworkInteractionExamples {
                     .WithOptions(options => {
                         options
                             .WithLocale(VisNetworkLocale.En);
-                            // Locales configuration is not available in the current API
-                            // The locale is set with WithLocale(VisNetworkLocale.En) above
+                        // Locales configuration is not available in the current API
+                        // The locale is set with WithLocale(VisNetworkLocale.En) above
                     });
 
                 // Sample network
@@ -233,7 +233,7 @@ internal class VisNetworkInteractionExamples {
                 // Create large network
                 var nodeCount = 50;
                 var nodes = new List<int>();
-                
+
                 // Add nodes
                 for (int i = 1; i <= nodeCount; i++) {
                     network.AddNode(i, node => node

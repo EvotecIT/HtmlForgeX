@@ -1,7 +1,8 @@
-using HtmlForgeX;
-using HtmlForgeX.Resources;
 using System.Collections.Generic;
 using System.Linq;
+
+using HtmlForgeX;
+using HtmlForgeX.Resources;
 namespace HtmlForgeX.Examples.ByHand;
 
 internal static class DocumentBootstrapExample {

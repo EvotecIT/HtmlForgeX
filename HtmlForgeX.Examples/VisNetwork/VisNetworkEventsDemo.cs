@@ -6,8 +6,8 @@ namespace HtmlForgeX.Examples.VisNetwork {
             HelpersSpectre.PrintTitle("VisNetwork Events Demo");
 
             using var document = new Document {
-                Head = { 
-                    Title = "VisNetwork Events Demo - Interactive Network", 
+                Head = {
+                    Title = "VisNetwork Events Demo - Interactive Network",
                     Author = "HtmlForgeX"
                 },
                 LibraryMode = LibraryMode.Online,
@@ -42,7 +42,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                                         }
                                     }"
                                 );
-                                
+
                                 events.WithDoubleClick(@"
                                     function(params) {
                                         if (params.nodes.length > 0) {
@@ -52,7 +52,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                                         }
                                     }"
                                 );
-                                
+
                                 events.WithContext(VisNetworkEvents.Templates.PreventContextMenu);
                             });
                         });
@@ -64,21 +64,21 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithColor(RGBColor.Blue)
                         .WithPosition(-200, -100)
                     );
-                    
+
                     network.AddNode(2, node => node
                         .WithLabel("Database")
                         .WithShape(VisNetworkNodeShape.Database)
                         .WithColor(RGBColor.Green)
                         .WithPosition(0, 0)
                     );
-                    
+
                     network.AddNode(3, node => node
                         .WithLabel("Server 2")
                         .WithShape(VisNetworkNodeShape.Box)
                         .WithColor(RGBColor.Blue)
                         .WithPosition(200, -100)
                     );
-                    
+
                     // Add edges
                     network.AddEdge(1, 2, edge => edge.WithLabel("Query"));
                     network.AddEdge(3, 2, edge => edge.WithLabel("Query"));
@@ -112,13 +112,13 @@ namespace HtmlForgeX.Examples.VisNetwork {
                                             '- Connected edges:', connectedEdges.length);
                                     }"
                                 );
-                                
+
                                 events.WithBlurNode(@"
                                     function(params) {
                                         console.log('Blur node:', params.node);
                                     }"
                                 );
-                                
+
                                 events.WithSelectNode(@"
                                     function(params) {
                                         console.log('Selected nodes:', params.nodes);
@@ -135,7 +135,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             .WithColor(i % 3 == 0 ? RGBColor.Red : (i % 3 == 1 ? RGBColor.Blue : RGBColor.Green))
                         );
                     }
-                    
+
                     network.AddEdge(1, 2);
                     network.AddEdge(1, 3);
                     network.AddEdge(2, 4);
@@ -164,7 +164,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                                         }
                                     }"
                                 );
-                                
+
                                 events.WithDragEnd(@"
                                     function(params) {
                                         if (params.nodes.length > 0) {
@@ -172,13 +172,13 @@ namespace HtmlForgeX.Examples.VisNetwork {
                                         }
                                     }"
                                 );
-                                
+
                                 events.WithStartStabilizing(@"
                                     function() {
                                         console.log('Stabilization started');
                                     }"
                                 );
-                                
+
                                 events.WithStabilized(@"
                                     function(params) {
                                         console.log('Stabilized after', params.iterations, 'iterations');
@@ -194,7 +194,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithColor(RGBColor.Yellow)
                         .WithSize(30)
                     );
-                    
+
                     for (int i = 1; i <= 8; i++) {
                         network.AddNode($"satellite{i}", node => node
                             .WithLabel($"S{i}")
@@ -226,7 +226,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                                         console.log('Zoom level:', (scale * 100).toFixed(0) + '%');
                                     }"
                                 );
-                                
+
                                 events.WithAnimationFinished(@"
                                     function() {
                                         console.log('Animation finished');
@@ -245,10 +245,10 @@ namespace HtmlForgeX.Examples.VisNetwork {
                                 .WithColor(RGBColor.DarkSlateGray)
                                 .WithPosition(col * 100 - 150, row * 100 - 150)
                             );
-                            
+
                             // Connect to neighbors
-                            if (col > 0) network.AddEdge(id, $"{row},{col-1}");
-                            if (row > 0) network.AddEdge(id, $"{row-1},{col}");
+                            if (col > 0) network.AddEdge(id, $"{row},{col - 1}");
+                            if (row > 0) network.AddEdge(id, $"{row - 1},{col}");
                         }
                     }
                 });

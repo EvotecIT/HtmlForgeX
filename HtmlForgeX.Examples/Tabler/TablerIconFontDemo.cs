@@ -8,10 +8,10 @@ public static class TablerIconFontDemo {
         // Create a document with Tabler font icons
         using var document = new Document();
         document.Head.Title = "Tabler Font Icons Example";
-        
+
         // Add a heading
         document.Body.Add(new H1("Tabler Icons - Font Version"));
-        
+
         // Add some basic icons
         document.Body.Add(new HtmlTag("div")
             .Add(new TablerIconFont("home").WithSize("32px").WithColor(RGBColor.Blue))
@@ -20,7 +20,7 @@ public static class TablerIconFontDemo {
             .Add(new HtmlTag("span", " "))
             .Add(new TablerIconFont("settings").WithSize("32px").WithColor(RGBColor.Red))
         );
-        
+
         // Add icons using enum
         document.Body.Add(new H2("Icons from Enum"));
         document.Body.Add(new HtmlTag("div")
@@ -30,7 +30,7 @@ public static class TablerIconFontDemo {
             .Add(new HtmlTag("span", " "))
             .Add(new TablerIconFont(TablerIconType.Search).WithSize("48px").WithColor("#2196f3"))
         );
-        
+
         // Add styled icons
         document.Body.Add(new H2("Styled Icons"));
         document.Body.Add(new HtmlTag("div")
@@ -44,7 +44,7 @@ public static class TablerIconFontDemo {
                 .WithSize("64px")
                 .WithStyle("text-shadow", "2px 2px 4px rgba(0,0,0,0.3)"))
         );
-        
+
         // Save the document
         document.Save("TablerIconFontDemo.html");
     }

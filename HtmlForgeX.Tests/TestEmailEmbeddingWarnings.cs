@@ -1,16 +1,15 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
 [TestClass]
-public class TestEmailEmbeddingWarnings
-{
+public class TestEmailEmbeddingWarnings {
     [TestMethod]
-    public void EmbeddingWarningCount_IncrementsOnWarning()
-    {
+    public void EmbeddingWarningCount_IncrementsOnWarning() {
         var email = new Email();
         email.SetEmbeddingWarnings(true);
         var image = new EmailImage();
@@ -21,8 +20,7 @@ public class TestEmailEmbeddingWarnings
     }
 
     [TestMethod]
-    public async Task EmbeddingWarningCount_PersistsThroughSaveAsync()
-    {
+    public async Task EmbeddingWarningCount_PersistsThroughSaveAsync() {
         var email = new Email();
         email.SetEmbeddingWarnings(true);
         var image = new EmailImage();

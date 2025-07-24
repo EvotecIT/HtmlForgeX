@@ -16,4 +16,3 @@ public class TestTablerColumnEnhanced {
         StringAssert.Contains(html, "Header");
     }
 }
-

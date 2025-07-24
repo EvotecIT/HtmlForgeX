@@ -1,5 +1,6 @@
-using HtmlForgeX.Tags;
 using System.Collections.Generic;
+
+using HtmlForgeX.Tags;
 
 namespace HtmlForgeX.Tests;
 

@@ -3,14 +3,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HtmlForgeX.Tests;
 
 [TestClass]
-public class TestPrismJs
-{
+public class TestPrismJs {
     [TestMethod]
-    public void PrismJs_CodeBlock_GeneratesExpectedHtml()
-    {
+    public void PrismJs_CodeBlock_GeneratesExpectedHtml() {
         using var doc = new Document();
-        doc.Body.Add(element =>
-        {
+        doc.Body.Add(element => {
             element.CSharpCode("Console.WriteLine(\"Hi\");", config => config
                 .EnableLineNumbers()
                 .EnableCopyButton()

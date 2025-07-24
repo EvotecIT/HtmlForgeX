@@ -50,7 +50,7 @@ internal class SmartWizardDemo {
                                     step.Text("Please provide your personal information to create your account.")
                                         .Weight(TablerFontWeight.Medium);
                                     step.LineBreak();
-                                    
+
                                     step.Row(formRow => {
                                         formRow.Column(TablerColumnNumber.Six, formCol => {
                                             formCol.Text("First Name:").Weight(TablerFontWeight.Medium);
@@ -65,7 +65,7 @@ internal class SmartWizardDemo {
                                                 .Placeholder("Enter last name"));
                                         });
                                     });
-                                    
+
                                     step.LineBreak();
                                     step.Row(formRow => {
                                         formRow.Column(TablerColumnNumber.Six, formCol => {
@@ -88,7 +88,7 @@ internal class SmartWizardDemo {
                                     step.Text("Please enter your address information for delivery and billing.")
                                         .Weight(TablerFontWeight.Medium);
                                     step.LineBreak();
-                                    
+
                                     step.Row(formRow => {
                                         formRow.Column(TablerColumnNumber.Twelve, formCol => {
                                             formCol.Text("Street Address:").Weight(TablerFontWeight.Medium);
@@ -97,7 +97,7 @@ internal class SmartWizardDemo {
                                                 .Placeholder("Enter street address"));
                                         });
                                     });
-                                    
+
                                     step.LineBreak();
                                     step.Row(formRow => {
                                         formRow.Column(TablerColumnNumber.Four, formCol => {
@@ -128,7 +128,7 @@ internal class SmartWizardDemo {
                                     step.Text("Create your account credentials to secure your profile.")
                                         .Weight(TablerFontWeight.Medium);
                                     step.LineBreak();
-                                    
+
                                     step.Row(formRow => {
                                         formRow.Column(TablerColumnNumber.Six, formCol => {
                                             formCol.Text("Username:").Weight(TablerFontWeight.Medium);
@@ -143,7 +143,7 @@ internal class SmartWizardDemo {
                                                 .Placeholder("Create password"));
                                         });
                                     });
-                                    
+
                                     step.LineBreak();
                                     step.Row(formRow => {
                                         formRow.Column(TablerColumnNumber.Six, formCol => {
@@ -167,7 +167,7 @@ internal class SmartWizardDemo {
                                     step.Text("Please review all your information before submitting.")
                                         .Weight(TablerFontWeight.Medium);
                                     step.LineBreak();
-                                    
+
                                     step.DataGrid(dataGrid => {
                                         dataGrid.WithLayout(TablerDataGridLayout.Default)
                                                .WithSpacing(TablerDataGridSpacing.Medium);
@@ -180,7 +180,7 @@ internal class SmartWizardDemo {
                                         dataGrid.AddBadgeItem("Newsletter", "Subscribed", TablerColor.Success);
                                         dataGrid.AddStatusItem("Status", "Ready to submit", TablerColor.Info);
                                     });
-                                    
+
                                     step.LineBreak();
                                     step.Add(new TablerAlert("Review Complete", "All information has been validated and is ready for submission.", TablerColor.Info, TablerAlertType.Regular)
                                         .Icon(TablerIconType.InfoCircle));
@@ -189,12 +189,12 @@ internal class SmartWizardDemo {
                                 // Step 5: Success
                                 wizard.AddStep("Complete", TablerIconType.CircleCheck, "Registration complete", step => {
                                     step.WithState(SmartWizardStepState.Done);
-                                    
+
                                     step.Text("Congratulations! Your account has been created successfully.")
                                         .Weight(TablerFontWeight.Medium)
                                         .Color(TablerColor.Success);
                                     step.LineBreak();
-                                    
+
                                     step.Row(successRow => {
                                         successRow.Column(TablerColumnNumber.Twelve, successCol => {
                                             successCol.Card(card => {
@@ -339,7 +339,7 @@ internal class SmartWizardDemo {
                                     step.Text("Set up your new project with basic information.")
                                         .Weight(TablerFontWeight.Medium);
                                     step.LineBreak();
-                                    
+
                                     step.Row(projectRow => {
                                         projectRow.Column(TablerColumnNumber.Eight, projectCol => {
                                             projectCol.Text("Project Name:").Weight(TablerFontWeight.Medium);
@@ -366,12 +366,12 @@ internal class SmartWizardDemo {
                                     step.Text("Invite team members to collaborate on your project.")
                                         .Weight(TablerFontWeight.Medium);
                                     step.LineBreak();
-                                    
+
                                     step.Row(teamRow => {
                                         teamRow.Column(TablerColumnNumber.Eight, teamCol => {
                                             teamCol.Text("Team Members:").Weight(TablerFontWeight.Medium);
                                             teamCol.LineBreak();
-                                            
+
                                             // Sample team members
                                             teamCol.Row(memberRow => {
                                                 memberRow.Column(TablerColumnNumber.Two, memberCol => {
@@ -386,7 +386,7 @@ internal class SmartWizardDemo {
                                                     memberCol.Text("Project Manager").Style(TablerTextStyle.Muted);
                                                 });
                                             });
-                                            
+
                                             teamCol.LineBreak();
                                             teamCol.Row(memberRow => {
                                                 memberRow.Column(TablerColumnNumber.Two, memberCol => {
@@ -421,7 +421,7 @@ internal class SmartWizardDemo {
                                     step.Text("Configure project settings and preferences.")
                                         .Weight(TablerFontWeight.Medium);
                                     step.LineBreak();
-                                    
+
                                     step.DataGrid(dataGrid => {
                                         dataGrid.WithLayout(TablerDataGridLayout.Default);
                                         dataGrid.AddCheckboxItem("Enable CI/CD", true, "Continuous integration and deployment");
@@ -438,10 +438,10 @@ internal class SmartWizardDemo {
                                         .Weight(TablerFontWeight.Medium)
                                         .Color(TablerColor.Success);
                                     step.LineBreak();
-                                    
+
                                     step.Add(new TablerAlert("Project Created Successfully", "Your project has been set up and is ready for development.", TablerColor.Success, TablerAlertType.Regular)
                                         .Icon(TablerIconType.CircleCheck));
-                                    
+
                                     step.LineBreak();
                                     step.Text("Next steps:")
                                         .Weight(TablerFontWeight.Medium);

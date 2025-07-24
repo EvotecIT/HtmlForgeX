@@ -11,8 +11,8 @@ internal class FontAwesomeExampleDemo {
         HelpersSpectre.PrintTitle("FontAwesome Enum System Demo");
 
         using var document = new Document {
-            Head = { 
-                Title = "FontAwesome Enum System Demo", 
+            Head = {
+                Title = "FontAwesome Enum System Demo",
                 Author = "HtmlForgeX",
                 Description = "Comparing old vs new FontAwesome icon usage"
             },

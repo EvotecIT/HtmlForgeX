@@ -6,11 +6,9 @@ namespace HtmlForgeX.Tests;
 /// Verifies that alignment helper methods correctly assign CSS alignment values.
 /// </summary>
 [TestClass]
-public class TestAlignmentValidation
-{
+public class TestAlignmentValidation {
     [TestMethod]
-    public void WithAlignment_ShouldSetAlignment()
-    {
+    public void WithAlignment_ShouldSetAlignment() {
         var image = new EmailImage().WithAlignment(Alignment.Center);
         Assert.AreEqual("center", image.Alignment);
 
@@ -31,8 +29,7 @@ public class TestAlignmentValidation
     }
 
     [TestMethod]
-    public void WithAlignment_InvalidValue_Throws()
-    {
+    public void WithAlignment_InvalidValue_Throws() {
         Assert.ThrowsException<ArgumentException>(() => new EmailImage().WithAlignment(Alignment.Justify));
         Assert.ThrowsException<ArgumentException>(() => new EmailText("demo").WithAlignment(Alignment.Justify));
         Assert.ThrowsException<ArgumentException>(() => new EmailLink("demo", "#").WithAlignment(Alignment.Justify));
@@ -42,8 +39,7 @@ public class TestAlignmentValidation
     }
 
     [TestMethod]
-    public void WithVerticalAlign_ShouldSetAlignment()
-    {
+    public void WithVerticalAlign_ShouldSetAlignment() {
         var column = new EmailColumn().WithVerticalAlign(VerticalAlignment.Middle);
         StringAssert.Contains(column.ToString(), "valign=\"middle\"");
     }

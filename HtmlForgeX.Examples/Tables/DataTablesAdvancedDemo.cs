@@ -3,14 +3,11 @@ namespace HtmlForgeX.Examples.Tables;
 /// <summary>
 /// Comprehensive demonstration of advanced DataTables features with fluent API
 /// </summary>
-internal class DataTablesAdvancedDemo
-{
-    public static void Create(bool openInBrowser = false)
-    {
+internal class DataTablesAdvancedDemo {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("🚀 Advanced DataTables Features Demo");
 
-        using var document = new Document
-        {
+        using var document = new Document {
             Head = {
                 Title = "Advanced DataTables Features Demo",
                 Author = "HtmlForgeX Team",
@@ -36,8 +33,7 @@ internal class DataTablesAdvancedDemo
             new { Id = 10, Name = "Ivy Chen", Department = "Sales", Salary = 71000, HireDate = new DateTime(2020, 2, 29), Email = "ivy.chen@company.com", Active = true }
         };
 
-        document.Body.Page(page =>
-        {
+        document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
 
             // Header
@@ -48,8 +44,7 @@ internal class DataTablesAdvancedDemo
             page.Divider("Feature-Rich Employee Table");
 
             // Advanced DataTables with all features - FIXED: Now properly attached to page
-            page.DataTable(employees, table =>
-            {
+            page.DataTable(employees, table => {
                 table
                     // Styling
                     .Style(BootStrapTableStyle.Striped)
@@ -70,8 +65,7 @@ internal class DataTablesAdvancedDemo
                     .Scrolling(scrollY: "400px", scrollX: true, scrollCollapse: true)
 
                     // Export functionality
-                    .ConfigureExport(export =>
-                    {
+                    .ConfigureExport(export => {
                         export.Excel("📊 Excel", "employees_report", "Employee Report")
                               .CSV("📄 CSV", "employees_data")
                               .PDF("📋 PDF", "employees_list", "Company Employee List")
@@ -82,8 +76,7 @@ internal class DataTablesAdvancedDemo
                     })
 
                     // Column Configuration
-                    .ConfigureColumns(columns =>
-                    {
+                    .ConfigureColumns(columns => {
                         columns.Column(col => col.Target(0).Title("ID").Width("60px").Type(DataTablesColumnType.Numeric).ClassName("text-center"));
                         columns.Column(col => col.Target(1).Title("Employee Name").Width("150px").Type(DataTablesColumnType.String));
                         columns.Column(col => col.Target(2).Title("Department").Width("120px").Type(DataTablesColumnType.String));
@@ -101,22 +94,19 @@ internal class DataTablesAdvancedDemo
                     .DefaultOrder(1, "asc")
 
                     // Row Grouping by Department
-                    .EnableRowGrouping(2, rowGroup =>
-                    {
+                    .EnableRowGrouping(2, rowGroup => {
                         rowGroup.ClassName = "group-header";
                     })
 
                     // Search Builder
-                    .EnableSearchBuilder(searchBuilder =>
-                    {
+                    .EnableSearchBuilder(searchBuilder => {
                         searchBuilder.Enable = true;
                         searchBuilder.Logic = "AND";
                         searchBuilder.Conditions = 3;
                     })
 
                     // Search Panes
-                    .EnableSearchPanes(searchPanes =>
-                    {
+                    .EnableSearchPanes(searchPanes => {
                         searchPanes.Enable = true;
                         searchPanes.Layout = "columns-3";
                         searchPanes.Threshold = 0.5;
@@ -124,8 +114,7 @@ internal class DataTablesAdvancedDemo
                     })
 
                     // Localization
-                    .Localize(lang =>
-                    {
+                    .Localize(lang => {
                         lang.Search = "🔍 Filter employees:";
                         lang.LengthMenu = "Show _MENU_ employees per page";
                         lang.Info = "Showing _START_ to _END_ of _TOTAL_ employees";
@@ -133,8 +122,7 @@ internal class DataTablesAdvancedDemo
                         lang.InfoFiltered = "(filtered from _MAX_ total employees)";
                         lang.Processing = "Loading employee data...";
                         lang.ZeroRecords = "No matching employees found";
-                        lang.Paginate = new DataTablesPaginate
-                        {
+                        lang.Paginate = new DataTablesPaginate {
                             First = "⏮️ First",
                             Last = "⏭️ Last",
                             Next = "▶️ Next",
@@ -146,8 +134,7 @@ internal class DataTablesAdvancedDemo
                     .DomLayout("Bfrtip") // B=buttons, f=filter, r=processing, t=table, i=info, p=pagination
 
                     // Additional configuration
-                    .Configure(options =>
-                    {
+                    .Configure(options => {
                         options.Processing = true;
                         options.DeferRender = true;
                         options.AutoWidth = false;
@@ -157,8 +144,7 @@ internal class DataTablesAdvancedDemo
             // Second table - Simple comparison
             page.Divider("Simple DataTable for Comparison");
 
-            page.DataTable(employees.Take(5), table =>
-            {
+            page.DataTable(employees.Take(5), table => {
                 table.Style(BootStrapTableStyle.Striped)
                      .EnablePaging(10)
                      .EnableSearching()
@@ -169,12 +155,10 @@ internal class DataTablesAdvancedDemo
             // Third table - Column-specific features demo
             page.Divider("Column-Specific Features Demo");
 
-            page.DataTable(employees.Take(8), table =>
-            {
+            page.DataTable(employees.Take(8), table => {
                 table.Style(BootStrapTableStyle.Hover)
                      .EnablePaging(5)
-                     .ConfigureColumns(columns =>
-                     {
+                     .ConfigureColumns(columns => {
                          // Hide ID column
                          columns.HideColumns(0);
 
@@ -201,19 +185,16 @@ internal class DataTablesAdvancedDemo
             // Fourth table - Advanced search features
             page.Divider("Advanced Search Features");
 
-            page.DataTable(employees, table =>
-            {
+            page.DataTable(employees, table => {
                 table.Style(BootStrapTableStyle.Borders)
                      .EnablePaging(8)
-                     .EnableSearchBuilder(builder =>
-                     {
+                     .EnableSearchBuilder(builder => {
                          builder.Enable = true;
                          builder.Logic = "OR";
                          builder.Conditions = 2;
                          builder.Greyscale = false;
                      })
-                     .EnableSearchPanes(panes =>
-                     {
+                     .EnableSearchPanes(panes => {
                          panes.Enable = true;
                          panes.Layout = "columns-2";
                          panes.CascadePanes = true;

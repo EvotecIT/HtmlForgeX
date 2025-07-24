@@ -6,8 +6,8 @@ namespace HtmlForgeX.Examples.VisNetwork {
             HelpersSpectre.PrintTitle("VisNetwork Clustering Demo");
 
             using var document = new Document {
-                Head = { 
-                    Title = "VisNetwork Clustering Demo - Dynamic Node Grouping", 
+                Head = {
+                    Title = "VisNetwork Clustering Demo - Dynamic Node Grouping",
                     Author = "HtmlForgeX"
                 },
                 LibraryMode = LibraryMode.Online,
@@ -66,7 +66,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             .WithColor(RGBColor.LightBlue)
                         );
                         network.AddEdge("hub", $"node{i}");
-                        
+
                         // Add sub-nodes
                         for (int j = 1; j <= 2; j++) {
                             var subId = $"sub{i}-{j}";
@@ -111,26 +111,26 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithShape(VisNetworkNodeShape.Diamond)
                         .WithColor(RGBColor.Red)
                     );
-                    
+
                     // Hub 2
                     network.AddNode("hub2", node => node
                         .WithLabel("Hub 2")
                         .WithShape(VisNetworkNodeShape.Diamond)
                         .WithColor(RGBColor.Green)
                     );
-                    
+
                     // Hub 3
                     network.AddNode("hub3", node => node
                         .WithLabel("Hub 3")
                         .WithShape(VisNetworkNodeShape.Diamond)
                         .WithColor(RGBColor.Blue)
                     );
-                    
+
                     // Connect hubs
                     network.AddEdge("hub1", "hub2");
                     network.AddEdge("hub2", "hub3");
                     network.AddEdge("hub3", "hub1");
-                    
+
                     // Add peripheral nodes to each hub
                     for (int h = 1; h <= 3; h++) {
                         for (int i = 1; i <= 5; i++) {
@@ -164,16 +164,16 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithColor(RGBColor.DarkGreen)
                         .WithPosition(-100, 0)
                     );
-                    
+
                     network.AddNode("core2", node => node
                         .WithLabel("Core 2")
                         .WithShape(VisNetworkNodeShape.Box)
                         .WithColor(RGBColor.DarkGreen)
                         .WithPosition(100, 0)
                     );
-                    
+
                     network.AddEdge("core1", "core2");
-                    
+
                     // Add many outlier nodes
                     for (int i = 1; i <= 10; i++) {
                         var outlierId = $"outlier{i}";
@@ -185,7 +185,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         );
                         network.AddEdge(i <= 5 ? "core1" : "core2", outlierId);
                     }
-                    
+
                     // Apply outlier clustering
                     network.ClusterOutliers(cluster => cluster
                         .WithClusterNodeProperties(props => props
@@ -232,7 +232,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             .WithPosition(-200 + i * 50, -100)
                         );
                     }
-                    
+
                     // Backend nodes
                     for (int i = 1; i <= 3; i++) {
                         network.AddNode($"be{i}", node => node
@@ -241,7 +241,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             .WithPosition(-100 + i * 70, 0)
                         );
                     }
-                    
+
                     // Database nodes
                     for (int i = 1; i <= 2; i++) {
                         network.AddNode($"db{i}", node => node
@@ -250,7 +250,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             .WithPosition(-50 + i * 100, 100)
                         );
                     }
-                    
+
                     // Connect layers
                     network.AddEdge("fe1", "be1");
                     network.AddEdge("fe2", "be1");
@@ -259,7 +259,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                     network.AddEdge("be1", "db1");
                     network.AddEdge("be2", "db1");
                     network.AddEdge("be3", "db2");
-                    
+
                     // Cluster by groups
                     network.ClusterByGroup("frontend", cluster => cluster
                         .WithClusterNodeProperties(props => props
@@ -269,7 +269,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             .WithFont(font => font.WithColor(RGBColor.White))
                         )
                     );
-                    
+
                     network.ClusterByGroup("backend", cluster => cluster
                         .WithClusterNodeProperties(props => props
                             .WithLabel("Backend Layer")
@@ -300,16 +300,16 @@ namespace HtmlForgeX.Examples.VisNetwork {
                     for (int i = 1; i <= 20; i++) {
                         var priority = random.Next(1, 4); // 1-3 priority levels
                         var department = new[] { "Sales", "Engineering", "Marketing" }[random.Next(3)];
-                        
+
                         network.AddNode(i, node => node
                             .WithLabel($"{department[0]}{i}")
                             .WithTitle($"{department} - Priority {priority}")
                             .WithColor(priority == 1 ? RGBColor.Red : (priority == 2 ? RGBColor.Yellow : RGBColor.Green))
                             .WithShape(VisNetworkNodeShape.Circle)
-                            // Store custom data (would need custom property support in real implementation)
+                        // Store custom data (would need custom property support in real implementation)
                         );
                     }
-                    
+
                     // Add random connections
                     for (int i = 1; i <= 30; i++) {
                         var from = random.Next(1, 21);
@@ -318,7 +318,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             network.AddEdge(from, to);
                         }
                     }
-                    
+
                     // Cluster high priority nodes
                     network.Cluster(cluster => cluster
                         .WithJoinCondition(@"

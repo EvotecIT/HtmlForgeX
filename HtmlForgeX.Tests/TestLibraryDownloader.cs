@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
@@ -21,16 +22,14 @@ public class TestLibraryDownloader {
         HttpListener listener = new();
         listener.Prefixes.Add(prefix);
         listener.Start();
-        _ = Task.Run(async () =>
-        {
+        _ = Task.Run(async () => {
             var context = await listener.GetContextAsync();
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes("test");
             context.Response.StatusCode = (int)HttpStatusCode.OK;
             context.Response.ContentType = "text/plain";
             context.Response.ContentLength64 = bytes.Length;
             context.Response.KeepAlive = false;
-            using (var stream = context.Response.OutputStream)
-            {
+            using (var stream = context.Response.OutputStream) {
                 await stream.WriteAsync(bytes, 0, bytes.Length);
                 await stream.FlushAsync();
             }
@@ -46,8 +45,7 @@ public class TestLibraryDownloader {
         HttpListener listener = new();
         listener.Prefixes.Add(prefix);
         listener.Start();
-        _ = Task.Run(async () =>
-        {
+        _ = Task.Run(async () => {
             var context = await listener.GetContextAsync();
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Response.KeepAlive = false;

@@ -11,8 +11,8 @@ internal class FontAwesomeComprehensiveDemo {
         HelpersSpectre.PrintTitle("FontAwesome Comprehensive Demo");
 
         using var document = new Document {
-            Head = { 
-                Title = "FontAwesome Icons - Complete Implementation", 
+            Head = {
+                Title = "FontAwesome Icons - Complete Implementation",
                 Author = "HtmlForgeX",
                 Description = "Demonstrates FontAwesome Solid, Regular, and Brands icons"
             },
@@ -22,10 +22,10 @@ internal class FontAwesomeComprehensiveDemo {
 
         document.Body.Page(page => {
             page.H1("FontAwesome Icons - Complete Implementation");
-            
+
             // Section 1: Using icons in general HTML
             page.H2("FontAwesome Icons in HTML");
-            
+
             page.Row(row => {
                 row.Column(TablerColumnNumber.Four, col => {
                     col.Card(card => {
@@ -36,13 +36,13 @@ internal class FontAwesomeComprehensiveDemo {
                         card.Body(body => {
                             body.Icon(FontAwesomeSolid.User).WithSize(FontAwesomeSize.X2).WithColor(RGBColor.DarkBlue);
                             body.Text(" User Management").LineBreak();
-                            
+
                             body.Icon(FontAwesomeSolid.Lock).WithSize(FontAwesomeSize.X2).WithColor(RGBColor.DarkRed);
                             body.Text(" Security Settings").LineBreak();
-                            
+
                             body.Icon(FontAwesomeSolid.Database).WithSize(FontAwesomeSize.X2).WithColor(RGBColor.DarkGreen);
                             body.Text(" Database Operations").LineBreak();
-                            
+
                             body.Icon(FontAwesomeSolid.Gear, icon => icon
                                 .WithSize(FontAwesomeSize.X2)
                                 .WithSpin()
@@ -52,7 +52,7 @@ internal class FontAwesomeComprehensiveDemo {
                         });
                     });
                 });
-                
+
                 row.Column(TablerColumnNumber.Four, col => {
                     col.Card(card => {
                         card.Header(header => {
@@ -62,19 +62,19 @@ internal class FontAwesomeComprehensiveDemo {
                         card.Body(body => {
                             body.Icon(FontAwesomeRegular.FileLines).WithSize(FontAwesomeSize.X2);
                             body.Text(" Document").LineBreak();
-                            
+
                             body.Icon(FontAwesomeRegular.Calendar).WithSize(FontAwesomeSize.X2);
                             body.Text(" Schedule").LineBreak();
-                            
+
                             body.Icon(FontAwesomeRegular.Bell).WithSize(FontAwesomeSize.X2);
                             body.Text(" Notifications").LineBreak();
-                            
+
                             body.Icon(FontAwesomeRegular.Envelope).WithSize(FontAwesomeSize.X2);
                             body.Text(" Messages").LineBreak();
                         });
                     });
                 });
-                
+
                 row.Column(TablerColumnNumber.Four, col => {
                     col.Card(card => {
                         card.Header(header => {
@@ -84,13 +84,13 @@ internal class FontAwesomeComprehensiveDemo {
                         card.Body(body => {
                             body.Icon(FontAwesomeBrands.Facebook).WithSize(FontAwesomeSize.X2).WithColor("#1877f2");
                             body.Text(" Facebook").LineBreak();
-                            
+
                             body.Icon(FontAwesomeBrands.Twitter).WithSize(FontAwesomeSize.X2).WithColor("#1da1f2");
                             body.Text(" Twitter").LineBreak();
-                            
+
                             body.Icon(FontAwesomeBrands.YouTube).WithSize(FontAwesomeSize.X2).WithColor("#ff0000");
                             body.Text(" YouTube").LineBreak();
-                            
+
                             body.Icon(FontAwesomeBrands.LinkedinIn).WithSize(FontAwesomeSize.X2).WithColor("#0077b5");
                             body.Text(" LinkedIn").LineBreak();
                         });
@@ -100,7 +100,7 @@ internal class FontAwesomeComprehensiveDemo {
 
             // Section 2: Icon modifiers and effects
             page.H2("Icon Modifiers & Effects");
-            
+
             page.Row(row => {
                 row.Column(TablerColumnNumber.Twelve, col => {
                     col.Card(card => {
@@ -120,7 +120,7 @@ internal class FontAwesomeComprehensiveDemo {
                             body.Text(" 2x  ");
                             body.Icon(FontAwesomeSolid.House).WithSize(FontAwesomeSize.X3);
                             body.Text(" 3x ").LineBreak().LineBreak();
-                            
+
                             // Rotations
                             body.H4("Rotations:");
                             body.Icon(FontAwesomeSolid.Shield);
@@ -131,7 +131,7 @@ internal class FontAwesomeComprehensiveDemo {
                             body.Text(" 180°  ");
                             body.Icon(FontAwesomeSolid.Shield).WithRotate(270);
                             body.Text(" 270° ").LineBreak().LineBreak();
-                            
+
                             // Flips
                             body.H4("Flips:");
                             body.Icon(FontAwesomeSolid.Shield);
@@ -142,7 +142,7 @@ internal class FontAwesomeComprehensiveDemo {
                             body.Text(" Vertical  ");
                             body.Icon(FontAwesomeSolid.Shield).WithFlip(FontAwesomeFlip.Both);
                             body.Text(" Both ").LineBreak().LineBreak();
-                            
+
                             // Animations
                             body.H4("Animations:");
                             body.Icon(FontAwesomeSolid.ArrowRotateRight).WithSpin();
@@ -156,7 +156,7 @@ internal class FontAwesomeComprehensiveDemo {
 
             // Section 3: VisNetwork with FontAwesome icons
             page.H2("FontAwesome Icons in VisNetwork");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("fontAwesomeNetwork")
@@ -242,7 +242,7 @@ internal class FontAwesomeComprehensiveDemo {
 
             // Section 4: Code Examples
             page.H2("Usage Examples");
-            
+
             page.Row(row => {
                 row.Column(TablerColumnNumber.Six, col => {
                     col.Card(card => {
@@ -270,7 +270,7 @@ page.Icon(FontAwesomeSolid.ArrowRotateRight, icon => icon
                         });
                     });
                 });
-                
+
                 row.Column(TablerColumnNumber.Six, col => {
                     col.Card(card => {
                         card.Header(h => h.Title("VisNetwork Icon Usage"));
@@ -301,7 +301,7 @@ network.AddNode(1, node => node
 
             // Benefits section
             page.H2("Benefits of the Complete Implementation");
-            
+
             page.Text("• Three separate enums for Solid, Regular, and Brands").LineBreak();
             page.Text("• Type-safe icon selection with IntelliSense").LineBreak();
             page.Text("• Works in both HTML elements and VisNetwork").LineBreak();

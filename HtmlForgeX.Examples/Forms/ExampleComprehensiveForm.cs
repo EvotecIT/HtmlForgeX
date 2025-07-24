@@ -90,9 +90,9 @@ internal static class ExampleComprehensiveForm {
                                 editor.Label("Product Description")
                                       .Placeholder("Enter detailed product description...")
                                       .Height("200px")
-                                      .Toolbar(new() { 
-                                          QuillFormat.Bold, 
-                                          QuillFormat.Italic, 
+                                      .Toolbar(new() {
+                                          QuillFormat.Bold,
+                                          QuillFormat.Italic,
                                           QuillFormat.Underline,
                                           QuillFormat.Link,
                                           QuillFormat.List,

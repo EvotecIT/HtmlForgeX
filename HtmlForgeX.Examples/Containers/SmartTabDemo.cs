@@ -72,7 +72,7 @@ internal class SmartTabDemo {
                                     panel.Text("Example cards with various configurations.")
                                          .Weight(TablerFontWeight.Medium);
                                     panel.LineBreak();
-                                    
+
                                     panel.Row(cardRow => {
                                         cardRow.Column(TablerColumnNumber.Four, cardCol => {
                                             cardCol.Card(card => {
@@ -115,7 +115,7 @@ internal class SmartTabDemo {
                                     panel.Text("Configuration options and settings.")
                                          .Weight(TablerFontWeight.Medium);
                                     panel.LineBreak();
-                                    
+
                                     panel.DataGrid(dataGrid => {
                                         dataGrid.WithLayout(TablerDataGridLayout.Default)
                                                .WithSpacing(TablerDataGridSpacing.Medium);

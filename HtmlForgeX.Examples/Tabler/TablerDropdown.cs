@@ -14,8 +14,7 @@ internal static class TablerDropdown {
                             .AddItem("Delete", "#", true)
                             .AddDivider()
                             .AddItem("Share"))
-                        .Body(body =>
-                        {
+                        .Body(body => {
                             body.Text("This card demonstrates a dropdown in the header.");
                         }));
                 });
@@ -30,8 +29,7 @@ internal static class TablerDropdown {
                             .AddItem("Archive")
                             .AddDivider()
                             .AddItem("Delete", "#", true))
-                        .Body(body =>
-                        {
+                        .Body(body => {
                             body.Text("Another dropdown example with a settings icon.");
                         }));
                 });

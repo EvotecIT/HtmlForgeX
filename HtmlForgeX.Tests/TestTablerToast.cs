@@ -14,7 +14,7 @@ public class TestTablerToast {
 
     [TestMethod]
     public void Toast_PositionAndType() {
-        var toast = new TablerToast("T","M")
+        var toast = new TablerToast("T", "M")
             .Type(TablerToastType.Success)
             .Position(TablerToastPosition.TopLeft);
         var html = toast.ToString();
@@ -25,7 +25,7 @@ public class TestTablerToast {
 
     [TestMethod]
     public void Toast_AutoDismissScript() {
-        var toast = new TablerToast("T","M").AutoDismiss(1000);
+        var toast = new TablerToast("T", "M").AutoDismiss(1000);
         var html = toast.ToString();
         Assert.IsTrue(html.Contains("bootstrap.Toast"));
         Assert.IsTrue(html.Contains("delay: 1000"));

@@ -3,17 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HtmlForgeX.Tests;
 
 [TestClass]
-public class TestVisNetworkLambda
-{
+public class TestVisNetworkLambda {
     [TestMethod]
-    public void VisNetwork_LambdaOverloads_ShouldRender()
-    {
+    public void VisNetwork_LambdaOverloads_ShouldRender() {
         using var doc = new Document();
 
-        doc.Body.Add(element =>
-        {
-            element.DiagramNetwork(network =>
-            {
+        doc.Body.Add(element => {
+            element.DiagramNetwork(network => {
                 network.AddNode(node => node.WithId(1).WithLabel("Node1"));
                 network.AddNode(2, node => node.WithLabel("Node2"));
                 network.AddEdge(edge => edge.WithConnection(1, 2).WithLabel("Edge1"));
@@ -29,4 +25,3 @@ public class TestVisNetworkLambda
         Assert.IsTrue(html.Contains("Edge2"), "Should contain second edge label");
     }
 }
-

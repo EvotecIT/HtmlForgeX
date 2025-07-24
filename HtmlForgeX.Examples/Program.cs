@@ -1,17 +1,18 @@
 using System;
 using System.Text;
-using HtmlForgeX.Examples.Containers;
-using HtmlForgeX.Examples.Charts;
-using HtmlForgeX.Examples.Emails;
-using HtmlForgeX.Examples.Tags;
-using HtmlForgeX.Examples.Tables;
+
 using HtmlForgeX.Examples.ByHand;
+using HtmlForgeX.Examples.Charts;
+using HtmlForgeX.Examples.Containers;
+using HtmlForgeX.Examples.Emails;
 using HtmlForgeX.Examples.Experimenting;
-using HtmlForgeX.Examples.Support;
 using HtmlForgeX.Examples.Forms;
-using HtmlForgeX.Examples.Tabler;
-using HtmlForgeX.Examples.VisNetwork;
 using HtmlForgeX.Examples.Icons;
+using HtmlForgeX.Examples.Support;
+using HtmlForgeX.Examples.Tabler;
+using HtmlForgeX.Examples.Tables;
+using HtmlForgeX.Examples.Tags;
+using HtmlForgeX.Examples.VisNetwork;
 
 namespace HtmlForgeX.Examples;
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using HtmlForgeX;
 
 namespace HtmlForgeX.Examples.Tables;
@@ -8,10 +9,8 @@ namespace HtmlForgeX.Examples.Tables;
 /// <summary>
 /// Demonstrates DataTables rendering modes and global configuration
 /// </summary>
-internal class DataTablesRenderingDemo
-{
-    public static void Create(bool openInBrowser = false)
-    {
+internal class DataTablesRenderingDemo {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("🚀 DataTables Rendering Modes Demo");
 
         // Create sample datasets of different sizes
@@ -19,8 +18,7 @@ internal class DataTablesRenderingDemo
         var mediumDataset = GenerateProducts(500);
         var largeDataset = GenerateProducts(2000);
 
-        using var document = new Document
-        {
+        using var document = new Document {
             Head = {
                 Title = "DataTables Rendering Modes Demo",
                 Author = "HtmlForgeX Team",
@@ -40,8 +38,7 @@ internal class DataTablesRenderingDemo
         // TEMPORARY: Manual PrismJS registration for debugging
         document.AddLibrary(Libraries.PrismJs);
 
-        document.Body.Page(page =>
-        {
+        document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
 
             // Header
@@ -52,15 +49,11 @@ internal class DataTablesRenderingDemo
             // Performance comparison section
             page.Divider("📊 Performance Comparison");
 
-            page.Row(row =>
-            {
-                row.Column(TablerColumnNumber.Four, col =>
-                {
-                    col.Card(card =>
-                    {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Four, col => {
+                    col.Card(card => {
                         card.Header(h => h.Title("HTML Rendering").Subtitle("Traditional Mode"));
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.Text("✅ Better compatibility").LineBreak();
                             body.Text("✅ Simpler debugging").LineBreak();
                             body.Text("❌ Slower with large datasets").LineBreak();
@@ -69,13 +62,10 @@ internal class DataTablesRenderingDemo
                     });
                 });
 
-                row.Column(TablerColumnNumber.Four, col =>
-                {
-                    col.Card(card =>
-                    {
+                row.Column(TablerColumnNumber.Four, col => {
+                    col.Card(card => {
                         card.Header(h => h.Title("JavaScript Rendering").Subtitle("Performance Mode"));
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.Text("✅ Faster rendering").LineBreak();
                             body.Text("✅ Lower memory usage").LineBreak();
                             body.Text("✅ Better for large datasets").LineBreak();
@@ -84,13 +74,10 @@ internal class DataTablesRenderingDemo
                     });
                 });
 
-                row.Column(TablerColumnNumber.Four, col =>
-                {
-                    col.Card(card =>
-                    {
+                row.Column(TablerColumnNumber.Four, col => {
+                    col.Card(card => {
                         card.Header(h => h.Title("Auto Mode").Subtitle("Smart Selection"));
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.Text("✅ Best of both worlds").LineBreak();
                             body.Text("✅ Automatic optimization").LineBreak();
                             body.Text("✅ Configurable threshold").LineBreak();
@@ -104,14 +91,12 @@ internal class DataTablesRenderingDemo
             page.Divider($"1. Small Dataset ({smallDataset.Count} rows) - HTML Rendering");
             page.Text("Small datasets work well with traditional HTML rendering for better compatibility:");
 
-            page.DataTable(smallDataset, table =>
-            {
+            page.DataTable(smallDataset, table => {
                 table
                     .EnableHtmlRendering() // Force HTML mode
                     .Style(BootStrapTableStyle.Striped)
                     .EnablePaging(10)
-                    .ConfigureColumns(columns =>
-                    {
+                    .ConfigureColumns(columns => {
                         columns.Column(col => col.Target(0).Title("ID").Width("60px").Centered());
                         columns.Column(col => col.Target(1).Title("Product").Width("200px"));
                         columns.Column(col => col.Target(2).Title("Category").Width("120px"));
@@ -126,14 +111,12 @@ internal class DataTablesRenderingDemo
             page.Divider($"2. Medium Dataset ({mediumDataset.Count} rows) - JavaScript Rendering");
             page.Text("Medium datasets benefit from JavaScript rendering for better performance:");
 
-            page.DataTable(mediumDataset, table =>
-            {
+            page.DataTable(mediumDataset, table => {
                 table
                     .EnableJavaScriptRendering() // Force JavaScript mode
                     .Style(BootStrapTableStyle.Hover)
                     .EnablePaging(25)
-                    .ConfigureColumns(columns =>
-                    {
+                    .ConfigureColumns(columns => {
                         columns.Column(col => col.Target(0).Title("ID").Width("60px").Centered());
                         columns.Column(col => col.Target(1).Title("Product").Width("200px"));
                         columns.Column(col => col.Target(2).Title("Category").Width("120px"));
@@ -149,14 +132,12 @@ internal class DataTablesRenderingDemo
             page.Divider($"3. Large Dataset ({largeDataset.Count} rows) - Auto Mode");
             page.Text("Large datasets automatically use JavaScript rendering when Auto mode is enabled:");
 
-            page.DataTable(largeDataset, table =>
-            {
+            page.DataTable(largeDataset, table => {
                 table
                     .EnableAutoRendering() // Auto mode - will choose JavaScript for large dataset
                     .Style(BootStrapTableStyle.Borders)
                     .EnablePaging(50)
-                    .ConfigureColumns(columns =>
-                    {
+                    .ConfigureColumns(columns => {
                         columns.Column(col => col.Target(0).Title("ID").Width("60px").Centered());
                         columns.Column(col => col.Target(1).Title("Product").Width("200px"));
                         columns.Column(col => col.Target(2).Title("Category").Width("120px"));
@@ -174,15 +155,13 @@ internal class DataTablesRenderingDemo
             page.Text("This table uses global document settings (Auto mode with 1000 row threshold):");
 
             // This table will inherit global settings
-            page.DataTable(mediumDataset.Take(800), table =>
-            {
+            page.DataTable(mediumDataset.Take(800), table => {
                 table
                     // No explicit render mode - uses global Auto mode
                     .Style(BootStrapTableStyle.Striped)
                     .Style(BootStrapTableStyle.Hover)
                     .EnablePaging() // Uses global default page length (25)
-                    .ConfigureColumns(columns =>
-                    {
+                    .ConfigureColumns(columns => {
                         columns.Column(col => col.Target(0).Title("ID").Width("60px").Centered());
                         columns.Column(col => col.Target(1).Title("Product").Width("200px"));
                         columns.Column(col => col.Target(2).Title("Category").Width("120px"));
@@ -196,18 +175,13 @@ internal class DataTablesRenderingDemo
             // Code examples section
             page.Divider("💻 Code Examples");
 
-            page.Row(row =>
-            {
-                row.Column(TablerColumnNumber.Six, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("Global Configuration").Subtitle("Document-level settings");
                         });
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.CSharpCode(@"
 // Configure global DataTables settings
 document.Configuration.DataTables.DefaultRenderMode = DataTablesRenderMode.Auto;
@@ -221,16 +195,12 @@ document.Configuration.DataTables.DefaultPageLength = 25;", config => config
                     });
                 });
 
-                row.Column(TablerColumnNumber.Six, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("Table-level Override").Subtitle("Per-table rendering mode");
                         });
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.CSharpCode(@"
 page.DataTable(data, table => {
     table.EnableJavaScriptRendering() // Override global
@@ -248,23 +218,16 @@ page.DataTable(data, table => {
             });
 
             // Performance tips
-            page.Row(row =>
-            {
-                row.Column(TablerColumnNumber.Twelve, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Twelve, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("🎯 Performance Tips").Subtitle("Best practices for optimal DataTables performance");
                         });
-                        card.Body(body =>
-                        {
-                            body.AddList(list =>
-                            {
+                        card.Body(body => {
+                            body.AddList(list => {
                                 list.Style(TablerCardListStyle.Unstyled);
-                                list.WithItems(items =>
-                                {
+                                list.WithItems(items => {
                                     items.CheckItem("🚀 Use JavaScript rendering for datasets > 1000 rows", true);
                                     items.CheckItem("⚡ Enable deferred rendering for large datasets", true);
                                     items.CheckItem("🎯 Use Auto mode for mixed dataset sizes", true);
@@ -295,15 +258,13 @@ page.DataTable(data, table => {
         HelpersSpectre.Success("   • Global default settings");
     }
 
-    private static List<dynamic> GenerateProducts(int count)
-    {
+    private static List<dynamic> GenerateProducts(int count) {
         var random = new Random(42); // Fixed seed for consistent results
         var categories = new[] { "Electronics", "Furniture", "Clothing", "Books", "Sports", "Home & Garden" };
         var products = new[] { "Laptop", "Mouse", "Chair", "Desk", "Phone", "Tablet", "Monitor", "Keyboard" };
 
         return Enumerable.Range(1, count)
-            .Select(i => new
-            {
+            .Select(i => new {
                 Id = i,
                 Name = $"{products[random.Next(products.Length)]} {random.Next(100, 999)}",
                 Category = categories[random.Next(categories.Length)],

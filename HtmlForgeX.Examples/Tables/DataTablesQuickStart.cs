@@ -5,14 +5,11 @@ namespace HtmlForgeX.Examples.Tables;
 /// <summary>
 /// Quick start guide for the enhanced DataTables features
 /// </summary>
-internal class DataTablesQuickStart
-{
-    public static void Create(bool openInBrowser = false)
-    {
+internal class DataTablesQuickStart {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("⚡ DataTables Quick Start Guide");
 
-        using var document = new Document
-        {
+        using var document = new Document {
             Head = {
                 Title = "DataTables Quick Start Guide",
                 Author = "HtmlForgeX Team",
@@ -36,8 +33,7 @@ internal class DataTablesQuickStart
             new { Id = 8, Name = "Desk Lamp", Category = "Furniture", Price = 79.99, Stock = 22, Rating = 4.4 }
         };
 
-        document.Body.Page(page =>
-        {
+        document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
 
             // Header
@@ -61,13 +57,11 @@ internal class DataTablesQuickStart
             page.Divider("2. Column Configuration");
             page.Text("Table with custom column types, widths, and formatting:");
 
-            page.DataTable(products, table =>
-            {
+            page.DataTable(products, table => {
                 table
                     .Style(BootStrapTableStyle.Borders)
                     .EnablePaging(4)
-                    .ConfigureColumns(columns =>
-                    {
+                    .ConfigureColumns(columns => {
                         columns.Column(col => col.Target(0).Title("Product ID").Width("80px").Type(DataTablesColumnType.Numeric).Centered());
                         columns.Column(col => col.Target(1).Title("Product Name").Width("200px"));
                         columns.Column(col => col.Target(2).Title("Category").Width("120px"));
@@ -83,13 +77,11 @@ internal class DataTablesQuickStart
             page.Divider("3. Advanced Search Features");
             page.Text("Table with search builder and search panes:");
 
-            page.DataTable(products, table =>
-            {
+            page.DataTable(products, table => {
                 table
                     .Style(BootStrapTableStyle.Hover)
                     .EnablePaging(6)
-                    .EnableSearchBuilder(builder =>
-                    {
+                    .EnableSearchBuilder(builder => {
                         builder.Enable = true;
                         builder.Logic = "AND";
                         builder.Conditions = 2;
@@ -101,13 +93,11 @@ internal class DataTablesQuickStart
             page.Divider("4. Custom Export Configuration");
             page.Text("Table with detailed export options:");
 
-            page.DataTable(products, table =>
-            {
+            page.DataTable(products, table => {
                 table
                     .Style(BootStrapTableStyle.Striped)
                     .EnablePaging(5)
-                    .ConfigureExport(export =>
-                    {
+                    .ConfigureExport(export => {
                         export.Excel("📊 Export Excel", "products_report", "Product Inventory Report")
                               .CSV("📄 Export CSV", "products_data")
                               .PDF("� Expoort PDF", "products_list", "Product Catalog")
@@ -122,21 +112,18 @@ internal class DataTablesQuickStart
             page.Divider("5. Localization Example");
             page.Text("Table with custom text and localization:");
 
-            page.DataTable(products.Take(6), table =>
-            {
+            page.DataTable(products.Take(6), table => {
                 table
                     .Style(BootStrapTableStyle.Borders)
                     .EnablePaging(3)
-                    .Localize(lang =>
-                    {
+                    .Localize(lang => {
                         lang.Search = "🔍 Search products:";
                         lang.LengthMenu = "Display _MENU_ products";
                         lang.Info = "Showing _START_ to _END_ of _TOTAL_ products";
                         lang.InfoEmpty = "No products available";
                         lang.ZeroRecords = "No matching products found";
                         lang.Processing = "Loading products...";
-                        lang.Paginate = new DataTablesPaginate
-                        {
+                        lang.Paginate = new DataTablesPaginate {
                             First = "⏮️ First",
                             Last = "⏭️ Last",
                             Next = "▶️ Next",
@@ -150,16 +137,14 @@ internal class DataTablesQuickStart
             page.Divider("6. Performance Optimizations");
             page.Text("Table with state saving, fixed header, and scrolling:");
 
-            page.DataTable(products, table =>
-            {
+            page.DataTable(products, table => {
                 table
                     .Style(BootStrapTableStyle.Hover)
                     .EnablePaging(4)
                     .EnableStateSaving() // Remember user preferences
                     .EnableFixedHeader() // Keep header visible while scrolling
                     .Scrolling(scrollY: "300px", scrollCollapse: true) // Vertical scrolling
-                    .Configure(options =>
-                    {
+                    .Configure(options => {
                         options.Processing = true; // Show loading indicator
                         options.DeferRender = true; // Improve performance with large datasets
                     });
@@ -168,18 +153,13 @@ internal class DataTablesQuickStart
             // Code examples section
             page.Divider("💻 Code Examples");
 
-            page.Row(row =>
-            {
-                row.Column(TablerColumnNumber.Six, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("Basic Usage").Subtitle("Simple enhanced table");
                         });
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.CSharpCode(@"
 document.Body.DataTable(data, table =>
 {
@@ -194,16 +174,12 @@ document.Body.DataTable(data, table =>
                     });
                 });
 
-                row.Column(TablerColumnNumber.Six, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("Column Configuration").Subtitle("Advanced column setup");
                         });
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.CSharpCode(@"
 .ConfigureColumns(columns =>
 {
@@ -220,23 +196,16 @@ document.Body.DataTable(data, table =>
                 });
             });
 
-            page.Row(row =>
-            {
-                row.Column(TablerColumnNumber.Twelve, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Twelve, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("🎯 Key Features").Subtitle("What's new in the enhanced DataTables");
                         });
-                        card.Body(body =>
-                        {
-                            body.AddList(list =>
-                            {
+                        card.Body(body => {
+                            body.AddList(list => {
                                 list.Style(TablerCardListStyle.Unstyled);
-                                list.WithItems(items =>
-                                {
+                                list.WithItems(items => {
                                     items.CheckItem("📊 Export to Excel, CSV, PDF with custom options", true);
                                     items.CheckItem("🔍 Advanced search builder with multiple conditions", true);
                                     items.CheckItem("📱 Responsive design with fixed headers and columns", true);

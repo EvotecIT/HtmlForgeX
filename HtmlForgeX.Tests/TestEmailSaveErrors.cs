@@ -2,7 +2,9 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+
 using HtmlForgeX.Logging;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;

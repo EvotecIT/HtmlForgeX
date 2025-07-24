@@ -1,8 +1,9 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;

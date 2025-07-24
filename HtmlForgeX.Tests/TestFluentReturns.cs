@@ -3,6 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.Serialization;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
@@ -60,8 +61,7 @@ public class TestFluentReturns {
     private static void AssertFluentMethods(Type type) {
         var ctor = type.GetConstructors(BindingFlags.Public | BindingFlags.Instance)
             .OrderBy(c => c.GetParameters().Length).FirstOrDefault();
-        if (ctor == null)
-        {
+        if (ctor == null) {
             return; // cannot instantiate type
         }
         var instance = ctor.Invoke(GetConstructorDefaults(ctor));

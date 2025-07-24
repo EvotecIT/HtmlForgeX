@@ -11,7 +11,7 @@ public static class TestVisNetworkHtml {
 
         document.Body.Page(page => {
             page.H2("VisNetwork HTML Support Test");
-            
+
             // Test 1: Basic HTML tags
             page.H3("Test 1: Basic HTML Tags");
             page.DiagramNetwork(network => {

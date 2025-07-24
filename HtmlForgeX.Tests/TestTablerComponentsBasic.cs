@@ -9,7 +9,7 @@ public class TestTablerComponentsBasic {
     public void TablerRow_BasicCreation() {
         var row = new TablerRow();
         var html = row.ToString();
-        
+
         Assert.IsTrue(html.Contains("class=\"row\""));
     }
 
@@ -17,7 +17,7 @@ public class TestTablerComponentsBasic {
     public void TablerColumn_BasicCreation() {
         var column = new TablerColumn();
         var html = column.ToString();
-        
+
         Assert.IsTrue(html.Contains("class=\"col\""));
     }
 
@@ -25,7 +25,7 @@ public class TestTablerComponentsBasic {
     public void TablerIcon_BasicCreation() {
         var icon = new TablerIcon("<svg>test</svg>");
         var html = icon.ToString();
-        
+
         Assert.IsTrue(html.Contains("<svg>test</svg>"));
     }
 
@@ -33,7 +33,7 @@ public class TestTablerComponentsBasic {
     public void TablerText_BasicCreation() {
         var text = new TablerText("Sample text");
         var html = text.ToString();
-        
+
         Assert.IsTrue(html.Contains("Sample text"));
     }
 
@@ -41,7 +41,7 @@ public class TestTablerComponentsBasic {
     public void TablerCard_BasicCreation() {
         var card = new TablerCard();
         var html = card.ToString();
-        
+
         // Card should contain the card class
         Assert.IsTrue(html.Contains("card"));
         Assert.IsTrue(html.Contains("<div") || html.Contains("<a"));
@@ -51,7 +51,7 @@ public class TestTablerComponentsBasic {
     public void UnorderedList_BasicCreation() {
         var list = new UnorderedList();
         var html = list.ToString();
-        
+
         Assert.IsTrue(html.Contains("<ul"));
     }
 
@@ -59,7 +59,7 @@ public class TestTablerComponentsBasic {
     public void TablerProgressBar_BasicCreation() {
         var progressBar = new TablerProgressBar();
         var html = progressBar.ToString();
-        
+
         Assert.IsTrue(html.Contains("class=\"progress\""));
     }
 
@@ -76,7 +76,7 @@ public class TestTablerComponentsBasic {
     public void TablerAvatar_BasicCreation() {
         var avatar = new TablerAvatar();
         var html = avatar.ToString();
-        
+
         Assert.IsTrue(html.Contains("class=\"avatar\""));
     }
 

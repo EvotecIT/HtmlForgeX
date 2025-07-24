@@ -3,11 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HtmlForgeX.Tests;
 
 [TestClass]
-public class TestAddFontLink
-{
+public class TestAddFontLink {
     [TestMethod]
-    public void AddFontLink_DeduplicatesAndRendersCorrectly()
-    {
+    public void AddFontLink_DeduplicatesAndRendersCorrectly() {
         var doc = new Document();
         const string url = "https://fonts.googleapis.com/css2?family=Open+Sans";
         doc.Head.AddFontLink(url);
@@ -20,8 +18,7 @@ public class TestAddFontLink
     }
 
     [TestMethod]
-    public void AddFontLink_AllowsMultipleUrls()
-    {
+    public void AddFontLink_AllowsMultipleUrls() {
         var doc = new Document();
         const string url1 = "https://fonts.example.com/a.css";
         const string url2 = "https://fonts.example.com/b.css";
@@ -34,8 +31,7 @@ public class TestAddFontLink
     }
 
     [TestMethod]
-    public void SetBodyFontFamily_AddsCssOnce()
-    {
+    public void SetBodyFontFamily_AddsCssOnce() {
         var doc = new Document();
         const string expected = "Roboto, sans-serif";
         doc.Head.SetBodyFontFamily("Roboto", "sans-serif");
@@ -48,8 +44,7 @@ public class TestAddFontLink
     }
 
     [TestMethod]
-    public void SetBodyFontFamily_QuotesFontsWithSpaces()
-    {
+    public void SetBodyFontFamily_QuotesFontsWithSpaces() {
         var doc = new Document();
         doc.Head.SetBodyFontFamily("Open Sans", "Arial", "sans-serif");
 
@@ -58,8 +53,7 @@ public class TestAddFontLink
     }
 
     [TestMethod]
-    public void SetBodyFontFamily_SanitizesQuotedFonts()
-    {
+    public void SetBodyFontFamily_SanitizesQuotedFonts() {
         var doc = new Document();
         doc.Head.SetBodyFontFamily("'Open Sans'", "Arial", "sans-serif");
 
@@ -68,8 +62,7 @@ public class TestAddFontLink
     }
 
     [TestMethod]
-    public void SetBodyFontFamily_MultipleFonts()
-    {
+    public void SetBodyFontFamily_MultipleFonts() {
         var doc = new Document();
         doc.Head.SetBodyFontFamily("Lobster", "cursive");
 
@@ -78,8 +71,7 @@ public class TestAddFontLink
     }
 
     [TestMethod]
-    public void SetBodyFontFamily_IgnoresEmptyValues()
-    {
+    public void SetBodyFontFamily_IgnoresEmptyValues() {
         var doc = new Document();
         doc.Head.SetBodyFontFamily("Roboto", string.Empty, "  ", null!, "sans-serif");
 
@@ -87,12 +79,10 @@ public class TestAddFontLink
         StringAssert.Contains(html, "font-family: Roboto, sans-serif;");
     }
 
-    private static int CountOccurrences(string text, string pattern)
-    {
+    private static int CountOccurrences(string text, string pattern) {
         int count = 0;
         int index = 0;
-        while ((index = text.IndexOf(pattern, index, System.StringComparison.Ordinal)) != -1)
-        {
+        while ((index = text.IndexOf(pattern, index, System.StringComparison.Ordinal)) != -1) {
             count++;
             index += pattern.Length;
         }

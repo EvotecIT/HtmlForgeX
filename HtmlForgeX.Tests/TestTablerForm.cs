@@ -16,7 +16,7 @@ public class TestTablerForm {
     [TestMethod]
     public void Select_SearchableAddsScript() {
         var form = new TablerForm();
-        form.Select("country", s => s.Searchable().Option("US","US"));
+        form.Select("country", s => s.Searchable().Option("US", "US"));
         var html = form.ToString();
         Assert.IsTrue(html.Contains("TomSelect"));
     }

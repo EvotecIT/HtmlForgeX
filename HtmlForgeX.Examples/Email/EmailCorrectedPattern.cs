@@ -15,10 +15,8 @@ public class TeamMember {
 /// Example demonstrating proper EmailBox spacing and consistent layout patterns.
 /// Shows how to use multiple EmailBox elements with proper margins and spacing.
 /// </summary>
-public static class EmailCorrectedPattern
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailCorrectedPattern {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating corrected email pattern example...");
 
         var email = new Email();
@@ -31,7 +29,7 @@ public static class EmailCorrectedPattern
         email.Body.EmailBox(emailBox => {
             emailBox.WithOuterMargin("0 auto 24px auto").WithMaxWidth("600px");
 
-                        // Header with logo using new direct pattern
+            // Header with logo using new direct pattern
             email.Header.WithPadding("20px");
             email.Header.EmailRow(row => {
                 row.EmailColumn(col => {

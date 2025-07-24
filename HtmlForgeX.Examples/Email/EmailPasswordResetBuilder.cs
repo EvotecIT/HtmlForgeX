@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example of creating a password reset email using flexible HtmlForgeX components.
 /// Shows how to build security-focused emails with clear actions and warnings.
 /// </summary>
-public static class EmailPasswordResetBuilder
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailPasswordResetBuilder {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating password reset email example...");
 
         var email = new Email();
@@ -18,7 +16,7 @@ public static class EmailPasswordResetBuilder
         email.Head.AddTitle("Reset Your Password")
                   .AddEmailCoreStyles();
 
-                // Header with logo using new direct pattern
+        // Header with logo using new direct pattern
         email.Header.WithPadding("20px");
         email.Header.EmailRow(row => {
             row.EmailColumn(col => {

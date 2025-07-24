@@ -3,14 +3,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HtmlForgeX.Tests;
 
 [TestClass]
-public class TestDataTablesColumnBuilder
-{
+public class TestDataTablesColumnBuilder {
     [TestMethod]
-    public void ColumnBuilder_AssignsSequentialIndexes()
-    {
+    public void ColumnBuilder_AssignsSequentialIndexes() {
         var table = new DataTablesTable();
-        table.ConfigureColumns(cols =>
-        {
+        table.ConfigureColumns(cols => {
             cols.Column(c => c.Title("First").Build());
             cols.Column(c => c.Title("Second").Build());
             cols.Column(c => c.Title("Third").Build());

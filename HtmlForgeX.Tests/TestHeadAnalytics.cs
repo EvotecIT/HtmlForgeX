@@ -6,11 +6,9 @@ namespace HtmlForgeX.Tests;
 /// Tests adding analytics scripts to the document head.
 /// </summary>
 [TestClass]
-public class TestHeadAnalytics
-{
+public class TestHeadAnalytics {
     [TestMethod]
-    public void AddAnalytics_Google_ShouldIncludeScript()
-    {
+    public void AddAnalytics_Google_ShouldIncludeScript() {
         using var doc = new Document();
         var result = doc.Head.AddAnalytics(AnalyticsProvider.GoogleAnalytics, "G-TEST");
         Assert.IsTrue(result);
@@ -20,8 +18,7 @@ public class TestHeadAnalytics
     }
 
     [TestMethod]
-    public void AddAnalytics_Cloudflare_ShouldIncludeScript()
-    {
+    public void AddAnalytics_Cloudflare_ShouldIncludeScript() {
         using var doc = new Document();
         var result = doc.Head.AddAnalytics(AnalyticsProvider.CloudflareInsights, "token-123");
         Assert.IsTrue(result);
@@ -31,8 +28,7 @@ public class TestHeadAnalytics
     }
 
     [TestMethod]
-    public void AddAnalytics_Google_ShouldEncodeSpecialCharacters()
-    {
+    public void AddAnalytics_Google_ShouldEncodeSpecialCharacters() {
         var doc = new Document();
         var result = doc.Head.AddAnalytics(AnalyticsProvider.GoogleAnalytics, "G-\"A&B<C>'");
         Assert.IsTrue(result);
@@ -42,8 +38,7 @@ public class TestHeadAnalytics
     }
 
     [TestMethod]
-    public void AddAnalytics_Cloudflare_ShouldEncodeSpecialCharacters()
-    {
+    public void AddAnalytics_Cloudflare_ShouldEncodeSpecialCharacters() {
         var doc = new Document();
         var result = doc.Head.AddAnalytics(AnalyticsProvider.CloudflareInsights, "tok'en\"<>");
         Assert.IsTrue(result);
@@ -52,8 +47,7 @@ public class TestHeadAnalytics
     }
 
     [TestMethod]
-    public void AddAnalytics_InvalidProvider_ShouldThrow()
-    {
+    public void AddAnalytics_InvalidProvider_ShouldThrow() {
         using var doc = new Document();
         var result = doc.Head.AddAnalytics((AnalyticsProvider)int.MaxValue, "id");
         Assert.IsFalse(result);

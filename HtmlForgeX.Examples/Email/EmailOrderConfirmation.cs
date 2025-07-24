@@ -20,7 +20,7 @@ public static class EmailOrderConfirmation {
         email.Body.EmailBox(emailBox => {
             emailBox.WithOuterMargin("0 auto 16px auto").WithMaxWidth("600px");
 
-                        // Header with logo using new direct pattern
+            // Header with logo using new direct pattern
             email.Header.WithPadding("20px");
             email.Header.EmailRow(row => {
                 row.EmailColumn(col => {

@@ -1,6 +1,8 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using HtmlTinkerX;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 

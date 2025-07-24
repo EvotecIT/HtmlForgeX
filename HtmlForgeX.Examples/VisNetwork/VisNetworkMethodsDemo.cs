@@ -6,8 +6,8 @@ namespace HtmlForgeX.Examples.VisNetwork {
             HelpersSpectre.PrintTitle("VisNetwork Methods API Demo");
 
             using var document = new Document {
-                Head = { 
-                    Title = "VisNetwork Methods API Demo - Viewport Control", 
+                Head = {
+                    Title = "VisNetwork Methods API Demo - Viewport Control",
                     Author = "HtmlForgeX"
                 },
                 LibraryMode = LibraryMode.Online,
@@ -42,7 +42,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithPosition(-300, -200)
                         .WithSize(30)
                     );
-                    
+
                     for (int i = 1; i <= 3; i++) {
                         network.AddNode($"c1n{i}", node => node
                             .WithLabel($"C1-{i}")
@@ -61,7 +61,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithPosition(300, -200)
                         .WithSize(30)
                     );
-                    
+
                     for (int i = 1; i <= 3; i++) {
                         network.AddNode($"c2n{i}", node => node
                             .WithLabel($"C2-{i}")
@@ -80,7 +80,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         .WithPosition(0, 200)
                         .WithSize(30)
                     );
-                    
+
                     for (int i = 1; i <= 3; i++) {
                         network.AddNode($"c3n{i}", node => node
                             .WithLabel($"C3-{i}")
@@ -107,20 +107,20 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             .WithMinZoomLevel(0.5)
                             .WithMaxZoomLevel(2.0)
                         , delay: 500)  // Add initial delay for network initialization
-                        // After 2.5 seconds, focus on cluster1
+                                       // After 2.5 seconds, focus on cluster1
                         .Focus("cluster1", focus => focus
                             .WithScale(1.5)
                             .WithAnimation(anim => anim
                                 .WithDuration(1500)
                                 .WithEasingFunction(VisNetworkEasingFunction.EaseInOutCubic)
-                            ), 
+                            ),
                             2500
                         )
                         // After 4.5 seconds, focus on cluster2
                         .Focus("cluster2", focus => focus
                             .WithScale(1.5)
                             .WithOffset(50, -50)
-                            .WithAnimation(true), 
+                            .WithAnimation(true),
                             4500
                         )
                         // After 6.5 seconds, fit only cluster3 nodes
@@ -128,7 +128,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                             .WithNodes("cluster3", "c3n1", "c3n2", "c3n3")
                             .WithAnimation(anim => anim
                                 .WithDuration(2000)
-                            ), 
+                            ),
                             6500
                         );
                 });
@@ -154,10 +154,10 @@ namespace HtmlForgeX.Examples.VisNetwork {
                                 .WithColor(row == 2 && col == 2 ? RGBColor.Red : RGBColor.LightGray)
                                 .WithPosition(col * 150 - 300, row * 150 - 300)
                             );
-                            
+
                             // Connect to neighbors
-                            if (col > 0) network.AddEdge(id, $"grid{row}{col-1}");
-                            if (row > 0) network.AddEdge(id, $"grid{row-1}{col}");
+                            if (col > 0) network.AddEdge(id, $"grid{row}{col - 1}");
+                            if (row > 0) network.AddEdge(id, $"grid{row - 1}{col}");
                         }
                     }
 
@@ -209,7 +209,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                     // Create a network with groups
                     var groups = new[] { "Frontend", "Backend", "Database" };
                     var colors = new[] { RGBColor.Blue, RGBColor.Green, RGBColor.Red };
-                    
+
                     for (int g = 0; g < groups.Length; g++) {
                         for (int i = 1; i <= 4; i++) {
                             var nodeId = $"{groups[g]}{i}";
@@ -316,7 +316,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         var angle = i * Math.PI / 3;
                         var x = Math.Cos(angle) * 150;
                         var y = Math.Sin(angle) * 150;
-                        
+
                         network.AddNode($"node{i}", node => node
                             .WithLabel($"Node {i}")
                             .WithShape(VisNetworkNodeShape.Circle)

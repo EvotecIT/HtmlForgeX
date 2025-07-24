@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example demonstrating the DIRECT email pattern - simple top-to-bottom flow like writing in Outlook.
 /// This matches the PowerShell EmailBody pattern without layout containers.
 /// </summary>
-public static class EmailDirectPattern
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailDirectPattern {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating direct email pattern example (like PowerShell EmailBody)...");
 
         var email = new Email();

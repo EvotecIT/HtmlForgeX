@@ -1,4 +1,5 @@
 using System;
+
 using HtmlForgeX;
 
 namespace HtmlForgeX.Examples.VisNetwork;
@@ -15,8 +16,8 @@ internal class VisNetworkAdvancedLabelsExample {
         HelpersSpectre.PrintTitle("VisNetwork Advanced Labels Example");
 
         using var document = new Document {
-            Head = { 
-                Title = "VisNetwork Advanced Labels - Hover Tooltips, Newlines & Markdown", 
+            Head = {
+                Title = "VisNetwork Advanced Labels - Hover Tooltips, Newlines & Markdown",
                 Author = "HtmlForgeX"
             },
             LibraryMode = LibraryMode.Online,
@@ -26,11 +27,11 @@ internal class VisNetworkAdvancedLabelsExample {
         document.Body.Page(page => {
             page.H1("VisNetwork Advanced Label Features");
             page.Text("This example demonstrates HTML tooltips on hover, proper line breaks using \\n, and markdown support.");
-            
+
             // Section 1: HTML Tooltips on Hover
             page.H2("1. HTML Tooltips on Hover");
             page.Text("Hover over nodes to see HTML-formatted tooltips. Unlike node labels, titles support full HTML.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("htmlTooltipsDemo")
@@ -53,7 +54,7 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithColor(RGBColor.DarkBlue)
                     .WithFont(font => font.WithColor(RGBColor.White))
                 );
-                
+
                 // Node with complex HTML tooltip including lists
                 network.AddNode(2, node => node
                     .WithLabel("Database\nPostgreSQL 14")
@@ -82,7 +83,7 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithShape(VisNetworkNodeShape.Database)
                     .WithColor(RGBColor.Green)
                 );
-                
+
                 // Node with image in tooltip
                 network.AddNode(3, node => node
                     .WithLabel("CDN\nCloudFlare")
@@ -106,7 +107,7 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithTitle("<b>Database Connection</b><br>Protocol: PostgreSQL Wire<br>Port: 5432<br>SSL: Enabled")
                     .WithArrows(arrows => arrows.WithTo(true))
                 );
-                
+
                 network.AddEdge(1, 3, edge => edge
                     .WithLabel("HTTP/2")
                     .WithTitle("<div style='background: #333; color: white; padding: 8px; border-radius: 4px;'>" +
@@ -122,7 +123,7 @@ internal class VisNetworkAdvancedLabelsExample {
             // Section 2: Proper Line Breaks with \n
             page.H2("2. Line Breaks Using \\n (Recommended)");
             page.Text("Using \\n for line breaks is more reliable than <br> tags and works consistently across all VisJS versions.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("lineBreaksDemo")
@@ -152,7 +153,7 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithColor(RGBColor.LightBlue)
                     .WithWidthConstraint(minimum: 200)
                 );
-                
+
                 // Direct string with \n
                 network.AddNode(2, node => node
                     .WithLabel("Direct String\nLine 1\nLine 2\nLine 3")
@@ -160,7 +161,7 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithShape(VisNetworkNodeShape.Box)
                     .WithColor(RGBColor.LightGreen)
                 );
-                
+
                 // HTML with \n instead of <br>
                 network.AddNode(3, node => node
                     .WithHtmlLabel("<b>HTML Format</b>\n<i>With newlines</i>\n<code>Instead of br tags</code>")
@@ -174,7 +175,7 @@ internal class VisNetworkAdvancedLabelsExample {
             // Section 3: Markdown Support
             page.H2("3. Markdown Support");
             page.Text("VisJS supports markdown formatting with font.multi = 'markdown'. This provides a cleaner syntax than HTML.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("markdownDemo")
@@ -193,7 +194,7 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithWidthConstraint(minimum: 250)
                     .WithTitle("This node uses markdown formatting")
                 );
-                
+
                 network.AddNode("md2", node => node
                     .WithMarkdownLabel("### Task List\n\n1. ~~Completed task~~\n2. **Important task**\n3. _Pending task_\n\n`Code: system.execute()`")
                     .WithShape(VisNetworkNodeShape.Box)
@@ -202,7 +203,7 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithWidthConstraint(minimum: 200)
                     .WithTitle("<b>Hover for details!</b><br>Markdown makes formatting easy")
                 );
-                
+
                 network.AddNode("md3", node => node
                     .WithMarkdownLabel("## Server Stats\n\n**CPU:** `85%`\n**RAM:** `12.5GB / 16GB`\n**Disk:** `450GB / 1TB`\n\n_Last updated: 5s ago_")
                     .WithShape(VisNetworkNodeShape.Box)
@@ -210,7 +211,7 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithFont(font => font.WithColor(RGBColor.White))
                     .WithWidthConstraint(minimum: 220)
                 );
-                
+
                 // Mixed mode - HTML node with markdown edge
                 network.AddNode("mixed", node => node
                     .WithHtmlLabel("<b>HTML Node</b>\n<i>Can connect to</i>\n<code>Markdown nodes</code>")
@@ -225,12 +226,12 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithArrows(arrows => arrows.WithTo(true))
                     .WithTitle("Connection uses TLS 1.3")
                 );
-                
+
                 network.AddEdge("md2", "md3", edge => edge
                     .WithMarkdownLabel("### API\n`REST/JSON`")
                     .WithArrows(arrows => arrows.WithTo(true))
                 );
-                
+
                 network.AddEdge("mixed", "md1", edge => edge
                     .WithLabel("Standard\nConnection")
                     .WithArrows(arrows => arrows.WithTo(true))
@@ -241,7 +242,7 @@ internal class VisNetworkAdvancedLabelsExample {
             // Section 4: Combined Example
             page.H2("4. Combined Example - Network Monitoring Dashboard");
             page.Text("Combining all features: HTML tooltips, proper line breaks, and markdown formatting.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("combinedDemo")
@@ -347,20 +348,20 @@ internal class VisNetworkAdvancedLabelsExample {
                     .WithMarkdownLabel("**HTTPS**\n`Monitor`")
                     .WithTitle("Monitoring interval: 30s")
                 );
-                
+
                 network.AddEdge("monitor", "api", edge => edge
                     .WithLabel("Health\nCheck")
                     .WithTitle("Endpoint: /health<br>Method: GET<br>Timeout: 5s")
                 );
-                
+
                 network.AddEdge("monitor", "db_cluster", edge => edge
                     .WithMarkdownLabel("**MySQL**\n_Port 3306_")
                 );
-                
+
                 network.AddEdge("monitor", "cache", edge => edge
                     .WithLabel("Redis\nProtocol")
                 );
-                
+
                 network.AddEdge("monitor", "alert", edge => edge
                     .WithHtmlLabel("<b style='color: red;'>Alert</b>")
                     .WithTitle("Alert triggered at 14:35:22 UTC")
@@ -372,7 +373,7 @@ internal class VisNetworkAdvancedLabelsExample {
 
             // Code examples
             page.H2("Code Examples");
-            
+
             page.Row(row => {
                 row.Column(TablerColumnNumber.Four, col => {
                     col.Card(card => {
@@ -389,7 +390,7 @@ network.AddNode(1, node => node
                         });
                     });
                 });
-                
+
                 row.Column(TablerColumnNumber.Four, col => {
                     col.Card(card => {
                         card.Header(h => h.Title("Line Breaks with \\n"));
@@ -408,7 +409,7 @@ node.WithHtmlLabel(label => label
                         });
                     });
                 });
-                
+
                 row.Column(TablerColumnNumber.Four, col => {
                     col.Card(card => {
                         card.Header(h => h.Title("Markdown Labels"));
@@ -429,10 +430,10 @@ network.AddNode(1, node => node
 
             // Benefits summary
             page.H2("Summary of Features");
-            
+
             page.Row(row => {
                 row.Column(TablerColumnNumber.Twelve, col => {
-                    col.Alert("Key Improvements", 
+                    col.Alert("Key Improvements",
                         "• <b>HTML Tooltips:</b> Full HTML support in hover tooltips via WithTitle()<br>" +
                         "• <b>Line Breaks:</b> Use \\n instead of &lt;br&gt; for consistent line breaks<br>" +
                         "• <b>Markdown:</b> Clean syntax for formatted text with WithMarkdownLabel()<br>" +

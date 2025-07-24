@@ -6,8 +6,8 @@ namespace HtmlForgeX.Examples.VisNetwork {
             HelpersSpectre.PrintTitle("VisNetwork Advanced Features Demo");
 
             using var document = new Document {
-                Head = { 
-                    Title = "VisNetwork Advanced Features - Image Handling & Wind Physics", 
+                Head = {
+                    Title = "VisNetwork Advanced Features - Image Handling & Wind Physics",
                     Author = "HtmlForgeX"
                 },
                 LibraryMode = LibraryMode.Online,
@@ -120,7 +120,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                         });
 
                     // Create a network of lightweight nodes that will be affected by wind
-                    var colors = new[] { 
+                    var colors = new[] {
                         RGBColor.SkyBlue, RGBColor.LightGreen, RGBColor.LightCoral,
                         RGBColor.LightYellow, RGBColor.Plum, RGBColor.LightSalmon
                     };
@@ -139,14 +139,14 @@ namespace HtmlForgeX.Examples.VisNetwork {
                     network.AddEdge("wind1", "wind2");
                     network.AddEdge("wind2", "wind3");
                     network.AddEdge("wind3", "wind4");
-                    
+
                     network.AddEdge("wind5", "wind6");
                     network.AddEdge("wind6", "wind7");
                     network.AddEdge("wind7", "wind8");
-                    
+
                     network.AddEdge("wind10", "wind11");
                     network.AddEdge("wind11", "wind12");
-                    
+
                     network.AddEdge("wind15", "wind16");
                     network.AddEdge("wind16", "wind17");
                     network.AddEdge("wind17", "wind18");
@@ -254,7 +254,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                     // Add lightweight sensor nodes
                     var sensorTypes = new[] { "Temp", "Wind", "Rain", "UV" };
                     var sensorColors = new[] { "#FF6347", "#87CEEB", "#4682B4", "#FFD700" };
-                    
+
                     for (int s = 1; s <= 2; s++) {
                         for (int i = 0; i < sensorTypes.Length; i++) {
                             var sensorId = $"sensor{s}_{i}";
@@ -278,7 +278,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
 
                 // Instructions
                 page.H2("Feature Descriptions");
-                
+
                 page.H3("Image Padding & Broken Image Handling");
                 page.Text("• WithImagePadding(pixels) - Adds uniform padding around images");
                 page.LineBreak();
@@ -287,7 +287,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                 page.Text("• WithBrokenImage(url) - Fallback image when main image fails to load");
                 page.LineBreak();
                 page.Text("• Works with both 'image' and 'circularImage' node shapes");
-                
+
                 page.H3("Wind Physics");
                 page.Text("• WithWind(x, y) - Applies constant force in specified direction");
                 page.LineBreak();

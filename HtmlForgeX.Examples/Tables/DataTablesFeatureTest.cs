@@ -3,14 +3,11 @@ namespace HtmlForgeX.Examples.Tables;
 /// <summary>
 /// Comprehensive test of all DataTables enhanced features
 /// </summary>
-internal class DataTablesFeatureTest
-{
-    public static void RunAllTests(bool openInBrowser = false)
-    {
+internal class DataTablesFeatureTest {
+    public static void RunAllTests(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("🧪 DataTables Feature Test Suite");
 
-        using var document = new Document
-        {
+        using var document = new Document {
             Head = {
                 Title = "DataTables Feature Test Suite",
                 Author = "HtmlForgeX Team",
@@ -24,8 +21,7 @@ internal class DataTablesFeatureTest
         // Generate comprehensive test data
         var testData = GenerateTestData();
 
-        document.Body.Page(page =>
-        {
+        document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
 
             // Header
@@ -69,15 +65,13 @@ internal class DataTablesFeatureTest
         HelpersSpectre.Success("📊 Test results saved to DataTablesFeatureTest.html");
     }
 
-    private static List<dynamic> GenerateTestData()
-    {
+    private static List<dynamic> GenerateTestData() {
         var random = new Random();
         var departments = new[] { "Engineering", "Marketing", "Sales", "HR", "Finance", "Operations" };
         var statuses = new[] { "Active", "Inactive", "Pending", "On Leave" };
         var cities = new[] { "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia" };
 
-        return Enumerable.Range(1, 50).Select(i => new
-        {
+        return Enumerable.Range(1, 50).Select(i => new {
             Id = i,
             Name = $"Employee {i:D3}",
             Department = departments[random.Next(departments.Length)],
@@ -91,10 +85,8 @@ internal class DataTablesFeatureTest
         }).Cast<dynamic>().ToList();
     }
 
-    private static void TestAllFeaturesCombined(TablerPage page, List<dynamic> testData)
-    {
-        page.Table(testData, TableType.DataTables, table =>
-        {
+    private static void TestAllFeaturesCombined(TablerPage page, List<dynamic> testData) {
+        page.Table(testData, TableType.DataTables, table => {
             var dataTable = (DataTablesTable)table;
             dataTable
                 // Styling
@@ -121,8 +113,7 @@ internal class DataTablesFeatureTest
                              DataTablesExportFormat.Print)
 
                 // Column Configuration
-                .ConfigureColumns(columns =>
-                {
+                .ConfigureColumns(columns => {
                     columns.Column(col => col.Target(0).Width("60px").Type(DataTablesColumnType.Numeric).ClassName("text-center"));
                     columns.Column(col => col.Target(3).Type(DataTablesColumnType.Currency).ClassName("text-end"));
                     columns.Column(col => col.Target(4).Type(DataTablesColumnType.Date));
@@ -134,8 +125,7 @@ internal class DataTablesFeatureTest
                 .EnableRowGrouping(2) // Group by Department
 
                 // Search Features - Simplified to avoid JavaScript errors
-                .EnableSearchBuilder(builder =>
-                {
+                .EnableSearchBuilder(builder => {
                     builder.Enable = true;
                     builder.Logic = "AND";
                     builder.Conditions = 2;
@@ -145,32 +135,27 @@ internal class DataTablesFeatureTest
                 .DomLayout("Qfrtip")
 
                 // Performance
-                .Configure(options =>
-                {
+                .Configure(options => {
                     options.Processing = true;
                     options.DeferRender = true;
                 });
         });
     }
 
-    private static void TestExportFunctionality(TablerPage page, List<dynamic> testData)
-    {
-        page.Table(testData.Take(15), TableType.DataTables, table =>
-        {
+    private static void TestExportFunctionality(TablerPage page, List<dynamic> testData) {
+        page.Table(testData.Take(15), TableType.DataTables, table => {
             var dataTable = (DataTablesTable)table;
             dataTable
                 .Style(BootStrapTableStyle.Striped)
                 .EnablePaging(8)
-                .ConfigureExport(export =>
-                {
+                .ConfigureExport(export => {
                     export.Excel("📊 Excel Export", "test_data_excel", "Test Data Report")
                           .CSV("📄 CSV Export", "test_data_csv")
                           .PDF("📋 PDF Export", "test_data_pdf", "Test Data Document")
                           .Copy("📋 Copy to Clipboard")
                           .Print("🖨️ Print Document")
                           .ColumnVisibility("👁️ Toggle Columns")
-                          .Custom(custom =>
-                          {
+                          .Custom(custom => {
                               custom.Text = "🔧 Custom Export";
                               custom.ClassName = "btn btn-warning btn-sm";
                               custom.Action = "customExportFunction";
@@ -180,16 +165,13 @@ internal class DataTablesFeatureTest
         });
     }
 
-    private static void TestColumnConfiguration(TablerPage page, List<dynamic> testData)
-    {
-        page.Table(testData.Take(12), TableType.DataTables, table =>
-        {
+    private static void TestColumnConfiguration(TablerPage page, List<dynamic> testData) {
+        page.Table(testData.Take(12), TableType.DataTables, table => {
             var dataTable = (DataTablesTable)table;
             dataTable
             .Style(BootStrapTableStyle.Hover)
             .EnablePaging(6)
-            .ConfigureColumns(columns =>
-            {
+            .ConfigureColumns(columns => {
                 // Test all column configuration methods
                 columns.Column(col => col.Target(0).Title("Employee ID").Width("80px")
                        .Type(DataTablesColumnType.Numeric).ClassName("text-center fw-bold")
@@ -233,33 +215,27 @@ internal class DataTablesFeatureTest
         });
     }
 
-    private static void TestSearchFeatures(TablerPage page, List<dynamic> testData)
-    {
-        page.Table(testData.Take(20), TableType.DataTables, table =>
-        {
+    private static void TestSearchFeatures(TablerPage page, List<dynamic> testData) {
+        page.Table(testData.Take(20), TableType.DataTables, table => {
             var dataTable = (DataTablesTable)table;
             dataTable
                 .Style(BootStrapTableStyle.Borders)
                 .EnablePaging(8)
-                .EnableSearchBuilder(builder =>
-                {
+                .EnableSearchBuilder(builder => {
                     builder.Enable = true;
                     builder.Logic = "OR";
                     builder.Conditions = 2; // Reduced to avoid JS errors
                     builder.Greyscale = false;
                 })
                 .DomLayout("Qfrtip") // Simplified DOM layout
-                .Configure(options =>
-                {
+                .Configure(options => {
                     options.Processing = true;
                 });
         });
     }
 
-    private static void TestPerformanceFeatures(TablerPage page, List<dynamic> testData)
-    {
-        page.Table(testData, TableType.DataTables, table =>
-        {
+    private static void TestPerformanceFeatures(TablerPage page, List<dynamic> testData) {
+        page.Table(testData, TableType.DataTables, table => {
             var dataTable = (DataTablesTable)table;
             dataTable
                 .Style(BootStrapTableStyle.Striped)
@@ -268,8 +244,7 @@ internal class DataTablesFeatureTest
                 .EnableFixedHeader(60)
                 .EnableFixedColumns(leftColumns: 2, rightColumns: 1)
                 .Scrolling(scrollY: "350px", scrollX: true, scrollCollapse: true)
-                .Configure(options =>
-                {
+                .Configure(options => {
                     options.Processing = true;
                     options.DeferRender = true;
                     options.AutoWidth = false;
@@ -279,16 +254,13 @@ internal class DataTablesFeatureTest
         });
     }
 
-    private static void TestLocalization(TablerPage page, List<dynamic> testData)
-    {
-        page.Table(testData.Take(10), TableType.DataTables, table =>
-        {
+    private static void TestLocalization(TablerPage page, List<dynamic> testData) {
+        page.Table(testData.Take(10), TableType.DataTables, table => {
             var dataTable = (DataTablesTable)table;
             dataTable
                 .Style(BootStrapTableStyle.Hover)
                 .EnablePaging(5)
-                .Localize(lang =>
-                {
+                .Localize(lang => {
                     lang.Search = "🔍 Buscar empleados:";
                     lang.LengthMenu = "Mostrar _MENU_ empleados por página";
                     lang.Info = "Mostrando _START_ a _END_ de _TOTAL_ empleados";
@@ -297,8 +269,7 @@ internal class DataTablesFeatureTest
                     lang.Processing = "Cargando datos de empleados...";
                     lang.ZeroRecords = "No se encontraron empleados coincidentes";
                     lang.LoadingRecords = "Cargando registros...";
-                    lang.Paginate = new DataTablesPaginate
-                    {
+                    lang.Paginate = new DataTablesPaginate {
                         First = "⏮️ Primero",
                         Last = "⏭️ Último",
                         Next = "▶️ Siguiente",
@@ -309,31 +280,22 @@ internal class DataTablesFeatureTest
         });
     }
 
-    private static void CreateTestSummary(TablerPage page)
-    {
-        page.Row(row =>
-        {
-            row.Column(TablerColumnNumber.Twelve, column =>
-            {
-                column.Card(card =>
-                {
-                    card.Header(header =>
-                    {
+    private static void CreateTestSummary(TablerPage page) {
+        page.Row(row => {
+            row.Column(TablerColumnNumber.Twelve, column => {
+                column.Card(card => {
+                    card.Header(header => {
                         header.Title("🎯 Test Results Summary").Subtitle("All features validated");
-                        header.Avatar(avatar =>
-                        {
+                        header.Avatar(avatar => {
                             avatar.Icon(TablerIconType.Check)
                                   .BackgroundColor(RGBColor.Green, RGBColor.White)
                                   .Size(AvatarSize.LG);
                         });
                     });
-                    card.Body(body =>
-                    {
-                        body.AddList(list =>
-                        {
+                    card.Body(body => {
+                        body.AddList(list => {
                             list.Style(TablerCardListStyle.Unstyled);
-                            list.WithItems(items =>
-                            {
+                            list.WithItems(items => {
                                 items.CheckItem("✅ Core Features: Paging, Searching, Ordering", true);
                                 items.CheckItem("✅ Export Functionality: Excel, CSV, PDF, Copy, Print", true);
                                 items.CheckItem("✅ Column Configuration: Types, Widths, Classes, Visibility", true);

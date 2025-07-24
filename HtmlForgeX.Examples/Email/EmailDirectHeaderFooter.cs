@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example demonstrating the direct email.Header.EmailRow() pattern.
 /// Shows how to use email.Header and email.Footer directly like email.Body.
 /// </summary>
-public static class EmailDirectHeaderFooter
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailDirectHeaderFooter {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating direct header/footer pattern example...");
 
         var email = new Email()

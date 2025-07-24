@@ -3,11 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace HtmlForgeX.Tests;
 
 [TestClass]
-public class TestEmailBoxBuilder
-{
+public class TestEmailBoxBuilder {
     [TestMethod]
-    public void BuilderProducesSameOutputAsDirectConstruction()
-    {
+    public void BuilderProducesSameOutputAsDirectConstruction() {
         var direct = new EmailBox();
         direct.WithPadding("20px");
         direct.WithBackground("#ffffff");
@@ -23,8 +21,7 @@ public class TestEmailBoxBuilder
     }
 
     [TestMethod]
-    public void ElementEmailBoxBuilderAddsConfiguredBox()
-    {
+    public void ElementEmailBoxBuilderAddsConfiguredBox() {
         var container = new BasicElement();
         container.EmailBox((EmailBoxBuilder b) => b
             .WithPadding("8px")

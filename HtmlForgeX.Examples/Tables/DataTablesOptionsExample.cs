@@ -25,8 +25,7 @@ internal class DataTablesOptionsExample {
         var table = (DataTablesTable)document.Body.Table(data, TableType.DataTables);
         table.Style(BootStrapTableStyle.Striped)
              .Style(BootStrapTableStyle.Hover)
-             .Configure(o =>
-             {
+             .Configure(o => {
                  o.PageLength = 10;
                  o.LengthMenu = new[] { 5, 10, 25, 50 };
                  o.StateSave = true;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 using HtmlForgeX;
 
 namespace HtmlForgeX.Examples.Charts;
@@ -15,7 +16,7 @@ internal class ChartJsBasicDemo {
 
         document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
-            
+
             // Header
             page.H1("📊 ChartJs Enhanced Demo");
             page.Text("Comprehensive Chart.js integration with fluent API")
@@ -245,10 +246,10 @@ internal class ChartJsBasicDemo {
                                      .Title("Interactive Tooltips")
                                      .AddDataset("Sales", new RGBColor("#3498db"), 45, 37, 60, 70)
                                      .AddLabels("Product A", "Product B", "Product C", "Product D")
-                                     .Tooltip(ChartJsInteractionMode.Index, false, 
-                                              new RGBColor("rgba(0, 0, 0, 0.8)"), 
-                                              new RGBColor("#fff"), 
-                                              new RGBColor("#fff"), 
+                                     .Tooltip(ChartJsInteractionMode.Index, false,
+                                              new RGBColor("rgba(0, 0, 0, 0.8)"),
+                                              new RGBColor("#fff"),
+                                              new RGBColor("#fff"),
                                               new RGBColor("#ddd"), 1)
                                      .Interaction(ChartJsInteractionMode.Nearest, false);
                             });
@@ -256,9 +257,9 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // ENHANCED CHART SHOWCASE - 20 Additional Complex Charts
-            
+
             // Financial & Business Charts
             page.Divider("Financial & Business Analytics");
             page.Row(row => {
@@ -350,7 +351,7 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // Data Science & Analytics Charts
             page.Divider("Data Science & Analytics");
             page.Row(row => {
@@ -411,7 +412,7 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // Performance & Monitoring Charts
             page.Divider("Performance & System Monitoring");
             page.Row(row => {
@@ -524,7 +525,7 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // Advanced Data Visualization
             page.Divider("Advanced Data Visualization");
             page.Row(row => {
@@ -568,7 +569,7 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // Marketing & Sales Charts
             page.Divider("Marketing & Sales Analytics");
             page.Row(row => {
@@ -659,7 +660,7 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // Product & User Analytics
             page.Divider("Product & User Analytics");
             page.Row(row => {
@@ -711,7 +712,7 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // Geographic & Demographic Charts
             page.Divider("Geographic & Demographic Analytics");
             page.Row(row => {
@@ -796,7 +797,7 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // Real-time & Dynamic Charts
             page.Divider("Real-time & Dynamic Visualizations");
             page.Row(row => {
@@ -857,7 +858,7 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // Specialized Industry Charts
             page.Divider("Specialized Industry Analytics");
             page.Row(row => {
@@ -951,7 +952,7 @@ internal class ChartJsBasicDemo {
                     });
                 });
             });
-            
+
             // Summary Statistics
             page.Divider("Summary & Insights");
             page.Row(row => {
@@ -1011,7 +1012,7 @@ internal class ChartJsBasicDemo {
         });
 
         document.Save("ChartJsBasicDemo.html", openInBrowser);
-        
+
         HelpersSpectre.Success("📊 ChartJs Enhanced Demo created successfully!");
         HelpersSpectre.Success("✨ Features demonstrated:");
         HelpersSpectre.Success("   • All chart types: Line, Bar, Pie, Doughnut, Radar, Polar Area, Scatter, Bubble");

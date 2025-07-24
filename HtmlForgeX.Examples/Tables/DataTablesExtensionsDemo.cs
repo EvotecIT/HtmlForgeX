@@ -5,14 +5,11 @@ namespace HtmlForgeX.Examples.Tables;
 /// <summary>
 /// Demonstration of DataTables extension methods for quick setup
 /// </summary>
-internal class DataTablesExtensionsDemo
-{
-    public static void Create(bool openInBrowser = false)
-    {
+internal class DataTablesExtensionsDemo {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("🚀 DataTables Extensions Demo");
 
-        using var document = new Document
-        {
+        using var document = new Document {
             Head = {
                 Title = "DataTables Extensions Demo",
                 Author = "HtmlForgeX Team",
@@ -26,8 +23,7 @@ internal class DataTablesExtensionsDemo
         // Sample data
         var salesData = GenerateSalesData();
 
-        document.Body.Page(page =>
-        {
+        document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
 
             // Header
@@ -39,8 +35,7 @@ internal class DataTablesExtensionsDemo
             page.Divider("1. Quick Setup - Perfect for Simple Tables");
             page.Text("One-liner setup with sensible defaults:");
 
-            page.Table(salesData.Take(10), TableType.DataTables, table =>
-            {
+            page.Table(salesData.Take(10), TableType.DataTables, table => {
                 var dataTable = (DataTablesTable)table;
                 dataTable.QuickSetup(pageLength: 5, enableExports: true, enableSearch: true, responsive: true);
             });
@@ -49,8 +44,7 @@ internal class DataTablesExtensionsDemo
             page.Divider("2. Enterprise Setup - Full-Featured Business Tables");
             page.Text("Complete enterprise configuration with all advanced features:");
 
-            page.Table(salesData, TableType.DataTables, table =>
-            {
+            page.Table(salesData, TableType.DataTables, table => {
                 var dataTable = (DataTablesTable)table;
                 dataTable.EnterpriseSetup(pageLength: 15, enableRowGrouping: true, groupByColumn: 2); // Group by Region
             });
@@ -59,8 +53,7 @@ internal class DataTablesExtensionsDemo
             page.Divider("3. Mobile Optimized - Perfect for Mobile Devices");
             page.Text("Optimized for mobile viewing with simplified controls:");
 
-            page.Table(salesData.Take(8), TableType.DataTables, table =>
-            {
+            page.Table(salesData.Take(8), TableType.DataTables, table => {
                 var dataTable = (DataTablesTable)table;
                 dataTable.MobileOptimized(pageLength: 4);
             });
@@ -69,8 +62,7 @@ internal class DataTablesExtensionsDemo
             page.Divider("4. Dashboard Setup - Great for Summary Views");
             page.Text("Clean dashboard layout with controlled height:");
 
-            page.Table(salesData.Take(12), TableType.DataTables, table =>
-            {
+            page.Table(salesData.Take(12), TableType.DataTables, table => {
                 var dataTable = (DataTablesTable)table;
                 dataTable.DashboardSetup(enableExports: true, scrollHeight: "250px");
             });
@@ -79,8 +71,7 @@ internal class DataTablesExtensionsDemo
             page.Divider("5. Report Setup - Comprehensive Reporting");
             page.Text("Full reporting capabilities with extensive export options:");
 
-            page.Table(salesData, TableType.DataTables, table =>
-            {
+            page.Table(salesData, TableType.DataTables, table => {
                 var dataTable = (DataTablesTable)table;
                 dataTable.ReportSetup(reportTitle: "Sales Performance Report", filename: "sales_report_2024");
             });
@@ -89,8 +80,7 @@ internal class DataTablesExtensionsDemo
             page.Divider("6. Analytics Setup - Advanced Data Analysis");
             page.Text("Analytics-focused with search panes and advanced filtering:");
 
-            page.Table(salesData, TableType.DataTables, table =>
-            {
+            page.Table(salesData, TableType.DataTables, table => {
                 var dataTable = (DataTablesTable)table;
                 dataTable.AnalyticsSetup(groupByColumn: 2, searchPanesLayout: "columns-2"); // Group by Region
             });
@@ -99,8 +89,7 @@ internal class DataTablesExtensionsDemo
             page.Divider("7. Performance Setup - Optimized for Large Datasets");
             page.Text("High-performance configuration for handling large amounts of data:");
 
-            page.Table(salesData, TableType.DataTables, table =>
-            {
+            page.Table(salesData, TableType.DataTables, table => {
                 var dataTable = (DataTablesTable)table;
                 dataTable.PerformanceSetup(scrollHeight: "350px", serverSide: false);
             });
@@ -108,18 +97,13 @@ internal class DataTablesExtensionsDemo
             // Code Examples
             page.Divider("💻 Extension Method Examples");
 
-            page.Row(row =>
-            {
-                row.Column(TablerColumnNumber.Six, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("Quick Setup").Subtitle("One-liner configuration");
                         });
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.CSharpCode(@"
 // Simple one-liner setup
 page.Table(data, TableType.DataTables, table => {
@@ -138,16 +122,12 @@ page.Table(data, TableType.DataTables, table => {
                     });
                 });
 
-                row.Column(TablerColumnNumber.Six, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("Enterprise Setup").Subtitle("Full-featured configuration");
                         });
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.CSharpCode(@"
 // Enterprise-grade setup
 page.Table(data, TableType.DataTables, table => {
@@ -166,18 +146,13 @@ page.Table(data, TableType.DataTables, table => {
                 });
             });
 
-            page.Row(row =>
-            {
-                row.Column(TablerColumnNumber.Six, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("Mobile Optimized").Subtitle("Perfect for mobile devices");
                         });
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.CSharpCode(@"
 // Mobile-friendly setup
 page.Table(data, TableType.DataTables, table => {
@@ -197,16 +172,12 @@ page.Table(data, TableType.DataTables, table => {
                     });
                 });
 
-                row.Column(TablerColumnNumber.Six, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+                row.Column(TablerColumnNumber.Six, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("Report Setup").Subtitle("Comprehensive reporting");
                         });
-                        card.Body(body =>
-                        {
+                        card.Body(body => {
                             body.CSharpCode(@"
 // Full reporting capabilities
 page.Table(data, TableType.DataTables, table => {
@@ -229,29 +200,21 @@ page.Table(data, TableType.DataTables, table => {
             // Benefits Summary
             page.Divider("✨ Extension Method Benefits");
 
-            page.Row(row =>
-            {
-                row.Column(TablerColumnNumber.Twelve, column =>
-                {
-                    column.Card(card =>
-                    {
-                        card.Header(header =>
-                        {
+            page.Row(row => {
+                row.Column(TablerColumnNumber.Twelve, column => {
+                    column.Card(card => {
+                        card.Header(header => {
                             header.Title("🎯 Why Use Extension Methods?").Subtitle("Simplified DataTables configuration");
-                            header.Avatar(avatar =>
-                            {
+                            header.Avatar(avatar => {
                                 avatar.Icon(TablerIconType.Rocket)
                                       .BackgroundColor(RGBColor.Blue, RGBColor.White)
                                       .Size(AvatarSize.LG);
                             });
                         });
-                        card.Body(body =>
-                        {
-                            body.AddList(list =>
-                            {
+                        card.Body(body => {
+                            body.AddList(list => {
                                 list.Style(TablerCardListStyle.Unstyled);
-                                list.WithItems(items =>
-                                {
+                                list.WithItems(items => {
                                     items.CheckItem("⚡ Quick Setup: One-liner configuration for common scenarios", true);
                                     items.CheckItem("🏢 Enterprise Ready: Full-featured setup with all advanced options", true);
                                     items.CheckItem("📱 Mobile Optimized: Perfect configuration for mobile devices", true);
@@ -290,15 +253,13 @@ page.Table(data, TableType.DataTables, table => {
         HelpersSpectre.Success("   ✓ Easy to customize and extend");
     }
 
-    private static List<dynamic> GenerateSalesData()
-    {
+    private static List<dynamic> GenerateSalesData() {
         var random = new Random();
         var regions = new[] { "North America", "Europe", "Asia Pacific", "Latin America", "Middle East" };
         var products = new[] { "Software License", "Support Contract", "Training", "Consulting", "Hardware" };
         var salespeople = new[] { "Alice Johnson", "Bob Smith", "Carol Davis", "David Wilson", "Eva Brown", "Frank Miller" };
 
-        return Enumerable.Range(1, 30).Select(i => new
-        {
+        return Enumerable.Range(1, 30).Select(i => new {
             Id = i,
             SalesPerson = salespeople[random.Next(salespeople.Length)],
             Region = regions[random.Next(regions.Length)],

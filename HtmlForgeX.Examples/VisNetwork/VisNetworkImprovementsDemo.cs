@@ -1,4 +1,5 @@
 using System;
+
 using HtmlForgeX;
 
 namespace HtmlForgeX.Examples.VisNetwork;
@@ -11,8 +12,8 @@ internal class VisNetworkImprovementsDemo {
         HelpersSpectre.PrintTitle("VisNetwork API Improvements Demo");
 
         using var document = new Document {
-            Head = { 
-                Title = "VisNetwork API Improvements - Typed Configuration", 
+            Head = {
+                Title = "VisNetwork API Improvements - Typed Configuration",
                 Author = "HtmlForgeX"
             },
             LibraryMode = LibraryMode.Online,
@@ -22,11 +23,11 @@ internal class VisNetworkImprovementsDemo {
         document.Body.Page(page => {
             page.H1("VisNetwork API Improvements");
             page.Text("This demo showcases the enhanced VisNetwork API with typed enums and improved fluent configuration.");
-            
+
             // Section 1: Smooth Edge Types with Force Direction
             page.H2("1. Smooth Edge Types with Force Direction");
             page.Text("Edges now support typed enums for smooth configuration and force direction.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("smoothEdgesDemo")
@@ -39,19 +40,19 @@ internal class VisNetworkImprovementsDemo {
                     .WithPosition(-200, -100)
                     .WithColor(RGBColor.Blue)
                 );
-                
+
                 network.AddNode(2, node => node
                     .WithLabel("Continuous")
                     .WithPosition(200, -100)
                     .WithColor(RGBColor.Green)
                 );
-                
+
                 network.AddNode(3, node => node
                     .WithLabel("Discrete")
                     .WithPosition(-200, 100)
                     .WithColor(RGBColor.Orange)
                 );
-                
+
                 network.AddNode(4, node => node
                     .WithLabel("Diagonal")
                     .WithPosition(200, 100)
@@ -100,7 +101,7 @@ internal class VisNetworkImprovementsDemo {
             // Section 2: Hierarchical Layout with ShakeTowards
             page.H2("2. Hierarchical Layout with ShakeTowards");
             page.Text("Hierarchical layouts now support typed direction and shake towards configuration.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("hierarchicalDemo")
@@ -150,7 +151,7 @@ internal class VisNetworkImprovementsDemo {
             // Section 3: Physics Solvers
             page.H2("3. Physics Solvers with Typed Configuration");
             page.Text("Physics configuration now uses typed enums for solver selection.");
-            
+
             page.Row(row => {
                 row.Column(TablerColumnNumber.Six, col => {
                     col.Card(card => {
@@ -195,7 +196,7 @@ internal class VisNetworkImprovementsDemo {
                         });
                     });
                 });
-                
+
                 row.Column(TablerColumnNumber.Six, col => {
                     col.Card(card => {
                         card.Header(h => h.Title("Force Atlas 2 Solver"));
@@ -238,7 +239,7 @@ internal class VisNetworkImprovementsDemo {
             // Section 4: Arrow Types
             page.H2("4. Typed Arrow Configuration");
             page.Text("Arrow configuration now uses typed enums for arrow types.");
-            
+
             page.DiagramNetwork(network => {
                 network
                     .WithId("arrowTypesDemo")
@@ -298,7 +299,7 @@ internal class VisNetworkImprovementsDemo {
 
             // Code examples
             page.H2("Code Examples");
-            
+
             page.Row(row => {
                 row.Column(TablerColumnNumber.Six, col => {
                     col.Card(card => {
@@ -316,7 +317,7 @@ network.AddEdge(from, to, edge => edge
                         });
                     });
                 });
-                
+
                 row.Column(TablerColumnNumber.Six, col => {
                     col.Card(card => {
                         card.Header(h => h.Title("Hierarchical Layout"));
@@ -348,7 +349,7 @@ network.WithLayout(layout => layout
         document.Save("VisNetworkImprovementsDemo.html", openInBrowser);
         HelpersSpectre.Success("VisNetwork Improvements Demo created successfully!");
     }
-    
+
     private static RGBColor GetRandomColor() {
         var random = new Random();
         var colors = new[] {

@@ -1,5 +1,6 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
@@ -7,11 +8,9 @@ namespace HtmlForgeX.Tests;
 /// Tests that container helpers automatically register required libraries.
 /// </summary>
 [TestClass]
-public class TestContainerLibraryRegistration
-{
+public class TestContainerLibraryRegistration {
     [TestMethod]
-    public void TablerPage_ShouldRegisterBootstrapAndTablerLibraries()
-    {
+    public void TablerPage_ShouldRegisterBootstrapAndTablerLibraries() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
@@ -34,8 +33,7 @@ public class TestContainerLibraryRegistration
     }
 
     [TestMethod]
-    public void DataTablesTable_ShouldRegisterRequiredLibraries()
-    {
+    public void DataTablesTable_ShouldRegisterRequiredLibraries() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
         var data = new[] {
@@ -63,8 +61,7 @@ public class TestContainerLibraryRegistration
     }
 
     [TestMethod]
-    public void TablerTable_ShouldRegisterBootstrapAndTablerLibraries()
-    {
+    public void TablerTable_ShouldRegisterBootstrapAndTablerLibraries() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
         var data = new[] {
@@ -90,8 +87,7 @@ public class TestContainerLibraryRegistration
     }
 
     [TestMethod]
-    public void DocumentReference_ShouldPropagate_ToChildElements()
-    {
+    public void DocumentReference_ShouldPropagate_ToChildElements() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
@@ -109,8 +105,7 @@ public class TestContainerLibraryRegistration
     }
 
     [TestMethod]
-    public void NestedComponents_ShouldAllRegisterLibraries()
-    {
+    public void NestedComponents_ShouldAllRegisterLibraries() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
         var data = new[] {
@@ -157,8 +152,7 @@ public class TestContainerLibraryRegistration
     }
 
     [TestMethod]
-    public void LibraryMode_Offline_ShouldIncludeInlineStyles()
-    {
+    public void LibraryMode_Offline_ShouldIncludeInlineStyles() {
         // Arrange
         using var document = new Document(LibraryMode.Offline);
         var page = new TablerPage();
@@ -175,8 +169,7 @@ public class TestContainerLibraryRegistration
     }
 
     [TestMethod]
-    public void LibraryMode_Online_ShouldIncludeCDNLinks()
-    {
+    public void LibraryMode_Online_ShouldIncludeCDNLinks() {
         // Arrange
         using var document = new Document(LibraryMode.Online);
         var page = new TablerPage();
@@ -195,8 +188,7 @@ public class TestContainerLibraryRegistration
     }
 
     [TestMethod]
-    public void Document_WithOfflineLibraryMode_ShouldNotIncludeLibraries()
-    {
+    public void Document_WithOfflineLibraryMode_ShouldNotIncludeLibraries() {
         // Arrange
         using var document = new Document();
         document.LibraryMode = LibraryMode.Offline; // Explicitly set offline mode
@@ -217,8 +209,7 @@ public class TestContainerLibraryRegistration
     }
 
     [TestMethod]
-    public void ComplexContainerExample_ShouldWorkCorrectly()
-    {
+    public void ComplexContainerExample_ShouldWorkCorrectly() {
         // Arrange
         using var document = new Document {
             LibraryMode = LibraryMode.Online,

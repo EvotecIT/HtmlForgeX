@@ -5,20 +5,16 @@ namespace HtmlForgeX.Examples.PrismJs;
 /// <summary>
 /// Comprehensive demonstration of PrismJS syntax highlighting capabilities
 /// </summary>
-public class PrismJsDemo
-{
-    public static void RunDemo()
-    {
-        using var document = new Document
-        {
+public class PrismJsDemo {
+    public static void RunDemo() {
+        using var document = new Document {
             Head = {
                 Title = "PrismJS Syntax Highlighting Demo",
                 Description = "Comprehensive demonstration of PrismJS code highlighting with fluent API"
             }
         };
 
-        document.Body.Page(page =>
-        {
+        document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
 
             page.H1("🎨 PrismJS Syntax Highlighting");

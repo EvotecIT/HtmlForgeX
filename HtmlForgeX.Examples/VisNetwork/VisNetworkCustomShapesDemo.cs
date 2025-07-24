@@ -6,8 +6,8 @@ namespace HtmlForgeX.Examples.VisNetwork {
             HelpersSpectre.PrintTitle("VisNetwork Custom Shapes Demo");
 
             using var document = new Document {
-                Head = { 
-                    Title = "VisNetwork Custom Shapes Demo - Advanced Node Rendering", 
+                Head = {
+                    Title = "VisNetwork Custom Shapes Demo - Advanced Node Rendering",
                     Author = "HtmlForgeX"
                 },
                 LibraryMode = LibraryMode.Online,
@@ -375,7 +375,7 @@ namespace HtmlForgeX.Examples.VisNetwork {
                 page.Text("• Works with all other node features (labels, colors, physics, etc.)");
                 page.LineBreak();
                 page.Text("• Can be combined with groups and standard shapes");
-                
+
                 page.Text("The ctxRenderer function receives: ctx (canvas context), x, y (center position), state, doStroke, doFill flags.");
             });
 

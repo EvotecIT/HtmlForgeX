@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example demonstrating all base64 image embedding features in HtmlForgeX.
 /// Shows how to embed images from files, URLs, and use smart embedding for offline email compatibility.
 /// </summary>
-public static class EmailBase64Embedding
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailBase64Embedding {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating comprehensive base64 image embedding example...");
 
         var email = new Email();

@@ -5,20 +5,16 @@ namespace HtmlForgeX.Examples.PrismJs;
 /// <summary>
 /// Documentation-focused demo showing how to use PrismJS for DataTables code examples
 /// </summary>
-public class DataTablesDocumentationDemo
-{
-    public static void RunDemo()
-    {
-        using var document = new Document
-        {
+public class DataTablesDocumentationDemo {
+    public static void RunDemo() {
+        using var document = new Document {
             Head = {
                 Title = "DataTables API Documentation",
                 Description = "Complete guide to using the enhanced DataTables API with code examples"
             }
         };
 
-        document.Body.Page(page =>
-        {
+        document.Body.Page(page => {
             page.Layout = TablerLayout.Fluid;
 
             page.H1("📊 DataTables Enhanced API Guide");

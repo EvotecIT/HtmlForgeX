@@ -1,7 +1,9 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Reflection;
+
 using HtmlForgeX.Logging;
 using HtmlForgeX.Tags;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 

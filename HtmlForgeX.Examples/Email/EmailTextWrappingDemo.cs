@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Demonstrates different text wrapping modes for controlling how text breaks and wraps.
 /// Shows how to handle long method names, technical content, and various wrapping scenarios.
 /// </summary>
-public static class EmailTextWrappingDemo
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailTextWrappingDemo {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating text wrapping demonstration...");
 
         var email = new Email();

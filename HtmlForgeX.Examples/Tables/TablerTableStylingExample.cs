@@ -51,8 +51,7 @@ internal class TablerTableStylingExample {
               .DisableSearching()
               .EnableOrdering()
               .Scrolling(scrollX: true);
-        table4.Configure(o =>
-        {
+        table4.Configure(o => {
             o.PageLength = 25;
             o.StateSave = true;
         });

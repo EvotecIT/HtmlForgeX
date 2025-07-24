@@ -6,10 +6,8 @@ namespace HtmlForgeX.Examples.Emails;
 /// Example of creating a welcome email using HtmlForgeX email components.
 /// Demonstrates user-friendly email building with no HTML/CSS knowledge required.
 /// </summary>
-public static class EmailWelcome
-{
-    public static void Create(bool openInBrowser = false)
-    {
+public static class EmailWelcome {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.Success("Creating welcome email example...");
 
         var email = new Email();
@@ -18,7 +16,7 @@ public static class EmailWelcome
         email.Head.AddTitle("Welcome to HtmlForgeX!")
                   .AddEmailCoreStyles();
 
-                // Header with company logo using new direct pattern
+        // Header with company logo using new direct pattern
         email.Header.WithPadding("20px");
         email.Header.EmailRow(row => {
             row.EmailColumn(col => {

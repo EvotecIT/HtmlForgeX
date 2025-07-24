@@ -21,9 +21,9 @@ internal class ComponentQuillEditor {
                                 editor.Height = "200px";
                                 editor.Options.Placeholder = "Compose an epic...";
                                 editor.Options.Theme = QuillTheme.Snow;
-                                editor.Options.Modules.Toolbar = new List<QuillFormat> { 
-                                    QuillFormat.Bold, 
-                                    QuillFormat.Italic, 
+                                editor.Options.Modules.Toolbar = new List<QuillFormat> {
+                                    QuillFormat.Bold,
+                                    QuillFormat.Italic,
                                     QuillFormat.Underline,
                                     QuillFormat.Strike,
                                     QuillFormat.Link
@@ -42,9 +42,9 @@ internal class ComponentQuillEditor {
                                 editor.Height = "200px";
                                 editor.Options.Placeholder = "Select text to see options...";
                                 editor.Options.Theme = QuillTheme.Bubble;
-                                editor.Options.Modules.Toolbar = new List<QuillFormat> { 
-                                    QuillFormat.Bold, 
-                                    QuillFormat.Italic, 
+                                editor.Options.Modules.Toolbar = new List<QuillFormat> {
+                                    QuillFormat.Bold,
+                                    QuillFormat.Italic,
                                     QuillFormat.Link,
                                     QuillFormat.Blockquote
                                 };

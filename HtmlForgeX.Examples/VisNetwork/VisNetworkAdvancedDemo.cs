@@ -26,14 +26,14 @@ internal class VisNetworkAdvancedDemo {
                                 .WithZoomView(true)
                                 .WithTooltipDelay(300);
                         });
-                        
+
                         options.WithNodes(nodes => {
                             nodes
                                 .WithShape(VisNetworkNodeShape.Box)
                                 .WithBorderWidth(2)
                                 .WithFont(font => font.WithSize(14).WithFace("Arial"));
                         });
-                        
+
                         options.WithEdges(edges => {
                             edges.WithArrows(new VisNetworkArrowOptions().WithTo(true));
                         });
@@ -324,7 +324,7 @@ internal class VisNetworkAdvancedDemo {
                 network.AddNode(1, node => node.WithLabel("Node 1").WithShape(VisNetworkNodeShape.Box));
                 network.AddNode(2, node => node.WithLabel("Node 2").WithShape(VisNetworkNodeShape.Circle));
                 network.AddNode(3, node => node.WithLabel("Node 3").WithShape(VisNetworkNodeShape.Database));
-                
+
                 // Add initial edges
                 network.AddEdge(1, 2, edge => edge.WithLabel("Connection A"));
                 network.AddEdge(2, 3, edge => edge.WithLabel("Connection B"));

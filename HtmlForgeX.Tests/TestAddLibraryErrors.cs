@@ -1,7 +1,9 @@
 using System;
 using System.IO;
 using System.Reflection;
+
 using HtmlForgeX.Logging;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;

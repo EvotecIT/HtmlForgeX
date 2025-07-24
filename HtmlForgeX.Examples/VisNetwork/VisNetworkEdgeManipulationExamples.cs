@@ -29,7 +29,7 @@ internal class VisNetworkEdgeManipulationExamples {
                     var angle = (i * 2 * Math.PI) / nodeCount;
                     var x = radius * Math.Cos(angle);
                     var y = radius * Math.Sin(angle);
-                    
+
                     network.AddNode(i + 1, node => node
                         .WithLabel($"Node {i + 1}")
                         .WithPosition(x, y)
@@ -231,12 +231,12 @@ internal class VisNetworkEdgeManipulationExamples {
                             .WithEditEdge(true)
                             .WithDeleteNode(true)
                             .WithDeleteEdge(true);
-                            // Control node style configuration is not available in current API
+                        // Control node style configuration is not available in current API
                     })
                     .WithOptions(options => {
                         options
                             .WithLocale(VisNetworkLocale.En);
-                            // Locales configuration is not available in current API
+                        // Locales configuration is not available in current API
                     });
 
                 // Initial network
@@ -373,7 +373,7 @@ internal class VisNetworkEdgeManipulationExamples {
                         .WithShape(VisNetworkNodeShape.Box)
                         .WithColor(RGBColor.LightBlue)
                     );
-                    
+
                     network.AddEdge("center", satellite, edge => edge
                         .WithWidth(2)
                         .WithColor(RGBColor.Gray)

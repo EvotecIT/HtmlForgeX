@@ -2,10 +2,8 @@ using HtmlForgeX.Examples;
 
 namespace HtmlForgeX.Examples.ByHand;
 
-internal class GoogleFontExample
-{
-    public static void Create(bool openInBrowser = false)
-    {
+internal class GoogleFontExample {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Google Font Example");
 
         var document = new Document();

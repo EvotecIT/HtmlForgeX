@@ -1,20 +1,17 @@
 using System.Text.RegularExpressions;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
 [TestClass]
-public class TestVisNetworkAttributes
-{
+public class TestVisNetworkAttributes {
     [TestMethod]
-    public void VisNetwork_WithId_ShouldRenderIdAttribute()
-    {
+    public void VisNetwork_WithId_ShouldRenderIdAttribute() {
         using var doc = new Document();
 
-        doc.Body.Add(element =>
-        {
-            element.DiagramNetwork(network =>
-            {
+        doc.Body.Add(element => {
+            element.DiagramNetwork(network => {
                 network.WithId("networkId");
                 network.AddNode(new { id = 1, label = "A" });
             });
@@ -25,14 +22,11 @@ public class TestVisNetworkAttributes
     }
 
     [TestMethod]
-    public void VisNetwork_WithSize_ShouldRenderOptionsWidthAndHeight()
-    {
+    public void VisNetwork_WithSize_ShouldRenderOptionsWidthAndHeight() {
         using var doc = new Document();
 
-        doc.Body.Add(element =>
-        {
-            element.DiagramNetwork(network =>
-            {
+        doc.Body.Add(element => {
+            element.DiagramNetwork(network => {
                 network.WithId("sizeNetwork");
                 network.WithSize("80%", "300px");
                 network.AddNode(new { id = 1, label = "A" });

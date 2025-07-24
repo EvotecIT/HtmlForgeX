@@ -2,8 +2,10 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using HtmlForgeX;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HtmlForgeX.Tests;
 
@@ -11,14 +13,12 @@ namespace HtmlForgeX.Tests;
 /// Tests for EmailImage base64 embedding functionality.
 /// </summary>
 [TestClass]
-public class TestEmailImageBase64Embedding
-{
+public class TestEmailImageBase64Embedding {
     private string _testImagePath = string.Empty;
     private byte[] _testImageData = Array.Empty<byte>();
 
     [TestInitialize]
-    public void TestInitialize()
-    {
+    public void TestInitialize() {
         // Create a simple test image (1x1 PNG)
         _testImageData = new byte[]
         {
@@ -35,8 +35,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedFromFile_ShouldEmbedValidImage()
-    {
+    public void EmailImage_EmbedFromFile_ShouldEmbedValidImage() {
         // Arrange
         var emailImage = new EmailImage();
 
@@ -51,8 +50,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedFromFile_ShouldNotLockFile()
-    {
+    public void EmailImage_EmbedFromFile_ShouldNotLockFile() {
         var tempDir = TempPath.Get();
         var filePath = Path.Combine(tempDir, Path.GetRandomFileName() + ".png");
         File.WriteAllBytes(filePath, _testImageData);
@@ -66,8 +64,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedFromFile_WithNonExistentFile_ShouldFallbackToPath()
-    {
+    public void EmailImage_EmbedFromFile_WithNonExistentFile_ShouldFallbackToPath() {
         // Arrange
         var emailImage = new EmailImage();
         var nonExistentPath = "non-existent-file.png";
@@ -81,8 +78,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedFromFile_WithDifferentExtensions_ShouldSetCorrectMimeType()
-    {
+    public void EmailImage_EmbedFromFile_WithDifferentExtensions_ShouldSetCorrectMimeType() {
         // Arrange & Act & Assert
         var testCases = new[]
         {
@@ -98,8 +94,7 @@ public class TestEmailImageBase64Embedding
             (".unknown", "image/png") // Default fallback
         };
 
-        foreach (var (extension, expectedMimeType) in testCases)
-        {
+        foreach (var (extension, expectedMimeType) in testCases) {
             var tempFile = Path.GetTempFileName();
             var testFile = Path.ChangeExtension(tempFile, extension);
             File.Move(tempFile, testFile);
@@ -114,8 +109,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedFromBase64_ShouldSetPropertiesCorrectly()
-    {
+    public void EmailImage_EmbedFromBase64_ShouldSetPropertiesCorrectly() {
         // Arrange
         var emailImage = new EmailImage();
         var base64Data = Convert.ToBase64String(_testImageData);
@@ -132,8 +126,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedSmart_WithFilePath_ShouldEmbedFile()
-    {
+    public void EmailImage_EmbedSmart_WithFilePath_ShouldEmbedFile() {
         // Arrange
         var emailImage = new EmailImage();
 
@@ -147,8 +140,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedSmart_WithNonExistentPath_ShouldFallbackToSource()
-    {
+    public void EmailImage_EmbedSmart_WithNonExistentPath_ShouldFallbackToSource() {
         // Arrange
         var emailImage = new EmailImage();
         var nonExistentPath = "non-existent-file.png";
@@ -162,8 +154,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedSmart_WithEmptyString_ShouldReturnSelf()
-    {
+    public void EmailImage_EmbedSmart_WithEmptyString_ShouldReturnSelf() {
         // Arrange
         var emailImage = new EmailImage();
 
@@ -176,8 +167,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_WithOptimization_ShouldSetOptimizationProperties()
-    {
+    public void EmailImage_WithOptimization_ShouldSetOptimizationProperties() {
         // Arrange
         var emailImage = new EmailImage();
 
@@ -192,8 +182,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_WithOptimization_ShouldClampQuality()
-    {
+    public void EmailImage_WithOptimization_ShouldClampQuality() {
         // Arrange
         var emailImage = new EmailImage();
 
@@ -206,8 +195,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_WithoutOptimization_ShouldDisableOptimization()
-    {
+    public void EmailImage_WithoutOptimization_ShouldDisableOptimization() {
         // Arrange
         var emailImage = new EmailImage();
         emailImage.WithOptimization(800, 600, 90);
@@ -220,8 +208,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_ToString_WithEmbeddedImage_ShouldContainBase64Data()
-    {
+    public void EmailImage_ToString_WithEmbeddedImage_ShouldContainBase64Data() {
         // Arrange
         var emailImage = new EmailImage();
         emailImage.EmbedFromFile(_testImagePath);
@@ -239,8 +226,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_ToString_WithLink_ShouldWrapInAnchor()
-    {
+    public void EmailImage_ToString_WithLink_ShouldWrapInAnchor() {
         // Arrange
         var emailImage = new EmailImage();
         emailImage.EmbedFromFile(_testImagePath);
@@ -256,8 +242,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_ToString_WithStyling_ShouldIncludeStyles()
-    {
+    public void EmailImage_ToString_WithStyling_ShouldIncludeStyles() {
         // Arrange
         var emailImage = new EmailImage();
         emailImage.EmbedFromFile(_testImagePath);
@@ -275,8 +260,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_ChainedMethods_ShouldReturnSelf()
-    {
+    public void EmailImage_ChainedMethods_ShouldReturnSelf() {
         // Arrange
         var emailImage = new EmailImage();
 
@@ -306,8 +290,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_GetMimeTypeFromExtension_ShouldReturnCorrectTypes()
-    {
+    public void EmailImage_GetMimeTypeFromExtension_ShouldReturnCorrectTypes() {
         // This tests the private method indirectly through EmbedFromFile
         var testCases = new[]
         {
@@ -324,8 +307,7 @@ public class TestEmailImageBase64Embedding
             (".unknown", "image/png")
         };
 
-        foreach (var (extension, expectedMimeType) in testCases)
-        {
+        foreach (var (extension, expectedMimeType) in testCases) {
             var tempFile = Path.GetTempFileName();
             var testFile = Path.ChangeExtension(tempFile, extension);
             File.Move(tempFile, testFile);
@@ -340,8 +322,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedFromFile_WithOptimization_ShouldEmbedAsBase64()
-    {
+    public void EmailImage_EmbedFromFile_WithOptimization_ShouldEmbedAsBase64() {
         // Arrange
         var emailImage = new EmailImage();
         emailImage.WithOptimization(100, 100, 80);
@@ -355,8 +336,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedFromUrl_WithInvalidUrl_ShouldFallbackToUrl()
-    {
+    public void EmailImage_EmbedFromUrl_WithInvalidUrl_ShouldFallbackToUrl() {
         // Arrange
         var emailImage = new EmailImage();
         var invalidUrl = "https://invalid-url-that-does-not-exist.com/image.png";
@@ -370,8 +350,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public async Task EmailImage_EmbedFromUrlAsync_WithInvalidUrl_ShouldFallbackToUrl()
-    {
+    public async Task EmailImage_EmbedFromUrlAsync_WithInvalidUrl_ShouldFallbackToUrl() {
         var emailImage = new EmailImage();
         var invalidUrl = "https://invalid-url-that-does-not-exist.com/image.png";
 
@@ -382,8 +361,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedSmart_WithHttpUrl_ShouldAttemptUrlEmbedding()
-    {
+    public void EmailImage_EmbedSmart_WithHttpUrl_ShouldAttemptUrlEmbedding() {
         // Arrange
         var emailImage = new EmailImage();
         var httpUrl = "http://example.com/image.png";
@@ -398,8 +376,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_EmbedSmart_WithHttpsUrl_ShouldAttemptUrlEmbedding()
-    {
+    public void EmailImage_EmbedSmart_WithHttpsUrl_ShouldAttemptUrlEmbedding() {
         // Arrange
         var emailImage = new EmailImage();
         var httpsUrl = "https://example.com/image.png";
@@ -414,11 +391,9 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_ToString_WithEmbedAsBase64WithoutMimeType_ShouldThrow()
-    {
+    public void EmailImage_ToString_WithEmbedAsBase64WithoutMimeType_ShouldThrow() {
         // Arrange
-        var emailImage = new EmailImage
-        {
+        var emailImage = new EmailImage {
             Base64Data = Convert.ToBase64String(_testImageData),
             EmbedAsBase64 = true,
             Source = $"data:;base64,{Convert.ToBase64String(_testImageData)}"
@@ -429,8 +404,7 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestMethod]
-    public void EmailImage_ToString_WithEmbedFromBase64_ShouldContainDataUri()
-    {
+    public void EmailImage_ToString_WithEmbedFromBase64_ShouldContainDataUri() {
         // Arrange
         var emailImage = new EmailImage();
         var base64Data = Convert.ToBase64String(_testImageData);
@@ -444,10 +418,8 @@ public class TestEmailImageBase64Embedding
     }
 
     [TestCleanup]
-    public void TestCleanup()
-    {
-        if (File.Exists(_testImagePath))
-        {
+    public void TestCleanup() {
+        if (File.Exists(_testImagePath)) {
             File.Delete(_testImagePath);
         }
     }
