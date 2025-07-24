@@ -157,9 +157,9 @@ public class TestDocumentReferencePropagation
     }
 
     [TestMethod]
-    public void RegressionTest_BasicHtmlContainer01_ShouldWork()
+    public void RegressionTest_ComponentHtmlContainer01_ShouldWork()
     {
-        // Arrange - Simulate the exact scenario from BasicHtmlContainer01
+        // Arrange - Simulate the exact scenario from ComponentHtmlContainer01
         using var document = new Document {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light

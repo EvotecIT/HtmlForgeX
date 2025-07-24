@@ -1,6 +1,6 @@
 namespace HtmlForgeX.Examples.Tables;
 
-internal class BasicHtmlTable04 {
+internal class TablerTableStylingExample {
 
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Tabler Table Styling Demo");
@@ -60,7 +60,7 @@ internal class BasicHtmlTable04 {
         var table5 = (BootstrapTable)document.Body.Table(drives, TableType.BootstrapTable);
         table5.Style(BootStrapTableStyle.Striped).Style(BootStrapTableStyle.Hover);
         table5.Style(BootStrapTableStyle.Responsive);
-        document.Save("TablerTableStylingDemo.html", openInBrowser);
+        document.Save("TablerTableStylingExample.html", openInBrowser);
     }
 
 }

@@ -5,7 +5,7 @@ namespace HtmlForgeX.Examples.Containers;
 /// <summary>
 /// Basic SmartTab demo showcasing the fluent API capabilities.
 /// </summary>
-internal class SmartTabBasicDemo {
+internal class SmartTabDemo {
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("SmartTab Basic Demo - Fluent C# API");
 
@@ -313,7 +313,7 @@ internal class SmartTabBasicDemo {
             });
         });
 
-        document.Save("SmartTabBasicDemo.html", openInBrowser);
+        document.Save("SmartTabDemo.html", openInBrowser);
 
         HelpersSpectre.Success("🎉 SmartTab Basic Demo created!");
         HelpersSpectre.Success("📋 Features demonstrated:");

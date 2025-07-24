@@ -5,7 +5,7 @@ namespace HtmlForgeX.Examples.Containers;
 /// <summary>
 /// Complete demo showcasing all SmartTab and SmartWizard features with full interoperability.
 /// </summary>
-internal class SmartTabWizardCompleteDemo {
+internal class SmartTabWizardFullDemo {
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("SmartTab & SmartWizard Complete Feature Demo");
 
@@ -741,7 +741,7 @@ internal class SmartTabWizardCompleteDemo {
             });
         });
 
-        document.Save("SmartTabWizardCompleteDemo.html", openInBrowser);
+        document.Save("SmartTabWizardFullDemo.html", openInBrowser);
 
         HelpersSpectre.Success("🎉 SmartTab & SmartWizard Complete Demo created!");
         HelpersSpectre.Success("📋 This comprehensive demo showcases:");

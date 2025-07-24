@@ -1,8 +1,8 @@
 namespace HtmlForgeX.Examples.Containers;
 
-internal class BasicHtmlContainer01 {
+internal class ComponentHtmlContainer01 {
     public static void Create(bool openInBrowser = false) {
-        HelpersSpectre.PrintTitle("Basic Demo Document Container 1");
+        HelpersSpectre.PrintTitle("Document Container Example 1");
 
         // Create a list of simple objects
         var data = new List<dynamic> {
@@ -27,7 +27,7 @@ internal class BasicHtmlContainer01 {
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
         };
-        document.Head.Title = "Basic Demo Document Container 1";
+        document.Head.Title = "Document Container Example 1";
         document.Head.Author = "Przemysław Kłys";
         document.Head.Revised = DateTime.Now;
 
@@ -117,6 +117,6 @@ internal class BasicHtmlContainer01 {
             });
         });
 
-        document.Save("BasicHtmlContainer01.html", openInBrowser);
+        document.Save("ComponentHtmlContainer01.html", openInBrowser);
     }
 }

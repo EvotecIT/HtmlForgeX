@@ -1,6 +1,6 @@
 namespace HtmlForgeX.Examples.Tables;
 
-internal class BasicHtmlTable01 {
+internal class HtmlTableDocumentExample {
 
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Basic Demo Document with Tables 1");
@@ -58,7 +58,7 @@ internal class BasicHtmlTable01 {
         var table5 = (BootstrapTable)document.Body.Table(drives, TableType.BootstrapTable);
         table5.Style(BootStrapTableStyle.Striped).Style(BootStrapTableStyle.Hover);
         table5.Style(BootStrapTableStyle.Responsive);
-        document.Save("BasicDemoDocumentWithTables1.html", openInBrowser);
+        document.Save("HtmlTableDocumentExample.html", openInBrowser);
     }
 
 }

@@ -70,31 +70,31 @@ internal class Program {
         TablerStarRatingDemo.Create(openInBrowser);
 
         // Quill editor example
-        BasicQuillEditor.Create(openInBrowser);
+        ComponentQuillEditor.Create(openInBrowser);
 
         // Container examples
-        BasicHtmlContainer01.Create(openInBrowser);
-        BasicHtmlContainer02.Create(openInBrowser);
-        BasicHtmlContainer03.Create(openInBrowser);
-        BasicHtmlContainer04.Create(openInBrowser);
+        ComponentHtmlContainer01.Create(openInBrowser);
+        ComponentHtmlContainer02.Create(openInBrowser);
+        ComponentHtmlContainer03.Create(openInBrowser);
+        ComponentHtmlContainer04.Create(openInBrowser);
 
         // Infocards
         InfocardsDemo.Create(openInBrowser);
-        InfocardsCleanDemo.Create(openInBrowser);
-        BasicScrollingText.Create(openInBrowser);
+        InfocardsRgbDemo.Create(openInBrowser);
+        ComponentScrollingText.Create(openInBrowser);
         DomainHealthCheck.Create(openInBrowser);
-        EnhancedDataGridDemo.Create(openInBrowser);
+        DataGridShowcase.Create(openInBrowser);
 
         // Complete Tabler Cards demo - ALL features
-        TablerCardsCompleteDemo.Create(openInBrowser);
-        TablerCardsEnhancedDemo.Create(openInBrowser);
-        TablerCardsProperDemo.Create(openInBrowser);
+        TablerCardsShowcase.Create(openInBrowser);
+        TablerCardsExtendedDemo.Create(openInBrowser);
+        TablerCardsApiDemo.Create(openInBrowser);
 
         // Table examples
-        BasicHtmlTable01.Create(openInBrowser);
-        BasicHtmlTable02.Create(openInBrowser);
-        BasicHtmlTable03.Create(openInBrowser);
-        BasicHtmlTable04.Create(openInBrowser);
+        HtmlTableDocumentExample.Create(openInBrowser);
+        DataTablesOptionsExample.Create(openInBrowser);
+        DataTablesTypedObjectsExample.Create(openInBrowser);
+        TablerTableStylingExample.Create(openInBrowser);
 
         // Email examples - showcasing the new Document-style configuration!
         HelpersSpectre.Success("📧 Running Email Examples with Document-Style Configuration:");
@@ -136,7 +136,7 @@ internal class Program {
         EmailEnhancedDarkMode.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
 
         // Enhanced Accordion & Steps showcase
-        EnhancedAccordionStepsShowcase.Create(openInBrowser);  // 🎛️ ENHANCED ACCORDION & STEPS DEMO
+        AccordionStepsShowcase.Create(openInBrowser);  // 🎛️ ACCORDION & STEPS SHOWCASE
 
         // Flexible header/footer example (NEW - demonstrates the flexible pattern)
         EmailFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO
@@ -212,10 +212,10 @@ internal class Program {
         // ExampleImageUtilities.Create();
 
         // SmartTab & SmartWizard examples
-        SmartWizardBasicDemo.Create(openInBrowser);
-        SmartTabBasicDemo.Create(openInBrowser);
-        SmartTabWizardCompleteDemo.Create(openInBrowser);
-        SmartTabWizardSimpleDemo.Create(openInBrowser);
+        SmartWizardDemo.Create(openInBrowser);
+        SmartTabDemo.Create(openInBrowser);
+        SmartTabWizardFullDemo.Create(openInBrowser);
+        SmartTabWizardIntroDemo.Create(openInBrowser);
         SmartTabWizardInteroperabilityDemo.Create(openInBrowser);
     }
 }

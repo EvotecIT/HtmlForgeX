@@ -1,6 +1,6 @@
 namespace HtmlForgeX.Examples.Containers;
 
-internal class BasicQuillEditor {
+internal class ComponentQuillEditor {
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Quill Editor Demo");
 
@@ -97,6 +97,6 @@ internal class BasicQuillEditor {
             });
         });
 
-        document.Save("BasicQuillEditor.html", openInBrowser);
+        document.Save("ComponentQuillEditor.html", openInBrowser);
     }
 }

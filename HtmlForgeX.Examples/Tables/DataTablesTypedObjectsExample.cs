@@ -1,6 +1,6 @@
 namespace HtmlForgeX.Examples.Tables;
 
-internal class BasicHtmlTable03 {
+internal class DataTablesTypedObjectsExample {
     private class Employee {
         public string Name { get; set; } = string.Empty;
         public int Age { get; set; }
@@ -49,6 +49,6 @@ internal class BasicHtmlTable03 {
 
         document.Body.Table(data, TableType.BootstrapTable);
 
-        document.Save("BasicDemoTypedObjects.html", openInBrowser);
+        document.Save("DataTablesTypedObjectsExample.html", openInBrowser);
     }
 }

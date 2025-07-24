@@ -3,7 +3,7 @@ namespace HtmlForgeX.Examples.Containers;
 /// <summary>
 /// Class for storing examples of basic scrolling text.
 /// </summary>
-internal class BasicScrollingText {
+internal class ComponentScrollingText {
     /// <summary>
     /// Basic demo of scrolling text.
     /// </summary>
@@ -89,6 +89,6 @@ internal class BasicScrollingText {
             });
 
         });
-        document.Save("BasicScrollingText.html", openInBrowser);
+        document.Save("ComponentScrollingText.html", openInBrowser);
     }
 }
