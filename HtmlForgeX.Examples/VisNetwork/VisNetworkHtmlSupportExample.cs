@@ -7,7 +7,7 @@ namespace HtmlForgeX.Examples.VisNetwork;
 /// for creating rich multi-line labels using only supported tags.
 /// </summary>
 internal class VisNetworkHtmlSupportExample {
-    public static void Demo(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("VisNetwork HTML Support Example");
 
         using var document = new Document {

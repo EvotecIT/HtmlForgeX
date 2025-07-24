@@ -5,8 +5,8 @@ namespace HtmlForgeX.Examples.Containers;
 /// <summary>
 /// Basic SmartWizard demo showcasing the fluent API capabilities.
 /// </summary>
-internal class SmartWizardBasicDemo {
-    public static void Demo01(bool openInBrowser = false) {
+internal class SmartWizardDemo {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("SmartWizard Basic Demo - Fluent C# API");
 
         // Sample data for tables
@@ -458,7 +458,7 @@ internal class SmartWizardBasicDemo {
             });
         });
 
-        document.Save("SmartWizardBasicDemo.html", openInBrowser);
+        document.Save("SmartWizardDemo.html", openInBrowser);
 
         HelpersSpectre.Success("🎉 SmartWizard Basic Demo created!");
         HelpersSpectre.Success("📋 Features demonstrated:");

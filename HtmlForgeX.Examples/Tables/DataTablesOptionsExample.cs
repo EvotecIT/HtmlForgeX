@@ -1,6 +1,6 @@
 namespace HtmlForgeX.Examples.Tables;
 
-internal class BasicHtmlTable02 {
+internal class DataTablesOptionsExample {
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("DataTables Options Demo");
 
@@ -42,6 +42,6 @@ internal class BasicHtmlTable02 {
                  };
              });
 
-        document.Save("BasicDemoTablesOptions.html", openInBrowser);
+        document.Save("DataTablesOptionsExample.html", openInBrowser);
     }
 }

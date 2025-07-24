@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Spectre.Console;
 
 namespace HtmlForgeX.Examples.Containers;
-internal class BasicHtmlContainer02 {
-    public static void Demo02(bool openInBrowser = false) {
-        HelpersSpectre.PrintTitle("Basic Demo Document Container 2");
+internal class ComponentHtmlContainer02 {
+    public static void Create(bool openInBrowser = false) {
+        HelpersSpectre.PrintTitle("Document Container Example 2");
 
         // Create a list of simple objects
         var data = new List<dynamic> {
@@ -32,7 +32,7 @@ internal class BasicHtmlContainer02 {
 
         using Document document = new Document {
             Head = {
-                Title = "Basic Demo Document Container 2", Author = "Przemysław Kłys", Revised = DateTime.Now
+                Title = "Document Container Example 2", Author = "Przemysław Kłys", Revised = DateTime.Now
             },
             LibraryMode = LibraryMode.Online,
             ThemeMode = ThemeMode.Light
@@ -114,6 +114,6 @@ internal class BasicHtmlContainer02 {
             });
         });
 
-        document.Save("BasicDemoDocumentContainer02.html", openInBrowser);
+        document.Save("ComponentHtmlContainer02.html", openInBrowser);
     }
 }

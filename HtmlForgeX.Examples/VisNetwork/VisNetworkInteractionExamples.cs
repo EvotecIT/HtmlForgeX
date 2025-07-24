@@ -1,7 +1,7 @@
 namespace HtmlForgeX.Examples.VisNetwork;
 
 internal class VisNetworkInteractionExamples {
-    public static void Demo(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("VisNetwork Interaction Examples");
 
         using var document = new Document {

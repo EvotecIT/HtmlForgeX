@@ -3,12 +3,12 @@ namespace HtmlForgeX.Examples.Containers;
 /// <summary>
 /// Class for storing examples of basic scrolling text.
 /// </summary>
-internal class BasicScrollingText {
+internal class ComponentScrollingText {
     /// <summary>
     /// Basic demo of scrolling text.
     /// </summary>
     /// <param name="openInBrowser"></param>
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Basic Demo Scrolling Text");
 
         using var document = new Document {
@@ -89,6 +89,6 @@ internal class BasicScrollingText {
             });
 
         });
-        document.Save("BasicDemoScrollingText.html", openInBrowser);
+        document.Save("ComponentScrollingText.html", openInBrowser);
     }
 }

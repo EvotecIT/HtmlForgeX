@@ -118,7 +118,7 @@ public class TestContainerLibraryRegistration
             new { Name = "Jane", Age = 28 }
         };
 
-        // Act - Create nested structure like in BasicHtmlContainer01
+        // Act - Create nested structure like in ComponentHtmlContainer01
         document.Body.Page(page => {
             page.Row(row => {
                 row.Column(TablerColumnNumber.Six, column => {
@@ -231,7 +231,7 @@ public class TestContainerLibraryRegistration
             new { Name = "Bob", Age = 35, Occupation = "Architect" }
         };
 
-        // Act - Recreate the BasicHtmlContainer01 structure
+        // Act - Recreate the ComponentHtmlContainer01 structure
         document.Body.Table(data, TableType.Tabler);
 
         var page = new TablerPage()

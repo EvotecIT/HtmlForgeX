@@ -4,7 +4,7 @@ namespace HtmlForgeX.Examples.ByHand;
 
 internal class GoogleFontExample
 {
-    public static void Demo(bool openInBrowser = false)
+    public static void Create(bool openInBrowser = false)
     {
         HelpersSpectre.PrintTitle("Google Font Example");
 

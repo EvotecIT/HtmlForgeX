@@ -1,7 +1,7 @@
 namespace HtmlForgeX.Examples.Containers;
 
-internal class EnhancedAccordionStepsShowcase {
-    public static void Demo01(bool openInBrowser = false) {
+internal class AccordionStepsShowcase {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Enhanced Accordion & Steps Showcase - Complete Feature Demo");
 
         using var document = new Document {
@@ -445,7 +445,7 @@ internal class EnhancedAccordionStepsShowcase {
             });
         });
 
-        document.Save("EnhancedAccordionStepsShowcase.html", openInBrowser);
+        document.Save("AccordionStepsShowcase.html", openInBrowser);
         HelpersSpectre.Success("✅ Enhanced Accordion & Steps showcase created successfully!");
         HelpersSpectre.Success("📋 Complete feature demonstration includes:");
         HelpersSpectre.Success("   🎛️ All 5 accordion types with comprehensive configurations");

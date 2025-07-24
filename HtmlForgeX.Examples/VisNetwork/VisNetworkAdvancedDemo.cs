@@ -1,7 +1,7 @@
 namespace HtmlForgeX.Examples.VisNetwork;
 
 internal class VisNetworkAdvancedDemo {
-    public static void Demo(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Advanced VisNetwork Demo - New Fluent API");
 
         using var document = new Document {

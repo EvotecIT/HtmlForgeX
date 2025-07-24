@@ -7,7 +7,7 @@ namespace HtmlForgeX.Examples.Containers;
 /// Comprehensive demonstration of the enhanced TablerDataGrid component showcasing
 /// all features from the Tabler datagrid.html example using pure C# fluent API.
 /// </summary>
-internal class EnhancedDataGridDemo {
+internal class DataGridShowcase {
     public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Enhanced DataGrid - Complete Feature Demonstration");
 
@@ -449,7 +449,7 @@ internal class EnhancedDataGridDemo {
             });
         });
 
-        document.Save("EnhancedDataGridDemo.html", openInBrowser);
+        document.Save("DataGridShowcase.html", openInBrowser);
 
         HelpersSpectre.Success("🎉 Enhanced DataGrid demo created successfully!");
         HelpersSpectre.Success("📋 Complete feature set demonstrated:");

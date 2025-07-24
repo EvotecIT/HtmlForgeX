@@ -6,8 +6,8 @@ namespace HtmlForgeX.Examples.Tabler;
 /// Enhanced Tabler cards demo - NOW USING PROPER C# API, zero HTML cheating!
 /// Shows advanced card features using only fluent C# methods
 /// </summary>
-internal class TablerCardsEnhancedDemo {
-    public static void Demo01(bool openInBrowser = false) {
+internal class TablerCardsExtendedDemo {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Enhanced Tabler Cards Demo - Proper C# API");
 
         using var document = new Document {
@@ -433,7 +433,7 @@ internal class TablerCardsEnhancedDemo {
             });
         });
 
-        document.Save("TablerCardsEnhancedDemo.html", openInBrowser);
+        document.Save("TablerCardsExtendedDemo.html", openInBrowser);
 
         HelpersSpectre.Success("✅ Enhanced Tabler Cards demo created using proper C# API!");
         HelpersSpectre.Success("📋 Features demonstrated with zero HTML cheating:");

@@ -7,7 +7,7 @@ namespace HtmlForgeX.Examples.Containers;
 /// Inspired by modern dashboard card designs with vibrant colors
 /// </summary>
 internal class InfocardsDemo {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Infocards Demo - Custom RGBColor Backgrounds & Avatars");
 
         using var document = new Document {

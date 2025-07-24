@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace HtmlForgeX.Examples.Charts;
 
 internal class ChartsApexBasicDemo {
-    public static void Demo(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("ApexCharts Demo");
 
         using var document = new Document {

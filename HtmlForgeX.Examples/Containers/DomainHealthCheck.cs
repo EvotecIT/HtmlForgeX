@@ -8,7 +8,7 @@ using HtmlForgeX.Tags;
 
 namespace HtmlForgeX.Examples.Containers;
 internal class DomainHealthCheck {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Enhanced Domain Health Check with Advanced DataGrid Features");
 
         // Create sample data for enhanced demonstration
@@ -278,7 +278,7 @@ internal class DomainHealthCheck {
             });
         });
 
-        document.Save("EnhancedDomainHealthCheck.html", openInBrowser);
+        document.Save("DomainHealthCheck.html", openInBrowser);
 
         HelpersSpectre.Success("🎉 Enhanced Domain Health Check created with advanced DataGrid features!");
         HelpersSpectre.Success("📋 Features demonstrated:");

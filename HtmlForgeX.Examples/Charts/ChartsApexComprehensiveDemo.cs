@@ -5,7 +5,7 @@ using System.Linq;
 namespace HtmlForgeX.Examples.Charts;
 
 internal class ChartsApexComprehensiveDemo {
-    public static void Demo(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("ApexCharts Comprehensive Demo");
 
         using var document = new Document {

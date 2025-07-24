@@ -5,8 +5,8 @@ namespace HtmlForgeX.Examples.Containers;
 /// <summary>
 /// Simple demo demonstrating SmartTab and SmartWizard functionality with proper fluent API usage.
 /// </summary>
-internal class SmartTabWizardSimpleDemo {
-    public static void Demo01(bool openInBrowser = false) {
+internal class SmartTabWizardIntroDemo {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("SmartTab & SmartWizard Simple Demo");
 
         using var document = new Document {
@@ -199,7 +199,7 @@ internal class SmartTabWizardSimpleDemo {
             });
         });
 
-        document.Save("SmartTabWizardSimpleDemo.html", openInBrowser);
+        document.Save("SmartTabWizardIntroDemo.html", openInBrowser);
         HelpersSpectre.Success(document.ToString());
     }
 }

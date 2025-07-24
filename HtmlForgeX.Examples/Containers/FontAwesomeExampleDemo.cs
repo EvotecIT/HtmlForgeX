@@ -218,7 +218,7 @@ internal class FontAwesomeExampleDemo {
             page.Text("✅ **Backward Compatible**: Old WithCode() method still works").LineBreak();
         });
 
-        document.Save("FontAwesomeEnumDemo.html", openInBrowser);
+        document.Save("FontAwesomeExampleDemo.html", openInBrowser);
         HelpersSpectre.Success("FontAwesome Enum System Demo created successfully!");
     }
 }

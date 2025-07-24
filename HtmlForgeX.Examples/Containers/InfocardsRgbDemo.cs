@@ -6,13 +6,13 @@ namespace HtmlForgeX.Examples.Containers;
 /// Demonstrates colorful info cards using predefined RGBColor constants
 /// Shows the clean approach: RGBColor.White, RGBColor.Red instead of hex strings
 /// </summary>
-internal class InfocardsCleanDemo {
-    public static void Demo01(bool openInBrowser = false) {
-        HelpersSpectre.PrintTitle("Clean Infocards Demo - Predefined RGBColor Constants");
+internal class InfocardsRgbDemo {
+    public static void Create(bool openInBrowser = false) {
+        HelpersSpectre.PrintTitle("RGB Infocards Demo - Predefined Colors");
 
         using var document = new Document {
             Head = {
-                Title = "Clean Infocards Demo - RGBColor Constants",
+                Title = "RGB Infocards Demo - Predefined Colors",
                 Author = "HtmlForgeX",
                 Revised = DateTime.Now,
                 AutoRefresh = 30
@@ -305,7 +305,7 @@ internal class InfocardsCleanDemo {
             });
         });
 
-        document.Save("InfocardsCleanDemo.html", openInBrowser);
+        document.Save("InfocardsRgbDemo.html", openInBrowser);
 
         HelpersSpectre.Success("🎨 Clean Infocards Demo created successfully!");
         HelpersSpectre.Success("✨ Features demonstrated:");
