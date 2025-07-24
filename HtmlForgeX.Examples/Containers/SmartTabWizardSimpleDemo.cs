@@ -6,7 +6,7 @@ namespace HtmlForgeX.Examples.Containers;
 /// Simple demo demonstrating SmartTab and SmartWizard functionality with proper fluent API usage.
 /// </summary>
 internal class SmartTabWizardSimpleDemo {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("SmartTab & SmartWizard Simple Demo");
 
         using var document = new Document {

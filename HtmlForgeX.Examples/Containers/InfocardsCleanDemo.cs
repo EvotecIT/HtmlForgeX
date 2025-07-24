@@ -7,7 +7,7 @@ namespace HtmlForgeX.Examples.Containers;
 /// Shows the clean approach: RGBColor.White, RGBColor.Red instead of hex strings
 /// </summary>
 internal class InfocardsCleanDemo {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Clean Infocards Demo - Predefined RGBColor Constants");
 
         using var document = new Document {

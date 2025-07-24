@@ -4,7 +4,7 @@ using HtmlForgeX;
 namespace HtmlForgeX.Examples.Charts;
 
 internal class ChartJsBasicDemo {
-    public static void Demo(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("ChartJs Demo - Enhanced");
 
         using var document = new Document {

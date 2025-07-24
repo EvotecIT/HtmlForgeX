@@ -1,7 +1,7 @@
 namespace HtmlForgeX.Examples.Containers;
 
 internal class EnhancedAccordionStepsShowcase {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Enhanced Accordion & Steps Showcase - Complete Feature Demo");
 
         using var document = new Document {

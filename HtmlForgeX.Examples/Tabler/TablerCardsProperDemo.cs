@@ -7,7 +7,7 @@ namespace HtmlForgeX.Examples.Tabler;
 /// This demonstrates the correct way to use card components without any raw HTML
 /// </summary>
 internal class TablerCardsProperDemo {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Proper Tabler Cards Demo - Zero HTML, Pure C# API");
 
         using var document = new Document {

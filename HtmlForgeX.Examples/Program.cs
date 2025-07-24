@@ -30,20 +30,18 @@ internal class Program {
         // Support.DownloadLibrariesAsync();
         // Support.GenerateTableIconsAsync();
 
-        // Basic HTML Tag Building examples (console output)
+        // Console output examples
         HtmlTagDivExample.Create();
         HtmlTagSpanExample.Create();
         HtmlTagFormExample.Create();
-
-        // Tabler examples (console output)
         TablerIconDemo.Create();
         TablerSvgIcons.Create();
-        ExampleFontAwesomeOnline.Create(openInBrowser);
 
         // Tabler examples html output
         TablerTagDemo.Create(openInBrowser);
         TablerColorHex.Create();
         TablerAlerts.Create(openInBrowser);
+        ExampleFontAwesomeOnline.Create(openInBrowser);
 
         // Experimental examples (console output)
         // Experiments01.Create();
@@ -72,25 +70,25 @@ internal class Program {
         TablerStarRatingDemo.Create(openInBrowser);
 
         // Quill editor example
-        BasicQuillEditor.Demo(openInBrowser);
+        BasicQuillEditor.Create(openInBrowser);
 
         // Container examples
-        BasicHtmlContainer01.Demo01(openInBrowser);
-        BasicHtmlContainer02.Demo02(openInBrowser);
-        BasicHtmlContainer03.Demo03(openInBrowser);
-        BasicHtmlContainer04.Demo01(openInBrowser);
+        BasicHtmlContainer01.Create(openInBrowser);
+        BasicHtmlContainer02.Create(openInBrowser);
+        BasicHtmlContainer03.Create(openInBrowser);
+        BasicHtmlContainer04.Create(openInBrowser);
 
         // Infocards
-        InfocardsDemo.Demo01(openInBrowser);
-        InfocardsCleanDemo.Demo01(openInBrowser);
-        BasicScrollingText.Demo01(openInBrowser);
-        DomainHealthCheck.Demo01(openInBrowser);
+        InfocardsDemo.Create(openInBrowser);
+        InfocardsCleanDemo.Create(openInBrowser);
+        BasicScrollingText.Create(openInBrowser);
+        DomainHealthCheck.Create(openInBrowser);
         EnhancedDataGridDemo.Create(openInBrowser);
 
         // Complete Tabler Cards demo - ALL features
-        TablerCardsCompleteDemo.Demo01(openInBrowser);
-        TablerCardsEnhancedDemo.Demo01(openInBrowser);
-        TablerCardsProperDemo.Demo01(openInBrowser);
+        TablerCardsCompleteDemo.Create(openInBrowser);
+        TablerCardsEnhancedDemo.Create(openInBrowser);
+        TablerCardsProperDemo.Create(openInBrowser);
 
         // Table examples
         BasicHtmlTable01.Create(openInBrowser);
@@ -138,7 +136,7 @@ internal class Program {
         EmailEnhancedDarkMode.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
 
         // Enhanced Accordion & Steps showcase
-        EnhancedAccordionStepsShowcase.Demo01(openInBrowser);  // 🎛️ ENHANCED ACCORDION & STEPS DEMO
+        EnhancedAccordionStepsShowcase.Create(openInBrowser);  // 🎛️ ENHANCED ACCORDION & STEPS DEMO
 
         // Flexible header/footer example (NEW - demonstrates the flexible pattern)
         EmailFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO
@@ -171,18 +169,18 @@ internal class Program {
         EmailLayoutConfigurationDemo.Create(openInBrowser);
 
         // Chart examples
-        ChartJsBasicDemo.Demo(openInBrowser);
-        ChartsApexBasicDemo.Demo(openInBrowser);
-        ChartsApexComprehensiveDemo.Demo(openInBrowser);
+        ChartJsBasicDemo.Create(openInBrowser);
+        ChartsApexBasicDemo.Create(openInBrowser);
+        ChartsApexComprehensiveDemo.Create(openInBrowser);
 
         // VisNetwork images demo
-        VisNetworkBasicDemo.Demo(openInBrowser);
-        VisNetworkAdvancedDemo.Demo(openInBrowser);
-        VisNetworkPhysicsExamples.Demo(openInBrowser);
-        VisNetworkLayoutExamples.Demo(openInBrowser);
-        VisNetworkNodeStylingExamples.Demo(openInBrowser);
-        VisNetworkEdgeManipulationExamples.Demo(openInBrowser);
-        VisNetworkInteractionExamples.Demo(openInBrowser);
+        VisNetworkBasicDemo.Create(openInBrowser);
+        VisNetworkAdvancedDemo.Create(openInBrowser);
+        VisNetworkPhysicsExamples.Create(openInBrowser);
+        VisNetworkLayoutExamples.Create(openInBrowser);
+        VisNetworkNodeStylingExamples.Create(openInBrowser);
+        VisNetworkEdgeManipulationExamples.Create(openInBrowser);
+        VisNetworkInteractionExamples.Create(openInBrowser);
         VisNetworkImprovementsDemo.Create(openInBrowser);
         VisNetworkMultiLineLabelDemo.Create(openInBrowser);
         VisNetworkGradientEdgesDemo.Create(openInBrowser);
@@ -211,13 +209,13 @@ internal class Program {
         // ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
 
         // Show basic usage of ImageUtilities
-        // ExampleImageUtilities.Demonstrate();
+        // ExampleImageUtilities.Create();
 
         // SmartTab & SmartWizard examples
-        SmartWizardBasicDemo.Demo01(openInBrowser);
-        SmartTabBasicDemo.Demo01(openInBrowser);
-        SmartTabWizardCompleteDemo.Demo01(openInBrowser);
-        SmartTabWizardSimpleDemo.Demo01(openInBrowser);
-        SmartTabWizardInteroperabilityDemo.Demo01(openInBrowser);
+        SmartWizardBasicDemo.Create(openInBrowser);
+        SmartTabBasicDemo.Create(openInBrowser);
+        SmartTabWizardCompleteDemo.Create(openInBrowser);
+        SmartTabWizardSimpleDemo.Create(openInBrowser);
+        SmartTabWizardInteroperabilityDemo.Create(openInBrowser);
     }
 }

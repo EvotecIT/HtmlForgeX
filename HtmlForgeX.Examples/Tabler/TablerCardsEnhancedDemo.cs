@@ -7,7 +7,7 @@ namespace HtmlForgeX.Examples.Tabler;
 /// Shows advanced card features using only fluent C# methods
 /// </summary>
 internal class TablerCardsEnhancedDemo {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Enhanced Tabler Cards Demo - Proper C# API");
 
         using var document = new Document {

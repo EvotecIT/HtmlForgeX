@@ -1,7 +1,7 @@
 namespace HtmlForgeX.Examples.VisNetwork;
 
 internal class VisNetworkNodeStylingExamples {
-    public static void Demo(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("VisNetwork Node Styling Examples");
 
         using var document = new Document {

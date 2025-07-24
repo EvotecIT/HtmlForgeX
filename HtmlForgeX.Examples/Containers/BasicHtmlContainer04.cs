@@ -2,7 +2,7 @@ using HtmlForgeX.Tags;
 
 namespace HtmlForgeX.Examples.Containers;
 internal class BasicHtmlContainer04 {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Basic Demo Document Container 4");
 
         // Create a list of simple objects
@@ -361,6 +361,6 @@ internal class BasicHtmlContainer04 {
                 });
             });
         });
-        document.Save("BasicDemoDocumentContainer04.html", openInBrowser);
+        document.Save("BasicHtmlContainer04.html", openInBrowser);
     }
 }

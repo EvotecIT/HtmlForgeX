@@ -6,7 +6,7 @@ namespace HtmlForgeX.Examples.Containers;
 /// Basic SmartTab demo showcasing the fluent API capabilities.
 /// </summary>
 internal class SmartTabBasicDemo {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("SmartTab Basic Demo - Fluent C# API");
 
         // Sample data for tables

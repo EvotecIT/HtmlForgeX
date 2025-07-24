@@ -6,7 +6,7 @@ namespace HtmlForgeX.Examples.Containers;
 /// Advanced demo showing SmartTab and SmartWizard interoperability with existing HtmlForgeX components.
 /// </summary>
 internal class SmartTabWizardInteroperabilityDemo {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("SmartTab & SmartWizard Interoperability Demo");
 
         // Sample data for various components

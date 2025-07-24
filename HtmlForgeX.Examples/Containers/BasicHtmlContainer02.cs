@@ -8,7 +8,7 @@ using Spectre.Console;
 
 namespace HtmlForgeX.Examples.Containers;
 internal class BasicHtmlContainer02 {
-    public static void Demo02(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Basic Demo Document Container 2");
 
         // Create a list of simple objects
@@ -114,6 +114,6 @@ internal class BasicHtmlContainer02 {
             });
         });
 
-        document.Save("BasicDemoDocumentContainer02.html", openInBrowser);
+        document.Save("BasicHtmlContainer02.html", openInBrowser);
     }
 }

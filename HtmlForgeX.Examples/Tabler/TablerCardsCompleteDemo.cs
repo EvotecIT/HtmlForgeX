@@ -8,7 +8,7 @@ namespace HtmlForgeX.Examples.Tabler;
 /// This maintains all the original visual features while using proper fluent C# methods
 /// </summary>
 internal class TablerCardsCompleteDemo {
-    public static void Demo01(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Complete Tabler Cards Demo - ALL Features with Proper C# API");
 
         using var document = new Document {

@@ -1,7 +1,7 @@
 namespace HtmlForgeX.Examples.Containers;
 
 internal class BasicHtmlContainer03 {
-    public static void Demo03(bool openInBrowser = false) {
+    public static void Create(bool openInBrowser = false) {
         HelpersSpectre.PrintTitle("Basic Demo Document Container 3");
 
         // Create a list of simple objects
@@ -261,6 +261,6 @@ internal class BasicHtmlContainer03 {
             });
         });
 
-        document.Save("BasicDemoDocumentContainer03.html", openInBrowser);
+        document.Save("BasicHtmlContainer03.html", openInBrowser);
     }
 }

@@ -4,7 +4,7 @@ using System.IO;
 namespace HtmlForgeX.Examples.Experimenting;
 
 internal static class ExampleImageUtilities {
-    public static void Demonstrate() {
+    public static void Create() {
         var path = Path.Combine("..", "..", "..", "Assets", "Images", "WhiteBackground", "Logo-evotec.png");
         if (!File.Exists(path)) {
             HelpersSpectre.Success($"Example image not found: {path}");

@@ -2,7 +2,7 @@ namespace HtmlForgeX.Examples.VisNetwork;
 
 internal class VisNetworkIdSizeExample
 {
-    public static void Demo(bool openInBrowser = false)
+    public static void Create(bool openInBrowser = false)
     {
         HelpersSpectre.PrintTitle("VisNetwork Id & Size Demo");
 
