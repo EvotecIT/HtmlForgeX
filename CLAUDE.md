@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-HtmlForgeX is a .NET library that simplifies HTML/CSS/JavaScript generation through a fluent API. It enables creating complex HTML documents, pages, and reports without requiring HTML/CSS/JS knowledge. The project includes a PowerShell module and supports multiple .NET frameworks (Standard 2.0, Framework 4.7.2, .NET 8.0).
+HtmlForgeX is a .NET library that simplifies HTML/CSS/JavaScript generation through a fluent API. It enables creating complex HTML documents, pages, and reports without requiring HTML/CSS/JS knowledge. The project includes a PowerShell module and supports multiple .NET frameworks (Standard 2.0, Framework 4.7.2, .NET 8.0). The core principle is to provide a fluent, type-safe API for HTML generation, allowing developers to focus on logic rather than syntax. No CSS, JavaScript, or HTML knowledge is required to use the library effectively.
 
 ## Build Commands
 

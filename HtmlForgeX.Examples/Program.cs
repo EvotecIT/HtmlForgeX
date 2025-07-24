@@ -49,6 +49,10 @@ internal class Program {
         ComponentHtmlContainer03.Create(openInBrowser);
         ComponentHtmlContainer04.Create(openInBrowser);
         ComponentQuillEditor.Create(openInBrowser);
+        NavigationDemo.Create(openInBrowser);           // 🧭 NAVIGATION DEMO - Single Page
+        NavigationVerticalDemo.Create(openInBrowser);   // 🧭 NAVIGATION DEMO - Vertical Layout
+        NavigationStandaloneDemo.Create(openInBrowser); // 🧭 NAVIGATION DEMO - Standalone Examples
+        MultiPageDemo.Create(openInBrowser);            // 🌐 MULTI-PAGE SITE DEMO
         ComponentScrollingText.Create(openInBrowser);
         DataGridShowcase.Create(openInBrowser);
         DataTablesAdvancedDemo.Create(openInBrowser);
