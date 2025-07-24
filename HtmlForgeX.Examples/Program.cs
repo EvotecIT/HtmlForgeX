@@ -30,192 +30,103 @@ internal class Program {
         // Support.DownloadLibrariesAsync();
         // Support.GenerateTableIconsAsync();
 
-        // Console output examples
+        // Console output examples (alphabetical)
         HtmlTagDivExample.Create();
-        HtmlTagSpanExample.Create();
         HtmlTagFormExample.Create();
+        HtmlTagSpanExample.Create();
+        TablerColorHex.Create();
         TablerIconDemo.Create();
         TablerSvgIcons.Create();
 
-        // Tabler examples html output
-        TablerTagDemo.Create(openInBrowser);
-        TablerColorHex.Create();
-        TablerAlerts.Create(openInBrowser);
-        ExampleFontAwesomeOnline.Create(openInBrowser);
-
-        // Experimental examples (console output)
-        // Experiments01.Create();
-        // ExampleThreadSafeErrors.Create();
-
-        // Manual HTML building examples
-        DocumentSpanStylesExample.Create(openInBrowser);
-        DocumentBootstrapExample.Create(openInBrowser);
-        DocumentAnalyticsExample.Create(openInBrowser);
-        DocumentAnalyticsSpecialCharsExample.Create(openInBrowser);
-        GoogleFontExample.Create(openInBrowser);
-        DocumentSanitizedRawHtmlExample.Create(openInBrowser);
-
-        // Toast examples
-        TablerToastDemo.Create(openInBrowser);
-        TablerToastAdvanced.Create(openInBrowser);
-        TablerToastOptions.Create(openInBrowser);
-        TablerProgressBarShowcase.Create(openInBrowser);
-        TablerTimelineDemo.Create(openInBrowser);
-        TablerLogsDemo.Create(openInBrowser);
-
-        // Forms examples
-        TablerFormDemo.Create(openInBrowser);
-        TablerFormInputs.Create(openInBrowser);
-        ExampleComprehensiveForm.Create(openInBrowser);
-        TablerStarRatingDemo.Create(openInBrowser);
-
-        // Quill editor example
-        ComponentQuillEditor.Create(openInBrowser);
-
-        // Container examples
+        // HTML output examples (alphabetical)
+        AccordionStepsShowcase.Create(openInBrowser);  // 🎛️ ACCORDION & STEPS SHOWCASE
+        ChartJsBasicDemo.Create(openInBrowser);
+        ChartsApexBasicDemo.Create(openInBrowser);
+        ChartsApexComprehensiveDemo.Create(openInBrowser);
         ComponentHtmlContainer01.Create(openInBrowser);
         ComponentHtmlContainer02.Create(openInBrowser);
         ComponentHtmlContainer03.Create(openInBrowser);
         ComponentHtmlContainer04.Create(openInBrowser);
-
-        // Infocards
-        InfocardsDemo.Create(openInBrowser);
-        InfocardsRgbDemo.Create(openInBrowser);
+        ComponentQuillEditor.Create(openInBrowser);
         ComponentScrollingText.Create(openInBrowser);
-        DomainHealthCheck.Create(openInBrowser);
         DataGridShowcase.Create(openInBrowser);
-
-        // Complete Tabler Cards demo - ALL features
-        TablerCardsShowcase.Create(openInBrowser);
-        TablerCardsExtendedDemo.Create(openInBrowser);
-        TablerCardsApiDemo.Create(openInBrowser);
-
-        // Table examples
-        HtmlTableDocumentExample.Create(openInBrowser);
-        DataTablesOptionsExample.Create(openInBrowser);
-        DataTablesTypedObjectsExample.Create(openInBrowser);
-        TablerTableStylingExample.Create(openInBrowser);
-
-        // Email examples - showcasing the new Document-style configuration!
-        HelpersSpectre.Success("📧 Running Email Examples with Document-Style Configuration:");
-        HelpersSpectre.Break();
-
-        // Text wrapping demo
-        EmailTextWrappingDemo.Create(openInBrowser);
-
-        // // Improved consistency email with Document-style configuration
-        EmailImprovedConsistency.Create(openInBrowser);
-
-        // Text wrapping demo
-        EmailTextWrappingDemo.Create(openInBrowser);
-
-        // Direct email pattern
-        EmailDirectPattern.Create(openInBrowser);
-
-        // Corrected email pattern
-        EmailCorrectedPattern.Create(openInBrowser);
-
-        // Layout email pattern
-        EmailLayoutPattern.Create(openInBrowser);
-
-        // Invoice email with Document-style configuration
-        EmailInvoice.Create(openInBrowser);
-
-        // Newsletter email
-        EmailNewsletter.Create(openInBrowser);
-
-        // Account verification email
-        EmailAccountVerification.Create(openInBrowser);
-
-        // Dark mode email examples (comprehensive dark mode implementation)
-        EmailDarkMode.Create(openInBrowser);  // 🌙 DARK MODE DEMO
-        EmailDarkMode.CreateLightModeComparison(openInBrowser);  // ☀️ LIGHT MODE COMPARISON
-        EmailDarkMode.CreateAutoModeExample(openInBrowser);  // 🔄 AUTO MODE
-
-        // Enhanced dark mode example (NEW - showcases all improvements)
-        EmailEnhancedDarkMode.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
-
-        // Enhanced Accordion & Steps showcase
-        AccordionStepsShowcase.Create(openInBrowser);  // 🎛️ ACCORDION & STEPS SHOWCASE
-
-        // Flexible header/footer example (NEW - demonstrates the flexible pattern)
-        EmailFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO
-
-        // Direct header/footer pattern (NEWEST - demonstrates email.Header.EmailRow())
-        EmailDirectHeaderFooter.Create(openInBrowser);  // 🚀 DIRECT PATTERN DEMO
-
-        // Order confirmation email
-        EmailOrderConfirmation.Create(openInBrowser);
-
-        // Password reset email
-        EmailPasswordReset.Create(openInBrowser);
-
-        // Simple confirmation email
-        EmailSimpleConfirmation.Create(openInBrowser);
-
-        // Welcome email
-        EmailWelcome.Create(openInBrowser);
-
-        // Link encoding demonstration
-        EmailLinkEncoding.Create(openInBrowser);
-
-        // Base64 embedding examples (if they exist)
-        EmailBase64Embedding.Create(openInBrowser);
-
-        // Decimal margin demonstration
-        EmailDecimalMargin.Create(openInBrowser);
-
-        // Layout configuration demonstration - NEW enum-based configuration system!
-        EmailLayoutConfigurationDemo.Create(openInBrowser);
-
-        // Chart examples
-        ChartJsBasicDemo.Create(openInBrowser);
-        ChartsApexBasicDemo.Create(openInBrowser);
-        ChartsApexComprehensiveDemo.Create(openInBrowser);
-
-        // VisNetwork images demo
-        VisNetworkBasicDemo.Create(openInBrowser);
-        VisNetworkAdvancedDemo.Create(openInBrowser);
-        VisNetworkPhysicsExamples.Create(openInBrowser);
-        VisNetworkLayoutExamples.Create(openInBrowser);
-        VisNetworkNodeStylingExamples.Create(openInBrowser);
-        VisNetworkEdgeManipulationExamples.Create(openInBrowser);
-        VisNetworkInteractionExamples.Create(openInBrowser);
-        VisNetworkImprovementsDemo.Create(openInBrowser);
-        VisNetworkMultiLineLabelDemo.Create(openInBrowser);
-        VisNetworkGradientEdgesDemo.Create(openInBrowser);
-        VisNetworkEventsDemo.Create(openInBrowser);
-        VisNetworkClusteringDemo.Create(openInBrowser);
-        VisNetworkMethodsDemo.Create(openInBrowser);
-        VisNetworkExportImportDemo.Create(openInBrowser);
-        VisNetworkCustomShapesDemo.Create(openInBrowser);
-        VisNetworkAdvancedFeaturesDemo.Create(openInBrowser);
-
-        // VisNetwork HTML Nodes example (with visjs-html-nodes plugin)
-        VisNetworkExamples.VisNetworkHtmlNodesExample.Run(openInBrowser);
-
-        // VisNetwork Advanced Labels example (HTML tooltips, \n line breaks, markdown)
-        VisNetworkAdvancedLabelsExample.Run(openInBrowser);
-
-        // Table examples
-        DataTablesQuickStart.Create(openInBrowser);
         DataTablesAdvancedDemo.Create(openInBrowser);
         DataTablesExtensionsDemo.Create(openInBrowser);
-        // DataTablesFeatureTest.RunAllTests(openInBrowser);
-        DataTablesRenderingDemo.Create(openInBrowser);
         DataTablesInteractiveFilteringDemo.Create(openInBrowser);
-
-        // Demonstrates rendering HTML in a headless browser
-        // ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
-
-        // Show basic usage of ImageUtilities
-        // ExampleImageUtilities.Create();
-
-        // SmartTab & SmartWizard examples
-        SmartWizardDemo.Create(openInBrowser);
+        DataTablesOptionsExample.Create(openInBrowser);
+        DataTablesQuickStart.Create(openInBrowser);
+        DataTablesRenderingDemo.Create(openInBrowser);
+        DataTablesTypedObjectsExample.Create(openInBrowser);
+        DocumentAnalyticsExample.Create(openInBrowser);
+        DocumentAnalyticsSpecialCharsExample.Create(openInBrowser);
+        DocumentBootstrapExample.Create(openInBrowser);
+        DocumentSanitizedRawHtmlExample.Create(openInBrowser);
+        DocumentSpanStylesExample.Create(openInBrowser);
+        DomainHealthCheck.Create(openInBrowser);
+        EmailAccountVerification.Create(openInBrowser);
+        EmailBase64Embedding.Create(openInBrowser);
+        EmailCorrectedPattern.Create(openInBrowser);
+        EmailDarkMode.Create(openInBrowser);  // 🌙 DARK MODE DEMO
+        EmailDecimalMargin.Create(openInBrowser);
+        EmailDirectHeaderFooter.Create(openInBrowser);  // 🚀 DIRECT PATTERN DEMO
+        EmailDirectPattern.Create(openInBrowser);
+        EmailEnhancedDarkMode.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
+        EmailFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO
+        EmailImprovedConsistency.Create(openInBrowser);
+        EmailInvoice.Create(openInBrowser);
+        EmailLayoutConfigurationDemo.Create(openInBrowser);
+        EmailLayoutPattern.Create(openInBrowser);
+        EmailLinkEncoding.Create(openInBrowser);
+        EmailNewsletter.Create(openInBrowser);
+        EmailOrderConfirmation.Create(openInBrowser);
+        EmailPasswordReset.Create(openInBrowser);
+        EmailSimpleConfirmation.Create(openInBrowser);
+        EmailTextWrappingDemo.Create(openInBrowser);
+        EmailWelcome.Create(openInBrowser);
+        ExampleComprehensiveForm.Create(openInBrowser);
+        ExampleFontAwesomeOnline.Create(openInBrowser);
+        GoogleFontExample.Create(openInBrowser);
+        HtmlTableDocumentExample.Create(openInBrowser);
+        InfocardsDemo.Create(openInBrowser);
+        InfocardsRgbDemo.Create(openInBrowser);
         SmartTabDemo.Create(openInBrowser);
         SmartTabWizardFullDemo.Create(openInBrowser);
-        SmartTabWizardIntroDemo.Create(openInBrowser);
         SmartTabWizardInteroperabilityDemo.Create(openInBrowser);
+        SmartTabWizardIntroDemo.Create(openInBrowser);
+        SmartWizardDemo.Create(openInBrowser);
+        TablerAlerts.Create(openInBrowser);
+        // Tabler cards examples
+        TablerCardsApiDemo.Create(openInBrowser);
+        TablerCardsExtendedDemo.Create(openInBrowser);
+        TablerCardsShowcase.Create(openInBrowser);
+        TablerFormDemo.Create(openInBrowser);
+        TablerFormInputs.Create(openInBrowser);
+        TablerLogsDemo.Create(openInBrowser);
+        TablerProgressBarShowcase.Create(openInBrowser);
+        TablerStarRatingDemo.Create(openInBrowser);
+        TablerTableStylingExample.Create(openInBrowser);
+        TablerTagDemo.Create(openInBrowser);
+        TablerTimelineDemo.Create(openInBrowser);
+        TablerToastAdvanced.Create(openInBrowser);
+        TablerToastDemo.Create(openInBrowser);
+        TablerToastOptions.Create(openInBrowser);
+        VisNetworkAdvancedDemo.Create(openInBrowser);
+        VisNetworkAdvancedFeaturesDemo.Create(openInBrowser);
+        VisNetworkAdvancedLabelsExample.Run(openInBrowser);
+        VisNetworkBasicDemo.Create(openInBrowser);
+        VisNetworkClusteringDemo.Create(openInBrowser);
+        VisNetworkCustomShapesDemo.Create(openInBrowser);
+        VisNetworkEdgeManipulationExamples.Create(openInBrowser);
+        VisNetworkEventsDemo.Create(openInBrowser);
+        VisNetworkExamples.VisNetworkHtmlNodesExample.Run(openInBrowser);
+        VisNetworkExportImportDemo.Create(openInBrowser);
+        VisNetworkGradientEdgesDemo.Create(openInBrowser);
+        VisNetworkImprovementsDemo.Create(openInBrowser);
+        VisNetworkInteractionExamples.Create(openInBrowser);
+        VisNetworkLayoutExamples.Create(openInBrowser);
+        VisNetworkMethodsDemo.Create(openInBrowser);
+        VisNetworkMultiLineLabelDemo.Create(openInBrowser);
+        VisNetworkNodeStylingExamples.Create(openInBrowser);
+        VisNetworkPhysicsExamples.Create(openInBrowser);
     }
 }
