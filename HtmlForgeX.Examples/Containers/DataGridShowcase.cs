@@ -27,11 +27,8 @@ internal class DataGridShowcase {
             page.Row(row => {
                 row.Column(TablerColumnNumber.Twelve, column => {
                     column.H1("Enhanced DataGrid Component");
-                    column.Text("Complete recreation of Tabler's datagrid.html features using pure C# fluent API - zero HTML knowledge required!")
-                        .Style(TablerTextStyle.Muted);
                 });
             });
-
             // ===============================================
             // SECTION 1: Basic DataGrid Features
             // ===============================================
