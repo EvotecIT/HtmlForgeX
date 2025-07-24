@@ -3,7 +3,7 @@ namespace HtmlForgeX.Examples.Tables;
 /// <summary>
 /// Comprehensive demonstration of advanced DataTables features with fluent API
 /// </summary>
-internal class AdvancedDataTablesDemo
+internal class DataTablesAdvancedDemo
 {
     public static void Create(bool openInBrowser = false)
     {
@@ -499,7 +499,7 @@ document.Configuration.DataTables.DefaultRenderMode = DataTablesRenderMode.Auto;
                 .VsTheme());
         });
 
-        document.Save("AdvancedDataTablesDemo.html", openInBrowser);
+        document.Save("DataTablesAdvancedDemo.html", openInBrowser);
 
         // Console output
         HelpersSpectre.Success("🚀 Advanced DataTables Demo created successfully!");

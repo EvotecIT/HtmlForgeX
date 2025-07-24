@@ -31,9 +31,9 @@ internal class Program {
         // Support.GenerateTableIconsAsync();
 
         // Basic HTML Tag Building examples (console output)
-        BasicHtmlTagBuilding.Demo1();
-        BasicHtmlTagBuilding.Demo2();
-        BasicHtmlTagBuilding.Demo3();
+        HtmlTagDivExample.Create();
+        HtmlTagSpanExample.Create();
+        HtmlTagFormExample.Create();
 
         // Tabler examples (console output)
         TablerIconDemo.Create();
@@ -46,15 +46,16 @@ internal class Program {
         TablerAlerts.Create(openInBrowser);
 
         // Experimental examples (console output)
-        Experiments01.Create();
-        ExampleThreadSafeErrors.Create();
+        // Experiments01.Create();
+        // ExampleThreadSafeErrors.Create();
 
         // Manual HTML building examples
-        BasicHtmlBuilding.Demo1(openInBrowser);
-        BasicHtmlBuilding.Demo2(openInBrowser);
-        BasicHtmlBuilding.DemoAnalytics(openInBrowser);
-        GoogleFontExample.Demo(openInBrowser);
-        BasicHtmlBuilding.DemoSanitizedRawHtml(openInBrowser);
+        DocumentSpanStylesExample.Create(openInBrowser);
+        DocumentBootstrapExample.Create(openInBrowser);
+        DocumentAnalyticsExample.Create(openInBrowser);
+        DocumentAnalyticsSpecialCharsExample.Create(openInBrowser);
+        GoogleFontExample.Create(openInBrowser);
+        DocumentSanitizedRawHtmlExample.Create(openInBrowser);
 
         // Toast examples
         TablerToastDemo.Create(openInBrowser);
@@ -200,9 +201,9 @@ internal class Program {
 
         // Table examples
         DataTablesQuickStart.Create(openInBrowser);
-        AdvancedDataTablesDemo.Create(openInBrowser);
+        DataTablesAdvancedDemo.Create(openInBrowser);
         DataTablesExtensionsDemo.Create(openInBrowser);
-        DataTablesFeatureTest.RunAllTests(openInBrowser);
+        // DataTablesFeatureTest.RunAllTests(openInBrowser);
         DataTablesRenderingDemo.Create(openInBrowser);
         DataTablesInteractiveFilteringDemo.Create(openInBrowser);
 
@@ -210,7 +211,7 @@ internal class Program {
         // ExampleHeadlessRendering.CreateAsync(openInBrowser).GetAwaiter().GetResult();
 
         // Show basic usage of ImageUtilities
-        ExampleImageUtilities.Demonstrate();
+        // ExampleImageUtilities.Demonstrate();
 
         // SmartTab & SmartWizard examples
         SmartWizardBasicDemo.Demo01(openInBrowser);
