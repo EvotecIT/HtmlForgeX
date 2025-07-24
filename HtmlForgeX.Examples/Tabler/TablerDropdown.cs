@@ -38,6 +38,6 @@ internal static class TablerDropdown {
             });
         });
 
-        document.Save("TablerDropdownDemo.html", openInBrowser);
+        document.Save("TablerDropdown.html", openInBrowser);
     }
 }

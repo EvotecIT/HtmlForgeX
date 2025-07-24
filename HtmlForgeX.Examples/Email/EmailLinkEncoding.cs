@@ -26,7 +26,7 @@ public static class EmailLinkEncoding {
             });
         });
 
-        email.Save("link-encoding-email.html", openInBrowser);
+        email.Save("EmailLinkEncoding.html", openInBrowser);
         HelpersSpectre.Success("✅ Link encoding email created successfully!");
     }
 }

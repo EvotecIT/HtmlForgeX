@@ -183,7 +183,7 @@ public static class EmailOrderConfirmation {
         });
 
         // Save email
-        email.Save("order-confirmation-email.html", openInBrowser);
+        email.Save("EmailOrderConfirmation.html", openInBrowser);
         HelpersSpectre.Success("✅ Order confirmation email created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: E-commerce layouts, two-column design, tables, multiple action buttons, social links");
     }

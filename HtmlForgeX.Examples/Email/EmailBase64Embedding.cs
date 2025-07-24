@@ -367,7 +367,7 @@ public static class EmailBase64Embedding
         });
 
         // Save email
-        email.Save("base64-embedding-demo.html", openInBrowser);
+        email.Save("EmailBase64Embedding.html", openInBrowser);
 
         HelpersSpectre.Success("✅ Base64 embedding demo email created successfully!");
         HelpersSpectre.Success($@"📧 Demonstrates: All base64 embedding methods and best practices

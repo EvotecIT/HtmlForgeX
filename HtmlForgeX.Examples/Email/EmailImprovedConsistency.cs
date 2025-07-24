@@ -418,7 +418,7 @@ public static class EmailImprovedConsistency {
         });
 
         // Save email
-        email.Save("improved-consistency-demo.html", openInBrowser);
+        email.Save("EmailImprovedConsistency.html", openInBrowser);
 
         HelpersSpectre.Success("✅ Improved consistency email created successfully!");
         HelpersSpectre.Success($@"🎯 Demonstrates: Document-style configuration pattern

@@ -77,6 +77,6 @@ internal static class TablerFormDemo {
                 });
             });
         });
-        document.Save("BasicFormDemo.html", openInBrowser);
+        document.Save("TablerFormDemo.html", openInBrowser);
     }
 }

@@ -19,6 +19,6 @@ internal static class TablerToastDemo {
             });
         });
 
-        document.Save("ToastDemo.html", openInBrowser);
+        document.Save("TablerToastDemo.html", openInBrowser);
     }
 }

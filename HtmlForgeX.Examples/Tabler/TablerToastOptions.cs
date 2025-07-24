@@ -43,7 +43,7 @@ internal static class TablerToastOptions {
             });
         });
 
-        document.Save("ToastOptionsDemo.html", openInBrowser);
+        document.Save("TablerToastOptions.html", openInBrowser);
     }
 }
 

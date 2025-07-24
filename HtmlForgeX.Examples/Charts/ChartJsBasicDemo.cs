@@ -1010,7 +1010,7 @@ internal class ChartJsBasicDemo {
             });
         });
 
-        document.Save("ChartJsDemoEnhanced.html", openInBrowser);
+        document.Save("ChartJsBasicDemo.html", openInBrowser);
         
         HelpersSpectre.Success("📊 ChartJs Enhanced Demo created successfully!");
         HelpersSpectre.Success("✨ Features demonstrated:");

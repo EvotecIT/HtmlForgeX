@@ -195,7 +195,7 @@ public static class EmailFlexibleHeaderFooter
         });
 
         // Save email
-        email.Save("flexible-header-footer.html", openInBrowser);
+        email.Save("EmailFlexibleHeaderFooter.html", openInBrowser);
 
         HelpersSpectre.Success("✅ Flexible header/footer email created successfully!");
         HelpersSpectre.Success("🎯 Key Benefits:");

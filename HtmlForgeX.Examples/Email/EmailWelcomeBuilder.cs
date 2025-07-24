@@ -153,7 +153,7 @@ public static class EmailWelcomeBuilder
                   .Add(footer);
 
         // Save email
-        email.Save("welcome-email.html", openInBrowser);
+        email.Save("EmailWelcomeBuilder.html", openInBrowser);
         HelpersSpectre.Success("✅ Welcome email created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: User-friendly text styling, flexible list building, contact information");
     }

@@ -31,6 +31,6 @@ internal static class TablerFormInputs {
                 });
             });
         });
-        document.Save("FormInputsDemo.html", openInBrowser);
+        document.Save("TablerFormInputs.html", openInBrowser);
     }
 }

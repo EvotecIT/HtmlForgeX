@@ -84,6 +84,6 @@ internal static class TablerProgressBarShowcase {
             });
         });
 
-        document.Save("ProgressBarShowcase.html", openInBrowser);
+        document.Save("TablerProgressBarShowcase.html", openInBrowser);
     }
 }

@@ -16,6 +16,6 @@ internal static class TablerCountdown {
             });
         });
 
-        document.Save("TablerCountdownDemo.html", openInBrowser);
+        document.Save("TablerCountdown.html", openInBrowser);
     }
 }

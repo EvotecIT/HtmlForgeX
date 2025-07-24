@@ -46,6 +46,6 @@ public static class TablerIconFontDemo {
         );
         
         // Save the document
-        document.Save("tabler-font-icons.html");
+        document.Save("TablerIconFontDemo.html");
     }
 }

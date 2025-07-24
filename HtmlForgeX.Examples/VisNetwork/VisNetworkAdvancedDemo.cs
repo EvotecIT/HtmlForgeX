@@ -332,6 +332,6 @@ internal class VisNetworkAdvancedDemo {
             });
         });
 
-        document.Save("AdvancedVisNetworkDemo.html", openInBrowser);
+        document.Save("VisNetworkAdvancedDemo.html", openInBrowser);
     }
 }

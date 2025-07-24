@@ -22,7 +22,7 @@ public static class EmailDecimalMargin {
             });
         });
 
-        email.Save("decimal-margin-email.html", openInBrowser);
+        email.Save("EmailDecimalMargin.html", openInBrowser);
         HelpersSpectre.Success("✅ Decimal margin email created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: Using decimal margins (1.5em).\n");
     }

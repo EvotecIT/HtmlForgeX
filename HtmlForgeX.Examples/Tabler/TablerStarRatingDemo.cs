@@ -14,6 +14,6 @@ internal static class TablerStarRatingDemo {
                 });
             });
         });
-        document.Save("star-rating.html", openInBrowser);
+        document.Save("TablerStarRatingDemo.html", openInBrowser);
     }
 }

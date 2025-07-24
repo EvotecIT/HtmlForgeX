@@ -198,7 +198,7 @@ public static class EmailTextWrappingDemo
         });
 
         // Save email
-        email.Save("text-wrapping-demo.html", openInBrowser);
+        email.Save("EmailTextWrappingDemo.html", openInBrowser);
         HelpersSpectre.Success("✅ Text wrapping demo created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: Natural, Smart, Default, Aggressive, and Preserved text wrapping modes");
         HelpersSpectre.Success("🎯 Perfect for: Technical documentation, method names, code examples, and professional layouts");

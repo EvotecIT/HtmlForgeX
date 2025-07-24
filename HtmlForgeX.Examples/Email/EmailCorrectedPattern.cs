@@ -180,7 +180,7 @@ public static class EmailCorrectedPattern
         });
 
         // Save email
-        email.Save("corrected-email-pattern.html", openInBrowser);
+        email.Save("EmailCorrectedPattern.html", openInBrowser);
         HelpersSpectre.Success("✅ Corrected email pattern created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: Proper EmailBox spacing, consistent text positioning, multiple sections, proper margins");
     }

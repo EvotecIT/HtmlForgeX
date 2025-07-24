@@ -64,7 +64,7 @@ public static class EmailSimpleConfirmation
         });
 
         // Save email
-        email.Save("simple-confirmation-email.html", openInBrowser);
+        email.Save("EmailSimpleConfirmation.html", openInBrowser);
         HelpersSpectre.Success("✅ Simple confirmation email created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: Clean confirmation messaging, proper asset paths, natural flow");
     }

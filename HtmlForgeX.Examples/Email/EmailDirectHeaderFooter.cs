@@ -98,7 +98,7 @@ public static class EmailDirectHeaderFooter
         });
 
         // Save email
-        email.Save("direct-header-footer-pattern.html", openInBrowser);
+        email.Save("EmailDirectHeaderFooter.html", openInBrowser);
         HelpersSpectre.Success("✅ Direct header/footer pattern created successfully!");
         HelpersSpectre.Success("🎯 Key Benefits:");
         HelpersSpectre.Success("   • email.Header.EmailRow() - Direct access like Body");

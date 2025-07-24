@@ -19,6 +19,6 @@ internal static class TablerTagDemo {
             });
         });
 
-        document.Save("TagDemo.html", openInBrowser);
+        document.Save("TablerTagDemo.html", openInBrowser);
     }
 }

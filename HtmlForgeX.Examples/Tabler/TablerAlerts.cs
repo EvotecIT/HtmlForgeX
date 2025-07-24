@@ -95,6 +95,6 @@ internal static class TablerAlerts {
             });
         });
 
-        document.Save("TablerAlertsDemo.html", openInBrowser);
+        document.Save("TablerAlerts.html", openInBrowser);
     }
 }

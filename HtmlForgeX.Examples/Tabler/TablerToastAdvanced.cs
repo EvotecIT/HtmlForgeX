@@ -38,6 +38,6 @@ internal static class TablerToastAdvanced {
             });
         });
 
-        document.Save("AdvancedToastDemo.html", openInBrowser);
+        document.Save("TablerToastAdvanced.html", openInBrowser);
     }
 }

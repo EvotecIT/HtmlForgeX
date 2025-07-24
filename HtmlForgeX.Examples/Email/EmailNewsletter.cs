@@ -282,7 +282,7 @@ public static class EmailNewsletter {
         });
 
         // Save email
-        email.Save("newsletter-email.html", openInBrowser);
+        email.Save("EmailNewsletter.html", openInBrowser);
 
         HelpersSpectre.Success("✅ Newsletter email created successfully!");
         HelpersSpectre.Success($@"📧 Demonstrates: Newsletter layout, multiple sections, data tables, social links, proper column spacing

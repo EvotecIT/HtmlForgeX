@@ -131,7 +131,7 @@ public static class EmailDirectPattern
             .WithLineHeight("0.5");
 
         // Save email
-        email.Save("direct-email-pattern.html", openInBrowser);
+        email.Save("EmailDirectPattern.html", openInBrowser);
         HelpersSpectre.Success("✅ Direct email pattern created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: Simple top-to-bottom flow, EmailText, EmailTextBox, EmailTable, EmailList");
         HelpersSpectre.Success("🎯 This is the SIMPLE pattern - like writing in Outlook!");

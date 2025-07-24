@@ -160,7 +160,7 @@ public static class EmailInvoice
         });
 
         // Save email
-        email.Save("invoice-email.html", openInBrowser);
+        email.Save("EmailInvoice.html", openInBrowser);
 
         HelpersSpectre.Success("✅ Invoice email created successfully!");
         HelpersSpectre.Success($@"📧 Demonstrates: Professional invoice layout, type-safe tables, proper alignment

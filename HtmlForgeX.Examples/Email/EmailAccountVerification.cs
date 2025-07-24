@@ -101,7 +101,7 @@ public static class EmailAccountVerification {
         });
 
         // Save email
-        email.Save("account-verification-email.html", openInBrowser);
+        email.Save("EmailAccountVerification.html", openInBrowser);
         HelpersSpectre.Success("✅ Account verification email created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: Clean verification messaging, security notices, alternative methods, account details");
     }

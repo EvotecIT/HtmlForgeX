@@ -35,6 +35,6 @@ internal static class TablerTimelineDemo {
             });
         });
 
-        document.Save("TimelineDemo.html", openInBrowser);
+        document.Save("TablerTimelineDemo.html", openInBrowser);
     }
 }

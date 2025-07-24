@@ -22,6 +22,6 @@ internal static class TablerModal {
             });
         });
 
-        document.Save("TablerModalDemo.html", openInBrowser);
+        document.Save("TablerModal.html", openInBrowser);
     }
 }

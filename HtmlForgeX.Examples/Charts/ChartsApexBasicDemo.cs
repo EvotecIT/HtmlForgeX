@@ -61,6 +61,6 @@ internal class ChartsApexBasicDemo {
             });
         });
 
-        document.Save("ApexChartsDemo.html", openInBrowser);
+        document.Save("ChartsApexBasicDemo.html", openInBrowser);
     }
 }

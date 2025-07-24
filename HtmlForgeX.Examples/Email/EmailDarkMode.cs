@@ -408,7 +408,7 @@ public static class EmailDarkMode
         });
 
         // Save email
-        email.Save("dark-mode-demo.html", openInBrowser);
+        email.Save("EmailDarkMode_Dark.html", openInBrowser);
 
         HelpersSpectre.Success("✅ Dark mode email created successfully!");
         HelpersSpectre.Success($@"🌙 Demonstrates: Comprehensive dark mode implementation
@@ -455,7 +455,7 @@ public static class EmailDarkMode
             emailBox.Add(ctaButton);
         });
 
-        email.Save("light-mode-demo.html", openInBrowser);
+        email.Save("EmailDarkMode_Light.html", openInBrowser);
         HelpersSpectre.Success("✅ Light mode comparison email created!");
     }
 
@@ -495,7 +495,7 @@ public static class EmailDarkMode
             emailBox.Add(ctaButton);
         });
 
-        email.Save("auto-mode-demo.html", openInBrowser);
+        email.Save("EmailDarkMode_Auto.html", openInBrowser);
         HelpersSpectre.Success("✅ Auto mode email created!");
         HelpersSpectre.Success("📧 Demonstrates: System preference detection, media queries, CSS fallbacks");
         HelpersSpectre.Success("🎯 This email adapts to the user's system dark mode setting!");
@@ -864,7 +864,7 @@ public static class EmailEnhancedDarkMode
         });
 
         // Save email
-        email.Save("enhanced-dark-mode-demo.html", openInBrowser);
+        email.Save("EmailDarkMode_Enhanced.html", openInBrowser);
 
         HelpersSpectre.Success("✅ Enhanced dark mode email created successfully!");
         HelpersSpectre.Success("🚀 New Features: Image variants, enhanced links, improved tables");

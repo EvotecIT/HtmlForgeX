@@ -402,6 +402,6 @@ internal class ChartsApexComprehensiveDemo {
             });
         });
 
-        document.Save("ApexChartsComprehensive.html", openInBrowser);
+        document.Save("ChartsApexComprehensiveDemo.html", openInBrowser);
     }
 }

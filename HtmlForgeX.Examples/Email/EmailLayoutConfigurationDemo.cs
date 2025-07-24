@@ -283,10 +283,10 @@ public static class EmailLayoutConfigurationDemo
         });
 
         // Save all examples
-        email1.Save("layout-demo-1-extra-wide.html", openInBrowser);
-        email2.Save("layout-demo-2-custom-width.html", false);
-        email3.Save("layout-demo-3-all-sizes.html", false);
-        email4.Save("layout-demo-4-all-padding.html", false);
+        email1.Save("EmailLayoutConfigurationDemo_ExtraWide.html", openInBrowser);
+        email2.Save("EmailLayoutConfigurationDemo_CustomWidth.html", false);
+        email3.Save("EmailLayoutConfigurationDemo_AllSizes.html", false);
+        email4.Save("EmailLayoutConfigurationDemo_AllPadding.html", false);
 
         HelpersSpectre.Success("✅ Layout configuration demos created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: Enum-based configuration, predefined sizes, custom options");

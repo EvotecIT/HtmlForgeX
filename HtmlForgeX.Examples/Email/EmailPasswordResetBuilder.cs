@@ -171,7 +171,7 @@ public static class EmailPasswordResetBuilder
                   .Add(footer);
 
         // Save email
-        email.Save("password-reset-email.html", openInBrowser);
+        email.Save("EmailPasswordResetBuilder.html", openInBrowser);
         HelpersSpectre.Success("✅ Password reset email created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: Security messaging, flexible warning boxes, alternative actions, monospace fonts");
     }

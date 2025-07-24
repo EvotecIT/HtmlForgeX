@@ -131,7 +131,7 @@ public static class EmailLayoutPattern
         });
 
         // Save email
-        email.Save("layout-email-pattern.html", openInBrowser);
+        email.Save("EmailLayoutPattern.html", openInBrowser);
         HelpersSpectre.Success("✅ Layout email pattern created successfully!");
         HelpersSpectre.Success("📧 Demonstrates: Structured layout, EmailRow, EmailColumn, EmailImage, multi-column design");
         HelpersSpectre.Success("🎯 This is the LAYOUT pattern - for complex structured emails!");
