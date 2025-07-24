@@ -5,6 +5,10 @@ using System.Linq;
 namespace HtmlForgeX;
 
 public partial class ChartJs {
+    /// <summary>
+    /// Adds a numeric data point with an associated label.
+    /// </summary>
+    /// <param name="label">Label for the value.</param>
     /// <param name="value">Numeric value.</param>
     /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs AddData(string label, double value) {
@@ -50,11 +54,10 @@ public partial class ChartJs {
     }
 
     /// <summary>
-    /// Sets the chart type.
+    /// Sets custom colors for the chart (for pie, doughnut and polarArea types).
     /// </summary>
-    /// <summary>
-    /// Sets custom colors for the chart (for pie, doughnut, polarArea).
-    /// </summary>
+    /// <param name="colors">Array of color strings.</param>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs Colors(params string[] colors) {
         if (Datasets.Count == 0 && Data.Count > 0) {
             // Create default dataset if using simple API
@@ -71,15 +74,19 @@ public partial class ChartJs {
     }
 
     /// <summary>
-    /// Sets custom colors for the chart using RGBColor instances.
+    /// Sets custom colors for the chart using <see cref="RGBColor"/> instances.
     /// </summary>
+    /// <param name="colors">Colors to apply.</param>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs Colors(params RGBColor[] colors) {
         return Colors(colors.Select(c => c.ToString()).ToArray());
     }
 
     /// <summary>
-    /// Sets custom colors for the chart using a mix of RGBColor and string.
+    /// Sets custom colors for the chart using a mix of <see cref="RGBColor"/> and strings.
     /// </summary>
+    /// <param name="colors">Color values.</param>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs Colors(params object[] colors) {
         var colorStrings = colors.Select(c => c switch {
             RGBColor rgb => rgb.ToString(),
@@ -93,6 +100,10 @@ public partial class ChartJs {
     /// <summary>
     /// Adds a dataset with custom colors.
     /// </summary>
+    /// <param name="label">Dataset label.</param>
+    /// <param name="color">Color for the dataset.</param>
+    /// <param name="values">Data values.</param>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs AddDataset(string label, string color, params double[] values) {
         var dataset = new ChartJsDataset {
             Label = label,
@@ -106,15 +117,23 @@ public partial class ChartJs {
     }
 
     /// <summary>
-    /// Adds a dataset with custom RGBColor.
+    /// Adds a dataset with a custom <see cref="RGBColor"/>.
     /// </summary>
+    /// <param name="label">Dataset label.</param>
+    /// <param name="color">RGB color value.</param>
+    /// <param name="values">Data values.</param>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs AddDataset(string label, RGBColor color, params double[] values) {
         return AddDataset(label, color.ToString(), values);
     }
 
     /// <summary>
-    /// Adds a dataset with custom object color (RGBColor or string).
+    /// Adds a dataset with a color specified as <see cref="RGBColor"/> or string.
     /// </summary>
+    /// <param name="label">Dataset label.</param>
+    /// <param name="color">Color value.</param>
+    /// <param name="values">Data values.</param>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs AddDataset(string label, object color, params double[] values) {
         var colorStr = color switch {
             RGBColor rgb => rgb.ToString(),
@@ -125,8 +144,10 @@ public partial class ChartJs {
     }
 
     /// <summary>
-    /// Adds a dataset to the chart.
+    /// Adds a dataset configured via delegate.
     /// </summary>
+    /// <param name="configure">Action configuring the dataset.</param>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs AddDataset(Action<ChartJsDataset> configure) {
         var dataset = new ChartJsDataset();
         configure(dataset);
@@ -137,6 +158,9 @@ public partial class ChartJs {
     /// <summary>
     /// Adds a simple dataset with values.
     /// </summary>
+    /// <param name="label">Dataset label.</param>
+    /// <param name="values">Data values.</param>
+    /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs AddDataset(string label, params double[] values) {
         var dataset = new ChartJsDataset {
             Label = label,

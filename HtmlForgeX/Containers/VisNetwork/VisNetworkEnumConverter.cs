@@ -32,6 +32,9 @@ public static class VisNetworkArrowExtensions {
     }
 }
 
+/// <summary>
+/// JSON converter for VisNetwork enumeration values.
+/// </summary>
 public class VisNetworkEnumConverter<T> : JsonConverter<T> where T : struct, Enum {
     /// <summary>
     /// Reads a VisNetwork enum value from JSON.

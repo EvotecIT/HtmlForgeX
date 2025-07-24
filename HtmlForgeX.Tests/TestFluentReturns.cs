@@ -3,6 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Runtime.CompilerServices;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -33,7 +34,7 @@ public class TestFluentReturns {
         var ctor = type.GetConstructor(Type.EmptyTypes);
         if (ctor != null) return Activator.CreateInstance(type);
         try {
-            return FormatterServices.GetUninitializedObject(type);
+            return RuntimeHelpers.GetUninitializedObject(type);
         } catch {
             return null;
         }

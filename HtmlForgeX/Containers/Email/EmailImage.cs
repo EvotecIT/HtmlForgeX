@@ -5,15 +5,28 @@ namespace HtmlForgeX;
 /// Provides image display with customizable dimensions and optional embedding.
 /// </summary>
 public partial class EmailImage : Element {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailImage"/> class.
+    /// </summary>
     public EmailImage() {
         // Configuration will be applied when the image is added to a document
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailImage"/> class with a source path.
+    /// </summary>
+    /// <param name="source">Image source path.</param>
     public EmailImage(string source) : this() {
         Source = source;
         _originalSource = source;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailImage"/> class with specified size.
+    /// </summary>
+    /// <param name="source">Image source path.</param>
+    /// <param name="width">Image width.</param>
+    /// <param name="height">Image height.</param>
     public EmailImage(string source, string width, string height = "") : this() {
         Source = source;
         _originalSource = source;
@@ -21,6 +34,13 @@ public partial class EmailImage : Element {
         Height = height;
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EmailImage"/> class with optional auto-embedding.
+    /// </summary>
+    /// <param name="source">Image source path.</param>
+    /// <param name="width">Image width.</param>
+    /// <param name="height">Image height.</param>
+    /// <param name="autoEmbed">Whether to force embedding.</param>
     public EmailImage(string source, string width, string height, bool autoEmbed) : this() {
         Source = source;
         _originalSource = source;
@@ -69,11 +89,16 @@ public partial class EmailImage : Element {
         }
     }
 
+    /// <inheritdoc/>
     protected internal override void OnAddedToDocument() {
         base.OnAddedToDocument();
         ApplyDocumentConfiguration();
     }
 
+    /// <summary>
+    /// Generates the HTML string representation of the image.
+    /// </summary>
+    /// <returns>HTML markup.</returns>
     public override string ToString() {
         if (EmbedAsBase64 && string.IsNullOrWhiteSpace(MimeType)) {
             throw new InvalidOperationException("EmbedAsBase64 is enabled but MimeType is not specified.");

@@ -6,6 +6,11 @@ namespace HtmlForgeX;
 public partial class EmailImage {
     #region Image Embedding
 
+    /// <summary>
+    /// Embeds an image from a local file.
+    /// </summary>
+    /// <param name="filePath">Path to the image file.</param>
+    /// <returns>The current <see cref="EmailImage"/> instance.</returns>
     public EmailImage EmbedFromFile(string filePath) {
         var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
         var logWarnings = Email?.Configuration?.Email?.LogEmbeddingWarnings == true;
@@ -27,9 +32,21 @@ public partial class EmailImage {
         return this;
     }
 
+    /// <summary>
+    /// Downloads and embeds an image from a URL synchronously.
+    /// </summary>
+    /// <param name="url">Image URL.</param>
+    /// <param name="timeoutSeconds">Timeout in seconds.</param>
+    /// <returns>The current <see cref="EmailImage"/> instance.</returns>
     public EmailImage EmbedFromUrl(string url, int timeoutSeconds = 30) =>
         EmbedFromUrlAsync(url, timeoutSeconds).GetAwaiter().GetResult();
 
+    /// <summary>
+    /// Downloads and embeds an image from a URL asynchronously.
+    /// </summary>
+    /// <param name="url">Image URL.</param>
+    /// <param name="timeoutSeconds">Timeout in seconds.</param>
+    /// <returns>The current <see cref="EmailImage"/> instance.</returns>
     public async Task<EmailImage> EmbedFromUrlAsync(string url, int timeoutSeconds = 30) {
         var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
         var logWarnings = Email?.Configuration?.Email?.LogEmbeddingWarnings == true;
@@ -52,6 +69,12 @@ public partial class EmailImage {
         return this;
     }
 
+    /// <summary>
+    /// Automatically selects the best embedding method for a source.
+    /// </summary>
+    /// <param name="source">File path or URL.</param>
+    /// <param name="timeoutSeconds">Timeout in seconds.</param>
+    /// <returns>The current <see cref="EmailImage"/> instance.</returns>
     public EmailImage EmbedSmart(string source, int timeoutSeconds = 30) {
         if (string.IsNullOrEmpty(source)) {
             return this;
@@ -78,6 +101,12 @@ public partial class EmailImage {
         return this;
     }
 
+    /// <summary>
+    /// Embeds an image using base64 data.
+    /// </summary>
+    /// <param name="base64Data">Base64 encoded image.</param>
+    /// <param name="mimeType">Image MIME type.</param>
+    /// <returns>The current <see cref="EmailImage"/> instance.</returns>
     public EmailImage EmbedFromBase64(string base64Data, string mimeType) {
         Base64Data = base64Data;
         MimeType = mimeType;
@@ -86,6 +115,13 @@ public partial class EmailImage {
         return this;
     }
 
+    /// <summary>
+    /// Embeds an alternative image for dark mode.
+    /// </summary>
+    /// <param name="source">Source file or URL.</param>
+    /// <param name="timeoutSeconds">Timeout in seconds.</param>
+    /// <param name="useSmartDetection">Use smart detection to choose source type.</param>
+    /// <returns>The current <see cref="EmailImage"/> instance.</returns>
     public EmailImage EmbedDarkModeImage(string source, int timeoutSeconds = 30, bool useSmartDetection = true) {
         if (string.IsNullOrEmpty(source)) {
             return this;
