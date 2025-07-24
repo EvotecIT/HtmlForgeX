@@ -88,7 +88,7 @@ public class TablerCardMini : TablerCard {
         cardBodyDiv.Class("card-body").Value(CardContent);
         cardBodyDiv.Attributes["style"] = CardInnerStyle!;
 
-        var cardInside = cardBodyDiv.Row(cardRow => {
+        cardBodyDiv.Row(cardRow => {
             cardRow.Column(TablerColumnNumber.Auto, avatarColumn => {
                 var avatar = avatarColumn.Avatar().Icon(AvatarIcon);
 
@@ -104,8 +104,6 @@ public class TablerCardMini : TablerCard {
                 textColumn.Text(SubtitleText).Style(TablerTextStyle.Muted);
             });
         });
-
-        cardBodyDiv.Value(cardInside);
 
         // Add the card body to the card
         cardDiv.Value(cardBodyDiv);
