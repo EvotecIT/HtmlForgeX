@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using HtmlForgeX.Examples.Containers;
+using HtmlForgeX.Examples.Charts;
 using HtmlForgeX.Examples.Emails;
 using HtmlForgeX.Examples.Tags;
 using HtmlForgeX.Examples.Tables;
@@ -35,14 +36,14 @@ internal class Program {
         BasicHtmlTagBuilding.Demo3();
 
         // Tabler examples (console output)
-        ExampleTablerIcon.Create();
-        ExampleSvgIcons.Create();
+        TablerIconDemo.Create();
+        TablerSvgIcons.Create();
         ExampleFontAwesomeOnline.Create(openInBrowser);
 
         // Tabler examples html output
-        ExampleTablerTag.Create(openInBrowser);
-        ExampleTablerColorHex.Create();
-        ExampleTablerAlerts.Create(openInBrowser);
+        TablerTagDemo.Create(openInBrowser);
+        TablerColorHex.Create();
+        TablerAlerts.Create(openInBrowser);
 
         // Experimental examples (console output)
         Experiments01.Create();
@@ -56,18 +57,18 @@ internal class Program {
         BasicHtmlBuilding.DemoSanitizedRawHtml(openInBrowser);
 
         // Toast examples
-        ExampleTablerToast.Create(openInBrowser);
-        ExampleTablerToastAdvanced.Create(openInBrowser);
-        ExampleTablerToastOptions.Create(openInBrowser);
-        ExampleTablerProgressBarShowcase.Create(openInBrowser);
-        ExampleTablerTimeline.Create(openInBrowser);
-        ExampleTablerLogs.Create(openInBrowser);
+        TablerToastDemo.Create(openInBrowser);
+        TablerToastAdvanced.Create(openInBrowser);
+        TablerToastOptions.Create(openInBrowser);
+        TablerProgressBarShowcase.Create(openInBrowser);
+        TablerTimelineDemo.Create(openInBrowser);
+        TablerLogsDemo.Create(openInBrowser);
 
         // Forms examples
-        ExampleTablerForm.Create(openInBrowser);
-        ExampleTablerFormInputs.Create(openInBrowser);
+        TablerFormDemo.Create(openInBrowser);
+        TablerFormInputs.Create(openInBrowser);
         ExampleComprehensiveForm.Create(openInBrowser);
-        ExampleTablerStarRating.Create(openInBrowser);
+        TablerStarRatingDemo.Create(openInBrowser);
 
         // Quill editor example
         BasicQuillEditor.Demo(openInBrowser);
@@ -101,81 +102,81 @@ internal class Program {
         HelpersSpectre.Break();
 
         // Text wrapping demo
-        ExampleTextWrappingDemo.Create(openInBrowser);
+        EmailTextWrappingDemo.Create(openInBrowser);
 
         // // Improved consistency email with Document-style configuration
-        ExampleImprovedConsistencyEmail.Create(openInBrowser);
+        EmailImprovedConsistency.Create(openInBrowser);
 
         // Text wrapping demo
-        ExampleTextWrappingDemo.Create(openInBrowser);
+        EmailTextWrappingDemo.Create(openInBrowser);
 
         // Direct email pattern
-        ExampleDirectEmailPattern.Create(openInBrowser);
+        EmailDirectPattern.Create(openInBrowser);
 
         // Corrected email pattern
-        ExampleCorrectedEmailPattern.Create(openInBrowser);
+        EmailCorrectedPattern.Create(openInBrowser);
 
         // Layout email pattern
-        ExampleLayoutEmailPattern.Create(openInBrowser);
+        EmailLayoutPattern.Create(openInBrowser);
 
         // Invoice email with Document-style configuration
-        ExampleInvoiceEmail.Create(openInBrowser);
+        EmailInvoice.Create(openInBrowser);
 
         // Newsletter email
-        ExampleNewsletterEmail.Create(openInBrowser);
+        EmailNewsletter.Create(openInBrowser);
 
         // Account verification email
-        ExampleAccountVerificationEmail.Create(openInBrowser);
+        EmailAccountVerification.Create(openInBrowser);
 
         // Dark mode email examples (comprehensive dark mode implementation)
-        ExampleDarkModeEmail.Create(openInBrowser);  // 🌙 DARK MODE DEMO
-        ExampleDarkModeEmail.CreateLightModeComparison(openInBrowser);  // ☀️ LIGHT MODE COMPARISON
-        ExampleDarkModeEmail.CreateAutoModeExample(openInBrowser);  // 🔄 AUTO MODE
+        EmailDarkMode.Create(openInBrowser);  // 🌙 DARK MODE DEMO
+        EmailDarkMode.CreateLightModeComparison(openInBrowser);  // ☀️ LIGHT MODE COMPARISON
+        EmailDarkMode.CreateAutoModeExample(openInBrowser);  // 🔄 AUTO MODE
 
         // Enhanced dark mode example (NEW - showcases all improvements)
-        ExampleEnhancedDarkModeEmail.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
+        EmailEnhancedDarkMode.Create(openInBrowser);  // 🚀 ENHANCED DARK MODE DEMO
 
         // Enhanced Accordion & Steps showcase
         EnhancedAccordionStepsShowcase.Demo01(openInBrowser);  // 🎛️ ENHANCED ACCORDION & STEPS DEMO
 
         // Flexible header/footer example (NEW - demonstrates the flexible pattern)
-        ExampleFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO
+        EmailFlexibleHeaderFooter.Create(openInBrowser);  // 🎯 FLEXIBLE PATTERN DEMO
 
         // Direct header/footer pattern (NEWEST - demonstrates email.Header.EmailRow())
-        ExampleDirectHeaderFooter.Create(openInBrowser);  // 🚀 DIRECT PATTERN DEMO
+        EmailDirectHeaderFooter.Create(openInBrowser);  // 🚀 DIRECT PATTERN DEMO
 
         // Order confirmation email
-        ExampleOrderConfirmationEmail.Create(openInBrowser);
+        EmailOrderConfirmation.Create(openInBrowser);
 
         // Password reset email
-        ExamplePasswordResetEmail.Create(openInBrowser);
+        EmailPasswordReset.Create(openInBrowser);
 
         // Simple confirmation email
-        ExampleSimpleConfirmationEmail.Create(openInBrowser);
+        EmailSimpleConfirmation.Create(openInBrowser);
 
         // Welcome email
-        ExampleWelcomeEmail.Create(openInBrowser);
+        EmailWelcome.Create(openInBrowser);
 
         // Link encoding demonstration
-        ExampleLinkEncodingEmail.Create(openInBrowser);
+        EmailLinkEncoding.Create(openInBrowser);
 
         // Base64 embedding examples (if they exist)
-        ExampleBase64EmbeddingEmail.Create(openInBrowser);
+        EmailBase64Embedding.Create(openInBrowser);
 
         // Decimal margin demonstration
-        ExampleDecimalMarginEmail.Create(openInBrowser);
+        EmailDecimalMargin.Create(openInBrowser);
 
         // Layout configuration demonstration - NEW enum-based configuration system!
-        ExampleLayoutConfigurationDemo.Create(openInBrowser);
+        EmailLayoutConfigurationDemo.Create(openInBrowser);
 
-        // ChartJs examples
-        BasicChartJs.Demo(openInBrowser);
-        BasicApexCharts.Demo(openInBrowser);
-        ApexChartsComprehensive.Demo(openInBrowser);
+        // Chart examples
+        ChartJsBasicDemo.Demo(openInBrowser);
+        ChartsApexBasicDemo.Demo(openInBrowser);
+        ChartsApexComprehensiveDemo.Demo(openInBrowser);
 
         // VisNetwork images demo
-        BasicVisNetwork.Demo(true);
-        AdvancedVisNetwork.Demo(true);
+        VisNetworkBasicDemo.Demo(true);
+        VisNetworkAdvancedDemo.Demo(true);
         VisNetworkPhysicsExamples.Demo(true);
         VisNetworkLayoutExamples.Demo(true);
         VisNetworkNodeStylingExamples.Demo(true);
