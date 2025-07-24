@@ -3,6 +3,9 @@ using System.Text.Json;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Provides a fluent API wrapper around the Vis Network library.
+/// </summary>
 public partial class VisNetwork : Element {
     private readonly List<VisNetworkNodeOptions> _nodes = new();
     private readonly List<VisNetworkEdgeOptions> _edges = new();

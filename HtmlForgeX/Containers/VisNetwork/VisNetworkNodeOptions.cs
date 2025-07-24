@@ -801,7 +801,6 @@ public class VisNetworkIconOptions {
     }
 
     /// <summary>
-    /// <summary>
     /// Sets the icon using a FontAwesome Solid icon. Automatically sets face for Font Awesome 6.
     /// </summary>
     /// <param name="icon">The FontAwesome solid icon to use</param>
