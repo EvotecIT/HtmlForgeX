@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Export formats available for DataTables
 /// </summary>
-public enum DataTablesExportFormat
-{
+public enum DataTablesExportFormat {
     /// <summary>Export to Excel format</summary>
     Excel,
 

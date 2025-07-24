@@ -1,5 +1,5 @@
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 
@@ -9,8 +9,7 @@ namespace HtmlForgeX;
 /// whether the feature is enabled, predefined conditions and any additional
 /// custom operators.
 /// </summary>
-public class DataTablesSearchBuilder
-{
+public class DataTablesSearchBuilder {
     /// <summary>Enable/disable search builder</summary>
     [JsonPropertyName("enable")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -51,8 +50,7 @@ public class DataTablesSearchBuilder
 /// Represents a collection of filtering criteria that should be evaluated
 /// together using a specific logical operator.
 /// </summary>
-public class DataTablesSearchGroup
-{
+public class DataTablesSearchGroup {
     /// <summary>Group logic (AND/OR).</summary>
     [JsonPropertyName("logic")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -68,8 +66,7 @@ public class DataTablesSearchGroup
 /// Describes a single filtering rule applied to a column when using
 /// SearchBuilder.
 /// </summary>
-public class DataTablesSearchCriterion
-{
+public class DataTablesSearchCriterion {
     /// <summary>Column data source.</summary>
     [JsonPropertyName("data")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

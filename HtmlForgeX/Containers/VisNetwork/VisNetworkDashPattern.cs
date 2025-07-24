@@ -1,4 +1,5 @@
 using System.ComponentModel;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -74,7 +75,7 @@ public static class VisNetworkDashPatternExtensions {
     public static int[] ToArray(this VisNetworkDashPattern pattern) {
         var description = pattern.GetDescription();
         if (description == "solid") return new int[0];
-        
+
         var parts = description.Split(',');
         var result = new int[parts.Length];
         for (int i = 0; i < parts.Length; i++) {

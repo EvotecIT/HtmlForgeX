@@ -51,28 +51,28 @@ public partial class VisNetwork : Element {
     protected internal override void RegisterLibraries() {
         Document?.AddLibrary(Libraries.VisNetwork);
         Document?.AddLibrary(Libraries.VisNetworkLoadingBar);
-        
+
         // Check if any nodes use Font Awesome icons
-        bool usesFontAwesome6 = _nodes.Any(node => 
-            node.Shape == VisNetworkNodeShape.Icon && 
-            node.Icon?.Face != null && 
+        bool usesFontAwesome6 = _nodes.Any(node =>
+            node.Shape == VisNetworkNodeShape.Icon &&
+            node.Icon?.Face != null &&
             node.Icon.Face.Contains("Font Awesome 6")
         );
-        
-        bool usesFontAwesome5 = _nodes.Any(node => 
-            node.Shape == VisNetworkNodeShape.Icon && 
-            node.Icon?.Face != null && 
+
+        bool usesFontAwesome5 = _nodes.Any(node =>
+            node.Shape == VisNetworkNodeShape.Icon &&
+            node.Icon?.Face != null &&
             node.Icon.Face.Contains("Font Awesome 5")
         );
-        
+
         if (usesFontAwesome6) {
             Document?.AddLibrary(Libraries.FontAwesome6);
         }
-        
+
         if (usesFontAwesome5) {
             Document?.AddLibrary(Libraries.FontAwesome5);
         }
-        
+
         // Check if any nodes are HTML nodes
         bool usesHtmlNodes = _htmlNodes.Count > 0;
         if (usesHtmlNodes) {

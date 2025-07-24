@@ -4,8 +4,7 @@ namespace HtmlForgeX;
 /// Defines different text wrapping behaviors for email components.
 /// Controls how long words and method names break and wrap within containers.
 /// </summary>
-public enum EmailTextWrapMode
-{
+public enum EmailTextWrapMode {
     /// <summary>
     /// Default wrapping - allows breaking anywhere in long words.
     /// Uses: word-wrap: break-word; overflow-wrap: break-word;

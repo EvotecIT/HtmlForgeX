@@ -143,4 +143,4 @@ public partial class ChartJs : Element {
     /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs PolarArea() => SetType(ChartJsType.PolarArea);
 
-    }
+}

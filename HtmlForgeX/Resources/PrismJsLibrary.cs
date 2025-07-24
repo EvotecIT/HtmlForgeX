@@ -3,13 +3,11 @@ namespace HtmlForgeX.Resources;
 /// <summary>
 /// PrismJS syntax highlighting library configuration
 /// </summary>
-public class PrismJsLibrary : Library
-{
+public class PrismJsLibrary : Library {
     /// <summary>
     /// Initializes a new instance of the <see cref="PrismJsLibrary"/> class.
     /// </summary>
-    public PrismJsLibrary()
-    {
+    public PrismJsLibrary() {
         Header = new LibraryLinks {
             CssLink = [
                 "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css",

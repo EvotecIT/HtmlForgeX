@@ -226,7 +226,7 @@ public class SmartTab : Element {
     /// <param name="bckShowCss">Backward show CSS class.</param>
     /// <param name="bckHideCss">Backward hide CSS class.</param>
     /// <returns>The current instance for method chaining.</returns>
-    public SmartTab WithCustomAnimation(string prefixCss, string? fwdShowCss = null, string? fwdHideCss = null, 
+    public SmartTab WithCustomAnimation(string prefixCss, string? fwdShowCss = null, string? fwdHideCss = null,
         string? bckShowCss = null, string? bckHideCss = null) {
         Options.Transition ??= new SmartTabTransition();
         Options.Transition.Animation = "css";
@@ -439,7 +439,7 @@ public class SmartTab : Element {
     private string BuildInitializationScript() {
         // Prepare configuration
         var config = new Dictionary<string, object?>();
-        
+
         // Add all non-null options
         var optionsJson = JsonSerializer.Serialize(Options, new JsonSerializerOptions {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,

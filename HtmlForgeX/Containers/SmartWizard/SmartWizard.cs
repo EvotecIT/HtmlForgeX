@@ -39,21 +39,21 @@ public class SmartWizard : Element {
     /// </summary>
     public SmartWizard() {
         Id = GlobalStorage.GenerateRandomId("smartwizard");
-        
+
         // Set default options
         Options.Selected = 0;
         Options.Justified = true;
         Options.AutoAdjustHeight = true;
         Options.BackButtonSupport = true;
         Options.EnableUrlHash = true;
-        
+
         // Default toolbar settings
         Options.Toolbar = new SmartWizardToolbar {
             Position = "bottom",
             ShowNextButton = true,
             ShowPreviousButton = true
         };
-        
+
         // Default anchor settings
         Options.Anchor = new SmartWizardAnchor {
             EnableNavigation = true,
@@ -61,7 +61,7 @@ public class SmartWizard : Element {
             MarkPreviousStepsAsDone = true,
             EnableDoneStateNavigation = true
         };
-        
+
         // Default language settings
         Options.Language = new SmartWizardLanguage {
             Next = "Next",
@@ -491,7 +491,7 @@ public class SmartWizard : Element {
     /// <param name="index">The step index.</param>
     /// <param name="force">Whether to force navigation.</param>
     /// <returns>JavaScript method call string.</returns>
-    public string GoToStep(int index, bool force = false) => 
+    public string GoToStep(int index, bool force = false) =>
         $"$('#{Id}').smartWizard('goToStep', {index}, {force.ToString().ToLower()})";
 
     /// <summary>
@@ -594,7 +594,7 @@ public class SmartWizard : Element {
     private string BuildInitializationScript() {
         // Prepare configuration
         var config = new Dictionary<string, object?>();
-        
+
         // Add all non-null options
         var optionsJson = JsonSerializer.Serialize(Options, new JsonSerializerOptions {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,

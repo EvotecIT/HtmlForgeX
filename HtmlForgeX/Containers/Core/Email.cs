@@ -1,11 +1,12 @@
 using System;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Text;
 using System.Threading;
-using HtmlForgeX.Logging;
+using System.Threading.Tasks;
+
 using HtmlForgeX.Extensions;
+using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
 

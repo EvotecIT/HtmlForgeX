@@ -1,4 +1,4 @@
-﻿namespace HtmlForgeX;
+namespace HtmlForgeX;
 
 /// <summary>
 /// End point offset configuration for edges.

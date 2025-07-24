@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -50,7 +51,7 @@ public class Span : Element {
     public List<Span> HtmlSpans { get; } = new List<Span>();
     private Span Parent { get; set; }
     private Span _rootParent; // Track the root parent for AppendContent chains
-    
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Span"/> class.
     /// </summary>
@@ -72,53 +73,53 @@ public class Span : Element {
         // Keep appended spans on the parent collection so they appear
         // alongside the original span when rendered.
         this.Parent.HtmlSpans.Add(newSpan);
-        
+
         // Create a wrapper span that represents the entire chain
         // This wrapper will always return the root parent so users can add it to the document
         var chainWrapper = new AppendContentChain(this._rootParent, newSpan);
         return chainWrapper;
     }
-    
+
     // Inner class to handle AppendContent chains properly
     private class AppendContentChain : Span {
         private readonly new Span _rootParent;
         private readonly Span _currentSpan;
-        
+
         public AppendContentChain(Span rootParent, Span currentSpan) : base(rootParent) {
             this._rootParent = rootParent;
             this._currentSpan = currentSpan;
         }
-        
+
         public override Span WithColor(RGBColor color) {
             _currentSpan.Color = color;
             return _rootParent;
         }
-        
+
         public override Span WithBackgroundColor(RGBColor backgroundColor) {
             _currentSpan.BackGroundColor = backgroundColor;
             return _rootParent;
         }
-        
+
         public override Span WithFontSize(string fontSize) {
             _currentSpan.FontSize = fontSize;
             return _rootParent;
         }
-        
+
         public override Span WithFontWeight(FontWeight fontWeight) {
             _currentSpan.FontWeight = fontWeight;
             return _rootParent;
         }
-        
+
         public override Span WithFontStyle(FontStyle fontStyle) {
             _currentSpan.FontStyle = fontStyle;
             return _rootParent;
         }
-        
+
         public override Span WithAlignment(Alignment alignment) {
             _currentSpan.Alignment = alignment;
             return _rootParent;
         }
-        
+
         public override Span WithOpacity(double? opacity) {
             _currentSpan.Opacity = opacity;
             return _rootParent;
@@ -133,93 +134,93 @@ public class Span : Element {
             _currentSpan.TablerFontWeight = weight;
             return _rootParent;
         }
-        
+
         public override Span WithLineHeight(string lineHeight) {
             _currentSpan.LineHeight = lineHeight;
             return _rootParent;
         }
-        
+
         public override Span WithFontVariant(FontVariant fontVariant) {
             _currentSpan.FontVariant = fontVariant;
             return _rootParent;
         }
-        
+
         public override Span WithFontFamily(string fontFamily) {
             _currentSpan.FontFamily = fontFamily;
             return _rootParent;
         }
-        
+
         public override Span WithTextDecoration(TextDecoration textDecoration) {
             _currentSpan.TextDecoration = textDecoration;
             return _rootParent;
         }
-        
+
         public override Span WithTextTransform(TextTransform textTransform) {
             _currentSpan.TextTransform = textTransform;
             return _rootParent;
         }
-        
+
         public override Span WithDirection(Direction direction) {
             _currentSpan.Direction = direction;
             return _rootParent;
         }
-        
+
         public override Span WithDisplay(Display display) {
             _currentSpan.Display = display;
             return _rootParent;
         }
-        
+
         public override Span AppendContent(string content) {
             // Delegate to root parent's AppendContent
             return _rootParent.AppendContent(content);
         }
-        
+
         public override string ToString() {
             // Always render the complete root parent chain
             return _rootParent.ToString();
         }
     }
-    
+
     // Inner class to handle AddContent chains properly
     private class AddContentChain : Span {
         private readonly new Span _rootParent;
         private readonly Span _currentSpan;
-        
+
         public AddContentChain(Span rootParent, Span currentSpan) : base() {
             this._rootParent = rootParent;
             this._currentSpan = currentSpan;
         }
-        
+
         public override Span WithColor(RGBColor color) {
             _currentSpan.Color = color;
             return this; // Return this wrapper to maintain the same reference while continuing to style current span
         }
-        
+
         public override Span WithBackgroundColor(RGBColor backgroundColor) {
             _currentSpan.BackGroundColor = backgroundColor;
             return this;
         }
-        
+
         public override Span WithFontSize(string fontSize) {
             _currentSpan.FontSize = fontSize;
             return this;
         }
-        
+
         public override Span WithFontWeight(FontWeight fontWeight) {
             _currentSpan.FontWeight = fontWeight;
             return this;
         }
-        
+
         public override Span WithFontStyle(FontStyle fontStyle) {
             _currentSpan.FontStyle = fontStyle;
             return this;
         }
-        
+
         public override Span WithAlignment(Alignment alignment) {
             _currentSpan.Alignment = alignment;
             return this;
         }
-        
+
         public override Span WithOpacity(double? opacity) {
             _currentSpan.Opacity = opacity;
             return this;
@@ -234,59 +235,59 @@ public class Span : Element {
             _currentSpan.TablerFontWeight = weight;
             return this;
         }
-        
+
         public override Span WithLineHeight(string lineHeight) {
             _currentSpan.LineHeight = lineHeight;
             return this;
         }
-        
+
         public override Span WithFontVariant(FontVariant fontVariant) {
             _currentSpan.FontVariant = fontVariant;
             return this;
         }
-        
+
         public override Span WithFontFamily(string fontFamily) {
             _currentSpan.FontFamily = fontFamily;
             return this;
         }
-        
+
         public override Span WithTextDecoration(TextDecoration textDecoration) {
             _currentSpan.TextDecoration = textDecoration;
             return this;
         }
-        
+
         public override Span WithTextTransform(TextTransform textTransform) {
             _currentSpan.TextTransform = textTransform;
             return this;
         }
-        
+
         public override Span WithDirection(Direction direction) {
             _currentSpan.Direction = direction;
             return this;
         }
-        
+
         public override Span WithDisplay(Display display) {
             _currentSpan.Display = display;
             return this;
         }
-        
+
         public override Span AddContent(string content) {
             // Delegate to root parent's AddContent
             return _rootParent.AddContent(content);
         }
-        
+
         public override Span AppendContent(string content) {
             // For AppendContent, we need to add the span to the same parent collection as the current span
             var newSpan = new Span(_rootParent) {
                 Content = content
             };
             _rootParent.HtmlSpans.Add(newSpan);
-            
+
             // Return an AppendContentChain wrapper that points to the same root
             var appendWrapper = new AppendContentChain(_rootParent, newSpan);
             return appendWrapper;
         }
-        
+
         public override string ToString() {
             // Always render the complete root parent 
             return _rootParent.ToString();
@@ -509,7 +510,7 @@ public class Span : Element {
         if (color != null) newSpan.Color = color;
         if (fontSize != null) newSpan.FontSize = fontSize;
         if (fontWeight != null) newSpan.FontWeight = fontWeight;
-        
+
         this.Parent.HtmlSpans.Add(newSpan);
         return this.Parent; // Return parent for chaining
     }
@@ -562,7 +563,7 @@ public class Span : Element {
         }));
 
         var mainContent = Helpers.HtmlEncode(Content ?? string.Empty);
-        
+
         // If this is a child span created by AppendContent, and it has siblings,
         // render the entire parent chain to ensure all content appears
         if (this.Parent != this && this.Parent.HtmlSpans.Count > 0) {
@@ -572,10 +573,10 @@ public class Span : Element {
             parentStyleString = !string.IsNullOrEmpty(parentStyleString) ? $" style=\"{Helpers.HtmlEncode(parentStyleString)}\"" : "";
             parentClassString = !string.IsNullOrEmpty(parentClassString) ? $" class=\"{Helpers.HtmlEncode(parentClassString)}\"" : "";
             var parentContent = Helpers.HtmlEncode(this.Parent.Content ?? string.Empty);
-            
+
             return $"<span{parentStyleString}{parentClassString}>{parentContent}</span>{childrenParentHtml}";
         }
-        
+
         return $"<span{styleString}{classString}>{mainContent}{childrenHtml}</span>{childrenParentHtml}";
     }
 

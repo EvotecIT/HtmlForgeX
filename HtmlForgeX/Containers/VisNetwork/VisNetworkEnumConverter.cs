@@ -75,7 +75,7 @@ public class VisNetworkEnumConverter<T> : JsonConverter<T> where T : struct, Enu
     /// <param name="options">Serializer options.</param>
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options) {
         var stringValue = value.ToString();
-        
+
         // Handle special cases
         if (typeof(T) == typeof(VisNetworkLayoutDirection)) {
             writer.WriteStringValue(stringValue.ToUpperInvariant());

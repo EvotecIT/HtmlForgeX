@@ -32,10 +32,10 @@ public class ApexEnumConverter<T> : JsonConverter<T> where T : struct, Enum {
     public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options) {
         // Convert enum value to ApexCharts format
         var enumString = value.ToString();
-        
+
         // For most enums, use lowercase
         var result = enumString.ToLowerInvariant();
-        
+
         // Special cases for ApexCharts conventions
         if (typeof(T) == typeof(ApexCurve) && enumString == "Monotone") {
             result = "monotoneCubic";
@@ -49,7 +49,7 @@ public class ApexEnumConverter<T> : JsonConverter<T> where T : struct, Enum {
             else if (enumString == "HorizontalLines") result = "horizontalLines";
             else if (enumString == "SlantedLines") result = "slantedLines";
         }
-        
+
         writer.WriteStringValue(result);
     }
 }

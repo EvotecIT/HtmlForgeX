@@ -67,8 +67,8 @@ public static class EmailLayout {
     public static void SetGlobalPadding(string padding) {
         ContainerPadding = padding;
         // Set proportional inner padding for readability
-        var innerPadding = padding == "12px" ? "8px" : 
-                          padding == "16px" ? "12px" : 
+        var innerPadding = padding == "12px" ? "8px" :
+                          padding == "16px" ? "12px" :
                           padding == "8px" ? "6px" : "8px";
         TableCellPaddingVertical = innerPadding;
         ContentPadding = innerPadding;

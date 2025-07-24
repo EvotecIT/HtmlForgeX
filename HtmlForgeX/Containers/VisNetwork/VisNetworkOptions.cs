@@ -643,7 +643,7 @@ public class VisNetworkHierarchicalOptions {
         ShakeTowards = direction;
         return this;
     }
-    
+
     /// <summary>
     /// Sets the <see cref="ShakeTowards"/> property using a string value.
     /// </summary>

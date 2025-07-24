@@ -1,5 +1,6 @@
-using System.Text;
 using System.Linq;
+using System.Text;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -136,7 +137,7 @@ public class EmailColumn : Element {
         return this;
     }
 
-            /// <summary>
+    /// <summary>
     /// Adds an element to the column.
     /// </summary>
     /// <param name="element">The element to add.</param>

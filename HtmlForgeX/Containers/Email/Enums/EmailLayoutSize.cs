@@ -4,8 +4,7 @@ namespace HtmlForgeX;
 /// Predefined email layout sizes for common email width standards.
 /// Provides easy-to-use options while allowing custom values for advanced users.
 /// </summary>
-public enum EmailLayoutSize
-{
+public enum EmailLayoutSize {
     /// <summary>
     /// Compact layout - 480px width. Perfect for mobile-first designs.
     /// </summary>
@@ -40,17 +39,14 @@ public enum EmailLayoutSize
 /// <summary>
 /// Extension methods for EmailLayoutSize enum.
 /// </summary>
-public static class EmailLayoutSizeExtensions
-{
+public static class EmailLayoutSizeExtensions {
     /// <summary>
     /// Converts EmailLayoutSize to CSS width value.
     /// </summary>
     /// <param name="size">The layout size.</param>
     /// <returns>CSS width value as string.</returns>
-    public static string ToCssValue(this EmailLayoutSize size)
-    {
-        return size switch
-        {
+    public static string ToCssValue(this EmailLayoutSize size) {
+        return size switch {
             EmailLayoutSize.Compact => "480px",
             EmailLayoutSize.Standard => "600px",
             EmailLayoutSize.Wide => "800px",
@@ -66,10 +62,8 @@ public static class EmailLayoutSizeExtensions
     /// </summary>
     /// <param name="size">The layout size.</param>
     /// <returns>Description string.</returns>
-    public static string GetDescription(this EmailLayoutSize size)
-    {
-        return size switch
-        {
+    public static string GetDescription(this EmailLayoutSize size) {
+        return size switch {
             EmailLayoutSize.Compact => "Compact (480px) - Mobile-first design",
             EmailLayoutSize.Standard => "Standard (600px) - Most common email width",
             EmailLayoutSize.Wide => "Wide (800px) - Desktop-focused emails",

@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Text alignment options for DataTables columns
 /// </summary>
-public enum DataTablesTextAlign
-{
+public enum DataTablesTextAlign {
     /// <summary>Left alignment (default)</summary>
     Left,
 

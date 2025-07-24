@@ -60,10 +60,10 @@ public partial class RGBColor {
         // Remove rgba( or rgb( prefix and ) suffix
         string content = rgbaColor.Substring(rgbaColor.IndexOf('(') + 1);
         content = content.Substring(0, content.LastIndexOf(')'));
-        
+
         // Split by comma and trim spaces
         string[] parts = content.Split(',').Select(p => p.Trim()).ToArray();
-        
+
         if (parts.Length < 3 || parts.Length > 4) {
             throw new ArgumentException($"Invalid RGBA format: {rgbaColor}. Expected rgba(r,g,b,a) or rgb(r,g,b).", nameof(rgbaColor));
         }
@@ -193,7 +193,7 @@ public partial class RGBColor {
             // Use InvariantCulture to ensure decimal point is used
             return $"rgba({R}, {G}, {B}, {alpha.ToString("F2", CultureInfo.InvariantCulture)})";
         }
-        
+
         // Return hex format for full opacity
         return $"#{R:X2}{G:X2}{B:X2}";
     }

@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Pagination styles for DataTables
 /// </summary>
-public enum DataTablesPagingType
-{
+public enum DataTablesPagingType {
     /// <summary>Simple 'Previous' and 'Next' buttons only</summary>
     Simple,
 

@@ -9,7 +9,7 @@ public class FontAwesome6Library : Library {
     /// </summary>
     public FontAwesome6Library() {
         Comment = "Font Awesome 6 Free";
-        
+
         // Header links for CSS
         Header = new LibraryLinks {
             CssLink = {

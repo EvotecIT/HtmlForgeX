@@ -449,7 +449,7 @@ public abstract partial class Element {
         this.Add(modal);
         return modal;
     }
-  
+
     /// Adds and configures a countdown timer element.
     /// </summary>
     /// <param name="config">Optional configuration action.</param>

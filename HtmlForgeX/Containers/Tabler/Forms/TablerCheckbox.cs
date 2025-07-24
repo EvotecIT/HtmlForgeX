@@ -73,24 +73,24 @@ public class TablerCheckbox : Element {
             .Attribute("type", "checkbox")
             .Id(_name)
             .Attribute("name", _name);
-        
+
         if (_checked) input.Attribute("checked", "checked");
         if (_disabled) input.Attribute("disabled", "disabled");
         if (_required) input.Attribute("required", "required");
-        
+
         wrapper.Value(input);
-        
+
         if (!string.IsNullOrEmpty(_label)) {
             var span = new HtmlTag("span").Class("form-check-label");
             if (_required) span.Class("required");
             span.Value(_label);
             wrapper.Value(span);
         }
-        
+
         if (!string.IsNullOrEmpty(_description)) {
             wrapper.Value(new HtmlTag("span").Class("form-check-description").Value(_description));
         }
-        
+
         return wrapper.ToString();
     }
 }

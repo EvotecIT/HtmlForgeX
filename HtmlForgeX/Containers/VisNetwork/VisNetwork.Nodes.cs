@@ -49,7 +49,7 @@ public partial class VisNetwork {
         _nodes.Add(nodeOptions);
         return this;
     }
-    
+
     /// <summary>
     /// Adds a <see cref="VisNetworkHtmlNode"/> with full HTML support to the diagram.
     /// This requires the visjs-html-nodes plugin which will be automatically loaded.
@@ -73,7 +73,7 @@ public partial class VisNetwork {
         // For raw objects, we need to convert them to VisNetworkNodeOptions
         // This is a simplified conversion - in real usage, users should use the strongly-typed API
         var nodeOptions = new VisNetworkNodeOptions();
-        
+
         if (node is IDictionary<string, object> dict) {
             if (dict.TryGetValue("id", out var id)) nodeOptions.Id = id;
             if (dict.TryGetValue("label", out var label)) nodeOptions.Label = label?.ToString();
@@ -82,11 +82,11 @@ public partial class VisNetwork {
             // Handle anonymous objects and other types using reflection
             var type = node.GetType();
             var properties = type.GetProperties();
-            
+
             foreach (var prop in properties) {
                 var value = prop.GetValue(node);
                 if (value == null) continue;
-                
+
                 switch (prop.Name.ToLowerInvariant()) {
                     case "id":
                         nodeOptions.Id = value;
@@ -145,7 +145,7 @@ public partial class VisNetwork {
                 }
             }
         }
-        
+
         _nodes.Add(nodeOptions);
         return this;
     }

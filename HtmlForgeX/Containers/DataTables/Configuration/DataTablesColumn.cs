@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Configuration for individual DataTables columns
 /// </summary>
-public class DataTablesColumn
-{
+public class DataTablesColumn {
     /// <summary>Column title/header text</summary>
     [JsonPropertyName("title")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

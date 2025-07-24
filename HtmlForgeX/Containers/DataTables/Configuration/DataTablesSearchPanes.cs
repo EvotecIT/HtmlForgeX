@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Search Panes configuration for DataTables
 /// </summary>
-public class DataTablesSearchPanes
-{
+public class DataTablesSearchPanes {
     /// <summary>Enable/disable search panes</summary>
     [JsonPropertyName("enable")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

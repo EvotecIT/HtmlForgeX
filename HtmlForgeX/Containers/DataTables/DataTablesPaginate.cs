@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Text for pagination navigation in DataTables.
 /// </summary>
-public class DataTablesPaginate
-{
+public class DataTablesPaginate {
     /// <summary>Text for the first page button.</summary>
     [JsonPropertyName("first")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -27,4 +26,3 @@ public class DataTablesPaginate
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Previous { get; set; }
 }
-

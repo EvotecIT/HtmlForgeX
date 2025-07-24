@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Fixed Header configuration for DataTables
 /// </summary>
-public class DataTablesFixedHeader
-{
+public class DataTablesFixedHeader {
     /// <summary>Enable/disable fixed header</summary>
     [JsonPropertyName("enable")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

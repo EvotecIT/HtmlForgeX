@@ -50,7 +50,7 @@ public class TablerSwitch : Element {
     /// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("label").Class("form-check form-switch");
-        
+
         if (_size != SwitchSize.Default) {
             wrapper.Class($"form-switch-{(int)_size}");
         }
@@ -60,16 +60,16 @@ public class TablerSwitch : Element {
             .Attribute("type", "checkbox")
             .Id(_name)
             .Attribute("name", _name);
-        
+
         if (_checked) input.Attribute("checked", "checked");
         if (_disabled) input.Attribute("disabled", "disabled");
-        
+
         wrapper.Value(input);
-        
+
         if (!string.IsNullOrEmpty(_label)) {
             wrapper.Value(new HtmlTag("span").Class("form-check-label").Value(_label));
         }
-        
+
         return wrapper.ToString();
     }
 }

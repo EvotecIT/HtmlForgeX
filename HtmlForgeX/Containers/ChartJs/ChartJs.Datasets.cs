@@ -61,22 +61,22 @@ public partial class ChartJs {
             var dataset = new ChartJsDataset { Label = "Dataset" };
             Datasets.Add(dataset);
         }
-        
+
         if (Datasets.Count > 0) {
             var dataset = Datasets[0];
             dataset.BackgroundColor = colors;
         }
-        
+
         return this;
     }
-    
+
     /// <summary>
     /// Sets custom colors for the chart using RGBColor instances.
     /// </summary>
     public ChartJs Colors(params RGBColor[] colors) {
         return Colors(colors.Select(c => c.ToString()).ToArray());
     }
-    
+
     /// <summary>
     /// Sets custom colors for the chart using a mix of RGBColor and string.
     /// </summary>
@@ -86,10 +86,10 @@ public partial class ChartJs {
             string str => str,
             _ => c.ToString() ?? string.Empty
         }).ToArray();
-        
+
         return Colors(colorStrings);
     }
-    
+
     /// <summary>
     /// Adds a dataset with custom colors.
     /// </summary>
@@ -104,14 +104,14 @@ public partial class ChartJs {
         Datasets.Add(dataset);
         return this;
     }
-    
+
     /// <summary>
     /// Adds a dataset with custom RGBColor.
     /// </summary>
     public ChartJs AddDataset(string label, RGBColor color, params double[] values) {
         return AddDataset(label, color.ToString(), values);
     }
-    
+
     /// <summary>
     /// Adds a dataset with custom object color (RGBColor or string).
     /// </summary>
@@ -142,21 +142,21 @@ public partial class ChartJs {
             Label = label,
             Data = values.ToList()
         };
-        
+
         // Auto-assign colors for common chart types
         if (Type == ChartJsType.Line || Type == ChartJsType.Bar) {
             var colorIndex = Datasets.Count % DefaultColors.Length;
-            dataset.BackgroundColor = Type == ChartJsType.Line 
-                ? $"rgba({DefaultColors[colorIndex]}, 0.2)" 
+            dataset.BackgroundColor = Type == ChartJsType.Line
+                ? $"rgba({DefaultColors[colorIndex]}, 0.2)"
                 : $"rgb({DefaultColors[colorIndex]})";
             dataset.BorderColor = $"rgb({DefaultColors[colorIndex]})";
             dataset.BorderWidth = Type == ChartJsType.Line ? 2 : 1;
         }
-        
+
         Datasets.Add(dataset);
         return this;
     }
-    
+
     /// <summary>
     /// Default colors for datasets (RGB values).
     /// </summary>

@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Row grouping configuration for DataTables
 /// </summary>
-public class DataTablesRowGroup
-{
+public class DataTablesRowGroup {
     /// <summary>Column index to group by</summary>
     [JsonPropertyName("dataSrc")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

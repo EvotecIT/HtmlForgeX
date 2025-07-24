@@ -29,8 +29,7 @@ public static class AlignmentExtensions {
     /// </summary>
     /// <param name="alignment">Alignment option.</param>
     /// <returns>CSS text-align value.</returns>
-    public static string ToCssValue(this Alignment alignment) => alignment switch
-    {
+    public static string ToCssValue(this Alignment alignment) => alignment switch {
         Alignment.Left => "left",
         Alignment.Center => "center",
         Alignment.Right => "right",

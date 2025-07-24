@@ -1,7 +1,8 @@
 using System;
 using System.Linq;
-using HtmlForgeX.Logging;
+
 using HtmlForgeX.Extensions;
+using HtmlForgeX.Logging;
 
 namespace HtmlForgeX;
 

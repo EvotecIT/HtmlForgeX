@@ -3,13 +3,11 @@ namespace HtmlForgeX.Resources;
 /// <summary>
 /// PrismJS VS theme library configuration
 /// </summary>
-public class PrismJsVsTheme : Library
-{
+public class PrismJsVsTheme : Library {
     /// <summary>
     /// Initializes a new instance of the <see cref="PrismJsVsTheme"/> class.
     /// </summary>
-    public PrismJsVsTheme()
-    {
+    public PrismJsVsTheme() {
         Header = new LibraryLinks {
             CssLink = [
                 "https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-vs.min.css"

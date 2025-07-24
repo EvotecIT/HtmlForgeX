@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Configuration options for the DataTables JavaScript plugin.
 /// </summary>
-public class DataTablesOptions
-{
+public class DataTablesOptions {
     /// <summary>Default number of rows per page.</summary>
     [JsonPropertyName("pageLength")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -157,4 +156,3 @@ public class DataTablesOptions
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? InitComplete { get; set; }
 }
-

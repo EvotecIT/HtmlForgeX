@@ -65,23 +65,23 @@ public class TablerCheckboxGroup : Element {
     /// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("div").Class("mb-3");
-        
+
         if (!string.IsNullOrEmpty(_label)) {
             wrapper.Value(new HtmlTag("div").Class("form-label").Value(_label));
         }
-        
+
         var container = new HtmlTag("div");
-        
+
         foreach (var option in _options) {
             var checkbox = new TablerCheckbox($"{_name}[]")
                 .Label(option.Label)
                 .Checked(option.Checked)
                 .Disabled(option.Disabled)
                 .Inline(_inline);
-            
+
             container.Value(checkbox);
         }
-        
+
         wrapper.Value(container);
         return wrapper.ToString();
     }

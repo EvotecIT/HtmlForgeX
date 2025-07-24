@@ -120,7 +120,7 @@ public partial class VisNetwork {
         if (options == null) return "{}";
 
         var parts = new List<string>();
-        
+
         // Add join condition if specified
         if (!string.IsNullOrEmpty(options.JoinCondition)) {
             parts.Add($"joinCondition: {options.JoinCondition}");
@@ -179,7 +179,7 @@ public partial class VisNetwork {
         };
 
         string methodCall;
-        
+
         // Check if this is custom JavaScript code
         if (call.Method.Contains("\n") || call.Method.Contains(";") || call.Method.Contains("{") || call.Method.Contains("var ") || call.Method.Contains("console.log")) {
             // This is custom JavaScript code, execute it directly
@@ -213,13 +213,13 @@ public partial class VisNetwork {
         var customShapeMap = new Dictionary<string, string>();
         var nodesWithCustomShapes = new List<(VisNetworkNodeOptions node, string shapeName)>();
         var shapeCounter = 0;
-        
+
         // First pass: collect all unique custom shapes
         foreach (var node in nodes) {
-            if (node is VisNetworkNodeOptions nodeOptions && 
-                nodeOptions.Shape == VisNetworkNodeShape.Custom && 
+            if (node is VisNetworkNodeOptions nodeOptions &&
+                nodeOptions.Shape == VisNetworkNodeShape.Custom &&
                 !string.IsNullOrEmpty(nodeOptions.CtxRenderer)) {
-                
+
                 var shapeKey = nodeOptions.CtxRenderer!.GetHashCode().ToString();
                 if (!customShapeMap.ContainsKey(shapeKey)) {
                     var shapeName = $"customShape{shapeCounter++}";
@@ -228,9 +228,9 @@ public partial class VisNetwork {
                 nodesWithCustomShapes.Add((nodeOptions, customShapeMap[shapeKey]));
             }
         }
-        
+
         var script = new StringBuilder();
-        
+
         // Register custom shapes as functions
         if (customShapeMap.Count > 0) {
             script.AppendLine("// Register custom shapes");
@@ -241,19 +241,19 @@ public partial class VisNetwork {
             }
             script.AppendLine();
         }
-        
+
         // Build nodes array
         script.AppendLine("var nodesArray = [];");
-        
+
         foreach (var node in nodes) {
-            if (node is VisNetworkNodeOptions nodeOptions && 
-                nodeOptions.Shape == VisNetworkNodeShape.Custom && 
+            if (node is VisNetworkNodeOptions nodeOptions &&
+                nodeOptions.Shape == VisNetworkNodeShape.Custom &&
                 !string.IsNullOrEmpty(nodeOptions.CtxRenderer)) {
-                
+
                 // Find the shape name for this node
                 var shapeKey = nodeOptions.CtxRenderer!.GetHashCode().ToString();
                 var shapeName = customShapeMap[shapeKey];
-                
+
                 // Create node object without ctxRenderer
                 var nodeClone = new VisNetworkNodeOptions();
                 var properties = typeof(VisNetworkNodeOptions).GetProperties();
@@ -262,13 +262,13 @@ public partial class VisNetwork {
                         prop.SetValue(nodeClone, prop.GetValue(nodeOptions));
                     }
                 }
-                
+
                 var jsonOptions = new JsonSerializerOptions {
                     WriteIndented = false,
                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 };
                 var baseNodeJson = JsonSerializer.Serialize(nodeClone, jsonOptions);
-                
+
                 // Add the node with the function reference
                 script.AppendLine($@"(function() {{
                     var node = {baseNodeJson};
@@ -285,9 +285,9 @@ public partial class VisNetwork {
                 script.AppendLine($"nodesArray.push({nodeJson});");
             }
         }
-        
+
         script.AppendLine("var nodes = new vis.DataSet(nodesArray);");
-        
+
         // Add edges
         var edgesJsonOptions = new JsonSerializerOptions {
             WriteIndented = false,
@@ -295,7 +295,7 @@ public partial class VisNetwork {
         };
         var edgesJsonData = JsonSerializer.Serialize(_edges, edgesJsonOptions);
         script.AppendLine($"var edges = new vis.DataSet({edgesJsonData});");
-        
+
         return script.ToString();
     }
 
@@ -321,7 +321,7 @@ public partial class VisNetwork {
 
         // Use the current nodes collection
         var allNodes = new List<object>(_nodes);
-        
+
         // Convert HTML nodes to regular nodes and collect HTML content
         var htmlNodeContents = new Dictionary<string, string>();
         foreach (var htmlNode in _htmlNodes) {
@@ -329,10 +329,10 @@ public partial class VisNetwork {
             var nodeOptions = new VisNetworkNodeOptions()
                 .WithId(htmlNode.Id)
                 .WithShape(VisNetworkNodeShape.Box); // HTML nodes need a shape
-            
+
             // Store the HTML content for later
             htmlNodeContents[htmlNode.Id.ToString()] = htmlNode.GetHtmlContent();
-            
+
             allNodes.Add(nodeOptions);
         }
 
@@ -354,22 +354,22 @@ public partial class VisNetwork {
             WriteIndented = false,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
-        
+
         // Use the current options
         var mergedOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(
             JsonSerializer.Serialize(_options, jsonOptions)) ?? new Dictionary<string, object>();
-        
+
         var optionsJson = JsonSerializer.Serialize(mergedOptions, jsonOptions);
 
         // Generate event handlers JavaScript
         var eventHandlers = GenerateEventHandlers(_options.Events);
-        
+
         // Generate clustering commands JavaScript
         var clusteringCommands = GenerateClusteringCommands();
 
         // Process nodes to handle custom shapes
         var processedNodesScript = ProcessCustomShapes(allNodes, _id);
-        
+
         // Generate HTML nodes initialization if needed
         var htmlNodesInit = "";
         if (htmlNodeContents.Count > 0) {

@@ -3,13 +3,11 @@ namespace HtmlForgeX.Resources;
 /// <summary>
 /// PrismJS GitHub theme library configuration
 /// </summary>
-public class PrismJsGitHubTheme : Library
-{
+public class PrismJsGitHubTheme : Library {
     /// <summary>
     /// Initializes a new instance of the <see cref="PrismJsGitHubTheme"/> class.
     /// </summary>
-    public PrismJsGitHubTheme()
-    {
+    public PrismJsGitHubTheme() {
         Header = new LibraryLinks {
             CssLink = [
                 "https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-ghcolors.min.css"

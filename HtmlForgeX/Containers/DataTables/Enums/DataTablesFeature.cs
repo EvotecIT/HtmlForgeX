@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// DataTables feature toggles for enabling/disabling functionality
 /// </summary>
-public enum DataTablesFeature
-{
+public enum DataTablesFeature {
     /// <summary>Enable pagination controls</summary>
     Paging,
 

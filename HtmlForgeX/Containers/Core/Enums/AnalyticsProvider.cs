@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Supported analytics providers.
 /// </summary>
-public enum AnalyticsProvider
-{
+public enum AnalyticsProvider {
     /// <summary>No provider.</summary>
     None,
     /// <summary>Google Analytics.</summary>

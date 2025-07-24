@@ -49,7 +49,7 @@ public partial class ChartJs {
         Options.Plugins.Legend.Position = position;
         return this;
     }
-    
+
     /// <summary>
     /// Configures the legend with advanced options.
     /// </summary>
@@ -63,7 +63,7 @@ public partial class ChartJs {
     /// <summary>
     /// Configures legend labels with common settings.
     /// </summary>
-    public ChartJs LegendLabels(int fontSize = 12, ChartJsFontWeight fontWeight = ChartJsFontWeight.Normal, 
+    public ChartJs LegendLabels(int fontSize = 12, ChartJsFontWeight fontWeight = ChartJsFontWeight.Normal,
                                string color = "#666", int padding = 10, bool usePointStyle = false) {
         Options.Plugins ??= new ChartJsPlugins();
         Options.Plugins.Legend ??= new ChartJsLegend();
@@ -79,7 +79,7 @@ public partial class ChartJs {
     /// <summary>
     /// Configures legend labels with RGBColor support.
     /// </summary>
-    public ChartJs LegendLabels(int fontSize, ChartJsFontWeight fontWeight, RGBColor color, 
+    public ChartJs LegendLabels(int fontSize, ChartJsFontWeight fontWeight, RGBColor color,
                                int padding = 10, bool usePointStyle = false) {
         return LegendLabels(fontSize, fontWeight, color.ToString(), padding, usePointStyle);
     }
@@ -129,7 +129,7 @@ public partial class ChartJs {
         Options.Scales.Y.BeginAtZero = false;
         return this;
     }
-    
+
     /// <summary>
     /// Configures the chart as stacked (for bar and line charts).
     /// </summary>
@@ -141,7 +141,7 @@ public partial class ChartJs {
         Options.Scales.Y.Stacked = enabled;
         return this;
     }
-    
+
     /// <summary>
     /// Configures the Y-axis with fluent API.
     /// </summary>
@@ -151,7 +151,7 @@ public partial class ChartJs {
         configure(Options.Scales.Y);
         return this;
     }
-    
+
     /// <summary>
     /// Configures the X-axis with fluent API.
     /// </summary>
@@ -283,7 +283,7 @@ public partial class ChartJs {
     public ChartJs XAxisTicks(RGBColor color, int fontSize = 12) {
         return XAxisTicks(color.ToString(), fontSize);
     }
-    
+
     /// <summary>
     /// Configures the R-axis (for polar charts) with fluent API.
     /// </summary>
@@ -304,7 +304,7 @@ public partial class ChartJs {
         if (max.HasValue) Options.Scales.R.Max = max.Value;
         return this;
     }
-    
+
     /// <summary>
     /// Configures scales with fluent API.
     /// </summary>
@@ -313,7 +313,7 @@ public partial class ChartJs {
         configure(Options.Scales);
         return this;
     }
-    
+
     /// <summary>
     /// Configures plugins with fluent API.
     /// </summary>
@@ -322,7 +322,7 @@ public partial class ChartJs {
         configure(Options.Plugins);
         return this;
     }
-    
+
     /// <summary>
     /// Configures tooltip with fluent API.
     /// </summary>
@@ -336,8 +336,8 @@ public partial class ChartJs {
     /// <summary>
     /// Configures tooltip with common settings.
     /// </summary>
-    public ChartJs Tooltip(ChartJsInteractionMode mode = ChartJsInteractionMode.Index, bool intersect = false, 
-                          string backgroundColor = "rgba(0, 0, 0, 0.8)", string titleColor = "#fff", 
+    public ChartJs Tooltip(ChartJsInteractionMode mode = ChartJsInteractionMode.Index, bool intersect = false,
+                          string backgroundColor = "rgba(0, 0, 0, 0.8)", string titleColor = "#fff",
                           string bodyColor = "#fff", string borderColor = "#ddd", int borderWidth = 1) {
         Options.Plugins ??= new ChartJsPlugins();
         Options.Plugins.Tooltip ??= new ChartJsTooltip();
@@ -354,12 +354,12 @@ public partial class ChartJs {
     /// <summary>
     /// Configures tooltip with RGBColor support.
     /// </summary>
-    public ChartJs Tooltip(ChartJsInteractionMode mode, bool intersect, RGBColor backgroundColor, 
+    public ChartJs Tooltip(ChartJsInteractionMode mode, bool intersect, RGBColor backgroundColor,
                           RGBColor titleColor, RGBColor bodyColor, RGBColor borderColor, int borderWidth = 1) {
-        return Tooltip(mode, intersect, backgroundColor.ToString(), titleColor.ToString(), 
+        return Tooltip(mode, intersect, backgroundColor.ToString(), titleColor.ToString(),
                       bodyColor.ToString(), borderColor.ToString(), borderWidth);
     }
-    
+
     /// <summary>
     /// Configures interaction with fluent API.
     /// </summary>
@@ -385,5 +385,5 @@ public partial class ChartJs {
         configure(Options);
         return this;
     }
-#endregion
+    #endregion
 }

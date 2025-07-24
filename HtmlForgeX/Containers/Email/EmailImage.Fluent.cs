@@ -1,21 +1,16 @@
 namespace HtmlForgeX;
 
-public partial class EmailImage
-{
+public partial class EmailImage {
     #region Fluent API
 
-    public EmailImage WithSource(string source, bool? autoEmbed = null)
-    {
+    public EmailImage WithSource(string source, bool? autoEmbed = null) {
         Source = source;
         _originalSource = source;
 
-        if (autoEmbed == true)
-        {
+        if (autoEmbed == true) {
             ForceEmbedding = true;
             SkipAutoEmbedding = false;
-        }
-        else if (autoEmbed == false)
-        {
+        } else if (autoEmbed == false) {
             SkipAutoEmbedding = true;
             ForceEmbedding = false;
         }
@@ -26,70 +21,59 @@ public partial class EmailImage
 
     public EmailImage WithSource(string source) => WithSource(source, null);
 
-    public EmailImage WithWidth(string width)
-    {
+    public EmailImage WithWidth(string width) {
         Width = width;
         return this;
     }
 
-    public EmailImage WithHeight(string height)
-    {
+    public EmailImage WithHeight(string height) {
         Height = height;
         return this;
     }
 
-    public EmailImage WithAlternativeText(string altText)
-    {
+    public EmailImage WithAlternativeText(string altText) {
         AlternativeText = altText;
         return this;
     }
 
-    public EmailImage WithAlignment(Alignment alignment)
-    {
+    public EmailImage WithAlignment(Alignment alignment) {
         alignment.ValidateEmailAlignment();
         Alignment = alignment.ToCssValue();
         return this;
     }
 
-    public EmailImage WithMargin(string margin)
-    {
+    public EmailImage WithMargin(string margin) {
         margin.ValidateMargin();
         Margin = margin;
         return this;
     }
 
-    public EmailImage WithBorder(string border)
-    {
+    public EmailImage WithBorder(string border) {
         Border = border;
         return this;
     }
 
-    public EmailImage WithBorderRadius(string borderRadius)
-    {
+    public EmailImage WithBorderRadius(string borderRadius) {
         BorderRadius = borderRadius;
         return this;
     }
 
-    public EmailImage WithLink(string url, bool openInNewWindow = false)
-    {
+    public EmailImage WithLink(string url, bool openInNewWindow = false) {
         LinkUrl = url;
         OpenInNewWindow = openInNewWindow;
         return this;
     }
 
-    public EmailImage WithCssClass(string cssClass)
-    {
+    public EmailImage WithCssClass(string cssClass) {
         CssClass = cssClass;
         return this;
     }
 
-    public EmailImage WithoutAutoEmbedding()
-    {
+    public EmailImage WithoutAutoEmbedding() {
         SkipAutoEmbedding = true;
         ForceEmbedding = false;
 
-        if (EmbedAsBase64 && !string.IsNullOrEmpty(_originalSource))
-        {
+        if (EmbedAsBase64 && !string.IsNullOrEmpty(_originalSource)) {
             EmbedAsBase64 = false;
             Base64Data = string.Empty;
             MimeType = string.Empty;
@@ -99,19 +83,16 @@ public partial class EmailImage
         return this;
     }
 
-    public EmailImage WithAutoEmbedding()
-    {
+    public EmailImage WithAutoEmbedding() {
         ForceEmbedding = true;
         SkipAutoEmbedding = false;
-        if (!EmbedAsBase64 && !string.IsNullOrEmpty(Source))
-        {
+        if (!EmbedAsBase64 && !string.IsNullOrEmpty(Source)) {
             ApplyDocumentConfiguration();
         }
         return this;
     }
 
-    public EmailImage WithOptimization(int maxWidth = 0, int maxHeight = 0, int quality = 85)
-    {
+    public EmailImage WithOptimization(int maxWidth = 0, int maxHeight = 0, int quality = 85) {
         OptimizeImage = true;
         MaxWidth = maxWidth;
         MaxHeight = maxHeight;
@@ -119,22 +100,19 @@ public partial class EmailImage
         return this;
     }
 
-    public EmailImage WithoutOptimization()
-    {
+    public EmailImage WithoutOptimization() {
         OptimizeImage = false;
         return this;
     }
 
-    public EmailImage WithDarkModeSource(string darkSource, string darkAltText = "")
-    {
+    public EmailImage WithDarkModeSource(string darkSource, string darkAltText = "") {
         DarkModeSource = darkSource;
         DarkModeAlternativeText = string.IsNullOrEmpty(darkAltText) ? AlternativeText : darkAltText;
         EnableDarkModeSwapping = true;
         return this;
     }
 
-    public EmailImage WithImagePair(string lightSource, string darkSource, string altText = "")
-    {
+    public EmailImage WithImagePair(string lightSource, string darkSource, string altText = "") {
         Source = lightSource;
         DarkModeSource = darkSource;
         AlternativeText = altText;
@@ -143,40 +121,34 @@ public partial class EmailImage
         return this;
     }
 
-    public EmailImage WithSeparateAltTexts(string lightAltText, string darkAltText)
-    {
+    public EmailImage WithSeparateAltTexts(string lightAltText, string darkAltText) {
         AlternativeText = lightAltText;
         DarkModeAlternativeText = darkAltText;
         return this;
     }
 
-    public EmailImage WithoutDarkModeSwapping()
-    {
+    public EmailImage WithoutDarkModeSwapping() {
         EnableDarkModeSwapping = false;
         DarkModeSource = string.Empty;
         return this;
     }
 
-    public EmailImage WithDarkModeSwapping()
-    {
+    public EmailImage WithDarkModeSwapping() {
         EnableDarkModeSwapping = true;
         return this;
     }
 
-    public EmailImage WithMargin(EmailSpacing spacing)
-    {
+    public EmailImage WithMargin(EmailSpacing spacing) {
         Margin = spacing.ToCssValue();
         return this;
     }
 
-    public EmailImage WithMargin(EmailSpacing vertical, EmailSpacing horizontal)
-    {
+    public EmailImage WithMargin(EmailSpacing vertical, EmailSpacing horizontal) {
         Margin = $"{vertical.ToCssValue()} {horizontal.ToCssValue()}";
         return this;
     }
 
-    public EmailImage WithMargin(EmailSpacing top, EmailSpacing right, EmailSpacing bottom, EmailSpacing left)
-    {
+    public EmailImage WithMargin(EmailSpacing top, EmailSpacing right, EmailSpacing bottom, EmailSpacing left) {
         Margin = $"{top.ToCssValue()} {right.ToCssValue()} {bottom.ToCssValue()} {left.ToCssValue()}";
         return this;
     }

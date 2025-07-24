@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Supported programming languages for PrismJS syntax highlighting
 /// </summary>
-public enum PrismJsLanguage
-{
+public enum PrismJsLanguage {
     /// <summary>Plain text (no highlighting)</summary>
     None,
 

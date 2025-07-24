@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Export configuration for DataTables buttons
 /// </summary>
-public class DataTablesExport
-{
+public class DataTablesExport {
     /// <summary>Export button text</summary>
     [JsonPropertyName("text")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -46,8 +45,7 @@ public class DataTablesExport
 /// <summary>
 /// Export options for controlling what data to export
 /// </summary>
-public class DataTablesExportOptions
-{
+public class DataTablesExportOptions {
     /// <summary>Which columns to export</summary>
     [JsonPropertyName("columns")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

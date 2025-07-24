@@ -1,4 +1,4 @@
-﻿namespace HtmlForgeX;
+namespace HtmlForgeX;
 
 /// <summary>
 /// Arrow type configuration.

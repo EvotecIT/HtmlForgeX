@@ -3,13 +3,11 @@ namespace HtmlForgeX.Resources;
 /// <summary>
 /// PrismJS Tomorrow Night theme library configuration
 /// </summary>
-public class PrismJsTomorrowNightTheme : Library
-{
+public class PrismJsTomorrowNightTheme : Library {
     /// <summary>
     /// Initializes a new instance of the <see cref="PrismJsTomorrowNightTheme"/> class.
     /// </summary>
-    public PrismJsTomorrowNightTheme()
-    {
+    public PrismJsTomorrowNightTheme() {
         Header = new LibraryLinks {
             CssLink = [
                 "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"

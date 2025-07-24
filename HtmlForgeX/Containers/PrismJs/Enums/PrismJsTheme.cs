@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Available themes for PrismJS syntax highlighting
 /// </summary>
-public enum PrismJsTheme
-{
+public enum PrismJsTheme {
     /// <summary>Default PrismJS theme (light)</summary>
     Default,
 

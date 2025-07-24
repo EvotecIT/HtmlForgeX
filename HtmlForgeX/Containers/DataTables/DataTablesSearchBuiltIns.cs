@@ -7,14 +7,12 @@ namespace HtmlForgeX;
 /// be plugged into DataTables SearchBuilder.  Each entry exposes the name used
 /// in JavaScript as well as the implementation of the operator.
 /// </summary>
-public static class DataTablesSearchBuiltIns
-{
+public static class DataTablesSearchBuiltIns {
     /// <summary>
     /// Mapping of <see cref="DataTablesBuiltInOperator"/> values to the
     /// JavaScript name and function body that implements the operator.
     /// </summary>
-    public static readonly Dictionary<DataTablesBuiltInOperator, (string Name, string Script)> Scripts = new()
-    {
+    public static readonly Dictionary<DataTablesBuiltInOperator, (string Name, string Script)> Scripts = new() {
         [DataTablesBuiltInOperator.StartsWith] = ("startsWith", "function(value,input){ return value.startsWith(input); }"),
         [DataTablesBuiltInOperator.NotStartsWith] = ("notStartsWith", "function(value,input){ return !value.startsWith(input); }"),
         [DataTablesBuiltInOperator.EndsWith] = ("endsWith", "function(value,input){ return value.endsWith(input); }"),

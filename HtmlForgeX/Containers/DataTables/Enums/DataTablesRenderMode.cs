@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Rendering modes for DataTables content
 /// </summary>
-public enum DataTablesRenderMode
-{
+public enum DataTablesRenderMode {
     /// <summary>Traditional HTML rendering (default) - slower but more compatible</summary>
     Html,
 

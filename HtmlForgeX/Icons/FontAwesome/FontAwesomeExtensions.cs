@@ -15,7 +15,7 @@ public static class FontAwesomeSolidExtensions {
         var attribute = field?.GetCustomAttribute<DescriptionAttribute>();
         return attribute?.Description ?? string.Empty;
     }
-    
+
     /// <summary>
     /// Gets the Font Awesome icon name for the icon
     /// </summary>
@@ -38,7 +38,7 @@ public static class FontAwesomeRegularExtensions {
         var attribute = field?.GetCustomAttribute<DescriptionAttribute>();
         return attribute?.Description ?? string.Empty;
     }
-    
+
     /// <summary>
     /// Gets the Font Awesome icon name for the icon
     /// </summary>
@@ -61,7 +61,7 @@ public static class FontAwesomeBrandsExtensions {
         var attribute = field?.GetCustomAttribute<DescriptionAttribute>();
         return attribute?.Description ?? string.Empty;
     }
-    
+
     /// <summary>
     /// Gets the Font Awesome icon name for the icon
     /// </summary>

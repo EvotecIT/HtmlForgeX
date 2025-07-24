@@ -153,16 +153,16 @@ public static class ImageEmbedding {
     /// </summary>
     /// <param name="extension">File extension (with or without dot)</param>
     /// <returns>MIME type string</returns>
-public static string GetMimeTypeFromExtension(string extension) =>
-    ImageUtilities.GetMimeTypeFromExtension(extension);
+    public static string GetMimeTypeFromExtension(string extension) =>
+        ImageUtilities.GetMimeTypeFromExtension(extension);
 
     /// <summary>
     /// Gets MIME type from URL by examining the file extension
     /// </summary>
     /// <param name="url">URL to examine</param>
     /// <returns>MIME type string</returns>
-public static string GetMimeTypeFromUrl(string url) =>
-    ImageUtilities.GetMimeTypeFromUrl(url);
+    public static string GetMimeTypeFromUrl(string url) =>
+        ImageUtilities.GetMimeTypeFromUrl(url);
 
     private static ImageEmbeddingResult ProcessBytes(
         byte[] bytes,

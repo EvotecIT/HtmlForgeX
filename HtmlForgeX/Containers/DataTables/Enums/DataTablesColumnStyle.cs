@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Common styling options for DataTables columns
 /// </summary>
-public enum DataTablesColumnStyle
-{
+public enum DataTablesColumnStyle {
     /// <summary>No special styling</summary>
     None,
 

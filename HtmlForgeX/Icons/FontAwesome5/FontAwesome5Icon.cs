@@ -221,10 +221,10 @@ public class FontAwesome5Icon : Element {
     public override string ToString() {
         var tag = new HtmlTag("i");
         var classes = new List<string>();
-        
+
         // Add style prefix
         classes.Add(_style.GetClassPrefix());
-        
+
         // Add icon class
         if (!string.IsNullOrEmpty(_iconName)) {
             // Convert enum name to FontAwesome class name (e.g., User -> fa-user)
@@ -232,12 +232,12 @@ public class FontAwesome5Icon : Element {
         }
         // Note: When using WithCode(), we don't add the fa-iconname class
         // because we don't have the icon name, only the Unicode
-        
+
         // Add size class
         if (!string.IsNullOrEmpty(_size)) {
             classes.Add(_size!);
         }
-        
+
         // Add modifier classes
         if (_fixedWidth) classes.Add("fa-fw");
         if (_spin) classes.Add("fa-spin");
@@ -246,19 +246,19 @@ public class FontAwesome5Icon : Element {
         if (!string.IsNullOrEmpty(_flip)) classes.Add(_flip!);
         if (_border) classes.Add("fa-border");
         if (!string.IsNullOrEmpty(_pull)) classes.Add(_pull!);
-        
+
         // Add custom classes
         classes.AddRange(_additionalClasses);
-        
+
         // Set all classes
         tag.Class(string.Join(" ", classes));
-        
+
         // Add inline styles
         var styles = new List<string>();
         if (!string.IsNullOrEmpty(_color)) {
             styles.Add($"color: {_color}");
         }
-        
+
         if (styles.Count > 0) {
             foreach (var style in styles) {
                 var parts = style.Split(new[] { ':' }, 2);
@@ -267,13 +267,13 @@ public class FontAwesome5Icon : Element {
                 }
             }
         }
-        
+
         // When using WithCode(), add the Unicode as content via CSS pseudo-element
         if (!string.IsNullOrEmpty(_iconCode) && string.IsNullOrEmpty(_iconName)) {
             // Add the Unicode character as text content for Font Awesome to render
             tag.Text(_iconCode!);
         }
-        
+
         return tag.ToString();
     }
 

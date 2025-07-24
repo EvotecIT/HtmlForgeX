@@ -25,7 +25,7 @@ public class ChartJsDataset {
     /// </summary>
     [JsonIgnore]
     public List<object>? PointData { get; set; }
-    
+
     /// <summary>
     /// Gets the data for JSON serialization (returns either Data or PointData).
     /// </summary>

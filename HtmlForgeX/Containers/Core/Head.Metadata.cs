@@ -6,8 +6,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Metadata related properties and helpers for <see cref="Head"/>.
 /// </summary>
-public partial class Head
-{
+public partial class Head {
     /// <summary>Gets or sets the title of the HTML document.</summary>
     public string? Title { get; set; }
 
@@ -42,17 +41,14 @@ public partial class Head
     public int? AutoRefresh { get; set; }
 
     /// <summary>Adds a title to the document.</summary>
-    public Head AddTitle(string title)
-    {
+    public Head AddTitle(string title) {
         Title = Helpers.HtmlEncode(title);
         return this;
     }
 
     /// <summary>Adds a meta tag with automatic property mapping.</summary>
-    public Head AddMeta(string name, string content)
-    {
-        switch (name.ToLower())
-        {
+    public Head AddMeta(string name, string content) {
+        switch (name.ToLower()) {
             case "charset":
                 Charset = content;
                 break;
@@ -82,37 +78,32 @@ public partial class Head
     }
 
     /// <summary>Adds or replaces the charset meta tag.</summary>
-    public Head AddCharsetMeta(string charset)
-    {
+    public Head AddCharsetMeta(string charset) {
         Charset = charset;
         return this;
     }
 
     /// <summary>Adds an HTTP-equiv meta tag.</summary>
-    public Head AddHttpEquivMeta(string httpEquiv, string content)
-    {
+    public Head AddHttpEquivMeta(string httpEquiv, string content) {
         HttpEquiv = httpEquiv;
         Content = content;
         return this;
     }
 
     /// <summary>Adds a viewport meta tag.</summary>
-    public Head AddViewportMeta(string content)
-    {
+    public Head AddViewportMeta(string content) {
         Viewport = content;
         return this;
     }
 
     /// <summary>Adds an author meta tag.</summary>
-    public Head AddAuthorMeta(string author)
-    {
+    public Head AddAuthorMeta(string author) {
         Author = author;
         return this;
     }
 
     /// <summary>Adds a revised date meta tag.</summary>
-    public Head AddRevisedMeta(DateTime date)
-    {
+    public Head AddRevisedMeta(DateTime date) {
         Revised = date;
         return this;
     }

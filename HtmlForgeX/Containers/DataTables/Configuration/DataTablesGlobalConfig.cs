@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Global configuration settings for DataTables across the document
 /// </summary>
-public class DataTablesGlobalConfig
-{
+public class DataTablesGlobalConfig {
     /// <summary>Default rendering mode for all DataTables in the document</summary>
     public DataTablesRenderMode DefaultRenderMode { get; set; } = DataTablesRenderMode.Html;
 

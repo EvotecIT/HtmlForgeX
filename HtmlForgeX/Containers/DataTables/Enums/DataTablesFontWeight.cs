@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Font weight options for DataTables columns
 /// </summary>
-public enum DataTablesFontWeight
-{
+public enum DataTablesFontWeight {
     /// <summary>Normal font weight (default)</summary>
     Normal,
 

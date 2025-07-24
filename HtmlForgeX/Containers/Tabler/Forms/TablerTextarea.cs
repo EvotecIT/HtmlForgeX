@@ -32,49 +32,49 @@ public class TablerTextarea : Element {
     /// <param name="text">The label text.</param>
     /// <returns>The current <see cref="TablerTextarea"/> instance.</returns>
     public TablerTextarea Label(string text) { _label = text; return this; }
-    
+
     /// <summary>
     /// Sets the placeholder text for the textarea element.
     /// </summary>
     /// <param name="text">The placeholder text.</param>
     /// <returns>The current <see cref="TablerTextarea"/> instance.</returns>
     public TablerTextarea Placeholder(string text) { _placeholder = text; return this; }
-    
+
     /// <summary>
     /// Marks the textarea as required.
     /// </summary>
     /// <param name="required">Whether the textarea is required.</param>
     /// <returns>The current <see cref="TablerTextarea"/> instance.</returns>
     public TablerTextarea Required(bool required = true) { _required = required; return this; }
-    
+
     /// <summary>
     /// Sets the number of visible rows for the textarea.
     /// </summary>
     /// <param name="rows">The number of rows.</param>
     /// <returns>The current <see cref="TablerTextarea"/> instance.</returns>
     public TablerTextarea Rows(int rows) { _rows = rows; return this; }
-    
+
     /// <summary>
     /// Sets the number of visible columns for the textarea.
     /// </summary>
     /// <param name="cols">The number of columns.</param>
     /// <returns>The current <see cref="TablerTextarea"/> instance.</returns>
     public TablerTextarea Cols(int cols) { _cols = cols; return this; }
-    
+
     /// <summary>
     /// Sets the default value for the textarea.
     /// </summary>
     /// <param name="value">The default value.</param>
     /// <returns>The current <see cref="TablerTextarea"/> instance.</returns>
     public TablerTextarea Value(string value) { _value = value; return this; }
-    
+
     /// <summary>
     /// Enables auto-resize functionality for the textarea.
     /// </summary>
     /// <param name="autoResize">Whether to enable auto-resize.</param>
     /// <returns>The current <see cref="TablerTextarea"/> instance.</returns>
     public TablerTextarea AutoResize(bool autoResize = true) { _autoResize = autoResize; return this; }
-    
+
     /// <summary>
     /// Sets validation state and message for the textarea element.
     /// </summary>
@@ -91,12 +91,12 @@ public class TablerTextarea : Element {
         if (!string.IsNullOrEmpty(_label)) {
             wrapper.Value(new HtmlTag("label").Class("form-label").Attribute("for", _name).Value(_label));
         }
-        
+
         var textarea = new HtmlTag("textarea")
             .Class("form-control")
             .Id(_name)
             .Attribute("name", _name);
-            
+
         if (!string.IsNullOrEmpty(_placeholder)) textarea.Attribute("placeholder", _placeholder!);
         if (_required) textarea.Attribute("required", "required");
         if (_rows.HasValue) textarea.Attribute("rows", _rows.Value.ToString());
@@ -106,7 +106,7 @@ public class TablerTextarea : Element {
         if (!string.IsNullOrEmpty(_value)) textarea.Value(_value);
 
         wrapper.Value(textarea);
-        
+
         if (_state != null && !string.IsNullOrEmpty(_message)) {
             wrapper.Value(new HtmlTag("div").Class(_state.Value.ToFeedbackClass()).Value(_message));
         }

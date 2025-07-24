@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -212,7 +213,7 @@ public class SmartWizardStep : ElementContainer {
     /// </summary>
     internal string BuildStepAnchor(int stepIndex, bool isActive = false) {
         var classes = new List<string> { "nav-link" };
-        
+
         // Add state-based classes
         switch (State) {
             case SmartWizardStepState.Active:
@@ -248,7 +249,7 @@ public class SmartWizardStep : ElementContainer {
 
         // Build content
         var content = new List<string>();
-        
+
         // Add step number or icon
         if (Icon.HasValue) {
             var iconClass = GetIconClass(Icon.Value);

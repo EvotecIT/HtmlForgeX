@@ -233,40 +233,40 @@ public class LibrariesConverter {
                 return new EasyQRCode();
             case Libraries.FullCalendar:
                 return new FullCalendarLibrary();
-        case Libraries.Popper:
-            return new PopperLibrary();
-        case Libraries.ScrollingText:
-            return new ScrollingTextLibrary();
-        case Libraries.Quill:
-            return new Resources.QuillLibrary();
-        case Libraries.TomSelect:
-            return new Resources.TomSelectLibrary();
-        case Libraries.IMask:
-            return new Resources.IMaskLibrary();
-        case Libraries.StarRating:
-            return new Resources.StarRatingLibrary();
-        case Libraries.PrismJs:
-            return new Resources.PrismJsLibrary();
-        case Libraries.PrismJsDarkTheme:
-            return new Resources.PrismJsDarkTheme();
-        case Libraries.PrismJsOkaidiaTheme:
-            return new Resources.PrismJsOkaidiaTheme();
-        case Libraries.PrismJsGitHubTheme:
-            return new Resources.PrismJsGitHubTheme();
-        case Libraries.PrismJsTomorrowNightTheme:
-            return new Resources.PrismJsTomorrowNightTheme();
-        case Libraries.PrismJsVsTheme:
-            return new Resources.PrismJsVsTheme();
-        case Libraries.SmartTab:
-            return new Resources.SmartTabLibrary();
-        case Libraries.SmartWizard:
-            return new Resources.SmartWizardLibrary();
-        case Libraries.FontAwesome6:
-            return new Resources.FontAwesome6Library();
-        case Libraries.FontAwesome5:
-            return new Resources.FontAwesome5Library();
-        default:
-            throw new ArgumentException($"Unsupported library: {libraries}");
+            case Libraries.Popper:
+                return new PopperLibrary();
+            case Libraries.ScrollingText:
+                return new ScrollingTextLibrary();
+            case Libraries.Quill:
+                return new Resources.QuillLibrary();
+            case Libraries.TomSelect:
+                return new Resources.TomSelectLibrary();
+            case Libraries.IMask:
+                return new Resources.IMaskLibrary();
+            case Libraries.StarRating:
+                return new Resources.StarRatingLibrary();
+            case Libraries.PrismJs:
+                return new Resources.PrismJsLibrary();
+            case Libraries.PrismJsDarkTheme:
+                return new Resources.PrismJsDarkTheme();
+            case Libraries.PrismJsOkaidiaTheme:
+                return new Resources.PrismJsOkaidiaTheme();
+            case Libraries.PrismJsGitHubTheme:
+                return new Resources.PrismJsGitHubTheme();
+            case Libraries.PrismJsTomorrowNightTheme:
+                return new Resources.PrismJsTomorrowNightTheme();
+            case Libraries.PrismJsVsTheme:
+                return new Resources.PrismJsVsTheme();
+            case Libraries.SmartTab:
+                return new Resources.SmartTabLibrary();
+            case Libraries.SmartWizard:
+                return new Resources.SmartWizardLibrary();
+            case Libraries.FontAwesome6:
+                return new Resources.FontAwesome6Library();
+            case Libraries.FontAwesome5:
+                return new Resources.FontAwesome5Library();
+            default:
+                throw new ArgumentException($"Unsupported library: {libraries}");
         }
     }
 }

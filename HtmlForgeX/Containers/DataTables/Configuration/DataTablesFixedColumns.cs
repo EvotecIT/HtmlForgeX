@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Fixed Columns configuration for DataTables
 /// </summary>
-public class DataTablesFixedColumns
-{
+public class DataTablesFixedColumns {
     /// <summary>Number of columns to fix on the left</summary>
     [JsonPropertyName("leftColumns")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

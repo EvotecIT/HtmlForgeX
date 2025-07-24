@@ -329,7 +329,7 @@ public class ApexCharts : Element {
         if (Type == ApexChartType.Pie && MultipleSeries.Count == 0 && Series.Count == 0) {
             Type = ApexChartType.Line;
         }
-        
+
         var series = new ApexSeriesData { Name = seriesName };
         foreach (var value in data) {
             series.Data.Add(value);
@@ -540,11 +540,11 @@ public class ApexCharts : Element {
         if (Type is ApexChartType.Funnel or ApexChartType.Column) {
             chartType = ApexChartType.Bar;
         }
-        
+
         var chartOptions = new Dictionary<string, object> {
             ["type"] = chartType
         };
-        
+
         var options = new Dictionary<string, object> {
             ["chart"] = chartOptions
         };
@@ -592,7 +592,7 @@ public class ApexCharts : Element {
 
         if (Labels.Count > 0) {
             // Don't add labels for certain chart types that use x/y data format or need xaxis categories
-            if (Type != ApexChartType.Treemap && Type != ApexChartType.Heatmap && 
+            if (Type != ApexChartType.Treemap && Type != ApexChartType.Heatmap &&
                 Type != ApexChartType.Scatter && Type != ApexChartType.Bubble &&
                 Type != ApexChartType.Column && Type != ApexChartType.Bar &&
                 Type != ApexChartType.Line && Type != ApexChartType.Area) {
@@ -601,9 +601,9 @@ public class ApexCharts : Element {
         }
 
         // Set xaxis categories for charts that need them
-        if (Labels.Count > 0 && (Type == ApexChartType.Column || Type == ApexChartType.Bar || 
+        if (Labels.Count > 0 && (Type == ApexChartType.Column || Type == ApexChartType.Bar ||
             Type == ApexChartType.Line || Type == ApexChartType.Area)) {
-            
+
             // Check if xaxis is already configured in Options
             if (!Options.ContainsKey("xaxis")) {
                 options["xaxis"] = new Dictionary<string, object> { ["categories"] = Labels };

@@ -1,4 +1,4 @@
-﻿namespace HtmlForgeX;
+namespace HtmlForgeX;
 
 /// <summary>
 /// Self reference configuration for edges that connect a node to itself.

@@ -327,7 +327,7 @@ public static class VisNetworkCustomShapes {
     /// </summary>
     /// <param name="name">The name of the shape.</param>
     /// <param name="renderFunction">The JavaScript render function.</param>
-    public static VisNetworkCustomShape Custom(string name, string renderFunction) => 
+    public static VisNetworkCustomShape Custom(string name, string renderFunction) =>
         new(name, renderFunction);
 
     /// <summary>

@@ -57,7 +57,7 @@ public class QuillToolbarConverter : JsonConverter<object> {
         writer.WriteStartArray();
         foreach (var group in groups) {
             writer.WriteStartArray();
-            
+
             foreach (var format in group) {
                 if (format == QuillFormat.List) {
                     // Expand List into two button objects
@@ -65,7 +65,7 @@ public class QuillToolbarConverter : JsonConverter<object> {
                     writer.WritePropertyName("list");
                     writer.WriteStringValue("ordered");
                     writer.WriteEndObject();
-                    
+
                     writer.WriteStartObject();
                     writer.WritePropertyName("list");
                     writer.WriteStringValue("bullet");
@@ -76,7 +76,7 @@ public class QuillToolbarConverter : JsonConverter<object> {
                     writer.WritePropertyName("indent");
                     writer.WriteStringValue("-1");
                     writer.WriteEndObject();
-                    
+
                     writer.WriteStartObject();
                     writer.WritePropertyName("indent");
                     writer.WriteStringValue("+1");
@@ -86,7 +86,7 @@ public class QuillToolbarConverter : JsonConverter<object> {
                     writer.WriteStringValue(GetFormatDescription(format));
                 }
             }
-            
+
             writer.WriteEndArray();
         }
         writer.WriteEndArray();
@@ -171,7 +171,7 @@ public class QuillToolbarConverter : JsonConverter<object> {
                 writer.WriteStartArray();
                 writer.WriteStartObject();
                 writer.WritePropertyName(dropdown.Type);
-                
+
                 if (dropdown.Type == "align" && dropdown.Options.Count == 0) {
                     // Align with no options should be an empty array
                     writer.WriteStartArray();
@@ -201,7 +201,7 @@ public class QuillToolbarConverter : JsonConverter<object> {
                     }
                     writer.WriteEndArray();
                 }
-                
+
                 writer.WriteEndObject();
                 writer.WriteEndArray();
             } else if (item is QuillToolbarGroup group) {
@@ -259,7 +259,7 @@ public class QuillToolbarConfig {
         Items.Add(new QuillToolbarGroup { Formats = formats.ToList() });
         return this;
     }
-    
+
     /// <summary>
     /// Adds list buttons (ordered and bullet) to the toolbar.
     /// </summary>
@@ -268,7 +268,7 @@ public class QuillToolbarConfig {
         Items.Add(new QuillListButton { Value = "bullet" });
         return this;
     }
-    
+
     /// <summary>
     /// Adds indent buttons (outdent and indent) to the toolbar.
     /// </summary>
@@ -277,7 +277,7 @@ public class QuillToolbarConfig {
         Items.Add(new QuillIndentButton { Value = "+1" });
         return this;
     }
-    
+
     /// <summary>
     /// Adds list and indent buttons in a single group.
     /// </summary>

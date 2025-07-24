@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// when building SearchBuilder criteria.  The enum values are converted to the
 /// strings required by DataTables through <see cref="DataTablesSearchEnumExtensions"/>.
 /// </summary>
-public enum DataTablesSearchCondition
-{
+public enum DataTablesSearchCondition {
     /// <summary>Equality comparison.</summary>
     Equals,
 

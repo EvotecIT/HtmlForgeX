@@ -1,5 +1,5 @@
-using System.Text;
 using System.Net;
+using System.Text;
 
 namespace HtmlForgeX;
 
@@ -13,7 +13,7 @@ namespace HtmlForgeX;
 public class VisNetworkHtmlNode {
     private StringBuilder? _htmlContent;
     private bool _isHtmlNode = true;
-    
+
     /// <summary>
     /// Gets the unique identifier of the node.
     /// </summary>
@@ -48,13 +48,13 @@ public class VisNetworkHtmlNode {
     /// <returns>The current instance for method chaining</returns>
     public VisNetworkHtmlNode WithCard(string header, string body, string? headerColor = null) {
         var headerStyle = headerColor != null ? $" style='background-color: {headerColor}; color: white; padding: 8px;'" : " style='padding: 8px; background-color: #f5f5f5;'";
-        
+
         _htmlContent = new StringBuilder();
         _htmlContent.Append($"<div style='border: 1px solid #ddd; border-radius: 4px; overflow: hidden;'>");
         _htmlContent.Append($"<div{headerStyle}><strong>{WebUtility.HtmlEncode(header)}</strong></div>");
         _htmlContent.Append($"<div style='padding: 8px;'>{WebUtility.HtmlEncode(body)}</div>");
         _htmlContent.Append("</div>");
-        
+
         return this;
     }
 
@@ -70,14 +70,14 @@ public class VisNetworkHtmlNode {
         _htmlContent.Append($"<div style='padding: 8px;'>");
         _htmlContent.Append($"<strong>{WebUtility.HtmlEncode(title)}</strong>");
         _htmlContent.Append(ordered ? "<ol>" : "<ul>");
-        
+
         foreach (var item in items) {
             _htmlContent.Append($"<li>{WebUtility.HtmlEncode(item)}</li>");
         }
-        
+
         _htmlContent.Append(ordered ? "</ol>" : "</ul>");
         _htmlContent.Append("</div>");
-        
+
         return this;
     }
 
@@ -90,14 +90,14 @@ public class VisNetworkHtmlNode {
     public VisNetworkHtmlNode WithTable(string[] headers, string[][] rows) {
         _htmlContent = new StringBuilder();
         _htmlContent.Append("<table style='border-collapse: collapse; width: 100%;'>");
-        
+
         // Headers
         _htmlContent.Append("<thead><tr>");
         foreach (var header in headers) {
             _htmlContent.Append($"<th style='border: 1px solid #ddd; padding: 4px; background-color: #f2f2f2;'>{WebUtility.HtmlEncode(header)}</th>");
         }
         _htmlContent.Append("</tr></thead>");
-        
+
         // Rows
         _htmlContent.Append("<tbody>");
         foreach (var row in rows) {
@@ -108,7 +108,7 @@ public class VisNetworkHtmlNode {
             _htmlContent.Append("</tr>");
         }
         _htmlContent.Append("</tbody></table>");
-        
+
         return this;
     }
 
@@ -121,14 +121,14 @@ public class VisNetworkHtmlNode {
     /// <returns>The current instance for method chaining</returns>
     public VisNetworkHtmlNode WithProgressBar(string label, int percentage, string color = "#4CAF50") {
         percentage = Math.Max(0, Math.Min(100, percentage)); // Clamp to 0-100
-        
+
         _htmlContent = new StringBuilder();
         _htmlContent.Append($"<div style='padding: 8px;'>");
         _htmlContent.Append($"<div>{WebUtility.HtmlEncode(label)}</div>");
         _htmlContent.Append($"<div style='width: 150px; background-color: #f0f0f0; border-radius: 4px; overflow: hidden;'>");
         _htmlContent.Append($"<div style='width: {percentage}%; background-color: {color}; height: 20px; text-align: center; color: white;'>{percentage}%</div>");
         _htmlContent.Append("</div></div>");
-        
+
         return this;
     }
 
@@ -144,7 +144,7 @@ public class VisNetworkHtmlNode {
         _htmlContent.Append($"<span style='background-color: {backgroundColor}; color: {textColor}; padding: 4px 8px; border-radius: 12px; font-size: 14px;'>");
         _htmlContent.Append(WebUtility.HtmlEncode(text));
         _htmlContent.Append("</span>");
-        
+
         return this;
     }
 
@@ -160,13 +160,13 @@ public class VisNetworkHtmlNode {
         _htmlContent.Append($"<div style='padding: 8px; text-align: center;'>");
         _htmlContent.Append($"<div style='display: inline-block; width: 12px; height: 12px; border-radius: 50%; background-color: {iconColor}; margin-right: 8px;'></div>");
         _htmlContent.Append($"<strong>{WebUtility.HtmlEncode(status)}</strong>");
-        
+
         if (description != null) {
             _htmlContent.Append($"<div style='font-size: 12px; color: #666; margin-top: 4px;'>{WebUtility.HtmlEncode(description)}</div>");
         }
-        
+
         _htmlContent.Append("</div>");
-        
+
         return this;
     }
 
@@ -181,19 +181,19 @@ public class VisNetworkHtmlNode {
     public VisNetworkHtmlNode WithImage(string imageUrl, string? caption = null, int? width = null, int? height = null) {
         _htmlContent = new StringBuilder();
         _htmlContent.Append("<div style='text-align: center;'>");
-        
+
         var imgStyle = "max-width: 100%;";
         if (width.HasValue) imgStyle += $" width: {width}px;";
         if (height.HasValue) imgStyle += $" height: {height}px;";
-        
+
         _htmlContent.Append($"<img src='{WebUtility.HtmlEncode(imageUrl)}' style='{imgStyle}' />");
-        
+
         if (caption != null) {
             _htmlContent.Append($"<div style='font-size: 12px; color: #666; margin-top: 4px;'>{WebUtility.HtmlEncode(caption)}</div>");
         }
-        
+
         _htmlContent.Append("</div>");
-        
+
         return this;
     }
 
@@ -323,11 +323,11 @@ public class VisNetworkHtmlBuilder {
         _html.Append("<ul");
         if (!string.IsNullOrEmpty(style)) _html.Append($" style='{style}'");
         _html.Append(">");
-        
+
         foreach (var item in items) {
             _html.Append($"<li>{WebUtility.HtmlEncode(item)}</li>");
         }
-        
+
         _html.Append("</ul>");
         return this;
     }

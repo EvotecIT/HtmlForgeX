@@ -1,5 +1,6 @@
-using System.Text;
 using System.Linq;
+using System.Text;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;

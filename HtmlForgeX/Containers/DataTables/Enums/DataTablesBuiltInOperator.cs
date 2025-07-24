@@ -6,8 +6,7 @@ namespace HtmlForgeX;
 /// <see cref="DataTablesSearchBuiltIns"/> and exposed here as a strongly
 /// typed list for convenience.
 /// </summary>
-public enum DataTablesBuiltInOperator
-{
+public enum DataTablesBuiltInOperator {
     /// <summary>Checks if value starts with the input.</summary>
     StartsWith,
 

@@ -68,20 +68,20 @@ public class TablerRadio : Element {
             .Id($"{_name}_{_value}")
             .Attribute("name", _name)
             .Attribute("value", _value);
-        
+
         if (_checked) input.Attribute("checked", "checked");
         if (_disabled) input.Attribute("disabled", "disabled");
-        
+
         wrapper.Value(input);
-        
+
         if (!string.IsNullOrEmpty(_label)) {
             wrapper.Value(new HtmlTag("span").Class("form-check-label").Value(_label));
         }
-        
+
         if (!string.IsNullOrEmpty(_description)) {
             wrapper.Value(new HtmlTag("span").Class("form-check-description").Value(_description));
         }
-        
+
         return wrapper.ToString();
     }
 }

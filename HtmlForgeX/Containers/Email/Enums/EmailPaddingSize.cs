@@ -4,8 +4,7 @@ namespace HtmlForgeX;
 /// Predefined email padding sizes for consistent spacing throughout email layouts.
 /// Provides easy-to-use options while allowing custom values for advanced users.
 /// </summary>
-public enum EmailPaddingSize
-{
+public enum EmailPaddingSize {
     /// <summary>
     /// No padding - 0px. Use for tight layouts or when you want elements to touch edges.
     /// </summary>
@@ -45,17 +44,14 @@ public enum EmailPaddingSize
 /// <summary>
 /// Extension methods for EmailPaddingSize enum.
 /// </summary>
-public static class EmailPaddingSizeExtensions
-{
+public static class EmailPaddingSizeExtensions {
     /// <summary>
     /// Converts EmailPaddingSize to CSS padding value.
     /// </summary>
     /// <param name="size">The padding size.</param>
     /// <returns>CSS padding value as string.</returns>
-    public static string ToCssValue(this EmailPaddingSize size)
-    {
-        return size switch
-        {
+    public static string ToCssValue(this EmailPaddingSize size) {
+        return size switch {
             EmailPaddingSize.None => "0px",
             EmailPaddingSize.ExtraSmall => "4px",
             EmailPaddingSize.Small => "8px",
@@ -72,10 +68,8 @@ public static class EmailPaddingSizeExtensions
     /// </summary>
     /// <param name="size">The padding size.</param>
     /// <returns>Description string.</returns>
-    public static string GetDescription(this EmailPaddingSize size)
-    {
-        return size switch
-        {
+    public static string GetDescription(this EmailPaddingSize size) {
+        return size switch {
             EmailPaddingSize.None => "None (0px) - No spacing",
             EmailPaddingSize.ExtraSmall => "Extra Small (4px) - Minimal spacing",
             EmailPaddingSize.Small => "Small (8px) - Compact spacing",

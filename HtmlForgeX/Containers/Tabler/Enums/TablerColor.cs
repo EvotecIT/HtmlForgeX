@@ -1,5 +1,5 @@
-using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace HtmlForgeX;
 

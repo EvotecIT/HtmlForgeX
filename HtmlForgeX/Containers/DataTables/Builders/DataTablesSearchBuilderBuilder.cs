@@ -6,8 +6,7 @@ namespace HtmlForgeX;
 /// allows complex groups and custom operators to be declared using a C# API
 /// and serialized to the structure expected by DataTables.
 /// </summary>
-public class DataTablesSearchBuilderBuilder
-{
+public class DataTablesSearchBuilderBuilder {
     private readonly DataTablesSearchBuilder _searchBuilder = new();
     private readonly List<DataTablesSearchGroup> _groups = new();
     private readonly Dictionary<string, string> _operators = new();
@@ -17,8 +16,7 @@ public class DataTablesSearchBuilderBuilder
     /// </summary>
     /// <param name="enable">Whether SearchBuilder should be enabled.</param>
     /// <returns>The current builder instance.</returns>
-    public DataTablesSearchBuilderBuilder Enable(bool enable = true)
-    {
+    public DataTablesSearchBuilderBuilder Enable(bool enable = true) {
         _searchBuilder.Enable = enable;
         return this;
     }
@@ -28,8 +26,7 @@ public class DataTablesSearchBuilderBuilder
     /// </summary>
     /// <param name="logic">Value to assign, typically <c>"AND"</c> or <c>"OR"</c>.</param>
     /// <returns>The current builder instance.</returns>
-    public DataTablesSearchBuilderBuilder Logic(string logic)
-    {
+    public DataTablesSearchBuilderBuilder Logic(string logic) {
         _searchBuilder.Logic = logic;
         return this;
     }
@@ -46,8 +43,7 @@ public class DataTablesSearchBuilderBuilder
     /// </summary>
     /// <param name="count">Number of conditions.</param>
     /// <returns>The current builder instance.</returns>
-    public DataTablesSearchBuilderBuilder Conditions(int count)
-    {
+    public DataTablesSearchBuilderBuilder Conditions(int count) {
         _searchBuilder.Conditions = count;
         return this;
     }
@@ -58,8 +54,7 @@ public class DataTablesSearchBuilderBuilder
     /// </summary>
     /// <param name="greyscale">Value indicating whether grey-scale styling should be used.</param>
     /// <returns>The current builder instance.</returns>
-    public DataTablesSearchBuilderBuilder Greyscale(bool greyscale = true)
-    {
+    public DataTablesSearchBuilderBuilder Greyscale(bool greyscale = true) {
         _searchBuilder.Greyscale = greyscale;
         return this;
     }
@@ -70,8 +65,7 @@ public class DataTablesSearchBuilderBuilder
     /// </summary>
     /// <param name="predefined">Object describing SearchBuilder state.</param>
     /// <returns>The current builder instance.</returns>
-    public DataTablesSearchBuilderBuilder PreDefined(object predefined)
-    {
+    public DataTablesSearchBuilderBuilder PreDefined(object predefined) {
         _searchBuilder.PreDefined = predefined;
         return this;
     }
@@ -81,8 +75,7 @@ public class DataTablesSearchBuilderBuilder
     /// </summary>
     /// <param name="configure">Delegate used to configure the group.</param>
     /// <returns>The current builder instance.</returns>
-    public DataTablesSearchBuilderBuilder Group(Action<DataTablesSearchGroupBuilder> configure)
-    {
+    public DataTablesSearchBuilderBuilder Group(Action<DataTablesSearchGroupBuilder> configure) {
         if (configure is null)
             throw new ArgumentNullException(nameof(configure));
 
@@ -98,8 +91,7 @@ public class DataTablesSearchBuilderBuilder
     /// <param name="name">Name of the operator as used by DataTables.</param>
     /// <param name="javascript">JavaScript implementation of the operator.</param>
     /// <returns>The current builder instance.</returns>
-    public DataTablesSearchBuilderBuilder CustomOperator(string name, string javascript)
-    {
+    public DataTablesSearchBuilderBuilder CustomOperator(string name, string javascript) {
         _operators[name] = javascript;
         return this;
     }
@@ -109,8 +101,7 @@ public class DataTablesSearchBuilderBuilder
     /// </summary>
     /// <param name="op">Identifier of the built-in operator.</param>
     /// <returns>The current builder instance.</returns>
-    public DataTablesSearchBuilderBuilder CustomOperator(DataTablesBuiltInOperator op)
-    {
+    public DataTablesSearchBuilderBuilder CustomOperator(DataTablesBuiltInOperator op) {
         var (name, script) = DataTablesSearchBuiltIns.Scripts[op];
         return CustomOperator(name, script);
     }
@@ -119,20 +110,16 @@ public class DataTablesSearchBuilderBuilder
     /// Finalises configuration and returns the resulting <see cref="DataTablesSearchBuilder"/> instance.
     /// </summary>
     /// <returns>The configured <see cref="DataTablesSearchBuilder"/>.</returns>
-    internal DataTablesSearchBuilder Build()
-    {
-        if (_groups.Count > 0)
-        {
+    internal DataTablesSearchBuilder Build() {
+        if (_groups.Count > 0) {
             _searchBuilder.ConditionGroups = _groups;
         }
 
-        if (_operators.Count > 0)
-        {
+        if (_operators.Count > 0) {
             _searchBuilder.CustomOperators = _operators;
         }
 
-        if (_searchBuilder.Enable is null)
-        {
+        if (_searchBuilder.Enable is null) {
             _searchBuilder.Enable = true;
         }
 
@@ -144,8 +131,7 @@ public class DataTablesSearchBuilderBuilder
 /// Fluent builder used to construct a single condition group for the
 /// SearchBuilder configuration.
 /// </summary>
-public class DataTablesSearchGroupBuilder
-{
+public class DataTablesSearchGroupBuilder {
     private readonly DataTablesSearchGroup _group = new();
 
     /// <summary>
@@ -153,8 +139,7 @@ public class DataTablesSearchGroupBuilder
     /// </summary>
     /// <param name="logic">Typically <c>"AND"</c> or <c>"OR"</c>.</param>
     /// <returns>The current group builder.</returns>
-    public DataTablesSearchGroupBuilder Logic(string logic)
-    {
+    public DataTablesSearchGroupBuilder Logic(string logic) {
         _group.Logic = logic;
         return this;
     }
@@ -171,11 +156,9 @@ public class DataTablesSearchGroupBuilder
     /// <param name="condition">Condition identifier as expected by DataTables.</param>
     /// <param name="values">Values used by the condition.</param>
     /// <returns>The current group builder.</returns>
-    public DataTablesSearchGroupBuilder Criterion(string data, string condition, params object[] values)
-    {
+    public DataTablesSearchGroupBuilder Criterion(string data, string condition, params object[] values) {
         _group.Criteria ??= new List<DataTablesSearchCriterion>();
-        _group.Criteria.Add(new DataTablesSearchCriterion
-        {
+        _group.Criteria.Add(new DataTablesSearchCriterion {
             Data = data,
             Condition = condition,
             Value = values

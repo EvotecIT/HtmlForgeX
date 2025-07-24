@@ -1,7 +1,6 @@
 namespace HtmlForgeX;
 
-public partial class EmailImage : Element
-{
+public partial class EmailImage : Element {
     #region Properties
 
     /// <summary>Gets or sets the image source URL.</summary>

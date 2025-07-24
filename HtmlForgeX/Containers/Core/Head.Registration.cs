@@ -8,8 +8,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Script and style registration for <see cref="Head"/>.
 /// </summary>
-public partial class Head
-{
+public partial class Head {
     /// <summary>Collection of inline &lt;style&gt; definitions or CSS strings.</summary>
     public List<object> Styles { get; } = new();
 
@@ -34,22 +33,19 @@ public partial class Head
     private readonly HashSet<string> _jsInlineSet = new();
 
     /// <summary>Adds a strongly typed style element.</summary>
-    public Head AddStyle(Style style)
-    {
+    public Head AddStyle(Style style) {
         Styles.Add(style);
         return this;
     }
 
     /// <summary>Adds a raw CSS style string.</summary>
-    public Head AddStyle(string style)
-    {
+    public Head AddStyle(string style) {
         Styles.Add(style);
         return this;
     }
 
     /// <summary>Adds a set of minimal default styles used by many generated documents.</summary>
-    public Head AddDefaultStyles()
-    {
+    public Head AddDefaultStyles() {
         Styles.Add(
             """
             body {
@@ -70,46 +66,35 @@ public partial class Head
     }
 
     /// <summary>Registers an external CSS link if not already added.</summary>
-    public void AddCssLink(string link)
-    {
-        lock (_syncRoot)
-        {
-            if (_cssLinkSet.Add(link))
-            {
+    public void AddCssLink(string link) {
+        lock (_syncRoot) {
+            if (_cssLinkSet.Add(link)) {
                 CssLinks.Add($"<link rel=\"stylesheet\" href=\"{link}\">");
             }
         }
     }
 
     /// <summary>Registers an external JavaScript link if not already added.</summary>
-    public void AddJsLink(string link)
-    {
-        lock (_syncRoot)
-        {
-            if (_jsLinkSet.Add(link))
-            {
+    public void AddJsLink(string link) {
+        lock (_syncRoot) {
+            if (_jsLinkSet.Add(link)) {
                 JsLinks.Add($"<script src=\"{link}\"></script>");
             }
         }
     }
 
     /// <summary>Registers an external font link if not already added.</summary>
-    public void AddFontLink(string link)
-    {
-        lock (_syncRoot)
-        {
-            if (_fontLinkSet.Add(link))
-            {
+    public void AddFontLink(string link) {
+        lock (_syncRoot) {
+            if (_fontLinkSet.Add(link)) {
                 FontLinks.Add($"<link href=\"{link}\" rel=\"stylesheet\">");
             }
         }
     }
 
     /// <summary>Sets the font-family for the specified selector.</summary>
-    public void SetFontFamily(string selector, params string[] fonts)
-    {
-        if (fonts == null || fonts.Length == 0)
-        {
+    public void SetFontFamily(string selector, params string[] fonts) {
+        if (fonts == null || fonts.Length == 0) {
             return;
         }
 
@@ -123,10 +108,8 @@ public partial class Head
     private static string FormatFonts(IEnumerable<string> fonts) =>
         string.Join(", ", fonts.Where(font => !string.IsNullOrWhiteSpace(font)).Select(QuoteFontIfNeeded));
 
-    private static string QuoteFontIfNeeded(string font)
-    {
-        if (string.IsNullOrWhiteSpace(font))
-        {
+    private static string QuoteFontIfNeeded(string font) {
+        if (string.IsNullOrWhiteSpace(font)) {
             return font;
         }
 
@@ -135,49 +118,38 @@ public partial class Head
     }
 
     /// <summary>Adds inline CSS content to the document head.</summary>
-    public void AddCssInline(string css)
-    {
+    public void AddCssInline(string css) {
         css = Regex.Replace(css.Trim(), @"\s+", " ");
-        lock (_syncRoot)
-        {
-            if (_cssInlineSet.Add(css))
-            {
+        lock (_syncRoot) {
+            if (_cssInlineSet.Add(css)) {
                 Styles.Add($"<style>{css}</style>");
             }
         }
     }
 
     /// <summary>Adds inline JavaScript to the document head.</summary>
-    public void AddJsInline(string js)
-    {
+    public void AddJsInline(string js) {
         js = js.Trim();
-        lock (_syncRoot)
-        {
-            if (_jsInlineSet.Add(js))
-            {
+        lock (_syncRoot) {
+            if (_jsInlineSet.Add(js)) {
                 Scripts.Add($"<script>{js}</script>");
             }
         }
     }
 
-    private void AddRawScript(string script)
-    {
+    private void AddRawScript(string script) {
         script = script.Trim();
-        lock (_syncRoot)
-        {
-            if (_jsInlineSet.Add(script))
-            {
+        lock (_syncRoot) {
+            if (_jsInlineSet.Add(script)) {
                 Scripts.Add(script);
             }
         }
     }
 
     /// <summary>Adds analytics tracking code based on the specified provider.</summary>
-    public bool AddAnalytics(AnalyticsProvider provider, string identifier)
-    {
+    public bool AddAnalytics(AnalyticsProvider provider, string identifier) {
         var encodedIdentifier = Uri.EscapeDataString(identifier);
-        switch (provider)
-        {
+        switch (provider) {
             case AnalyticsProvider.GoogleAnalytics:
                 AddRawScript($"<script async src=\"https://www.googletagmanager.com/gtag/js?id={encodedIdentifier}\"></script>");
                 AddRawScript($@"<script>

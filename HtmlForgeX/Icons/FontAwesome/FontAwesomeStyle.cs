@@ -8,27 +8,27 @@ public enum FontAwesomeStyle {
     /// Solid icons (fas) - filled icons, default style
     /// </summary>
     Solid,
-    
+
     /// <summary>
     /// Regular icons (far) - outlined icons
     /// </summary>
     Regular,
-    
+
     /// <summary>
     /// Light icons (fal) - thinner outlined icons (Pro only)
     /// </summary>
     Light,
-    
+
     /// <summary>
     /// Duotone icons (fad) - two-tone icons (Pro only)
     /// </summary>
     Duotone,
-    
+
     /// <summary>
     /// Brands icons (fab) - brand/logo icons
     /// </summary>
     Brands,
-    
+
     /// <summary>
     /// Thin icons (fat) - very thin icons (Pro only)
     /// </summary>
@@ -53,7 +53,7 @@ public static class FontAwesomeStyleExtensions {
             _ => "fas"
         };
     }
-    
+
     /// <summary>
     /// Gets the font family name for vis.js usage
     /// </summary>

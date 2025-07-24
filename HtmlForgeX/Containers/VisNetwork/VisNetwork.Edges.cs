@@ -73,7 +73,7 @@ public partial class VisNetwork {
         // For raw objects, we need to convert them to VisNetworkEdgeOptions
         // This is a simplified conversion - in real usage, users should use the strongly-typed API
         var edgeOptions = new VisNetworkEdgeOptions();
-        
+
         if (edge is IDictionary<string, object> dict) {
             if (dict.TryGetValue("id", out var id)) edgeOptions.Id = id;
             if (dict.TryGetValue("from", out var from)) edgeOptions.From = from;
@@ -84,11 +84,11 @@ public partial class VisNetwork {
             // Handle anonymous objects and other types using reflection
             var type = edge.GetType();
             var properties = type.GetProperties();
-            
+
             foreach (var prop in properties) {
                 var value = prop.GetValue(edge);
                 if (value == null) continue;
-                
+
                 switch (prop.Name.ToLowerInvariant()) {
                     case "id":
                         edgeOptions.Id = value;
@@ -158,7 +158,7 @@ public partial class VisNetwork {
                 }
             }
         }
-        
+
         _edges.Add(edgeOptions);
         return this;
     }

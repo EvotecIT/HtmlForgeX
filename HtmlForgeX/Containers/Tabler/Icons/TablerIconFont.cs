@@ -102,26 +102,26 @@ public class TablerIconFont : Element {
     public override string ToString() {
         var tag = new HtmlTag("i");
         var classes = new List<string> { "ti", $"ti-{_iconName}" };
-        
+
         // Add custom classes
         classes.AddRange(_additionalClasses);
-        
+
         // Set all classes
         tag.Class(string.Join(" ", classes));
-        
+
         // Add inline styles
         if (!string.IsNullOrEmpty(_size)) {
             _styles["font-size"] = _size!;
         }
-        
+
         if (!string.IsNullOrEmpty(_color)) {
             _styles["color"] = _color!;
         }
-        
+
         foreach (var style in _styles) {
             tag.Style(style.Key, style.Value);
         }
-        
+
         return tag.ToString();
     }
 }

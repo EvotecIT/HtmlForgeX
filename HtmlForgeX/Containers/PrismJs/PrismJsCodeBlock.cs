@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// PrismJS syntax-highlighted code block with fluent API
 /// </summary>
-public class PrismJsCodeBlock : Element
-{
+public class PrismJsCodeBlock : Element {
     /// <summary>Programming language for syntax highlighting</summary>
     public PrismJsLanguage Language { get; set; } = PrismJsLanguage.None;
 
@@ -41,14 +40,12 @@ public class PrismJsCodeBlock : Element
     public List<string> CssClasses { get; set; } = new List<string>();
 
     /// <summary>Initializes a new PrismJS code block</summary>
-    public PrismJsCodeBlock()
-    {
+    public PrismJsCodeBlock() {
 
     }
 
     /// <summary>Initializes a new PrismJS code block with code content</summary>
-    public PrismJsCodeBlock(string code, PrismJsLanguage language = PrismJsLanguage.None)
-    {
+    public PrismJsCodeBlock(string code, PrismJsLanguage language = PrismJsLanguage.None) {
         Code = code;
         Language = language;
     }
@@ -56,78 +53,67 @@ public class PrismJsCodeBlock : Element
     #region Fluent API Methods
 
     /// <summary>Set the programming language for syntax highlighting</summary>
-    public PrismJsCodeBlock SetLanguage(PrismJsLanguage language)
-    {
+    public PrismJsCodeBlock SetLanguage(PrismJsLanguage language) {
         Language = language;
         return this;
     }
 
     /// <summary>Set the theme for syntax highlighting</summary>
-    public PrismJsCodeBlock SetTheme(PrismJsTheme theme)
-    {
+    public PrismJsCodeBlock SetTheme(PrismJsTheme theme) {
         Theme = theme;
         return this;
     }
 
     /// <summary>Set the code content</summary>
-    public PrismJsCodeBlock SetCode(string code)
-    {
+    public PrismJsCodeBlock SetCode(string code) {
         Code = code;
         return this;
     }
 
     /// <summary>Set a title/caption for the code block</summary>
-    public PrismJsCodeBlock SetTitle(string title)
-    {
+    public PrismJsCodeBlock SetTitle(string title) {
         Title = title;
         return this;
     }
 
     /// <summary>Enable or disable line numbers</summary>
-    public PrismJsCodeBlock EnableLineNumbers(bool enable = true)
-    {
+    public PrismJsCodeBlock EnableLineNumbers(bool enable = true) {
         ShowLineNumbers = enable;
         return this;
     }
 
     /// <summary>Enable or disable copy to clipboard button</summary>
-    public PrismJsCodeBlock EnableCopyButton(bool enable = true)
-    {
+    public PrismJsCodeBlock EnableCopyButton(bool enable = true) {
         ShowCopyButton = enable;
         return this;
     }
 
     /// <summary>Highlight specific lines (1-based line numbers)</summary>
-    public PrismJsCodeBlock HighlightLine(params int[] lineNumbers)
-    {
+    public PrismJsCodeBlock HighlightLine(params int[] lineNumbers) {
         HighlightLines.AddRange(lineNumbers);
         return this;
     }
 
     /// <summary>Set the starting line number</summary>
-    public PrismJsCodeBlock SetStartLineNumber(int startLine)
-    {
+    public PrismJsCodeBlock SetStartLineNumber(int startLine) {
         StartLineNumber = startLine;
         return this;
     }
 
     /// <summary>Set maximum height with scrolling</summary>
-    public PrismJsCodeBlock SetMaxHeight(string height)
-    {
+    public PrismJsCodeBlock SetMaxHeight(string height) {
         MaxHeight = height;
         return this;
     }
 
     /// <summary>Enable word wrapping</summary>
-    public PrismJsCodeBlock EnableWordWrap(bool enable = true)
-    {
+    public PrismJsCodeBlock EnableWordWrap(bool enable = true) {
         WordWrap = enable;
         return this;
     }
 
     /// <summary>Add custom CSS classes</summary>
-    public PrismJsCodeBlock AddCssClass(params string[] classes)
-    {
+    public PrismJsCodeBlock AddCssClass(params string[] classes) {
         CssClasses.AddRange(classes);
         return this;
     }
@@ -196,43 +182,34 @@ public class PrismJsCodeBlock : Element
     #region Library Registration
 
     /// <summary>Registers the PrismJS library and theme-specific resources</summary>
-    protected internal override void RegisterLibraries()
-    {
+    protected internal override void RegisterLibraries() {
         // Register base PrismJS library
         Document?.AddLibrary(Libraries.PrismJs);
 
         // Register theme-specific library if not default
-        if (Theme != PrismJsTheme.Default)
-        {
+        if (Theme != PrismJsTheme.Default) {
             RegisterThemeLibrary();
         }
-        
+
         // Debug output
-        if (Document == null)
-        {
+        if (Document == null) {
             Console.WriteLine("ERROR: PrismJS element has no Document reference!");
-        }
-        else
-        {
+        } else {
             Console.WriteLine($"SUCCESS: PrismJS registered: Base={Document.Configuration.Libraries.ContainsKey(Libraries.PrismJs)}, Theme={Theme}");
         }
     }
 
     /// <summary>Registers theme-specific library resources</summary>
-    private void RegisterThemeLibrary()
-    {
+    private void RegisterThemeLibrary() {
         var themeLibrary = GetThemeLibrary();
-        if (themeLibrary.HasValue)
-        {
+        if (themeLibrary.HasValue) {
             Document?.AddLibrary(themeLibrary.Value);
         }
     }
 
     /// <summary>Gets the appropriate theme library enum for the current theme</summary>
-    private Libraries? GetThemeLibrary()
-    {
-        return Theme switch
-        {
+    private Libraries? GetThemeLibrary() {
+        return Theme switch {
             PrismJsTheme.Dark => Libraries.PrismJsDarkTheme,
             PrismJsTheme.Okaidia => Libraries.PrismJsOkaidiaTheme,
             PrismJsTheme.GitHub => Libraries.PrismJsGitHubTheme,
@@ -250,29 +227,25 @@ public class PrismJsCodeBlock : Element
     #region Build Methods
 
     /// <summary>Builds the HTML for the PrismJS code block</summary>
-    public override string ToString()
-    {
+    public override string ToString() {
         var html = new StringBuilder();
 
         // Build wrapper div
         html.AppendLine("<div class=\"prism-code-block\">");
 
         // Add title if specified
-        if (!string.IsNullOrEmpty(Title))
-        {
+        if (!string.IsNullOrEmpty(Title)) {
             html.AppendLine($"<div class=\"code-title\">{Title}</div>");
         }
 
         // Build CSS classes
         var cssClasses = new List<string>();
 
-        if (ShowLineNumbers)
-        {
+        if (ShowLineNumbers) {
             cssClasses.Add("line-numbers");
         }
 
-        if (WordWrap)
-        {
+        if (WordWrap) {
             cssClasses.Add("wrap");
         }
 
@@ -283,19 +256,16 @@ public class PrismJsCodeBlock : Element
         // Build data attributes
         var dataAttributes = new List<string>();
 
-        if (HighlightLines.Any())
-        {
+        if (HighlightLines.Any()) {
             var highlightData = string.Join(",", HighlightLines);
             dataAttributes.Add($"data-line=\"{highlightData}\"");
         }
 
-        if (ShowLineNumbers && StartLineNumber != 1)
-        {
+        if (ShowLineNumbers && StartLineNumber != 1) {
             dataAttributes.Add($"data-start=\"{StartLineNumber}\"");
         }
 
-        if (ShowCopyButton)
-        {
+        if (ShowCopyButton) {
             dataAttributes.Add("data-prismjs-copy=\"Copy\"");
         }
 
@@ -303,8 +273,7 @@ public class PrismJsCodeBlock : Element
 
         // Build style attribute
         var styles = new List<string>();
-        if (!string.IsNullOrEmpty(MaxHeight))
-        {
+        if (!string.IsNullOrEmpty(MaxHeight)) {
             styles.Add($"max-height: {MaxHeight}");
             styles.Add("overflow-y: auto");
         }
@@ -325,10 +294,8 @@ public class PrismJsCodeBlock : Element
     }
 
     /// <summary>Gets the CSS class for the specified language</summary>
-    private string GetLanguageClass()
-    {
-        return Language switch
-        {
+    private string GetLanguageClass() {
+        return Language switch {
             PrismJsLanguage.Html => "language-html",
             PrismJsLanguage.Css => "language-css",
             PrismJsLanguage.JavaScript => "language-javascript",
@@ -369,8 +336,7 @@ public class PrismJsCodeBlock : Element
     }
 
     /// <summary>Escapes HTML characters in code content</summary>
-    private string EscapeHtml(string code)
-    {
+    private string EscapeHtml(string code) {
         return code
             .Replace("&", "&amp;")
             .Replace("<", "&lt;")

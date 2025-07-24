@@ -1,4 +1,5 @@
 using System.Linq;
+
 using HtmlForgeX.Extensions;
 
 namespace HtmlForgeX;
@@ -27,7 +28,7 @@ public class EmailHeader : Element {
         // Header is just a container - no complex setup needed
     }
 
-        /// <summary>
+    /// <summary>
     /// Adds an element to the header.
     /// </summary>
     /// <param name="element">The element to add.</param>

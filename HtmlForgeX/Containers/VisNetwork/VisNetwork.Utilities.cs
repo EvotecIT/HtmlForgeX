@@ -43,8 +43,8 @@ public partial class VisNetwork {
         }
 
         void ProcessArrowType(object? arrowType) {
-            if (arrowType is VisNetworkArrowTypeOptions typeOptions && 
-                typeOptions.Src != null && 
+            if (arrowType is VisNetworkArrowTypeOptions typeOptions &&
+                typeOptions.Src != null &&
                 !typeOptions.Src.StartsWith("data:", StringComparison.OrdinalIgnoreCase)) {
                 typeOptions.Src = EmbedImage(typeOptions.Src, Document.Configuration.Images.EmbeddingTimeout);
             }
@@ -76,13 +76,13 @@ public partial class VisNetwork {
     public VisNetwork Cluster(Action<VisNetworkClusteringOptions> configure) {
         var options = new VisNetworkClusteringOptions();
         configure(options);
-        
+
         _clusteringCommands ??= new List<VisNetworkClusteringCommand>();
         _clusteringCommands.Add(new VisNetworkClusteringCommand {
             Method = "cluster",
             Options = options
         });
-        
+
         return this;
     }
 
@@ -95,14 +95,14 @@ public partial class VisNetwork {
     public VisNetwork ClusterByConnection(object nodeId, Action<VisNetworkClusterByConnectionOptions>? configure = null) {
         var options = new VisNetworkClusterByConnectionOptions { NodeId = nodeId };
         configure?.Invoke(options);
-        
+
         _clusteringCommands ??= new List<VisNetworkClusteringCommand>();
         _clusteringCommands.Add(new VisNetworkClusteringCommand {
             Method = "clusterByConnection",
             NodeId = nodeId,
             Options = options
         });
-        
+
         return this;
     }
 
@@ -115,14 +115,14 @@ public partial class VisNetwork {
     public VisNetwork ClusterByHubsize(int hubsize = 3, Action<VisNetworkClusterByHubsizeOptions>? configure = null) {
         var options = new VisNetworkClusterByHubsizeOptions { Hubsize = hubsize };
         configure?.Invoke(options);
-        
+
         _clusteringCommands ??= new List<VisNetworkClusteringCommand>();
         _clusteringCommands.Add(new VisNetworkClusteringCommand {
             Method = "clusterByHubsize",
             Hubsize = hubsize,
             Options = options
         });
-        
+
         return this;
     }
 
@@ -134,13 +134,13 @@ public partial class VisNetwork {
     public VisNetwork ClusterOutliers(Action<VisNetworkClusteringOptions>? configure = null) {
         var options = new VisNetworkClusteringOptions();
         configure?.Invoke(options);
-        
+
         _clusteringCommands ??= new List<VisNetworkClusteringCommand>();
         _clusteringCommands.Add(new VisNetworkClusteringCommand {
             Method = "clusterOutliers",
             Options = options
         });
-        
+
         return this;
     }
 
@@ -153,14 +153,14 @@ public partial class VisNetwork {
     public VisNetwork OpenCluster(object nodeId, Action<VisNetworkOpenClusterOptions>? configure = null) {
         var options = new VisNetworkOpenClusterOptions();
         configure?.Invoke(options);
-        
+
         _clusteringCommands ??= new List<VisNetworkClusteringCommand>();
         _clusteringCommands.Add(new VisNetworkClusteringCommand {
             Method = "openCluster",
             NodeId = nodeId,
             OpenOptions = options
         });
-        
+
         return this;
     }
 
@@ -173,19 +173,19 @@ public partial class VisNetwork {
     public VisNetwork ClusterByGroup(string groupName, Action<VisNetworkClusteringOptions>? configure = null) {
         var options = new VisNetworkClusteringOptions();
         configure?.Invoke(options);
-        
+
         // Set default join condition for group clustering
         options.JoinCondition ??= $@"
             function(nodeOptions, childNodeOptions) {{
                 return childNodeOptions && childNodeOptions.group === '{groupName}';
             }}";
-        
+
         _clusteringCommands ??= new List<VisNetworkClusteringCommand>();
         _clusteringCommands.Add(new VisNetworkClusteringCommand {
             Method = "cluster",
             Options = options
         });
-        
+
         return this;
     }
 
@@ -215,14 +215,14 @@ public partial class VisNetwork {
     public VisNetwork Fit(Action<VisNetworkFitOptions>? configure = null, int? delay = null) {
         var options = new VisNetworkFitOptions();
         configure?.Invoke(options);
-        
+
         _methodCalls ??= new List<VisNetworkMethodCall>();
         _methodCalls.Add(new VisNetworkMethodCall {
             Method = "fit",
             Parameters = options.Nodes == null ? null : new object[] { options },
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -236,14 +236,14 @@ public partial class VisNetwork {
     public VisNetwork Focus(object nodeId, Action<VisNetworkFocusOptions>? configure = null, int? delay = null) {
         var options = new VisNetworkFocusOptions();
         configure?.Invoke(options);
-        
+
         _methodCalls ??= new List<VisNetworkMethodCall>();
         _methodCalls.Add(new VisNetworkMethodCall {
             Method = "focus",
             Parameters = new object[] { nodeId, options },
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -256,14 +256,14 @@ public partial class VisNetwork {
     public VisNetwork MoveTo(Action<VisNetworkMoveToOptions> configure, int? delay = null) {
         var options = new VisNetworkMoveToOptions();
         configure(options);
-        
+
         _methodCalls ??= new List<VisNetworkMethodCall>();
         _methodCalls.Add(new VisNetworkMethodCall {
             Method = "moveTo",
             Parameters = new object[] { options },
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -281,7 +281,7 @@ public partial class VisNetwork {
             Parameters = new object[] { nodeIds, highlightEdges },
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -298,7 +298,7 @@ public partial class VisNetwork {
             Parameters = new object[] { edgeIds },
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -312,7 +312,7 @@ public partial class VisNetwork {
             Method = "unselectAll",
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -326,7 +326,7 @@ public partial class VisNetwork {
             Method = "startSimulation",
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -340,7 +340,7 @@ public partial class VisNetwork {
             Method = "stopSimulation",
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -357,7 +357,7 @@ public partial class VisNetwork {
             Parameters = iterations.HasValue ? new object[] { iterations.Value } : null,
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -371,7 +371,7 @@ public partial class VisNetwork {
         _methodCalls.Add(new VisNetworkMethodCall {
             Method = "getSeed"  // Actually sets the seed despite the name
         });
-        
+
         return this;
     }
 
@@ -385,7 +385,7 @@ public partial class VisNetwork {
             Method = "redraw",
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -403,7 +403,7 @@ public partial class VisNetwork {
             Parameters = parameters.Length > 0 ? parameters : null,
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -421,7 +421,7 @@ public partial class VisNetwork {
             Parameters = parameters.Length > 0 ? parameters : null,
             Delay = delay
         });
-        
+
         return this;
     }
 
@@ -532,7 +532,7 @@ public partial class VisNetwork {
     /// <returns>The current <see cref="VisNetwork"/> instance.</returns>
     public VisNetwork ExportPositions(string? callback = null, int? delay = null) {
         var exportCode = @"var positions = network.getPositions();";
-        
+
         if (!string.IsNullOrEmpty(callback)) {
             exportCode += $@"
             {callback}(positions);";

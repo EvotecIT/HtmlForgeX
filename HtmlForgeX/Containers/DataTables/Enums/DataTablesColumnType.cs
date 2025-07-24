@@ -3,8 +3,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Column data types for DataTables
 /// </summary>
-public enum DataTablesColumnType
-{
+public enum DataTablesColumnType {
     /// <summary>String/text data</summary>
     String,
 

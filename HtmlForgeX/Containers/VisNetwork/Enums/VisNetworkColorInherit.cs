@@ -11,17 +11,17 @@ public enum VisNetworkColorInherit {
     /// No color inheritance.
     /// </summary>
     False,
-    
+
     /// <summary>
     /// Inherit color from source node.
     /// </summary>
     From,
-    
+
     /// <summary>
     /// Inherit color from target node.
     /// </summary>
     To,
-    
+
     /// <summary>
     /// Inherit color from both nodes (gradient).
     /// </summary>

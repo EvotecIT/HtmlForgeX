@@ -5,8 +5,7 @@ namespace HtmlForgeX;
 /// <summary>
 /// Localization strings for DataTables user interface elements.
 /// </summary>
-public class DataTablesLanguage
-{
+public class DataTablesLanguage {
     /// <summary>Label for the search input.</summary>
     [JsonPropertyName("search")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -52,4 +51,3 @@ public class DataTablesLanguage
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public DataTablesPaginate? Paginate { get; set; }
 }
-

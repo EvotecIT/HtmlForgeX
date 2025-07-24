@@ -65,23 +65,23 @@ public class TablerRadioGroup : Element {
     /// </summary>
     public override string ToString() {
         var wrapper = new HtmlTag("div").Class("mb-3");
-        
+
         if (!string.IsNullOrEmpty(_label)) {
             wrapper.Value(new HtmlTag("div").Class("form-label").Value(_label));
         }
-        
+
         var container = new HtmlTag("div");
-        
+
         foreach (var option in _options) {
             var radio = new TablerRadio(_name, option.Value)
                 .Label(option.Label)
                 .Checked(option.Checked)
                 .Disabled(option.Disabled)
                 .Inline(_inline);
-            
+
             container.Value(radio);
         }
-        
+
         wrapper.Value(container);
         return wrapper.ToString();
     }

@@ -98,7 +98,7 @@ public partial class VisNetworkNodeOptions {
         Label = label;
         return this;
     }
-    
+
     /// <summary>
     /// Sets an HTML-formatted label with multi-line support. Automatically enables HTML multi-line mode.
     /// </summary>
@@ -111,7 +111,7 @@ public partial class VisNetworkNodeOptions {
         Font.Multi = VisNetworkMulti.Html;
         return this;
     }
-    
+
     /// <summary>
     /// Builds an HTML-formatted label using a fluent builder. Automatically enables HTML multi-line mode.
     /// </summary>
@@ -122,7 +122,7 @@ public partial class VisNetworkNodeOptions {
         configure(builder);
         return WithHtmlLabel(builder.Build());
     }
-    
+
     /// <summary>
     /// Sets a Markdown-formatted label with multi-line support. Automatically enables Markdown multi-line mode.
     /// </summary>
@@ -527,7 +527,7 @@ public partial class VisNetworkNodeOptions {
         }
         return this;
     }
-    
+
     /// <summary>
     /// Internal flag to track whether auto-embedding should be skipped for this node.
     /// This is not serialized to JSON.
