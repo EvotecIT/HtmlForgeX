@@ -2,8 +2,8 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -34,7 +34,11 @@ public class TestFluentReturns {
         var ctor = type.GetConstructor(Type.EmptyTypes);
         if (ctor != null) return Activator.CreateInstance(type);
         try {
+#if NET8_0_OR_GREATER
             return RuntimeHelpers.GetUninitializedObject(type);
+#else
+            return FormatterServices.GetUninitializedObject(type);
+#endif
         } catch {
             return null;
         }
