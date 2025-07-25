@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Defines smooth curve types for VisNetwork edges
+/// </summary>
 public enum VisNetworkSmoothType {
     /// <summary>
     /// Dynamically chooses the best curve type.

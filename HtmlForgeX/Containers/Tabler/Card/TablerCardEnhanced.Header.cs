@@ -1,6 +1,8 @@
 using System.Linq;
 
 using HtmlForgeX.Extensions;
+using HtmlForgeX.Containers.Tabler;
+
 namespace HtmlForgeX;
 
 public partial class TablerCardEnhanced {
@@ -36,7 +38,7 @@ public partial class TablerCardEnhanced {
     public TablerCardEnhanced WithHeaderAction(string text, string href = "#", TablerIconType? icon = null, TablerButtonVariant variant = TablerButtonVariant.Primary) {
         var button = new TablerButton(text, href, variant);
         if (icon.HasValue) {
-            button.WithIcon(icon.Value);
+            button.Icon(icon.Value);
         }
         HeaderActions.Add(button);
         return this;
@@ -51,26 +53,19 @@ public partial class TablerCardEnhanced {
     }
 
     /// <summary>
-    /// Adds a dropdown menu to the header using predefined items.
+    /// Adds a dropdown menu to the header using a configuration action.
     /// </summary>
-    /// <param name="items">Collection of dropdown items.</param>
+    /// <param name="configure">Action to configure the dropdown.</param>
     /// <returns>The current card instance.</returns>
-    public TablerCardEnhanced WithHeaderDropdown(List<TablerDropdownItem> items) {
-        HeaderActions.Add(new TablerDropdown(items));
-        return this;
-    }
-
-    /// <summary>
-    /// Adds a dropdown menu to the header using a fluent configuration action.
-    /// </summary>
-    /// <param name="configure">Action that configures the dropdown.</param>
-    /// <returns>The current card instance.</returns>
+    // Note: Updated to use new TablerDropdown API
     public TablerCardEnhanced WithHeaderDropdown(Action<TablerDropdown> configure) {
-        var dropdown = new TablerDropdown();
+        var dropdown = new TablerDropdown("Actions");
         configure?.Invoke(dropdown);
         HeaderActions.Add(dropdown);
         return this;
     }
+
+    // Note: Duplicate method removed - use the method above
 
     /// <summary>
     /// Initializes or configures WithHeaderLightBackground.

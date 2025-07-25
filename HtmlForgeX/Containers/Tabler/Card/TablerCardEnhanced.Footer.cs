@@ -1,6 +1,7 @@
 using System.Linq;
 
 using HtmlForgeX.Extensions;
+using HtmlForgeX.Containers.Tabler;
 
 namespace HtmlForgeX;
 
@@ -68,9 +69,9 @@ public partial class TablerCardEnhanced {
             var rowDiv = new HtmlTag("div").Class("row align-items-center");
 
             // Left side content
-            if (FooterActions.Any(a => a is TablerButton b && b.Variant == TablerButtonVariant.Link)) {
+            if (FooterActions.Any(a => a is TablerButton b && b.CurrentVariant == TablerButtonVariant.Link)) {
                 var leftCol = new HtmlTag("div").Class("col-auto");
-                foreach (var action in FooterActions.Where(a => a is TablerButton b && b.Variant == TablerButtonVariant.Link)) {
+                foreach (var action in FooterActions.Where(a => a is TablerButton b && b.CurrentVariant == TablerButtonVariant.Link)) {
                     leftCol.Value(action);
                 }
                 rowDiv.Value(leftCol);
@@ -104,7 +105,7 @@ public partial class TablerCardEnhanced {
             }
 
             // Add primary buttons
-            foreach (var action in FooterActions.Where(a => !(a is TablerButton b && b.Variant == TablerButtonVariant.Link))) {
+            foreach (var action in FooterActions.Where(a => !(a is TablerButton b && b.CurrentVariant == TablerButtonVariant.Link))) {
                 rightCol.Value(action);
             }
 

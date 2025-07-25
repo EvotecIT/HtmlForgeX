@@ -5,6 +5,10 @@ using System.Linq;
 namespace HtmlForgeX;
 
 public partial class ChartJs {
+    /// <summary>
+    /// Adds a data point to the chart.
+    /// </summary>
+    /// <param name="label">Label for the data point.</param>
     /// <param name="value">Numeric value.</param>
     /// <returns>The current <see cref="ChartJs"/> instance.</returns>
     public ChartJs AddData(string label, double value) {

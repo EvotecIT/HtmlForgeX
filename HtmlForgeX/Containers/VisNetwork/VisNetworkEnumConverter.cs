@@ -32,6 +32,10 @@ public static class VisNetworkArrowExtensions {
     }
 }
 
+/// <summary>
+/// JSON converter for VisNetwork enum types that handles proper casing and formatting
+/// </summary>
+/// <typeparam name="T">The enum type to convert</typeparam>
 public class VisNetworkEnumConverter<T> : JsonConverter<T> where T : struct, Enum {
     /// <summary>
     /// Reads a VisNetwork enum value from JSON.

@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HtmlForgeX.Containers.Tabler;
 
 namespace HtmlForgeX.Tests;
 
@@ -6,10 +7,10 @@ namespace HtmlForgeX.Tests;
 public class TestTablerDropdown {
     [TestMethod]
     public void Dropdown_RendersItems() {
-        var dropdown = new TablerDropdown()
-            .AddItem("Edit", "/edit")
-            .AddDivider()
-            .AddItem("Delete", "/del", true);
+        var dropdown = new TablerDropdown("Actions")
+            .Item("Edit", "/edit")
+            .Divider()
+            .Item("Delete", "/del");
 
         var html = dropdown.ToString();
 
@@ -23,7 +24,7 @@ public class TestTablerDropdown {
     public void Card_WithHeaderDropdown_UsesFluentConfiguration() {
         var card = new TablerCardEnhanced()
             .WithHeader("Test")
-            .WithHeaderDropdown(d => d.AddItem("Edit").AddItem("Delete"));
+            .WithHeaderDropdown(d => d.Item("Edit").Item("Delete"));
 
         var html = card.ToString();
 

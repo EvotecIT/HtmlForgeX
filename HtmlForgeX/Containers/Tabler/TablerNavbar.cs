@@ -182,7 +182,7 @@ public class TablerNavbar : Element {
             var brand = new HtmlTag("a").Class("navbar-brand").Attribute("href", _brandUrl);
             if (!string.IsNullOrEmpty(_logoUrl)) {
                 var logo = new HtmlTag("img", null, TagMode.SelfClosing)
-                    .Attribute("src", _logoUrl)
+                    .Attribute("src", _logoUrl!)
                     .Attribute("alt", _brand ?? "Logo")
                     .Attribute("height", "32");
                 brand.Value(logo);
@@ -227,7 +227,7 @@ public class TablerNavbar : Element {
             var brand = new HtmlTag("a").Attribute("href", _brandUrl);
             if (!string.IsNullOrEmpty(_logoUrl)) {
                 var logo = new HtmlTag("img", null, TagMode.SelfClosing)
-                    .Attribute("src", _logoUrl)
+                    .Attribute("src", _logoUrl!)
                     .Attribute("alt", _brand ?? "Logo")
                     .Attribute("height", "32");
                 brand.Value(logo);

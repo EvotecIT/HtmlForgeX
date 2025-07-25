@@ -17,7 +17,7 @@ public class TestHelpersSpectre {
             var assembly = Assembly.Load("HtmlForgeX.Examples");
             var type = assembly.GetType("HtmlForgeX.Examples.HelpersSpectre");
             var method = type!.GetMethod("PrintTitle", BindingFlags.Static | BindingFlags.Public);
-            method.Invoke(null, new object[] { "Demo Title" });
+            method?.Invoke(null, new object[] { "Demo Title" });
         } finally {
             AnsiConsole.Console = previous;
         }

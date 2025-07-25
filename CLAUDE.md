@@ -2,6 +2,53 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 🚨 CRITICAL: NO CSS, NO JS, NO HTML PRINCIPLE 🚨
+
+### ABSOLUTE RULE #1
+HtmlForgeX exists so users NEVER have to write HTML, CSS, or JavaScript. EVER.
+
+### ❌ FORBIDDEN - NEVER DO THIS:
+```csharp
+// NEVER expose HTML tags
+new HtmlTag("div").Class("container")
+new HtmlTag("span").Class("badge")
+
+// NEVER expose CSS classes
+.Class("page-wrapper")
+.Class("d-print-none") 
+.Class("col-md-4")
+
+// NEVER expose style strings
+.Style("height: 300px")
+.Style("margin: 10px")
+
+// NEVER expose raw HTML
+.Value("<hr class='divider'>")
+```
+
+### ✅ REQUIRED - ALWAYS DO THIS:
+```csharp
+// ALWAYS use typed components
+new TablerContainer().Fluid()
+new TablerBadge("Success", TablerBadgeColor.Green)
+
+// ALWAYS use enums for styling
+.Height(TablerHeight.Pixels(300))
+.Margin(TablerMargin.Medium)
+.Column(TablerColumnSize.Medium4)
+
+// ALWAYS create typed components
+new TablerDivider().Type(TablerDividerType.Default)
+```
+
+### ENFORCEMENT CHECKLIST:
+1. ✓ Every visual element must be a typed class
+2. ✓ Every style option must be an enum
+3. ✓ Every layout choice must use fluent methods
+4. ✓ Users should NEVER see CSS class names
+5. ✓ Users should NEVER write HTML tags
+6. ✓ Users should NEVER write style strings
+
 ## Project Overview
 
 HtmlForgeX is a .NET library that simplifies HTML/CSS/JavaScript generation through a fluent API. It enables creating complex HTML documents, pages, and reports without requiring HTML/CSS/JS knowledge. The project includes a PowerShell module and supports multiple .NET frameworks (Standard 2.0, Framework 4.7.2, .NET 8.0). The core principle is to provide a fluent, type-safe API for HTML generation, allowing developers to focus on logic rather than syntax. No CSS, JavaScript, or HTML knowledge is required to use the library effectively.

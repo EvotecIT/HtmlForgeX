@@ -1,3 +1,5 @@
+using HtmlForgeX.Containers.Tabler;
+
 namespace HtmlForgeX.Examples.Tabler;
 
 internal static class TablerDropdown {
@@ -10,10 +12,10 @@ internal static class TablerDropdown {
                     column.CardEnhanced(card => card
                         .WithHeader("Dropdown Demo")
                         .WithHeaderDropdown(dropdown => dropdown
-                            .AddItem("Edit")
-                            .AddItem("Delete", "#", true)
-                            .AddDivider()
-                            .AddItem("Share"))
+                            .Item("Edit")
+                            .Item("Delete", "#")
+                            .Divider()
+                            .Item("Share"))
                         .Body(body => {
                             body.Text("This card demonstrates a dropdown in the header.");
                         }));
@@ -25,10 +27,10 @@ internal static class TablerDropdown {
                         .WithHeader("Actions")
                         .WithHeaderDropdown(dropdown => dropdown
                             .Icon(TablerIconType.Settings)
-                            .AddItem("Edit")
-                            .AddItem("Archive")
-                            .AddDivider()
-                            .AddItem("Delete", "#", true))
+                            .Item("Edit")
+                            .Item("Archive")
+                            .Divider()
+                            .Item("Delete", "#"))
                         .Body(body => {
                             body.Text("Another dropdown example with a settings icon.");
                         }));

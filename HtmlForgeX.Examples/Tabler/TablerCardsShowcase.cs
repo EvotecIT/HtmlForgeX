@@ -1,4 +1,5 @@
 using HtmlForgeX.Examples;
+using HtmlForgeX.Containers.Tabler;
 
 namespace HtmlForgeX.Examples.Tabler;
 

@@ -450,6 +450,7 @@ public abstract partial class Element {
         return modal;
     }
 
+    /// <summary>
     /// Adds and configures a countdown timer element.
     /// </summary>
     /// <param name="config">Optional configuration action.</param>

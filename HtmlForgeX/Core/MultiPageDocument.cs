@@ -83,7 +83,7 @@ public class MultiPageDocument : IDisposable {
 
         // Add footer if specified
         if (!string.IsNullOrEmpty(_sharedFooter)) {
-            layoutContainer.WithFooter(_sharedFooter);
+            layoutContainer.WithFooter(_sharedFooter!);
         }
 
         document.Body.Add(layoutContainer);
@@ -111,12 +111,12 @@ public class MultiPageDocument : IDisposable {
                 // Copy navigation items, updating links to point to correct files
                 foreach (var item in _sharedNavigation.GetNavigationItems()) {
                     nav.AddItem(navItem => {
-                        navItem.WithText(item.Text);
+                        if (item.Text != null) navItem.WithText(item.Text);
                         
                         // Update href to point to the correct file
                         if (item.InternalPageId != null && _pageMapping.ContainsKey(item.InternalPageId)) {
                             navItem.WithHref(_pageMapping[item.InternalPageId]);
-                        } else {
+                        } else if (item.Href != null) {
                             navItem.WithHref(item.Href);
                         }
                         
@@ -138,7 +138,7 @@ public class MultiPageDocument : IDisposable {
 
         // Add footer if specified
         if (!string.IsNullOrEmpty(_sharedFooter)) {
-            layoutContainer.WithFooter(_sharedFooter);
+            layoutContainer.WithFooter(_sharedFooter!);
         }
 
         document.Body.Add(layoutContainer);
@@ -229,12 +229,12 @@ internal static class TablerNavbarExtensions {
         foreach (var item in navbar._items) {
             clone.AddItem(navItem => {
                 if (item._text != null) navItem.WithText(item._text);
-                navItem.WithHref(item._href);
+                if (item._href != null) navItem.WithHref(item._href);
                 if (item._icon.HasValue) navItem.WithIcon(item._icon.Value, item._iconColor);
                 if (item._active) navItem.Active();
                 if (item._disabled) navItem.Disabled();
-                if (!string.IsNullOrEmpty(item._badgeText)) navItem.WithBadge(item._badgeText, item._badgeColor);
-                if (!string.IsNullOrEmpty(item._internalPageId)) navItem.WithInternalPageId(item._internalPageId);
+                if (!string.IsNullOrEmpty(item._badgeText)) navItem.WithBadge(item._badgeText!, item._badgeColor);
+                if (!string.IsNullOrEmpty(item._internalPageId)) navItem.WithInternalPageId(item._internalPageId!);
             });
         }
 

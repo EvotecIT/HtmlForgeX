@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 
 namespace HtmlForgeX;
 
+/// <summary>
+/// Defines layout sorting options for VisNetwork
+/// </summary>
 [JsonConverter(typeof(VisNetworkEnumConverter<VisNetworkLayoutSort>))]
 public enum VisNetworkLayoutSort {
     /// <summary>

@@ -6,6 +6,11 @@ namespace HtmlForgeX;
 public partial class EmailImage {
     #region Image Embedding
 
+    /// <summary>
+    /// Embeds an image from a file path as base64
+    /// </summary>
+    /// <param name="filePath">The path to the image file</param>
+    /// <returns>The EmailImage instance for method chaining</returns>
     public EmailImage EmbedFromFile(string filePath) {
         var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
         var logWarnings = Email?.Configuration?.Email?.LogEmbeddingWarnings == true;
@@ -27,9 +32,21 @@ public partial class EmailImage {
         return this;
     }
 
+    /// <summary>
+    /// Embeds an image from a URL as base64 (synchronous)
+    /// </summary>
+    /// <param name="url">The URL of the image</param>
+    /// <param name="timeoutSeconds">Timeout in seconds for downloading</param>
+    /// <returns>The EmailImage instance for method chaining</returns>
     public EmailImage EmbedFromUrl(string url, int timeoutSeconds = 30) =>
         EmbedFromUrlAsync(url, timeoutSeconds).GetAwaiter().GetResult();
 
+    /// <summary>
+    /// Embeds an image from a URL as base64 (asynchronous)
+    /// </summary>
+    /// <param name="url">The URL of the image</param>
+    /// <param name="timeoutSeconds">Timeout in seconds for downloading</param>
+    /// <returns>A task that represents the asynchronous operation</returns>
     public async Task<EmailImage> EmbedFromUrlAsync(string url, int timeoutSeconds = 30) {
         var maxSize = Email?.Configuration?.Email?.MaxEmbedFileSize ?? 2 * 1024 * 1024;
         var logWarnings = Email?.Configuration?.Email?.LogEmbeddingWarnings == true;
@@ -52,6 +69,12 @@ public partial class EmailImage {
         return this;
     }
 
+    /// <summary>
+    /// Automatically detects whether source is a file path or URL and embeds accordingly
+    /// </summary>
+    /// <param name="source">The image source (file path or URL)</param>
+    /// <param name="timeoutSeconds">Timeout in seconds for URL downloads</param>
+    /// <returns>The EmailImage instance for method chaining</returns>
     public EmailImage EmbedSmart(string source, int timeoutSeconds = 30) {
         if (string.IsNullOrEmpty(source)) {
             return this;
@@ -78,6 +101,12 @@ public partial class EmailImage {
         return this;
     }
 
+    /// <summary>
+    /// Embeds an image from existing base64 data
+    /// </summary>
+    /// <param name="base64Data">The base64 encoded image data</param>
+    /// <param name="mimeType">The MIME type of the image</param>
+    /// <returns>The EmailImage instance for method chaining</returns>
     public EmailImage EmbedFromBase64(string base64Data, string mimeType) {
         Base64Data = base64Data;
         MimeType = mimeType;
@@ -86,6 +115,13 @@ public partial class EmailImage {
         return this;
     }
 
+    /// <summary>
+    /// Embeds a dark mode variant of the image
+    /// </summary>
+    /// <param name="source">The dark mode image source</param>
+    /// <param name="timeoutSeconds">Timeout in seconds for URL downloads</param>
+    /// <param name="useSmartDetection">Whether to use smart detection for source type</param>
+    /// <returns>The EmailImage instance for method chaining</returns>
     public EmailImage EmbedDarkModeImage(string source, int timeoutSeconds = 30, bool useSmartDetection = true) {
         if (string.IsNullOrEmpty(source)) {
             return this;

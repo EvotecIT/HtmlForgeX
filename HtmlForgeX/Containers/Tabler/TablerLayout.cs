@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HtmlForgeX.Containers.Tabler;
 
 namespace HtmlForgeX;
 
@@ -13,7 +14,6 @@ public class TablerLayoutContainer : Element {
     private readonly List<TablerLayoutPage> _pages = new();
     private TablerLayout _layoutType = TablerLayout.Default;
     private string? _footerContent;
-    private bool _hasHeader = true;
     private bool _hasSidebar = false;
 
     /// <summary>
@@ -140,9 +140,12 @@ public class TablerLayoutContainer : Element {
             pageWrapper.Value(pageMain);
         }
 
-        // Add page switching script
+        // Add page switching functionality
         if (_pages.Count > 1) {
-            pageWrapper.Value(BuildPageSwitchingScript());
+            var switcher = BuildPageSwitcher();
+            switcher.Document = Document;
+            switcher.Email = Email;
+            pageWrapper.Value(switcher.ToString());
         }
 
         return pageWrapper.ToString();
@@ -177,38 +180,20 @@ public class TablerLayoutContainer : Element {
         return container;
     }
 
-    private HtmlTag BuildPageSwitchingScript() {
-        var script = @"
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Handle navigation clicks for internal pages
-    document.querySelectorAll('a[href^=""#""]').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href').substring(1);
-            const targetPage = document.getElementById(targetId);
-            
-            if (targetPage && targetPage.classList.contains('layout-page')) {
-                e.preventDefault();
-                
-                // Hide all pages
-                document.querySelectorAll('.layout-page').forEach(function(page) {
-                    page.style.display = 'none';
-                });
-                
-                // Show target page
-                targetPage.style.display = 'block';
-                
-                // Update active navigation
-                document.querySelectorAll('.nav-link').forEach(function(navLink) {
-                    navLink.classList.remove('active');
-                });
-                this.classList.add('active');
-            }
-        });
-    });
-});
-</script>";
-        return new HtmlTag("script").Value(script);
+    private TablerPageSwitcher BuildPageSwitcher() {
+        var switcher = new TablerPageSwitcher();
+        
+        // Register all page IDs
+        foreach (var page in _pages) {
+            switcher.RegisterPage(page.Id);
+        }
+        
+        // Set default page (first one)
+        if (_pages.Any()) {
+            switcher.DefaultPage(_pages.First().Id);
+        }
+        
+        return switcher;
     }
 
     private string GetLayoutClass() {
@@ -281,7 +266,7 @@ public class TablerLayoutPage : Element {
     /// <summary>
     /// Adds a row to the page.
     /// </summary>
-    public TablerLayoutPage Row(Action<TablerRow> config) {
+    public new TablerLayoutPage Row(Action<TablerRow> config) {
         var row = new TablerRow(TablerRowType.Cards, TablerRowType.Deck);
         row.WithBottomSpacing(TablerSpacing.Medium);
         this.Add(row);
